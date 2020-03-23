@@ -77,20 +77,6 @@
                 <artifactId>camel-bundle-plugin</artifactId>
             </plugin>
 
-            <!-- generate and include all components in the catalog -->
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-package-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-catalog-karaf</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
 
     </build>
