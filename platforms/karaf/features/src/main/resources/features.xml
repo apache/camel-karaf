@@ -1988,7 +1988,7 @@
   </feature>
   <feature name='camel-paxlogging' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle>mvn:org.apache.camel/camel-paxlogging/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-paxlogging/${project.version}</bundle>
   </feature>
   <feature name='camel-pdf' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
