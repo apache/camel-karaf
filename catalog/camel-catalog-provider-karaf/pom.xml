@@ -77,6 +77,21 @@
                 <artifactId>camel-bundle-plugin</artifactId>
             </plugin>
 
+            <!-- update docs -->
+            <plugin>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-karaf-docs-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>update-doc-components-list</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
     </build>

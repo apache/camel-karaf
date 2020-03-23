@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>camel-karaf-docs-maven-plugin</artifactId>
-    <packaging>jar</packaging>
+    <packaging>maven-plugin</packaging>
     <name>Camel Karaf Tooling :: Docs Maven Plugin</name>
 
     <properties>

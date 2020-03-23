@@ -97,6 +97,16 @@
                     </execution>
                 </executions>
             </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin-version}</version>
+                    <configuration>
+                        <archive>
+                            <manifestFile>${camel.osgi.manifest}</manifestFile>
+                        </archive>
+                    </configuration>
+                </plugin>
         </plugins>
     </build>
 
