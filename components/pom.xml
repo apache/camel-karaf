@@ -25,73 +25,28 @@
     </parent>
 
     <groupId>org.apache.camel.karaf</groupId>
-    <artifactId>core-modules</artifactId>
-    <name>Camel Karaf :: Core Modules</name>
-    <description>Camel Karaf Core Modules</description>
+    <artifactId>components</artifactId>
+    <name>Camel Karaf :: Components Modules</name>
+    <description>Camel Karaf Components Modules</description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>camel-core-osgi</module>
+        <module>camel-paxlogging</module>
     </modules>
 
     <properties>
         <camel.osgi.manifest>${project.build.outputDirectory}/META-INF/MANIFEST.MF</camel.osgi.manifest>
+
+        <camel-prepare-component>true</camel-prepare-component>
     </properties>
 
     <build>
         <plugins>
-            <!--<plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-package-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                    </execution>
-                </executions>
-            </plugin>-->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>recompile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>src/generated/java</source>
-                            </sources>
-                            <resources>
-                                <resource>
-                                    <directory>src/generated/resources</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-bundle-plugin</artifactId>
                 <version>${project.version}</version>
+                <extensions>false</extensions>
                 <configuration>
                     <supportIncrementalBuild>true</supportIncrementalBuild>
                     <noWarningProjectTypes>pom</noWarningProjectTypes>
@@ -112,6 +67,12 @@
                         <_versionpolicy>${camel.osgi.import.default.version}</_versionpolicy>
                         <_failok>${camel.osgi.failok}</_failok>
                         <_removeheaders>Bnd-LastModified</_removeheaders>
+                        <_plugin>
+                            org.apache.felix.bundleplugin.BlueprintPlugin,
+                            aQute.lib.spring.SpringXMLType,
+                            org.apache.felix.bundleplugin.JpaPlugin,
+                            org.apache.camel.maven.bundle.CamelPlugin
+                        </_plugin>
                     </instructions>
                 </configuration>
                 <executions>
@@ -138,5 +99,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>

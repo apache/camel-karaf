@@ -74,8 +74,8 @@
     <modules>
         <!--<module>tooling</module>-->
         <module>core</module>
-        <!--<module>components-starter</module>
-        <module>catalog</module>
+        <module>components</module>
+        <!--<module>catalog</module>
         <module>tests</module>
         <module>examples</module>
         <module>docs</module>-->
@@ -150,6 +150,7 @@
         <kafka-avro-serializer-version>5.2.2</kafka-avro-serializer-version>
         <log4j2-version>2.13.1</log4j2-version>
         <lucene3-version>3.6.0</lucene3-version>
+        <maven-jar-plugin-version>3.2.0</maven-jar-plugin-version>
         <maven-checkstyle-plugin-version>3.1.0</maven-checkstyle-plugin-version>
         <maven-checkstyle-version>8.26</maven-checkstyle-version>
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
@@ -161,6 +162,7 @@
         <openjpa-version>3.1.1</openjpa-version>
         <opentracing-version>0.33.0</opentracing-version>
         <os-maven-plugin-version>1.6.0</os-maven-plugin-version>
+        <pax-logging-version>1.11.2</pax-logging-version>
         <protobuf-maven-plugin-version>0.6.1</protobuf-maven-plugin-version>
         <protobuf-version>3.11.1</protobuf-version>
         <reactor-version>3.2.15.RELEASE</reactor-version>
@@ -177,6 +179,40 @@
         <tomcat-version>9.0.31</tomcat-version>
         <undertow-version>2.0.30.Final</undertow-version>
         <weld3-version>3.0.5.RELEASE</weld3-version>
+
+        <!-- OSGi bundles properties -->
+        <camel.osgi.import.camel.version>
+            version="[$(version;==;${camel.osgi.version.clean}),$(version;=+;${camel.osgi.version.clean}))"
+        </camel.osgi.import.camel.version>
+        <camel.osgi.import.strict.version>
+            version="[$(version;===;${camel.osgi.version.clean}),$(version;==+;${camel.osgi.version.clean}))"
+        </camel.osgi.import.strict.version>
+        <camel.osgi.import.default.version>[$(version;==;$(@)),$(version;+;$(@)))</camel.osgi.import.default.version>
+        <camel.osgi.import.defaults>
+        </camel.osgi.import.defaults>
+        <camel.osgi.import.before.defaults />
+        <camel.osgi.import.additional />
+        <camel.osgi.import.pkg>
+            org.apache.camel.*;${camel.osgi.import.camel.version},
+            ${camel.osgi.import.before.defaults},
+            ${camel.osgi.import.defaults},
+            ${camel.osgi.import.additional},
+            *
+        </camel.osgi.import.pkg>
+        <camel.osgi.activator />
+        <camel.osgi.failok>false</camel.osgi.failok>
+        <camel.osgi.private.pkg>!*</camel.osgi.private.pkg>
+        <camel.osgi.export.pkg>$${replace;{local-packages};;;\;}</camel.osgi.export.pkg>
+        <camel.osgi.export>${camel.osgi.export.pkg};-noimport:=true;${camel.osgi.version}</camel.osgi.export>
+        <camel.osgi.version>version=${project.version}</camel.osgi.version>
+        <camel.osgi.import>${camel.osgi.import.pkg}</camel.osgi.import>
+        <camel.osgi.dynamic />
+        <camel.osgi.symbolic.name>${project.groupId}.${project.artifactId}</camel.osgi.symbolic.name>
+        <camel.osgi.exclude.dependencies>false</camel.osgi.exclude.dependencies>
+        <camel.osgi.require.capability />
+        <camel.osgi.provide.capability />
+
+        <camel.osgi.manifest>${project.build.outputDirectory}/META-INF/MANIFEST.MF</camel.osgi.manifest>
     </properties>
 
 
@@ -254,6 +290,16 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin-version}</version>
+                    <configuration>
+                        <archive>
+                            <manifestFile>${camel.osgi.manifest}</manifestFile>
+                        </archive>
+                    </configuration>
+                </plugin>
         </plugins>
 
         <pluginManagement>
