@@ -20,7 +20,6 @@ import java.util.LinkedList;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.test.blueprint.CamelBlueprintHelper;
 import org.apache.camel.main.MainCommandLineSupport;
 import org.osgi.framework.BundleContext;
 

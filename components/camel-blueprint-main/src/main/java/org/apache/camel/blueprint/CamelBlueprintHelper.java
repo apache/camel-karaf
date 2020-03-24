@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.test.blueprint;
+package org.apache.camel.blueprint;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,9 +78,6 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.apache.camel.test.junit4.TestSupport.createDirectory;
-import static org.apache.camel.test.junit4.TestSupport.deleteDirectory;
 
 /**
  * Helper for using Blueprint with Camel.
@@ -429,6 +426,68 @@ public final class CamelBlueprintHelper {
     }
 
     /**
+     * create the directory
+     *
+     * @param file the directory to be created
+     */
+    public static void createDirectory(String file) {
+        File dir = new File(file);
+        dir.mkdirs();
+    }
+
+    /**
+     * Recursively delete a directory, useful to zapping test data
+     *
+     * @param file the directory to be deleted
+     * @return <tt>false</tt> if error deleting directory
+     */
+    public static boolean deleteDirectory(String file) {
+        return deleteDirectory(new File(file));
+    }
+
+    /**
+     * Recursively delete a directory, useful to zapping test data
+     *
+     * @param file the directory to be deleted
+     * @return <tt>false</tt> if error deleting directory
+     */
+    public static boolean deleteDirectory(File file) {
+        int tries = 0;
+        int maxTries = 5;
+        boolean exists = true;
+        while (exists && (tries < maxTries)) {
+            recursivelyDeleteDirectory(file);
+            tries++;
+            exists = file.exists();
+            if (exists) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    // Ignore
+                }
+            }
+        }
+        return !exists;
+    }
+
+    private static void recursivelyDeleteDirectory(File file) {
+        if (!file.exists()) {
+            return;
+        }
+
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File child : files) {
+                recursivelyDeleteDirectory(child);
+            }
+        }
+        boolean success = file.delete();
+        if (!success) {
+            LOG.warn("Deletion of file: " + file.getAbsolutePath() + " failed");
+        }
+    }
+
+    /**
      * Provides an iterable collection of references, even if the original array is <code>null</code>.
      */
     private static Collection<ServiceReference> asCollection(ServiceReference[] references) {
@@ -453,7 +512,7 @@ public final class CamelBlueprintHelper {
      * @return the bundle descriptors.
      * @throws FileNotFoundException is thrown if a bundle descriptor cannot be found
      */
-    protected static Collection<URL> getBlueprintDescriptors(String descriptors) throws FileNotFoundException, MalformedURLException {
+    public static Collection<URL> getBlueprintDescriptors(String descriptors) throws FileNotFoundException, MalformedURLException {
         List<URL> answer = new ArrayList<>();
         if (descriptors != null) {
             // there may be more resources separated by comma

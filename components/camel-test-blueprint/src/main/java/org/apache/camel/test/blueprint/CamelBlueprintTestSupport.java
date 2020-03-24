@@ -44,6 +44,7 @@ import org.w3c.dom.NodeList;
 
 import org.apache.aries.blueprint.compendium.cm.CmNamespaceHandler;
 import org.apache.camel.CamelContext;
+import org.apache.camel.blueprint.CamelBlueprintHelper;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.test.junit4.CamelTestSupport;
