@@ -14,38 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.test.blueprint;
+package org.apache.camel.blueprint;
 
-import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class MyMainAppTest {
-
-    public static void main(String[] args) throws Exception {
-        MyMainAppTest me = new MyMainAppTest();
-        me.testMyMain();
-    }
+public class MainNoReloadTest {
 
     @Test
     public void testMyMain() throws Exception {
         Main main = new Main();
-        run(main);
-        
-        CamelContext camelContext = main.getCamelContext();
-        assertNotNull(camelContext);
-    }
-
-    public void run(Main main) throws Exception {
         main.setBundleName("MyMainBundle");
         // as we run this test without packing ourselves as bundle, then include ourselves
         main.setIncludeSelfAsBundle(true);
-        // we support *.xml to find any blueprint xml files
-        main.setDescriptors("org/apache/camel/test/blueprint/xpath/*.xml");
+        // setup the blueprint file here
+        main.setDescriptors("org/apache/camel/blueprint/main-no-reload-loadfile.xml");
+        // set the configAdmin persistent id
+        main.setConfigAdminPid("stuff");
+        // set the configAdmin persistent file name
+        main.setConfigAdminFileName("src/test/resources/etc/stuff.cfg");
+        main.start();
 
-        // run for 1 second and then stop automatic
-        main.setDuration(1);
-        main.run();
+        ProducerTemplate template = main.getCamelTemplate();
+        assertNotNull("We should get the template here", template);
+
+        String result = template.requestBody("direct:start", "hello", String.class);
+        assertEquals("Get a wrong response", "Bye hello", result);
+        main.stop();
     }
+
 }

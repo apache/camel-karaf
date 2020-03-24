@@ -1,0 +1,14 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "blueprint-main",
+    "title": "Blueprint Main",
+    "description": "Main support for OSGi Blueprint",
+    "deprecated": false,
+    "firstVersion": "3.2.0",
+    "label": "java,osgi",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-blueprint-main",
+    "version": "3.2.0-SNAPSHOT"
+  }
+}

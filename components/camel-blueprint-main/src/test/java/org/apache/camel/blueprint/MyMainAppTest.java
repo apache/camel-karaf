@@ -14,32 +14,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.test.blueprint;
+package org.apache.camel.blueprint;
 
-import org.apache.camel.ProducerTemplate;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class MainNoPidTest {
+public class MyMainAppTest {
+
+    public static void main(String[] args) throws Exception {
+        MyMainAppTest me = new MyMainAppTest();
+        me.testMyMain();
+    }
 
     @Test
     public void testMyMain() throws Exception {
         Main main = new Main();
+        run(main);
+        
+        CamelContext camelContext = main.getCamelContext();
+        assertNotNull(camelContext);
+    }
+
+    public void run(Main main) throws Exception {
         main.setBundleName("MyMainBundle");
         // as we run this test without packing ourselves as bundle, then include ourselves
         main.setIncludeSelfAsBundle(true);
-        // setup the blueprint file here
-        main.setDescriptors("org/apache/camel/test/blueprint/main-no-pid-loadfile.xml");
-        main.start();
+        // we support *.xml to find any blueprint xml files
+        main.setDescriptors("org/apache/camel/blueprint/xpath/*.xml");
 
-        ProducerTemplate template = main.getCamelTemplate();
-        assertNotNull("We should get the template here", template);
-
-        String result = template.requestBody("direct:start", "hello", String.class);
-        assertEquals("Get a wrong response", "Good morning hello", result);
-        main.stop();
+        // run for 1 second and then stop automatic
+        main.setDuration(1);
+        main.run();
     }
-
 }

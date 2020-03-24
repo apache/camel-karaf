@@ -34,6 +34,7 @@
     <modules>
         <module>camel-blueprint</module>
         <module>camel-test-blueprint</module>
+        <module>camel-blueprint-main</module>
         <module>camel-cxf-blueprint</module>
         <module>camel-cxf-transport-blueprint</module>
         <module>camel-kura</module>

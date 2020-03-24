@@ -28,7 +28,7 @@
   <cm:property-placeholder persistent-id="stuff" update-strategy="none"/>
 
   <!-- a bean that uses a blueprint property placeholder -->
-  <bean id="myCoolBean" class="org.apache.camel.test.blueprint.MyCoolBean">
+  <bean id="myCoolBean" class="org.apache.camel.blueprint.MyCoolBean">
     <property name="say" value="${greeting}"/>
   </bean>
 

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.test.blueprint;
+package org.apache.camel.blueprint;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +41,7 @@ public class MainTest {
         // as we run this test without packing ourselves as bundle, then include ourselves
         main.setIncludeSelfAsBundle(true);
         // setup the blueprint file here
-        main.setDescriptors("org/apache/camel/test/blueprint/main-loadfile.xml");
+        main.setDescriptors("org/apache/camel/blueprint/main-loadfile.xml");
         // set the configAdmin persistent id
         main.setConfigAdminPid("stuff");
         // set the configAdmin persistent file name

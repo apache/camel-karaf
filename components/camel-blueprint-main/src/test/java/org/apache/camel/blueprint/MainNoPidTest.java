@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.test.blueprint;
+package org.apache.camel.blueprint;
 
 import org.apache.camel.ProducerTemplate;
 import org.junit.Test;
@@ -22,7 +22,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class MainNoReloadTest {
+public class MainNoPidTest {
 
     @Test
     public void testMyMain() throws Exception {
@@ -31,18 +31,14 @@ public class MainNoReloadTest {
         // as we run this test without packing ourselves as bundle, then include ourselves
         main.setIncludeSelfAsBundle(true);
         // setup the blueprint file here
-        main.setDescriptors("org/apache/camel/test/blueprint/main-no-reload-loadfile.xml");
-        // set the configAdmin persistent id
-        main.setConfigAdminPid("stuff");
-        // set the configAdmin persistent file name
-        main.setConfigAdminFileName("src/test/resources/etc/stuff.cfg");
+        main.setDescriptors("org/apache/camel/blueprint/main-no-pid-loadfile.xml");
         main.start();
 
         ProducerTemplate template = main.getCamelTemplate();
         assertNotNull("We should get the template here", template);
 
         String result = template.requestBody("direct:start", "hello", String.class);
-        assertEquals("Get a wrong response", "Bye hello", result);
+        assertEquals("Get a wrong response", "Good morning hello", result);
         main.stop();
     }
 
