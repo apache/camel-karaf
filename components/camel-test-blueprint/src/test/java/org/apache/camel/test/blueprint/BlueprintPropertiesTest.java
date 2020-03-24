@@ -34,7 +34,7 @@ public class BlueprintPropertiesTest extends CamelBlueprintTestSupport {
 
     @Test
     public void testProperties() throws Exception {
-        Bundle camelCore = getBundleBySymbolicName("org.apache.camel.camel-blueprint");
+        Bundle camelCore = getBundleBySymbolicName("org.apache.camel.karaf.camel-blueprint");
         Bundle test = getBundleBySymbolicName(getClass().getSimpleName());
 
         camelCore.stop();
