@@ -28,8 +28,8 @@
 
     <artifactId>camel-paxlogging</artifactId>
     <packaging>jar</packaging>
-    <name>Camel :: Pax Logging</name>
-    <description>Camel OSGi PaxLogging support</description>
+    <name>Camel Karaf :: Pax Logging</name>
+    <description>Camel OSGi Pax Logging support</description>
 
     <properties>
     </properties>

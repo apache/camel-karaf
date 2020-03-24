@@ -29,7 +29,7 @@
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>apache-camel</artifactId>
     <packaging>pom</packaging>
-    <name>Camel :: Platforms :: Apache Karaf :: Features</name>
+    <name>Camel Karaf :: Platforms :: Features</name>
 
     <properties>
         <features.file>features.xml</features.file>

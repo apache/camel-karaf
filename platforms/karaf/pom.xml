@@ -28,7 +28,7 @@
 
     <artifactId>karaf-platform</artifactId>
     <packaging>pom</packaging>
-    <name>Camel Karaf :: Platforms :: Karaf</name>
+    <name>Camel Karaf :: Platforms :: Parent</name>
 
     <modules>
         <module>commands</module>

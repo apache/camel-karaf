@@ -30,7 +30,7 @@
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf-commands</artifactId>
     <packaging>jar</packaging>
-    <name>Camel :: Platforms :: Apache Karaf :: Commands</name>
+    <name>Camel Karaf :: Platforms :: Commands</name>
 
     <properties>
         <!-- use by camel-catalog -->

@@ -28,10 +28,8 @@
         <relativePath>..</relativePath>
     </parent>
 
-    <groupId>org.apache.camel.karaf</groupId>
     <artifactId>catalog</artifactId>
     <name>Camel Karaf :: Catalog</name>
-    <description>Camel Karaf Catalog</description>
     <packaging>pom</packaging>
 
     <modules>
