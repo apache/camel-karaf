@@ -39,6 +39,7 @@
 
     <modules>
         <module>camel-blueprint-cxf-test</module>
+        <module>camel-blueprint-test</module>
     </modules>
 
     <build>
