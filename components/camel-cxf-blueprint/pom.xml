@@ -47,7 +47,7 @@
 
         <!-- OSGi, Blueprint -->
         <dependency>
-            <groupId>org.apache.camel</groupId>
+            <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-blueprint</artifactId>
             <scope>provided</scope>
             <optional>true</optional>
