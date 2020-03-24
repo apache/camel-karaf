@@ -14,7 +14,7 @@
     "lenientProperties": false,
     "javaType": "org.apache.camel.component.paxlogging.PaxLoggingComponent",
     "firstVersion": "2.6.0",
-    "groupId": "org.apache.camel",
+    "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-paxlogging",
     "version": "3.2.0-SNAPSHOT"
   },
