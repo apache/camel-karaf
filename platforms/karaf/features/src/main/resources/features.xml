@@ -100,7 +100,7 @@
   <feature name='camel-blueprint' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-core-xml/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-blueprint/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-blueprint/${project.version}</bundle>
     <feature>aries-blueprint</feature>
   </feature>
   <feature name='camel-spring' version='${project.version}' start-level='50'>
