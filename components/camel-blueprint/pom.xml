@@ -30,7 +30,7 @@
     <artifactId>camel-blueprint</artifactId>
     <packaging>jar</packaging>
 
-    <name>Camel :: Blueprint</name>
+    <name>Camel Karaf :: Blueprint</name>
     <description>Using Camel with OSGi Blueprint</description>
 
     <properties>
