@@ -33,6 +33,7 @@
 
     <modules>
         <module>camel-blueprint</module>
+        <module>camel-cxf-blueprint</module>
         <module>camel-kura</module>
         <module>camel-paxlogging</module>
         <module>camel-test-blueprint</module>

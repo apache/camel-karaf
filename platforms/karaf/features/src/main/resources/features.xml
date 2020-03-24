@@ -798,6 +798,7 @@
     <feature version='${cxf-version-range}'>cxf-features-logging</feature>
     <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cxf-transport/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cxf/${project.version}</bundle>
   </feature>
