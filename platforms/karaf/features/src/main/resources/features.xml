@@ -1627,7 +1627,7 @@
   <feature name='camel-kura' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature>scr</feature>
-    <bundle>mvn:org.apache.camel/camel-kura/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-kura/${project.version}</bundle>
   </feature>
   <feature name='camel-ldap' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
