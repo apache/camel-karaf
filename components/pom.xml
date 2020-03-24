@@ -31,6 +31,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>camel-kura</module> 
         <module>camel-paxlogging</module>
     </modules>
 
