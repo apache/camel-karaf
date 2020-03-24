@@ -798,9 +798,10 @@
     <feature version='${cxf-version-range}'>cxf-features-logging</feature>
     <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-cxf-transport/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cxf/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-cxf-transport/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
   </feature>
   <feature name='camel-digitalocean' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
