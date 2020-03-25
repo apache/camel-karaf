@@ -861,6 +861,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-test-karaf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-parent</artifactId>
                 <version>${camel-version}</version>

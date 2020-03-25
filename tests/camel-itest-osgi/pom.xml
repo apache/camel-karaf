@@ -37,7 +37,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.camel</groupId>
+            <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-test-karaf</artifactId>
             <scope>test</scope>
         </dependency>
@@ -93,6 +93,7 @@
                         <karafVersion>${karaf4-version}</karafVersion>
                         <camelKarafFeatureVersion>${project.version}</camelKarafFeatureVersion>
                     </systemPropertyVariables>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>

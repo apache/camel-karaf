@@ -365,7 +365,7 @@ public abstract class AbstractFeatureTest {
             features(getCamelKarafFeatureUrl(), camelFeatures),
 
             // install camel-test-karaf as bundle (not feature as the feature causes a bundle refresh that invalidates the @Inject bundleContext)
-            mavenBundle().groupId("org.apache.camel").artifactId("camel-test-karaf").versionAsInProject(),
+            mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-test-karaf").versionAsInProject(),
             when(JavaVersionUtil.getMajorVersion() >= 9)
                     .useOptions(
                     systemProperty("pax.exam.osgi.`unresolved.fail").value("true"),
