@@ -182,9 +182,9 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>**/*IT.java</include>
-                            </includes>
+                            <excludes>
+                                <exclude>**/*IT.java</exclude>
+                            </excludes>
                             <forkedProcessTimeoutInSeconds>300</forkedProcessTimeoutInSeconds>
                         </configuration>
                     </execution>
