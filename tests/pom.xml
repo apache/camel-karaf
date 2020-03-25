@@ -65,30 +65,14 @@
     </build>
 
     <profiles>
-        <!-- includes these modules when doing the release -->
-        <profile>
-            <id>release</id>
-            <modules>
-                <module>camel-itest-osgi</module>
-                <module>camel-itest-performance</module>
-                <module>camel-performance</module>
-            </modules>
-        </profile>
-
         <!-- osgi tests -->
         <profile>
             <id>osgi.test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <modules>
                 <module>camel-itest-osgi</module>
-            </modules>
-        </profile>
-
-        <!-- performance tests -->
-        <profile>
-            <id>performance.test</id>
-            <modules>
-                <module>camel-itest-performance</module>
-                <module>camel-performance</module>
             </modules>
         </profile>
     </profiles>
