@@ -40,6 +40,7 @@
     <modules>
         <module>camel-blueprint-cxf-test</module>
         <module>camel-blueprint-test</module>
+        <module>camel-itest-osgi</module>
     </modules>
 
     <build>
