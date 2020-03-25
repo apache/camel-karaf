@@ -55,7 +55,7 @@
     <bundle>mvn:org.apache.camel/camel-management/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-engine/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-languages/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-core-osgi/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-core-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-catalog/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cloud/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cluster/${project.version}</bundle>
@@ -2533,7 +2533,7 @@
     <bundle>mvn:org.ops4j.base/ops4j-base-monitors/${ops4j-base-version}</bundle>
     <bundle>mvn:org.ops4j.base/ops4j-base-store/${ops4j-base-version}</bundle>
     <bundle>mvn:org.ops4j.pax.tinybundles/tinybundles/${tinybundles-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-test-karaf/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-test-karaf/${project.version}</bundle>
   </feature>
   <feature name='camel-test-spring' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-spring</feature>
