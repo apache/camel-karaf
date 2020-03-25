@@ -36,7 +36,7 @@
         <include>org.apache.camel:camel-core-osgi</include>
         <include>org.apache.camel:camel-core-languages</include>
         <include>org.apache.camel:camel-management-api</include>
-        <include>org.apache.camel:camel-osgi-activator</include>
+        <include>org.apache.camel.karaf:camel-osgi-activator</include>
         <include>org.apache.camel:camel-support</include>
         <include>org.apache.camel:camel-util</include>
         <include>org.apache.camel:camel-timer</include>

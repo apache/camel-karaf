@@ -80,7 +80,7 @@ public class CamelOsgiActivatorIT {
                 assertEquals("Camel Core OSGi not activated", Bundle.ACTIVE, b.getState());
             }
             
-            if ("org.apache.camel.camel-osgi-activator".equals(b.getSymbolicName())) {
+            if ("org.apache.camel.karaf.camel-osgi-activator".equals(b.getSymbolicName())) {
                 hasCamelCoreOsgiActivator = true;
                 assertEquals("Camel OSGi Activator not activated", Bundle.ACTIVE, b.getState());
             }
