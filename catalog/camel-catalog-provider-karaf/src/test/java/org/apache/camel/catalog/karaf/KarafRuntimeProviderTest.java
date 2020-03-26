@@ -29,7 +29,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@Ignore("TODO: move to camel-karaf")
+//@Ignore("TODO: move to camel-karaf")
 public class KarafRuntimeProviderTest {
 
     static CamelCatalog catalog;
