@@ -31,7 +31,7 @@
     <artifactId>camel-osgi-activator</artifactId>
     <packaging>jar</packaging>
 
-    <name>Camel :: OSGi Activator</name>
+    <name>Camel Karaf :: OSGi Activator</name>
     <description>Camel OSGi Activator for running Camel routes from other bundles</description>
 
     <properties>
