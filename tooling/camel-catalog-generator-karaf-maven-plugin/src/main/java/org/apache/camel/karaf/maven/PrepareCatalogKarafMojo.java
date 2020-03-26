@@ -94,6 +94,12 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
     protected File componentsDir;
 
     /**
+     * The components directory where there are karaf only components
+     */
+    @Parameter(defaultValue = "${project.build.directory}/../../../components")
+    protected File karafComponentsDir;
+
+    /**
      * The dataformats directory where all the Apache Camel components are from the camel-catalog
      */
     @Parameter(defaultValue = "${project.build.directory}/sources/camel-catalog/org/apache/camel/catalog/dataformats")
@@ -145,6 +151,9 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
                 }
             }
         }
+        // include paxlogging as regular component
+        jsonFiles.add(new File(karafComponentsDir, "camel-paxlogging/target/classes/org/apache/camel/component/paxlogging/paxlogging.json"));
+
         if (!jsonFiles.isEmpty()) {
             Path outDir = componentsOutDir.toPath();
             copyFiles(outDir, jsonFiles);
@@ -197,6 +206,10 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
                 }
             }
         }
+        // include others that are in camel-karaf only
+        jsonFiles.add(new File(karafComponentsDir, "camel-blueprint/target/classes/blueprint.json"));
+        jsonFiles.add(new File(karafComponentsDir, "camel-kura/target/classes/kura.json"));
+        jsonFiles.add(new File(karafComponentsDir, "camel-osgi-activator/target/classes/osgi-activator.json"));
         if (!jsonFiles.isEmpty()) {
             Path outDir = othersOutDir.toPath();
             copyFiles(outDir, jsonFiles);

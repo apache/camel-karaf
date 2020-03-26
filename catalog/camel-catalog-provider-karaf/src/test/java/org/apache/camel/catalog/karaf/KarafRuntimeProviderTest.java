@@ -117,11 +117,16 @@ public class KarafRuntimeProviderTest {
         assertNotNull(names);
         assertFalse(names.isEmpty());
 
-        assertTrue(names.contains("blueprint"));
+        // regular others
         assertTrue(names.contains("hystrix"));
         assertTrue(names.contains("swagger-java"));
         assertTrue(names.contains("zipkin"));
 
+        // camel-karaf only
+        assertTrue(names.contains("blueprint"));
+        assertTrue(names.contains("kura"));
+        assertTrue(names.contains("osgi-activator"));
+        
         assertFalse(names.contains("spring-boot"));
     }
 
