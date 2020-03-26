@@ -62,7 +62,26 @@ public class KarafRuntimeProviderTest {
         assertNotNull(names);
         assertFalse(names.isEmpty());
 
+        // core components
+        assertTrue(names.contains("direct"));
+        assertTrue(names.contains("seda"));
+        assertTrue(names.contains("vm"));
+        assertTrue(names.contains("log"));
+        assertTrue(names.contains("mock"));
+        assertTrue(names.contains("bean"));
+
+        // regular components
+        assertTrue(names.contains("ahc"));
+        assertTrue(names.contains("aws-s3"));
         assertTrue(names.contains("ftp"));
+        assertTrue(names.contains("http"));
+        assertTrue(names.contains("jetty"));
+        assertTrue(names.contains("zookeeper"));
+
+        // hbase is not in karaf
+        assertFalse(names.contains("hbase"));
+
+        // pax is from camel-karaf
         assertTrue(names.contains("paxlogging"));
     }
 
