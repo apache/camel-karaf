@@ -71,25 +71,25 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
     /**
      * The directory for components catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/karaf/catalog/components")
+    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/components")
     protected File componentsDir;
 
     /**
      * The directory for data formats catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/karaf/catalog/dataformats")
+    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/dataformats")
     protected File dataFormatsDir;
 
     /**
      * The directory for languages catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/karaf/catalog/languages")
+    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/languages")
     protected File languagesDir;
 
     /**
      * The directory for others catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/karaf/catalog/others")
+    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/others")
     protected File othersDir;
 
     /**
