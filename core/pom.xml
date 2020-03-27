@@ -92,7 +92,7 @@
             <plugin>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-bundle-plugin</artifactId>
-                <version>${project.version}</version>
+                <version>${camel-version}</version>
                 <configuration>
                     <supportIncrementalBuild>true</supportIncrementalBuild>
                     <noWarningProjectTypes>pom</noWarningProjectTypes>
