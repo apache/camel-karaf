@@ -151,8 +151,8 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
                 }
             }
         }
-        // include paxlogging as regular component
-     // include paxlogging as regular component
+
+        // include paxlogging and eventadmin as regular components
         jsonFiles.add(new File(karafComponentsDir, "camel-eventadmin/target/classes/org/apache/camel/component/eventadmin/eventadmin.json"));
         jsonFiles.add(new File(karafComponentsDir, "camel-paxlogging/target/classes/org/apache/camel/component/paxlogging/paxlogging.json"));
 
