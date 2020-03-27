@@ -53,7 +53,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.camel</groupId>
+            <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-core-osgi</artifactId>
         </dependency>
         <dependency>
