@@ -1,0 +1,5 @@
+name: camel-karaf
+title: Apache Camel Karaf
+version: latest
+nav:
+- modules/ROOT/nav.adoc
