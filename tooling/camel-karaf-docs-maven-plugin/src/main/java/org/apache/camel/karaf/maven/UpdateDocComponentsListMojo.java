@@ -55,9 +55,9 @@ import static org.apache.camel.tooling.util.PackageHelper.writeText;
 /**
  * Updates the documentation in:
  *
- * - component-starter/readme.adoc
+ * - docs/modules/ROOT/pages/components.adoc
  *
- * to be up to date with all the component starters that Apache Camel Spring Boot ships.
+ * to be up to date with all the component starters that Apache Camel Karaf ships.
  */
 @Mojo(name = "update-doc-components-list", threadSafe = true)
 public class UpdateDocComponentsListMojo extends AbstractMojo {
@@ -93,16 +93,10 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
     protected File othersDir;
 
     /**
-     * The directory for components starter
-     */
-    @Parameter(defaultValue = "${project.directory}/../../../components")
-    protected File readmeComponentsStarterDir;
-
-    /**
      * The website doc base directory
      */
     @Parameter(defaultValue = "${project.directory}/../../../docs/modules/ROOT/pages")
-    protected File websiteDocBaseDir;
+    protected File docBaseDir;
 
     /**
      * Maven ProjectHelper.
@@ -179,17 +173,17 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                     .filter(ComponentModel::isDeprecated)
                     .count();
 
-            // update the big readme file in the extensions dir
-            File file = new File(readmeComponentsStarterDir, "readme.adoc");
+            // update the big components.adoc file in the docs dir
+            File file = new File(docBaseDir, "components.adoc");
             boolean exists = file.exists();
             String changed = templateComponents(components, count, deprecated);
             boolean updated = updateComponents(file, changed);
             if (updated) {
-                getLog().info("Updated readme.adoc file: " + file);
+                getLog().info("Updated components.adoc file: " + file);
             } else if (exists) {
-                getLog().debug("No changes to readme.adoc file: " + file);
+                getLog().debug("No changes to components.adoc file: " + file);
             } else {
-                getLog().warn("No readme.adoc file: " + file);
+                getLog().warn("No components.adoc file: " + file);
             }
 
         } catch (IOException e) {
@@ -240,17 +234,17 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                 dataFormats.add(model);
             }
 
-            // update the big readme file in the extensions dir
-            File file = new File(readmeComponentsStarterDir, "readme.adoc");
+            // update the big components.adoc file in the docs dir
+            File file = new File(docBaseDir, "components.adoc");
             boolean exists = file.exists();
             String changed = templateDataFormats(dataFormats, count, deprecated);
             boolean updated = updateDataFormats(file, changed);
             if (updated) {
-                getLog().info("Updated readme.adoc file: " + file);
+                getLog().info("Updated components.adoc file: " + file);
             } else if (exists) {
-                getLog().debug("No changes to readme.adoc file: " + file);
+                getLog().debug("No changes to components.adoc file: " + file);
             } else {
-                getLog().warn("No readme.adoc file: " + file);
+                getLog().warn("No components.adoc file: " + file);
             }
 
         } catch (IOException e) {
@@ -295,17 +289,17 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                     .filter(LanguageModel::isDeprecated)
                     .count();
 
-            // update the big readme file in the extensions dir
-            File file = new File(readmeComponentsStarterDir, "readme.adoc");
+            // update the big components.adoc file in the docs dir
+            File file = new File(docBaseDir, "components.adoc");
             boolean exists = file.exists();
             String changed = templateLanguages(languages, count, deprecated);
             boolean updated = updateLanguages(file, changed);
             if (updated) {
-                getLog().info("Updated readme.adoc file: " + file);
+                getLog().info("Updated components.adoc file: " + file);
             } else if (exists) {
-                getLog().debug("No changes to readme.adoc file: " + file);
+                getLog().debug("No changes to components.adoc file: " + file);
             } else {
-                getLog().warn("No readme.adoc file: " + file);
+                getLog().warn("No components.adoc file: " + file);
             }
 
         } catch (IOException e) {
@@ -344,17 +338,17 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                     .filter(OtherModel::isDeprecated)
                     .count();
 
-            // update the big readme file in the extensions dir
-            File file = new File(readmeComponentsStarterDir, "readme.adoc");
+            // update the big components.adoc file in the docs dir
+            File file = new File(docBaseDir, "components.adoc");
             boolean exists = file.exists();
             String changed = templateOthers(others, count, deprecated);
             boolean updated = updateOthers(file, changed);
             if (updated) {
-                getLog().info("Updated readme.adoc file: " + file);
+                getLog().info("Updated components.adoc file: " + file);
             } else if (exists) {
-                getLog().debug("No changes to readme.adoc file: " + file);
+                getLog().debug("No changes to components.adoc file: " + file);
             } else {
-                getLog().warn("No readme.adoc file: " + file);
+                getLog().warn("No components.adoc file: " + file);
             }
 
         } catch (IOException e) {
@@ -366,7 +360,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
             throws MojoExecutionException {
         try {
             String template = loadText(
-                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("readme-components.mvel"));
+                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("components.mvel"));
             Map<String, Object> map = new HashMap<>();
             map.put("components", models);
             map.put("numberOfArtifacts", artifacts);
@@ -383,7 +377,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
             throws MojoExecutionException {
         try {
             String template = loadText(
-                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("readme-dataformats.mvel"));
+                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("dataformats.mvel"));
             Map<String, Object> map = new HashMap<>();
             map.put("dataformats", models);
             map.put("numberOfArtifacts", artifacts);
@@ -399,7 +393,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
     private String templateLanguages(List<LanguageModel> models, int artifacts, long deprecated) throws MojoExecutionException {
         try {
             String template = loadText(
-                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("readme-languages.mvel"));
+                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("languages.mvel"));
             Map<String, Object> map = new HashMap<>();
             map.put("languages", models);
             map.put("numberOfArtifacts", artifacts);
@@ -415,7 +409,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
     private String templateOthers(List<OtherModel> models, int artifacts, long deprecated) throws MojoExecutionException {
         try {
             String template = loadText(
-                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("readme-others.mvel"));
+                    UpdateDocComponentsListMojo.class.getClassLoader().getResourceAsStream("others.mvel"));
             Map<String, Object> map = new HashMap<>();
             map.put("others", models);
             map.put("numberOfArtifacts", artifacts);
@@ -628,7 +622,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
     }
 
     private Path getComponentsStarterDocPath() {
-        return Paths.get(websiteDocBaseDir.toString(), "components-starter");
+        return Paths.get(docBaseDir.toString(), "components-starter");
     }
 
 }
