@@ -660,6 +660,7 @@
         <scribe-bundle-version>1.3.7_1</scribe-bundle-version>
         <serp-bundle-version>1.14.1_1</serp-bundle-version>
         <servicemix-specs-version>2.9.0</servicemix-specs-version>
+        <servicemix-jaxb-version>2.3_2</servicemix-jaxb-version>
         <servlet-version-range>[3,4)</servlet-version-range>
         <shiro-version>1.5.1</shiro-version>
         <shrinkwrap-descriptors-version>2.0.0</shrinkwrap-descriptors-version>
