@@ -151,7 +151,7 @@
                     <configuration>
                         <artifactItems>
                             <artifactItem>
-                                <groupId>org.apache.camel</groupId>
+                                <groupId>org.apache.camel.karaf</groupId>
                                 <artifactId>camel-blueprint</artifactId>
                                 <version>${project.version}</version>
                                 <type>jar</type>
@@ -227,7 +227,7 @@
             <plugin>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-eip-documentation-enricher-maven-plugin</artifactId>
-                <version>${project.version}</version>
+                <version>${camel-version}</version>
                 <executions>
                     <execution>
                         <id>eip-documentation-enricher</id>
