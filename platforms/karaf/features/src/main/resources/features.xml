@@ -957,7 +957,7 @@
   <feature name='camel-eventadmin' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature>eventadmin</feature>
-    <bundle>mvn:org.apache.camel/camel-eventadmin/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-eventadmin/${project.version}</bundle>
   </feature>
   <feature name='camel-exec' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
