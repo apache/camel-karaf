@@ -2221,6 +2221,7 @@
     <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-http-common/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-servlet/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-servlet-osgi/${project.version}</bundle>
   </feature>
   <feature name='camel-shiro' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
