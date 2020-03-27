@@ -111,6 +111,7 @@
             <plugin>
                 <groupId>org.apache.camel.karaf</groupId>
                 <artifactId>camel-catalog-generator-karaf-maven-plugin</artifactId>
+                <version>${project.version}</version>
                 <executions>
                     <execution>
                         <goals>
