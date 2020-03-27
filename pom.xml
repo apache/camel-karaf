@@ -67,10 +67,6 @@
         </mailingList>
     </mailingLists>
 
-    <prerequisites>
-        <maven>3.5.0</maven>
-    </prerequisites>
-
     <modules>
         <module>tooling</module>
         <module>core</module>
@@ -1519,6 +1515,26 @@
                             </execution>
                         </executions>
                     </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-maven</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.5.0</version>
+                                </requireMavenVersion>
+                            </rules>    
+                            </configuration>
+                       </execution>
+                  </executions>
+               </plugin>
                 </plugins>
             </build>
         </profile>
