@@ -46,8 +46,13 @@ public class ExtMvelHelper {
         if (localDocExists(model)) {
             return getLocalDocLink(model);
         } else if (model instanceof ComponentModel) {
-            return String.format("xref:components::%s-component.adoc",
-                    invokeGetter(model, "getScheme"));
+            final ComponentModel component = (ComponentModel) model;
+            final String scheme = component.getScheme();
+            if ("org.apache.camel.karaf".equals(component.getGroupId())) {
+                return String.format("xref:camel-karaf::%s-component.adoc", scheme);
+            } else {
+                return String.format("xref:components::%s-component.adoc", scheme);
+            }
         } else if (model instanceof DataFormatModel) {
             return String.format("xref:components:dataformats:%s-dataformat.adoc",
                     invokeGetter(model, "getName"));
@@ -55,8 +60,13 @@ public class ExtMvelHelper {
             return String.format("xref:components:languages:%s-language.adoc",
                     invokeGetter(model, "getName"));
         } else if (model instanceof OtherModel) {
-            return String.format("xref:components::%s.adoc",
-                    invokeGetter(model, "getName"));
+            final OtherModel other = (OtherModel) model;
+            final String name = other.getName();
+            if ("org.apache.camel.karaf".equals(other.getGroupId())) {
+                return String.format("xref:camel-karaf::%s.adoc", name);
+            } else {
+                return String.format("xref:components::%s.adoc", name);
+            }
         } else {
             return null;
         }

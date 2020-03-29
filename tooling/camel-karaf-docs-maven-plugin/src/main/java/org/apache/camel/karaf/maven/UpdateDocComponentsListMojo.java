@@ -19,8 +19,12 @@ package org.apache.camel.karaf.maven;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,7 +34,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.Function;
 
+import org.apache.camel.tooling.model.BaseModel;
 import org.apache.camel.tooling.model.ComponentModel;
 import org.apache.camel.tooling.model.DataFormatModel;
 import org.apache.camel.tooling.model.JsonMapper;
@@ -186,9 +192,16 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                 getLog().warn("No components.adoc file: " + file);
             }
 
+            publishDocumentation(components, ComponentModel::getGroupId, ComponentModel::getArtifactId);
         } catch (IOException e) {
             throw new MojoFailureException("Error due " + e.getMessage(), e);
         }
+    }
+
+    private <T extends BaseModel<?>> void publishDocumentation(final List<T> components, final Function<T, String> groupId, final Function<T, String> artifactId) {
+        components.stream()
+            .filter(m -> "org.apache.camel.karaf".equals(groupId.apply(m)))
+            .forEach(m -> copyToPublishedDocumentation(artifactId.apply(m)));
     }
 
     protected void executeDataFormatsReadme() throws MojoExecutionException, MojoFailureException {
@@ -351,6 +364,7 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
                 getLog().warn("No components.adoc file: " + file);
             }
 
+            publishDocumentation(others, OtherModel::getGroupId, OtherModel::getArtifactId);
         } catch (IOException e) {
             throw new MojoFailureException("Error due " + e.getMessage(), e);
         }
@@ -555,6 +569,22 @@ public class UpdateDocComponentsListMojo extends AbstractMojo {
             }
         } catch (Exception e) {
             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
+        }
+    }
+
+    private void copyToPublishedDocumentation(final String artifactId) {
+        final Path docs = Paths.get("components", artifactId, "src/main/docs");
+
+        try {
+            Files.list(docs).forEach(d -> {
+                try {
+                    Files.copy(d, Paths.get(docBaseDir.getCanonicalPath(), d.getFileName().toString()), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    throw new UncheckedIOException("Unable to copy component documentation for: " + artifactId, e);
+                }
+            });
+        } catch (IOException e) {
+            throw new UncheckedIOException("Unable to list component documentation for: " + artifactId, e);
         }
     }
 
