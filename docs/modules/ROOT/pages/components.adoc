@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
+Number of Camel components: 210 in 210 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -38,7 +38,7 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 | xref:components::atom-component.adoc[Atom] (camel-atom) +
 `atom:feedUri` | 1.2 | The atom component is used for consuming Atom RSS feeds.
 
-| xref:components::avro-component.adoc[Avro] (camel-avro) +
+| xref:components::avro-component.adoc[Avro] (camel-avro-rpc) +
 `avro:transport:host:port/messageName` | 2.10 | Working with Apache Avro for data serialization.
 
 | xref:components::aws-cw-component.adoc[AWS CloudWatch] (camel-aws-cw) +
@@ -430,6 +430,9 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 
 | xref:components::eventadmin-component.adoc[OSGi EventAdmin] (camel-eventadmin) +
 `eventadmin:topic` | 2.6 | The eventadmin component can be used in an OSGi environment to receive OSGi EventAdmin events and process them.
+
+| xref:components::paxlogging-component.adoc[OSGi PAX Logging] (camel-paxlogging) +
+`paxlogging:appender` | 2.6 | The paxlogging component can be used in an OSGi environment to receive PaxLogging events and process them.
 
 | xref:components::paho-component.adoc[Paho] (camel-paho) +
 `paho:topic` | 2.16 | Component for communicating with MQTT message brokers using Eclipse Paho MQTT Client.
@@ -886,6 +889,9 @@ Number of miscellaneous extensions: 16 in 16 JAR artifacts (0 deprecated)
 | xref:components::opentracing.adoc[OpenTracing] +
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
 
+| xref:components::osgi-activator.adoc[Osgi Activator] +
+(camel-osgi-activator) | 3.1 | Camel OSGi Activator for running Camel routes from other bundles
+
 | xref:components::reactor.adoc[Reactor] +
 (camel-reactor) | 2.20 | Reactor based back-end for Camel's reactive streams component
 
@@ -897,9 +903,6 @@ Number of miscellaneous extensions: 16 in 16 JAR artifacts (0 deprecated)
 
 | xref:components::test.adoc[Test] +
 (camel-test) | 2.9 | Camel unit testing
-
-| xref:components::test-karaf.adoc[Test Karaf] +
-(camel-test-karaf) | 2.18 | Camel integration testing with Apache Karaf
 
 | xref:components::test-spring.adoc[Test Spring] +
 (camel-test-spring) | 2.10 | Camel unit testing with Spring
