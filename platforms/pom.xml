@@ -31,6 +31,7 @@
     <name>Camel Karaf :: Platforms </name>
 
     <modules>
+        <module>commands</module>
         <module>karaf</module>
     </modules>
 
