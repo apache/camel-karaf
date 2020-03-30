@@ -93,7 +93,6 @@
                         <karafVersion>${karaf4-version}</karafVersion>
                         <camelKarafFeatureVersion>${project.version}</camelKarafFeatureVersion>
                     </systemPropertyVariables>
-                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>
