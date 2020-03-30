@@ -74,8 +74,7 @@
         <module>platforms</module>
         <module>catalog</module>
         <module>tests</module>
-        <!--<module>examples</module>
-        <module>docs</module>-->
+        <module>bom</module>
     </modules>
 
     <scm>
@@ -854,12 +853,77 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-blueprint-main</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
                 <artifactId>camel-test-blueprint</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-cxf-blueprint</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-cxf-transport-blueprint</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-eventadmin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-kura</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-osgi-activator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-paxlogging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-servlet-osgi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-servlet-osgi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
                 <artifactId>camel-test-karaf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-catalog-provider-karaf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-core-osgi</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-catalog-provider-karaf</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-commands-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

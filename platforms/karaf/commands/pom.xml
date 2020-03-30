@@ -44,8 +44,9 @@
 
         <!-- camel -->
         <dependency>
-            <groupId>org.apache.camel</groupId>
+            <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-commands-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
