@@ -1,4 +1,4 @@
-= Component Starters
+= Apache Camel Karaf features
 
 Apache Camel Karaf supports the following Camel artifacts as Karaf features
 
