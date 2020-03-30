@@ -254,6 +254,7 @@
     <bundle dependency='true'>mvn:io.netty/netty/${netty3-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-avro/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-avro-rpc/${project.version}</bundle>
   </feature>
   <feature name='camel-aws' version='${project.version}' start-level='50'>
      <feature version='${project.version}'>camel-aws-cw</feature>
