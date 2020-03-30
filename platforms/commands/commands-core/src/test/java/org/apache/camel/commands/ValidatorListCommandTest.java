@@ -34,6 +34,7 @@ import org.apache.camel.model.validator.EndpointValidatorDefinition;
 import org.apache.camel.model.validator.PredicateValidatorDefinition;
 import org.apache.camel.spi.DataType;
 import org.apache.camel.spi.Validator;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 public class ValidatorListCommandTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(ValidatorListCommandTest.class);
