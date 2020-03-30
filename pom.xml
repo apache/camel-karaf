@@ -1003,6 +1003,8 @@
                     <configuration>
                         <excludeSubProjects>false</excludeSubProjects>
                         <excludes>
+                            <exclude>**/generated/**</exclude>
+                            <exclude>**/generated.txt</exclude>
                             <exclude>**/*.mvel</exclude>
                             <exclude>**/catalog/*.properties</exclude>
                             <exclude>**/*.json</exclude>
