@@ -29,7 +29,7 @@
 
     <artifactId>camel-commands-core</artifactId>
     <packaging>jar</packaging>
-    <name>Camel :: Platforms :: Commands :: Core</name>
+    <name>Camel Karaf :: Platforms :: Commands :: Core</name>
     <description>Core Camel Commands</description>
 
     <properties>
