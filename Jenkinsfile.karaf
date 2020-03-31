@@ -55,7 +55,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    karaf_itest_result = sh script: "./mvnw $MAVEN_PARAMS -Dmaven.test.failure.ignore=true clean install", returnStatus: true
+                    karaf_itest_result = sh script: "./mvnw $MAVEN_PARAMS -Dmaven.test.failure.ignore=true clean install deploy", returnStatus: true
                 }
             }
             post {
