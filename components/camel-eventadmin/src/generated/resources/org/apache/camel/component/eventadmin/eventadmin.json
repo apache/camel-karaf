@@ -1,6 +1,7 @@
 {
   "component": {
     "kind": "component",
+    "name": "eventadmin",
     "scheme": "eventadmin",
     "extendsScheme": "",
     "syntax": "eventadmin:topic",

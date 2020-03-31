@@ -1,6 +1,7 @@
 {
   "component": {
     "kind": "component",
+    "name": "paxlogging",
     "scheme": "paxlogging",
     "extendsScheme": "",
     "syntax": "paxlogging:appender",
