@@ -68,7 +68,7 @@ public class CamelQuartzJmxUpdateTest extends AbstractFeatureTest {
         // test camel
         MockEndpoint mock = camel.getEndpoint("mock:result", MockEndpoint.class);
         mock.expectedBodiesReceived("Hello World");
-        mock.assertIsSatisfied(5000);
+        mock.assertIsSatisfied(10000);
 
         doUpdateCronDetails();
     }
