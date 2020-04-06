@@ -18,10 +18,10 @@ Camel features descriptor:
 
 [source,sh]
 ----
-karaf@root> features:repo-add camel 2.24.2
+karaf@root> features:repo-add camel 3.2.0
 ----
 
-where 2.24.2 is the Camel version
+where 3.2.0 is the Camel version
 
 Now, we have all Camel features available:
 
@@ -57,7 +57,7 @@ automatically.
 For example to list all running Camel contexts:
 [source,sh]
 ----
-karaf@root> karaf@root> camel:context-list
+karaf@root> camel:context-list
 ----
 
 You can see all the Camel commands by typing `camel:` and then pressing TAB key.
