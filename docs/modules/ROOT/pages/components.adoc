@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 210 in 210 JAR artifacts (1 deprecated)
+Number of Camel components: 211 in 211 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -172,6 +172,9 @@ Number of Camel components: 210 in 210 JAR artifacts (1 deprecated)
 
 | xref:components::disruptor-component.adoc[Disruptor] (camel-disruptor) +
 `disruptor:name` | 2.12 | The disruptor component provides asynchronous SEDA behavior using LMAX Disruptor.
+
+| xref:components::djl-component.adoc[DJL] (camel-djl) +
+`djl:application` | 3.2 | Represents a DJL endpoint.
 
 | xref:components::dns-component.adoc[DNS] (camel-dns) +
 `dns:dnsType` | 2.7 | To lookup domain information and run DNS queries using DNSJava.
