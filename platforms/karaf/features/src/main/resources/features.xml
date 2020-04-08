@@ -828,7 +828,7 @@
     <bundle dependency='true'>wrap:mvn:ai.djl/model-zoo/${djl-version}</bundle>
     <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-model-zoo/${djl-version}</bundle>
     <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-engine/${djl-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-native-auto/1.6.0</bundle>
+    <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-native-auto/${djl-mxnet-native-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-djl/${project.version}</bundle>
   </feature>
   <feature name='camel-dns' version='${project.version}' start-level='50'>
