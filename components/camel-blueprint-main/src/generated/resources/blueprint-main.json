@@ -7,6 +7,7 @@
     "deprecated": false,
     "firstVersion": "3.2.0",
     "label": "java,osgi",
+    "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-blueprint-main",
     "version": "3.3.0-SNAPSHOT"

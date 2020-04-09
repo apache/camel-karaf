@@ -5,6 +5,7 @@
     "title": "Cxf Transport Blueprint",
     "description": "Camel CXF Transport for OSGi Blueprint",
     "deprecated": false,
+    "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-cxf-transport-blueprint",
     "version": "3.3.0-SNAPSHOT"

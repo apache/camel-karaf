@@ -5,6 +5,7 @@
     "title": "Servlet Osgi",
     "description": "Camel Servlet for OSGi",
     "deprecated": false,
+    "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-servlet-osgi",
     "version": "3.3.0-SNAPSHOT"
