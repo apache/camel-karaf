@@ -6,7 +6,7 @@
     "description": "Camel OSGi Activator for running Camel routes from other bundles",
     "deprecated": false,
     "firstVersion": "3.1.0",
-    "supportLevel": "Stable",
+    "supportLevel": "Preview",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-osgi-activator",
     "version": "3.3.0-SNAPSHOT"
