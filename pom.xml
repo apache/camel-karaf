@@ -464,7 +464,7 @@
         <jose4j-version>0.6.4</jose4j-version>
         <josql-bundle-version>1.5_5</josql-bundle-version>
         <jsendnsca-version>2.1.1</jsendnsca-version>
-        <jslt-version>0.1.8</jslt-version>
+        <jslt-version>0.1.9</jslt-version>
         <jsmpp-version>2.3.9</jsmpp-version>
         <jsch-version>0.1.55</jsch-version>
         <jsch-bundle-version>0.1.55_1</jsch-bundle-version>
