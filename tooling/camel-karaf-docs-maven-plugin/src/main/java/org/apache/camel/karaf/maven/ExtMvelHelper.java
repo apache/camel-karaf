@@ -65,7 +65,7 @@ public class ExtMvelHelper {
             if ("org.apache.camel.karaf".equals(other.getGroupId())) {
                 return String.format("xref:camel-karaf::%s.adoc", name);
             } else {
-                return String.format("xref:components::%s.adoc", name);
+                return String.format("xref:components:others:%s.adoc", name);
             }
         } else {
             return null;
