@@ -164,9 +164,6 @@ Number of Camel components: 211 in 211 JAR artifacts (1 deprecated)
 | xref:components::dataset-component.adoc[Dataset] (camel-dataset) +
 `dataset:name` | 1.3 | The dataset component provides a mechanism to easily perform load & soak testing of your system.
 
-| xref:components::djl-component.adoc[Deep Java Library] (camel-djl) +
-`djl:application` | 3.3 | The Deep Java Library component is used to infer deep learning models.
-
 | xref:components::digitalocean-component.adoc[DigitalOcean] (camel-digitalocean) +
 `digitalocean:operation` | 2.19 | The DigitalOcean component allows you to manage Droplets and resources within the DigitalOcean cloud.
 
@@ -175,6 +172,9 @@ Number of Camel components: 211 in 211 JAR artifacts (1 deprecated)
 
 | xref:components::disruptor-component.adoc[Disruptor] (camel-disruptor) +
 `disruptor:name` | 2.12 | The disruptor component provides asynchronous SEDA behavior using LMAX Disruptor.
+
+| xref:components::djl-component.adoc[DJL] (camel-djl) +
+`djl:application` | 3.2 | Represents a DJL endpoint.
 
 | xref:components::dns-component.adoc[DNS] (camel-dns) +
 `dns:dnsType` | 2.7 | To lookup domain information and run DNS queries using DNSJava.
@@ -865,52 +865,52 @@ Number of miscellaneous extensions: 16 in 16 JAR artifacts (0 deprecated)
 |===
 | Extension | Since | Description
 
-| xref:components::aws-xray.adoc[AWS XRay] +
+| xref:components:others:aws-xray.adoc[AWS XRay] +
 (camel-aws-xray) | 2.21 | Distributed tracing using AWS XRay
 
 | xref:camel-karaf::blueprint.adoc[Blueprint] +
 (camel-blueprint) | 2.4 | Using Camel with OSGi Blueprint
 
-| xref:components::hystrix.adoc[Hystrix] +
+| xref:components:others:hystrix.adoc[Hystrix] +
 (camel-hystrix) | 2.18 | Circuit Breaker EIP using Netflix Hystrix
 
-| xref:components::jasypt.adoc[Jasypt] +
+| xref:components:others:jasypt.adoc[Jasypt] +
 (camel-jasypt) | 2.5 | Security using Jasypt
 
 | xref:camel-karaf::kura.adoc[Kura] +
 (camel-kura) | 2.15 | Using Camel with Eclipse Kura (OSGi)
 
-| xref:components::leveldb.adoc[LevelDB] +
+| xref:components:others:leveldb.adoc[LevelDB] +
 (camel-leveldb) | 2.10 | Using LevelDB as persistent EIP store
 
-| xref:components::lra.adoc[LRA] +
+| xref:components:others:lra.adoc[LRA] +
 (camel-lra) | 2.21 | Camel saga binding for Long-Running-Action framework
 
-| xref:components::openapi-java.adoc[Openapi Java] +
+| xref:components:others:openapi-java.adoc[Openapi Java] +
 (camel-openapi-java) | 3.1 | Rest-dsl support for using openapi doc
 
-| xref:components::opentracing.adoc[OpenTracing] +
+| xref:components:others:opentracing.adoc[OpenTracing] +
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
 
 | xref:camel-karaf::osgi-activator.adoc[Osgi Activator] +
 (camel-osgi-activator) | 3.1 | Camel OSGi Activator for running Camel routes from other bundles
 
-| xref:components::reactor.adoc[Reactor] +
+| xref:components:others:reactor.adoc[Reactor] +
 (camel-reactor) | 2.20 | Reactor based back-end for Camel's reactive streams component
 
-| xref:components::shiro.adoc[Shiro] +
+| xref:components:others:shiro.adoc[Shiro] +
 (camel-shiro) | 2.5 | Security using Shiro
 
-| xref:components::swagger-java.adoc[Swagger Java] +
+| xref:components:others:swagger-java.adoc[Swagger Java] +
 (camel-swagger-java) | 2.16 | Rest-dsl support for using swagger api-doc
 
-| xref:components::test.adoc[Test] +
+| xref:components:others:test.adoc[Test] +
 (camel-test) | 2.9 | Camel unit testing
 
-| xref:components::test-spring.adoc[Test Spring] +
+| xref:components:others:test-spring.adoc[Test Spring] +
 (camel-test-spring) | 2.10 | Camel unit testing with Spring
 
-| xref:components::zipkin.adoc[Zipkin] +
+| xref:components:others:zipkin.adoc[Zipkin] +
 (camel-zipkin) | 2.18 | Distributed message tracing using Zipkin
 |===
 // others: END
