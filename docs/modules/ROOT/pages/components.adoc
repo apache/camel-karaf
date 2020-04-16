@@ -164,6 +164,9 @@ Number of Camel components: 211 in 211 JAR artifacts (1 deprecated)
 | xref:components::dataset-component.adoc[Dataset] (camel-dataset) +
 `dataset:name` | 1.3 | The dataset component provides a mechanism to easily perform load & soak testing of your system.
 
+| xref:components::djl-component.adoc[Deep Java Library] (camel-djl) +
+`djl:application` | 3.3 | The Deep Java Library component is used to infer deep learning models.
+
 | xref:components::digitalocean-component.adoc[DigitalOcean] (camel-digitalocean) +
 `digitalocean:operation` | 2.19 | The DigitalOcean component allows you to manage Droplets and resources within the DigitalOcean cloud.
 
@@ -172,9 +175,6 @@ Number of Camel components: 211 in 211 JAR artifacts (1 deprecated)
 
 | xref:components::disruptor-component.adoc[Disruptor] (camel-disruptor) +
 `disruptor:name` | 2.12 | The disruptor component provides asynchronous SEDA behavior using LMAX Disruptor.
-
-| xref:components::djl-component.adoc[DJL] (camel-djl) +
-`djl:application` | 3.2 | Represents a DJL endpoint.
 
 | xref:components::dns-component.adoc[DNS] (camel-dns) +
 `dns:dnsType` | 2.7 | To lookup domain information and run DNS queries using DNSJava.
@@ -859,7 +859,7 @@ Number of Camel languages: 17 in 11 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 16 in 16 JAR artifacts (0 deprecated)
+Number of miscellaneous extensions: 17 in 17 JAR artifacts (0 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -870,6 +870,9 @@ Number of miscellaneous extensions: 16 in 16 JAR artifacts (0 deprecated)
 
 | xref:camel-karaf::blueprint.adoc[Blueprint] +
 (camel-blueprint) | 2.4 | Using Camel with OSGi Blueprint
+
+| xref:components:others:headersmap.adoc[Headersmap] +
+(camel-headersmap) | 2.20 | Fast case-insensitive headers map implementation
 
 | xref:components:others:hystrix.adoc[Hystrix] +
 (camel-hystrix) | 2.18 | Circuit Breaker EIP using Netflix Hystrix
