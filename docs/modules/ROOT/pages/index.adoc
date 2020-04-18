@@ -18,7 +18,7 @@ Camel features descriptor:
 
 [source,sh]
 ----
-karaf@root> features:repo-add camel 3.2.0
+karaf@root> feature:repo-add camel 3.2.0
 ----
 
 where 3.2.0 is the Camel version
