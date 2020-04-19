@@ -473,6 +473,9 @@ Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
 | xref:components::rest-swagger-component.adoc[REST Swagger] (camel-rest-swagger) +
 `rest-swagger:specificationUri#operationId` | 2.19 | Configure REST producers based on a Swagger (OpenAPI) specification document delegating to a component implementing the RestProducerFactory interface.
 
+| xref:components::resteasy-component.adoc[Resteasy] (camel-resteasy) +
+`resteasy:contextPath` | 3.3 | Defines the Resteasy Endpoint.
+
 | xref:components::robotframework-component.adoc[Robot Framework] (camel-robotframework) +
 `robotframework:resourceUri` | 3.0 | Pass camel exchanges to acceptence test written in Robot DSL.
 

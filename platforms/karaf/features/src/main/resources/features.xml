@@ -2182,11 +2182,25 @@
     <bundle dependency='true'>wrap:mvn:io.swagger/swagger-parser/${swagger-java-parser-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-rest-swagger/${project.version}</bundle>
   </feature>
-    <feature name='camel-robotframework' version='${project.version}' start-level='50'>
+  <feature name='camel-resteasy' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}'>camel-http</feature>
+    <feature version='${project.version}'>xml-specs-api</feature>
+    <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-core-spi/${resteasy-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-spring/${resteasy-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-servlet-initializer/${resteasy-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-client/${resteasy-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.jboss.resteasy/resteasy-validator-provider/${resteasy-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-http-common/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-resteasy/${project.version}</bundle>
+  </feature>
+  <feature name='camel-robotframework' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:org.robotframework/robotframework/${robotframework-version}</bundle>
-	<bundle dependency='true'>wrap:mvn:org.python/jython/${jython-version}</bundle>
-	<bundle dependency='true'>wrap:mvn:org.python/jython-standalone/${jython-standalone-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.python/jython/${jython-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.python/jython-standalone/${jython-standalone-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-robotframework/${project.version}</bundle>
   </feature>
   <feature name='camel-rss' version='${project.version}' start-level='50'>

@@ -225,6 +225,7 @@
         <reflections-bundle-version>0.9.12_1</reflections-bundle-version>
         <regexp-bundle-version>1.4_1</regexp-bundle-version>
         <resilience4j-version>1.3.0</resilience4j-version>
+        <resteasy-version>4.5.3.Final</resteasy-version>
         <roaster-version>2.21.1.Final</roaster-version>
         <saxon-bundle-version>9.9.1-6_1</saxon-bundle-version>
         <scribe-bundle-version>1.3.7_1</scribe-bundle-version>
