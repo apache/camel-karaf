@@ -2590,16 +2590,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.twitter4j/${twitter4j-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-twitter/${project.version}</bundle>
   </feature>
-  <feature name='camel-undertow' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
-    <bundle dependency='true'>mvn:org.jboss.xnio/xnio-api/${jboss-xnio-version}</bundle>
-    <bundle dependency='true'>mvn:org.jboss.xnio/xnio-nio/${jboss-xnio-version}</bundle>
-    <bundle dependency='true'>mvn:org.jboss.logging/jboss-logging/${jboss-logging-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-undertow/${project.version}</bundle>
-  </feature>
   <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:com.univocity/univocity-parsers/${univocity-parsers-version}</bundle>
