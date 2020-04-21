@@ -43,12 +43,11 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
     }
 
     @Override
-    public Optional<Class<?>> findClass(String key, String propertyPrefix, Class<?> checkClass) {
-        final String prefix = propertyPrefix != null ? propertyPrefix : "";
-        final String classKey = propertyPrefix + key;
+    public Optional<Class<?>> findClass(String key) {
+        final String classKey = key;
 
         Class<?> answer = addToClassMap(classKey, () -> {
-            BundleEntry entry = getResource(key, checkClass);
+            BundleEntry entry = getResource(key);
             if (entry != null) {
                 URL url = entry.url;
                 InputStream in = url.openStream();
@@ -58,9 +57,9 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
                     reader = IOHelper.buffered(in);
                     Properties properties = new Properties();
                     properties.load(reader);
-                    String className = properties.getProperty(prefix + "class");
+                    String className = properties.getProperty("class");
                     if (className == null) {
-                        throw new IOException("Expected property is missing: " + prefix + "class");
+                        throw new IOException("Expected property is missing: class");
                     }
                     return entry.bundle.loadClass(className);
                 } finally {
@@ -75,20 +74,10 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
         return Optional.ofNullable(answer);
     }
 
-    @Override
-    public Optional<Class<?>> findClass(String key, String propertyPrefix) {
-        return findClass(key, propertyPrefix, null);
-    }
-
     // As the META-INF of the Factory could not be export,
     // we need to go through the bundles to look for it
     // NOTE, the first found factory will be return
     public BundleEntry getResource(String name) {
-        return getResource(name, null);
-    }
-
-    // The clazz can make sure we get right version of class that we need
-    public BundleEntry getResource(String name, Class<?> clazz) {
         BundleEntry entry = null;
         Bundle[] bundles;
         
@@ -97,7 +86,7 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
         URL url;
         for (Bundle bundle : bundles) {
             url = bundle.getEntry(getResourcePath() + name);
-            if (url != null && checkCompatibility(bundle, clazz)) {
+            if (url != null) {
                 entry = new BundleEntry();
                 entry.url = url;
                 entry.bundle = bundle;
@@ -108,19 +97,5 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
         return entry;
     }
 
-    private boolean checkCompatibility(Bundle bundle, Class<?> clazz) {
-        if (clazz == null) {
-            return true;
-        }
-        // Check bundle compatibility
-        try {
-            if (bundle.loadClass(clazz.getName()) != clazz) {
-                return false;
-            }
-        } catch (Throwable t) {
-            return false;
-        }
-        return true;
-    }
 
 }
