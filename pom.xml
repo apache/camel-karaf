@@ -454,6 +454,8 @@
         <jolt-version>0.1.1</jolt-version>
         <jolt-bundle-version>0.1.1_1</jolt-bundle-version>
         <jool-version>0.9.12</jool-version>
+        <jcodings-version>1.0.46</jcodings-version>
+        <joni-version>2.1.31</joni-version>
         <jooq-version>3.13.1</jooq-version>
         <johnzon-version>1.2.4</johnzon-version>
         <jose4j-version>0.6.4</jose4j-version>
