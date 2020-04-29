@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 207 in 207 JAR artifacts (1 deprecated)
+Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -94,6 +94,9 @@ Number of Camel components: 207 in 207 JAR artifacts (1 deprecated)
 
 | xref:components::aws-translate-component.adoc[AWS Translate] (camel-aws-translate) +
 `aws-translate:label` | 3.0 | Translate texts using AWS Translate.
+
+| xref:components::azure-storage-blob-component.adoc[Azure Storage Blob Service] (camel-azure-storage-blob) +
+`azure-storage-blob:containerName` | 3.3 | Store and retrieve blobs from Azure Storage Blob Service using SDK v12.
 
 | xref:components::bean-component.adoc[Bean] (camel-bean) +
 `bean:beanName` | 1.0 | Invoke methods of Java beans stored in Camel registry.
