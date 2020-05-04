@@ -5,6 +5,7 @@
     "title": "Cxf Blueprint",
     "description": "Camel CXF for OSGi Blueprint",
     "deprecated": false,
+    "firstVersion": "3.2.0",
     "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-cxf-blueprint",
