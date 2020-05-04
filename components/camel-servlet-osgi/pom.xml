@@ -31,6 +31,10 @@
     <name>Camel Karaf :: Servlet OSGi</name>
     <description>Camel Servlet for OSGi</description>
 
+    <properties>
+        <firstVersion>3.2.0</firstVersion>
+    </properties>
+
     <dependencies>
 
         <dependency>
