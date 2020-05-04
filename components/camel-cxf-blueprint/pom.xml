@@ -32,6 +32,7 @@
     <description>Camel CXF for OSGi Blueprint</description>
 
     <properties>
+        <firstVersion>3.2.0</firstVersion>
         <camel.osgi.import>
             javax.xml.bind*;version="[2.2,3.0)",
             *
