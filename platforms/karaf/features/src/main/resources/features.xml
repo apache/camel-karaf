@@ -2810,6 +2810,7 @@
     <bundle dependency='true'>wrap:mvn:io.zipkin.brave/brave-context-slf4j/${brave-zipkin-version}</bundle>
     <bundle dependency='true'>mvn:io.zipkin.zipkin2/zipkin/${zipkin-version}</bundle>
     <bundle dependency='true'>mvn:io.zipkin.reporter2/zipkin-reporter/${zipkin-reporter-version}</bundle>
+    <bundle dependency='true'>mvn:io.zipkin.reporter2/zipkin-reporter-brave/${zipkin-reporter-version}</bundle>
     <bundle dependency='true'>mvn:io.zipkin.reporter2/zipkin-sender-urlconnection/${zipkin-reporter-version}</bundle>
     <bundle dependency='true'>mvn:io.zipkin.reporter2/zipkin-sender-libthrift/${zipkin-reporter-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.thrift/libthrift/${zipkin-libthrift-version}</bundle>
