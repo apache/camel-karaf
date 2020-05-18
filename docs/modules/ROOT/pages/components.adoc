@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
+Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -448,9 +448,6 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 
 | xref:components::pubnub-component.adoc[PubNub] (camel-pubnub) +
 `pubnub:channel` | 2.19 | Send and receive messages to/from PubNub data stream network for connected devices.
-
-| xref:components::pulsar-component.adoc[Pulsar] (camel-pulsar) +
-`pulsar:persistence://tenant/namespace/topic` | 2.24 | Send and receive messages from/to Apache Pulsar messaging system.
 
 | xref:components::quartz-component.adoc[Quartz] (camel-quartz) +
 `quartz:groupName/triggerName` | 2.12 | Schedule sending of messages using the Quartz 2.x scheduler.
