@@ -67,6 +67,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-management</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-blueprint</artifactId>
             <!-- exclude aries blueprint as we add these dependencies explicit -->

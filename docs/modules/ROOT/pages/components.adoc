@@ -14,12 +14,6 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 | xref:components::activemq-component.adoc[ActiveMQ] (camel-activemq) +
 `activemq:destinationType:destinationName` | 1.0 | Send messages to (or consume from) Apache ActiveMQ. This component extends the Camel JMS component.
 
-| xref:components::ahc-component.adoc[AHC] (camel-ahc) +
-`ahc:httpUri` | 2.8 | Call external HTTP services using Async Http Client.
-
-| xref:components::ahc-ws-component.adoc[AHC Websocket] (camel-ahc-ws) +
-`ahc-ws:httpUri` | 2.14 | Exchange data with external Websocket servers using Async Http Client.
-
 | xref:components::amqp-component.adoc[AMQP] (camel-amqp) +
 `amqp:destinationType:destinationName` | 1.2 | Messaging with AMQP protocol using Apache QPid Client.
 
@@ -32,13 +26,19 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 | xref:components::asterisk-component.adoc[Asterisk] (camel-asterisk) +
 `asterisk:name` | 2.18 | Interact with Asterisk PBX Server.
 
+| xref:components::ahc-component.adoc[Async HTTP Client (AHC)] (camel-ahc) +
+`ahc:httpUri` | 2.8 | Call external HTTP services using Async Http Client.
+
+| xref:components::ahc-ws-component.adoc[Async HTTP Client (AHC) Websocket] (camel-ahc-ws) +
+`ahc-ws:httpUri` | 2.14 | Exchange data with external Websocket servers using Async Http Client.
+
 | xref:components::atmosphere-websocket-component.adoc[Atmosphere Websocket] (camel-atmosphere-websocket) +
 `atmosphere-websocket:servicePath` | 2.14 | Expose WebSocket endpoints using the Atmosphere framework.
 
 | xref:components::atom-component.adoc[Atom] (camel-atom) +
 `atom:feedUri` | 1.2 | Poll Atom RSS feeds.
 
-| xref:components::avro-component.adoc[Avro] (camel-avro-rpc) +
+| xref:components::avro-component.adoc[Avro RPC] (camel-avro-rpc) +
 `avro:transport:host:port/messageName` | 2.10 | Produce or consume Apache Avro RPC services.
 
 | xref:components::aws-cw-component.adoc[AWS CloudWatch] (camel-aws-cw) +
@@ -47,46 +47,46 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 | xref:components::aws-ddb-component.adoc[AWS DynamoDB] (camel-aws-ddb) +
 `aws-ddb:tableName` | 2.10 | Store and retrieve data from AWS DynamoDB service.
 
-| xref:components::aws-ec2-component.adoc[AWS EC2] (camel-aws-ec2) +
+| xref:components::aws-ec2-component.adoc[AWS Elastic Compute Cloud (EC2)] (camel-aws-ec2) +
 `aws-ec2:label` | 2.16 | Manage AWS EC2 instances.
 
-| xref:components::aws-ecs-component.adoc[AWS ECS] (camel-aws-ecs) +
+| xref:components::aws-ecs-component.adoc[AWS Elastic Container Service (ECS)] (camel-aws-ecs) +
 `aws-ecs:label` | 3.0 | Manage AWS ECS cluster instances.
 
-| xref:components::aws-eks-component.adoc[AWS EKS] (camel-aws-eks) +
+| xref:components::aws-eks-component.adoc[AWS Elastic Kubernetes Service (EKS)] (camel-aws-eks) +
 `aws-eks:label` | 3.0 | Manage AWS EKS cluster instances.
 
-| xref:components::aws-iam-component.adoc[AWS IAM] (camel-aws-iam) +
+| xref:components::aws-iam-component.adoc[AWS Identity and Access Management (IAM)] (camel-aws-iam) +
 `aws-iam:label` | 2.23 | Manage AWS IAM instances.
+
+| xref:components::aws-kms-component.adoc[AWS Key Management Service (KMS)] (camel-aws-kms) +
+`aws-kms:label` | 2.21 | Manage keys stored in AWS KMS instances.
 
 | xref:components::aws-kinesis-component.adoc[AWS Kinesis] (camel-aws-kinesis) +
 `aws-kinesis:streamName` | 2.17 | Consume and produce records from AWS Kinesis Streams.
 
-| xref:components::aws-kms-component.adoc[AWS KMS] (camel-aws-kms) +
-`aws-kms:label` | 2.21 | Manage keys stored in AWS KMS instances.
-
 | xref:components::aws-lambda-component.adoc[AWS Lambda] (camel-aws-lambda) +
 `aws-lambda:function` | 2.20 | Manage and invoke AWS Lambda functions.
+
+| xref:components::aws-msk-component.adoc[AWS Managed Streaming for Apache Kafka (MSK)] (camel-aws-msk) +
+`aws-msk:label` | 3.0 | Manage AWS MSK instances.
 
 | xref:components::aws-mq-component.adoc[AWS MQ] (camel-aws-mq) +
 `aws-mq:label` | 2.21 | Manage AWS MQ instances.
 
-| xref:components::aws-msk-component.adoc[AWS MSK] (camel-aws-msk) +
-`aws-msk:label` | 3.0 | Manage AWS MSK instances.
-
 | xref:components::aws-s3-component.adoc[AWS S3 Storage Service] (camel-aws-s3) +
 `aws-s3://bucketNameOrArn` | 2.8 | Store and retrie objects from AWS S3 Storage Service.
 
-| xref:components::aws-ses-component.adoc[AWS Simple Email Service] (camel-aws-ses) +
+| xref:components::aws-ses-component.adoc[AWS Simple Email Service (SES)] (camel-aws-ses) +
 `aws-ses:from` | 2.9 | Send e-mails through AWS SES service.
 
-| xref:components::aws-sns-component.adoc[AWS Simple Notification System] (camel-aws-sns) +
+| xref:components::aws-sns-component.adoc[AWS Simple Notification System (SNS)] (camel-aws-sns) +
 `aws-sns:topicNameOrArn` | 2.8 | Send messages to an AWS Simple Notification Topic.
 
-| xref:components::aws-sqs-component.adoc[AWS Simple Queue Service] (camel-aws-sqs) +
+| xref:components::aws-sqs-component.adoc[AWS Simple Queue Service (SQS)] (camel-aws-sqs) +
 `aws-sqs:queueNameOrArn` | 2.6 | Sending and receive messages to/from AWS SQS service.
 
-| xref:components::aws-swf-component.adoc[AWS Simple Workflow] (camel-aws-swf) +
+| xref:components::aws-swf-component.adoc[AWS Simple Workflow (SWF)] (camel-aws-swf) +
 `aws-swf:type` | 2.13 | Manage workflows in the AWS Simple Workflow service.
 
 | xref:components::aws-sdb-component.adoc[AWS SimpleDB] (camel-aws-sdb) +
@@ -713,19 +713,19 @@ Number of Camel data formats: 45 in 37 JAR artifacts (0 deprecated)
 | xref:components:dataformats:jaxb-dataformat.adoc[JAXB] +
 (camel-jaxb) | 1.0 | Unmarshal XML payloads to POJOs and back using JAXB2 XML marshalling standard.
 
-| xref:components:dataformats:json-fastjson-dataformat.adoc[JSon Fastjson] +
+| xref:components:dataformats:json-fastjson-dataformat.adoc[JSON Fastjson] +
 (camel-fastjson) | 2.20 | Marshal POJOs to JSON and back.
 
-| xref:components:dataformats:json-gson-dataformat.adoc[JSon GSon] +
+| xref:components:dataformats:json-gson-dataformat.adoc[JSON Gson] +
 (camel-gson) | 2.10 | Marshal POJOs to JSON and back.
 
-| xref:components:dataformats:json-jackson-dataformat.adoc[JSon Jackson] +
+| xref:components:dataformats:json-jackson-dataformat.adoc[JSON Jackson] +
 (camel-jackson) | 2.0 | Marshal POJOs to JSON and back.
 
-| xref:components:dataformats:json-johnzon-dataformat.adoc[JSon Johnzon] +
+| xref:components:dataformats:json-johnzon-dataformat.adoc[JSON Johnzon] +
 (camel-johnzon) | 2.18 | Marshal POJOs to JSON and back.
 
-| xref:components:dataformats:json-xstream-dataformat.adoc[JSon XStream] +
+| xref:components:dataformats:json-xstream-dataformat.adoc[JSON XStream] +
 (camel-xstream) | 2.0 | Marshal POJOs to JSON and back.
 
 | xref:components:dataformats:jsonApi-dataformat.adoc[JSonApi] +
