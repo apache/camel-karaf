@@ -850,7 +850,7 @@ Number of Camel languages: 17 in 11 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 17 in 17 JAR artifacts (0 deprecated)
+Number of miscellaneous extensions: 17 in 17 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -866,7 +866,7 @@ Number of miscellaneous extensions: 17 in 17 JAR artifacts (0 deprecated)
 (camel-headersmap) | 2.20 | Fast case-insensitive headers map implementation
 
 | xref:components:others:hystrix.adoc[Hystrix] +
-(camel-hystrix) | 2.18 | Circuit Breaker EIP using Netflix Hystrix
+(camel-hystrix) | 2.18 | *deprecated* Circuit Breaker EIP using Netflix Hystrix
 
 | xref:components:others:jasypt.adoc[Jasypt] +
 (camel-jasypt) | 2.5 | Security using Jasypt
