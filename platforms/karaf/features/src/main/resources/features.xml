@@ -1991,6 +1991,7 @@
     <bundle dependency='true'>mvn:org.kie.soup/kie-soup-project-datamodel-api/${kie-version}</bundle>
     <bundle dependency='true'>mvn:org.kie.soup/kie-soup-project-datamodel-commons/${kie-version}</bundle>
     <bundle dependency='true'>mvn:org.kie.soup/kie-soup-commons/${kie-version}</bundle>
+    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-xstream/${jbpm-version}</bundle>
     <bundle dependency='true'>mvn:org.kie/kie-api/${kie-version}</bundle>
     <bundle dependency='true'>mvn:org.kie/kie-internal/${kie-version}</bundle>
     <bundle dependency='true'>mvn:org.drools/drools-core/${drools-version}</bundle>
