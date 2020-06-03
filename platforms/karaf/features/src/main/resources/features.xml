@@ -1664,6 +1664,7 @@
     <bundle>mvn:io.fabric8/kubernetes-model-scheduling/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-settings/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-storageclass/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/kubernetes-model-common/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/openshift-model/${kubernetes-model-version}</bundle>
     <bundle dependency='true'>mvn:io.fabric8/kubernetes-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle dependency='true'>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>
