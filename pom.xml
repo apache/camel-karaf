@@ -156,9 +156,6 @@
         <grpc-bundle-version>1.28.0_1</grpc-bundle-version>
         <grpc-errorprone-version>2.3.4</grpc-errorprone-version>
         <guice-bundle-version>3.0_1</guice-bundle-version>
-        <hadoop-bundle-version>1.2.1_1</hadoop-bundle-version>
-        <hadoop2-bundle-version>2.7.7_1</hadoop2-bundle-version>
-        <hadoop2-version>2.7.7</hadoop2-version>
         <hikaricp-version>2.4.13</hikaricp-version>
         <hk2-osgi-resource-version>1.0.1</hk2-osgi-resource-version>
         <htmlunit-bundle-version>2.24_1</htmlunit-bundle-version>
