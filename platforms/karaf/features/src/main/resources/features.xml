@@ -855,7 +855,6 @@
   <feature name='camel-djl' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:ai.djl/api/${djl-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:ai.djl/repository/${djl-version}</bundle>
     <bundle dependency='true'>wrap:mvn:ai.djl/model-zoo/${djl-version}</bundle>
     <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-model-zoo/${djl-version}</bundle>
     <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-engine/${djl-version}</bundle>
