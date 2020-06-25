@@ -791,12 +791,6 @@
     <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-couchdb/${project.version}</bundle>
   </feature>
-  <feature name='camel-couchbase' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>wrap:mvn:net.spy/spymemcached/${spymemcached-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.couchbase-client/${couchbase-client-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-couchbase/${project.version}</bundle>
-  </feature>
   <feature name='camel-cron' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-cron/${project.version}</bundle>
