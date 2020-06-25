@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 207 in 207 JAR artifacts (1 deprecated)
+Number of Camel components: 206 in 206 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -145,9 +145,6 @@ Number of Camel components: 207 in 207 JAR artifacts (1 deprecated)
 
 | xref:components::corda-component.adoc[Corda] (camel-corda) +
 `corda:node` | 2.23 | Perform operations against Corda blockchain platform using corda-rpc library.
-
-| xref:components::couchbase-component.adoc[Couchbase] (camel-couchbase) +
-`couchbase:protocol:hostname:port` | 2.19 | Query Couchbase Views with a poll strategy and/or perform various operations against Couchbase databases.
 
 | xref:components::couchdb-component.adoc[CouchDB] (camel-couchdb) +
 `couchdb:protocol:hostname:port/database` | 2.11 | Consume changesets for inserts, updates and deletes in a CouchDB database, as well as get, save, update and delete documents from a CouchDB database.
