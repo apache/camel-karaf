@@ -63,6 +63,7 @@ import org.apache.camel.blueprint.CamelContextFactoryBean;
 import org.apache.camel.blueprint.CamelEndpointFactoryBean;
 import org.apache.camel.blueprint.CamelRestContextFactoryBean;
 import org.apache.camel.blueprint.CamelRouteContextFactoryBean;
+import org.apache.camel.blueprint.CamelRouteTemplateContextFactoryBean;
 import org.apache.camel.core.xml.AbstractCamelFactoryBean;
 import org.apache.camel.impl.engine.CamelPostProcessorHelper;
 import org.apache.camel.impl.engine.DefaultCamelContextNameStrategy;
@@ -115,6 +116,7 @@ import org.osgi.service.blueprint.reflect.RefMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import static org.osgi.service.blueprint.reflect.ComponentMetadata.ACTIVATION_LAZY;
 import static org.osgi.service.blueprint.reflect.ServiceReferenceMetadata.AVAILABILITY_MANDATORY;
 import static org.osgi.service.blueprint.reflect.ServiceReferenceMetadata.AVAILABILITY_OPTIONAL;
@@ -129,6 +131,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
 
     private static final String CAMEL_CONTEXT = "camelContext";
     private static final String ROUTE_CONTEXT = "routeContext";
+    private static final String ROUTE_TEMPLATE_CONTEXT = "routeTemplateContext";
     private static final String REST_CONTEXT = "restContext";
     private static final String ENDPOINT = "endpoint";
     private static final String KEY_STORE_PARAMETERS = "keyStoreParameters";
@@ -204,6 +207,9 @@ public class CamelNamespaceHandler implements NamespaceHandler {
                 return parseCamelContextNode(element, context);
             }
             if (element.getLocalName().equals(ROUTE_CONTEXT)) {
+                return parseRouteContextNode(element, context);
+            }
+            if (element.getLocalName().equals(ROUTE_TEMPLATE_CONTEXT)) {
                 return parseRouteContextNode(element, context);
             }
             if (element.getLocalName().equals(REST_CONTEXT)) {
@@ -390,6 +396,48 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         injectNamespaces(element, binder);
 
         LOG.trace("Parsing RouteContext {} done, returning {}", element, ctx);
+        return ctx;
+    }
+
+    private Metadata parseRouteTemplateContextNode(Element element, ParserContext context) {
+        LOG.trace("Parsing RouteTemplateContext {}", element);
+        // now parse the routes with JAXB
+        Binder<Node> binder;
+        try {
+            binder = getJaxbContext().createBinder();
+        } catch (JAXBException e) {
+
+            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+        }
+        Object value = parseUsingJaxb(element, context, binder);
+        if (!(value instanceof CamelRouteTemplateContextFactoryBean)) {
+            throw new ComponentDefinitionException("Expected an instance of " + CamelRouteTemplateContextFactoryBean.class);
+        }
+
+        CamelRouteTemplateContextFactoryBean rcfb = (CamelRouteTemplateContextFactoryBean) value;
+        String id = rcfb.getId();
+
+        MutablePassThroughMetadata factory = context.createMetadata(MutablePassThroughMetadata.class);
+        factory.setId(".camelBlueprint.passThrough." + id);
+        factory.setObject(new PassThroughCallable<Object>(rcfb));
+
+        MutableBeanMetadata factory2 = context.createMetadata(MutableBeanMetadata.class);
+        factory2.setId(".camelBlueprint.factory." + id);
+        factory2.setFactoryComponent(factory);
+        factory2.setFactoryMethod("call");
+
+        MutableBeanMetadata ctx = context.createMetadata(MutableBeanMetadata.class);
+        ctx.setId(id);
+        ctx.setRuntimeClass(List.class);
+        ctx.setFactoryComponent(factory2);
+        ctx.setFactoryMethod("getRouteTemplates");
+        // must be lazy as we want CamelContext to be activated first
+        ctx.setActivation(ACTIVATION_LAZY);
+
+        // lets inject the namespaces into any namespace aware POJOs
+        injectNamespaces(element, binder);
+
+        LOG.trace("Parsing RouteTemplateContext {} done, returning {}", element, ctx);
         return ctx;
     }
 

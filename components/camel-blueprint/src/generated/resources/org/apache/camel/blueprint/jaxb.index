@@ -9,5 +9,6 @@ CamelProxyFactoryBean
 CamelRedeliveryPolicyFactoryBean
 CamelRestContextFactoryBean
 CamelRouteContextFactoryBean
+CamelRouteTemplateContextFactoryBean
 CamelThreadPoolFactoryBean
 ErrorHandlerType

@@ -63,6 +63,8 @@ import org.apache.camel.model.RestContextRefDefinition;
 import org.apache.camel.model.RouteBuilderDefinition;
 import org.apache.camel.model.RouteContextRefDefinition;
 import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.model.RouteTemplateContextRefDefinition;
+import org.apache.camel.model.RouteTemplateDefinition;
 import org.apache.camel.model.ThreadPoolProfileDefinition;
 import org.apache.camel.model.cloud.ServiceCallConfigurationDefinition;
 import org.apache.camel.model.dataformat.DataFormatsDefinition;
@@ -192,6 +194,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     private FaultToleranceConfigurationDefinition defaultFaultToleranceConfiguration;
     @XmlElement(name = "faultToleranceConfiguration", type = FaultToleranceConfigurationDefinition.class)
     private List<FaultToleranceConfigurationDefinition> faultToleranceConfigurations;
+    @XmlElement(name = "routeTemplateContextRef")
+    private List<RouteTemplateContextRefDefinition> routeTemplateRefs = new ArrayList<>();
     @XmlElement(name = "routeBuilder")
     private List<RouteBuilderDefinition> builderRefs = new ArrayList<>();
     @XmlElement(name = "routeContextRef")
@@ -226,6 +230,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     private RestConfigurationDefinition restConfiguration;
     @XmlElement(name = "rest")
     private List<RestDefinition> rests = new ArrayList<>();
+    @XmlElement(name = "routeTemplate")
+    private List<RouteTemplateDefinition> routeTemplates = new ArrayList<>();
     @XmlElement(name = "route")
     private List<RouteDefinition> routes = new ArrayList<>();
     @XmlTransient
@@ -562,6 +568,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setCamelPropertyPlaceholder(CamelPropertyPlaceholderDefinition camelPropertyPlaceholder) {
         this.camelPropertyPlaceholder = camelPropertyPlaceholder;
+    }
+
+    @Override
+    public List<RouteTemplateContextRefDefinition> getRouteTemplateRefs() {
+        return routeTemplateRefs;
+    }
+
+    public void setRouteTemplateRefs(List<RouteTemplateContextRefDefinition> routeTemplateRefs) {
+        this.routeTemplateRefs = routeTemplateRefs;
     }
 
     @Override
@@ -947,6 +962,16 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setInterceptSendToEndpoints(List<InterceptSendToEndpointDefinition> interceptSendToEndpoints) {
         this.interceptSendToEndpoints = interceptSendToEndpoints;
+    }
+
+    @Override
+    public List<RouteTemplateDefinition> getRouteTemplates() {
+        return routeTemplates;
+    }
+
+    @Override
+    public void setRouteTemplates(List<RouteTemplateDefinition> routeTemplates) {
+        this.routeTemplates = routeTemplates;
     }
 
     @Override
