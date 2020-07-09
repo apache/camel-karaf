@@ -75,7 +75,7 @@ Number of Camel components: 206 in 206 JAR artifacts (1 deprecated)
 `aws-mq:label` | 2.21 | Manage AWS MQ instances.
 
 | xref:components::aws-s3-component.adoc[AWS S3 Storage Service] (camel-aws-s3) +
-`aws-s3://bucketNameOrArn` | 2.8 | Store and retrie objects from AWS S3 Storage Service.
+`aws-s3://bucketNameOrArn` | 2.8 | Store and retrieve objects from AWS S3 Storage Service.
 
 | xref:components::aws-ses-component.adoc[AWS Simple Email Service (SES)] (camel-aws-ses) +
 `aws-ses:from` | 2.9 | Send e-mails through AWS SES service.
