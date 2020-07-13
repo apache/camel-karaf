@@ -168,7 +168,7 @@
         <jandex-version>2.1.2.Final</jandex-version>
         <jasypt-bundle-version>1.9.3_1</jasypt-bundle-version>
         <java-apns-bundle-version>1.0.0.Beta6_1</java-apns-bundle-version>
-        <java-util-bundle-version>1.51.0_1</java-util-bundle-version>
+        <java-util-bundle-version>1.52.0_1</java-util-bundle-version>
         <javax-inject-bundle-version>1_2</javax-inject-bundle-version>
         <jaxb-version>2.3.0</jaxb-version>
         <jaxb-bundle-version>2.3.1_1</jaxb-bundle-version>
