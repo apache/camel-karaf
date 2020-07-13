@@ -232,7 +232,7 @@
         <smallrye-health-version>2.2.0</smallrye-health-version>
         <snappy-version>1.1.7.3</snappy-version>
         <solr-bundle-version>8.4.1_1</solr-bundle-version>
-        <spring-batch-bundle-version>4.2.2.RELEASE_1</spring-batch-bundle-version>
+        <spring-batch-bundle-version>4.2.4.RELEASE_1</spring-batch-bundle-version>
         <spring-data-commons-bundle-version>2.2.4.RELEASE_1</spring-data-commons-bundle-version>
         <spring-data-keyvalue-bundle-version>2.2.4.RELEASE_1</spring-data-keyvalue-bundle-version>
         <spring-data-redis-bundle-version>2.2.4.RELEASE_1</spring-data-redis-bundle-version>
