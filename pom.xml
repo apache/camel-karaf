@@ -147,7 +147,7 @@
         <elasticsearch-rest-bundle-version>7.7.0_1</elasticsearch-rest-bundle-version>
         <eddsa-version>0.3.0</eddsa-version>
         <facebook4j-core-bundle-version>2.4.13_1</facebook4j-core-bundle-version>
-        <fastjson-bundle-version>1.2.68_1</fastjson-bundle-version>
+        <fastjson-bundle-version>1.2.72_1</fastjson-bundle-version>
         <fop-bundle-version>2.3_1</fop-bundle-version>
         <generex-bundle-version>1.0.2_1</generex-bundle-version>
         <google-truth-version>0.30</google-truth-version>
