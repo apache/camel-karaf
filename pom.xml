@@ -191,7 +191,7 @@
         <karaf4-version>4.2.9</karaf4-version>
         <kxml2-bundle-version>2.3.0_3</kxml2-bundle-version>
         <libphonenumber-bundle-version>8.12.6_1</libphonenumber-bundle-version>
-        <lucene-bundle-version>8.4.1_1</lucene-bundle-version>
+        <lucene-bundle-version>8.5.1_1</lucene-bundle-version>
         <!-- lucene aligned with elasticsearch version of lucene in use -->
         <lightcouch-bundle-version>0.2.0_1</lightcouch-bundle-version>
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
