@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 206 in 206 JAR artifacts (1 deprecated)
+Number of Camel components: 207 in 207 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -331,6 +331,9 @@ Number of Camel components: 206 in 206 JAR artifacts (1 deprecated)
 
 | xref:components::json-validator-component.adoc[JSON Schema Validator] (camel-json-validator) +
 `json-validator:resourceUri` | 2.20 | Validate JSON payloads using NetworkNT JSON Schema.
+
+| xref:components::jsonata-component.adoc[JSONATA] (camel-jsonata) +
+`jsonata:resourceUri` | 3.5 | JSON to JSON transformation using JSONATA.
 
 | xref:components::jt400-component.adoc[JT400] (camel-jt400) +
 `jt400:userID:password/systemName/objectPath.type` | 1.5 | Exchanges messages with an IBM i system using data queues, message queues, or program call. IBM i is the replacement for AS/400 and iSeries servers.
