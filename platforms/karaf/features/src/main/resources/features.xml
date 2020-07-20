@@ -2004,6 +2004,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-api/${opentracing-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-noop/${opentracing-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-util/${opentracing-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentracing.contrib/opentracing-tracerresolver/${opentracing-tracerresolver-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-opentracing/${project.version}</bundle>
   </feature>
