@@ -2006,6 +2006,7 @@
   </feature>
   <feature name='camel-opentracing' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}'>camel-tracing</feature>
     <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-api/${opentracing-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-noop/${opentracing-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentracing/opentracing-util/${opentracing-version}</bundle>
