@@ -51,10 +51,10 @@ public class EndpointDefinitionParser extends AbstractBeanDefinitionParser {
             } else if (isAttribute(pre, name)) {
                 if ("endpointName".equals(name) || "serviceName".equals(name)) {
                     if (isPlaceHolder(val)) {
-                        endpointConfig.addProperty(name + "String", createValue(context, val));
+                        endpointConfig.addProperty(name, createValue(context, val));
                     } else {
                         QName q = parseQName(element, val);
-                        endpointConfig.addProperty(name, createValue(context, q));
+                        endpointConfig.addProperty(name + "AsQName", createValue(context, q));
                     }
                 } else if ("depends-on".equals(name)) {
                     endpointConfig.addDependsOn(val);
