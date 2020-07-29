@@ -2579,6 +2579,10 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-tika/${project.version}</bundle>
   </feature>
+  <feature name='camel-tracing' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle>mvn:org.apache.camel/camel-tracing/${project.version}</bundle>
+  </feature>
   <feature name='camel-twilio' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:com.twilio.sdk/twilio/${twilio-version}</bundle>
