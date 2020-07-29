@@ -2013,6 +2013,15 @@
     <bundle dependency='true'>wrap:mvn:io.opentracing.contrib/opentracing-tracerresolver/${opentracing-tracerresolver-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-opentracing/${project.version}</bundle>
   </feature>
+  <feature name='camel-opentelemetry' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}'>camel-tracing</feature>
+    <feature version='${project.version}'>camel-grpc</feature>
+    <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk/${opentelemetry-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context-prop/${opentelemetry-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-opentelemetry/${project.version}</bundle>
+  </feature>
   <feature name='camel-paho' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.eclipse.paho/org.eclipse.paho.client.mqttv3/${paho-version}</bundle>
