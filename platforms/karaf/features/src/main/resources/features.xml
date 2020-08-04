@@ -186,6 +186,11 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.java-apns/${java-apns-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-apns/${project.version}</bundle>
   </feature>
+  <feature name='camel-arangodb' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>wrap:mvn:com.arangodb/arangodb-java-driver/${arangodb-java-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-arangodb/${project.version}</bundle>
+  </feature>
   <feature name='camel-as2' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:commons-collections/commons-collections/${commons-collections-version}</bundle>
