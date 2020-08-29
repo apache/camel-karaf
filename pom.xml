@@ -233,9 +233,9 @@
         <snappy-version>1.1.7.3</snappy-version>
         <solr-bundle-version>8.4.1_1</solr-bundle-version>
         <spring-batch-bundle-version>4.2.2.RELEASE_1</spring-batch-bundle-version>
-        <spring-data-commons-bundle-version>2.3.2.RELEASE_2-SNAPSHOT</spring-data-commons-bundle-version>
-        <spring-data-keyvalue-bundle-version>2.3.2.RELEASE_2-SNAPSHOT</spring-data-keyvalue-bundle-version>
-        <spring-data-redis-bundle-version>2.3.2.RELEASE_2-SNAPSHOT</spring-data-redis-bundle-version>
+        <spring-data-commons-bundle-version>2.3.2.RELEASE_2</spring-data-commons-bundle-version>
+        <spring-data-keyvalue-bundle-version>2.3.2.RELEASE_2</spring-data-keyvalue-bundle-version>
+        <spring-data-redis-bundle-version>2.3.2.RELEASE_2</spring-data-redis-bundle-version>
         <spring-ldap-bundle-version>2.3.3.RELEASE_1</spring-ldap-bundle-version>
         <spring-ws-bundle-version>3.0.8.RELEASE_1</spring-ws-bundle-version>
         <spring-xml-bundle-version>3.0.7.RELEASE_1</spring-xml-bundle-version>
