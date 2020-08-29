@@ -177,7 +177,7 @@
         <jaxb-version>2.3.0</jaxb-version>
         <jaxb-bundle-version>2.3.1_1</jaxb-bundle-version>
         <jdom-bundle-version>2.0.6_1</jdom-bundle-version>
-        <jedis-client-bundle-version>3.1.0_1</jedis-client-bundle-version>
+        <jedis-client-bundle-version>3.3.0_2</jedis-client-bundle-version>
         <jetty9-version>9.4.20.v20190813</jetty9-version>
         <jing-bundle-version>20030619_5</jing-bundle-version>
         <jodatime-bundle-version>1.6.2</jodatime-bundle-version>
