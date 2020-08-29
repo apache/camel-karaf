@@ -191,7 +191,7 @@
         <juel-bundle-version>2.1.3_1</juel-bundle-version>
         <junit-bundle-version>4.11_1</junit-bundle-version>
         <jzlib-bundle-version>1.1.3_2</jzlib-bundle-version>
-        <kafka-bundle-version>2.4.1_1</kafka-bundle-version>
+        <kafka-bundle-version>2.5.0_1</kafka-bundle-version>
         <karaf4-version>4.2.9</karaf4-version>
         <kxml2-bundle-version>2.3.0_3</kxml2-bundle-version>
         <libphonenumber-bundle-version>8.12.7_1</libphonenumber-bundle-version>
