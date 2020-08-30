@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
+Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -97,6 +97,9 @@ Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
 
 | xref:components::aws-translate-component.adoc[AWS Translate] (camel-aws-translate) +
 `aws-translate:label` | 3.0 | Translate texts using AWS Translate.
+
+| xref:components::azure-eventhubs-component.adoc[Azure Event Hubs] (camel-azure-eventhubs) +
+`azure-eventhubs:namespace/eventHubName` | 3.5 | The azure-eventhubs component that integrates Azure Event Hubs using AMQP protocol. Azure EventHubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream them to multiple consumers.
 
 | xref:components::azure-storage-blob-component.adoc[Azure Storage Blob Service] (camel-azure-storage-blob) +
 `azure-storage-blob:containerName` | 3.3 | Store and retrieve blobs from Azure Storage Blob Service using SDK v12.
