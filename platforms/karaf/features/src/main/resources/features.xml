@@ -215,11 +215,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asterisk-java/${asterisk-java-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-asterisk/${project.version}</bundle>
   </feature>
-  <feature name='camel-atmosphere-websocket' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-servlet</feature>
-    <bundle dependency='true'>mvn:org.atmosphere/atmosphere-runtime/${atmosphere-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-atmosphere-websocket/${project.version}</bundle>
-  </feature>
   <feature name='camel-atom' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:com.sun.mail/jakarta.mail/${jakarta-mail-version}</bundle>
