@@ -685,8 +685,8 @@
   </feature>
   <feature name='camel-braintree' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/${braintree-jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${braintree-jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.braintreepayments.gateway/braintree-java/${braintree-gateway-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-csv/${commons-csv-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-braintree/${project.version}</bundle>
