@@ -40,21 +40,6 @@ public class OsgiDataFormatResolver implements DataFormatResolver {
     }
 
     @Override
-    public DataFormat resolveDataFormat(String name, CamelContext context) {
-        // lookup in registry first
-        DataFormat dataFormat = ResolverHelper.lookupDataFormatInRegistryWithFallback(context, name);
-        if (dataFormat == null) {
-            dataFormat = getDataFormat(name, context, false);
-        }
-
-        if (dataFormat == null) {
-            dataFormat = createDataFormat(name, context);
-        }
-
-        return dataFormat;
-    }
-
-    @Override
     public DataFormat createDataFormat(String name, CamelContext context) {
         DataFormat dataFormat = null;
 
@@ -65,21 +50,19 @@ public class OsgiDataFormatResolver implements DataFormatResolver {
         }
 
         if (dataFormat == null) {
-            dataFormat = getDataFormat(name, context, true);
+            dataFormat = getDataFormat(name, context);
         }
 
         return dataFormat;
     }
 
-    private DataFormat getDataFormat(String name, CamelContext context, boolean create) {
+    private DataFormat getDataFormat(String name, CamelContext context) {
         LOG.trace("Finding DataFormat: {}", name);
         try {
             Collection<ServiceReference<DataFormatResolver>> refs = bundleContext.getServiceReferences(DataFormatResolver.class, "(dataformat=" + name + ")");
             if (refs != null) {
                 for (ServiceReference<DataFormatResolver> ref : refs) {
-                    return create
-                        ? bundleContext.getService(ref).createDataFormat(name, context)
-                        : bundleContext.getService(ref).resolveDataFormat(name, context);
+                    return bundleContext.getService(ref).createDataFormat(name, context);
                 }
             }
             return null;

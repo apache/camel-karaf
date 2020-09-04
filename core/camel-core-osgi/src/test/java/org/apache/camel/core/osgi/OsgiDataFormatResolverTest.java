@@ -19,7 +19,6 @@ package org.apache.camel.core.osgi;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spi.DataFormat;
@@ -35,10 +34,10 @@ public class OsgiDataFormatResolverTest extends CamelOsgiTestSupport {
         Registry registry = new DefaultRegistry();
         registry.bind("allstar-dataformat", new SampleDataFormat(true));
 
-        CamelContext camelContext = new DefaultCamelContext(registry);
+        DefaultCamelContext camelContext = new DefaultCamelContext(registry);
+        camelContext.setDataFormatResolver(new OsgiDataFormatResolver(getBundleContext()));
 
-        OsgiDataFormatResolver resolver = new OsgiDataFormatResolver(getBundleContext());
-        DataFormat dataformat = resolver.resolveDataFormat("allstar", camelContext);
+        DataFormat dataformat = camelContext.resolveDataFormat("allstar");
         assertNotNull("We should find the super dataformat", dataformat);
         assertTrue("We should get the super dataformat here", dataformat instanceof SampleDataFormat);
     }
@@ -49,10 +48,10 @@ public class OsgiDataFormatResolverTest extends CamelOsgiTestSupport {
         registry.bind("allstar", new SampleDataFormat(false));
         registry.bind("allstar-dataformat", new SampleDataFormat(true));
 
-        CamelContext camelContext = new DefaultCamelContext(registry);
+        DefaultCamelContext camelContext = new DefaultCamelContext(registry);
+        camelContext.setDataFormatResolver(new OsgiDataFormatResolver(getBundleContext()));
 
-        OsgiDataFormatResolver resolver = new OsgiDataFormatResolver(getBundleContext());
-        DataFormat dataformat = resolver.resolveDataFormat("allstar", camelContext);
+        DataFormat dataformat = camelContext.resolveDataFormat("allstar");
         assertNotNull("We should find the super dataformat", dataformat);
         assertTrue("We should get the super dataformat here", dataformat instanceof SampleDataFormat);
         assertFalse("We should NOT find the fallback dataformat", ((SampleDataFormat) dataformat).isFallback());

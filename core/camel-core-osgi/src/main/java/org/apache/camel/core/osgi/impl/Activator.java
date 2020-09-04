@@ -43,7 +43,6 @@ import org.apache.camel.TypeConverter;
 import org.apache.camel.TypeConverterLoaderException;
 import org.apache.camel.impl.converter.AnnotationTypeConverterLoader;
 import org.apache.camel.impl.scan.AnnotatedWithPackageScanFilter;
-import org.apache.camel.model.DataFormatDefinition;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.spi.ConfigurerResolver;
 import org.apache.camel.spi.DataFormat;
@@ -92,7 +91,7 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
     private BundleTracker<?> tracker;
     private final Map<Long, List<BaseService>> resolvers = new ConcurrentHashMap<>();
     private long bundleId;
-    
+
     // Map from package name to the capability we export for this package
     private final Map<String, BundleCapability> packageCapabilities = new HashMap<>();
 
@@ -114,7 +113,7 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
         packageCapabilities.clear();
         LOG.info("Camel activator stopped");
     }
-    
+
     /**
      * Caches the package capabilities that are needed for a set of interface classes
      */
@@ -286,14 +285,14 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
                         }
                     }
                 }
-                    
+
             } else if (url1 != null || url3 != null) {
                 LOG.debug("Found TypeConverter in bundle {}", bundle.getSymbolicName());
                 resolvers.add(new BundleTypeConverterLoader(bundle, url3 != null));
             }
         }
     }
-    
+
     /**
      * Check if bundle can see the given class
      */
@@ -433,22 +432,8 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
         }
 
         @Override
-        public DataFormat resolveDataFormat(String name, CamelContext context) {
-            DataFormat dataFormat = createInstance(name, dataformats.get(name), context);
-            if (dataFormat == null) {
-                dataFormat = createDataFormat(name, context);
-            }
-
-            return dataFormat;
-        }
-
-        @Override
         public DataFormat createDataFormat(String name, CamelContext context) {
             return createInstance(name, dataformats.get(name), context);
-        }
-
-        public DataFormatDefinition resolveDataFormatDefinition(String name, CamelContext context) {
-            return null;
         }
 
         @Override
@@ -469,7 +454,7 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
             this.bundle = bundle;
             this.hasFallbackTypeConverter = hasFallbackTypeConverter;
         }
-        
+
         public void setTypeConverterLoader(TypeConverterLoader typeConverterloader) {
             this.loader = typeConverterloader;
         }
@@ -690,7 +675,7 @@ public class Activator implements BundleActivator, BundleTrackerCustomizer<Objec
         }
         return properties;
     }
-    
+
     protected static Set<String> getConverterPackages(URL resource) {
         Set<String> packages = new LinkedHashSet<>();
         if (resource != null) {

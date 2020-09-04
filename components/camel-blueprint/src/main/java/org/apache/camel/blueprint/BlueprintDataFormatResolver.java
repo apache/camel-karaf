@@ -20,7 +20,6 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.core.osgi.OsgiDataFormatResolver;
 import org.apache.camel.spi.DataFormat;
 import org.apache.camel.spi.DataFormatFactory;
-import org.apache.camel.spi.DataFormatResolver;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,23 +29,6 @@ public class BlueprintDataFormatResolver extends OsgiDataFormatResolver {
 
     public BlueprintDataFormatResolver(BundleContext bundleContext) {
         super(bundleContext);
-    }
-
-    @Override
-    public DataFormat resolveDataFormat(String name, CamelContext context) {
-        DataFormat dataFormat = null;
-
-        DataFormatResolver resolver = context.getRegistry().lookupByNameAndType(".camelBlueprint.dataformatResolver." + name, DataFormatResolver.class);
-        if (resolver != null) {
-            LOG.debug("Found dataformat resolver: {} in registry: {}", name, resolver);
-            dataFormat = resolver.resolveDataFormat(name, context);
-        }
-
-        if (dataFormat == null) {
-            dataFormat = super.resolveDataFormat(name, context);
-        }
-
-        return dataFormat;
     }
 
     @Override
