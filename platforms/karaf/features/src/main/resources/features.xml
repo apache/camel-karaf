@@ -1815,6 +1815,12 @@
     <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-mina/${project.version}</bundle>
   </feature>
+  <feature name='camel-minio' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>wrap:mvn:io.minio/minio/${minio-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-minio/${project.version}</bundle>
+  </feature>
   <feature name='camel-mllp' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-mllp/${project.version}</bundle>
