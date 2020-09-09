@@ -152,7 +152,7 @@
         <debezium-version>1.0.0.Final</debezium-version>
         <egit-github-core-bundle-version>2.1.5_1</egit-github-core-bundle-version>
         <ehcache-version>2.10.6</ehcache-version>
-        <elasticsearch-rest-bundle-version>7.8.0_2</elasticsearch-rest-bundle-version>
+        <elasticsearch-rest-bundle-version>7.9.0_1</elasticsearch-rest-bundle-version>
         <eddsa-version>0.3.0</eddsa-version>
         <facebook4j-core-bundle-version>2.4.13_1</facebook4j-core-bundle-version>
         <fastjson-bundle-version>1.2.73_1</fastjson-bundle-version>
