@@ -669,13 +669,13 @@ Number of Camel data formats: 45 in 37 JAR artifacts (0 deprecated)
 (camel-beanio) | 2.10 | Marshal and unmarshal Java beans to and from flat files (such as CSV, delimited, or fixed length formats).
 
 | xref:components:dataformats:bindy-dataformat.adoc[Bindy CSV] +
-(camel-bindy) | 2.0 | Marshal and unmarshal Java beans from and to flat payloads (such as CSV, delimited, fixed length formats, or FIX messages).
+(camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and Comma separated values (CSV) format using Camel Bindy
 
 | xref:components:dataformats:bindy-dataformat.adoc[Bindy Fixed Length] +
-(camel-bindy) | 2.0 | Marshal and unmarshal Java beans from and to flat payloads (such as CSV, delimited, fixed length formats, or FIX messages).
+(camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and fixed field length format using Camel Bindy
 
 | xref:components:dataformats:bindy-dataformat.adoc[Bindy Key Value Pair] +
-(camel-bindy) | 2.0 | Marshal and unmarshal Java beans from and to flat payloads (such as CSV, delimited, fixed length formats, or FIX messages).
+(camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and key-value pair (KVP) format using Camel Bindy
 
 | xref:components:dataformats:cbor-dataformat.adoc[CBOR] +
 (camel-cbor) | 3.0 | Unmarshal a CBOR payload to POJO and back.
@@ -714,19 +714,19 @@ Number of Camel data formats: 45 in 37 JAR artifacts (0 deprecated)
 (camel-jaxb) | 1.0 | Unmarshal XML payloads to POJOs and back using JAXB2 XML marshalling standard.
 
 | xref:components:dataformats:json-fastjson-dataformat.adoc[JSON Fastjson] +
-(camel-fastjson) | 2.20 | Marshal POJOs to JSON and back.
+(camel-fastjson) | 2.20 | Marshal POJOs to JSON and back using Fastjson
 
 | xref:components:dataformats:json-gson-dataformat.adoc[JSON Gson] +
-(camel-gson) | 2.10 | Marshal POJOs to JSON and back.
+(camel-gson) | 2.10 | Marshal POJOs to JSON and back using Gson
 
 | xref:components:dataformats:json-jackson-dataformat.adoc[JSON Jackson] +
-(camel-jackson) | 2.0 | Marshal POJOs to JSON and back.
+(camel-jackson) | 2.0 | Marshal POJOs to JSON and back using Jackson
 
 | xref:components:dataformats:json-johnzon-dataformat.adoc[JSON Johnzon] +
-(camel-johnzon) | 2.18 | Marshal POJOs to JSON and back.
+(camel-johnzon) | 2.18 | Marshal POJOs to JSON and back using Johnzon
 
 | xref:components:dataformats:json-xstream-dataformat.adoc[JSON XStream] +
-(camel-xstream) | 2.0 | Marshal POJOs to JSON and back.
+(camel-xstream) | 2.0 | Marshal POJOs to JSON and back using XStream
 
 | xref:components:dataformats:jsonApi-dataformat.adoc[JSonApi] +
 (camel-jsonapi) | 3.0 | Marshal and unmarshal JSON:API resources using JSONAPI-Converter library.
@@ -777,7 +777,7 @@ Number of Camel data formats: 45 in 37 JAR artifacts (0 deprecated)
 (camel-xstream) | 1.3 | Marshal and unmarshal POJOs to/from XML using XStream library.
 
 | xref:components:dataformats:yaml-snakeyaml-dataformat.adoc[YAML SnakeYAML] +
-(camel-snakeyaml) | 2.17 | Marshal and unmarshal Java objects to and from YAML.
+(camel-snakeyaml) | 2.17 | Marshal and unmarshal Java objects to and from YAML using SnakeYAML
 
 | xref:components:dataformats:zipdeflater-dataformat.adoc[Zip Deflate Compression] +
 (camel-zip-deflater) | 2.12 | Compress and decompress streams using java.util.zip.Deflater and java.util.zip.Inflater.
