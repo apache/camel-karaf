@@ -30,7 +30,6 @@ public class EventAdminEndpointUriFactory extends org.apache.camel.support.compo
         PROPERTY_NAMES = set;
     }
 
-
     @Override
     public boolean isEnabled(String scheme) {
         return "eventadmin".equals(scheme);
