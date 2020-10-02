@@ -1665,7 +1665,12 @@
     <bundle>mvn:io.fabric8/kubernetes-model-settings/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-storageclass/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-common/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle>mvn:io.fabric8/openshift-model/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-console/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-monitoring/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-operator/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-operatorhub/${kubernetes-model-version}</bundle>
     <bundle dependency='true'>mvn:io.fabric8/kubernetes-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle dependency='true'>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle>mvn:org.apache.camel/camel-kubernetes/${project.version}</bundle>
