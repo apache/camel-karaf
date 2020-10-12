@@ -128,6 +128,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     private String useDataType;
     @XmlAttribute
     private String useBreadcrumb;
+    @XmlAttribute @Metadata(defaultValue = "true")
+    private String beanPostProcessorEnabled;
     @XmlAttribute
     private String allowUseOriginalMessage;
     @XmlAttribute
@@ -460,6 +462,14 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setUseBreadcrumb(String useBreadcrumb) {
         this.useBreadcrumb = useBreadcrumb;
+    }
+
+    public String getBeanPostProcessorEnabled() {
+        return beanPostProcessorEnabled;
+    }
+
+    public void setBeanPostProcessorEnabled(String beanPostProcessorEnabled) {
+        this.beanPostProcessorEnabled = beanPostProcessorEnabled;
     }
 
     @Override
