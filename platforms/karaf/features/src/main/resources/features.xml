@@ -1281,15 +1281,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.java-util/${java-util-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-headersmap/${project.version}</bundle>
   </feature>
-  <feature name='camel-hipchat' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-hipchat/${project.version}</bundle>
-  </feature>
   <feature name='camel-hl7' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-netty</feature>
     <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
