@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
+Number of Camel components: 208 in 208 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -268,9 +268,6 @@ Number of Camel components: 209 in 209 JAR artifacts (1 deprecated)
 
 | xref:components::guava-eventbus-component.adoc[Guava EventBus] (camel-guava-eventbus) +
 `guava-eventbus:eventBusRef` | 2.10 | Send and receive messages to/from Guava EventBus.
-
-| xref:components::hipchat-component.adoc[Hipchat] (camel-hipchat) +
-`hipchat:protocol:host:port` | 2.15 | Send and receive messages to/from Hipchat service.
 
 | xref:components::http-component.adoc[HTTP] (camel-http) +
 `http:httpUri` | 2.3 | Send requests to external HTTP servers using Apache HTTP Client 4.x.
