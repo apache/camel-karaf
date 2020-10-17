@@ -723,7 +723,7 @@ Number of Camel data formats: 46 in 38 JAR artifacts (0 deprecated)
 (camel-johnzon) | 2.18 | Marshal POJOs to JSON and back using Johnzon
 
 | xref:components:dataformats:json-jsonb-dataformat.adoc[JSON JSON-B] +
-(camel-jsonb) | 3.6 | Marshal POJOs to JSON and back using JSON-B.
+(camel-jsonb) | 3.7 | Marshal POJOs to JSON and back using JSON-B.
 
 | xref:components:dataformats:json-xstream-dataformat.adoc[JSON XStream] +
 (camel-xstream) | 2.0 | Marshal POJOs to JSON and back using XStream
@@ -790,7 +790,7 @@ Number of Camel data formats: 46 in 38 JAR artifacts (0 deprecated)
 == Camel Languages
 
 // languages: START
-Number of Camel languages: 17 in 11 JAR artifacts (0 deprecated)
+Number of Camel languages: 18 in 12 JAR artifacts (0 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -816,6 +816,9 @@ Number of Camel languages: 17 in 11 JAR artifacts (0 deprecated)
 
 | xref:components:languages:hl7terser-language.adoc[HL7 Terser] +
 (camel-hl7) | 2.11 | Get the value of an HL7 message field specified by terse location specification syntax.
+
+| xref:components:languages:joor-language.adoc[jOOR] +
+(camel-joor) | 3.7 | Evaluate a jOOR (Java compiled once at runtime) expression language.
 
 | xref:components:languages:jsonpath-language.adoc[JsonPath] +
 (camel-jsonpath) | 2.13 | Evaluate a JsonPath expression against a JSON message body.
