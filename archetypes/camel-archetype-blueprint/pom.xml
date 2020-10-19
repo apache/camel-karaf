@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.archetypes</groupId>
     <artifactId>camel-archetype-blueprint</artifactId>
-    <name>Camel :: Archetypes :: Blueprint (OSGi) Based Router</name>
+    <name>Camel Karaf :: Archetypes :: Blueprint (OSGi) Based Router</name>
     <description>Creates a new Camel project with OSGi blueprint support. Ready to be deployed in OSGi.</description>
     <packaging>maven-archetype</packaging>
 
