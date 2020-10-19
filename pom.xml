@@ -75,6 +75,7 @@
         <module>catalog</module>
         <module>tests</module>
         <module>bom</module>
+        <module>archetypes</module>
     </modules>
 
     <scm>
