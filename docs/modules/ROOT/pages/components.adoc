@@ -856,7 +856,7 @@ Number of Camel languages: 18 in 12 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 19 in 19 JAR artifacts (1 deprecated)
+Number of miscellaneous extensions: 20 in 20 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -882,6 +882,9 @@ Number of miscellaneous extensions: 19 in 19 JAR artifacts (1 deprecated)
 
 | xref:components:others:leveldb.adoc[LevelDB] +
 (camel-leveldb) | 2.10 | Using LevelDB as persistent EIP store
+
+| xref:components:others:leveldb-legacy.adoc[LevelDB-legacy] +
+(camel-leveldb-legacy) | 2.10 | Using LevelDB as persistent EIP store
 
 | xref:components:others:lra.adoc[LRA] +
 (camel-lra) | 2.21 | Camel saga binding for Long-Running-Action framework
