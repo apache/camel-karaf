@@ -384,13 +384,13 @@
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
-                                            <artifactId>camel-core-engine</artifactId>
+                                            <artifactId>camel-core-model</artifactId>
                                             <version>${project.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
                                             <excludes>**/*nDefinitionConfigurer.java</excludes>
-                                            <outputDirectory>target/sources/camel-core-engine</outputDirectory>
+                                            <outputDirectory>target/sources/camel-core-model</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
@@ -461,7 +461,7 @@
                                                 <include name="org/apache/camel/ShutdownRunningTask.java"/>
                                                 <include name="org/apache/camel/WaitForTaskToComplete.java"/>
                                             </fileset>
-                                            <fileset dir="${project.build.directory}/sources/camel-core-engine">
+                                            <fileset dir="${project.build.directory}/sources/camel-core-model">
                                                 <include name="org/apache/camel/model/**/*.java"/>
                                                 <include name="org/apache/camel/package-info.java"/>
                                             </fileset>

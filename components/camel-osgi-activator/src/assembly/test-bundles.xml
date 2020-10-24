@@ -32,6 +32,8 @@
       <includes>
         <include>org.apache.camel:camel-api</include>
         <include>org.apache.camel:camel-base</include>
+        <include>org.apache.camel:camel-core-reifier</include>
+        <include>org.apache.camel:camel-core-model</include>
         <include>org.apache.camel:camel-core-engine</include>
         <include>org.apache.camel:camel-core-languages</include>
         <include>org.apache.camel:camel-management-api</include>
