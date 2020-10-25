@@ -52,6 +52,7 @@
     <bundle>mvn:org.apache.camel/camel-management/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-model/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-reifier/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-core-processor/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-engine/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-languages/${project.version}</bundle>
     <bundle>mvn:org.apache.camel.karaf/camel-core-osgi/${project.version}</bundle>
