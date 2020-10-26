@@ -1405,56 +1405,6 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-jaxb/${project.version}</bundle>
   </feature>
-  <feature name='camel-jbpm' version='${project.version}' start-level='50'>
-    <details>The camel-jbpm feature can only run on a SUN JVM. You need to add the package com.sun.tools.xjc to the java platform packages in the etc/jre.properties file.</details>
-    <feature version='${project.version}'>camel-core</feature>
-    <feature>transaction</feature>
-    <feature version='${cxf-version-range}'>cxf-jaxrs</feature>
-    <bundle dependency='true'>mvn:org.kie.server/kie-server-api/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.server/kie-server-common/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.server/kie-server-client/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-maven-support/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-project-datamodel-api/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-project-datamodel-commons/${jbpm-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:org.jbpm/jbpm-workitems-core/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-commons/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie.soup/kie-soup-xstream/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie/kie-api/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie/kie-internal/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-core/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-core-reflective/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-canonical-model/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-model-compiler/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-mvel-compiler/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-mvel-parser/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:com.github.javaparser/javaparser-core/${javaparser-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/drools-compiler/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.drools/kie-pmml/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.mvel/mvel2/${mvel-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie/kie-dmn-model/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.kie/kie-dmn-api/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.optaplanner/optaplanner-core/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.optaplanner/optaplanner-persistence-common/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.optaplanner/optaplanner-persistence-jaxb/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.optaplanner/optaplanner-persistence-jackson/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:org.optaplanner/optaplanner-persistence-xstream/${jbpm-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.commons/commons-math3/${commons-math3-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
-    <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jaxws-api-2.2/${servicemix-specs-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/${xstream-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xpp3/${xpp3-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.reflections/${reflections-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxb-xjc/${jaxb-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-jbpm/${project.version}</bundle>
-  </feature>
   <feature name='camel-jcache' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.javax-cache-api/${jcache-bundle-version}</bundle>
