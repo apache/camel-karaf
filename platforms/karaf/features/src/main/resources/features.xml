@@ -49,6 +49,7 @@
     <bundle>mvn:org.apache.camel/camel-util-json/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-support/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-base/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-base-engine/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-management/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-model/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-reifier/${project.version}</bundle>

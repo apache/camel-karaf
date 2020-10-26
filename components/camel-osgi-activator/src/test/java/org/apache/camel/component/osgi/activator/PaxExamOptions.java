@@ -69,6 +69,7 @@ public enum PaxExamOptions {
                 createStreamBundleOption("camel-core-languages.jar"),
                 createStreamBundleOption("camel-api.jar"),
                 createStreamBundleOption("camel-base.jar"),
+                createStreamBundleOption("camel-base-engine.jar"),
                 createStreamBundleOption("camel-management-api.jar"),
                 createStreamBundleOption("camel-support.jar"),
                 createStreamBundleOption("camel-util.jar"),
