@@ -41,6 +41,7 @@ import org.apache.camel.TypeConverters;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.converter.DefaultTypeConverter;
 import org.apache.camel.impl.engine.DefaultPackageScanClassResolver;
+import org.apache.camel.spi.BulkTypeConverters;
 import org.apache.camel.spi.FactoryFinder;
 import org.apache.camel.spi.Injector;
 import org.apache.camel.spi.PackageScanClassResolver;
@@ -194,11 +195,6 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     @Override
-    public List<Class<?>[]> listAllTypeConvertersFromTo() {
-        return getDelegate().listAllTypeConvertersFromTo();
-    }
-
-    @Override
     public void setInjector(Injector injector) {
         getDelegate().setInjector(injector);
     }
@@ -334,5 +330,9 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             super.addTypeConverter(toType, fromType, typeConverter);
         }
     }
+
+	@Override
+	public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
+	}
 
 }

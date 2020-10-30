@@ -24,6 +24,7 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.TypeConverterExists;
 import org.apache.camel.TypeConverters;
+import org.apache.camel.spi.BulkTypeConverters;
 import org.apache.camel.spi.Injector;
 import org.apache.camel.spi.TypeConverterRegistry;
 
@@ -62,11 +63,6 @@ public class MockTypeConverterRegistry implements TypeConverterRegistry {
 
     @Override
     public TypeConverter lookup(Class<?> toType, Class<?> fromType) {
-        return null;
-    }
-
-    @Override
-    public List<Class<?>[]> listAllTypeConvertersFromTo() {
         return null;
     }
 
@@ -137,5 +133,10 @@ public class MockTypeConverterRegistry implements TypeConverterRegistry {
     public void stop() {
         // noop
     }
+
+	@Override
+	public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
+		// noop
+	}
 }
 
