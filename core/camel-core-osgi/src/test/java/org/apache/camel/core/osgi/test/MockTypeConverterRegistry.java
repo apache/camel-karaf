@@ -39,7 +39,12 @@ public class MockTypeConverterRegistry implements TypeConverterRegistry {
     public List<TypeConverter> getFallbackTypeConverters() {
         return fallbackTypeConverters;
     }
-    
+
+    @Override
+    public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
+        typeConverters.add(bulkTypeConverters);
+    }
+
     @Override
     public void addTypeConverter(Class<?> toType, Class<?> fromType, TypeConverter typeConverter) {
         typeConverters.add(typeConverter);
@@ -134,9 +139,5 @@ public class MockTypeConverterRegistry implements TypeConverterRegistry {
         // noop
     }
 
-	@Override
-	public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
-		// noop
-	}
 }
 

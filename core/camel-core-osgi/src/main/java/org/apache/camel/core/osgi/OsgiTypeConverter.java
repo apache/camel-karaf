@@ -19,16 +19,8 @@ package org.apache.camel.core.osgi;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
@@ -169,6 +161,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         return getDelegate().tryConvertTo(type, value);
     }
 
+
     @Override
     public void addTypeConverter(Class<?> toType, Class<?> fromType, TypeConverter typeConverter) {
         getDelegate().addTypeConverter(toType, fromType, typeConverter);
@@ -177,6 +170,11 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     @Override
     public void addTypeConverters(TypeConverters typeConverters) {
         getDelegate().addTypeConverters(typeConverters);
+    }
+
+    @Override
+    public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
+        getDelegate().addBulkTypeConverters(bulkTypeConverters);
     }
 
     @Override
@@ -234,7 +232,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         getDelegate().setTypeConverterExists(typeConverterExists);
     }
 
-    public synchronized DefaultTypeConverter getDelegate() {
+    public DefaultTypeConverter getDelegate() {
         if (delegate == null) {
             delegate = createRegistry();
         }
@@ -289,25 +287,6 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         return answer;
     }
 
-    public static <T> Stream<T> enumerationAsStream(Enumeration<T> e) {
-        return StreamSupport.stream(
-                Spliterators.spliteratorUnknownSize(
-                        new Iterator<T>() {
-                            public T next() {
-                                return e.nextElement();
-                            }
-                            public boolean hasNext() {
-                                return e.hasMoreElements();
-                            }
-                            public void forEachRemaining(Consumer<? super T> action) {
-                                while (e.hasMoreElements()) {
-                                    action.accept(e.nextElement());
-                                }
-                            }
-                        },
-                        Spliterator.ORDERED), false);
-    }
-
     private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
 
         public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, FactoryFinder factoryFinder, boolean loadTypeConverters) {
@@ -330,9 +309,5 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             super.addTypeConverter(toType, fromType, typeConverter);
         }
     }
-
-	@Override
-	public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
-	}
 
 }
