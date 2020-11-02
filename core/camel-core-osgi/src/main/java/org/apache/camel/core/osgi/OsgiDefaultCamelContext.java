@@ -29,6 +29,10 @@ public class OsgiDefaultCamelContext extends DefaultCamelContext {
 
     public OsgiDefaultCamelContext(BundleContext bundleContext) {
         super(false);
+
+        // remove the OnCamelContextLifecycleStrategy that camel-core adds by default which does not work well for OSGi
+        getLifecycleStrategies().removeIf(l -> l.getClass().getSimpleName().contains("OnCamelContextLifecycleStrategy"));
+
         this.bundleContext = bundleContext;
 
         // inject common osgi

@@ -60,6 +60,9 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         this.bundleContext = bundleContext;
         this.blueprintContainer = blueprintContainer;
 
+        // remove the OnCamelContextLifecycleStrategy that camel-core adds by default which does not work well for OSGi
+        getLifecycleStrategies().removeIf(l -> l.getClass().getSimpleName().contains("OnCamelContextLifecycleStrategy"));
+
         // inject common osgi
         OsgiCamelContextHelper.osgiUpdate(this, bundleContext);
 
