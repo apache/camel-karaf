@@ -23,14 +23,12 @@ import org.apache.camel.blueprint.handler.CamelNamespaceHandler;
 import org.apache.camel.core.osgi.OsgiBeanRepository;
 import org.apache.camel.core.osgi.OsgiCamelContextHelper;
 import org.apache.camel.core.osgi.OsgiCamelContextPublisher;
-import org.apache.camel.core.osgi.OsgiFactoryFinderResolver;
 import org.apache.camel.core.osgi.OsgiTypeConverter;
 import org.apache.camel.core.osgi.utils.BundleContextUtils;
 import org.apache.camel.core.osgi.utils.BundleDelegatingClassLoader;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spi.BeanRepository;
 import org.apache.camel.spi.EventNotifier;
-import org.apache.camel.spi.FactoryFinder;
 import org.apache.camel.spi.ModelJAXBContextFactory;
 import org.apache.camel.support.DefaultRegistry;
 import org.osgi.framework.BundleContext;
@@ -227,8 +225,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         if (ctx == null) {
             ctx = bundleContext;
         }
-        FactoryFinder finder = new OsgiFactoryFinderResolver(bundleContext).resolveDefaultFactoryFinder(getClassResolver());
-        return new OsgiTypeConverter(ctx, this, getInjector(), finder);
+        return new OsgiTypeConverter(ctx, this, getInjector());
     }
 
     @Override

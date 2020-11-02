@@ -17,6 +17,7 @@
 package org.apache.camel.core.osgi;
 
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.impl.engine.BootstrapFactoryFinder;
 import org.apache.camel.util.ObjectHelper;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
@@ -40,6 +41,8 @@ public final class OsgiCamelContextHelper {
         camelContext.setClassResolver(new OsgiClassResolver(camelContext, bundleContext));
         LOG.debug("Using OsgiFactoryFinderResolver");
         camelContext.setFactoryFinderResolver(new OsgiFactoryFinderResolver(bundleContext));
+        LOG.debug("Using OsgiFactoryFinder");
+        camelContext.setBootstrapFactoryFinder(new OsgiFactoryFinder(bundleContext, camelContext.getClassResolver(), BootstrapFactoryFinder.DEFAULT_PATH));
         LOG.debug("Using OsgiPackageScanClassResolver");
         camelContext.setPackageScanClassResolver(new OsgiPackageScanClassResolver(bundleContext));
         LOG.debug("Using OsgiComponentResolver");
