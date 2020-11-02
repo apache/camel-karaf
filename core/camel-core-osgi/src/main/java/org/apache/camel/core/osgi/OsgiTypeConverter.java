@@ -34,7 +34,6 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.converter.DefaultTypeConverter;
 import org.apache.camel.impl.engine.DefaultPackageScanClassResolver;
 import org.apache.camel.spi.BulkTypeConverters;
-import org.apache.camel.spi.FactoryFinder;
 import org.apache.camel.spi.Injector;
 import org.apache.camel.spi.PackageScanClassResolver;
 import org.apache.camel.spi.TypeConverterLoader;
@@ -56,15 +55,13 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     private final BundleContext bundleContext;
     private CamelContext camelContext;
     private final Injector injector;
-    private final FactoryFinder factoryFinder;
     private final ServiceTracker<TypeConverterLoader, Object> tracker;
     private volatile DefaultTypeConverter delegate;
 
-    public OsgiTypeConverter(BundleContext bundleContext, CamelContext camelContext, Injector injector, FactoryFinder factoryFinder) {
+    public OsgiTypeConverter(BundleContext bundleContext, CamelContext camelContext, Injector injector) {
         this.bundleContext = bundleContext;
         this.camelContext = camelContext;
         this.injector = injector;
-        this.factoryFinder = factoryFinder;
         this.tracker = new ServiceTracker<>(bundleContext, TypeConverterLoader.class.getName(), this);
     }
 
@@ -249,7 +246,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
                         DefaultTypeConverter.class.getClassLoader(),
                         DefaultCamelContext.class.getClassLoader()));
             }
-        }, injector, factoryFinder, false);
+        }, injector, false);
 
         // inject CamelContext
         answer.setCamelContext(camelContext);
@@ -289,8 +286,8 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
 
-        public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, FactoryFinder factoryFinder, boolean loadTypeConverters) {
-            super(resolver, injector, factoryFinder, loadTypeConverters);
+        public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, boolean loadTypeConverters) {
+            super(resolver, injector, loadTypeConverters);
         }
 
         @Override

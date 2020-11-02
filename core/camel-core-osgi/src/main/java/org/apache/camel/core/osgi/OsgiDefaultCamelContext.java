@@ -20,7 +20,6 @@ import org.apache.camel.TypeConverter;
 import org.apache.camel.core.osgi.utils.BundleContextUtils;
 import org.apache.camel.core.osgi.utils.BundleDelegatingClassLoader;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.apache.camel.spi.FactoryFinder;
 import org.apache.camel.support.DefaultRegistry;
 import org.osgi.framework.BundleContext;
 
@@ -53,8 +52,7 @@ public class OsgiDefaultCamelContext extends DefaultCamelContext {
         if (ctx == null) {
             ctx = bundleContext;
         }
-        FactoryFinder finder = new OsgiFactoryFinderResolver(bundleContext).resolveDefaultFactoryFinder(getClassResolver());
-        return new OsgiTypeConverter(ctx, this, getInjector(), finder);
+        return new OsgiTypeConverter(ctx, this, getInjector());
     }
 
 }
