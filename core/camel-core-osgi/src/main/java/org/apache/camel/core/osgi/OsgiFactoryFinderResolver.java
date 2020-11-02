@@ -34,4 +34,9 @@ public class OsgiFactoryFinderResolver implements FactoryFinderResolver {
         return new OsgiFactoryFinder(bundleContext, classResolver, resourcePath);
     }
 
+    @Override
+    public FactoryFinder resolveBootstrapFactoryFinder(ClassResolver classResolver, String resourcePath) {
+        return new OsgiFactoryFinder(bundleContext, classResolver, resourcePath);
+    }
+
 }
