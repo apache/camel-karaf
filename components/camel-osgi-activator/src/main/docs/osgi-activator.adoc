@@ -1,5 +1,5 @@
 [[OsgiActivator]]
-= OSGi Camel Routes Activator
+= OSGi Camel Routes Activator (deprecated)
 :page-source: components/camel-osgi-activator/src/main/docs/osgi-activator.adoc
 
 *Since Camel 3.1*

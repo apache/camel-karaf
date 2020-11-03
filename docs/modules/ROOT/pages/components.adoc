@@ -850,7 +850,7 @@ Number of Camel languages: 18 in 12 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 20 in 20 JAR artifacts (1 deprecated)
+Number of miscellaneous extensions: 20 in 20 JAR artifacts (2 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -893,7 +893,7 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (1 deprecated)
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
 
 | xref:camel-karaf::osgi-activator.adoc[Osgi Activator] +
-(camel-osgi-activator) | 3.1 | Camel OSGi Activator for running Camel routes from other bundles
+(camel-osgi-activator) | 3.1 | *deprecated* Camel OSGi Activator for running Camel routes from other bundles
 
 | xref:components:others:reactor.adoc[Reactor] +
 (camel-reactor) | 2.20 | Reactor based back-end for Camel's reactive streams component
