@@ -1623,6 +1623,7 @@
     <bundle>mvn:io.fabric8/kubernetes-model-extensions/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-networking/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-metrics/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/kubernetes-model-node/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-policy/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-scheduling/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/kubernetes-model-settings/${kubernetes-model-version}</bundle>
