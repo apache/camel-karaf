@@ -538,8 +538,6 @@
                             <exclude>**/LICENSE-SALESFORCE.txt</exclude>
                             <!-- camel-as2 -->
                             <exclude>**/mdnDescription.vm</exclude>
-                            <!-- camel-jbpm -->
-                            <exclude>**/src/main/resources/*.wid</exclude>
                             <!-- camel website and user-manual -->
                             <exclude>**/node/**</exclude>
                             <exclude>**/node_modules/**</exclude>
