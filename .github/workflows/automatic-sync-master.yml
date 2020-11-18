@@ -21,6 +21,8 @@ on:
   schedule:
     # Run at midnight every day
     - cron:  '0 0 * * *'
+  workflow_dispatch:
+  
 jobs:
   build:
     name: Sync Camel Karaf Master Branch
