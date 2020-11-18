@@ -47,8 +47,9 @@ jobs:
       - name: Build Camel-karaf Project
         run: ./mvnw -V --no-transfer-progress clean install -DskipTests
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v2.4.1
+        uses: peter-evans/create-pull-request@v3
         with:
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automatic-periodic-sync
           title: '[Github Actions] Periodic Sync Camel Karaf Master Branch'
