@@ -121,7 +121,7 @@
         <asterisk-java-bundle-version>1.0.0-final_1</asterisk-java-bundle-version>
         <automaton-bundle-version>1.11-8_1</automaton-bundle-version>
         <avalon-bundle-version>4.3.1_1</avalon-bundle-version>
-        <avro-bundle-version>1.9.1_1</avro-bundle-version>
+        <avro-java-commons-compress-version>1.20</avro-java-commons-compress-version>
         <aws-java-sdk-bundle-version>1.11.714_1</aws-java-sdk-bundle-version>
         <azure-core-bundle-version>1.4.0_1</azure-core-bundle-version>
         <azure-core-amqp-bundle-version>1.4.0_1</azure-core-amqp-bundle-version>
