@@ -223,7 +223,7 @@
         <maven-surefire-plugin-version>3.0.0-M4</maven-surefire-plugin-version>
         <mockwebserver-version>0.1.7</mockwebserver-version>
         <mustache-guava-version>20.0</mustache-guava-version>
-        <mustache-bundle-version>0.9.6_1</mustache-bundle-version>
+        <mustache-bundle-version>0.9.7_1</mustache-bundle-version>
         <noggit-bundle-version>0.5_1</noggit-bundle-version>
         <objenesis-version>2.6</objenesis-version>
         <okclient-bundle-version>3.14.1_1</okclient-bundle-version>
