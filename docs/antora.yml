@@ -16,7 +16,7 @@
 #
 
 name: camel-karaf
-title: Apache Camel Karaf
+title: Camel Karaf
 version: 3.4.x
 nav:
 - modules/ROOT/nav.adoc
