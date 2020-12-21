@@ -16,6 +16,8 @@
  */
 package org.apache.camel.test.blueprint;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,9 +36,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -47,6 +46,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.blueprint.CamelBlueprintHelper;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.model.ModelCamelContext;
+import org.apache.camel.support.builder.xml.XMLConverterHelper;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.apache.camel.util.IOHelper;
 import org.apache.camel.util.KeyValueHolder;
@@ -164,7 +164,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         // - ManagedServiceUpdate is scheduled in felix.cm
         // - org.apache.felix.cm.impl.ConfigurationImpl.setDynamicBundleLocation() is called
         // - CM_LOCATION_CHANGED event is fired
-        // - if BP was alredy created, it's <cm:property-placeholder> receives the event and
+        // - if BP was already created, it's <cm:property-placeholder> receives the event and
         // - org.apache.aries.blueprint.compendium.cm.CmPropertyPlaceholder.updated() is called,
         //   but no BP reload occurs
         // we will however wait for BP container of the test bundle to become CREATED for the first time
@@ -283,8 +283,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
      */
     protected boolean expectBlueprintContainerReloadOnConfigAdminUpdate() {
         boolean expectedReload = false;
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
+        DocumentBuilderFactory dbf = new XMLConverterHelper().createDocumentBuilderFactory();
         try {
             // cm-1.0 doesn't define update-strategy attribute
             Set<String> cmNamesaces = new HashSet<>(Arrays.asList(
@@ -498,7 +497,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     
     @Override
     protected CamelContext createCamelContext() throws Exception {
-        CamelContext answer = null;
+        CamelContext answer;
         Long timeout = getCamelContextCreationTimeout();
         if (timeout == null) {
             answer = CamelBlueprintHelper.getOsgiService(bundleContext, CamelContext.class);

@@ -265,7 +265,6 @@ public final class CamelBlueprintHelper {
                         config.update(props);
                     }
                 }
-
             }
         }
     }
@@ -283,7 +282,7 @@ public final class CamelBlueprintHelper {
     }
 
     public static <T> T getOsgiService(BundleContext bundleContext, Class<T> type, String filter, long timeout) {
-        ServiceTracker<T, T> tracker = null;
+        ServiceTracker<T, T> tracker;
         try {
             String flt;
             if (filter != null) {
@@ -581,7 +580,7 @@ public final class CamelBlueprintHelper {
             IOHelper.close(is, fos);
         }
 
-        BundleDescriptor answer = null;
+        BundleDescriptor answer;
         FileInputStream fis = null;
         JarInputStream jis = null;
         try {
