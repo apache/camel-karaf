@@ -18,10 +18,12 @@ package org.apache.camel.test.blueprint;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -35,7 +37,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.jar.JarFile;
 
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -404,7 +408,15 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             }
         }
 
-        CamelBlueprintHelper.disposeBundleContext(bundleContext);
+        // close bundle context
+        if (bundleContext != null) {
+            // remember bundles before closing
+            Bundle[] bundles = bundleContext.getBundles();
+            // close bundle context
+            CamelBlueprintHelper.disposeBundleContext(bundleContext);
+            // now close jar files from the bundles
+            closeBundleJArFile(bundles);
+        }
     }
 
     @Override
@@ -414,6 +426,32 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             threadLocalBundleContext.remove();
         }
         super.cleanupResources();
+    }
+
+    /**
+     * Felix Connect leaks "open files" as a JarFile on Bundle Revision is not closed when stopping the bundle
+     * which can cause the JVM to open up too many file handles.
+     */
+    private void closeBundleJArFile(Bundle[] bundles) {
+        for (Bundle bundle : bundles) {
+            try {
+                // not all bundles is from PojoSRBundle that has a revision
+                Field field = bundle.getClass().getDeclaredField("m_revision");
+                field.setAccessible(true);
+                Object val = field.get(bundle);
+                field = val.getClass().getDeclaredField("m_jar");
+                field.setAccessible(true);
+                Object mJar = field.get(val);
+                if (mJar instanceof JarFile) {
+                    JarFile jf = (JarFile) mJar;
+                    log.debug("Closing bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
+                    jf.close();
+                    log.trace("Closed bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
+                }
+            } catch (Throwable e) {
+                // ignore
+            }
+        }
     }
 
     /**
