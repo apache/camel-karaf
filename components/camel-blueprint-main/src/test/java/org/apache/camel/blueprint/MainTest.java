@@ -24,8 +24,8 @@ import java.net.URLClassLoader;
 import org.apache.aries.util.io.IOUtils;
 import org.apache.camel.ProducerTemplate;
 import org.junit.Test;
-import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
-import org.ops4j.pax.swissbox.tinybundles.core.TinyBundles;
+import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.core.TinyBundles;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -58,7 +58,7 @@ public class MainTest {
 
     @Test
     public void testMainWithoutIncludingTestBundle() throws Exception {
-        TinyBundle bundle = TinyBundles.newBundle();
+        TinyBundle bundle = TinyBundles.bundle();
         bundle.add("OSGI-INF/blueprint/camel.xml", getClass().getResourceAsStream("main-loadfile.xml"));
         bundle.set("Manifest-Version", "2")
                 .set("Bundle-ManifestVersion", "2")

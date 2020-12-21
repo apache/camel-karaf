@@ -57,8 +57,8 @@ import org.apache.felix.connect.launch.BundleDescriptor;
 import org.apache.felix.connect.launch.ClasspathScanner;
 import org.apache.felix.connect.launch.PojoServiceRegistry;
 import org.apache.felix.connect.launch.PojoServiceRegistryFactory;
-import org.ops4j.pax.swissbox.tinybundles.core.TinyBundle;
-import org.ops4j.pax.swissbox.tinybundles.core.TinyBundles;
+import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.core.TinyBundles;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -365,7 +365,7 @@ public final class CamelBlueprintHelper {
     }
 
     protected static TinyBundle createConfigAdminInitBundle(String[]... configAdminPidFiles) throws IOException {
-        TinyBundle bundle = TinyBundles.newBundle();
+        TinyBundle bundle = TinyBundles.bundle();
         StringWriter configAdminInit = null;
         for (String[] configAdminPidFile : configAdminPidFiles) {
             if (configAdminPidFile == null) {
@@ -395,7 +395,7 @@ public final class CamelBlueprintHelper {
     }
 
     protected static TinyBundle createTestBundle(String name, String version, String descriptors) throws IOException {
-        TinyBundle bundle = TinyBundles.newBundle();
+        TinyBundle bundle = TinyBundles.bundle();
         for (URL url : getBlueprintDescriptors(descriptors)) {
             LOG.info("Using Blueprint XML file: " + url.getFile());
             bundle.add("OSGI-INF/blueprint/blueprint-" + url.getFile().replace("/", "-"), url);
