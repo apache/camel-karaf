@@ -32,6 +32,10 @@
     <description>Camel OSGi Pax Logging support</description>
 
     <properties>
+        <camel.osgi.import>
+            org.ops4j.pax.logging*;version="[1,3)",
+            *
+        </camel.osgi.import>
     </properties>
 
     <dependencies>
