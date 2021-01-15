@@ -1999,6 +1999,12 @@
     <bundle>mvn:org.eclipse.paho/org.eclipse.paho.client.mqttv3/${paho-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-paho/${project.version}</bundle>
   </feature>
+  <!-- paho v5 does not work in OSGi: https://github.com/eclipse/paho.mqtt.java/issues/857
+  <feature name='camel-paho-mqtt5' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle>mvn:org.eclipse.paho/org.eclipse.paho.mqttv5.client/${paho-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-paho-mqtt5/${project.version}</bundle>
+  </feature> -->
   <feature name='camel-paxlogging' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel.karaf/camel-paxlogging/${project.version}</bundle>
