@@ -856,7 +856,7 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 20 in 20 JAR artifacts (2 deprecated)
+Number of miscellaneous extensions: 21 in 21 JAR artifacts (3 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -867,6 +867,9 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (2 deprecated)
 
 | xref:camel-karaf::blueprint.adoc[Blueprint] +
 (camel-blueprint) | 2.4 | Using Camel with OSGi Blueprint
+
+| xref:components:others:caffeine-lrucache.adoc[Caffeine Lrucache] +
+(camel-caffeine-lrucache) | 3.0 | *deprecated* Camel Caffeine LRUCache support
 
 | xref:components:others:headersmap.adoc[Headersmap] +
 (camel-headersmap) | 2.20 | Fast case-insensitive headers map implementation
