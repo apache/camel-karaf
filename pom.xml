@@ -138,8 +138,8 @@
         <braintree-jackson2-version>2.11.2</braintree-jackson2-version>
         <build-helper-maven-plugin-version>1.12</build-helper-maven-plugin-version>
         <c3p0-bundle-version>0.9.5.5_1</c3p0-bundle-version>
-        <cassandra-jackson2-version>2.11.1</cassandra-jackson2-version>
-        <cassandra-metrics-version>4.0.5</cassandra-metrics-version>
+        <cassandra-jackson2-version>2.12.1</cassandra-jackson2-version>
+        <cassandra-metrics-version>4.1.6</cassandra-metrics-version>
         <cassandra-shaded-guava>25.1-jre-graal-sub-1</cassandra-shaded-guava>
         <chunk-templates-bundle-version>3.5.0_1</chunk-templates-bundle-version>
         <cometd-java-server-bundle-version>2.3.1_2</cometd-java-server-bundle-version>
@@ -269,7 +269,7 @@
         <tagsoup-bundle-version>1.2.1_1</tagsoup-bundle-version>
         <testcontainers-version>1.13.0</testcontainers-version>
         <tinybundles-version>2.1.1</tinybundles-version>
-        <typesafe-config>1.3.4</typesafe-config>
+        <typesafe-config>1.4.1</typesafe-config>
         <twitter4j-bundle-version>4.0.7_1</twitter4j-bundle-version>
         <unix-socket-factory-version>2015-01-27T15-02-14</unix-socket-factory-version>
         <unix-socket-factory-bundle-version>1.0.0</unix-socket-factory-bundle-version>
