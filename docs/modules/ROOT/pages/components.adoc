@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 206 in 206 JAR artifacts (19 deprecated)
+Number of Camel components: 204 in 204 JAR artifacts (19 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -401,9 +401,6 @@ Number of Camel components: 206 in 206 JAR artifacts (19 deprecated)
 | xref:components::nagios-component.adoc[Nagios] (camel-nagios) +
 `nagios:host:port` | 2.3 | Send passive checks to Nagios using JSendNSCA.
 
-| xref:components::nats-component.adoc[Nats] (camel-nats) +
-`nats:topic` | 2.17 | Send and receive messages from NATS messaging system.
-
 | xref:components::netty-component.adoc[Netty] (camel-netty) +
 `netty:protocol:host:port` | 2.14 | Socket level networking using TCP or UDP with the Netty 4.x.
 
@@ -532,9 +529,6 @@ Number of Camel components: 206 in 206 JAR artifacts (19 deprecated)
 
 | xref:components::spring-ldap-component.adoc[Spring LDAP] (camel-spring-ldap) +
 `spring-ldap:templateName` | 2.11 | Perform searches in LDAP servers using filters as the message payload.
-
-| xref:components::spring-redis-component.adoc[Spring Redis] (camel-spring-redis) +
-`spring-redis:host:port` | 2.11 | Send and receive messages from Redis.
 
 | xref:components::spring-ws-component.adoc[Spring WebService] (camel-spring-ws) +
 `spring-ws:type:lookupKey:webServiceEndpointUri` | 2.6 | Access external web services as a client or expose your own web services.
