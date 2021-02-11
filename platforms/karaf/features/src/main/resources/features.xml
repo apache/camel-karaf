@@ -1989,7 +1989,7 @@
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk/${opentelemetry-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/0.15.0-alpha</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-opentelemetry/${project.version}</bundle>
   </feature>
   <feature name='camel-paho' version='${project.version}' start-level='50'>
