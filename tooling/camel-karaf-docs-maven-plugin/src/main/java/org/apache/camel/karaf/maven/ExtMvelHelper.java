@@ -49,23 +49,23 @@ public class ExtMvelHelper {
             final ComponentModel component = (ComponentModel) model;
             final String scheme = component.getScheme();
             if ("org.apache.camel.karaf".equals(component.getGroupId())) {
-                return String.format("xref:camel-karaf::%s-component.adoc", scheme);
+                return String.format("xref:3.8.x@camel-karaf::%s-component.adoc", scheme);
             } else {
-                return String.format("xref:components::%s-component.adoc", scheme);
+                return String.format("xref:3.8.x@components::%s-component.adoc", scheme);
             }
         } else if (model instanceof DataFormatModel) {
-            return String.format("xref:components:dataformats:%s-dataformat.adoc",
+            return String.format("xref:3.8.x@components:dataformats:%s-dataformat.adoc",
                     invokeGetter(model, "getName"));
         } else if (model instanceof LanguageModel) {
-            return String.format("xref:components:languages:%s-language.adoc",
+            return String.format("xref:3.8.x@components:languages:%s-language.adoc",
                     invokeGetter(model, "getName"));
         } else if (model instanceof OtherModel) {
             final OtherModel other = (OtherModel) model;
             final String name = other.getName();
             if ("org.apache.camel.karaf".equals(other.getGroupId())) {
-                return String.format("xref:camel-karaf::%s.adoc", name);
+                return String.format("xref:3.8.x@camel-karaf::%s.adoc", name);
             } else {
-                return String.format("xref:components:others:%s.adoc", name);
+                return String.format("xref:3.8.x@components:others:%s.adoc", name);
             }
         } else {
             return null;
