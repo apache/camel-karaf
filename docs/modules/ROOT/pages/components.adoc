@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 202 in 202 JAR artifacts (17 deprecated)
+Number of Camel components: 201 in 201 JAR artifacts (16 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -82,9 +82,6 @@ Number of Camel components: 202 in 202 JAR artifacts (17 deprecated)
 
 | xref:components::aws-sns-component.adoc[AWS Simple Notification System (SNS)] (camel-aws-sns) +
 `aws-sns:topicNameOrArn` | 2.8 | *deprecated* Send messages to an AWS Simple Notification Topic.
-
-| xref:components::aws-sqs-component.adoc[AWS Simple Queue Service (SQS)] (camel-aws-sqs) +
-`aws-sqs:queueNameOrArn` | 2.6 | *deprecated* Sending and receive messages to/from AWS SQS service.
 
 | xref:components::aws-swf-component.adoc[AWS Simple Workflow (SWF)] (camel-aws-swf) +
 `aws-swf:type` | 2.13 | *deprecated* Manage workflows in the AWS Simple Workflow service.
