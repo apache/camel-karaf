@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 197 in 197 JAR artifacts (12 deprecated)
+Number of Camel components: 196 in 196 JAR artifacts (11 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -64,9 +64,6 @@ Number of Camel components: 197 in 197 JAR artifacts (12 deprecated)
 
 | xref:components::aws-kinesis-component.adoc[AWS Kinesis] (camel-aws-kinesis) +
 `aws-kinesis:streamName` | 2.17 | *deprecated* Consume and produce records from AWS Kinesis Streams.
-
-| xref:components::aws-lambda-component.adoc[AWS Lambda] (camel-aws-lambda) +
-`aws-lambda:function` | 2.20 | *deprecated* Manage and invoke AWS Lambda functions.
 
 | xref:components::aws-s3-component.adoc[AWS S3 Storage Service] (camel-aws-s3) +
 `aws-s3://bucketNameOrArn` | 2.8 | *deprecated* Store and retrieve objects from AWS S3 Storage Service.
