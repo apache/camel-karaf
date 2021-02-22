@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 199 in 199 JAR artifacts (14 deprecated)
+Number of Camel components: 198 in 198 JAR artifacts (13 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -67,9 +67,6 @@ Number of Camel components: 199 in 199 JAR artifacts (14 deprecated)
 
 | xref:components::aws-lambda-component.adoc[AWS Lambda] (camel-aws-lambda) +
 `aws-lambda:function` | 2.20 | *deprecated* Manage and invoke AWS Lambda functions.
-
-| xref:components::aws-msk-component.adoc[AWS Managed Streaming for Apache Kafka (MSK)] (camel-aws-msk) +
-`aws-msk:label` | 3.0 | *deprecated* Manage AWS MSK instances.
 
 | xref:components::aws-mq-component.adoc[AWS MQ] (camel-aws-mq) +
 `aws-mq:label` | 2.21 | *deprecated* Manage AWS MQ instances.
