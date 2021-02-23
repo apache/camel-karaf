@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 192 in 192 JAR artifacts (7 deprecated)
+Number of Camel components: 191 in 191 JAR artifacts (6 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -49,9 +49,6 @@ Number of Camel components: 192 in 192 JAR artifacts (7 deprecated)
 
 | xref:components::aws-ec2-component.adoc[AWS Elastic Compute Cloud (EC2)] (camel-aws-ec2) +
 `aws-ec2:label` | 2.16 | *deprecated* Manage AWS EC2 instances.
-
-| xref:components::aws-ecs-component.adoc[AWS Elastic Container Service (ECS)] (camel-aws-ecs) +
-`aws-ecs:label` | 3.0 | *deprecated* Manage AWS ECS cluster instances.
 
 | xref:components::aws-s3-component.adoc[AWS S3 Storage Service] (camel-aws-s3) +
 `aws-s3://bucketNameOrArn` | 2.8 | *deprecated* Store and retrieve objects from AWS S3 Storage Service.
