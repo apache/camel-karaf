@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 189 in 189 JAR artifacts (4 deprecated)
+Number of Camel components: 188 in 188 JAR artifacts (3 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -40,9 +40,6 @@ Number of Camel components: 189 in 189 JAR artifacts (4 deprecated)
 
 | xref:components::avro-component.adoc[Avro RPC] (camel-avro-rpc) +
 `avro:transport:host:port/messageName` | 2.10 | Produce or consume Apache Avro RPC services.
-
-| xref:components::aws-cw-component.adoc[AWS CloudWatch] (camel-aws-cw) +
-`aws-cw:namespace` | 2.11 | *deprecated* Send metrics to AWS CloudWatch.
 
 | xref:components::aws-s3-component.adoc[AWS S3 Storage Service] (camel-aws-s3) +
 `aws-s3://bucketNameOrArn` | 2.8 | *deprecated* Store and retrieve objects from AWS S3 Storage Service.
