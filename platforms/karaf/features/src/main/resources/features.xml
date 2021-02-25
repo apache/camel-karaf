@@ -248,9 +248,6 @@
     <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-avro/${project.version}</bundle>
   </feature>
-  <feature name='camel-aws' version='${project.version}' start-level='50'>
-     <feature version='${project.version}'>camel-aws-swf</feature>
-  </feature>
   <feature name='camel-aws-swf' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
