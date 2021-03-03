@@ -348,10 +348,10 @@ Number of Camel components: 186 in 186 JAR artifacts (1 deprecated)
 `nagios:host:port` | 2.3 | Send passive checks to Nagios using JSendNSCA.
 
 | xref:components::netty-component.adoc[Netty] (camel-netty) +
-`netty:protocol:host:port` | 2.14 | Socket level networking using TCP or UDP with the Netty 4.x.
+`netty:protocol://host:port` | 2.14 | Socket level networking using TCP or UDP with the Netty 4.x.
 
 | xref:components::netty-http-component.adoc[Netty HTTP] (camel-netty-http) +
-`netty-http:protocol:host:port/path` | 2.14 | Netty HTTP server and client using the Netty 4.x.
+`netty-http:protocol://host:port/path` | 2.14 | Netty HTTP server and client using the Netty 4.x.
 
 | xref:components::nitrite-component.adoc[Nitrite] (camel-nitrite) +
 `nitrite:database` | 3.0 | Access Nitrite databases.
