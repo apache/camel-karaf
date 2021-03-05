@@ -48,7 +48,6 @@ import java.util.jar.JarInputStream;
 import org.apache.camel.impl.engine.DefaultClassResolver;
 import org.apache.camel.spi.ClassResolver;
 import org.apache.camel.support.ObjectHelper;
-import org.apache.camel.support.ResourceHelper;
 import org.apache.camel.util.FileUtil;
 import org.apache.camel.util.IOHelper;
 import org.apache.felix.connect.PojoServiceRegistryFactoryImpl;
@@ -549,7 +548,7 @@ public final class CamelBlueprintHelper {
                     }
                 } else {
                     LOG.debug("Resolving resource: {}", s);
-                    URL url = ResourceHelper.resolveMandatoryResourceAsUrl(RESOLVER, s);
+                    URL url = RESOLVER.loadResourceAsURL(s);
                     if (url == null) {
                         throw new FileNotFoundException("Resource " + s + " not found");
                     }
