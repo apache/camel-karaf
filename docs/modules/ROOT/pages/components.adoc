@@ -216,7 +216,7 @@ Number of Camel components: 186 in 186 JAR artifacts (1 deprecated)
 `guava-eventbus:eventBusRef` | 2.10 | Send and receive messages to/from Guava EventBus.
 
 | xref:components::http-component.adoc[HTTP] (camel-http) +
-`http:httpUri` | 2.3 | Send requests to external HTTP servers using Apache HTTP Client 4.x.
+`http://httpUri` | 2.3 | Send requests to external HTTP servers using Apache HTTP Client 4.x.
 
 | xref:components::influxdb-component.adoc[InfluxDB] (camel-influxdb) +
 `influxdb:connectionBean` | 2.18 | Interact with InfluxDB, a time series database.
