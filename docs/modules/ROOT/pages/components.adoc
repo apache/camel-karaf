@@ -796,7 +796,7 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 21 in 21 JAR artifacts (3 deprecated)
+Number of miscellaneous extensions: 20 in 20 JAR artifacts (3 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -852,9 +852,6 @@ Number of miscellaneous extensions: 21 in 21 JAR artifacts (3 deprecated)
 
 | xref:components:others:swagger-java.adoc[Swagger Java] +
 (camel-swagger-java) | 2.16 | Rest-dsl support for using swagger api-doc
-
-| xref:components:others:test.adoc[Test] +
-(camel-test) | 2.9 | Camel unit testing
 
 | xref:components:others:test-spring.adoc[Test Spring] +
 (camel-test-spring) | 2.10 | Camel unit testing with Spring
