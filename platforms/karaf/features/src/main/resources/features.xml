@@ -19,7 +19,6 @@
 -->
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name='camel-${project.version}'>
   <repository>mvn:org.apache.cxf.karaf/apache-cxf/[3,4)/xml/features</repository>
-  <repository>mvn:org.apache.jclouds.karaf/jclouds-karaf/[2.1,2.1]/xml/features</repository>
   <repository>mvn:org.ops4j.pax.cdi/pax-cdi-features/[1,2)/xml/features</repository>
   <repository>mvn:org.hibernate.validator/hibernate-validator-osgi-karaf-features/[6.2,6.2]/xml/features</repository>
 
@@ -1126,14 +1125,6 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.javax-cache-api/${jcache-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jcache/${project.version}</bundle>
-  </feature>
-  <feature name='camel-jclouds' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <feature>jclouds</feature>
-    <feature>jclouds-blobstore</feature>
-    <feature>jclouds-compute</feature>
-    <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr311-api-1.1.1/${servicemix-specs-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-jclouds/${project.version}</bundle>
   </feature>
   <feature name='camel-jcr' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
