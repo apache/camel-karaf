@@ -240,9 +240,9 @@
   </feature>
   <feature name='camel-avro' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${avro-jackson-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${avro-jackson-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${avro-jackson-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${avro-java-commons-compress-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-avro/${project.version}</bundle>
