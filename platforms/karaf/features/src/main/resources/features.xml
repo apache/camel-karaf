@@ -59,6 +59,7 @@
     <bundle>mvn:org.apache.camel/camel-cloud/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cluster/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-health/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-xml-io-util/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-xml-jaxp/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-xml-jaxb/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-tooling-model/${project.version}</bundle>
