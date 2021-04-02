@@ -140,7 +140,7 @@
         <cassandra-jackson2-version>2.12.1</cassandra-jackson2-version>
         <cassandra-metrics-version>4.1.6</cassandra-metrics-version>
         <cassandra-shaded-guava>25.1-jre-graal-sub-1</cassandra-shaded-guava>
-        <chunk-templates-bundle-version>3.5.0_1</chunk-templates-bundle-version>
+        <chunk-templates-bundle-version>3.6.1_1</chunk-templates-bundle-version>
         <cometd-java-server-bundle-version>2.3.1_2</cometd-java-server-bundle-version>
         <commons-httpclient-bundle-version>3.1_7</commons-httpclient-bundle-version>
         <consul-client-bundle-version>1.3.3_1</consul-client-bundle-version>
