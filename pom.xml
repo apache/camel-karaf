@@ -284,7 +284,7 @@
         <xmlgraphics-commons-bundle-version>2.3_1</xmlgraphics-commons-bundle-version>
         <xmlresolver-bundle-version>1.2_5</xmlresolver-bundle-version>
         <xpp3-bundle-version>1.1.4c_7</xpp3-bundle-version>
-        <xstream-bundle-version>1.4.15_1</xstream-bundle-version>
+        <xstream-bundle-version>1.4.16_1</xstream-bundle-version>
         <zipkin-libthrift-version>0.13.0</zipkin-libthrift-version>
         <zjsonpatch-version>0.3.0</zjsonpatch-version>
         <zookeeper-guava-version>27.1-jre</zookeeper-guava-version>
