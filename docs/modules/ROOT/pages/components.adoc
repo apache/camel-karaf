@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
+Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -175,9 +175,6 @@ Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
 
 | xref:components::ganglia-component.adoc[Ganglia] (camel-ganglia) +
 `ganglia:host:port` | 2.15 | Send metrics to Ganglia monitoring system.
-
-| xref:components::geocoder-component.adoc[Geocoder] (camel-geocoder) +
-`geocoder:address:latlng` | 2.12 | Find geocodes (latitude and longitude) for a given address or the other way round.
 
 | xref:components::git-component.adoc[Git] (camel-git) +
 `git:localPath` | 2.16 | Perform operations on git repositories.
