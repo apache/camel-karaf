@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 185 in 185 JAR artifacts (1 deprecated)
+Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -70,9 +70,6 @@ Number of Camel components: 185 in 185 JAR artifacts (1 deprecated)
 
 | xref:components::chatscript-component.adoc[ChatScript] (camel-chatscript) +
 `chatscript:host:port/botName` | 3.0 | Chat with a ChatScript Server.
-
-| xref:components::chunk-component.adoc[Chunk] (camel-chunk) +
-`chunk:resourceUri` | 2.15 | Transform messages using Chunk templating engine.
 
 | xref:components::cm-sms-component.adoc[CM SMS Gateway] (camel-cm-sms) +
 `cm-sms:host` | 2.18 | Send SMS messages via CM SMS Gateway.
