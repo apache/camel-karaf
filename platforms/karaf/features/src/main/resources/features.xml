@@ -1233,17 +1233,6 @@
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jsonb_1.0_spec/${geronimo-jsonb-spec-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jsonb/${project.version}</bundle>
   </feature>
-  <feature name='camel-jsonpath' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle>mvn:com.jayway.jsonpath/json-path/${json-path-version}</bundle>
-    <bundle>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
-    <bundle>mvn:net.minidev/accessors-smart/${json-accessors-smart-version}</bundle>
-    <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-jsonpath/${project.version}</bundle>
-  </feature>
   <feature name='camel-jt400' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature>transaction</feature>
