@@ -125,6 +125,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     @Metadata(defaultValue = "true")
     private String autoStartup = "true";
     @XmlAttribute
+    private String dumpRoutes;
+    @XmlAttribute
     private String useMDCLogging;
     @XmlAttribute
     private String mdcLoggingKeysPattern;
@@ -432,6 +434,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setAutoStartup(String autoStartup) {
         this.autoStartup = autoStartup;
+    }
+
+    @Override
+    public String getDumpRoutes() {
+        return dumpRoutes;
+    }
+
+    public void setDumpRoutes(String dumpRoutes) {
+        this.dumpRoutes = dumpRoutes;
     }
 
     @Override
