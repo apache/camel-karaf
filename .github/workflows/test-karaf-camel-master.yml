@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-name: Test Camel Karaf Master Branch
+name: Test Camel Karaf Main Branch
 
 on:
   schedule:
@@ -23,7 +23,7 @@ on:
     - cron:  '0 0 * * *'
 jobs:
   build:
-    name: Test Camel Karaf Master Branch
+    name: Test Camel Karaf Main Branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Camel project
@@ -31,7 +31,7 @@ jobs:
         with:
           repository: apache/camel
           persist-credentials: false
-          ref: master
+          ref: main
           path: camel
       - name: Set Up Java
         uses: actions/setup-java@v1
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout Camel-karaf project
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           persist-credentials: false
           fetch-depth: 0
       - name: Build Camel-karaf Project

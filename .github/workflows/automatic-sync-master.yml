@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-name: Sync Camel Karaf Master Branch
+name: Sync Camel Karaf Main Branch
 
 on:
   schedule:
@@ -25,7 +25,7 @@ on:
   
 jobs:
   build:
-    name: Sync Camel Karaf Master Branch
+    name: Sync Camel Karaf Main Branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Camel project
@@ -33,7 +33,7 @@ jobs:
         with:
           repository: apache/camel
           persist-credentials: false
-          ref: master
+          ref: main
           path: camel
       - name: Set Up Java
         uses: actions/setup-java@v1
@@ -45,7 +45,7 @@ jobs:
       - name: Checkout Camel-Karaf project
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           persist-credentials: false
           fetch-depth: 0
       - name: Build Camel-karaf Project
@@ -56,7 +56,7 @@ jobs:
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automatic-periodic-sync
-          title: '[Github Actions] Periodic Sync Camel Karaf Master Branch'
+          title: '[Github Actions] Periodic Sync Camel Karaf Main Branch'
           body: |
-            Periodic Sync of Camel Karaf Master Branch with main Camel Master.
-            see https://github.com/apache/camel-karaf/blob/master/.github/workflows/automatic-sync-master.yml
+            Periodic Sync of Camel Karaf Main Branch with main Camel Main.
+            see https://github.com/apache/camel-karaf/blob/main/.github/workflows/automatic-sync-main.yml
