@@ -54,6 +54,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          base: main
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automatic-periodic-sync
           title: '[Github Actions] Periodic Sync Camel Karaf Main Branch'
