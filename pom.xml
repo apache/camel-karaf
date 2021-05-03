@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-dependencies</artifactId>
-        <version>3.7.4</version>
+        <version>3.7.5-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.camel.karaf</groupId>
@@ -106,7 +106,7 @@
         <compiler.fork>false</compiler.fork>
 
         <!-- Camel target version -->
-        <camel-version>3.7.4</camel-version>
+        <camel-version>3.7.5-SNAPSHOT</camel-version>
 
         <ant-bundle-version>1.7.0_6</ant-bundle-version>
         <antlr-bundle-version>3.5.2_1</antlr-bundle-version>
@@ -724,7 +724,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <camel-version>3.7.4</camel-version>
+                <camel-version>3.7.5-SNAPSHOT</camel-version>
             </properties>
         </profile>
 
