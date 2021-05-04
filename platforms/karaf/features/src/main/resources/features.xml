@@ -1088,7 +1088,6 @@
   </feature>
   <feature name='camel-jdbc' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <feature version='${spring-version-range}'>spring-jdbc</feature>
     <bundle>mvn:org.apache.camel/camel-jdbc/${project.version}</bundle>
   </feature>
   <feature name='camel-jetty' version='${project.version}' start-level='50'>
@@ -1975,6 +1974,11 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-batch-core/${spring-batch-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-batch-infrastructure/${spring-batch-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-spring-batch/${project.version}</bundle>
+  </feature>
+  <feature name='camel-spring-jdbc' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-jdbc</feature>
+    <feature version='${spring-version-range}'>spring-jdbc</feature>
+    <bundle>mvn:org.apache.camel/camel-spring-jdbc/${project.version}</bundle>
   </feature>
   <feature name='camel-spring-ldap' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
