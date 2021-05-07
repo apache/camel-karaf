@@ -208,7 +208,7 @@
         <jsch-bundle-version>0.1.55_1</jsch-bundle-version>
         <json-flattener-version>0.9.0</json-flattener-version>
         <json-validator-jackson-version>2.12.3</json-validator-jackson-version>
-        <jt400-bundle-version>10.5_1</jt400-bundle-version>
+        <jt400-bundle-version>10.6_1</jt400-bundle-version>
         <juel-bundle-version>2.1.3_1</juel-bundle-version>
         <junit-bundle-version>4.11_1</junit-bundle-version>
         <jzlib-bundle-version>1.1.3_2</jzlib-bundle-version>
