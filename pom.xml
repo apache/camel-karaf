@@ -157,7 +157,7 @@
         <elasticsearch-rest-bundle-version>7.9.0_1</elasticsearch-rest-bundle-version>
         <eddsa-version>0.3.0</eddsa-version>
         <facebook4j-core-bundle-version>2.4.13_1</facebook4j-core-bundle-version>
-        <fastjson-bundle-version>1.2.75_1</fastjson-bundle-version>
+        <fastjson-bundle-version>1.2.76_1</fastjson-bundle-version>
         <fop-bundle-version>2.6_1</fop-bundle-version>
         <generex-bundle-version>1.0.2_1</generex-bundle-version>
         <!-- These google properties align versions defined in com.google.cloud:libraries-bom used in camel -->
