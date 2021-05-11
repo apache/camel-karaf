@@ -2085,6 +2085,7 @@
   <feature name='camel-openapi-java' version='${project.version}' start-level='50'>
     <feature>http</feature>
     <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr311-api-1.1.1/${servicemix-specs-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
@@ -2094,9 +2095,14 @@
     <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
     <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-1-api-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.apicurio/apicurio-data-models/${apicurio-version}</bundle>
+    <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-annotations/${swagger-openapi3-version}</bundle>
+    <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-models/${swagger-openapi3-version}</bundle>
+    <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-core/${swagger-openapi3-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-openapi-java/${project.version}</bundle>
   </feature>
   <feature name='camel-syslog' version='${project.version}' start-level='50'>
