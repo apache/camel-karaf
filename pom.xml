@@ -137,7 +137,6 @@
         <braintree-jackson2-version>2.12.3</braintree-jackson2-version>
         <build-helper-maven-plugin-version>1.12</build-helper-maven-plugin-version>
         <c3p0-bundle-version>0.9.5.5_1</c3p0-bundle-version>
-        <cassandra-jackson2-version>2.12.3</cassandra-jackson2-version>
         <cassandra-metrics-version>4.1.6</cassandra-metrics-version>
         <cassandra-shaded-guava>25.1-jre-graal-sub-1</cassandra-shaded-guava>
         <chunk-templates-bundle-version>3.6.1_1</chunk-templates-bundle-version>
