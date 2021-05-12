@@ -171,6 +171,7 @@
         <google-cloud-common-protos-version>2.0.1</google-cloud-common-protos-version>
         <google-cloud-iam-version>1.0.3</google-cloud-iam-version>
         <google-cloud-threetenbp-version>1.5.0</google-cloud-threetenbp-version>
+        <google-findbugs-jsr305-version>3.0.2</google-findbugs-jsr305-version>
         <google-truth-version>0.30</google-truth-version>
         <groovy-version>3.0.3</groovy-version>
         <grpc-bundle-version>1.28.0_1</grpc-bundle-version>
