@@ -191,6 +191,7 @@
         <ivy-version>2.4.0</ivy-version>
         <jandex-version>2.1.2.Final</jandex-version>
         <jasypt-bundle-version>1.9.3_1</jasypt-bundle-version>
+        <java-ewah-version>1.1.6</java-ewah-version>
         <java-apns-bundle-version>1.0.0.Beta6_1</java-apns-bundle-version>
         <java-util-bundle-version>1.64.0_1</java-util-bundle-version>
         <javax-inject-bundle-version>1_2</javax-inject-bundle-version>
