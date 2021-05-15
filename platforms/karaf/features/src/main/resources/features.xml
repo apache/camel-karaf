@@ -1245,6 +1245,10 @@
     <requirement>osgi.native;filter:="(|(osgi.native.osname~=aix)(osgi.native.osname~=linux)(osgi.native.osname~=macosx)(osgi.native.osname~=win32))"</requirement>
     <bundle>mvn:org.xerial.snappy/snappy-java/${snappy-version}</bundle>
   </feature>
+  <feature name='camel-kamelet' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle>mvn:org.apache.camel/camel-kamelet/${project.version}</bundle>
+  </feature>
   <feature name='camel-kubernetes' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-1-api-version}</bundle>
