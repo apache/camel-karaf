@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
+Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -271,6 +271,9 @@ Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 
 | xref:components::kafka-component.adoc[Kafka] (camel-kafka) +
 `kafka:topic` | 2.13 | Sent and receive messages to/from an Apache Kafka broker.
+
+| xref:components::kamelet-component.adoc[Kamelet] (camel-kamelet) +
+`kamelet:templateId/routeId` | 3.8 | To call Kamelets
 
 | xref:components::kudu-component.adoc[Kudu] (camel-kudu) +
 `kudu:host:port/tableName` | 3.0 | Interact with Apache Kudu, a free and open source column-oriented data store of the Apache Hadoop ecosystem.
