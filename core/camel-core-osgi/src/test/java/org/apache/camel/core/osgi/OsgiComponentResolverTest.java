@@ -77,7 +77,7 @@ public class OsgiComponentResolverTest extends CamelOsgiTestSupport {
 
         @Override
         public void setCamelContext(CamelContext camelContext) {
-            throw new UnsupportedOperationException("Should not be called");
+            // noop
         }
 
         @Override

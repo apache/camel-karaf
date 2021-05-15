@@ -68,7 +68,7 @@ public class BlueprintComponentResolverTest extends TestSupport {
 
         @Override
         public void setCamelContext(CamelContext camelContext) {
-            throw new UnsupportedOperationException("Should not be called");
+            // noop
         }
 
         @Override
