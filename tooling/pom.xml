@@ -34,6 +34,7 @@
     <modules>
         <module>camel-catalog-generator-karaf-maven-plugin</module>
         <module>camel-karaf-docs-maven-plugin</module>
+        <module>camel-karaf-maven-plugin</module>
     </modules>
 
     <build>
