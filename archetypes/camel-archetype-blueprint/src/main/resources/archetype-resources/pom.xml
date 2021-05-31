@@ -134,10 +134,10 @@
         </configuration>
       </plugin>
 
-      <!-- to run the example using mvn camel:run -->
+      <!-- to run the example using mvn camel-karaf:run -->
       <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
+        <groupId>org.apache.camel.karaf</groupId>
+        <artifactId>camel-karaf-maven-plugin</artifactId>
         <version>${camel-version}</version>
       </plugin>
     </plugins>
