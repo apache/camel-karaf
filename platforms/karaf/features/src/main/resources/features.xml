@@ -1264,6 +1264,13 @@
   </feature>
   <feature name='camel-kamelet' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}'>camel-jackson</feature>
+    <feature version='${project.version}'>camel-http</feature>
+    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl/${project.version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl-common/${project.version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>
+    <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-kamelet/${project.version}</bundle>
   </feature>
   <feature name='camel-kamelet-reify' version='${project.version}' start-level='50'>
