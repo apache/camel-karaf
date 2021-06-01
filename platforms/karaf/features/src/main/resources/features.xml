@@ -64,6 +64,7 @@
     <bundle>mvn:org.apache.camel/camel-xml-jaxb/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-tooling-model/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-main/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-endpointdsl/${project.version}</bundle>
     <!-- core components -->
     <bundle>mvn:org.apache.camel/camel-bean/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-browse/${project.version}</bundle>
@@ -1263,14 +1264,9 @@
     <bundle>mvn:org.xerial.snappy/snappy-java/${snappy-version}</bundle>
   </feature>
   <feature name='camel-kamelet' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}'>camel-yaml-dsl</feature>
     <feature version='${project.version}'>camel-jackson</feature>
     <feature version='${project.version}'>camel-http</feature>
-    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl/${project.version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl-common/${project.version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>
-    <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-kamelet/${project.version}</bundle>
   </feature>
   <feature name='camel-kamelet-reify' version='${project.version}' start-level='50'>
@@ -2384,6 +2380,14 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.kxml2/${kxml2-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/${xstream-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-xstream/${project.version}</bundle>
+  </feature>
+  <feature name='camel-yaml-dsl' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>mvn:org.snakeyaml/snakeyaml-engine/${snakeyaml-engine-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-yaml-dsl/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-yaml-dsl-common/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>
   </feature>
   <feature name='camel-yammer' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
