@@ -180,15 +180,6 @@
     <bundle dependency='true'>wrap:mvn:org.eclipse.rdf4j/rdf4j-rio-api/${rdf4j-rio-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-any23/${project.version}</bundle>
   </feature>
-  <feature name='camel-apns' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.java-apns/${java-apns-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-apns/${project.version}</bundle>
-  </feature>
   <feature name='camel-arangodb' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:com.arangodb/arangodb-java-driver/${arangodb-java-version}</bundle>
