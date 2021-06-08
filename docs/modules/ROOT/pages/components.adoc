@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 185 in 185 JAR artifacts (1 deprecated)
+Number of Camel components: 184 in 184 JAR artifacts (0 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -16,9 +16,6 @@ Number of Camel components: 185 in 185 JAR artifacts (1 deprecated)
 
 | xref:components::amqp-component.adoc[AMQP] (camel-amqp) +
 `amqp:destinationType:destinationName` | 1.2 | Messaging with AMQP protocol using Apache QPid Client.
-
-| xref:components::apns-component.adoc[APNS] (camel-apns) +
-`apns:name` | 2.8 | *deprecated* Send notifications to Apple iOS devices.
 
 | xref:components::arangodb-component.adoc[ArangoDb] (camel-arangodb) +
 `arangodb:database` | 3.5 | Perform operations on ArangoDb when used as a Document Database, or as a Graph Database
