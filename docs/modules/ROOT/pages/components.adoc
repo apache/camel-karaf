@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 184 in 184 JAR artifacts (0 deprecated)
+Number of Camel components: 183 in 183 JAR artifacts (0 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -196,9 +196,6 @@ Number of Camel components: 184 in 184 JAR artifacts (0 deprecated)
 
 | xref:components::graphql-component.adoc[GraphQL] (camel-graphql) +
 `graphql:httpUri` | 3.0 | Send GraphQL queries and mutations to external systems.
-
-| xref:components::grpc-component.adoc[gRPC] (camel-grpc) +
-`grpc:host:port/service` | 2.19 | Expose gRPC endpoints and access external gRPC endpoints.
 
 | xref:components::guava-eventbus-component.adoc[Guava EventBus] (camel-guava-eventbus) +
 `guava-eventbus:eventBusRef` | 2.10 | Send and receive messages to/from Guava EventBus.
