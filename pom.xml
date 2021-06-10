@@ -127,7 +127,7 @@
         <azure-core-amqp-bundle-version>2.0.3_1</azure-core-amqp-bundle-version>
         <azure-messaging-eventhubs-bundle-version>5.7.1_1</azure-messaging-eventhubs-bundle-version>
         <azure-messaging-eventhubs-checkpointstore-blob-bundle-version>1.7.0_1</azure-messaging-eventhubs-checkpointstore-blob-bundle-version>
-        <azure-storage-common-bundle-version>12.10.0_1</azure-storage-common-bundle-version>
+        <azure-storage-common-bundle-version>12.11.0_1</azure-storage-common-bundle-version>
         <azure-storage-blob-bundle-version>12.10.0_1</azure-storage-blob-bundle-version>
         <azure-storage-queue-bundle-version>12.8.0_1</azure-storage-queue-bundle-version>
         <azure-guava-version>20.0</azure-guava-version>
