@@ -154,6 +154,12 @@
         <eddsa-version>0.3.0</eddsa-version>
         <facebook4j-core-bundle-version>2.4.13_1</facebook4j-core-bundle-version>
         <fastjson-bundle-version>1.2.76_1</fastjson-bundle-version>
+        <felix-configadmin-version>1.9.20</felix-configadmin-version>
+        <felix-connect-version>0.2.0</felix-connect-version>
+        <felix-fileinstall-version>3.6.8</felix-fileinstall-version>
+        <felix-framework-version>5.6.12</felix-framework-version>
+        <felix-scr-annotations-version>1.12.0</felix-scr-annotations-version>
+        <felix-scr-version>2.1.26</felix-scr-version>
         <fop-bundle-version>2.6_1</fop-bundle-version>
         <generex-bundle-version>1.0.2_1</generex-bundle-version>
         <!-- These google properties align versions defined in com.google.cloud:libraries-bom used in camel -->
@@ -424,6 +430,12 @@
                 <groupId>org.ops4j.pax.exam</groupId>
                 <artifactId>pax-exam-invoker-junit</artifactId>
                 <version>${pax-exam-version}</version>
+            </dependency>
+            <!-- OSGi ConfigAdmin service -->
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.configadmin</artifactId>
+                <version>${felix-configadmin-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
