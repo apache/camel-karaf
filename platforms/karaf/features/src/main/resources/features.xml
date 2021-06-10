@@ -889,42 +889,8 @@
     <bundle dependency='true'>wrap:mvn:io.krakens/java-grok/${java-grok-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-grok/${project.version}</bundle>
   </feature>
-  <feature name='camel-grpc' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <!-- gRPC netty dependencies -->
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.grpc/${grpc-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-tcnative-boringssl-static/${grpc-netty-tcnative-boringssl-static-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.guava/guava/${grpc-guava-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:com.google.errorprone/error_prone_annotations/${grpc-errorprone-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>
-    <!-- Third party dependencies -->
-    <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.perfmark/perfmark-api/${perfmark-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:com.auth0/java-jwt/${grpc-java-jwt-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.protobuf.nano/protobuf-javanano/${protobuf-javanano-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${protobuf-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okhttp/${squareup-okhttp-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okio/${squareup-okio-bundle-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-grpc-metrics/${opencensus-api-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${opencensus-api-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/${junit-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-grpc/${project.version}</bundle>
-  </feature>
+
+
   <feature name='camel-gson' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
@@ -1648,11 +1614,11 @@
   <feature name='camel-opentelemetry' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature version='${project.version}'>camel-tracing</feature>
-    <feature version='${project.version}'>camel-grpc</feature>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk/${opentelemetry-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-alpha-version}</bundle>
+    <bundle dependency='true'>com.guicedee.services/jakarta.annotation-api/1.1.7</bundle>
     <bundle>mvn:org.apache.camel/camel-opentelemetry/${project.version}</bundle>
   </feature>
   <feature name='camel-paho' version='${project.version}' start-level='50'>
