@@ -125,7 +125,7 @@
         <avro-jackson-version>2.12.3</avro-jackson-version>
         <azure-core-bundle-version>1.16.0_1</azure-core-bundle-version>
         <azure-core-amqp-bundle-version>2.0.3_1</azure-core-amqp-bundle-version>
-        <azure-messaging-eventhubs-bundle-version>5.5.0_1</azure-messaging-eventhubs-bundle-version>
+        <azure-messaging-eventhubs-bundle-version>5.7.1_1</azure-messaging-eventhubs-bundle-version>
         <azure-messaging-eventhubs-checkpointstore-blob-bundle-version>1.5.0_1</azure-messaging-eventhubs-checkpointstore-blob-bundle-version>
         <azure-storage-common-bundle-version>12.10.0_1</azure-storage-common-bundle-version>
         <azure-storage-blob-bundle-version>12.10.0_1</azure-storage-blob-bundle-version>
