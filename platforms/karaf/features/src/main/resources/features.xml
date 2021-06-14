@@ -66,6 +66,7 @@
     <bundle>mvn:org.apache.camel/camel-main/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-endpointdsl/${project.version}</bundle>
     <!-- core components -->
+    <bundle>mvn:org.apache.camel.karaf/camel-bean-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-bean/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-browse/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-controlbus/${project.version}</bundle>

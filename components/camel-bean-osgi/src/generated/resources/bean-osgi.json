@@ -1,0 +1,15 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "bean-osgi",
+    "title": "Bean",
+    "description": "Camel Bean component",
+    "deprecated": false,
+    "firstVersion": "1.0.0",
+    "label": "core,java",
+    "supportLevel": "Stable",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-bean-osgi",
+    "version": "3.11.0-SNAPSHOT"
+  }
+}
