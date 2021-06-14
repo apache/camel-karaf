@@ -1,0 +1,15 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "zookeeper-master-osgi",
+    "title": "ZooKeeper Master",
+    "description": "Camel Zookeeper Master Support",
+    "deprecated": false,
+    "firstVersion": "2.19.0",
+    "label": "clustering,management,bigdata",
+    "supportLevel": "Stable",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-zookeeper-master-osgi",
+    "version": "3.11.0-SNAPSHOT"
+  }
+}

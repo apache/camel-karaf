@@ -2426,6 +2426,7 @@
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-zookeeper-master-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-zookeeper-master/${project.version}</bundle>
   </feature>
 
