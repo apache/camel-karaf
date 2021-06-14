@@ -39,6 +39,7 @@
         <module>camel-cxf-blueprint</module>
         <module>camel-cxf-transport-blueprint</module>
         <module>camel-eventadmin</module>
+        <module>camel-jcache-osgi</module>
         <module>camel-kura</module>
         <module>camel-osgi-activator</module>
         <module>camel-paxlogging</module>

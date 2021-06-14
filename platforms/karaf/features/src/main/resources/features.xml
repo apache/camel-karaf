@@ -1049,6 +1049,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.javax-cache-api/${jcache-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jcache/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel.karaf/camel-jcache-osgi/${project.version}</bundle>
   </feature>
   <feature name='camel-jcr' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>

@@ -1,0 +1,15 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "jcache-osgi",
+    "title": "JCache",
+    "description": "Camel JCache support",
+    "deprecated": false,
+    "firstVersion": "2.17.0",
+    "label": "cache,datagrid,clustering",
+    "supportLevel": "Stable",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-jcache-osgi",
+    "version": "3.11.0-SNAPSHOT"
+  }
+}
