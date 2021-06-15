@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 183 in 183 JAR artifacts (0 deprecated)
+Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -270,7 +270,7 @@ Number of Camel components: 183 in 183 JAR artifacts (0 deprecated)
 `kamelet:templateId/routeId` | 3.8 | To call Kamelets
 
 | xref:components::kamelet-reify-component.adoc[Kamelet Reify] (camel-kamelet-reify) +
-`kamelet-reify:delegateUri` | 3.6 | To call Kamelets (indirectly)
+`kamelet-reify:delegateUri` | 3.6 | *deprecated* To call Kamelets (indirectly)
 
 | xref:components::kudu-component.adoc[Kudu] (camel-kudu) +
 `kudu:host:port/tableName` | 3.0 | Interact with Apache Kudu, a free and open source column-oriented data store of the Apache Hadoop ecosystem.
