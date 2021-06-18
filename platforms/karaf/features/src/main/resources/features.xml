@@ -1428,9 +1428,9 @@
     <bundle dependency='true'>mvn:org.jooq/jool/${jool-version}</bundle>
     <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>
     <bundle dependency='true'>mvn:com.google.code.findbugs/annotations/${google-findbugs-annotations2-version}</bundle>
-    <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk15on/${bouncycastle-version}</bundle>
-    <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk15on/${bouncycastle-version}</bundle>     
-    <bundle dependency='true'>mvn:org.bouncycastle/bcmail-jdk15on/${bouncycastle-version}</bundle>    
+    <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk15on/${bouncycastle-milo-version}</bundle>
+    <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk15on/${bouncycastle-milo-version}</bundle>     
+    <bundle dependency='true'>mvn:org.bouncycastle/bcmail-jdk15on/${bouncycastle-milo-version}</bundle>    
     <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
