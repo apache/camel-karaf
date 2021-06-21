@@ -36,6 +36,8 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.PaxExam;
+import org.ops4j.pax.exam.karaf.container.internal.JavaVersionUtil;
+import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.tinybundles.core.TinyBundles;
@@ -48,6 +50,7 @@ import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.options;
 import static org.ops4j.pax.exam.CoreOptions.streamBundle;
+import static org.ops4j.pax.exam.CoreOptions.when;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
@@ -60,6 +63,31 @@ public class CamelOsgiActivatorIT {
         return options(
                 PaxExamOptions.KARAF.option(),
                 PaxExamOptions.CAMEL_CORE_OSGI.option(),
+                when(JavaVersionUtil.getMajorVersion() >= 16)
+                        .useOptions(
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/java.net=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.file=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.ftp=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.http=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.https=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.jar=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.jmod=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.mailto=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/sun.net.www.protocol.jrt=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/jdk.internal.loader=ALL-UNNAMED"),
+                                new VMOption("--add-opens"),
+                                new VMOption("java.base/java.security=ALL-UNNAMED")
+                        ),
                 streamBundle(
                         TinyBundles.bundle()
                             .read(
