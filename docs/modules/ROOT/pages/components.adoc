@@ -138,7 +138,7 @@ Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 `ehcache:cacheName` | 2.18 | Perform caching operations using Ehcache.
 
 | xref:components::elasticsearch-rest-component.adoc[Elasticsearch Rest] (camel-elasticsearch-rest) +
-`elasticsearch-rest:clusterName` | 2.21 | Send requests to with an ElasticSearch via REST API.
+`elasticsearch-rest:clusterName` | 2.21 | Send requests to ElasticSearch via REST API
 
 | xref:components::elsql-component.adoc[ElSQL] (camel-elsql) +
 `elsql:elsqlName:resourceUri` | 2.16 | Use ElSql to define SQL queries. Extends the SQL Component.
@@ -336,7 +336,7 @@ Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 `nagios:host:port` | 2.3 | Send passive checks to Nagios using JSendNSCA.
 
 | xref:components::netty-component.adoc[Netty] (camel-netty) +
-`netty:protocol://host:port` | 2.14 | Socket level networking using TCP or UDP with the Netty 4.x.
+`netty:protocol://host:port` | 2.14 | Socket level networking using TCP or UDP with Netty 4.x.
 
 | xref:components::netty-http-component.adoc[Netty HTTP] (camel-netty-http) +
 `netty-http:protocol://host:port/path` | 2.14 | Netty HTTP server and client using the Netty 4.x.
@@ -740,16 +740,16 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 (camel-datasonnet) | 3.7 | To use DataSonnet scripts in Camel expressions or predicates.
 
 | xref:components:languages:exchangeProperty-language.adoc[ExchangeProperty] +
-(camel-core-languages) | 2.0 | Get the value of named Camel Exchange property.
+(camel-core-languages) | 2.0 | Get values of named Camel Exchange properties.
 
 | xref:components:languages:file-language.adoc[File] +
-(camel-core-languages) | 1.1 | For expressions and predicates using the file/simple language.
+(camel-core-languages) | 1.1 | File related capabilities for the Simle language
 
 | xref:components:languages:groovy-language.adoc[Groovy] +
 (camel-groovy) | 1.3 | Evaluate a Groovy script.
 
 | xref:components:languages:header-language.adoc[Header] +
-(camel-core-languages) | 1.5 | Get the value of the named Camel Message header.
+(camel-core-languages) | 1.5 | Get values of Camel Message headers.
 
 | xref:components:languages:hl7terser-language.adoc[HL7 Terser] +
 (camel-hl7) | 2.11 | Get the value of an HL7 message field specified by terse location specification syntax.
@@ -776,7 +776,7 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 (camel-spring) | 2.7 | Evaluate a Spring Expression Language (SpEL) expression against the Camel Exchange.
 
 | xref:components:languages:tokenize-language.adoc[Tokenize] +
-(camel-core-languages) | 2.0 | Tokenize text payloads using the specified delimiter patterns.
+(camel-core-languages) | 2.0 | Tokenize text payloads using delimiter patterns.
 
 | xref:components:languages:xtokenize-language.adoc[XML Tokenize] +
 (camel-xml-jaxp) | 2.14 | Tokenize XML payloads using the specified path expression.
