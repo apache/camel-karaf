@@ -730,9 +730,13 @@
   <feature name='camel-chunk' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
-    <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm-version}</bundle>
     <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
-    <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-accessors-smart-version}</bundle>
+    <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-analysis/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-util/${asm.bundle.version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.chunk-templates/${chunk-templates-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-chunk/${project.version}</bundle>
   </feature>
@@ -1571,13 +1575,19 @@
   </feature>
   <feature name='camel-jsonpath' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle>mvn:com.jayway.jsonpath/json-path/${json-path-version}</bundle>
-    <bundle>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
-    <bundle>mvn:net.minidev/accessors-smart/${json-accessors-smart-version}</bundle>
-    <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm-version}</bundle>
+    <!-- json-path 2.5 and 2.6 does not work with OSGi -->
+    <bundle>mvn:com.jayway.jsonpath/json-path/2.4.0</bundle>
+    <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
+    <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-analysis/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm.bundle.version}</bundle>
+    <bundle dependency='true'>mvn:org.ow2.asm/asm-util/${asm.bundle.version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jsonpath/${project.version}</bundle>
   </feature>
   <feature name='camel-jt400' version='${project.version}' start-level='50'>
