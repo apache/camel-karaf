@@ -112,6 +112,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-core-xml/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-spring/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-spring-xml/${project.version}</bundle>
   </feature>
 
   <!-- the following features are sorted A..Z -->
