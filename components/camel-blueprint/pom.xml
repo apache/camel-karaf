@@ -389,7 +389,7 @@
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
-                                            <excludes>**/*nDefinitionConfigurer.java</excludes>
+                                            <excludes>**/*nConfigurer.java</excludes>
                                             <outputDirectory>target/sources/camel-core-model</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
