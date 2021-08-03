@@ -210,7 +210,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
                 return parseRouteContextNode(element, context);
             }
             if (element.getLocalName().equals(ROUTE_TEMPLATE_CONTEXT)) {
-                return parseRouteContextNode(element, context);
+                return parseRouteTemplateContextNode(element, context);
             }
             if (element.getLocalName().equals(REST_CONTEXT)) {
                 return parseRestContextNode(element, context);
