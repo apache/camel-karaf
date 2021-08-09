@@ -124,6 +124,8 @@
                         <descriptor>mvn:org.apache.karaf.features/framework/${karaf4-version}/xml/features</descriptor>
                         <descriptor>mvn:org.apache.karaf.features/enterprise/${karaf4-version}/xml/features</descriptor>
                         <descriptor>mvn:org.apache.karaf.features/spring/${karaf4-version}/xml/features</descriptor>
+			<descriptor>mvn:org.apache.cxf.karaf/apache-cxf/${cxf-version}/xml/features</descriptor>
+			<descriptor>mvn:org.hibernate.validator/hibernate-validator-osgi-karaf-features/${hibernate-validator-version}/xml/features</descriptor>
                     </descriptors>
                     <distribution>org.apache.karaf.features:framework</distribution>
                     <javase>9</javase>
