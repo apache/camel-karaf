@@ -18,9 +18,6 @@
 
 -->
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name='camel-${project.version}'>
-  <repository>mvn:org.apache.cxf.karaf/apache-cxf/[3,4)/xml/features</repository>
-  <repository>mvn:org.ops4j.pax.cdi/pax-cdi-features/[1,2)/xml/features</repository>
-  <repository>mvn:org.hibernate.validator/hibernate-validator-osgi-karaf-features/[6.2,6.2]/xml/features</repository>
 
   <feature name='xml-specs-api' version='${servicemix-specs-version}' start-level='10'>
     <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.activation-api-1.1/${servicemix-specs-version}</bundle>
