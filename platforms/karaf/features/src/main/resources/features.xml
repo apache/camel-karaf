@@ -179,6 +179,7 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.any23/${apache-any23-bundle-version}</bundle>
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>wrap:mvn:org.eclipse.rdf4j/rdf4j-model/${rdf4j-model-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:org.eclipse.rdf4j/rdf4j-model-testsuite/${rdf4j-model-version}</bundle>
     <bundle dependency='true'>wrap:mvn:org.eclipse.rdf4j/rdf4j-rio-api/${rdf4j-rio-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-any23/${project.version}</bundle>
   </feature>
@@ -1280,9 +1281,16 @@
     <bundle>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle>mvn:io.fabric8/openshift-model/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/openshift-model-console/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-clusterautoscaling/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-machine/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-machineconfig/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/openshift-model-monitoring/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-miscellaneous/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/openshift-model-operator/${kubernetes-model-version}</bundle>
     <bundle>mvn:io.fabric8/openshift-model-operatorhub/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-storageversionmigrator/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-tuned/${kubernetes-model-version}</bundle>
+    <bundle>mvn:io.fabric8/openshift-model-whereabouts/${kubernetes-model-version}</bundle>
     <bundle dependency='true'>mvn:io.fabric8/kubernetes-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle dependency='true'>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>
     <bundle>mvn:org.apache.camel/camel-kubernetes/${project.version}</bundle>
