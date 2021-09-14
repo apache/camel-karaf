@@ -727,65 +727,65 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 |===
 | Language | Since | Description
 
-| xref:components:languages:bean-language.adoc[Bean method] +
-(camel-bean) | 1.3 | Call a method of the specified Java bean passing the Exchange, Body or specific headers to it.
+| xref:components:languages:bean-language.adoc[Bean Method] +
+(camel-bean) | 1.3 | Calls a Java bean method.
 
 | xref:components:languages:constant-language.adoc[Constant] +
 (camel-core-languages) | 1.5 | A fixed value set only once during the route startup.
 
 | xref:components:languages:csimple-language.adoc[CSimple] +
-(camel-core-languages) | 3.7 | Evaluate a compile simple expression language.
+(camel-core-languages) | 3.7 | Evaluate a compiled simple expression.
 
 | xref:components:languages:datasonnet-language.adoc[DataSonnet] +
-(camel-datasonnet) | 3.7 | To use DataSonnet scripts in Camel expressions or predicates.
+(camel-datasonnet) | 3.7 | To use DataSonnet scripts for message transformations.
 
 | xref:components:languages:exchangeProperty-language.adoc[ExchangeProperty] +
-(camel-core-languages) | 2.0 | Get values of named Camel Exchange properties.
+(camel-core-languages) | 2.0 | Gets a property from the Exchange.
 
 | xref:components:languages:file-language.adoc[File] +
-(camel-core-languages) | 1.1 | File related capabilities for the Simle language
+(camel-core-languages) | 1.1 | File related capabilities for the Simple language
 
 | xref:components:languages:groovy-language.adoc[Groovy] +
-(camel-groovy) | 1.3 | Evaluate a Groovy script.
+(camel-groovy) | 1.3 | Evaluates a Groovy script.
 
 | xref:components:languages:header-language.adoc[Header] +
-(camel-core-languages) | 1.5 | Get values of Camel Message headers.
+(camel-core-languages) | 1.5 | Gets a header from the Exchange.
 
 | xref:components:languages:hl7terser-language.adoc[HL7 Terser] +
-(camel-hl7) | 2.11 | Get the value of an HL7 message field specified by terse location specification syntax.
+(camel-hl7) | 2.11 | Get the value of a HL7 message field specified by terse location specification syntax.
 
 | xref:components:languages:joor-language.adoc[jOOR] +
-(camel-joor) | 3.7 | Evaluate a jOOR (Java compiled once at runtime) expression language.
+(camel-joor) | 3.7 | Evaluates a jOOR (Java compiled once at runtime) expression.
 
-| xref:components:languages:jsonpath-language.adoc[JsonPath] +
-(camel-jsonpath) | 2.13 | Evaluate a JsonPath expression against a JSON message body.
+| xref:components:languages:jsonpath-language.adoc[JSONPath] +
+(camel-jsonpath) | 2.13 | Evaluates a JSONPath expression against a JSON message body.
 
 | xref:components:languages:mvel-language.adoc[MVEL] +
-(camel-mvel) | 2.0 | Evaluate an MVEL template against the Camel Exchange.
+(camel-mvel) | 2.0 | Evaluates a MVEL template.
 
 | xref:components:languages:ognl-language.adoc[OGNL] +
-(camel-ognl) | 1.1 | Evaluate an Apache Commons Object Graph Navigation Library (OGNL) expression against the Camel Exchange.
+(camel-ognl) | 1.1 | Evaluates an OGNL expression (Apache Commons OGNL).
 
 | xref:components:languages:ref-language.adoc[Ref] +
-(camel-core-languages) | 2.8 | Look up an expression in the Camel Registry and evaluate it.
+(camel-core-languages) | 2.8 | Uses an existing expression from the registry.
 
 | xref:components:languages:simple-language.adoc[Simple] +
-(camel-core-languages) | 1.1 | Evaluate Camel's built-in Simple language expression against the Camel Exchange.
+(camel-core-languages) | 1.1 | Evaluates a Camel simple expression.
 
 | xref:components:languages:spel-language.adoc[SpEL] +
-(camel-spring) | 2.7 | Evaluate a Spring Expression Language (SpEL) expression against the Camel Exchange.
+(camel-spring) | 2.7 | Evaluates a Spring expression (SpEL).
 
 | xref:components:languages:tokenize-language.adoc[Tokenize] +
 (camel-core-languages) | 2.0 | Tokenize text payloads using delimiter patterns.
 
 | xref:components:languages:xtokenize-language.adoc[XML Tokenize] +
-(camel-xml-jaxp) | 2.14 | Tokenize XML payloads using the specified path expression.
+(camel-xml-jaxp) | 2.14 | Tokenize XML payloads.
 
 | xref:components:languages:xpath-language.adoc[XPath] +
-(camel-xpath) | 1.1 | Evaluate an XPath expression against an XML payload.
+(camel-xpath) | 1.1 | Evaluates an XPath expression against an XML payload.
 
 | xref:components:languages:xquery-language.adoc[XQuery] +
-(camel-saxon) | 1.0 | Evaluate an XQuery expressions against an XML payload.
+(camel-saxon) | 1.0 | Evaluates an XQuery expressions against an XML payload.
 |===
 // languages: END
 
