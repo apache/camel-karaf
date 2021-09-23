@@ -532,15 +532,25 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
                     + " has wrong format.", e);
         }
     }
+
+    /**
+     * Gets filter expression for the Camel context you want to test.
+     * Modify this if you have multiple contexts in the OSGi registry and want to test a specific one.
+     *
+     * @return filter expression for Camel context.
+     */
+    protected String getCamelContextFilter() {
+        return null;
+    }
     
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext answer;
         Long timeout = getCamelContextCreationTimeout();
         if (timeout == null) {
-            answer = CamelBlueprintHelper.getOsgiService(bundleContext, CamelContext.class);
+            answer = CamelBlueprintHelper.getOsgiService(bundleContext, CamelContext.class, getCamelContextFilter());
         } else if (timeout >= 0) {
-            answer = CamelBlueprintHelper.getOsgiService(bundleContext, CamelContext.class, timeout);
+            answer = CamelBlueprintHelper.getOsgiService(bundleContext, CamelContext.class, getCamelContextFilter(), timeout);
         } else {
             throw new IllegalArgumentException("getCamelContextCreationTimeout cannot return a negative value.");
         }
