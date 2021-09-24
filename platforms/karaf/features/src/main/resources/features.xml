@@ -2396,6 +2396,7 @@
   </feature>
   <feature name='camel-zip-deflater' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-zip-deflater/${project.version}</bundle>
   </feature>
   <feature name='camel-zipfile' version='${project.version}' start-level='50'>
