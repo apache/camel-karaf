@@ -320,6 +320,7 @@
   </feature>
   <feature name='camel-aws2-sns' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-aws2-sns/${project.version}</bundle>
   </feature>
