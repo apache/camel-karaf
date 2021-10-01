@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
+Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -37,6 +37,66 @@ Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
 
 | xref:components::avro-component.adoc[Avro RPC] (camel-avro-rpc) +
 `avro:transport:host:port/messageName` | 2.10 | Produce or consume Apache Avro RPC services.
+
+| xref:components::aws2-athena-component.adoc[AWS Athena] (camel-aws2-athena) +
+`aws2-athena:label` | 3.4 | Access AWS Athena service using AWS SDK version 2.x.
+
+| xref:components::aws2-cw-component.adoc[AWS CloudWatch] (camel-aws2-cw) +
+`aws2-cw:namespace` | 3.1 | Sending metrics to AWS CloudWatch using AWS SDK version 2.x.
+
+| xref:components::aws2-ddb-component.adoc[AWS DynamoDB] (camel-aws2-ddb) +
+`aws2-ddb:tableName` | 3.1 | Store and retrieve data from AWS DynamoDB service using AWS SDK version 2.x.
+
+| xref:components::aws2-ec2-component.adoc[AWS Elastic Compute Cloud (EC2)] (camel-aws2-ec2) +
+`aws2-ec2:label` | 3.1 | Manage AWS EC2 instances using AWS SDK version 2.x.
+
+| xref:components::aws2-ecs-component.adoc[AWS Elastic Container Service (ECS)] (camel-aws2-ecs) +
+`aws2-ecs:label` | 3.1 | Manage AWS ECS cluster instances using AWS SDK version 2.x.
+
+| xref:components::aws2-eks-component.adoc[AWS Elastic Kubernetes Service (EKS)] (camel-aws2-eks) +
+`aws2-eks:label` | 3.1 | Manage AWS EKS cluster instances using AWS SDK version 2.x.
+
+| xref:components::aws2-eventbridge-component.adoc[AWS Eventbridge] (camel-aws2-eventbridge) +
+`aws2-eventbridge://eventbusNameOrArn` | 3.6 | Manage AWS Eventbridge cluster instances using AWS SDK version 2.x.
+
+| xref:components::aws2-iam-component.adoc[AWS Identity and Access Management (IAM)] (camel-aws2-iam) +
+`aws2-iam:label` | 3.1 | Manage AWS IAM instances using AWS SDK version 2.x.
+
+| xref:components::aws2-kms-component.adoc[AWS Key Management Service (KMS)] (camel-aws2-kms) +
+`aws2-kms:label` | 3.1 | Manage keys stored in AWS KMS instances using AWS SDK version 2.x.
+
+| xref:components::aws2-kinesis-component.adoc[AWS Kinesis] (camel-aws2-kinesis) +
+`aws2-kinesis:streamName` | 3.2 | Consume and produce records from and to AWS Kinesis Streams using AWS SDK version 2.x.
+
+| xref:components::aws2-lambda-component.adoc[AWS Lambda] (camel-aws2-lambda) +
+`aws2-lambda:function` | 3.2 | Manage and invoke AWS Lambda functions using AWS SDK version 2.x.
+
+| xref:components::aws2-msk-component.adoc[AWS Managed Streaming for Apache Kafka (MSK)] (camel-aws2-msk) +
+`aws2-msk:label` | 3.1 | Manage AWS MSK instances using AWS SDK version 2.x.
+
+| xref:components::aws2-mq-component.adoc[AWS MQ] (camel-aws2-mq) +
+`aws2-mq:label` | 3.1 | Manage AWS MQ instances using AWS SDK version 2.x.
+
+| xref:components::aws2-s3-component.adoc[AWS S3 Storage Service] (camel-aws2-s3) +
+`aws2-s3://bucketNameOrArn` | 3.2 | Store and retrieve objects from AWS S3 Storage Service using AWS SDK version 2.x.
+
+| xref:components::aws-secrets-manager-component.adoc[AWS Secrets Manager] (camel-aws-secrets-manager) +
+`aws-secrets-manager://label` | 3.9 | Manage AWS Secrets Manager services using AWS SDK version 2.x.
+
+| xref:components::aws2-sts-component.adoc[AWS Security Token Service (STS)] (camel-aws2-sts) +
+`aws2-sts:label` | 3.5 | Manage AWS STS cluster instances using AWS SDK version 2.x.
+
+| xref:components::aws2-ses-component.adoc[AWS Simple Email Service (SES)] (camel-aws2-ses) +
+`aws2-ses:from` | 3.1 | Send e-mails through AWS SES service using AWS SDK version 2.x.
+
+| xref:components::aws2-sns-component.adoc[AWS Simple Notification System (SNS)] (camel-aws2-sns) +
+`aws2-sns:topicNameOrArn` | 3.1 | Send messages to an AWS Simple Notification Topic using AWS SDK version 2.x.
+
+| xref:components::aws2-sqs-component.adoc[AWS Simple Queue Service (SQS)] (camel-aws2-sqs) +
+`aws2-sqs:queueNameOrArn` | 3.1 | Send and receive messages to/from AWS SQS service using AWS SDK version 2.x.
+
+| xref:components::aws2-translate-component.adoc[AWS Translate] (camel-aws2-translate) +
+`aws2-translate:label` | 3.1 | Translate texts using AWS Translate and AWS SDK version 2.x.
 
 | xref:components::azure-eventhubs-component.adoc[Azure Event Hubs] (camel-azure-eventhubs) +
 `azure-eventhubs:namespace/eventHubName` | 3.5 | The azure-eventhubs component that integrates Azure Event Hubs using AMQP protocol. Azure EventHubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream them to multiple consumers.
