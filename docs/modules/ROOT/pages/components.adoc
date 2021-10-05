@@ -353,10 +353,10 @@ Number of Camel components: 183 in 183 JAR artifacts (1 deprecated)
 | xref:3.11.x@components::olingo4-component.adoc[Olingo4] (camel-olingo4) +
 `olingo4:apiName/methodName` | 2.19 | Communicate with OData 4.0 services using Apache Olingo OData API.
 
-| xref:3.11.x@camel-karaf::eventadmin-component.adoc[OSGi EventAdmin] (camel-eventadmin) +
+| xref:eventadmin-component.adoc[OSGi EventAdmin] (camel-eventadmin) +
 `eventadmin:topic` | 2.6 | The eventadmin component can be used in an OSGi environment to receive OSGi EventAdmin events and process them.
 
-| xref:3.11.x@camel-karaf::paxlogging-component.adoc[OSGi PAX Logging] (camel-paxlogging) +
+| xref:paxlogging-component.adoc[OSGi PAX Logging] (camel-paxlogging) +
 `paxlogging:appender` | 2.6 | The paxlogging component can be used in an OSGi environment to receive PaxLogging events and process them.
 
 | xref:3.11.x@components::paho-component.adoc[Paho] (camel-paho) +
@@ -802,7 +802,7 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (3 deprecated)
 | xref:3.11.x@components:others:aws-xray.adoc[AWS XRay] +
 (camel-aws-xray) | 2.21 | Distributed tracing using AWS XRay
 
-| xref:3.11.x@camel-karaf::blueprint.adoc[Blueprint] +
+| xref:blueprint.adoc[Blueprint] +
 (camel-blueprint) | 2.4 | Using Camel with OSGi Blueprint
 
 | xref:3.11.x@components:others:caffeine-lrucache.adoc[Caffeine Lrucache] +
@@ -817,7 +817,7 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (3 deprecated)
 | xref:3.11.x@components:others:jasypt.adoc[Jasypt] +
 (camel-jasypt) | 2.5 | Security using Jasypt
 
-| xref:3.11.x@camel-karaf::kura.adoc[Kura] +
+| xref:kura.adoc[Kura] +
 (camel-kura) | 2.15 | Using Camel with Eclipse Kura (OSGi)
 
 | xref:3.11.x@components:others:leveldb.adoc[LevelDB] +
@@ -838,7 +838,7 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (3 deprecated)
 | xref:3.11.x@components:others:opentracing.adoc[OpenTracing] +
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
 
-| xref:3.11.x@camel-karaf::osgi-activator.adoc[Osgi Activator] +
+| xref:osgi-activator.adoc[Osgi Activator] +
 (camel-osgi-activator) | 3.1 | *deprecated* Camel OSGi Activator for running Camel routes from other bundles
 
 | xref:3.11.x@components:others:reactor.adoc[Reactor] +
