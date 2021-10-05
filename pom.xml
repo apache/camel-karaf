@@ -191,7 +191,7 @@
         <hk2-osgi-resource-version>1.0.1</hk2-osgi-resource-version>
         <htmlunit-bundle-version>2.24_1</htmlunit-bundle-version>
         <hystrix-bundle-version>1.5.18_1</hystrix-bundle-version>
-        <influx-java-driver-bundle-version>2.20_1</influx-java-driver-bundle-version>
+        <influx-java-driver-bundle-version>2.22_1</influx-java-driver-bundle-version>
         <irclib-bundle-version>1.10_5</irclib-bundle-version>
         <ironmq-bundle-version>3.0.5_1</ironmq-bundle-version>
         <isorelax-bundle-version>20050913_4</isorelax-bundle-version>
