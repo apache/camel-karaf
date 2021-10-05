@@ -27,6 +27,8 @@ import org.apache.camel.tooling.model.LanguageModel;
 
 public class ExtMvelHelper {
 
+    private final static String CAMEL_VERSION = "3.7.x";
+
     private final Path extensionsDocPath;
 
     public ExtMvelHelper(Path extensionsDocPath) {
@@ -49,23 +51,23 @@ public class ExtMvelHelper {
             final ComponentModel component = (ComponentModel) model;
             final String scheme = component.getScheme();
             if ("org.apache.camel.karaf".equals(component.getGroupId())) {
-                return String.format("xref:3.7.x@camel-karaf::%s-component.adoc", scheme);
+                return String.format("xref:%s-component.adoc", scheme);
             } else {
-                return String.format("xref:3.7.x@components::%s-component.adoc", scheme);
+                return String.format("xref:%s@components::%s-component.adoc", CAMEL_VERSION, scheme);
             }
         } else if (model instanceof DataFormatModel) {
-            return String.format("xref:3.7.x@components:dataformats:%s-dataformat.adoc",
-                    invokeGetter(model, "getName"));
+            return String.format("xref:%s@components:dataformats:%s-dataformat.adoc",
+                    CAMEL_VERSION, invokeGetter(model, "getName"));
         } else if (model instanceof LanguageModel) {
-            return String.format("xref:3.7.x@components:languages:%s-language.adoc",
-                    invokeGetter(model, "getName"));
+            return String.format("xref:%s@components:languages:%s-language.adoc",
+                    CAMEL_VERSION, invokeGetter(model, "getName"));
         } else if (model instanceof OtherModel) {
             final OtherModel other = (OtherModel) model;
             final String name = other.getName();
             if ("org.apache.camel.karaf".equals(other.getGroupId())) {
-                return String.format("xref:3.7.x@camel-karaf::%s.adoc", name);
+                return String.format("xref:%s.adoc", name);
             } else {
-                return String.format("xref:3.7.x@components:others:%s.adoc", name);
+                return String.format("xref:%s@components:others:%s.adoc", CAMEL_VERSION, name);
             }
         } else {
             return null;
