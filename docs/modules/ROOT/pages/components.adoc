@@ -11,556 +11,556 @@ Number of Camel components: 184 in 184 JAR artifacts (1 deprecated)
 |===
 | Component | Since | Description
 
-| xref:components::activemq-component.adoc[ActiveMQ] (camel-activemq) +
+| xref:3.12.x@components::activemq-component.adoc[ActiveMQ] (camel-activemq) +
 `activemq:destinationType:destinationName` | 1.0 | Send messages to (or consume from) Apache ActiveMQ. This component extends the Camel JMS component.
 
-| xref:components::amqp-component.adoc[AMQP] (camel-amqp) +
+| xref:3.12.x@components::amqp-component.adoc[AMQP] (camel-amqp) +
 `amqp:destinationType:destinationName` | 1.2 | Messaging with AMQP protocol using Apache QPid Client.
 
-| xref:components::arangodb-component.adoc[ArangoDb] (camel-arangodb) +
+| xref:3.12.x@components::arangodb-component.adoc[ArangoDb] (camel-arangodb) +
 `arangodb:database` | 3.5 | Perform operations on ArangoDb when used as a Document Database, or as a Graph Database
 
-| xref:components::as2-component.adoc[AS2] (camel-as2) +
+| xref:3.12.x@components::as2-component.adoc[AS2] (camel-as2) +
 `as2:apiName/methodName` | 2.22 | Transfer data securely and reliably using the AS2 protocol (RFC4130).
 
-| xref:components::asterisk-component.adoc[Asterisk] (camel-asterisk) +
+| xref:3.12.x@components::asterisk-component.adoc[Asterisk] (camel-asterisk) +
 `asterisk:name` | 2.18 | Interact with Asterisk PBX Server.
 
-| xref:components::ahc-component.adoc[Async HTTP Client (AHC)] (camel-ahc) +
+| xref:3.12.x@components::ahc-component.adoc[Async HTTP Client (AHC)] (camel-ahc) +
 `ahc:httpUri` | 2.8 | Call external HTTP services using Async Http Client.
 
-| xref:components::ahc-ws-component.adoc[Async HTTP Client (AHC) Websocket] (camel-ahc-ws) +
+| xref:3.12.x@components::ahc-ws-component.adoc[Async HTTP Client (AHC) Websocket] (camel-ahc-ws) +
 `ahc-ws:httpUri` | 2.14 | Exchange data with external Websocket servers using Async Http Client.
 
-| xref:components::atom-component.adoc[Atom] (camel-atom) +
+| xref:3.12.x@components::atom-component.adoc[Atom] (camel-atom) +
 `atom:feedUri` | 1.2 | Poll Atom RSS feeds.
 
-| xref:components::avro-component.adoc[Avro RPC] (camel-avro-rpc) +
+| xref:3.12.x@components::avro-component.adoc[Avro RPC] (camel-avro-rpc) +
 `avro:transport:host:port/messageName` | 2.10 | Produce or consume Apache Avro RPC services.
 
-| xref:components::azure-eventhubs-component.adoc[Azure Event Hubs] (camel-azure-eventhubs) +
+| xref:3.12.x@components::azure-eventhubs-component.adoc[Azure Event Hubs] (camel-azure-eventhubs) +
 `azure-eventhubs:namespace/eventHubName` | 3.5 | The azure-eventhubs component that integrates Azure Event Hubs using AMQP protocol. Azure EventHubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream them to multiple consumers.
 
-| xref:components::azure-storage-blob-component.adoc[Azure Storage Blob Service] (camel-azure-storage-blob) +
+| xref:3.12.x@components::azure-storage-blob-component.adoc[Azure Storage Blob Service] (camel-azure-storage-blob) +
 `azure-storage-blob:accountName/containerName` | 3.3 | Store and retrieve blobs from Azure Storage Blob Service using SDK v12.
 
-| xref:components::azure-storage-datalake-component.adoc[Azure storage datalake service] (camel-azure-storage-datalake) +
+| xref:3.12.x@components::azure-storage-datalake-component.adoc[Azure storage datalake service] (camel-azure-storage-datalake) +
 `azure-storage-datalake:accountName/fileSystemName` | 3.8 | Camel Azure Datalake Gen2 Component
 
-| xref:components::azure-storage-queue-component.adoc[Azure Storage Queue Service] (camel-azure-storage-queue) +
+| xref:3.12.x@components::azure-storage-queue-component.adoc[Azure Storage Queue Service] (camel-azure-storage-queue) +
 `azure-storage-queue:accountName/queueName` | 3.3 | The azure-storage-queue component is used for storing and retrieving the messages to/from Azure Storage Queue using Azure SDK v12.
 
-| xref:components::bean-component.adoc[Bean] (camel-bean) +
+| xref:3.12.x@components::bean-component.adoc[Bean] (camel-bean) +
 `bean:beanName` | 1.0 | Invoke methods of Java beans stored in Camel registry.
 
-| xref:components::bean-validator-component.adoc[Bean Validator] (camel-bean-validator) +
+| xref:3.12.x@components::bean-validator-component.adoc[Bean Validator] (camel-bean-validator) +
 `bean-validator:label` | 2.3 | Validate the message body using the Java Bean Validation API.
 
-| xref:components::beanstalk-component.adoc[Beanstalk] (camel-beanstalk) +
+| xref:3.12.x@components::beanstalk-component.adoc[Beanstalk] (camel-beanstalk) +
 `beanstalk:connectionSettings` | 2.15 | Retrieve and post-process Beanstalk jobs.
 
-| xref:components::box-component.adoc[Box] (camel-box) +
+| xref:3.12.x@components::box-component.adoc[Box] (camel-box) +
 `box:apiName/methodName` | 2.14 | Upload, download and manage files, folders, groups, collaborations, etc. on box.com.
 
-| xref:components::braintree-component.adoc[Braintree] (camel-braintree) +
+| xref:3.12.x@components::braintree-component.adoc[Braintree] (camel-braintree) +
 `braintree:apiName/methodName` | 2.17 | Process payments using Braintree Payments.
 
-| xref:components::browse-component.adoc[Browse] (camel-browse) +
+| xref:3.12.x@components::browse-component.adoc[Browse] (camel-browse) +
 `browse:name` | 1.3 | Inspect the messages received on endpoints supporting BrowsableEndpoint.
 
-| xref:components::chatscript-component.adoc[ChatScript] (camel-chatscript) +
+| xref:3.12.x@components::chatscript-component.adoc[ChatScript] (camel-chatscript) +
 `chatscript:host:port/botName` | 3.0 | Chat with a ChatScript Server.
 
-| xref:components::cm-sms-component.adoc[CM SMS Gateway] (camel-cm-sms) +
+| xref:3.12.x@components::cm-sms-component.adoc[CM SMS Gateway] (camel-cm-sms) +
 `cm-sms:host` | 2.18 | Send SMS messages via CM SMS Gateway.
 
-| xref:components::cmis-component.adoc[CMIS] (camel-cmis) +
+| xref:3.12.x@components::cmis-component.adoc[CMIS] (camel-cmis) +
 `cmis:cmsUrl` | 2.11 | Read and write data from to/from a CMIS compliant content repositories.
 
-| xref:components::coap-component.adoc[CoAP] (camel-coap) +
+| xref:3.12.x@components::coap-component.adoc[CoAP] (camel-coap) +
 `coap:uri` | 2.16 | Send and receive messages to/from COAP capable devices.
 
-| xref:components::cometd-component.adoc[CometD] (camel-cometd) +
+| xref:3.12.x@components::cometd-component.adoc[CometD] (camel-cometd) +
 `cometd:host:port/channelName` | 2.0 | Offers publish/subscribe, peer-to-peer (via a server), and RPC style messaging using the CometD/Bayeux protocol.
 
-| xref:components::consul-component.adoc[Consul] (camel-consul) +
+| xref:3.12.x@components::consul-component.adoc[Consul] (camel-consul) +
 `consul:apiEndpoint` | 2.18 | Integrate with Consul service discovery and configuration store.
 
-| xref:components::controlbus-component.adoc[Control Bus] (camel-controlbus) +
+| xref:3.12.x@components::controlbus-component.adoc[Control Bus] (camel-controlbus) +
 `controlbus:command:language` | 2.11 | Manage and monitor Camel routes.
 
-| xref:components::corda-component.adoc[Corda] (camel-corda) +
+| xref:3.12.x@components::corda-component.adoc[Corda] (camel-corda) +
 `corda:node` | 2.23 | Perform operations against Corda blockchain platform using corda-rpc library.
 
-| xref:components::couchdb-component.adoc[CouchDB] (camel-couchdb) +
+| xref:3.12.x@components::couchdb-component.adoc[CouchDB] (camel-couchdb) +
 `couchdb:protocol:hostname:port/database` | 2.11 | Consume changesets for inserts, updates and deletes in a CouchDB database, as well as get, save, update and delete documents from a CouchDB database.
 
-| xref:components::cron-component.adoc[Cron] (camel-cron) +
+| xref:3.12.x@components::cron-component.adoc[Cron] (camel-cron) +
 `cron:name` | 3.1 | A generic interface for triggering events at times specified through the Unix cron syntax.
 
-| xref:components::crypto-component.adoc[Crypto (JCE)] (camel-crypto) +
+| xref:3.12.x@components::crypto-component.adoc[Crypto (JCE)] (camel-crypto) +
 `crypto:cryptoOperation:name` | 2.3 | Sign and verify exchanges using the Signature Service of the Java Cryptographic Extension (JCE).
 
-| xref:components::cxf-component.adoc[CXF] (camel-cxf) +
+| xref:3.12.x@components::cxf-component.adoc[CXF] (camel-cxf) +
 `cxf:beanId:address` | 1.0 | Expose SOAP WebServices using Apache CXF or connect to external WebServices using CXF WS client.
 
-| xref:components::dataformat-component.adoc[Data Format] (camel-dataformat) +
+| xref:3.12.x@components::dataformat-component.adoc[Data Format] (camel-dataformat) +
 `dataformat:name:operation` | 2.12 | Use a Camel Data Format as a regular Camel Component.
 
-| xref:components::dataset-component.adoc[Dataset] (camel-dataset) +
+| xref:3.12.x@components::dataset-component.adoc[Dataset] (camel-dataset) +
 `dataset:name` | 1.3 | Provide data for load and soak testing of your Camel application.
 
-| xref:components::djl-component.adoc[Deep Java Library] (camel-djl) +
+| xref:3.12.x@components::djl-component.adoc[Deep Java Library] (camel-djl) +
 `djl:application` | 3.3 | Infer Deep Learning models from message exchanges data using Deep Java Library (DJL).
 
-| xref:components::digitalocean-component.adoc[DigitalOcean] (camel-digitalocean) +
+| xref:3.12.x@components::digitalocean-component.adoc[DigitalOcean] (camel-digitalocean) +
 `digitalocean:operation` | 2.19 | Manage Droplets and resources within the DigitalOcean cloud.
 
-| xref:components::direct-component.adoc[Direct] (camel-direct) +
+| xref:3.12.x@components::direct-component.adoc[Direct] (camel-direct) +
 `direct:name` | 1.0 | Call another endpoint from the same Camel Context synchronously.
 
-| xref:components::disruptor-component.adoc[Disruptor] (camel-disruptor) +
+| xref:3.12.x@components::disruptor-component.adoc[Disruptor] (camel-disruptor) +
 `disruptor:name` | 2.12 | Provides asynchronous SEDA behavior using LMAX Disruptor.
 
-| xref:components::dns-component.adoc[DNS] (camel-dns) +
+| xref:3.12.x@components::dns-component.adoc[DNS] (camel-dns) +
 `dns:dnsType` | 2.7 | Perform DNS queries using DNSJava.
 
-| xref:components::docker-component.adoc[Docker] (camel-docker) +
+| xref:3.12.x@components::docker-component.adoc[Docker] (camel-docker) +
 `docker:operation` | 2.15 | Manage Docker containers.
 
-| xref:components::dozer-component.adoc[Dozer] (camel-dozer) +
+| xref:3.12.x@components::dozer-component.adoc[Dozer] (camel-dozer) +
 `dozer:name` | 2.15 | Map between Java beans using the Dozer mapping library.
 
-| xref:components::drill-component.adoc[Drill] (camel-drill) +
+| xref:3.12.x@components::drill-component.adoc[Drill] (camel-drill) +
 `drill:host` | 2.19 | Perform queries against an Apache Drill cluster.
 
-| xref:components::dropbox-component.adoc[Dropbox] (camel-dropbox) +
+| xref:3.12.x@components::dropbox-component.adoc[Dropbox] (camel-dropbox) +
 `dropbox:operation` | 2.14 | Upload, download and manage files, folders, groups, collaborations, etc on Dropbox.
 
-| xref:components::ehcache-component.adoc[Ehcache] (camel-ehcache) +
+| xref:3.12.x@components::ehcache-component.adoc[Ehcache] (camel-ehcache) +
 `ehcache:cacheName` | 2.18 | Perform caching operations using Ehcache.
 
-| xref:components::elasticsearch-rest-component.adoc[Elasticsearch Rest] (camel-elasticsearch-rest) +
+| xref:3.12.x@components::elasticsearch-rest-component.adoc[Elasticsearch Rest] (camel-elasticsearch-rest) +
 `elasticsearch-rest:clusterName` | 2.21 | Send requests to ElasticSearch via REST API
 
-| xref:components::elsql-component.adoc[ElSQL] (camel-elsql) +
+| xref:3.12.x@components::elsql-component.adoc[ElSQL] (camel-elsql) +
 `elsql:elsqlName:resourceUri` | 2.16 | Use ElSql to define SQL queries. Extends the SQL Component.
 
-| xref:components::exec-component.adoc[Exec] (camel-exec) +
+| xref:3.12.x@components::exec-component.adoc[Exec] (camel-exec) +
 `exec:executable` | 2.3 | Execute commands on the underlying operating system.
 
-| xref:components::facebook-component.adoc[Facebook] (camel-facebook) +
+| xref:3.12.x@components::facebook-component.adoc[Facebook] (camel-facebook) +
 `facebook:methodName` | 2.14 | Send requests to Facebook APIs supported by Facebook4J.
 
-| xref:components::file-component.adoc[File] (camel-file) +
+| xref:3.12.x@components::file-component.adoc[File] (camel-file) +
 `file:directoryName` | 1.0 | Read and write files.
 
-| xref:components::file-watch-component.adoc[File Watch] (camel-file-watch) +
+| xref:3.12.x@components::file-watch-component.adoc[File Watch] (camel-file-watch) +
 `file-watch:path` | 3.0 | Get notified about file events in a directory using java.nio.file.WatchService.
 
-| xref:components::flatpack-component.adoc[Flatpack] (camel-flatpack) +
+| xref:3.12.x@components::flatpack-component.adoc[Flatpack] (camel-flatpack) +
 `flatpack:type:resourceUri` | 1.4 | Parse fixed width and delimited files using the FlatPack library.
 
-| xref:components::fop-component.adoc[FOP] (camel-fop) +
+| xref:3.12.x@components::fop-component.adoc[FOP] (camel-fop) +
 `fop:outputType` | 2.10 | Render messages into PDF and other output formats supported by Apache FOP.
 
-| xref:components::freemarker-component.adoc[Freemarker] (camel-freemarker) +
+| xref:3.12.x@components::freemarker-component.adoc[Freemarker] (camel-freemarker) +
 `freemarker:resourceUri` | 2.10 | Transform messages using FreeMarker templates.
 
-| xref:components::ftp-component.adoc[FTP] (camel-ftp) +
+| xref:3.12.x@components::ftp-component.adoc[FTP] (camel-ftp) +
 `ftp:host:port/directoryName` | 1.1 | Upload and download files to/from FTP servers.
 
-| xref:components::ganglia-component.adoc[Ganglia] (camel-ganglia) +
+| xref:3.12.x@components::ganglia-component.adoc[Ganglia] (camel-ganglia) +
 `ganglia:host:port` | 2.15 | Send metrics to Ganglia monitoring system.
 
-| xref:components::git-component.adoc[Git] (camel-git) +
+| xref:3.12.x@components::git-component.adoc[Git] (camel-git) +
 `git:localPath` | 2.16 | Perform operations on git repositories.
 
-| xref:components::github-component.adoc[GitHub] (camel-github) +
+| xref:3.12.x@components::github-component.adoc[GitHub] (camel-github) +
 `github:type/branchName` | 2.15 | Interact with the GitHub API.
 
-| xref:components::google-bigquery-component.adoc[Google BigQuery] (camel-google-bigquery) +
+| xref:3.12.x@components::google-bigquery-component.adoc[Google BigQuery] (camel-google-bigquery) +
 `google-bigquery:projectId:datasetId:tableId` | 2.20 | Google BigQuery data warehouse for analytics.
 
-| xref:components::google-calendar-component.adoc[Google Calendar] (camel-google-calendar) +
+| xref:3.12.x@components::google-calendar-component.adoc[Google Calendar] (camel-google-calendar) +
 `google-calendar:apiName/methodName` | 2.15 | Perform various operations on a Google Calendar.
 
-| xref:components::google-drive-component.adoc[Google Drive] (camel-google-drive) +
+| xref:3.12.x@components::google-drive-component.adoc[Google Drive] (camel-google-drive) +
 `google-drive:apiName/methodName` | 2.14 | Manage files in Google Drive.
 
-| xref:components::google-mail-component.adoc[Google Mail] (camel-google-mail) +
+| xref:3.12.x@components::google-mail-component.adoc[Google Mail] (camel-google-mail) +
 `google-mail:apiName/methodName` | 2.15 | Manage messages in Google Mail.
 
-| xref:components::google-sheets-component.adoc[Google Sheets] (camel-google-sheets) +
+| xref:3.12.x@components::google-sheets-component.adoc[Google Sheets] (camel-google-sheets) +
 `google-sheets:apiName/methodName` | 2.23 | Manage spreadsheets in Google Sheets.
 
-| xref:components::grape-component.adoc[Grape] (camel-grape) +
+| xref:3.12.x@components::grape-component.adoc[Grape] (camel-grape) +
 `grape:defaultCoordinates` | 2.16 | Fetch, load and manage additional jars dynamically after Camel Context was started.
 
-| xref:components::graphql-component.adoc[GraphQL] (camel-graphql) +
+| xref:3.12.x@components::graphql-component.adoc[GraphQL] (camel-graphql) +
 `graphql:httpUri` | 3.0 | Send GraphQL queries and mutations to external systems.
 
-| xref:components::guava-eventbus-component.adoc[Guava EventBus] (camel-guava-eventbus) +
+| xref:3.12.x@components::guava-eventbus-component.adoc[Guava EventBus] (camel-guava-eventbus) +
 `guava-eventbus:eventBusRef` | 2.10 | Send and receive messages to/from Guava EventBus.
 
-| xref:components::http-component.adoc[HTTP] (camel-http) +
+| xref:3.12.x@components::http-component.adoc[HTTP] (camel-http) +
 `http://httpUri` | 2.3 | Send requests to external HTTP servers using Apache HTTP Client 4.x.
 
-| xref:components::influxdb-component.adoc[InfluxDB] (camel-influxdb) +
+| xref:3.12.x@components::influxdb-component.adoc[InfluxDB] (camel-influxdb) +
 `influxdb:connectionBean` | 2.18 | Interact with InfluxDB, a time series database.
 
-| xref:components::iota-component.adoc[IOTA] (camel-iota) +
+| xref:3.12.x@components::iota-component.adoc[IOTA] (camel-iota) +
 `iota:name` | 2.23 | Manage financial transactions using IOTA distributed ledger.
 
-| xref:components::irc-component.adoc[IRC] (camel-irc) +
+| xref:3.12.x@components::irc-component.adoc[IRC] (camel-irc) +
 `irc:hostname:port` | 1.1 | Send and receive messages to/from and IRC chat.
 
-| xref:components::ironmq-component.adoc[IronMQ] (camel-ironmq) +
+| xref:3.12.x@components::ironmq-component.adoc[IronMQ] (camel-ironmq) +
 `ironmq:queueName` | 2.17 | Send and receive messages to/from IronMQ an elastic and durable hosted message queue as a service.
 
-| xref:components::websocket-jsr356-component.adoc[Javax Websocket] (camel-websocket-jsr356) +
+| xref:3.12.x@components::websocket-jsr356-component.adoc[Javax Websocket] (camel-websocket-jsr356) +
 `websocket-jsr356:uri` | 2.23 | Expose websocket endpoints using JSR356.
 
-| xref:components::jcache-component.adoc[JCache] (camel-jcache) +
+| xref:3.12.x@components::jcache-component.adoc[JCache] (camel-jcache) +
 `jcache:cacheName` | 2.17 | Perform caching operations against JSR107/JCache.
 
-| xref:components::jcr-component.adoc[JCR] (camel-jcr) +
+| xref:3.12.x@components::jcr-component.adoc[JCR] (camel-jcr) +
 `jcr:host/base` | 1.3 | Read and write nodes to/from a JCR compliant content repository.
 
-| xref:components::jdbc-component.adoc[JDBC] (camel-jdbc) +
+| xref:3.12.x@components::jdbc-component.adoc[JDBC] (camel-jdbc) +
 `jdbc:dataSourceName` | 1.2 | Access databases through SQL and JDBC.
 
-| xref:components::jetty-component.adoc[Jetty] (camel-jetty) +
+| xref:3.12.x@components::jetty-component.adoc[Jetty] (camel-jetty) +
 `jetty:httpUri` | 1.2 | Expose HTTP endpoints using Jetty 9.
 
-| xref:components::websocket-component.adoc[Jetty Websocket] (camel-websocket) +
+| xref:3.12.x@components::websocket-component.adoc[Jetty Websocket] (camel-websocket) +
 `websocket:host:port/resourceUri` | 2.10 | Expose websocket endpoints using Jetty.
 
-| xref:components::jing-component.adoc[Jing] (camel-jing) +
+| xref:3.12.x@components::jing-component.adoc[Jing] (camel-jing) +
 `jing:resourceUri` | 1.1 | Validate XML against a RelaxNG schema (XML Syntax or Compact Syntax) using Jing library.
 
-| xref:components::jms-component.adoc[JMS] (camel-jms) +
+| xref:3.12.x@components::jms-component.adoc[JMS] (camel-jms) +
 `jms:destinationType:destinationName` | 1.0 | Sent and receive messages to/from a JMS Queue or Topic.
 
-| xref:components::jmx-component.adoc[JMX] (camel-jmx) +
+| xref:3.12.x@components::jmx-component.adoc[JMX] (camel-jmx) +
 `jmx:serverURL` | 2.6 | Receive JMX notifications.
 
-| xref:components::jolt-component.adoc[JOLT] (camel-jolt) +
+| xref:3.12.x@components::jolt-component.adoc[JOLT] (camel-jolt) +
 `jolt:resourceUri` | 2.16 | JSON to JSON transformation using JOLT.
 
-| xref:components::jooq-component.adoc[JOOQ] (camel-jooq) +
+| xref:3.12.x@components::jooq-component.adoc[JOOQ] (camel-jooq) +
 `jooq:entityType` | 3.0 | Store and retrieve Java objects from an SQL database using JOOQ.
 
-| xref:components::jpa-component.adoc[JPA] (camel-jpa) +
+| xref:3.12.x@components::jpa-component.adoc[JPA] (camel-jpa) +
 `jpa:entityType` | 1.0 | Store and retrieve Java objects from databases using Java Persistence API (JPA).
 
-| xref:components::jslt-component.adoc[JSLT] (camel-jslt) +
+| xref:3.12.x@components::jslt-component.adoc[JSLT] (camel-jslt) +
 `jslt:resourceUri` | 3.1 | Query or transform JSON payloads using an JSLT.
 
-| xref:components::json-validator-component.adoc[JSON Schema Validator] (camel-json-validator) +
+| xref:3.12.x@components::json-validator-component.adoc[JSON Schema Validator] (camel-json-validator) +
 `json-validator:resourceUri` | 2.20 | Validate JSON payloads using NetworkNT JSON Schema.
 
-| xref:components::jsonata-component.adoc[JSONata] (camel-jsonata) +
+| xref:3.12.x@components::jsonata-component.adoc[JSONata] (camel-jsonata) +
 `jsonata:resourceUri` | 3.5 | Transforms JSON payload using JSONata transformation.
 
-| xref:components::jt400-component.adoc[JT400] (camel-jt400) +
+| xref:3.12.x@components::jt400-component.adoc[JT400] (camel-jt400) +
 `jt400:userID:password/systemName/objectPath.type` | 1.5 | Exchanges messages with an IBM i system using data queues, message queues, or program call. IBM i is the replacement for AS/400 and iSeries servers.
 
-| xref:components::kafka-component.adoc[Kafka] (camel-kafka) +
+| xref:3.12.x@components::kafka-component.adoc[Kafka] (camel-kafka) +
 `kafka:topic` | 2.13 | Sent and receive messages to/from an Apache Kafka broker.
 
-| xref:components::kamelet-component.adoc[Kamelet] (camel-kamelet) +
+| xref:3.12.x@components::kamelet-component.adoc[Kamelet] (camel-kamelet) +
 `kamelet:templateId/routeId` | 3.8 | To call Kamelets
 
-| xref:components::kamelet-reify-component.adoc[Kamelet Reify] (camel-kamelet-reify) +
+| xref:3.12.x@components::kamelet-reify-component.adoc[Kamelet Reify] (camel-kamelet-reify) +
 `kamelet-reify:delegateUri` | 3.6 | *deprecated* To call Kamelets (indirectly)
 
-| xref:components::kudu-component.adoc[Kudu] (camel-kudu) +
+| xref:3.12.x@components::kudu-component.adoc[Kudu] (camel-kudu) +
 `kudu:host:port/tableName` | 3.0 | Interact with Apache Kudu, a free and open source column-oriented data store of the Apache Hadoop ecosystem.
 
-| xref:components::language-component.adoc[Language] (camel-language) +
+| xref:3.12.x@components::language-component.adoc[Language] (camel-language) +
 `language:languageName:resourceUri` | 2.5 | Execute scripts in any of the languages supported by Camel.
 
-| xref:components::ldap-component.adoc[LDAP] (camel-ldap) +
+| xref:3.12.x@components::ldap-component.adoc[LDAP] (camel-ldap) +
 `ldap:dirContextName` | 1.5 | Perform searches on LDAP servers.
 
-| xref:components::ldif-component.adoc[LDIF] (camel-ldif) +
+| xref:3.12.x@components::ldif-component.adoc[LDIF] (camel-ldif) +
 `ldif:ldapConnectionName` | 2.20 | Perform updates on an LDAP server from an LDIF body content.
 
-| xref:components::log-component.adoc[Log] (camel-log) +
+| xref:3.12.x@components::log-component.adoc[Log] (camel-log) +
 `log:loggerName` | 1.1 | Log messages to the underlying logging mechanism.
 
-| xref:components::lucene-component.adoc[Lucene] (camel-lucene) +
+| xref:3.12.x@components::lucene-component.adoc[Lucene] (camel-lucene) +
 `lucene:host:operation` | 2.2 | Perform inserts or queries against Apache Lucene databases.
 
-| xref:components::lumberjack-component.adoc[Lumberjack] (camel-lumberjack) +
+| xref:3.12.x@components::lumberjack-component.adoc[Lumberjack] (camel-lumberjack) +
 `lumberjack:host:port` | 2.18 | Receive logs messages using the Lumberjack protocol.
 
-| xref:components::master-component.adoc[Master] (camel-master) +
+| xref:3.12.x@components::master-component.adoc[Master] (camel-master) +
 `master:namespace:delegateUri` | 2.20 | Have only a single consumer in a cluster consuming from a given endpoint; with automatic failover if the JVM dies.
 
-| xref:components::metrics-component.adoc[Metrics] (camel-metrics) +
+| xref:3.12.x@components::metrics-component.adoc[Metrics] (camel-metrics) +
 `metrics:metricsType:metricsName` | 2.14 | Collect various metrics directly from Camel routes using the DropWizard metrics library.
 
-| xref:components::micrometer-component.adoc[Micrometer] (camel-micrometer) +
+| xref:3.12.x@components::micrometer-component.adoc[Micrometer] (camel-micrometer) +
 `micrometer:metricsType:metricsName` | 2.22 | Collect various metrics directly from Camel routes using the Micrometer library.
 
-| xref:components::mina-component.adoc[Mina] (camel-mina) +
+| xref:3.12.x@components::mina-component.adoc[Mina] (camel-mina) +
 `mina:protocol:host:port` | 2.10 | Socket level networking using TCP or UDP with Apache Mina 2.x.
 
-| xref:components::minio-component.adoc[Minio] (camel-minio) +
+| xref:3.12.x@components::minio-component.adoc[Minio] (camel-minio) +
 `minio:bucketName` | 3.5 | Store and retrieve objects from Minio Storage Service using Minio SDK.
 
-| xref:components::mllp-component.adoc[MLLP] (camel-mllp) +
+| xref:3.12.x@components::mllp-component.adoc[MLLP] (camel-mllp) +
 `mllp:hostname:port` | 2.17 | Communicate with external systems using the MLLP protocol.
 
-| xref:components::mock-component.adoc[Mock] (camel-mock) +
+| xref:3.12.x@components::mock-component.adoc[Mock] (camel-mock) +
 `mock:name` | 1.0 | Test routes and mediation rules using mocks.
 
-| xref:components::mongodb-component.adoc[MongoDB] (camel-mongodb) +
+| xref:3.12.x@components::mongodb-component.adoc[MongoDB] (camel-mongodb) +
 `mongodb:connectionBean` | 2.19 | Perform operations on MongoDB documents and collections.
 
-| xref:components::mongodb-gridfs-component.adoc[MongoDB GridFS] (camel-mongodb-gridfs) +
+| xref:3.12.x@components::mongodb-gridfs-component.adoc[MongoDB GridFS] (camel-mongodb-gridfs) +
 `mongodb-gridfs:connectionBean` | 2.18 | Interact with MongoDB GridFS.
 
-| xref:components::msv-component.adoc[MSV] (camel-msv) +
+| xref:3.12.x@components::msv-component.adoc[MSV] (camel-msv) +
 `msv:resourceUri` | 1.1 | Validate XML payloads using Multi-Schema Validator (MSV).
 
-| xref:components::mustache-component.adoc[Mustache] (camel-mustache) +
+| xref:3.12.x@components::mustache-component.adoc[Mustache] (camel-mustache) +
 `mustache:resourceUri` | 2.12 | Transform messages using a Mustache template.
 
-| xref:components::mvel-component.adoc[MVEL] (camel-mvel) +
+| xref:3.12.x@components::mvel-component.adoc[MVEL] (camel-mvel) +
 `mvel:resourceUri` | 2.12 | Transform messages using an MVEL template.
 
-| xref:components::mybatis-component.adoc[MyBatis] (camel-mybatis) +
+| xref:3.12.x@components::mybatis-component.adoc[MyBatis] (camel-mybatis) +
 `mybatis:statement` | 2.7 | Performs a query, poll, insert, update or delete in a relational database using MyBatis.
 
-| xref:components::nagios-component.adoc[Nagios] (camel-nagios) +
+| xref:3.12.x@components::nagios-component.adoc[Nagios] (camel-nagios) +
 `nagios:host:port` | 2.3 | Send passive checks to Nagios using JSendNSCA.
 
-| xref:components::netty-component.adoc[Netty] (camel-netty) +
+| xref:3.12.x@components::netty-component.adoc[Netty] (camel-netty) +
 `netty:protocol://host:port` | 2.14 | Socket level networking using TCP or UDP with Netty 4.x.
 
-| xref:components::netty-http-component.adoc[Netty HTTP] (camel-netty-http) +
+| xref:3.12.x@components::netty-http-component.adoc[Netty HTTP] (camel-netty-http) +
 `netty-http:protocol://host:port/path` | 2.14 | Netty HTTP server and client using the Netty 4.x.
 
-| xref:components::nitrite-component.adoc[Nitrite] (camel-nitrite) +
+| xref:3.12.x@components::nitrite-component.adoc[Nitrite] (camel-nitrite) +
 `nitrite:database` | 3.0 | Access Nitrite databases.
 
-| xref:components::nsq-component.adoc[NSQ] (camel-nsq) +
+| xref:3.12.x@components::nsq-component.adoc[NSQ] (camel-nsq) +
 `nsq:topic` | 2.23 | Send and receive messages from NSQ realtime distributed messaging platform.
 
-| xref:components::olingo2-component.adoc[Olingo2] (camel-olingo2) +
+| xref:3.12.x@components::olingo2-component.adoc[Olingo2] (camel-olingo2) +
 `olingo2:apiName/methodName` | 2.14 | Communicate with OData 2.0 services using Apache Olingo.
 
-| xref:components::olingo4-component.adoc[Olingo4] (camel-olingo4) +
+| xref:3.12.x@components::olingo4-component.adoc[Olingo4] (camel-olingo4) +
 `olingo4:apiName/methodName` | 2.19 | Communicate with OData 4.0 services using Apache Olingo OData API.
 
-| xref:camel-karaf::eventadmin-component.adoc[OSGi EventAdmin] (camel-eventadmin) +
+| xref:eventadmin-component.adoc[OSGi EventAdmin] (camel-eventadmin) +
 `eventadmin:topic` | 2.6 | The eventadmin component can be used in an OSGi environment to receive OSGi EventAdmin events and process them.
 
-| xref:camel-karaf::paxlogging-component.adoc[OSGi PAX Logging] (camel-paxlogging) +
+| xref:paxlogging-component.adoc[OSGi PAX Logging] (camel-paxlogging) +
 `paxlogging:appender` | 2.6 | The paxlogging component can be used in an OSGi environment to receive PaxLogging events and process them.
 
-| xref:components::paho-component.adoc[Paho] (camel-paho) +
+| xref:3.12.x@components::paho-component.adoc[Paho] (camel-paho) +
 `paho:topic` | 2.16 | Communicate with MQTT message brokers using Eclipse Paho MQTT Client.
 
-| xref:components::pdf-component.adoc[PDF] (camel-pdf) +
+| xref:3.12.x@components::pdf-component.adoc[PDF] (camel-pdf) +
 `pdf:operation` | 2.16 | Create, modify or extract content from PDF documents.
 
-| xref:components::pgevent-component.adoc[PostgresSQL Event] (camel-pgevent) +
+| xref:3.12.x@components::pgevent-component.adoc[PostgresSQL Event] (camel-pgevent) +
 `pgevent:host:port/database/channel` | 2.15 | Send and receive PostgreSQL events via LISTEN and NOTIFY commands.
 
-| xref:components::pg-replication-slot-component.adoc[PostgresSQL Replication Slot] (camel-pg-replication-slot) +
+| xref:3.12.x@components::pg-replication-slot-component.adoc[PostgresSQL Replication Slot] (camel-pg-replication-slot) +
 `pg-replication-slot:host:port/database/slot:outputPlugin` | 3.0 | Poll for PostgreSQL Write-Ahead Log (WAL) records using Streaming Replication Slots.
 
-| xref:components::pubnub-component.adoc[PubNub] (camel-pubnub) +
+| xref:3.12.x@components::pubnub-component.adoc[PubNub] (camel-pubnub) +
 `pubnub:channel` | 2.19 | Send and receive messages to/from PubNub data stream network for connected devices.
 
-| xref:components::quartz-component.adoc[Quartz] (camel-quartz) +
+| xref:3.12.x@components::quartz-component.adoc[Quartz] (camel-quartz) +
 `quartz:groupName/triggerName` | 2.12 | Schedule sending of messages using the Quartz 2.x scheduler.
 
-| xref:components::quickfix-component.adoc[QuickFix] (camel-quickfix) +
+| xref:3.12.x@components::quickfix-component.adoc[QuickFix] (camel-quickfix) +
 `quickfix:configurationName` | 2.1 | Open a Financial Interchange (FIX) session using an embedded QuickFix/J engine.
 
-| xref:components::rabbitmq-component.adoc[RabbitMQ] (camel-rabbitmq) +
+| xref:3.12.x@components::rabbitmq-component.adoc[RabbitMQ] (camel-rabbitmq) +
 `rabbitmq:exchangeName` | 2.12 | Send and receive messages from RabbitMQ instances.
 
-| xref:components::reactive-streams-component.adoc[Reactive Streams] (camel-reactive-streams) +
+| xref:3.12.x@components::reactive-streams-component.adoc[Reactive Streams] (camel-reactive-streams) +
 `reactive-streams:stream` | 2.19 | Exchange messages with reactive stream processing libraries compatible with the reactive streams standard.
 
-| xref:components::ref-component.adoc[Ref] (camel-ref) +
+| xref:3.12.x@components::ref-component.adoc[Ref] (camel-ref) +
 `ref:name` | 1.2 | Route messages to an endpoint looked up dynamically by name in the Camel Registry.
 
-| xref:components::rest-component.adoc[REST] (camel-rest) +
+| xref:3.12.x@components::rest-component.adoc[REST] (camel-rest) +
 `rest:method:path:uriTemplate` | 2.14 | Expose REST services or call external REST services.
 
-| xref:components::rest-openapi-component.adoc[REST OpenApi] (camel-rest-openapi) +
+| xref:3.12.x@components::rest-openapi-component.adoc[REST OpenApi] (camel-rest-openapi) +
 `rest-openapi:specificationUri#operationId` | 3.1 | Configure REST producers based on an OpenAPI specification document delegating to a component implementing the RestProducerFactory interface.
 
-| xref:components::rest-swagger-component.adoc[REST Swagger] (camel-rest-swagger) +
+| xref:3.12.x@components::rest-swagger-component.adoc[REST Swagger] (camel-rest-swagger) +
 `rest-swagger:specificationUri#operationId` | 2.19 | Configure REST producers based on a Swagger (OpenAPI) specification document delegating to a component implementing the RestProducerFactory interface.
 
-| xref:components::robotframework-component.adoc[Robot Framework] (camel-robotframework) +
+| xref:3.12.x@components::robotframework-component.adoc[Robot Framework] (camel-robotframework) +
 `robotframework:resourceUri` | 3.0 | Pass camel exchanges to acceptence test written in Robot DSL.
 
-| xref:components::rss-component.adoc[RSS] (camel-rss) +
+| xref:3.12.x@components::rss-component.adoc[RSS] (camel-rss) +
 `rss:feedUri` | 2.0 | Poll RSS feeds.
 
-| xref:components::saga-component.adoc[Saga] (camel-saga) +
+| xref:3.12.x@components::saga-component.adoc[Saga] (camel-saga) +
 `saga:action` | 2.21 | Execute custom actions within a route using the Saga EIP.
 
-| xref:components::salesforce-component.adoc[Salesforce] (camel-salesforce) +
+| xref:3.12.x@components::salesforce-component.adoc[Salesforce] (camel-salesforce) +
 `salesforce:operationName:topicName` | 2.12 | Communicate with Salesforce using Java DTOs.
 
-| xref:components::sap-netweaver-component.adoc[SAP NetWeaver] (camel-sap-netweaver) +
+| xref:3.12.x@components::sap-netweaver-component.adoc[SAP NetWeaver] (camel-sap-netweaver) +
 `sap-netweaver:url` | 2.12 | Send requests to SAP NetWeaver Gateway using HTTP.
 
-| xref:components::scheduler-component.adoc[Scheduler] (camel-scheduler) +
+| xref:3.12.x@components::scheduler-component.adoc[Scheduler] (camel-scheduler) +
 `scheduler:name` | 2.15 | Generate messages in specified intervals using java.util.concurrent.ScheduledExecutorService.
 
-| xref:components::schematron-component.adoc[Schematron] (camel-schematron) +
+| xref:3.12.x@components::schematron-component.adoc[Schematron] (camel-schematron) +
 `schematron:path` | 2.15 | Validate XML payload using the Schematron Library.
 
-| xref:components::seda-component.adoc[SEDA] (camel-seda) +
+| xref:3.12.x@components::seda-component.adoc[SEDA] (camel-seda) +
 `seda:name` | 1.1 | Asynchronously call another endpoint from any Camel Context in the same JVM.
 
-| xref:components::service-component.adoc[Service] (camel-service) +
+| xref:3.12.x@components::service-component.adoc[Service] (camel-service) +
 `service:delegateUri` | 2.22 | Register a Camel endpoint to a Service Registry (such as Consul, Etcd) and delegate to it.
 
-| xref:components::servicenow-component.adoc[ServiceNow] (camel-servicenow) +
+| xref:3.12.x@components::servicenow-component.adoc[ServiceNow] (camel-servicenow) +
 `servicenow:instanceName` | 2.18 | Interact with ServiceNow via its REST API.
 
-| xref:components::servlet-component.adoc[Servlet] (camel-servlet) +
+| xref:3.12.x@components::servlet-component.adoc[Servlet] (camel-servlet) +
 `servlet:contextPath` | 2.0 | Serve HTTP requests by a Servlet.
 
-| xref:components::sjms-component.adoc[Simple JMS] (camel-sjms) +
+| xref:3.12.x@components::sjms-component.adoc[Simple JMS] (camel-sjms) +
 `sjms:destinationType:destinationName` | 2.11 | Send and receive messages to/from a JMS Queue or Topic using plain JMS 1.x API.
 
-| xref:components::sjms2-component.adoc[Simple JMS2] (camel-sjms2) +
+| xref:3.12.x@components::sjms2-component.adoc[Simple JMS2] (camel-sjms2) +
 `sjms2:destinationType:destinationName` | 2.19 | Send and receive messages to/from a JMS Queue or Topic using plain JMS 2.x API.
 
-| xref:components::sip-component.adoc[SIP] (camel-sip) +
+| xref:3.12.x@components::sip-component.adoc[SIP] (camel-sip) +
 `sip:uri` | 2.5 | Send and receive messages using the SIP protocol (used in telecommunications).
 
-| xref:components::slack-component.adoc[Slack] (camel-slack) +
+| xref:3.12.x@components::slack-component.adoc[Slack] (camel-slack) +
 `slack:channel` | 2.16 | Send and receive messages to/from Slack.
 
-| xref:components::smpp-component.adoc[SMPP] (camel-smpp) +
+| xref:3.12.x@components::smpp-component.adoc[SMPP] (camel-smpp) +
 `smpp:host:port` | 2.2 | Send and receive SMS messages using a SMSC (Short Message Service Center).
 
-| xref:components::snmp-component.adoc[SNMP] (camel-snmp) +
+| xref:3.12.x@components::snmp-component.adoc[SNMP] (camel-snmp) +
 `snmp:host:port` | 2.1 | Receive traps and poll SNMP (Simple Network Management Protocol) capable devices.
 
-| xref:components::solr-component.adoc[Solr] (camel-solr) +
+| xref:3.12.x@components::solr-component.adoc[Solr] (camel-solr) +
 `solr:url` | 2.9 | Perform operations against Apache Lucene Solr.
 
-| xref:components::soroush-component.adoc[Soroush] (camel-soroush) +
+| xref:3.12.x@components::soroush-component.adoc[Soroush] (camel-soroush) +
 `soroush:action` | 3.0 | Send and receive messages as a Soroush chat bot.
 
-| xref:components::splunk-component.adoc[Splunk] (camel-splunk) +
+| xref:3.12.x@components::splunk-component.adoc[Splunk] (camel-splunk) +
 `splunk:name` | 2.13 | Publish or search for events in Splunk.
 
-| xref:components::spring-batch-component.adoc[Spring Batch] (camel-spring-batch) +
+| xref:3.12.x@components::spring-batch-component.adoc[Spring Batch] (camel-spring-batch) +
 `spring-batch:jobName` | 2.10 | Send messages to Spring Batch for further processing.
 
-| xref:components::spring-jdbc-component.adoc[Spring JDBC] (camel-spring-jdbc) +
+| xref:3.12.x@components::spring-jdbc-component.adoc[Spring JDBC] (camel-spring-jdbc) +
 `spring-jdbc:dataSourceName` | 3.10 | Access databases through SQL and JDBC with Spring Transaction support.
 
-| xref:components::spring-ldap-component.adoc[Spring LDAP] (camel-spring-ldap) +
+| xref:3.12.x@components::spring-ldap-component.adoc[Spring LDAP] (camel-spring-ldap) +
 `spring-ldap:templateName` | 2.11 | Perform searches in LDAP servers using filters as the message payload.
 
-| xref:components::spring-ws-component.adoc[Spring WebService] (camel-spring-ws) +
+| xref:3.12.x@components::spring-ws-component.adoc[Spring WebService] (camel-spring-ws) +
 `spring-ws:type:lookupKey:webServiceEndpointUri` | 2.6 | Access external web services as a client or expose your own web services.
 
-| xref:components::sql-component.adoc[SQL] (camel-sql) +
+| xref:3.12.x@components::sql-component.adoc[SQL] (camel-sql) +
 `sql:query` | 1.4 | Perform SQL queries using Spring JDBC.
 
-| xref:components::ssh-component.adoc[SSH] (camel-ssh) +
+| xref:3.12.x@components::ssh-component.adoc[SSH] (camel-ssh) +
 `ssh:host:port` | 2.10 | Execute commands on remote hosts using SSH.
 
-| xref:components::stax-component.adoc[StAX] (camel-stax) +
+| xref:3.12.x@components::stax-component.adoc[StAX] (camel-stax) +
 `stax:contentHandlerClass` | 2.9 | Process XML payloads by a SAX ContentHandler.
 
-| xref:components::stomp-component.adoc[Stomp] (camel-stomp) +
+| xref:3.12.x@components::stomp-component.adoc[Stomp] (camel-stomp) +
 `stomp:destination` | 2.12 | Send and rececive messages to/from STOMP (Simple Text Oriented Messaging Protocol) compliant message brokers.
 
-| xref:components::stream-component.adoc[Stream] (camel-stream) +
+| xref:3.12.x@components::stream-component.adoc[Stream] (camel-stream) +
 `stream:kind` | 1.3 | Read from system-in and write to system-out and system-err streams.
 
-| xref:components::string-template-component.adoc[String Template] (camel-stringtemplate) +
+| xref:3.12.x@components::string-template-component.adoc[String Template] (camel-stringtemplate) +
 `string-template:resourceUri` | 1.2 | Transform messages using StringTemplate engine.
 
-| xref:components::stub-component.adoc[Stub] (camel-stub) +
+| xref:3.12.x@components::stub-component.adoc[Stub] (camel-stub) +
 `stub:name` | 2.10 | Stub out any physical endpoints while in development or testing.
 
-| xref:components::telegram-component.adoc[Telegram] (camel-telegram) +
+| xref:3.12.x@components::telegram-component.adoc[Telegram] (camel-telegram) +
 `telegram:type` | 2.18 | Send and receive messages acting as a Telegram Bot Telegram Bot API.
 
-| xref:components::thrift-component.adoc[Thrift] (camel-thrift) +
+| xref:3.12.x@components::thrift-component.adoc[Thrift] (camel-thrift) +
 `thrift:host:port/service` | 2.20 | Call and expose remote procedures (RPC) with Apache Thrift data format and serialization mechanism.
 
-| xref:components::tika-component.adoc[Tika] (camel-tika) +
+| xref:3.12.x@components::tika-component.adoc[Tika] (camel-tika) +
 `tika:operation` | 2.19 | Parse documents and extract metadata and text using Apache Tika.
 
-| xref:components::timer-component.adoc[Timer] (camel-timer) +
+| xref:3.12.x@components::timer-component.adoc[Timer] (camel-timer) +
 `timer:timerName` | 1.0 | Generate messages in specified intervals using java.util.Timer.
 
-| xref:components::twilio-component.adoc[Twilio] (camel-twilio) +
+| xref:3.12.x@components::twilio-component.adoc[Twilio] (camel-twilio) +
 `twilio:apiName/methodName` | 2.20 | Interact with Twilio REST APIs using Twilio Java SDK.
 
-| xref:components::validator-component.adoc[Validator] (camel-validator) +
+| xref:3.12.x@components::validator-component.adoc[Validator] (camel-validator) +
 `validator:resourceUri` | 1.1 | Validate the payload using XML Schema and JAXP Validation.
 
-| xref:components::velocity-component.adoc[Velocity] (camel-velocity) +
+| xref:3.12.x@components::velocity-component.adoc[Velocity] (camel-velocity) +
 `velocity:resourceUri` | 1.2 | Transform messages using a Velocity template.
 
-| xref:components::vertx-component.adoc[Vert.x] (camel-vertx) +
+| xref:3.12.x@components::vertx-component.adoc[Vert.x] (camel-vertx) +
 `vertx:address` | 2.12 | Send and receive messages to/from Vert.x Event Bus.
 
-| xref:components::vm-component.adoc[VM] (camel-vm) +
+| xref:3.12.x@components::vm-component.adoc[VM] (camel-vm) +
 `vm:name` | 1.1 | Call another endpoint in the same CamelContext asynchronously.
 
-| xref:components::weather-component.adoc[Weather] (camel-weather) +
+| xref:3.12.x@components::weather-component.adoc[Weather] (camel-weather) +
 `weather:name` | 2.12 | Poll the weather information from Open Weather Map.
 
-| xref:components::web3j-component.adoc[Web3j Ethereum Blockchain] (camel-web3j) +
+| xref:3.12.x@components::web3j-component.adoc[Web3j Ethereum Blockchain] (camel-web3j) +
 `web3j:nodeAddress` | 2.22 | Interact with Ethereum nodes using web3j client API.
 
-| xref:components::webhook-component.adoc[Webhook] (camel-webhook) +
+| xref:3.12.x@components::webhook-component.adoc[Webhook] (camel-webhook) +
 `webhook:endpointUri` | 3.0 | Expose webhook endpoints to receive push notifications for other Camel components.
 
-| xref:components::wordpress-component.adoc[Wordpress] (camel-wordpress) +
+| xref:3.12.x@components::wordpress-component.adoc[Wordpress] (camel-wordpress) +
 `wordpress:operation` | 2.21 | Manage posts and users using Wordpress API.
 
-| xref:components::workday-component.adoc[Workday] (camel-workday) +
+| xref:3.12.x@components::workday-component.adoc[Workday] (camel-workday) +
 `workday:entity:path` | 3.1 | Detect and parse documents using Workday.
 
-| xref:components::xchange-component.adoc[XChange] (camel-xchange) +
+| xref:3.12.x@components::xchange-component.adoc[XChange] (camel-xchange) +
 `xchange:name` | 2.21 | Access market data and trade on Bitcoin and Altcoin exchanges.
 
-| xref:components::xj-component.adoc[XJ] (camel-xj) +
+| xref:3.12.x@components::xj-component.adoc[XJ] (camel-xj) +
 `xj:resourceUri` | 3.0 | Transform JSON and XML message using a XSLT.
 
-| xref:components::xmpp-component.adoc[XMPP] (camel-xmpp) +
+| xref:3.12.x@components::xmpp-component.adoc[XMPP] (camel-xmpp) +
 `xmpp:host:port/participant` | 1.0 | Send and receive messages to/from an XMPP chat server.
 
-| xref:components::xslt-component.adoc[XSLT] (camel-xslt) +
+| xref:3.12.x@components::xslt-component.adoc[XSLT] (camel-xslt) +
 `xslt:resourceUri` | 1.3 | Transforms XML payload using an XSLT template.
 
-| xref:components::xslt-saxon-component.adoc[XSLT Saxon] (camel-xslt-saxon) +
+| xref:3.12.x@components::xslt-saxon-component.adoc[XSLT Saxon] (camel-xslt-saxon) +
 `xslt-saxon:resourceUri` | 3.0 | Transform XML payloads using an XSLT template using Saxon.
 
-| xref:components::yammer-component.adoc[Yammer] (camel-yammer) +
+| xref:3.12.x@components::yammer-component.adoc[Yammer] (camel-yammer) +
 `yammer:function` | 2.12 | Interact with the Yammer enterprise social network.
 
-| xref:components::zendesk-component.adoc[Zendesk] (camel-zendesk) +
+| xref:3.12.x@components::zendesk-component.adoc[Zendesk] (camel-zendesk) +
 `zendesk:methodName` | 2.19 | Manage Zendesk tickets, users, organizations, etc.
 
-| xref:components::zookeeper-component.adoc[ZooKeeper] (camel-zookeeper) +
+| xref:3.12.x@components::zookeeper-component.adoc[ZooKeeper] (camel-zookeeper) +
 `zookeeper:serverUrls/path` | 2.9 | Manage ZooKeeper clusters.
 
-| xref:components::zookeeper-master-component.adoc[ZooKeeper Master] (camel-zookeeper-master) +
+| xref:3.12.x@components::zookeeper-master-component.adoc[ZooKeeper Master] (camel-zookeeper-master) +
 `zookeeper-master:groupName:consumerEndpointUri` | 2.19 | Have only a single consumer in a cluster consuming from a given endpoint; with automatic failover if the JVM dies.
 
 |===
@@ -575,148 +575,148 @@ Number of Camel data formats: 48 in 40 JAR artifacts (0 deprecated)
 |===
 | Data Format | Since | Description
 
-| xref:components:dataformats:any23-dataformat.adoc[Any23] +
+| xref:3.12.x@components:dataformats:any23-dataformat.adoc[Any23] +
 (camel-any23) | 3.0 | Extract RDF data from HTML documents.
 
-| xref:components:dataformats:asn1-dataformat.adoc[ASN.1 File] +
+| xref:3.12.x@components:dataformats:asn1-dataformat.adoc[ASN.1 File] +
 (camel-asn1) | 2.20 | Encode and decode data structures using Abstract Syntax Notation One (ASN.1).
 
-| xref:components:dataformats:avro-dataformat.adoc[Avro] +
+| xref:3.12.x@components:dataformats:avro-dataformat.adoc[Avro] +
 (camel-avro) | 2.14 | Serialize and deserialize messages using Apache Avro binary data format.
 
-| xref:components:dataformats:avro-jackson-dataformat.adoc[Avro Jackson] +
+| xref:3.12.x@components:dataformats:avro-jackson-dataformat.adoc[Avro Jackson] +
 (camel-jackson-avro) | 3.10 | Marshal POJOs to Avro and back using Jackson.
 
-| xref:components:dataformats:barcode-dataformat.adoc[Barcode] +
+| xref:3.12.x@components:dataformats:barcode-dataformat.adoc[Barcode] +
 (camel-barcode) | 2.14 | Transform strings to various 1D/2D barcode bitmap formats and back.
 
-| xref:components:dataformats:base64-dataformat.adoc[Base64] +
+| xref:3.12.x@components:dataformats:base64-dataformat.adoc[Base64] +
 (camel-base64) | 2.11 | Encode and decode data using Base64.
 
-| xref:components:dataformats:beanio-dataformat.adoc[BeanIO] +
+| xref:3.12.x@components:dataformats:beanio-dataformat.adoc[BeanIO] +
 (camel-beanio) | 2.10 | Marshal and unmarshal Java beans to and from flat files (such as CSV, delimited, or fixed length formats).
 
-| xref:components:dataformats:bindy-dataformat.adoc[Bindy CSV] +
+| xref:3.12.x@components:dataformats:bindy-dataformat.adoc[Bindy CSV] +
 (camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and Comma separated values (CSV) format using Camel Bindy
 
-| xref:components:dataformats:bindy-dataformat.adoc[Bindy Fixed Length] +
+| xref:3.12.x@components:dataformats:bindy-dataformat.adoc[Bindy Fixed Length] +
 (camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and fixed field length format using Camel Bindy
 
-| xref:components:dataformats:bindy-dataformat.adoc[Bindy Key Value Pair] +
+| xref:3.12.x@components:dataformats:bindy-dataformat.adoc[Bindy Key Value Pair] +
 (camel-bindy) | 2.0 | Marshal and unmarshal between POJOs and key-value pair (KVP) format using Camel Bindy
 
-| xref:components:dataformats:cbor-dataformat.adoc[CBOR] +
+| xref:3.12.x@components:dataformats:cbor-dataformat.adoc[CBOR] +
 (camel-cbor) | 3.0 | Unmarshal a CBOR payload to POJO and back.
 
-| xref:components:dataformats:crypto-dataformat.adoc[Crypto (Java Cryptographic Extension)] +
+| xref:3.12.x@components:dataformats:crypto-dataformat.adoc[Crypto (Java Cryptographic Extension)] +
 (camel-crypto) | 2.3 | Encrypt and decrypt messages using Java Cryptography Extension (JCE).
 
-| xref:components:dataformats:csv-dataformat.adoc[CSV] +
+| xref:3.12.x@components:dataformats:csv-dataformat.adoc[CSV] +
 (camel-csv) | 1.3 | Handle CSV (Comma Separated Values) payloads.
 
-| xref:components:dataformats:fhirJson-dataformat.adoc[FHIR JSon] +
+| xref:3.12.x@components:dataformats:fhirJson-dataformat.adoc[FHIR JSon] +
 (camel-fhir) | 2.21 | Marshall and unmarshall FHIR objects to/from JSON.
 
-| xref:components:dataformats:fhirXml-dataformat.adoc[FHIR XML] +
+| xref:3.12.x@components:dataformats:fhirXml-dataformat.adoc[FHIR XML] +
 (camel-fhir) | 2.21 | Marshall and unmarshall FHIR objects to/from XML.
 
-| xref:components:dataformats:flatpack-dataformat.adoc[Flatpack] +
+| xref:3.12.x@components:dataformats:flatpack-dataformat.adoc[Flatpack] +
 (camel-flatpack) | 2.1 | Marshal and unmarshal Java lists and maps to/from flat files (such as CSV, delimited, or fixed length formats) using Flatpack library.
 
-| xref:components:dataformats:grok-dataformat.adoc[Grok] +
+| xref:3.12.x@components:dataformats:grok-dataformat.adoc[Grok] +
 (camel-grok) | 3.0 | Unmarshal unstructured data to objects using Logstash based Grok patterns.
 
-| xref:components:dataformats:gzipdeflater-dataformat.adoc[GZip Deflater] +
+| xref:3.12.x@components:dataformats:gzipdeflater-dataformat.adoc[GZip Deflater] +
 (camel-zip-deflater) | 2.0 | Compress and decompress messages using java.util.zip.GZIPStream.
 
-| xref:components:dataformats:hl7-dataformat.adoc[HL7] +
+| xref:3.12.x@components:dataformats:hl7-dataformat.adoc[HL7] +
 (camel-hl7) | 2.0 | Marshal and unmarshal HL7 (Health Care) model objects using the HL7 MLLP codec.
 
-| xref:components:dataformats:ical-dataformat.adoc[iCal] +
+| xref:3.12.x@components:dataformats:ical-dataformat.adoc[iCal] +
 (camel-ical) | 2.12 | Marshal and unmarshal iCal (.ics) documents to/from model objects provided by the iCal4j library.
 
-| xref:components:dataformats:jacksonxml-dataformat.adoc[JacksonXML] +
+| xref:3.12.x@components:dataformats:jacksonxml-dataformat.adoc[JacksonXML] +
 (camel-jacksonxml) | 2.16 | Unmarshal a XML payloads to POJOs and back using XMLMapper extension of Jackson.
 
-| xref:components:dataformats:jaxb-dataformat.adoc[JAXB] +
+| xref:3.12.x@components:dataformats:jaxb-dataformat.adoc[JAXB] +
 (camel-jaxb) | 1.0 | Unmarshal XML payloads to POJOs and back using JAXB2 XML marshalling standard.
 
-| xref:components:dataformats:json-fastjson-dataformat.adoc[JSON Fastjson] +
+| xref:3.12.x@components:dataformats:json-fastjson-dataformat.adoc[JSON Fastjson] +
 (camel-fastjson) | 2.20 | Marshal POJOs to JSON and back using Fastjson
 
-| xref:components:dataformats:json-gson-dataformat.adoc[JSON Gson] +
+| xref:3.12.x@components:dataformats:json-gson-dataformat.adoc[JSON Gson] +
 (camel-gson) | 2.10 | Marshal POJOs to JSON and back using Gson
 
-| xref:components:dataformats:json-jackson-dataformat.adoc[JSON Jackson] +
+| xref:3.12.x@components:dataformats:json-jackson-dataformat.adoc[JSON Jackson] +
 (camel-jackson) | 2.0 | Marshal POJOs to JSON and back using Jackson
 
-| xref:components:dataformats:json-johnzon-dataformat.adoc[JSON Johnzon] +
+| xref:3.12.x@components:dataformats:json-johnzon-dataformat.adoc[JSON Johnzon] +
 (camel-johnzon) | 2.18 | Marshal POJOs to JSON and back using Johnzon
 
-| xref:components:dataformats:json-jsonb-dataformat.adoc[JSON JSON-B] +
+| xref:3.12.x@components:dataformats:json-jsonb-dataformat.adoc[JSON JSON-B] +
 (camel-jsonb) | 3.7 | Marshal POJOs to JSON and back using JSON-B.
 
-| xref:components:dataformats:json-xstream-dataformat.adoc[JSON XStream] +
+| xref:3.12.x@components:dataformats:json-xstream-dataformat.adoc[JSON XStream] +
 (camel-xstream) | 2.0 | Marshal POJOs to JSON and back using XStream
 
-| xref:components:dataformats:jsonApi-dataformat.adoc[JSonApi] +
+| xref:3.12.x@components:dataformats:jsonApi-dataformat.adoc[JSonApi] +
 (camel-jsonapi) | 3.0 | Marshal and unmarshal JSON:API resources using JSONAPI-Converter library.
 
-| xref:components:dataformats:lzf-dataformat.adoc[LZF Deflate Compression] +
+| xref:3.12.x@components:dataformats:lzf-dataformat.adoc[LZF Deflate Compression] +
 (camel-lzf) | 2.17 | Compress and decompress streams using LZF deflate algorithm.
 
-| xref:components:dataformats:mime-multipart-dataformat.adoc[MIME Multipart] +
+| xref:3.12.x@components:dataformats:mime-multipart-dataformat.adoc[MIME Multipart] +
 (camel-mail) | 2.17 | Marshal Camel messages with attachments into MIME-Multipart messages and back.
 
-| xref:components:dataformats:pgp-dataformat.adoc[PGP] +
+| xref:3.12.x@components:dataformats:pgp-dataformat.adoc[PGP] +
 (camel-crypto) | 2.9 | Encrypt and decrypt messages using Java Cryptographic Extension (JCE) and PGP.
 
-| xref:components:dataformats:protobuf-dataformat.adoc[Protobuf] +
+| xref:3.12.x@components:dataformats:protobuf-dataformat.adoc[Protobuf] +
 (camel-protobuf) | 2.2 | Serialize and deserialize Java objects using Google's Protocol buffers.
 
-| xref:components:dataformats:protobuf-jackson-dataformat.adoc[Protobuf Jackson] +
+| xref:3.12.x@components:dataformats:protobuf-jackson-dataformat.adoc[Protobuf Jackson] +
 (camel-jackson-protobuf) | 3.10 | Marshal POJOs to Protobuf and back using Jackson.
 
-| xref:components:dataformats:rss-dataformat.adoc[RSS] +
+| xref:3.12.x@components:dataformats:rss-dataformat.adoc[RSS] +
 (camel-rss) | 2.1 | Transform from ROME SyndFeed Java Objects to XML and vice-versa.
 
-| xref:components:dataformats:soapjaxb-dataformat.adoc[SOAP] +
+| xref:3.12.x@components:dataformats:soapjaxb-dataformat.adoc[SOAP] +
 (camel-soap) | 2.3 | Marshal Java objects to SOAP messages and back.
 
-| xref:components:dataformats:syslog-dataformat.adoc[Syslog] +
+| xref:3.12.x@components:dataformats:syslog-dataformat.adoc[Syslog] +
 (camel-syslog) | 2.6 | Marshall SyslogMessages to RFC3164 and RFC5424 messages and back.
 
-| xref:components:dataformats:tarfile-dataformat.adoc[Tar File] +
+| xref:3.12.x@components:dataformats:tarfile-dataformat.adoc[Tar File] +
 (camel-tarfile) | 2.16 | Archive files into tarballs or extract files from tarballs.
 
-| xref:components:dataformats:thrift-dataformat.adoc[Thrift] +
+| xref:3.12.x@components:dataformats:thrift-dataformat.adoc[Thrift] +
 (camel-thrift) | 2.20 | Serialize and deserialize messages using Apache Thrift binary data format.
 
-| xref:components:dataformats:tidyMarkup-dataformat.adoc[TidyMarkup] +
+| xref:3.12.x@components:dataformats:tidyMarkup-dataformat.adoc[TidyMarkup] +
 (camel-tagsoup) | 2.0 | Parse (potentially invalid) HTML into valid HTML or DOM.
 
-| xref:components:dataformats:univocity-csv-dataformat.adoc[uniVocity CSV] +
+| xref:3.12.x@components:dataformats:univocity-csv-dataformat.adoc[uniVocity CSV] +
 (camel-univocity-parsers) | 2.15 | Marshal and unmarshal Java objects from and to CSV (Comma Separated Values) using UniVocity Parsers.
 
-| xref:components:dataformats:univocity-fixed-dataformat.adoc[uniVocity Fixed Length] +
+| xref:3.12.x@components:dataformats:univocity-fixed-dataformat.adoc[uniVocity Fixed Length] +
 (camel-univocity-parsers) | 2.15 | Marshal and unmarshal Java objects from and to fixed length records using UniVocity Parsers.
 
-| xref:components:dataformats:univocity-tsv-dataformat.adoc[uniVocity TSV] +
+| xref:3.12.x@components:dataformats:univocity-tsv-dataformat.adoc[uniVocity TSV] +
 (camel-univocity-parsers) | 2.15 | Marshal and unmarshal Java objects from and to TSV (Tab-Separated Values) records using UniVocity Parsers.
 
-| xref:components:dataformats:secureXML-dataformat.adoc[XML Security] +
+| xref:3.12.x@components:dataformats:secureXML-dataformat.adoc[XML Security] +
 (camel-xmlsecurity) | 2.0 | Encrypt and decrypt XML payloads using Apache Santuario.
 
-| xref:components:dataformats:xstream-dataformat.adoc[XStream] +
+| xref:3.12.x@components:dataformats:xstream-dataformat.adoc[XStream] +
 (camel-xstream) | 1.3 | Marshal and unmarshal POJOs to/from XML using XStream library.
 
-| xref:components:dataformats:yaml-snakeyaml-dataformat.adoc[YAML SnakeYAML] +
+| xref:3.12.x@components:dataformats:yaml-snakeyaml-dataformat.adoc[YAML SnakeYAML] +
 (camel-snakeyaml) | 2.17 | Marshal and unmarshal Java objects to and from YAML using SnakeYAML
 
-| xref:components:dataformats:zipdeflater-dataformat.adoc[Zip Deflate Compression] +
+| xref:3.12.x@components:dataformats:zipdeflater-dataformat.adoc[Zip Deflate Compression] +
 (camel-zip-deflater) | 2.12 | Compress and decompress streams using java.util.zip.Deflater and java.util.zip.Inflater.
 
-| xref:components:dataformats:zipfile-dataformat.adoc[Zip File] +
+| xref:3.12.x@components:dataformats:zipfile-dataformat.adoc[Zip File] +
 (camel-zipfile) | 2.11 | Compression and decompress streams using java.util.zip.ZipStream.
 |===
 // dataformats: END
@@ -730,64 +730,64 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 |===
 | Language | Since | Description
 
-| xref:components:languages:bean-language.adoc[Bean Method] +
+| xref:3.12.x@components:languages:bean-language.adoc[Bean Method] +
 (camel-bean) | 1.3 | Calls a Java bean method.
 
-| xref:components:languages:constant-language.adoc[Constant] +
+| xref:3.12.x@components:languages:constant-language.adoc[Constant] +
 (camel-core-languages) | 1.5 | A fixed value set only once during the route startup.
 
-| xref:components:languages:csimple-language.adoc[CSimple] +
+| xref:3.12.x@components:languages:csimple-language.adoc[CSimple] +
 (camel-core-languages) | 3.7 | Evaluate a compiled simple expression.
 
-| xref:components:languages:datasonnet-language.adoc[DataSonnet] +
+| xref:3.12.x@components:languages:datasonnet-language.adoc[DataSonnet] +
 (camel-datasonnet) | 3.7 | To use DataSonnet scripts for message transformations.
 
-| xref:components:languages:exchangeProperty-language.adoc[ExchangeProperty] +
+| xref:3.12.x@components:languages:exchangeProperty-language.adoc[ExchangeProperty] +
 (camel-core-languages) | 2.0 | Gets a property from the Exchange.
 
-| xref:components:languages:file-language.adoc[File] +
+| xref:3.12.x@components:languages:file-language.adoc[File] +
 (camel-core-languages) | 1.1 | File related capabilities for the Simple language
 
-| xref:components:languages:groovy-language.adoc[Groovy] +
+| xref:3.12.x@components:languages:groovy-language.adoc[Groovy] +
 (camel-groovy) | 1.3 | Evaluates a Groovy script.
 
-| xref:components:languages:header-language.adoc[Header] +
+| xref:3.12.x@components:languages:header-language.adoc[Header] +
 (camel-core-languages) | 1.5 | Gets a header from the Exchange.
 
-| xref:components:languages:hl7terser-language.adoc[HL7 Terser] +
+| xref:3.12.x@components:languages:hl7terser-language.adoc[HL7 Terser] +
 (camel-hl7) | 2.11 | Get the value of a HL7 message field specified by terse location specification syntax.
 
-| xref:components:languages:joor-language.adoc[jOOR] +
+| xref:3.12.x@components:languages:joor-language.adoc[jOOR] +
 (camel-joor) | 3.7 | Evaluates a jOOR (Java compiled once at runtime) expression.
 
-| xref:components:languages:jsonpath-language.adoc[JSONPath] +
+| xref:3.12.x@components:languages:jsonpath-language.adoc[JSONPath] +
 (camel-jsonpath) | 2.13 | Evaluates a JSONPath expression against a JSON message body.
 
-| xref:components:languages:mvel-language.adoc[MVEL] +
+| xref:3.12.x@components:languages:mvel-language.adoc[MVEL] +
 (camel-mvel) | 2.0 | Evaluates a MVEL template.
 
-| xref:components:languages:ognl-language.adoc[OGNL] +
+| xref:3.12.x@components:languages:ognl-language.adoc[OGNL] +
 (camel-ognl) | 1.1 | Evaluates an OGNL expression (Apache Commons OGNL).
 
-| xref:components:languages:ref-language.adoc[Ref] +
+| xref:3.12.x@components:languages:ref-language.adoc[Ref] +
 (camel-core-languages) | 2.8 | Uses an existing expression from the registry.
 
-| xref:components:languages:simple-language.adoc[Simple] +
+| xref:3.12.x@components:languages:simple-language.adoc[Simple] +
 (camel-core-languages) | 1.1 | Evaluates a Camel simple expression.
 
-| xref:components:languages:spel-language.adoc[SpEL] +
+| xref:3.12.x@components:languages:spel-language.adoc[SpEL] +
 (camel-spring) | 2.7 | Evaluates a Spring expression (SpEL).
 
-| xref:components:languages:tokenize-language.adoc[Tokenize] +
+| xref:3.12.x@components:languages:tokenize-language.adoc[Tokenize] +
 (camel-core-languages) | 2.0 | Tokenize text payloads using delimiter patterns.
 
-| xref:components:languages:xtokenize-language.adoc[XML Tokenize] +
+| xref:3.12.x@components:languages:xtokenize-language.adoc[XML Tokenize] +
 (camel-xml-jaxp) | 2.14 | Tokenize XML payloads.
 
-| xref:components:languages:xpath-language.adoc[XPath] +
+| xref:3.12.x@components:languages:xpath-language.adoc[XPath] +
 (camel-xpath) | 1.1 | Evaluates an XPath expression against an XML payload.
 
-| xref:components:languages:xquery-language.adoc[XQuery] +
+| xref:3.12.x@components:languages:xquery-language.adoc[XQuery] +
 (camel-saxon) | 1.0 | Evaluates an XQuery expressions against an XML payload.
 |===
 // languages: END
@@ -802,64 +802,64 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (4 deprecated)
 |===
 | Extension | Since | Description
 
-| xref:components:others:aws-xray.adoc[AWS XRay] +
+| xref:3.12.x@components:others:aws-xray.adoc[AWS XRay] +
 (camel-aws-xray) | 2.21 | Distributed tracing using AWS XRay
 
-| xref:camel-karaf::blueprint.adoc[Blueprint] +
+| xref:blueprint.adoc[Blueprint] +
 (camel-blueprint) | 2.4 | Using Camel with OSGi Blueprint
 
-| xref:components:others:caffeine-lrucache.adoc[Caffeine Lrucache] +
+| xref:3.12.x@components:others:caffeine-lrucache.adoc[Caffeine Lrucache] +
 (camel-caffeine-lrucache) | 3.0 | *deprecated* Camel Caffeine LRUCache support
 
-| xref:components:others:headersmap.adoc[Headersmap] +
+| xref:3.12.x@components:others:headersmap.adoc[Headersmap] +
 (camel-headersmap) | 2.20 | Fast case-insensitive headers map implementation
 
-| xref:components:others:hystrix.adoc[Hystrix] +
+| xref:3.12.x@components:others:hystrix.adoc[Hystrix] +
 (camel-hystrix) | 2.18 | *deprecated* Circuit Breaker EIP using Netflix Hystrix
 
-| xref:components:others:jasypt.adoc[Jasypt] +
+| xref:3.12.x@components:others:jasypt.adoc[Jasypt] +
 (camel-jasypt) | 2.5 | Security using Jasypt
 
-| xref:camel-karaf::kura.adoc[Kura] +
+| xref:kura.adoc[Kura] +
 (camel-kura) | 2.15 | Using Camel with Eclipse Kura (OSGi)
 
-| xref:components:others:leveldb.adoc[LevelDB] +
+| xref:3.12.x@components:others:leveldb.adoc[LevelDB] +
 (camel-leveldb) | 2.10 | Using LevelDB as persistent EIP store
 
-| xref:components:others:leveldb-legacy.adoc[LevelDB-legacy] +
+| xref:3.12.x@components:others:leveldb-legacy.adoc[LevelDB-legacy] +
 (camel-leveldb-legacy) | 2.10 | Using LevelDB as persistent EIP store
 
-| xref:components:others:lra.adoc[LRA] +
+| xref:3.12.x@components:others:lra.adoc[LRA] +
 (camel-lra) | 2.21 | Camel saga binding for Long-Running-Action framework
 
-| xref:components:others:openapi-java.adoc[Openapi Java] +
+| xref:3.12.x@components:others:openapi-java.adoc[Openapi Java] +
 (camel-openapi-java) | 3.1 | Rest-dsl support for using openapi doc
 
-| xref:components:others:opentelemetry.adoc[OpenTelemetry] +
+| xref:3.12.x@components:others:opentelemetry.adoc[OpenTelemetry] +
 (camel-opentelemetry) | 3.5 | Distributed tracing using OpenTelemetry
 
-| xref:components:others:opentracing.adoc[OpenTracing] +
+| xref:3.12.x@components:others:opentracing.adoc[OpenTracing] +
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
 
-| xref:camel-karaf::osgi-activator.adoc[Osgi Activator] +
+| xref:osgi-activator.adoc[Osgi Activator] +
 (camel-osgi-activator) | 3.1 | *deprecated* Camel OSGi Activator for running Camel routes from other bundles
 
-| xref:components:others:reactor.adoc[Reactor] +
+| xref:3.12.x@components:others:reactor.adoc[Reactor] +
 (camel-reactor) | 2.20 | Reactor based back-end for Camel's reactive streams component
 
-| xref:components:others:shiro.adoc[Shiro] +
+| xref:3.12.x@components:others:shiro.adoc[Shiro] +
 (camel-shiro) | 2.5 | Security using Shiro
 
-| xref:components:others:swagger-java.adoc[Swagger Java] +
+| xref:3.12.x@components:others:swagger-java.adoc[Swagger Java] +
 (camel-swagger-java) | 2.16 | Rest-dsl support for using swagger api-doc
 
-| xref:components:others:test-spring.adoc[Test Spring] +
+| xref:3.12.x@components:others:test-spring.adoc[Test Spring] +
 (camel-test-spring) | 2.10 | *deprecated* Camel unit testing with Spring
 
-| xref:components:others:tracing.adoc[Tracing] +
+| xref:3.12.x@components:others:tracing.adoc[Tracing] +
 (camel-tracing) | 3.5 | Distributed tracing common interfaces
 
-| xref:components:others:zipkin.adoc[Zipkin] +
+| xref:3.12.x@components:others:zipkin.adoc[Zipkin] +
 (camel-zipkin) | 2.18 | Distributed message tracing using Zipkin
 |===
 // others: END
