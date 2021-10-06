@@ -40,6 +40,9 @@
             javax.xml.bind*;version="[2.2,3.0)",
             *
         </camel.osgi.import>
+        <camel.osgi.provide.capability>
+            osgi.service;effective:=active;objectClass=org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace=http://camel.apache.org/schema/blueprint
+        </camel.osgi.provide.capability>
     </properties>
 
     <dependencies>
