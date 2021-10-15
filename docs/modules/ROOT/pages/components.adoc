@@ -81,7 +81,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `aws2-s3://bucketNameOrArn` | 3.2 | Store and retrieve objects from AWS S3 Storage Service using AWS SDK version 2.x.
 
 | xref:latest@components::aws-secrets-manager-component.adoc[AWS Secrets Manager] (camel-aws-secrets-manager) +
-`aws-secrets-manager://label` | 3.9 | Manage AWS Secrets Manager services using AWS SDK version 2.x.
+`aws-secrets-manager:label` | 3.9 | Manage AWS Secrets Manager services using AWS SDK version 2.x.
 
 | xref:latest@components::aws2-sts-component.adoc[AWS Security Token Service (STS)] (camel-aws2-sts) +
 `aws2-sts:label` | 3.5 | Manage AWS STS cluster instances using AWS SDK version 2.x.
