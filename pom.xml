@@ -132,7 +132,7 @@
         <azure-storage-blob-bundle-version>12.12.0_1</azure-storage-blob-bundle-version>
         <azure-storage-blob-changefeed-bundle-version>12.0.0-beta8_1</azure-storage-blob-changefeed-bundle-version>
         <azure-storage-blob-datalake-bundle-version>12.5.1_1</azure-storage-blob-datalake-bundle-version>
-        <azure-storage-queue-bundle-version>12.9.0_1</azure-storage-queue-bundle-version>
+        <azure-storage-queue-bundle-version>12.10.0_1</azure-storage-queue-bundle-version>
         <azure-guava-version>20.0</azure-guava-version>
         <backport-util-concurrent-version>3.1</backport-util-concurrent-version>
         <bouncycastle-milo-version>1.61</bouncycastle-milo-version>
