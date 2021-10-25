@@ -129,7 +129,7 @@
         <azure-messaging-eventhubs-bundle-version>5.7.1_1</azure-messaging-eventhubs-bundle-version>
         <azure-messaging-eventhubs-checkpointstore-blob-bundle-version>1.7.0_1</azure-messaging-eventhubs-checkpointstore-blob-bundle-version>
         <azure-storage-common-bundle-version>12.12.0_1</azure-storage-common-bundle-version>
-        <azure-storage-blob-bundle-version>12.11.0_1</azure-storage-blob-bundle-version>
+        <azure-storage-blob-bundle-version>12.12.0_1</azure-storage-blob-bundle-version>
         <azure-storage-blob-changefeed-bundle-version>12.0.0-beta8_1</azure-storage-blob-changefeed-bundle-version>
         <azure-storage-blob-datalake-bundle-version>12.5.1_1</azure-storage-blob-datalake-bundle-version>
         <azure-storage-queue-bundle-version>12.9.0_1</azure-storage-queue-bundle-version>
