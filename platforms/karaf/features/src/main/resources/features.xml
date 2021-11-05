@@ -1658,6 +1658,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
     <bundle dependency='true'>mvn:commons-pool/commons-pool/${commons-pool-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-netty/${project.version}</bundle>
