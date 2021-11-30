@@ -104,7 +104,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 | xref:next@components::azure-storage-blob-component.adoc[Azure Storage Blob Service] (camel-azure-storage-blob) +
 `azure-storage-blob:accountName/containerName` | 3.3 | Store and retrieve blobs from Azure Storage Blob Service using SDK v12.
 
-| xref:next@components::azure-storage-datalake-component.adoc[Azure storage datalake service] (camel-azure-storage-datalake) +
+| xref:next@components::azure-storage-datalake-component.adoc[Azure Storage Datalake Service] (camel-azure-storage-datalake) +
 `azure-storage-datalake:accountName/fileSystemName` | 3.8 | Camel Azure Datalake Gen2 Component
 
 | xref:next@components::azure-storage-queue-component.adoc[Azure Storage Queue Service] (camel-azure-storage-queue) +
