@@ -161,6 +161,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     @XmlAttribute
     private String typeConverterStatisticsEnabled;
     @XmlAttribute
+    private String loadHealthChecks;
+    @XmlAttribute
     private String inflightRepositoryBrowseEnabled;
     @XmlAttribute
     private TypeConverterExists typeConverterExists;
@@ -544,6 +546,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setThreadNamePattern(String threadNamePattern) {
         this.threadNamePattern = threadNamePattern;
+    }
+
+    @Override
+    public String getLoadHealthChecks() {
+        return loadHealthChecks;
+    }
+
+    public void setLoadHealthChecks(String loadHealthChecks) {
+        this.loadHealthChecks = loadHealthChecks;
     }
 
     @Override
