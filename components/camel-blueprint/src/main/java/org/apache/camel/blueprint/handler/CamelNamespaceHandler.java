@@ -34,6 +34,7 @@ import javax.xml.bind.Binder;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
+import org.apache.camel.blueprint.CamelRouteConfigurationContextFactoryBean;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -131,6 +132,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
 
     private static final String CAMEL_CONTEXT = "camelContext";
     private static final String ROUTE_CONTEXT = "routeContext";
+    private static final String ROUTE_CONFIGURATION_CONTEXT = "routeConfigurationContext";
     private static final String ROUTE_TEMPLATE_CONTEXT = "routeTemplateContext";
     private static final String REST_CONTEXT = "restContext";
     private static final String ENDPOINT = "endpoint";
@@ -208,6 +210,9 @@ public class CamelNamespaceHandler implements NamespaceHandler {
             }
             if (element.getLocalName().equals(ROUTE_CONTEXT)) {
                 return parseRouteContextNode(element, context);
+            }
+            if (element.getLocalName().equals(ROUTE_CONFIGURATION_CONTEXT)) {
+                return parseRouteConfigurationContextNode(element, context);
             }
             if (element.getLocalName().equals(ROUTE_TEMPLATE_CONTEXT)) {
                 return parseRouteTemplateContextNode(element, context);
@@ -364,8 +369,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof CamelRouteContextFactoryBean)) {
@@ -399,6 +403,47 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         return ctx;
     }
 
+    private Metadata parseRouteConfigurationContextNode(Element element, ParserContext context) {
+        LOG.trace("Parsing RouteConfigurationContext {}", element);
+        // now parse the routes with JAXB
+        Binder<Node> binder;
+        try {
+            binder = getJaxbContext().createBinder();
+        } catch (JAXBException e) {
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
+        }
+        Object value = parseUsingJaxb(element, context, binder);
+        if (!(value instanceof CamelRouteConfigurationContextFactoryBean)) {
+            throw new ComponentDefinitionException("Expected an instance of " + CamelRouteConfigurationContextFactoryBean.class);
+        }
+
+        CamelRouteConfigurationContextFactoryBean rcfb = (CamelRouteConfigurationContextFactoryBean) value;
+        String id = rcfb.getId();
+
+        MutablePassThroughMetadata factory = context.createMetadata(MutablePassThroughMetadata.class);
+        factory.setId(".camelBlueprint.passThrough." + id);
+        factory.setObject(new PassThroughCallable<Object>(rcfb));
+
+        MutableBeanMetadata factory2 = context.createMetadata(MutableBeanMetadata.class);
+        factory2.setId(".camelBlueprint.factory." + id);
+        factory2.setFactoryComponent(factory);
+        factory2.setFactoryMethod("call");
+
+        MutableBeanMetadata ctx = context.createMetadata(MutableBeanMetadata.class);
+        ctx.setId(id);
+        ctx.setRuntimeClass(List.class);
+        ctx.setFactoryComponent(factory2);
+        ctx.setFactoryMethod("getRouteConfigurations");
+        // must be lazy as we want CamelContext to be activated first
+        ctx.setActivation(ACTIVATION_LAZY);
+
+        // lets inject the namespaces into any namespace aware POJOs
+        injectNamespaces(element, binder);
+
+        LOG.trace("Parsing RouteConfigurationContext {} done, returning {}", element, ctx);
+        return ctx;
+    }
+
     private Metadata parseRouteTemplateContextNode(Element element, ParserContext context) {
         LOG.trace("Parsing RouteTemplateContext {}", element);
         // now parse the routes with JAXB
@@ -406,8 +451,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof CamelRouteTemplateContextFactoryBean)) {
@@ -448,7 +492,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof CamelRestContextFactoryBean)) {
@@ -489,7 +533,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof CamelEndpointFactoryBean)) {
@@ -530,7 +574,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof KeyStoreParametersFactoryBean)) {
@@ -571,7 +615,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof SecureRandomParametersFactoryBean)) {
@@ -612,7 +656,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         try {
             binder = getJaxbContext().createBinder();
         } catch (JAXBException e) {
-            throw new ComponentDefinitionException("Failed to create the JAXB binder : " + e, e);
+            throw new ComponentDefinitionException("Failed to create the JAXB binder: " + e, e);
         }
         Object value = parseUsingJaxb(element, context, binder);
         if (!(value instanceof SSLContextParametersFactoryBean)) {

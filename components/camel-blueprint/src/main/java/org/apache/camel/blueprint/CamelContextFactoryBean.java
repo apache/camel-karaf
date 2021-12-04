@@ -62,6 +62,7 @@ import org.apache.camel.model.PackageScanDefinition;
 import org.apache.camel.model.Resilience4jConfigurationDefinition;
 import org.apache.camel.model.RestContextRefDefinition;
 import org.apache.camel.model.RouteBuilderDefinition;
+import org.apache.camel.model.RouteConfigurationContextRefDefinition;
 import org.apache.camel.model.RouteConfigurationDefinition;
 import org.apache.camel.model.RouteContextRefDefinition;
 import org.apache.camel.model.RouteDefinition;
@@ -207,6 +208,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
     private FaultToleranceConfigurationDefinition defaultFaultToleranceConfiguration;
     @XmlElement(name = "faultToleranceConfiguration", type = FaultToleranceConfigurationDefinition.class)
     private List<FaultToleranceConfigurationDefinition> faultToleranceConfigurations;
+    @XmlElement(name = "routeConfigurationContextRef")
+    private List<RouteConfigurationContextRefDefinition> routeConfigurationRefs = new ArrayList<>();
     @XmlElement(name = "routeTemplateContextRef")
     private List<RouteTemplateContextRefDefinition> routeTemplateRefs = new ArrayList<>();
     @XmlElement(name = "routeBuilder")
@@ -618,6 +621,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public void setCamelPropertyPlaceholder(CamelPropertyPlaceholderDefinition camelPropertyPlaceholder) {
         this.camelPropertyPlaceholder = camelPropertyPlaceholder;
+    }
+
+    @Override
+    public List<RouteConfigurationContextRefDefinition> getRouteConfigurationRefs() {
+        return routeConfigurationRefs;
+    }
+
+    public void setRouteConfigurationRefs(List<RouteConfigurationContextRefDefinition> routeConfigurationRefs) {
+        this.routeConfigurationRefs = routeConfigurationRefs;
     }
 
     @Override
