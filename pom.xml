@@ -267,7 +267,7 @@
         <servicemix-jaxb-version>2.3_2</servicemix-jaxb-version>
         <!-- snappy 1.1.8.x does not work in OSGi -->
         <snappy-version>1.1.7.3</snappy-version>
-        <solr-bundle-version>8.10.1_1</solr-bundle-version>
+        <solr-bundle-version>8.11.0_1</solr-bundle-version>
         <spring-batch-bundle-version>4.3.3_1</spring-batch-bundle-version>
         <spring-data-commons-bundle-version>2.5.6_1</spring-data-commons-bundle-version>
         <spring-ldap-bundle-version>2.3.3.RELEASE_1</spring-ldap-bundle-version>
