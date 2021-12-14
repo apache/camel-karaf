@@ -1700,6 +1700,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-nsq/${project.version}</bundle>
   </feature>
   <feature name='camel-ognl' version='${project.version}' start-level='50'>
