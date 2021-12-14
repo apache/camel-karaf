@@ -1105,6 +1105,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-iec60870/${project.version}</bundle>
   </feature>
   <feature name='camel-ignite' version='${project.version}' start-level='50'>
