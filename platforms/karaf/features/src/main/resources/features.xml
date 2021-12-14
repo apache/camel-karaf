@@ -784,6 +784,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.elasticsearch/${elasticsearch-rest-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.logging.log4j/log4j-core/${log4j2-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.logging.log4j/log4j-api/${log4j2-version}</bundle>
