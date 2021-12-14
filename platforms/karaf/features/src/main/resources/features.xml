@@ -1583,6 +1583,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>    
     <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.digitalpetri.fsm/strict-machine/${digitalpetri-fsm-client}</bundle>
     <bundle dependency='true'>wrap:mvn:com.digitalpetri.netty/netty-channel-fsm/${digitalpetri-netty-client}</bundle>
     <bundle dependency='true'>mvn:com.google.guava/guava/${milo-guava-version}</bundle>
