@@ -27,7 +27,7 @@ import org.apache.camel.tooling.model.LanguageModel;
 
 public class ExtMvelHelper {
 
-    private final static String CAMEL_VERSION = "next";
+    private final static String CAMEL_VERSION = "3.14.x";
 
     private final Path extensionsDocPath;
 
