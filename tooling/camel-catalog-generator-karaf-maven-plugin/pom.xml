@@ -72,4 +72,20 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin-plugin-version}</version>
+                <configuration>
+                    <mojoDependencies>
+                        <dep>org.codehaus.mojo:exec-maven-plugin</dep>
+                        <dep>org.apache.maven:maven-plugin-api</dep>
+                    </mojoDependencies>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
