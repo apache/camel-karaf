@@ -34,6 +34,7 @@
   </feature>
 
   <feature name='camel' version='${project.version}' start-level='50'>
+    <feature prerequisite='true'>wrap</feature> <!-- some camel features needs wrap -->
     <feature version='${project.version}'>camel-core</feature>
     <feature version='${project.version}'>camel-blueprint</feature>
     <!-- we no longer install camel-spring by default -->
@@ -116,7 +117,6 @@
 
   <!-- the following features are sorted A..Z -->
   <feature name='camel-activemq' version='${project.version}' start-level='50'>
-    <feature prerequisite='true'>wrap</feature>
     <feature version='${project.version}'>camel-jms</feature>
     <feature version="[5,6)">spring</feature>
     <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/1.1.1</bundle>
@@ -575,7 +575,6 @@
     <bundle>mvn:org.apache.camel/camel-cometd/${project.version}</bundle>
   </feature>
   <feature name='camel-consul' version='${project.version}' start-level='50'>
-    <feature prerequisite='true'>wrap</feature>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>
     <bundle dependency='true'>mvn:com.google.guava/guava/27.1-jre</bundle>
@@ -593,7 +592,6 @@
     <bundle>mvn:org.apache.camel/camel-consul/${project.version}</bundle>
   </feature>
   <feature name='camel-corda' version='${project.version}' start-level='50'>
-    <feature prerequisite='true'>wrap</feature>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:io.reactivex/rxjava/${rxjava-version}</bundle>
     <bundle dependency='true'>wrap:mvn:net.corda/corda-core/${corda-version}</bundle>
@@ -1071,7 +1069,6 @@
     <bundle>mvn:org.apache.camel/camel-http/${project.version}</bundle>
   </feature>
   <feature name='camel-hystrix' version='${project.version}' start-level='50'>
-    <feature prerequisite='true'>wrap</feature>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hystrix/${hystrix-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.hystrix-event-stream/${hystrix-bundle-version}</bundle>
