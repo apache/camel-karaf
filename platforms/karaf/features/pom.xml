@@ -200,7 +200,6 @@
             </repositories>
         </profile>
 
-        <!-- validating using karaf 4.x -->
         <profile>
             <id>fastinstall</id>
             <properties>
