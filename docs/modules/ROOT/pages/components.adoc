@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
+Number of Camel components: 204 in 204 JAR artifacts (11 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -117,7 +117,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `bean-validator:label` | 2.3 | Validate the message body using the Java Bean Validation API.
 
 | xref:next@components::beanstalk-component.adoc[Beanstalk] (camel-beanstalk) +
-`beanstalk:connectionSettings` | 2.15 | Retrieve and post-process Beanstalk jobs.
+`beanstalk:connectionSettings` | 2.15 | *deprecated* Retrieve and post-process Beanstalk jobs.
 
 | xref:next@components::box-component.adoc[Box] (camel-box) +
 `box:apiName/methodName` | 2.14 | Upload, download and manage files, folders, groups, collaborations, etc. on box.com.
@@ -204,7 +204,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `elasticsearch-rest:clusterName` | 2.21 | Send requests to ElasticSearch via REST API
 
 | xref:next@components::elsql-component.adoc[ElSQL] (camel-elsql) +
-`elsql:elsqlName:resourceUri` | 2.16 | Use ElSql to define SQL queries. Extends the SQL Component.
+`elsql:elsqlName:resourceUri` | 2.16 | *deprecated* Use ElSql to define SQL queries. Extends the SQL Component.
 
 | xref:next@components::exec-component.adoc[Exec] (camel-exec) +
 `exec:executable` | 2.3 | Execute commands on the underlying operating system.
@@ -231,7 +231,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `ftp:host:port/directoryName` | 1.1 | Upload and download files to/from FTP servers.
 
 | xref:next@components::ganglia-component.adoc[Ganglia] (camel-ganglia) +
-`ganglia:host:port` | 2.15 | Send metrics to Ganglia monitoring system.
+`ganglia:host:port` | 2.15 | *deprecated* Send metrics to Ganglia monitoring system.
 
 | xref:next@components::git-component.adoc[Git] (camel-git) +
 `git:localPath` | 2.16 | Perform operations on git repositories.
@@ -297,7 +297,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `websocket:host:port/resourceUri` | 2.10 | Expose websocket endpoints using Jetty.
 
 | xref:next@components::jing-component.adoc[Jing] (camel-jing) +
-`jing:resourceUri` | 1.1 | Validate XML against a RelaxNG schema (XML Syntax or Compact Syntax) using Jing library.
+`jing:resourceUri` | 1.1 | *deprecated* Validate XML against a RelaxNG schema (XML Syntax or Compact Syntax) using Jing library.
 
 | xref:next@components::jms-component.adoc[JMS] (camel-jms) +
 `jms:destinationType:destinationName` | 1.0 | Sent and receive messages to/from a JMS Queue or Topic.
@@ -384,7 +384,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `mongodb-gridfs:connectionBean` | 2.18 | Interact with MongoDB GridFS.
 
 | xref:next@components::msv-component.adoc[MSV] (camel-msv) +
-`msv:resourceUri` | 1.1 | Validate XML payloads using Multi-Schema Validator (MSV).
+`msv:resourceUri` | 1.1 | *deprecated* Validate XML payloads using Multi-Schema Validator (MSV).
 
 | xref:next@components::mustache-component.adoc[Mustache] (camel-mustache) +
 `mustache:resourceUri` | 2.12 | Transform messages using a Mustache template.
@@ -396,7 +396,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `mybatis:statement` | 2.7 | Performs a query, poll, insert, update or delete in a relational database using MyBatis.
 
 | xref:next@components::nagios-component.adoc[Nagios] (camel-nagios) +
-`nagios:host:port` | 2.3 | Send passive checks to Nagios using JSendNSCA.
+`nagios:host:port` | 2.3 | *deprecated* Send passive checks to Nagios using JSendNSCA.
 
 | xref:next@components::netty-component.adoc[Netty] (camel-netty) +
 `netty:protocol://host:port` | 2.14 | Socket level networking using TCP or UDP with Netty 4.x.
@@ -408,7 +408,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `nitrite:database` | 3.0 | Access Nitrite databases.
 
 | xref:next@components::nsq-component.adoc[NSQ] (camel-nsq) +
-`nsq:topic` | 2.23 | Send and receive messages from NSQ realtime distributed messaging platform.
+`nsq:topic` | 2.23 | *deprecated* Send and receive messages from NSQ realtime distributed messaging platform.
 
 | xref:next@components::olingo2-component.adoc[Olingo2] (camel-olingo2) +
 `olingo2:apiName/methodName` | 2.14 | Communicate with OData 2.0 services using Apache Olingo.
@@ -501,7 +501,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `sjms2:destinationType:destinationName` | 2.19 | Send and receive messages to/from a JMS Queue or Topic using plain JMS 2.x API.
 
 | xref:next@components::sip-component.adoc[SIP] (camel-sip) +
-`sip:uri` | 2.5 | Send and receive messages using the SIP protocol (used in telecommunications).
+`sip:uri` | 2.5 | *deprecated* Send and receive messages using the SIP protocol (used in telecommunications).
 
 | xref:next@components::slack-component.adoc[Slack] (camel-slack) +
 `slack:channel` | 2.16 | Send and receive messages to/from Slack.
@@ -516,7 +516,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `solr:url` | 2.9 | Perform operations against Apache Lucene Solr.
 
 | xref:next@components::soroush-component.adoc[Soroush] (camel-soroush) +
-`soroush:action` | 3.0 | Send and receive messages as a Soroush chat bot.
+`soroush:action` | 3.0 | *deprecated* Send and receive messages as a Soroush chat bot.
 
 | xref:next@components::splunk-component.adoc[Splunk] (camel-splunk) +
 `splunk:name` | 2.13 | Publish or search for events in Splunk.
@@ -612,7 +612,7 @@ Number of Camel components: 204 in 204 JAR artifacts (1 deprecated)
 `xslt-saxon:resourceUri` | 3.0 | Transform XML payloads using an XSLT template using Saxon.
 
 | xref:next@components::yammer-component.adoc[Yammer] (camel-yammer) +
-`yammer:function` | 2.12 | Interact with the Yammer enterprise social network.
+`yammer:function` | 2.12 | *deprecated* Interact with the Yammer enterprise social network.
 
 | xref:next@components::zendesk-component.adoc[Zendesk] (camel-zendesk) +
 `zendesk:methodName` | 2.19 | Manage Zendesk tickets, users, organizations, etc.
@@ -856,7 +856,7 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 20 in 20 JAR artifacts (4 deprecated)
+Number of miscellaneous extensions: 20 in 20 JAR artifacts (5 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -887,7 +887,7 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (4 deprecated)
 (camel-leveldb) | 2.10 | Using LevelDB as persistent EIP store
 
 | xref:next@components:others:leveldb-legacy.adoc[LevelDB-legacy] +
-(camel-leveldb-legacy) | 2.10 | Using LevelDB as persistent EIP store
+(camel-leveldb-legacy) | 2.10 | *deprecated* Using LevelDB as persistent EIP store
 
 | xref:next@components:others:lra.adoc[LRA] +
 (camel-lra) | 2.21 | Camel saga binding for Long-Running-Action framework
