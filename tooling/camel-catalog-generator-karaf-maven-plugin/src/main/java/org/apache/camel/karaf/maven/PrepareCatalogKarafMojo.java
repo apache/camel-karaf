@@ -211,7 +211,6 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
         // include others that are in camel-karaf only
         jsonFiles.add(new File(karafComponentsDir, "camel-blueprint/target/classes/blueprint.json"));
         jsonFiles.add(new File(karafComponentsDir, "camel-kura/target/classes/kura.json"));
-        jsonFiles.add(new File(karafComponentsDir, "camel-osgi-activator/target/classes/osgi-activator.json"));
         if (!jsonFiles.isEmpty()) {
             Path outDir = othersOutDir.toPath();
             copyFiles(outDir, jsonFiles);

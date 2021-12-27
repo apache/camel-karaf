@@ -5,7 +5,7 @@ Apache Camel Karaf supports the following Camel artifacts as Karaf features
 == Camel Components
 
 // components: START
-Number of Camel components: 204 in 204 JAR artifacts (11 deprecated)
+Number of Camel components: 203 in 203 JAR artifacts (10 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -331,9 +331,6 @@ Number of Camel components: 204 in 204 JAR artifacts (11 deprecated)
 
 | xref:next@components::kamelet-component.adoc[Kamelet] (camel-kamelet) +
 `kamelet:templateId/routeId` | 3.8 | To call Kamelets
-
-| xref:next@components::kamelet-reify-component.adoc[Kamelet Reify] (camel-kamelet-reify) +
-`kamelet-reify:delegateUri` | 3.6 | *deprecated* To call Kamelets (indirectly)
 
 | xref:next@components::kudu-component.adoc[Kudu] (camel-kudu) +
 `kudu:host:port/tableName` | 3.0 | Interact with Apache Kudu, a free and open source column-oriented data store of the Apache Hadoop ecosystem.
@@ -856,7 +853,7 @@ Number of Camel languages: 20 in 13 JAR artifacts (0 deprecated)
 == Miscellaneous Extensions
 
 // others: START
-Number of miscellaneous extensions: 20 in 20 JAR artifacts (5 deprecated)
+Number of miscellaneous extensions: 19 in 19 JAR artifacts (4 deprecated)
 
 [width="100%",cols="4,1,5",options="header"]
 |===
@@ -900,9 +897,6 @@ Number of miscellaneous extensions: 20 in 20 JAR artifacts (5 deprecated)
 
 | xref:next@components:others:opentracing.adoc[OpenTracing] +
 (camel-opentracing) | 2.19 | Distributed tracing using OpenTracing
-
-| xref:osgi-activator.adoc[Osgi Activator] +
-(camel-osgi-activator) | 3.1 | *deprecated* Camel OSGi Activator for running Camel routes from other bundles
 
 | xref:next@components:others:reactor.adoc[Reactor] +
 (camel-reactor) | 2.20 | Reactor based back-end for Camel's reactive streams component

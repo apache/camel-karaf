@@ -383,11 +383,6 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.camel.karaf</groupId>
-                <artifactId>camel-osgi-activator</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel.karaf</groupId>
                 <artifactId>camel-paxlogging</artifactId>
                 <version>${project.version}</version>
             </dependency>

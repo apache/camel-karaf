@@ -43,7 +43,6 @@
         <module>camel-eventadmin</module>
         <module>camel-jcache-osgi</module>
         <module>camel-kura</module>
-        <module>camel-osgi-activator</module>
         <module>camel-paxlogging</module>
         <module>camel-servlet-osgi</module>
         <module>camel-test-karaf</module>
