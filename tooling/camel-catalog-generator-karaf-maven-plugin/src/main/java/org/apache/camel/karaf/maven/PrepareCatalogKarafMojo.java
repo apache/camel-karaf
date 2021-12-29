@@ -60,31 +60,31 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
     /**
      * The output directory for components catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/components")
+    @Parameter(defaultValue = "${project.basedir}/src/main/resources/org/apache/camel/catalog/karaf/components")
     protected File componentsOutDir;
 
     /**
      * The output directory for dataformats catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/dataformats")
+    @Parameter(defaultValue = "${project.basedir}/src/main/resources/org/apache/camel/catalog/karaf/dataformats")
     protected File dataFormatsOutDir;
 
     /**
      * The output directory for languages catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/languages")
+    @Parameter(defaultValue = "${project.basedir}/src/main/resources/org/apache/camel/catalog/karaf/languages")
     protected File languagesOutDir;
 
     /**
      * The output directory for others catalog
      */
-    @Parameter(defaultValue = "${project.build.directory}/classes/org/apache/camel/catalog/karaf/others")
+    @Parameter(defaultValue = "${project.basedir}/src/main/resources/org/apache/camel/catalog/karaf/others")
     protected File othersOutDir;
 
     /**
      * The karaf features directory
      */
-    @Parameter(defaultValue = "${project.build.directory}/../../../platforms/karaf/features/src/main/resources/")
+    @Parameter(defaultValue = "${project.basedir}/../../platforms/karaf/features/src/main/resources/")
     protected File featuresDir;
 
     /**
@@ -96,7 +96,7 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
     /**
      * The components directory where there are karaf only components
      */
-    @Parameter(defaultValue = "${project.build.directory}/../../../components")
+    @Parameter(defaultValue = "${project.basedir}/../../components")
     protected File karafComponentsDir;
 
     /**
@@ -109,13 +109,13 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
      * The languages directory where all the Apache Camel components are from the camel-catalog
      */
     @Parameter(defaultValue = "${project.build.directory}/sources/camel-catalog/org/apache/camel/catalog/languages")
-    protected File languagessDir;
+    protected File languagesDir;
 
     /**
      * The languages directory where all the Apache Camel components are from the camel-catalog
      */
     @Parameter(defaultValue = "${project.build.directory}/sources/camel-catalog/org/apache/camel/catalog/others")
-    protected File otherssDir;
+    protected File othersDir;
 
     /**
      * Maven ProjectHelper.
@@ -181,8 +181,8 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
         }
 
         jsonFiles.clear();
-        if (languagessDir != null && languagessDir.isDirectory()) {
-            File[] files = languagessDir.listFiles();
+        if (languagesDir != null && languagesDir.isDirectory()) {
+            File[] files = languagesDir.listFiles();
             if (files != null) {
                 for (File file : files) {
                     // all languages are supported on karaf
@@ -198,8 +198,8 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
         }
 
         jsonFiles.clear();
-        if (otherssDir != null && otherssDir.isDirectory()) {
-            File[] files = otherssDir.listFiles();
+        if (othersDir != null && othersDir.isDirectory()) {
+            File[] files = othersDir.listFiles();
             if (files != null) {
                 for (File file : files) {
                     if (features.contains("camel-" + stripExt(file))) {
