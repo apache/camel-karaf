@@ -87,7 +87,7 @@
                 <executions>
                     <execution>
                         <id>process-sources</id>
-                        <phase>process-resources</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -107,6 +107,18 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/resources/org/apache/camel/catalog/karaf</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
             <!-- generate and include all components in the catalog -->
             <plugin>
                 <groupId>org.apache.camel.karaf</groupId>
@@ -117,22 +129,7 @@
                         <goals>
                             <goal>prepare-catalog-karaf</goal>
                         </goals>
-                        <phase>process-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- update docs -->
-            <plugin>
-                <groupId>org.apache.camel.karaf</groupId>
-                <artifactId>camel-karaf-docs-maven-plugin</artifactId>
-                <version>${project.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>update-doc-components-list</goal>
-                        </goals>
-                        <phase>process-resources</phase>
+                        <phase>generate-resources</phase>
                     </execution>
                 </executions>
             </plugin>
