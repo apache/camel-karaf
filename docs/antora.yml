@@ -21,3 +21,8 @@ version: 3.7.x
 display_version: 3.7.x (LTS)
 nav:
 - modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    requires: "'util=camel-website-util,karaf=xref:js/karaf.js'"
+
