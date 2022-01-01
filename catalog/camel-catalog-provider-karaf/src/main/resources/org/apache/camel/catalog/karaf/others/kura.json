@@ -1,0 +1,15 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "kura",
+    "title": "Kura",
+    "description": "Using Camel with Eclipse Kura (OSGi)",
+    "deprecated": false,
+    "firstVersion": "2.15.0",
+    "label": "iot,osgi",
+    "supportLevel": "Stable",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-kura",
+    "version": "3.11.6-SNAPSHOT"
+  }
+}
