@@ -1,0 +1,14 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "osgi-activator",
+    "title": "Osgi Activator",
+    "description": "Camel OSGi Activator for running Camel routes from other bundles",
+    "deprecated": true,
+    "firstVersion": "3.1.0",
+    "supportLevel": "Preview",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-osgi-activator",
+    "version": "3.11.6-SNAPSHOT"
+  }
+}
