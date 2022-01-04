@@ -20,7 +20,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.engine.DefaultManagementNameStrategy;
-import org.apache.camel.util.StringHelper;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -59,9 +58,9 @@ public class OsgiManagementNameStrategy extends DefaultManagementNameStrategy {
         }
         String version = bundleContext.getBundle().getVersion().toString();
 
-        answer = StringHelper.replaceAll(answer, "#bundleId#", bundleId);
-        answer = StringHelper.replaceAll(answer, "#symbolicName#", symbolicName);
-        answer = StringHelper.replaceAll(answer, "#version#", version);
+        answer = answer.replace("#bundleId#", bundleId);
+        answer = answer.replace("#symbolicName#", symbolicName);
+        answer = answer.replace("#version#", version);
 
         // we got a candidate then find a free name
         // true = check fist if the candidate as-is is free, if not then use the counter
