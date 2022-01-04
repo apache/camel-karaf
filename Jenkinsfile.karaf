@@ -19,11 +19,11 @@
 
 def LOCAL_REPOSITORY = env.LOCAL_REPOSITORY ?: '/home/jenkins/jenkins-slave/maven-repositories/0'
 def AGENT_LABEL = env.AGENT_LABEL ?: 'ubuntu'
-def JDK_NAME = env.JDK_NAME ?: 'adoptopenjdk_hotspot_8u282'
+def JDK_NAME = env.JDK_NAME ?: 'jdk_11_latest'
 
 def MAVEN_PARAMS = '-U -B -e -fae -V -Dmaven.repo.local=/home/jenkins/.m2/repository -Dmaven.compiler.fork=true'
 
-def karaf_itest_result
+def karaf_itests_result
 
 pipeline {
 
@@ -68,7 +68,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    karaf_itest_result = sh script: "./mvnw $MAVEN_PARAMS -Dmaven.test.failure.ignore=true -Parchetypes-skip-tests clean install", returnStatus: true
+                    karaf_itests_result = sh script: "./mvnw $MAVEN_PARAMS -Dmaven.test.failure.ignore=true -Parchetypes-skip-tests clean install", returnStatus: true
                 }
             }
             post {
@@ -82,7 +82,7 @@ pipeline {
     post {
         always {
             script {
-                currentBuild.result = karaf_itest_result == 0 ? 'SUCCESS' : 'FAILURE'
+                currentBuild.result = karaf_itests_result == 0 ? 'SUCCESS' : 'FAILURE'
             }
         }
     }
