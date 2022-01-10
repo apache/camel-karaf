@@ -47,7 +47,6 @@ import org.apache.camel.core.xml.AbstractCamelFactoryBean;
 import org.apache.camel.core.xml.CamelJMXAgentDefinition;
 import org.apache.camel.core.xml.CamelPropertyPlaceholderDefinition;
 import org.apache.camel.core.xml.CamelRouteControllerDefinition;
-import org.apache.camel.core.xml.CamelServiceExporterDefinition;
 import org.apache.camel.core.xml.CamelStreamCachingStrategyDefinition;
 import org.apache.camel.model.ContextScanDefinition;
 import org.apache.camel.model.FaultToleranceConfigurationDefinition;
@@ -194,8 +193,6 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
                   @XmlElement(name = "consumerTemplate", type = CamelConsumerTemplateFactoryBean.class), @XmlElement(name = "proxy", type = CamelProxyFactoryBean.class),
                   @XmlElement(name = "errorHandler", type = CamelErrorHandlerFactoryBean.class)})
     private List<AbstractCamelFactoryBean<?>> beansFactory;
-    @XmlElements({@XmlElement(name = "export", type = CamelServiceExporterDefinition.class)})
-    private List<?> beans;
     @XmlElement(name = "defaultServiceCallConfiguration")
     private ServiceCallConfigurationDefinition defaultServiceCallConfiguration;
     @XmlElement(name = "serviceCallConfiguration", type = ServiceCallConfigurationDefinition.class)
@@ -886,13 +883,8 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
         this.beansFactory = beansFactory;
     }
 
-    @Override
     public List<?> getBeans() {
-        return beans;
-    }
-
-    public void setBeans(List<?> beans) {
-        this.beans = beans;
+        return null; // not in use
     }
 
     @Override
