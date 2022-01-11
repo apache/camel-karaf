@@ -149,7 +149,7 @@
         <digitalocean-api-client-bundle-version>2.17_1</digitalocean-api-client-bundle-version>
         <digitalpetri-fsm-client>0.2</digitalpetri-fsm-client>
         <digitalpetri-netty-client>0.3</digitalpetri-netty-client>
-        <dnsjava-bundle-version>3.4.2_1</dnsjava-bundle-version>
+        <dnsjava-bundle-version>3.4.3_1</dnsjava-bundle-version>
         <docker-java-bundle-version>3.2.12_1</docker-java-bundle-version>
         <docker-java-commons-compress-version>1.21</docker-java-commons-compress-version>
         <debezium-version>1.0.0.Final</debezium-version>
