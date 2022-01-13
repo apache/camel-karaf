@@ -122,7 +122,7 @@ public class KarafRuntimeProviderTest {
         // camel-karaf only
         assertTrue(names.contains("blueprint"));
         assertTrue(names.contains("kura"));
-        assertTrue(names.contains("osgi-activator"));
+        //assertTrue(names.contains("osgi-activator"));
         
         assertFalse(names.contains("spring-boot"));
     }
