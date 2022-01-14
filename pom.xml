@@ -152,7 +152,6 @@
         <dnsjava-bundle-version>3.4.3_1</dnsjava-bundle-version>
         <docker-java-bundle-version>3.2.12_1</docker-java-bundle-version>
         <docker-java-commons-compress-version>1.21</docker-java-commons-compress-version>
-        <debezium-version>1.0.0.Final</debezium-version>
         <egit-github-core-bundle-version>2.1.5_1</egit-github-core-bundle-version>
         <elasticsearch-rest-bundle-version>7.9.0_1</elasticsearch-rest-bundle-version>
         <eddsa-version>0.3.0</eddsa-version>
