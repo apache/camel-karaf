@@ -90,8 +90,8 @@ public class KarafRuntimeProviderTest {
         assertFalse(names.isEmpty());
 
         assertTrue(names.contains("bindy-csv"));
-        assertTrue(names.contains("zipdeflater"));
-        assertTrue(names.contains("zipfile"));
+        assertTrue(names.contains("zipDeflater"));
+        assertTrue(names.contains("zipFile"));
     }
 
     @Test
