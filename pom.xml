@@ -198,6 +198,8 @@
         <ironmq-bundle-version>3.0.5_1</ironmq-bundle-version>
         <isorelax-bundle-version>20050913_4</isorelax-bundle-version>
         <ivy-version>2.4.0</ivy-version>
+        <jakarta-el-version>3.0.3</jakarta-el-version>
+        <jakarat-validation-api-version>2.0.1</jakarta-validation-api-version>
         <jandex-version>2.1.2.Final</jandex-version>
         <jasypt-bundle-version>1.9.3_1</jasypt-bundle-version>
         <java-ewah-version>1.1.6</java-ewah-version>
