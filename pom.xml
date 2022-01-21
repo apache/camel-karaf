@@ -614,6 +614,11 @@
                             </exclude>
                             <!-- Maven Wrapper -->
                             <exclude>.mvn/**/*</exclude>
+                            <!-- generated -->
+                            <exclude>**/languages.properties</exclude>
+                            <exclude>**/others.properties</exclude>
+                            <exclude>**/dataformats.properties</exclude>
+                            <exclude>**/components.properties</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
