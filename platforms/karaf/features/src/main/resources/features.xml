@@ -1222,16 +1222,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bazaarvoice-jolt/${jolt-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jolt/${project.version}</bundle>
   </feature>
-  <feature name='camel-jooq' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:org.jooq/jooq/${jooq-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
-    <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-jooq/${project.version}</bundle>
-  </feature>
   <feature name='camel-johnzon' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm-version}</bundle>
