@@ -444,7 +444,7 @@
     <bundle>mvn:org.hibernate.validator/hibernate-validator/6.2.0.Final</bundle>
     <bundle>mvn:jakarta.validation/jakarta.validation-api/2.0.2</bundle>
     <bundle>mvn:org.jboss.logging/jboss-logging/3.4.1.Final</bundle>
-    <bundle>mvn:com.fasterxml/classmate/1.5.1</bundle>
+    <bundle>mvn:com.fasterxml/classmate/${classmate-version}</bundle>
     <bundle>mvn:org.glassfish/jakarta.el/3.0.3</bundle>
     <bundle>mvn:org.apache.camel.karaf/camel-bean-validator-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-bean-validator/${project.version}</bundle>
