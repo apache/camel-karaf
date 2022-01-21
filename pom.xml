@@ -205,6 +205,7 @@
         <javax-inject-bundle-version>1_2</javax-inject-bundle-version>
         <jaxb-version>2.3.0</jaxb-version>
         <jaxb-bundle-version>2.3.1_1</jaxb-bundle-version>
+        <jboss-logging-version>3.4.1.Final</jboss-logging-version>
         <jdom-bundle-version>2.0.6_1</jdom-bundle-version>
         <jetty9-version>9.4.32.v20200930</jetty9-version>
         <jing-bundle-version>20030619_5</jing-bundle-version>
