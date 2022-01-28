@@ -561,6 +561,10 @@
                             <exclude>**/dataformat-options.mvel</exclude>
                             <exclude>**/eip-options.mvel</exclude>
                             <exclude>**/language-options.mvel</exclude>
+                            <exclude>**/languages.properties</exclude>
+                            <exclude>**/others.properties</exclude>
+                            <exclude>**/dataformats.properties</exclude>
+                            <exclude>**/components.properties</exclude>
                             <exclude>**/website-components-list.mvel</exclude>
                             <exclude>**/website-languages-list.mvel</exclude>
                             <exclude>**/website-others-list.mvel</exclude>
