@@ -51,7 +51,7 @@ public class MockTypeConverterRegistry implements TypeConverterRegistry {
     }
 
     @Override
-    public void addTypeConverters(TypeConverters typeConverters) {
+    public void addTypeConverters(Object typeConverters) {
         // noop
     }
 

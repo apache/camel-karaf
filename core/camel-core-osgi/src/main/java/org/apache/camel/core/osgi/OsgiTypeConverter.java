@@ -165,7 +165,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     @Override
-    public void addTypeConverters(TypeConverters typeConverters) {
+    public void addTypeConverters(Object typeConverters) {
         getDelegate().addTypeConverters(typeConverters);
     }
 
