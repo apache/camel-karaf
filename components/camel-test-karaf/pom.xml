@@ -29,7 +29,7 @@
     <artifactId>camel-test-karaf</artifactId>
     <packaging>jar</packaging>
 
-    <name>Camel Karaf :: Test :: Karaf</name>
+    <name>Camel Karaf :: Test :: Karaf (deprecated)</name>
     <description>Camel integration testing with Apache Karaf</description>
 
     <properties>

@@ -29,7 +29,7 @@
 
     <artifactId>camel-kura</artifactId>
     <packaging>jar</packaging>
-    <name>Camel Karaf :: Kura</name>
+    <name>Camel Karaf :: Kura (deprecated)</name>
     <description>Using Camel with Eclipse Kura (OSGi)</description>
 
     <properties>

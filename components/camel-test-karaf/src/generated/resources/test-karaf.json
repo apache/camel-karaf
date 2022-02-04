@@ -4,7 +4,7 @@
     "name": "test-karaf",
     "title": "Test Karaf",
     "description": "Camel integration testing with Apache Karaf",
-    "deprecated": false,
+    "deprecated": true,
     "firstVersion": "2.18.0",
     "label": "testing,java,osgi",
     "supportLevel": "Stable",

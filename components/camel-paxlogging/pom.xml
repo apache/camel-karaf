@@ -28,7 +28,7 @@
 
     <artifactId>camel-paxlogging</artifactId>
     <packaging>jar</packaging>
-    <name>Camel Karaf :: Pax Logging</name>
+    <name>Camel Karaf :: Pax Logging (deprecated)</name>
     <description>Camel OSGi Pax Logging support</description>
 
     <properties>
