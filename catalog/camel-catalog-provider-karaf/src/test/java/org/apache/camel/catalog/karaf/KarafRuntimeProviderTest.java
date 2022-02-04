@@ -89,7 +89,7 @@ public class KarafRuntimeProviderTest {
         assertNotNull(names);
         assertFalse(names.isEmpty());
 
-        assertTrue(names.contains("bindy-csv"));
+        assertTrue(names.contains("bindyCsv"));
         assertTrue(names.contains("zipDeflater"));
         assertTrue(names.contains("zipFile"));
     }
@@ -121,8 +121,7 @@ public class KarafRuntimeProviderTest {
 
         // camel-karaf only
         assertTrue(names.contains("blueprint"));
-        assertTrue(names.contains("kura"));
-        
+
         assertFalse(names.contains("spring-boot"));
     }
 
