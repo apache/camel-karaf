@@ -1,5 +1,5 @@
 [[Kura-EclipseKuracomponent]]
-= Eclipse Kura component
+= Eclipse Kura component (deprecated)
 :page-source: components/camel-kura/src/main/docs/kura.adoc
 
 *Since Camel 2.15*

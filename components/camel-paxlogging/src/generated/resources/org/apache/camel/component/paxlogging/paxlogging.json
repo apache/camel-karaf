@@ -4,7 +4,7 @@
     "name": "paxlogging",
     "title": "OSGi PAX Logging",
     "description": "The paxlogging component can be used in an OSGi environment to receive PaxLogging events and process them.",
-    "deprecated": false,
+    "deprecated": true,
     "firstVersion": "2.6.0",
     "label": "monitoring",
     "javaType": "org.apache.camel.component.paxlogging.PaxLoggingComponent",

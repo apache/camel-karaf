@@ -4,7 +4,7 @@
     "name": "kura",
     "title": "Kura",
     "description": "Using Camel with Eclipse Kura (OSGi)",
-    "deprecated": false,
+    "deprecated": true,
     "firstVersion": "2.15.0",
     "label": "iot,osgi",
     "supportLevel": "Stable",
