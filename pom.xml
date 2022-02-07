@@ -143,7 +143,7 @@
         <braintree-jackson2-version>2.12.3</braintree-jackson2-version>
         <build-helper-maven-plugin-version>1.12</build-helper-maven-plugin-version>
         <c3p0-bundle-version>0.9.5.5_1</c3p0-bundle-version>
-        <chunk-templates-bundle-version>3.6.1_1</chunk-templates-bundle-version>
+        <chunk-templates-bundle-version>3.6.2_1</chunk-templates-bundle-version>
         <classmate-version>1.5.1</classmate-version>
         <cometd-java-server-bundle-version>2.3.1_2</cometd-java-server-bundle-version>
         <commons-httpclient-bundle-version>3.1_7</commons-httpclient-bundle-version>
