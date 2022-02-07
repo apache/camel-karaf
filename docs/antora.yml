@@ -17,9 +17,7 @@
 
 name: camel-karaf
 title: Camel Karaf
-version: next
-prerelease: true
-display_version: Next (Pre-release)
+version: 3.15.x
 nav:
 - modules/ROOT/nav.adoc
 
