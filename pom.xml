@@ -233,7 +233,7 @@
         <lz4-version>1.8.0</lz4-version>
         <!-- TODO: log4j 2.15.0 does not work for all features -->
         <log4j2-version>2.13.3</log4j2-version>
-        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+        <maven-compiler-plugin-version>3.10.0</maven-compiler-plugin-version>
         <maven-owasp-plugin-version>5.3.1</maven-owasp-plugin-version>
         <maven-surefire-plugin-version>3.0.0-M4</maven-surefire-plugin-version>
         <mimepull-version>1.9.15</mimepull-version>
