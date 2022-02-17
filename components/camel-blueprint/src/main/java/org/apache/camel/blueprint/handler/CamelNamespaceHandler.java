@@ -1248,9 +1248,6 @@ public class CamelNamespaceHandler implements NamespaceHandler {
                     if (def instanceof SortDefinition) {
                         findLanguage(((SortDefinition) def).getExpression(), languages);
                     }
-                    if (def instanceof WireTapDefinition) {
-                        findLanguage(((WireTapDefinition<?>) def).getNewExchangeExpression(), languages);
-                    }
                     findOutputComponents(def.getOutputs(), components, languages, dataformats);
                 }
             }
