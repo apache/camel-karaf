@@ -576,7 +576,6 @@ public abstract class AbstractLocalCamelController extends AbstractCamelControll
                     row.put("method", service.getMethod());
                     row.put("outType", service.getOutType());
                     row.put("produces", service.getProduces());
-                    row.put("routeId", service.getRouteId());
                     row.put("state", service.getState());
                     row.put("uriTemplate", service.getUriTemplate());
                     row.put("url", service.getUrl());
