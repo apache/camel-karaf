@@ -1126,15 +1126,9 @@ public class CamelNamespaceHandler implements NamespaceHandler {
             // rest services can have embedded routes or a singular to
             for (RestDefinition rd : camelContext.getExtension(Model.class).getRestDefinitions()) {
                 for (VerbDefinition vd : rd.getVerbs()) {
-                    Object o = vd.getToOrRoute();
-                    if (o instanceof RouteDefinition) {
-                        RouteDefinition route = (RouteDefinition) o;
-                        findInputComponents(route.getInput(), components, languages, dataformats);
-                        findOutputComponents(route.getOutputs(), components, languages, dataformats);
-                    } else if (o instanceof ToDefinition) {
-                        findUriComponent(((ToDefinition) o).getUri(), components);
-                    } else if (o instanceof ToDynamicDefinition) {
-                        findUriComponent(((ToDynamicDefinition) o).getUri(), components);
+                    ToDefinition to = vd.getTo();
+                    if (to != null) {
+                        findUriComponent(to.getUri(), components);
                     }
                 }
             }
