@@ -22,34 +22,37 @@
            xsi:schemaLocation="
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-  <bean id="darn" class="java.lang.IllegalArgumentException">
-    <argument index="0" value="Forced"/>
-  </bean>
+    <bean id="darn" class="java.lang.IllegalArgumentException">
+        <argument index="0" value="Forced"/>
+    </bean>
 
-  <!-- use a dummy rest consumer factory for the rest engine -->
-  <bean id="dummy-rest" class="org.apache.camel.test.blueprint.component.rest.DummyRestConsumerFactory"/>
+    <!-- use a dummy rest consumer factory for the rest engine -->
+    <bean id="dummy-rest" class="org.apache.camel.test.blueprint.component.rest.DummyRestConsumerFactory"/>
 
-  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
-    <rest path="/say/hello">
-      <get>
+        <rest path="/say/hello">
+            <get>
+                <to uri="direct:hello"/>
+            </get>
+        </rest>
+
         <route>
-          <onException>
-            <exception>java.lang.IllegalArgumentException</exception>
-            <handled>
-              <constant>true</constant>
-            </handled>
-            <transform>
-              <constant>Handled the error</constant>
-            </transform>
-          </onException>
-          <to uri="mock:hello"/>
-          <to uri="mock:bar"/>
-          <throwException ref="darn"/>
+            <from uri="direct:hello"/>
+            <onException>
+                <exception>java.lang.IllegalArgumentException</exception>
+                <handled>
+                    <constant>true</constant>
+                </handled>
+                <transform>
+                    <constant>Handled the error</constant>
+                </transform>
+            </onException>
+            <to uri="mock:hello"/>
+            <to uri="mock:bar"/>
+            <throwException ref="darn"/>
         </route>
-      </get>
-    </rest>
 
-  </camelContext>
+    </camelContext>
 
 </blueprint>
