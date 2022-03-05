@@ -114,7 +114,7 @@
         <antlr-bundle-version>3.5.2_1</antlr-bundle-version>
         <antlr-runtime-bundle-version>3.5.2_1</antlr-runtime-bundle-version>
         <antlr-runtime-v4-version>4.9</antlr-runtime-v4-version>
-        <apache-any23-bundle-version>2.5_1</apache-any23-bundle-version>
+        <apache-any23-bundle-version>2.6_1</apache-any23-bundle-version>
         <apache-mime4j-version>0.8.3</apache-mime4j-version>
         <asciidoctorj-version>2.1.0</asciidoctorj-version>
         <asm-version>5.0.4</asm-version>
