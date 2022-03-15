@@ -186,7 +186,7 @@
         <google-findbugs-annotations2-version>2.0.3</google-findbugs-annotations2-version>
         <google-truth-version>0.30</google-truth-version>
         <groovy-version>3.0.8</groovy-version>
-        <grpc-bundle-version>1.38.0_1</grpc-bundle-version>
+        <grpc-bundle-version>1.44.1_1</grpc-bundle-version>
         <grpc-errorprone-version>2.3.4</grpc-errorprone-version>
         <guice-bundle-version>3.0_1</guice-bundle-version>
         <hikaricp-version>2.4.13</hikaricp-version>
