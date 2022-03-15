@@ -166,7 +166,7 @@
         <felix-framework-version>5.6.12</felix-framework-version>
         <felix-scr-annotations-version>1.12.0</felix-scr-annotations-version>
         <felix-scr-version>2.1.26</felix-scr-version>
-        <fop-bundle-version>2.6_1</fop-bundle-version>
+        <fop-bundle-version>2.7_1</fop-bundle-version>
         <generex-bundle-version>1.0.2_1</generex-bundle-version>
         <!-- These google properties align versions defined in com.google.cloud:libraries-bom used in camel -->
         <google-api-services-bigquery>v2-rev20201030-1.30.10</google-api-services-bigquery>
