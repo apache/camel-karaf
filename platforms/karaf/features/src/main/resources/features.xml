@@ -889,7 +889,7 @@
   <feature name='camel-ftp' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:commons-net/commons-net/${commons-net-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsch/${jsch-bundle-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.github.mwiede/jsch/${jsch-version}$overwrite=merge&amp;Bundle-SymbolicName=org.apache.servicemix.bundles.jsch&amp;Export-Package=com.jcraft.jsch;version=0.1.55,com.jcraft.jsch.bc;version=0.1.55,com.jcraft.jsch.jbcrypt;version=0.1.55,com.jcraft.jsch.jce;version=0.1.55,com.jcraft.jsch.jgss;version=0.1.55,com.jcraft.jsch.juz;version=0.1.55,com.jcraft.jsch.jzlib;version=0.1.55,com.jcraft.jsch;version=${jsch-version},com.jcraft.jsch.bc;version=${jsch-version},com.jcraft.jsch.jbcrypt;version=${jsch-version},com.jcraft.jsch.jce;version=${jsch-version},com.jcraft.jsch.jgss;version=${jsch-version},com.jcraft.jsch.juz;version=${jsch-version},com.jcraft.jsch.jzlib;version=${jsch-version}"</bundle>
     <bundle>mvn:org.apache.camel/camel-ftp/${project.version}</bundle>
   </feature>
   <feature name='camel-ganglia' version='${project.version}' start-level='50'>
