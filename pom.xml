@@ -211,7 +211,6 @@
         <jcodings-version>1.0.46</jcodings-version>
         <joni-version>2.1.31</joni-version>
         <josql-bundle-version>1.5_5</josql-bundle-version>
-        <jsch-bundle-version>0.1.55_1</jsch-bundle-version>
         <json-flattener-version>0.9.0</json-flattener-version>
         <json-smart-version>2.4.7</json-smart-version>
         <json-validator-jackson-version>2.12.3</json-validator-jackson-version>
