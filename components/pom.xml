@@ -32,7 +32,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>camel-bean-osgi</module>
         <module>camel-bean-validator-osgi</module>
         <module>camel-blueprint</module>
         <module>camel-blueprint-main</module>
