@@ -379,6 +379,34 @@
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core/${azure-core-bundle-version}</bundle>
   </feature>
+  <feature name='camel-azure-identity' version='${camel.version}'  description='Feature to use the Azure-Identity functionality.'>
+    <feature version='${camel.version}' prerequisite='true'>camel-azure-core</feature>
+    <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>
+    <bundle dependency='true'>mvn:com.google.api-client/google-api-client/${google-api-client-version}</bundle>
+    <bundle dependency='true'>mvn:com.google.oauth-client/google-oauth-client/${google-api-client-version}</bundle>
+    <bundle dependency='true'>mvn:com.google.oauth-client/google-oauth-client-appengine/${google-api-client-version}</bundle>
+    <bundle dependency='true'>mvn:com.google.oauth-client/google-oauth-client-servlet/${google-api-client-version}</bundle>
+    <bundle dependency='true'>mvn:com.google.oauth-client/google-oauth-client-java6/${google-api-client-version}</bundle>
+    <bundle dependency='true'>mvn:com.nimbusds/oauth2-oidc-sdk/${oauth2-oidc-sdk-version}</bundle>
+    <bundle dependency='true'>mvn:com.nimbusds/content-type/${nimbus-content-type-version}</bundle>
+    <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt-version}</bundle>
+    <bundle dependency='true'>mvn:com.nimbusds/lang-tag/${nimbus-lang-tag-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.github.stephenc.jcip/jcip-annotations/${jcip-annotations-version}</bundle>
+    <bundle dependency='true'>mvn:com.microsoft.azure/msal4j/${azure-msal4j-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.azure/azure-security-keyvault-secrets/${azure-security-keyvault-secrets-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.sun.net.httpserver/http/${httpserver-version}</bundle>
+
+    <bundle dependency='true'>mvn:org.apache.santuario/xmlsec/${xmlsec-version}</bundle>
+    <bundle dependency='true'>mvn:org.cryptacular/cryptacular/${cryptacular-version}</bundle>
+
+    <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/${dropwizard-metrics-core-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.opensaml/${opensaml-bundle-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmltooling/${xmltooling-bundle-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jsr305/${jsr305-bundle-version}</bundle>
+
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-identity/${azure-identity-bundle-version}</bundle>
+    <feature prerequisite='true' version='${camel.version}'>camel-guava-eventbus</feature>
+  </feature>
   <feature name='camel-azure-servicebus' version='${camel.version}' description='Feature to connect to Azure-Servicebus'>
     <feature version='${camel.version}' prerequisite='true'>camel-azure-core</feature>
     <bundle dependency='true'>mvn:org.apache.qpid/proton-j/${qpid-proton-j-version}</bundle>

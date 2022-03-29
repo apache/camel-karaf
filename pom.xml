@@ -128,6 +128,7 @@
         <aws-sdk-v2-bundle-version>2.17.121_1</aws-sdk-v2-bundle-version>
         <azure-core-bundle-version>1.26.0_1</azure-core-bundle-version>
         <azure-core-amqp-bundle-version>2.4.1_1</azure-core-amqp-bundle-version>
+        <azure-identity-bundle-version>1.4.6_1</azure-identity-bundle-version>
         <azure-servicebus-version>7.7.0_1</azure-servicebus-version>
         <azure-messaging-eventhubs-bundle-version>5.8.0_1</azure-messaging-eventhubs-bundle-version>
         <azure-messaging-eventhubs-checkpointstore-blob-bundle-version>1.8.0_1</azure-messaging-eventhubs-checkpointstore-blob-bundle-version>
@@ -149,6 +150,7 @@
         <cometd-java-server-bundle-version>2.3.1_2</cometd-java-server-bundle-version>
         <commons-httpclient-bundle-version>3.1_7</commons-httpclient-bundle-version>
         <consul-client-bundle-version>1.3.3_1</consul-client-bundle-version>
+        <cryptacular-version>1.2.4</cryptacular-version>
         <datastax-native-protocol>1.4.10</datastax-native-protocol>
         <digitalocean-api-client-bundle-version>2.17_1</digitalocean-api-client-bundle-version>
         <digitalpetri-fsm-client>0.2</digitalpetri-fsm-client>
@@ -156,6 +158,7 @@
         <dnsjava-bundle-version>3.4.3_1</dnsjava-bundle-version>
         <docker-java-bundle-version>3.2.12_1</docker-java-bundle-version>
         <docker-java-commons-compress-version>1.21</docker-java-commons-compress-version>
+        <dropwizard-metrics-core-version>3.1.2</dropwizard-metrics-core-version>
         <egit-github-core-bundle-version>2.1.5_1</egit-github-core-bundle-version>
         <elasticsearch-rest-bundle-version>7.9.0_1</elasticsearch-rest-bundle-version>
         <eddsa-version>0.3.0</eddsa-version>
@@ -170,6 +173,7 @@
         <fop-bundle-version>2.6_1</fop-bundle-version>
         <generex-bundle-version>1.0.2_1</generex-bundle-version>
         <!-- These google properties align versions defined in com.google.cloud:libraries-bom used in camel -->
+        <google-api-client-version>1.33.1</google-api-client-version>
         <google-api-services-bigquery>v2-rev20201030-1.30.10</google-api-services-bigquery>
         <google-cloud-api-client-version>1.30.11</google-cloud-api-client-version>
         <google-cloud-api-common-version>1.10.1</google-cloud-api-common-version>
@@ -185,6 +189,7 @@
         <google-cloud-threetenbp-version>1.5.0</google-cloud-threetenbp-version>
         <google-findbugs-jsr305-version>3.0.2</google-findbugs-jsr305-version>
         <google-findbugs-annotations2-version>2.0.3</google-findbugs-annotations2-version>
+        <google-guava-version>31.0.1-jre</google-guava-version>
         <google-truth-version>0.30</google-truth-version>
         <groovy-version>3.0.8</groovy-version>
         <grpc-bundle-version>1.38.0_1</grpc-bundle-version>
@@ -193,6 +198,7 @@
         <hikaricp-version>2.4.13</hikaricp-version>
         <hk2-osgi-resource-version>1.0.1</hk2-osgi-resource-version>
         <htmlunit-bundle-version>2.24_1</htmlunit-bundle-version>
+        <httpserver-version>20070405</httpserver-version>
         <hystrix-bundle-version>1.5.18_1</hystrix-bundle-version>
         <influx-java-driver-bundle-version>2.22_1</influx-java-driver-bundle-version>
         <irclib-bundle-version>1.10_5</irclib-bundle-version>
@@ -209,6 +215,7 @@
         <jaxb-version>2.3.0</jaxb-version>
         <jaxb-bundle-version>2.3.1_1</jaxb-bundle-version>
         <jboss-logging-version>3.4.1.Final</jboss-logging-version>
+        <jcip-annotations-version>1.0-1</jcip-annotations-version>
         <jdom-bundle-version>2.0.6_1</jdom-bundle-version>
         <jetty9-version>9.4.32.v20200930</jetty9-version>
         <jing-bundle-version>20030619_5</jing-bundle-version>
@@ -220,6 +227,7 @@
         <jsch-bundle-version>0.1.55_1</jsch-bundle-version>
         <json-flattener-version>0.9.0</json-flattener-version>
         <json-smart-version>2.4.7</json-smart-version>
+        <jsr305-bundle-version>3.0.2_1</jsr305-bundle-version>
         <jt400-bundle-version>10.7_1</jt400-bundle-version>
         <juel-bundle-version>2.1.3_1</juel-bundle-version>
         <junit-bundle-version>4.13.2_1</junit-bundle-version>
@@ -243,13 +251,18 @@
         <mustache-guava-version>20.0</mustache-guava-version>
         <mustache-bundle-version>0.9.10_1</mustache-bundle-version>
         <netty-tcnative-classes-version>2.0.46.Final</netty-tcnative-classes-version>
+        <nimbus-content-type-version>2.2</nimbus-content-type-version>
+        <nimbus-jose-jwt-version>9.16.1</nimbus-jose-jwt-version>
+        <nimbus-lang-tag-version>1.5</nimbus-lang-tag-version>
         <noggit-bundle-version>0.5_1</noggit-bundle-version>
+        <oauth2-oidc-sdk-version>9.22.2</oauth2-oidc-sdk-version>
         <objenesis-version>2.6</objenesis-version>
         <okclient-bundle-version>3.14.1_1</okclient-bundle-version>
         <olingo-odata2-core-bundle-version>2.0.11_1</olingo-odata2-core-bundle-version>
         <olingo2-gson-version>2.4</olingo2-gson-version>
         <ognl-bundle-version>3.1.12_1</ognl-bundle-version>
         <opencensus-api-version>0.24.0</opencensus-api-version>
+        <opensaml-bundle-version>3.4.5_2</opensaml-bundle-version>
         <oncrpc-version>1.1.3</oncrpc-version>
         <ops4j-base-version>1.5.0</ops4j-base-version>
         <oro-bundle-version>2.0.8_6</oro-bundle-version>
@@ -262,6 +275,7 @@
         <perfmark-version>0.17.0</perfmark-version>
         <protobuf-guava-version>30.1.1-jre</protobuf-guava-version>
         <protobuf-javanano-version>3.1.0</protobuf-javanano-version>
+        <qpid-proton-j-version>0.33.8</qpid-proton-j-version>
         <reflections-bundle-version>0.9.12_1</reflections-bundle-version>
         <regexp-bundle-version>1.4_1</regexp-bundle-version>
         <rescu-version>2.1.0</rescu-version>
@@ -299,7 +313,9 @@
         <xalan-bundle-version>2.7.2_3</xalan-bundle-version>
         <xerces-bundle-version>2.12.0_1</xerces-bundle-version>
         <xmlgraphics-commons-bundle-version>2.3_1</xmlgraphics-commons-bundle-version>
+        <xmltooling-bundle-version>1.4.4_1</xmltooling-bundle-version>
         <xmlresolver-bundle-version>1.2_5</xmlresolver-bundle-version>
+        <xmlsec-version>2.3.0</xmlsec-version>
         <xpp3-bundle-version>1.1.4c_7</xpp3-bundle-version>
         <xstream-bundle-version>1.4.19_1</xstream-bundle-version>
         <zipkin-libthrift-version>0.13.0</zipkin-libthrift-version>
