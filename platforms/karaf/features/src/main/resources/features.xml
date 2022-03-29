@@ -379,6 +379,13 @@
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core/${azure-core-bundle-version}</bundle>
   </feature>
+  <feature name='camel-azure-servicebus' version='${camel.version}' description='Feature to connect to Azure-Servicebus'>
+    <feature version='${camel.version}' prerequisite='true'>camel-azure-core</feature>
+    <bundle dependency='true'>mvn:org.apache.qpid/proton-j/${qpid-proton-j-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core-amqp/${azure-core-amqp-bundle-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-messaging-servicebus/${azure-servicebus-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-azure-servicebus/${camel.version}</bundle>
+  </feature>
   <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature version='${project.version}' prerequisite='true'>camel-azure-core</feature>
