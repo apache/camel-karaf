@@ -379,6 +379,17 @@
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core/${azure-core-bundle-version}</bundle>
   </feature>
+  <feature name='camel-azure-eventhubs' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <feature version='${project.version}' prerequisite='true'>camel-azure-core</feature>
+    <bundle dependency='true'>mvn:org.apache.qpid/qpid-jms-client/${qpid-jms-client-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.qpid/proton-j/${qpid-proton-j-version}</bundle>
+    <feature version='${project.version}'>camel-azure-storage-blob</feature>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core-amqp/${azure-core-amqp-bundle-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-messaging-eventhubs/${azure-messaging-eventhubs-bundle-version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-messaging-eventhubs-checkpointstore-blob/${azure-messaging-eventhubs-checkpointstore-blob-bundle-version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-azure-eventhubs/${project.version}</bundle>
+  </feature>
   <feature name='camel-azure-identity' version='${camel.version}'  description='Feature to use the Azure-Identity functionality.'>
     <feature version='${camel.version}' prerequisite='true'>camel-azure-core</feature>
     <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>
@@ -437,17 +448,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-common/${azure-storage-common-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-queue/${azure-storage-queue-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-azure-storage-queue/${project.version}</bundle>
-  </feature>
-  <feature name='camel-azure-eventhubs' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <feature version='${project.version}' prerequisite='true'>camel-azure-core</feature>
-    <bundle dependency='true'>mvn:org.apache.qpid/qpid-jms-client/${qpid-jms-client-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.qpid/proton-j/${qpid-proton-j-version}</bundle>
-    <feature version='${project.version}'>camel-azure-storage-blob</feature>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core-amqp/${azure-core-amqp-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-messaging-eventhubs/${azure-messaging-eventhubs-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-messaging-eventhubs-checkpointstore-blob/${azure-messaging-eventhubs-checkpointstore-blob-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-azure-eventhubs/${project.version}</bundle>
   </feature>
   <feature name='camel-base64' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
