@@ -22,12 +22,12 @@ public class EventAdminEndpointUriFactory extends org.apache.camel.support.compo
     private static final Set<String> MULTI_VALUE_PREFIXES;
     static {
         Set<String> props = new HashSet<>(6);
-        props.add("lazyStartProducer");
         props.add("bridgeErrorHandler");
-        props.add("exchangePattern");
-        props.add("topic");
-        props.add("send");
         props.add("exceptionHandler");
+        props.add("exchangePattern");
+        props.add("lazyStartProducer");
+        props.add("send");
+        props.add("topic");
         PROPERTY_NAMES = Collections.unmodifiableSet(props);
         SECRET_PROPERTY_NAMES = Collections.emptySet();
         MULTI_VALUE_PREFIXES = Collections.emptySet();
