@@ -1245,6 +1245,7 @@
     <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
     <bundle dependency='true'>wrap:mvn:org.jruby.joni/joni/${joni-version}</bundle>
     <bundle dependency='true'>wrap:mvn:org.jruby.jcodings/jcodings/${jcodings-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.ethlo.time/itu/${itu-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-json-validator/${project.version}</bundle>
   </feature>
   <feature name='camel-json-api' version='${project.version}' start-level='50'>
