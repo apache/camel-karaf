@@ -197,6 +197,7 @@
         <irclib-bundle-version>1.10_5</irclib-bundle-version>
         <ironmq-bundle-version>3.0.5_1</ironmq-bundle-version>
         <isorelax-bundle-version>20050913_4</isorelax-bundle-version>
+        <itu-version>1.5.1</itu-version>
         <ivy-version>2.4.0</ivy-version>
         <jakarta-el-version>3.0.3</jakarta-el-version>
         <jakarta-validation-api-version>2.0.1</jakarta-validation-api-version>
