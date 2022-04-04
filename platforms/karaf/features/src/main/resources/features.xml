@@ -2095,11 +2095,6 @@
     <feature version='${project.version}'>camel-netty</feature>
     <bundle>mvn:org.apache.camel/camel-syslog/${project.version}</bundle>
   </feature>
-  <feature name='camel-tagsoup' version='${project.version}' start-level='50'>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.tagsoup/${tagsoup-bundle-version}</bundle>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle>mvn:org.apache.camel/camel-tagsoup/${project.version}</bundle>
-  </feature>
   <feature name='camel-tarfile' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-tarfile/${project.version}</bundle>
