@@ -1525,13 +1525,6 @@
     <bundle dependency='true'>mvn:org.mybatis/mybatis/${mybatis-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-mybatis/${project.version}</bundle>
   </feature>
-  <feature name='camel-nagios' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>wrap:mvn:com.github.jsendnsca/jsendnsca/${jsendnsca-version}</bundle>
-    <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk15on/${bouncycastle-version}</bundle>
-    <bundle dependency='true'>mvn:commons-lang/commons-lang/${commons-lang-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-nagios/${project.version}</bundle>
-  </feature>
   <feature name='camel-netty' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
