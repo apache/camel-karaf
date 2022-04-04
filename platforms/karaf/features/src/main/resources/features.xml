@@ -1885,12 +1885,6 @@
     <bundle dependency='true'>mvn:org.apache.shiro/shiro-core/${shiro-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-shiro/${project.version}</bundle>
   </feature>
-  <feature name='camel-sip' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jain-sip-api-1.2.1/${servicemix-specs-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jain-sip-ri/${jain-sip-ri-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-sip/${project.version}</bundle>
-  </feature>
   <feature name='camel-sjms' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <!-- JTA is not currently supported by SJMS but is a required dependency of the Geronimo JMS Bundle -->
