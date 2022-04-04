@@ -441,11 +441,6 @@
     <bundle>mvn:org.apache.camel.karaf/camel-bean-validator-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-bean-validator/${project.version}</bundle>
   </feature>
-  <feature name='camel-beanio' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:org.beanio/beanio/${beanio-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-beanio/${project.version}</bundle>
-  </feature>
   <feature name='camel-barcode' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.zxing/${zxing-bundle-version}</bundle>
