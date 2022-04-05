@@ -115,7 +115,6 @@ public class KarafRuntimeProviderTest {
         assertFalse(names.isEmpty());
 
         // regular others
-        assertTrue(names.contains("hystrix"));
         assertTrue(names.contains("swagger-java"));
         assertTrue(names.contains("zipkin"));
 
