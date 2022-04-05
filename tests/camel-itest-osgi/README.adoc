@@ -20,5 +20,5 @@ The reason for not using `mvn test` is that each test starts up a Karaf instance
 
 You can also pass in the test name to start testing from the test and onwards, e.g.:
 ----
-$ ./run-tests.sh CamelHystrixTest
+$ ./run-tests.sh CamelSaxonTest
 ----

@@ -26,7 +26,7 @@ echo "Running tests and kill karaf after each test"
 ## directory where the karaf unit tests are
 testdir='src/test/java/org/apache/camel/itest'
 
-## you can pass in the test name to start from eg run-tests.sh CamelHystrixTest
+## you can pass in the test name to start from eg run-tests.sh CamelSaxonTest
 ## to start testing from this test and onwards.
 if [ "$#" -eq  "0" ]
 then
