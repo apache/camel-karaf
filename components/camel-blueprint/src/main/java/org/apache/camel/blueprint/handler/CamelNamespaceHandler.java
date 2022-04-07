@@ -35,6 +35,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
 import org.apache.camel.blueprint.CamelRouteConfigurationContextFactoryBean;
+import org.apache.camel.builder.LegacyDeadLetterChannelBuilder;
+import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyNoErrorHandlerBuilder;
+import org.apache.camel.reifier.errorhandler.ErrorHandlerReifier;
+import org.apache.camel.reifier.errorhandler.LegacyDeadLetterChannelReifier;
+import org.apache.camel.reifier.errorhandler.LegacyDefaultErrorHandlerReifier;
+import org.apache.camel.reifier.errorhandler.LegacyNoErrorHandlerReifier;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -126,6 +133,13 @@ import static org.osgi.service.blueprint.reflect.ServiceReferenceMetadata.AVAILA
  * Camel {@link NamespaceHandler} to parse the Camel related namespaces.
  */
 public class CamelNamespaceHandler implements NamespaceHandler {
+
+    static {
+        // legacy camel-blueprint error-handling using its own model and parsers
+        ErrorHandlerReifier.registerReifier(LegacyDeadLetterChannelBuilder.class, LegacyDeadLetterChannelReifier::new);
+        ErrorHandlerReifier.registerReifier(LegacyDefaultErrorHandlerBuilder.class, LegacyDefaultErrorHandlerReifier::new);
+        ErrorHandlerReifier.registerReifier(LegacyNoErrorHandlerBuilder.class, LegacyNoErrorHandlerReifier::new);
+    }
 
     public static final String BLUEPRINT_NS = "http://camel.apache.org/schema/blueprint";
     public static final String SPRING_NS = "http://camel.apache.org/schema/spring";

@@ -28,7 +28,7 @@ import org.apache.camel.builder.LegacyNoErrorHandlerBuilder;
  * Used to configure the errorHandler type
  */
 @XmlType
-@XmlEnum(String.class)
+@XmlEnum
 public enum ErrorHandlerType {
 
     DefaultErrorHandler, DeadLetterChannel, NoErrorHandler;
