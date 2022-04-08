@@ -19,16 +19,16 @@ package org.apache.camel.blueprint;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.camel.builder.DeadLetterChannelBuilder;
-import org.apache.camel.builder.DefaultErrorHandlerBuilder;
-import org.apache.camel.builder.ErrorHandlerBuilder;
-import org.apache.camel.builder.NoErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyDeadLetterChannelBuilder;
+import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyNoErrorHandlerBuilder;
 
 /**
  * Used to configure the errorHandler type
  */
 @XmlType
-@XmlEnum(String.class)
+@XmlEnum
 public enum ErrorHandlerType {
 
     DefaultErrorHandler, DeadLetterChannel, NoErrorHandler;
@@ -38,14 +38,14 @@ public enum ErrorHandlerType {
      *
      * @return the class which represents the selected type.
      */
-    public Class<? extends ErrorHandlerBuilder> getTypeAsClass() {
+    public Class<? extends LegacyErrorHandlerBuilder> getTypeAsClass() {
         switch (this) {
             case DefaultErrorHandler:
-                return DefaultErrorHandlerBuilder.class;
+                return LegacyDefaultErrorHandlerBuilder.class;
             case DeadLetterChannel:
-                return DeadLetterChannelBuilder.class;
+                return LegacyDeadLetterChannelBuilder.class;
             case NoErrorHandler:
-                return NoErrorHandlerBuilder.class;
+                return LegacyNoErrorHandlerBuilder.class;
             default:
                 throw new IllegalArgumentException("Unknown error handler: " + this);
         }

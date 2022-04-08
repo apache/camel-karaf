@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Processor;
-import org.apache.camel.builder.DefaultErrorHandlerBuilder;
-import org.apache.camel.builder.ErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyErrorHandlerBuilder;
 import org.apache.camel.core.xml.AbstractCamelFactoryBean;
 import org.apache.camel.model.RedeliveryPolicyDefinition;
 import org.apache.camel.processor.errorhandler.RedeliveryPolicy;
@@ -37,7 +37,7 @@ import org.osgi.service.blueprint.container.BlueprintContainer;
 
 @XmlRootElement(name = "errorHandler")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CamelErrorHandlerFactoryBean extends AbstractCamelFactoryBean<ErrorHandlerBuilder> {
+public class CamelErrorHandlerFactoryBean extends AbstractCamelFactoryBean<LegacyErrorHandlerBuilder> {
 
     @XmlAttribute
     private ErrorHandlerType type = ErrorHandlerType.DefaultErrorHandler;
@@ -67,10 +67,10 @@ public class CamelErrorHandlerFactoryBean extends AbstractCamelFactoryBean<Error
     private BlueprintContainer blueprintContainer;
 
     @Override
-    public ErrorHandlerBuilder getObject() throws Exception {
-        ErrorHandlerBuilder errorHandler = getObjectType().newInstance();
-        if (errorHandler instanceof DefaultErrorHandlerBuilder) {
-            DefaultErrorHandlerBuilder handler = (DefaultErrorHandlerBuilder) errorHandler;
+    public LegacyErrorHandlerBuilder getObject() throws Exception {
+        LegacyErrorHandlerBuilder errorHandler = getObjectType().newInstance();
+        if (errorHandler instanceof LegacyDefaultErrorHandlerBuilder) {
+            LegacyDefaultErrorHandlerBuilder handler = (LegacyDefaultErrorHandlerBuilder) errorHandler;
             if (deadLetterUri != null) {
                 handler.setDeadLetterUri(deadLetterUri);
             }
@@ -109,7 +109,7 @@ public class CamelErrorHandlerFactoryBean extends AbstractCamelFactoryBean<Error
     }
 
     @Override
-    public Class<? extends ErrorHandlerBuilder> getObjectType() {
+    public Class<? extends LegacyErrorHandlerBuilder> getObjectType() {
         return type.getTypeAsClass();
     }
 
