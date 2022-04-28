@@ -10,6 +10,6 @@
     "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-bean-osgi",
-    "version": "3.11.6-SNAPSHOT"
+    "version": "3.11.7-SNAPSHOT"
   }
 }
