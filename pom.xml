@@ -272,7 +272,7 @@
         <solr-bundle-version>8.11.1_1</solr-bundle-version>
         <spring-batch-bundle-version>4.3.5_1</spring-batch-bundle-version>
         <spring-data-commons-bundle-version>2.6.2_1</spring-data-commons-bundle-version>
-        <spring-ldap-bundle-version>2.3.6.RELEASE_1</spring-ldap-bundle-version>
+        <spring-ldap-bundle-version>2.3.7.RELEASE_1</spring-ldap-bundle-version>
         <spring-ws-bundle-version>3.0.8.RELEASE_1</spring-ws-bundle-version>
         <spring-xml-bundle-version>3.0.7.RELEASE_1</spring-xml-bundle-version>
         <spymemcached-bundle-version>2.5_2</spymemcached-bundle-version> <!-- FIXME cmueller: not in sync! -->
