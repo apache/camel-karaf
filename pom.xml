@@ -201,12 +201,12 @@
         <itu-version>1.5.1</itu-version>
         <ivy-version>2.4.0</ivy-version>
         <jakarta-el-version>3.0.3</jakarta-el-version>
+        <jakarta-inject-bundle-version>1.0.5</jakarta-inject-bundle-version>
         <jakarta-validation-api-version>2.0.1</jakarta-validation-api-version>
         <jandex-version>2.1.2.Final</jandex-version>
         <jasypt-bundle-version>1.9.3_1</jasypt-bundle-version>
         <java-ewah-version>1.1.6</java-ewah-version>
         <java-util-bundle-version>2.0.0_1</java-util-bundle-version>
-        <javax-inject-bundle-version>1_2</javax-inject-bundle-version>
         <jaxb-version>2.3.0</jaxb-version>
         <jaxb-bundle-version>2.3.1_1</jaxb-bundle-version>
         <jboss-logging-version>3.4.1.Final</jboss-logging-version>

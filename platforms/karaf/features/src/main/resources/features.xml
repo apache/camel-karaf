@@ -625,7 +625,7 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.libphonenumber/${libphonenumber-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/javax.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cm-sms/${project.version}</bundle>
   </feature>
   <feature name='camel-cmis' version='${project.version}' start-level='50'>
@@ -655,7 +655,7 @@
     <details>camel-cometd currently requires jetty 9</details>
     <feature version="[9,10)">jetty</feature>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/cometd-java-server/${cometd-java-server}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/bayeux-api/${cometd-java-server}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/cometd-java-common/${cometd-java-server}</bundle>
@@ -693,7 +693,7 @@
     <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-couchdb/${project.version}</bundle>
   </feature>
   <feature name='camel-cron' version='${project.version}' start-level='50'>
@@ -825,7 +825,7 @@
     <feature version="${project.version}">camel-core</feature>
     <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:com.dropbox.core/dropbox-core-sdk/${dropbox-version}</bundle>
     <!-- sadly dropbox-core-sdk include test scoped dependencies in its MANIFEST.MF OSGi import
          so we need a bunch of other bundles here -->
@@ -948,7 +948,7 @@
     <bundle dependency='true'>mvn:org.eclipse.jgit/org.eclipse.jgit/${jgit-version}</bundle>
     <bundle dependency='true'>mvn:com.googlecode.javaewah/JavaEWAH/${java-ewah-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.github.mwiede/jsch/${jsch-version}$overwrite=merge&amp;Bundle-SymbolicName=org.apache.servicemix.bundles.jsch&amp;Export-Package=com.jcraft.jsch;version=0.1.55,com.jcraft.jsch.bc;version=0.1.55,com.jcraft.jsch.jbcrypt;version=0.1.55,com.jcraft.jsch.jce;version=0.1.55,com.jcraft.jsch.jgss;version=0.1.55,com.jcraft.jsch.juz;version=0.1.55,com.jcraft.jsch.jzlib;version=0.1.55,com.jcraft.jsch;version=${jsch-version},com.jcraft.jsch.bc;version=${jsch-version},com.jcraft.jsch.jbcrypt;version=${jsch-version},com.jcraft.jsch.jce;version=${jsch-version},com.jcraft.jsch.jgss;version=${jsch-version},com.jcraft.jsch.juz;version=${jsch-version},com.jcraft.jsch.jzlib;version=${jsch-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/${bouncycastle-version}</bundle>
     <bundle dependency='true'>mvn:org.bouncycastle/bcpg-jdk18on/${bouncycastle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
@@ -1058,7 +1058,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-http-common/${project.version}</bundle>
@@ -1245,7 +1245,7 @@
     <feature version='${spring-version-range}'>spring-tx</feature>
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/${geronimo-annotation-1.0-spec-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jpa_2.1_spec/${geronimo-jpa-spec-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-el_1.0_spec/${geronimo-el-spec-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>
     <bundle dependency='true'>mvn:commons-lang/commons-lang/${commons-lang-version}</bundle>
@@ -1333,7 +1333,7 @@
   <feature name='camel-jt400' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature>transaction</feature>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jt400/${jt400-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-jt400/${project.version}</bundle>
   </feature>
@@ -1845,7 +1845,7 @@
     <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-1-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/${xstream-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xpp3/${xpp3-bundle-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/cometd-java-client/${cometd-java-client-version}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/bayeux-api/${cometd-java-client-version}</bundle>
     <bundle dependency='true'>mvn:org.cometd.java/cometd-java-common/${cometd-java-client-version}</bundle>
@@ -1923,7 +1923,7 @@
     <bundle dependency='true'>mvn:org.apache.camel/camel-util-json/${project.version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-client/${slack-api-model-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-model/${slack-api-model-version}</bundle>
@@ -2243,7 +2243,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
@@ -2252,7 +2252,7 @@
   <feature name='camel-websocket' version='${project.version}' start-level='50'>
     <feature>jetty</feature>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
+    <bundle dependency='true'>mvn:jakarta.servlet/jakarta.servlet-api/${jakarta-servlet-api-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-websocket/${project.version}</bundle>
   </feature>
   <feature name='camel-websocket-jsr356' version='${project.version}' start-level='50'>
