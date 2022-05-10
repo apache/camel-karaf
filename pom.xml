@@ -105,7 +105,7 @@
         <jdk.version>11</jdk.version>
         <compiler.fork>false</compiler.fork>
 
-        <karaf4-version>4.3.6</karaf4-version>
+        <karaf4-version>4.3.7</karaf4-version>
 
         <!-- Camel target version -->
         <camel-version>3.17.0-SNAPSHOT</camel-version>
