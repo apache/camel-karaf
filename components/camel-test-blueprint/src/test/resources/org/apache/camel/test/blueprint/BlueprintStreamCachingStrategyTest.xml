@@ -25,7 +25,7 @@
 
   <camelContext streamCache="true" xmlns="http://camel.apache.org/schema/blueprint">
 
-    <streamCaching id="myCacheConfig" bufferSize="2048" spoolDirectory="target/cachedir" spoolThreshold="8192"/>
+    <streamCaching id="myCacheConfig" bufferSize="2048" spoolEnabled="true" spoolDirectory="target/cachedir" spoolThreshold="8192"/>
 
     <route>
       <from uri="direct:c"/>
