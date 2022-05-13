@@ -93,6 +93,13 @@ public class EndpointDefinitionParser extends AbstractBeanDefinitionParser {
         endpointConfig.addArgument(createRef(context, "blueprintBundleContext"),
                                    BundleContext.class.getName(), 1);
 
+        // depends on camel context to have it injected
+        if (endpointConfig.getDependsOn().size() > 0) {
+            String cid = endpointConfig.getDependsOn().get(0);
+            endpointConfig.addProperty("blueprintCamelContext", createRef(context, cid));
+            endpointConfig.setDestroyMethod("destroy");
+        }
+
         return endpointConfig;
     }
 

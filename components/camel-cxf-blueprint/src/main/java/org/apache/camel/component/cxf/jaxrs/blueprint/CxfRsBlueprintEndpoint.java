@@ -45,7 +45,15 @@ public class CxfRsBlueprintEndpoint extends CxfRsEndpoint {
         setBlueprintContainer(support.getBlueprintContainer());
         setBundleContext(support.getBundleContext());
     }
-    
+
+    @Override
+    protected void doInit() throws Exception {
+        if (getCamelContext() == null) {
+            setCamelContext(blueprintCamelContext);
+        }
+        super.doInit();
+    }
+
     public BlueprintContainer getBlueprintContainer() {
         return blueprintContainer;
     }
