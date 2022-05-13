@@ -21,6 +21,7 @@ import org.apache.camel.component.cxf.CxfComponent;
 import org.apache.camel.component.cxf.CxfEndpoint;
 import org.apache.cxf.BusFactory;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 
 public class CxfBlueprintEndpoint extends CxfEndpoint {
@@ -32,6 +33,14 @@ public class CxfBlueprintEndpoint extends CxfEndpoint {
     public CxfBlueprintEndpoint(String address, BundleContext context) {
         super(address, (CxfComponent)null);
         bundleContext = context;
+    }
+
+    @Override
+    protected void doInit() throws Exception {
+        if (getCamelContext() == null) {
+            setCamelContext(blueprintCamelContext);
+        }
+        super.doInit();
     }
 
     public void destroy() {
