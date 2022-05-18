@@ -128,6 +128,7 @@
         <aws-sdk-v2-bundle-version>2.17.176_1</aws-sdk-v2-bundle-version>
         <azure-core-bundle-version>1.16.0_1</azure-core-bundle-version>
         <azure-core-amqp-bundle-version>2.0.3_1</azure-core-amqp-bundle-version>
+        <azure-identity-bundle-version>1.5.0_1</azure-identity-bundle-version>
         <azure-messaging-eventhubs-bundle-version>5.8.0_1</azure-messaging-eventhubs-bundle-version>
         <azure-messaging-eventhubs-checkpointstore-blob-bundle-version>1.8.0_1</azure-messaging-eventhubs-checkpointstore-blob-bundle-version>
         <azure-storage-common-bundle-version>12.12.0_1</azure-storage-common-bundle-version>
