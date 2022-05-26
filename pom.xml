@@ -138,7 +138,6 @@
         <azure-storage-queue-bundle-version>12.10.0_1</azure-storage-queue-bundle-version>
         <azure-guava-version>20.0</azure-guava-version>
         <backport-util-concurrent-version>3.1</backport-util-concurrent-version>
-        <bouncycastle-milo-version>1.61</bouncycastle-milo-version>
         <bcel-bundle-version>5.2_4</bcel-bundle-version>
         <bndlib-version>2.4.0</bndlib-version>
         <braintree-jackson2-version>2.12.3</braintree-jackson2-version>
