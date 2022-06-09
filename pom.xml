@@ -302,7 +302,7 @@
         <zipkin-libthrift-version>0.13.0</zipkin-libthrift-version>
         <zjsonpatch-version>0.3.0</zjsonpatch-version>
         <zookeeper-guava-version>27.1-jre</zookeeper-guava-version>
-        <zxing-bundle-version>3.4.0_1</zxing-bundle-version>
+        <zxing-bundle-version>3.5.0_1</zxing-bundle-version>
 
     </properties>
 
