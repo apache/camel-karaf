@@ -18,13 +18,19 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.model.ProcessorDefinition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 // START SNIPPET: example
 // tag::example[]
 // to use camel-test-blueprint, then extend the CamelBlueprintTestSupport class,
 // and add your unit tests methods as shown below.
 public class DebugBlueprintTest extends CamelBlueprintTestSupport {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DebugBlueprintTest.class);
 
     private boolean debugBeforeMethodCalled;
     private boolean debugAfterMethodCalled;
@@ -61,13 +67,13 @@ public class DebugBlueprintTest extends CamelBlueprintTestSupport {
 
     @Override
     protected void debugBefore(Exchange exchange, org.apache.camel.Processor processor, ProcessorDefinition<?> definition, String id, String label) {
-        log.info("Before " + definition + " with body " + exchange.getIn().getBody());
+        LOG.info("Before " + definition + " with body " + exchange.getIn().getBody());
         debugBeforeMethodCalled = true;
     }
 
     @Override
     protected void debugAfter(Exchange exchange, org.apache.camel.Processor processor, ProcessorDefinition<?> definition, String id, String label, long timeTaken) {
-        log.info("After " + definition + " with body " + exchange.getIn().getBody());
+        LOG.info("After " + definition + " with body " + exchange.getIn().getBody());
         debugAfterMethodCalled = true;
     }
 }

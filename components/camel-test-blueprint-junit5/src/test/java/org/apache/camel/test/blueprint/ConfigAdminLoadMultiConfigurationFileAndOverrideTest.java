@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import java.util.Dictionary;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * This is the first of two tests which will load a Blueprint .cfg file (which will initialize configadmin), containing

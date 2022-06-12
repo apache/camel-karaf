@@ -18,7 +18,6 @@ package org.apache.camel.test.blueprint;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,7 +38,11 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.jar.JarFile;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.osgi.framework.Bundle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -51,11 +54,9 @@ import org.apache.camel.blueprint.CamelBlueprintHelper;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.support.builder.xml.XMLConverterHelper;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.IOHelper;
 import org.apache.camel.util.KeyValueHolder;
-import org.junit.After;
-import org.junit.Before;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.blueprint.container.BlueprintEvent;
@@ -66,6 +67,9 @@ import org.osgi.service.cm.ConfigurationAdmin;
  * Base class for OSGi Blueprint unit tests with Camel
  */
 public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CamelBlueprintTestSupport.class);
+
     /** Name of a system property that sets camel context creation timeout. */
     public static final String SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT = "org.apache.camel.test.blueprint.camelContextCreationTimeout";
 
@@ -156,7 +160,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             String clazz = item.getKey();
             Object service = item.getValue().getKey();
             Dictionary dict = item.getValue().getValue();
-            log.debug("Registering service {} -> {}", clazz, service);
+            LOG.debug("Registering service {} -> {}", clazz, service);
             ServiceRegistration<?> reg = answer.registerService(clazz, service, dict);
             if (reg != null) {
                 services.add(reg);
@@ -210,7 +214,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
                 newProps.put(p, ((Properties) props).getProperty(p));
             }
 
-            log.info("Updating ConfigAdmin {} by overriding properties {}", config, newProps);
+            LOG.info("Updating ConfigAdmin {} by overriding properties {}", config, newProps);
             if (expectReload) {
                 CamelBlueprintHelper.waitForBlueprintContainer(bpEvents, answer, symbolicName, BlueprintEvent.CREATED, new Runnable() {
                     @Override
@@ -229,17 +233,8 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
 
         return answer;
     }
-    
-    /**
-     * This option is not supported / in-use for blueprint
-     */
-    @Deprecated
-    @Override
-    public boolean isCreateCamelContextPerClass() {
-        return false;
-    }
 
-    @Before
+    @BeforeEach
     @Override
     public void setUp() throws Exception {
         System.setProperty("skipStartingCamelContext", "true");
@@ -262,9 +257,9 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         // for BlueprintEvent.CREATED
 
         // start context when we are ready
-        log.debug("Starting CamelContext: {}", context.getName());
+        LOG.debug("Starting CamelContext: {}", context.getName());
         if (isUseAdviceWith()) {
-            log.info("Skipping starting CamelContext as isUseAdviceWith is set to true.");
+            LOG.info("Skipping starting CamelContext as isUseAdviceWith is set to true.");
         } else {
             context.start();
         }
@@ -393,7 +388,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         return null;
     }
 
-    @After
+    @AfterEach
     @Override
     public void tearDown() throws Exception {
         System.clearProperty("skipStartingCamelContext");
@@ -444,9 +439,9 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
                 Object mJar = field.get(val);
                 if (mJar instanceof JarFile) {
                     JarFile jf = (JarFile) mJar;
-                    log.debug("Closing bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
+                    LOG.debug("Closing bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
                     jf.close();
-                    log.trace("Closed bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
+                    LOG.trace("Closed bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
                 }
             } catch (Throwable e) {
                 // ignore

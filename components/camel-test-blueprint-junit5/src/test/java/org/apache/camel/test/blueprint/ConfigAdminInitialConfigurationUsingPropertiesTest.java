@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import java.util.Properties;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * A test showing that if Blueprint XML contains property placeholders, some property source has to be defined.

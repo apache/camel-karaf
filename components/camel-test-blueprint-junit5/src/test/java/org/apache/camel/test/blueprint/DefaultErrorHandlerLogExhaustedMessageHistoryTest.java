@@ -16,7 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class DefaultErrorHandlerLogExhaustedMessageHistoryTest extends CamelBlueprintTestSupport {
 
@@ -26,13 +29,10 @@ public class DefaultErrorHandlerLogExhaustedMessageHistoryTest extends CamelBlue
     }
 
     @Test
-    public void testLogExhaustedMessageHistory() throws Exception {
-        try {
+    public void testLogExhaustedMessageHistory() {
+        assertThrows(Exception.class, () -> {
             template.sendBody("direct:start", "Hello World");
-            fail("Should fail");
-        } catch (Exception e) {
-            // ignore
-        }
+        });
     }
 
 }

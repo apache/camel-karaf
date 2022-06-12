@@ -16,7 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Same as {@link ConfigAdminNoReloadLoadConfigurationFileTest} except this time Blueprint container will reloaded

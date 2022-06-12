@@ -16,7 +16,9 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BlueprintOptionalPropertiesDslTest extends CamelBlueprintTestSupport {
 
@@ -30,12 +32,9 @@ public class BlueprintOptionalPropertiesDslTest extends CamelBlueprintTestSuppor
         getMockEndpoint("mock:a").expectedMessageCount(1);
         getMockEndpoint("mock:b").expectedMessageCount(0);
 
-        try {
+        assertThrows(Exception.class, () -> {
             template.sendBody("direct:start", "Hello World");
-            fail("Should have thrown an exception");
-        } catch (Exception e) {
-            // expected
-        }
+        });
 
         assertMockEndpointsSatisfied();
     }

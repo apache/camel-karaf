@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import java.util.Dictionary;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 // START SNIPPET: e1
 /**

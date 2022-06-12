@@ -18,7 +18,9 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.blueprint.BlueprintCamelContext;
 import org.apache.camel.component.seda.SedaEndpoint;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EndpointPropertyTest extends CamelBlueprintTestSupport {
 

@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SimpleWeaveAddMockLastTest extends CamelBlueprintTestSupport {
 

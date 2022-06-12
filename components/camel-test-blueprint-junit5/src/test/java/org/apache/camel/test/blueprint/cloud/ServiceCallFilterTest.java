@@ -19,8 +19,9 @@ package org.apache.camel.test.blueprint.cloud;
 import org.apache.camel.Exchange;
 import org.apache.camel.cloud.ServiceCallConstants;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceCallFilterTest extends CamelBlueprintTestSupport {
     @Test
@@ -47,9 +48,9 @@ public class ServiceCallFilterTest extends CamelBlueprintTestSupport {
     // *********************
 
     private void assertHeader(Exchange exchange, String header, Object expectedValue) {
-        Assert.assertNotNull(exchange);
-        Assert.assertTrue(exchange.getIn().getHeaders().containsKey(header));
-        Assert.assertEquals(expectedValue, exchange.getIn().getHeader(header));
+        assertNotNull(exchange);
+        assertTrue(exchange.getIn().getHeaders().containsKey(header));
+        assertEquals(expectedValue, exchange.getIn().getHeader(header));
     }
 
     // *********************

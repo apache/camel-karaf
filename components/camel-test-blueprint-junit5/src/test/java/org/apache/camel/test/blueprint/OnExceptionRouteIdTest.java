@@ -17,7 +17,9 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.model.RouteDefinition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OnExceptionRouteIdTest extends CamelBlueprintTestSupport {
 

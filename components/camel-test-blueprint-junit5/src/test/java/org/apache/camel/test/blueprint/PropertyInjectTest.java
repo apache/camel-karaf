@@ -16,7 +16,9 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.apache.camel.test.junit5.TestSupport.isPlatform;
 
 public class PropertyInjectTest extends CamelBlueprintTestSupport {
 

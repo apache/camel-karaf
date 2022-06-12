@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DeadLetterChannelOnPrepareTestTest extends CamelBlueprintTestSupport {
 

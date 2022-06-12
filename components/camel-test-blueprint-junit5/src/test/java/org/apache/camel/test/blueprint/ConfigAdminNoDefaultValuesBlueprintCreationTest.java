@@ -16,10 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A test showing that if Blueprint XML contains property placeholders, some property source has to be defined.
@@ -27,13 +27,14 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class ConfigAdminNoDefaultValuesBlueprintCreationTest extends CamelBlueprintTestSupport {
 
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         try {
             super.setUp();
             fail("Should fail, because Blueprint XML uses property placeholders, but we didn't define any property sources");
         } catch (Exception e) {
-            assertThat(e.getCause().getCause().getCause().getMessage(), equalTo("Property with key [destination] not found in properties from text: {{destination}}"));
+            assertEquals("Property with key [destination] not found in properties from text: {{destination}}",
+                    e.getCause().getCause().getCause().getMessage());
         }
     }
 

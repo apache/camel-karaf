@@ -17,7 +17,9 @@
 package org.apache.camel.test.blueprint.component.rest;
 
 import org.apache.camel.model.rest.RestDefinition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FromRestIdAndDescriptionTest extends FromRestGetTest {
 

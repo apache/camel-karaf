@@ -17,7 +17,9 @@
 package org.apache.camel.test.blueprint.converter2;
 
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MyConvertersTest extends CamelBlueprintTestSupport {
 

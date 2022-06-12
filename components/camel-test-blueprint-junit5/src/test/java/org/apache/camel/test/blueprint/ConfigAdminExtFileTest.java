@@ -16,8 +16,9 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 /**
  *
  */
@@ -36,7 +37,7 @@ public class ConfigAdminExtFileTest extends CamelBlueprintTestSupport {
 
         assertMockEndpointsSatisfied();
 
-        assertFalse("Message history should be disabled", context.isMessageHistory());
+        assertFalse(context.isMessageHistory(), "Message history should be disabled");
     }
 
 }

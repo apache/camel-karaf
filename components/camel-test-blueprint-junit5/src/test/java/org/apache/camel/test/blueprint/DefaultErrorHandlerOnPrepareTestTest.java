@@ -18,7 +18,10 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DefaultErrorHandlerOnPrepareTestTest extends CamelBlueprintTestSupport {
 
@@ -36,7 +39,7 @@ public class DefaultErrorHandlerOnPrepareTestTest extends CamelBlueprintTestSupp
             }
         });
         assertNotNull(out);
-        assertTrue("Should be failed", out.isFailed());
+        assertTrue(out.isFailed(), "Should be failed");
         assertIsInstanceOf(IllegalArgumentException.class, out.getException());
         assertEquals("Forced", out.getIn().getHeader("FailedBecause"));
     }

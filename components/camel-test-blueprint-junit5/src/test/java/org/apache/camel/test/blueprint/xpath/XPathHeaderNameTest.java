@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint.xpath;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class XPathHeaderNameTest extends CamelBlueprintTestSupport {
 

@@ -16,13 +16,14 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
-public class ContextCreationTimeoutTest extends Assert {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ContextCreationTimeoutTest {
     
-    @After
+    @AfterEach
     public void cleanup() {
         System.clearProperty(CamelBlueprintTestSupport.SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT);
     }

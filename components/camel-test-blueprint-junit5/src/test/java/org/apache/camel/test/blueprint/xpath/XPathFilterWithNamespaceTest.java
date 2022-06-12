@@ -17,7 +17,7 @@
 package org.apache.camel.test.blueprint.xpath;
 
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
 

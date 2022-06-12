@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import java.util.Dictionary;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * This test should be run in tandem with ConfigAdminLoadConfigurationFileAndOverrideTest.  These examples will load a

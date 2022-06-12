@@ -25,7 +25,10 @@ import javax.management.ObjectName;
 
 import org.apache.camel.ServiceStatus;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.apache.camel.test.junit5.TestSupport.isPlatform;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ManagedRefEndpointTest extends CamelBlueprintTestSupport {
 
@@ -63,14 +66,14 @@ public class ManagedRefEndpointTest extends CamelBlueprintTestSupport {
 
         for (ObjectName on : set) {
             boolean registered = mbeanServer.isRegistered(on);
-            assertTrue("Should be registered", registered);
+            assertTrue(registered, "Should be registered");
 
             String uri = (String) mbeanServer.getAttribute(on, "EndpointUri");
-            assertTrue(uri, uri.equals("mock://foo") || uri.equals("mock://result"));
+            assertTrue(uri.equals("mock://foo") || uri.equals("mock://result"), uri);
 
             // should be started
             String state = (String) mbeanServer.getAttribute(on, "State");
-            assertEquals("Should be started", ServiceStatus.Started.name(), state);
+            assertEquals(ServiceStatus.Started.name(), state, "Should be started");
         }
 
         set = mbeanServer.queryNames(new ObjectName("*:type=endpoints,*"), null);
@@ -79,10 +82,10 @@ public class ManagedRefEndpointTest extends CamelBlueprintTestSupport {
         Set<String> uris = new HashSet<>(Arrays.asList("direct://start", "mock://foo", "mock://result", "ref://foo"));
         for (ObjectName on : set) {
             boolean registered = mbeanServer.isRegistered(on);
-            assertTrue("Should be registered", registered);
+            assertTrue(registered, "Should be registered");
 
             String uri = (String) mbeanServer.getAttribute(on, "EndpointUri");
-            assertTrue(uri, uris.contains(uri));
+            assertTrue(uris.contains(uri), uri);
         }
     }
 

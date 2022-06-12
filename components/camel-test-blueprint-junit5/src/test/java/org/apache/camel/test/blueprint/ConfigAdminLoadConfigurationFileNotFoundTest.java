@@ -16,8 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -30,7 +32,7 @@ public class ConfigAdminLoadConfigurationFileNotFoundTest extends CamelBlueprint
     }
 
     @Override
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         try {
             super.setUp();

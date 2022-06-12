@@ -18,7 +18,9 @@ package org.apache.camel.test.blueprint.converter;
 
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.camel.test.blueprint.Foo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomConverterRegressionTest extends CamelBlueprintTestSupport {
     

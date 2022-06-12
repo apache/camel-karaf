@@ -26,7 +26,7 @@ import org.apache.camel.component.mock.MockComponent;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.util.KeyValueHolder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BlueprintMultipleServiceTest extends CamelBlueprintTestSupport {
 

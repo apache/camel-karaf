@@ -1,8 +1,8 @@
 = Blueprint Testing
 
-*Since Camel 2.10*
+*Since Camel 3.18.0*
 
-camel-test-blueprint does only support testing _one_ CamelContext. So
+camel-test-blueprint-junit5 does only support testing _one_ CamelContext. So
 if you have two or more CamelContexts in your blueprint XML files, then
 only the CamelContext first found is used during testing.
 
@@ -56,8 +56,8 @@ pom:
 -----------------------------------------------
 <dependency>
   <groupId>org.apache.camel</groupId>
-  <artifactId>camel-test-blueprint</artifactId>
-  <version>2.10</version>
+  <artifactId>camel-test-blueprint-junit5</artifactId>
+  <version>3.18.0</version>
   <scope>test</scope>
 </dependency>
 -----------------------------------------------
@@ -98,7 +98,7 @@ method.
 
 == Adding services on startup
 
-When using `camel-test-blueprint` you may do unit tests which requires
+When using `camel-test-blueprint-junit5` you may do unit tests which requires
 using shared services which are not available during unit testing, but
 only in the real OSGi container, for example a shared `DataSource`.
 

@@ -17,7 +17,7 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.spi.PropertiesFunction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PropertiesComponentFunctionTest extends CamelBlueprintTestSupport {
 

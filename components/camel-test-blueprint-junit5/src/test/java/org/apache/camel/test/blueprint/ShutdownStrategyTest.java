@@ -16,9 +16,16 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShutdownStrategyTest extends CamelBlueprintTestSupport {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ShutdownStrategyTest.class);
 
     @Override
     protected String getBlueprintDescriptor() {
@@ -27,7 +34,7 @@ public class ShutdownStrategyTest extends CamelBlueprintTestSupport {
 
     @Test
     public void testShutdown() throws Exception {
-        log.info("Using shutdown strategy {}", context.getShutdownStrategy());
+        LOG.info("Using shutdown strategy {}", context.getShutdownStrategy());
         assertIsInstanceOf(MyShutdownStrategy.class, context.getShutdownStrategy());
 
         assertEquals(5, context.getShutdownStrategy().getTimeout());

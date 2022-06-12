@@ -19,7 +19,9 @@ package org.apache.camel.test.blueprint.cloud;
 import org.apache.camel.model.cloud.ServiceCallConfigurationDefinition;
 import org.apache.camel.model.cloud.StaticServiceCallServiceDiscoveryConfiguration;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceCallConfigurationTest extends CamelBlueprintTestSupport {
     @Override
@@ -30,16 +32,16 @@ public class ServiceCallConfigurationTest extends CamelBlueprintTestSupport {
     @Test
     public void testServiceDiscoveryConfiguration() {
         ServiceCallConfigurationDefinition conf1 = context.getServiceCallConfiguration("conf1");
-        assertNotNull("No ServiceCallConfiguration (1)", conf1);
-        assertNotNull("No ServiceDiscoveryConfiguration (1)", conf1.getServiceDiscoveryConfiguration());
+        assertNotNull(conf1, "No ServiceCallConfiguration (1)");
+        assertNotNull(conf1.getServiceDiscoveryConfiguration(), "No ServiceDiscoveryConfiguration (1)");
 
         StaticServiceCallServiceDiscoveryConfiguration discovery1 = (StaticServiceCallServiceDiscoveryConfiguration)conf1.getServiceDiscoveryConfiguration();
         assertEquals(1, discovery1.getServers().size());
         assertEquals("localhost:9091", discovery1.getServers().get(0));
 
         ServiceCallConfigurationDefinition conf2 = context.getServiceCallConfiguration("conf2");
-        assertNotNull("No ServiceCallConfiguration (2)", conf2);
-        assertNotNull("No ServiceDiscoveryConfiguration (2)", conf2.getServiceDiscoveryConfiguration());
+        assertNotNull(conf2, "No ServiceCallConfiguration (2)");
+        assertNotNull(conf2.getServiceDiscoveryConfiguration(), "No ServiceDiscoveryConfiguration (2)");
 
         StaticServiceCallServiceDiscoveryConfiguration discovery2 = (StaticServiceCallServiceDiscoveryConfiguration)conf2.getServiceDiscoveryConfiguration();
         assertEquals(2, discovery2.getServers().size());

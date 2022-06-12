@@ -16,7 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests using custom event notifier

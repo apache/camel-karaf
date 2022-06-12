@@ -16,7 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * {@link #loadConfigAdminConfigurationFile()} will override properties set by <code>&lt;cm:default-properties&gt;</code>

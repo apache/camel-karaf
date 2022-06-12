@@ -21,7 +21,9 @@ import org.apache.camel.model.FromDefinition;
 import org.apache.camel.model.LogDefinition;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.WhenDefinition;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomIdIssuesTest extends CamelBlueprintTestSupport {
 

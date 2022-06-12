@@ -27,7 +27,9 @@ import org.apache.camel.component.seda.SedaComponent;
 import org.apache.camel.component.seda.SedaConsumer;
 import org.apache.camel.component.seda.SedaEndpoint;
 import org.apache.camel.spi.SupervisingRouteController;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SupervisingRouteControllerTest extends CamelBlueprintTestSupport {
 

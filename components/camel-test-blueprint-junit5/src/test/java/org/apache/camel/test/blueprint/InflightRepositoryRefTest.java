@@ -16,7 +16,9 @@
  */
 package org.apache.camel.test.blueprint;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InflightRepositoryRefTest extends CamelBlueprintTestSupport {
 
@@ -27,7 +29,8 @@ public class InflightRepositoryRefTest extends CamelBlueprintTestSupport {
     
     @Test
     public void testEndpointConfiguration() throws Exception {
-        assertTrue("Get a wrong inflight repository", context.getInflightRepository() instanceof MyInflightRepository);
+        assertTrue(context.getInflightRepository() instanceof MyInflightRepository,
+                "Get a wrong inflight repository");
     }
 
 }

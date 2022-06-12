@@ -19,7 +19,10 @@ package org.apache.camel.test.blueprint.component.rest;
 import org.apache.camel.model.ToDefinition;
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FromRestUriPrefixTest extends CamelBlueprintTestSupport {
 

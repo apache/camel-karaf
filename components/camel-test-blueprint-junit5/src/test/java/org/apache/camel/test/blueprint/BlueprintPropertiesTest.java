@@ -17,11 +17,13 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.blueprint.CamelBlueprintHelper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.container.BlueprintEvent;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  *

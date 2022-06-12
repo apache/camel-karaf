@@ -20,7 +20,9 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ManagedNamePatternFixedIncludeHostNameTest extends CamelBlueprintTestSupport {
 
@@ -51,7 +53,7 @@ public class ManagedNamePatternFixedIncludeHostNameTest extends CamelBlueprintTe
 
         ObjectName on = ObjectName.getInstance("org.apache.camel:context=localhost/" + context.getManagementName()
                 + ",type=context,name=\"" + context.getName() + "\"");
-        assertTrue("Should be registered", mbeanServer.isRegistered(on));
+        assertTrue(mbeanServer.isRegistered(on), "Should be registered");
     }
 
 }

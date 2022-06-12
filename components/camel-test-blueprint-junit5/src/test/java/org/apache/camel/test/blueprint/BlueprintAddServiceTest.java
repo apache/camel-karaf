@@ -20,8 +20,10 @@ import java.util.Dictionary;
 import java.util.Map;
 
 import org.apache.camel.util.KeyValueHolder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.ServiceReference;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BlueprintAddServiceTest extends CamelBlueprintTestSupport {
 

@@ -17,7 +17,9 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.spi.TypeConverterRegistry;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TypeConverterRegistryStatisticsEnabledTest extends CamelBlueprintTestSupport {
 
@@ -36,7 +38,7 @@ public class TypeConverterRegistryStatisticsEnabledTest extends CamelBlueprintTe
         assertMockEndpointsSatisfied();
 
         TypeConverterRegistry reg = context.getTypeConverterRegistry();
-        assertTrue("Should be enabled", reg.getStatistics().isStatisticsEnabled());
+        assertTrue(reg.getStatistics().isStatisticsEnabled(), "Should be enabled");
 
         Long failed = reg.getStatistics().getFailedCounter();
         assertEquals(0, failed.intValue());
