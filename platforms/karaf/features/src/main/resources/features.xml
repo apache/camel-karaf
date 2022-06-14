@@ -393,7 +393,7 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-blob/${azure-storage-blob-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-blob-changefeed/${azure-storage-blob-changefeed-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-file-datalake/${azure-storage-blob-datalake-bundle-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-azure-storage-blob/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-azure-storage-datalake/${project.version}</bundle>
   </feature>
   <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
