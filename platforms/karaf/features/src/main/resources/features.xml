@@ -432,7 +432,7 @@
     <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm.bundle.version}</bundle>
     <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm.bundle.version}</bundle>
     <bundle dependency='true'>mvn:org.ow2.asm/asm-util/${asm.bundle.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-azure-storage-blob/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-azure-storage-datalake/${project.version}</bundle>
   </feature>
   <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
