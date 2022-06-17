@@ -364,6 +364,11 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-test-blueprint-junit5</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel.karaf</groupId>
                 <artifactId>camel-cxf-blueprint</artifactId>
                 <version>${project.version}</version>
             </dependency>

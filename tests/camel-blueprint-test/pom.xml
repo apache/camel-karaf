@@ -39,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel.karaf</groupId>
-            <artifactId>camel-test-blueprint</artifactId>
+            <artifactId>camel-test-blueprint-junit5</artifactId>
             <scope>test</scope>
         </dependency>
 
