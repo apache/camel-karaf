@@ -29,7 +29,7 @@
     <artifactId>camel-test-blueprint</artifactId>
     <packaging>jar</packaging>
 
-    <name>Camel Karaf :: Test :: Blueprint</name>
+    <name>Camel Karaf :: Test :: Blueprint (deprecated)</name>
     <description>Camel unit testing with OSGi Blueprint</description>
 
     <properties>

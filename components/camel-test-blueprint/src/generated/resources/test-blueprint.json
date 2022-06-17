@@ -4,7 +4,7 @@
     "name": "test-blueprint",
     "title": "Test Blueprint",
     "description": "Camel unit testing with OSGi Blueprint",
-    "deprecated": false,
+    "deprecated": true,
     "firstVersion": "2.10.0",
     "label": "testing,java,osgi",
     "supportLevel": "Stable",
