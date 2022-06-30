@@ -41,14 +41,13 @@
 
     <dependencies>
 
-        <!-- TODO: avoid spring where we only depend on some spring reflection helper -->
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf-spring-soap</artifactId>
+            <artifactId>camel-cxf-soap</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf-spring-rest</artifactId>
+            <artifactId>camel-cxf-rest</artifactId>
         </dependency>
 
         <!-- OSGi, Blueprint -->

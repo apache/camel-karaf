@@ -16,18 +16,21 @@
  */
 package org.apache.camel.component.cxf.jaxrs.blueprint;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import org.apache.camel.Component;
 import org.apache.camel.blueprint.BlueprintCamelContext;
 import org.apache.camel.component.cxf.blueprint.BlueprintSupport;
 import org.apache.camel.component.cxf.blueprint.RsClientBlueprintBean;
 import org.apache.camel.component.cxf.blueprint.RsServerBlueprintBean;
 import org.apache.camel.component.cxf.jaxrs.CxfRsEndpoint;
+import org.apache.camel.util.ReflectionHelper;
 import org.apache.cxf.jaxrs.AbstractJAXRSFactoryBean;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.blueprint.container.BlueprintContainer;
-import org.springframework.util.ReflectionUtils;
 
 public class CxfRsBlueprintEndpoint extends CxfRsEndpoint {
     private AbstractJAXRSFactoryBean bean;
@@ -94,10 +97,34 @@ public class CxfRsBlueprintEndpoint extends CxfRsEndpoint {
         RsClientBlueprintBean cfb = new RsClientBlueprintBean();
 
         if (bean instanceof RsClientBlueprintBean) {
-            ReflectionUtils.shallowCopyFieldState(bean, cfb);
+            shallowCopyFieldState(bean, cfb);
         }
 
         return cfb;
+    }
+
+    private static void shallowCopyFieldState(final Object src, final Object dest) {
+        if (!src.getClass().isAssignableFrom(dest.getClass())) {
+            throw new IllegalArgumentException("Destination class [" + dest.getClass().getName() + "] must be same or subclass as source class [" + src.getClass().getName() + "]");
+        } else {
+            ReflectionHelper.doWithFields(src.getClass(), (field) -> {
+                if (isCopyableField(field)) {
+                    makeAccessible(field);
+                    Object srcValue = field.get(src);
+                    field.set(dest, srcValue);
+                }
+            });
+        }
+    }
+
+    private static void makeAccessible(Field field) {
+        if ((!Modifier.isPublic(field.getModifiers()) || !Modifier.isPublic(field.getDeclaringClass().getModifiers()) || Modifier.isFinal(field.getModifiers())) && !field.isAccessible()) {
+            field.setAccessible(true);
+        }
+    }
+
+    private static boolean isCopyableField(Field field) {
+        return !Modifier.isStatic(field.getModifiers()) && !Modifier.isFinal(field.getModifiers());
     }
 
 }
