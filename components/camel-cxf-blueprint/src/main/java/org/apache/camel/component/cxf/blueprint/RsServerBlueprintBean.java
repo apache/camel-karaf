@@ -18,7 +18,7 @@ package org.apache.camel.component.cxf.blueprint;
 
 import java.util.HashMap;
 
-import org.apache.camel.component.cxf.NullFaultListener;
+import org.apache.camel.component.cxf.common.NullFaultListener;
 import org.apache.cxf.feature.LoggingFeature;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.logging.FaultListener;
