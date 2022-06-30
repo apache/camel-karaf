@@ -36,7 +36,7 @@ public class CxfNamespaceHandler extends BaseNamespaceHandler {
 
     @Override
     public URL getSchemaLocation(String s) {
-        if ("http://camel.apache.org/schema/blueprint/cxf".equals(s)) {
+        if ("http://camel.apache.org/schema/blueprint/cxf".equals(s) || "http://camel.apache.org/schema/blueprint/cxf/".equals(s)) {
             return getClass().getClassLoader().getResource("schema/blueprint/camel-cxf.xsd");
         }
         return super.findCoreSchemaLocation(s);
