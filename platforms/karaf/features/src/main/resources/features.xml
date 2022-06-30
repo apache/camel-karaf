@@ -638,7 +638,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common-classes/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle>wrap:mvn:org.eclipse.californium/californium-core/${californium-version}</bundle>
     <bundle>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional</bundle>
