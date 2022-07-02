@@ -22,7 +22,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import org.apache.camel.component.cxf.CXFTestSupport;
-import org.apache.camel.component.cxf.CxfEndpoint;
+import org.apache.camel.component.cxf.jaxws.CxfEndpoint;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.cxf.binding.BindingConfiguration;
