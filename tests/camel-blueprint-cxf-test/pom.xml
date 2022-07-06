@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>tests</artifactId>
-        <version>3.18.0-SNAPSHOT</version>
+        <version>3.18.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-blueprint-cxf-test</artifactId>
@@ -83,33 +83,21 @@
             <artifactId>camel-test-blueprint</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- exclude bluerprint from camel-cxf as we have them already from camel-blueprint
-             and we need to avoid duplicate JARs in the classpath as then blueprint start up twice -->
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.aries.blueprint</groupId>
-                    <artifactId>org.apache.aries.blueprint.core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.aries.blueprint</groupId>
-                    <artifactId>org.apache.aries.blueprint.api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.aries.quiesce</groupId>
-                    <artifactId>org.apache.aries.quiesce.api</artifactId>
-                </exclusion>
-                <!--  exclude additional unneeded components -->
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>camel-spring</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>camel-cxf-common</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf-rest</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf-soap</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
