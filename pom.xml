@@ -125,7 +125,7 @@
         <avalon-bundle-version>4.3.1_1</avalon-bundle-version>
         <avro-java-commons-compress-version>1.21</avro-java-commons-compress-version>
         <avro-jackson-version>2.12.3</avro-jackson-version>
-        <aws-sdk-v2-bundle-version>2.17.198_1</aws-sdk-v2-bundle-version>
+        <aws-sdk-v2-bundle-version>2.17.220_1</aws-sdk-v2-bundle-version>
         <azure-core-bundle-version>1.16.0_1</azure-core-bundle-version>
         <azure-core-amqp-bundle-version>2.0.3_1</azure-core-amqp-bundle-version>
         <azure-identity-bundle-version>1.5.0_1</azure-identity-bundle-version>
