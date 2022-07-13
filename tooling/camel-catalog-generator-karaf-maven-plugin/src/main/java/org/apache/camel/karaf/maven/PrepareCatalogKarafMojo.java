@@ -84,7 +84,7 @@ public class PrepareCatalogKarafMojo extends AbstractMojo {
     /**
      * The karaf features directory
      */
-    @Parameter(defaultValue = "${project.basedir}/../../platforms/karaf/features/src/main/resources/")
+    @Parameter(defaultValue = "${project.basedir}/../../features/src/main/resources/")
     protected File featuresDir;
 
     /**
