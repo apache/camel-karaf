@@ -203,7 +203,7 @@
   </feature>
   <feature name='camel-asn1' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:com.beanit/jasn1/${jasn1-version}</bundle>
+    <bundle dependency='true'>mvn:com.beanit/asn1bean/${asn1bean-version}</bundle>
     <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/${bouncycastle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-asn1/${project.version}</bundle>
   </feature>
