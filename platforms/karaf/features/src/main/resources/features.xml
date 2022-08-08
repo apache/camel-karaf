@@ -1316,8 +1316,7 @@
   </feature>
   <feature name='camel-jsonpath' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <!-- json-path 2.5 and 2.6 does not work with OSGi -->
-    <bundle>mvn:com.jayway.jsonpath/json-path/2.4.0</bundle>
+    <bundle>mvn:com.jayway.jsonpath/json-path/${json-path-version}</bundle>
     <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
     <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
     <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm.bundle.version}</bundle>
