@@ -1011,11 +1011,11 @@
     <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
     <bundle dependency='true'>wrap:mvn:org.threeten/threetenbp/${google-cloud-threetenbp-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${google-cloud-pubsub-opencensus-api-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${google-http-client-opencensus-api-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.google.code.gson/gson/${gson-version}</bundle>
     <bundle dependency='true'>wrap:mvn:io.perfmark/perfmark-api/${google-cloud-pubsub-perfmark-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.google-http-client/${google-http-client-bundle-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${google-cloud-pubsub-opencensus-api-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${google-http-client-opencensus-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.grpc/${google-cloud-pubsub-grpc-bundle-version}</bundle>
@@ -1236,6 +1236,9 @@
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpasyncclient-osgi/${httpasyncclient-version}</bundle>
     <bundle dependency='true'>mvn:org.codehaus.jettison/jettison/${jettison-version}</bundle>
     <bundle dependency='true'>mvn:joda-time/joda-time/${jodatime2-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:com.google.code.gson/gson/${gson-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${google-http-client-opencensus-api-version}</bundle>
+    <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${google-http-client-opencensus-api-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.google-http-client/${google-http-client-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.guava/${jira-guava-bundle-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.atlassian-jira-client/${atlassian-jira-client-bundle-version}</bundle>

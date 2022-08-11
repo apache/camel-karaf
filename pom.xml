@@ -185,13 +185,13 @@
         <google-cloud-pubsub-grpc-bundle-version>1.48.0_2-SNAPSHOT</google-cloud-pubsub-grpc-bundle-version>
         <google-cloud-pubsub-guava-bundle-version>31.1_1</google-cloud-pubsub-guava-bundle-version>
         <google-cloud-pubsub-perfmark-version>0.25.0</google-cloud-pubsub-perfmark-version>
-        <google-cloud-pubsub-opencensus-api-version>0.31.1</google-cloud-pubsub-opencensus-api-version>
         <google-cloud-iam-version>1.3.4</google-cloud-iam-version>
         <google-cloud-threetenbp-version>1.6.0</google-cloud-threetenbp-version>
         <google-findbugs-jsr305-version>3.0.2</google-findbugs-jsr305-version>
         <google-findbugs-annotations2-version>2.0.3</google-findbugs-annotations2-version>
         <google-gax-bundle-version>2.18.1_1-SNAPSHOT</google-gax-bundle-version>
         <google-http-client-bundle-version>1.41.8_2-SNAPSHOT</google-http-client-bundle-version>
+        <google-http-client-opencensus-api-version>0.31.1</google-http-client-opencensus-api-version>
         <google-proto-iam-version>1.3.4</google-proto-iam-version>
         <google-truth-version>0.30</google-truth-version>
         <groovy-version>3.0.8</groovy-version>
