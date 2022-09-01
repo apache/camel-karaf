@@ -1,12 +1,11 @@
 = Support for Apache Karaf
 
-Apache Camel is designed to work nicely into
+Apache Camel Karaf is for running Camel in the
 http://karaf.apache.org[Apache Karaf] OSGi container.
 
 It includes:
 
-* Camel features descriptor allowing to easily and quickly install Camel
-in Karaf.
+* Camel features descriptor allowing to install Camel in Karaf.
 * Camel Karaf commands allowing you to view, start, stop, get info, about the
 Camel contexts and routes running in the Karaf instance.
 
@@ -18,10 +17,10 @@ Camel features descriptor:
 
 [source,sh]
 ----
-karaf@root> feature:repo-add camel 3.2.0
+karaf@root> feature:repo-add camel 3.18.1
 ----
 
-where 3.2.0 is the Camel version
+where 3.18.1 is the Camel version
 
 Now, we have all Camel features available:
 
