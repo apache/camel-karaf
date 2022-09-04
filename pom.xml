@@ -269,7 +269,7 @@
         <pax-tiny-bundle-version>3.0.0</pax-tiny-bundle-version>
         <pax-logging-version>1.11.10</pax-logging-version>
         <perfmark-version>0.17.0</perfmark-version>
-        <protobuf-guava-version>30.1.1-jre</protobuf-guava-version>
+        <protobuf-guava-version>31.1-jre</protobuf-guava-version>
         <protobuf-javanano-version>3.1.0</protobuf-javanano-version>
         <protobuf-version>3.21.4</protobuf-version>
         <reflections-bundle-version>0.9.12_1</reflections-bundle-version>
