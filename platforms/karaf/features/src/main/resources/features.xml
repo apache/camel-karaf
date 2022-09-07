@@ -56,6 +56,7 @@
     <bundle>mvn:org.apache.camel/camel-core-languages/${project.version}</bundle>
     <bundle>mvn:org.apache.camel.karaf/camel-core-osgi/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-core-catalog/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-console/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cloud/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-cluster/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-health/${project.version}</bundle>
