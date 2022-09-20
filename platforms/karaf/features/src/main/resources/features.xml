@@ -2205,8 +2205,6 @@
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-    <bundle dependency='true'>mvn:org.asynchttpclient/async-http-client/${ahc-version}</bundle>
-    <bundle dependency='true'>mvn:org.asynchttpclient/async-http-client-netty-utils/${ahc-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
     <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
