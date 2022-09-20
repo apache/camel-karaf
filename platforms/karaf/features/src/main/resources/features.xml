@@ -552,7 +552,6 @@
   </feature>
   <feature name='camel-box' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
-    <feature>pax-http-whiteboard</feature>
     <bundle dependency='true'>mvn:org.eclipse.jetty.websocket/websocket-api/${jetty-version}</bundle>
     <bundle dependency='true'>mvn:org.eclipse.jetty.websocket/websocket-common/${jetty-version}</bundle>
     <bundle dependency='true'>mvn:org.eclipse.jetty.websocket/websocket-client/${jetty-version}</bundle>
@@ -2199,11 +2198,10 @@
     <bundle>mvn:org.apache.camel/camel-tarfile/${project.version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
   </feature>
-  <!-- TODO: need to have java.net.http imported from Java 11 -->
-  <!--
   <feature name='camel-telegram' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <feature version='${project.version}'>camel-webhook</feature>
+    <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
@@ -2225,7 +2223,6 @@
     <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-telegram/${project.version}</bundle>
   </feature>
-  -->
   <feature name='camel-test' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/${junit-bundle-version}</bundle>
