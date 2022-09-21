@@ -131,32 +131,6 @@
     <bundle>wrap:mvn:org.apache.activemq/activemq-osgi/${activemq-version}$overwrite=merge&amp;Import-Package=org.springframework.*;resolution:=optional;version="[5,6)",*;resolution:=optional</bundle>
     <bundle>mvn:org.apache.camel/camel-activemq/${project.version}</bundle>
   </feature>
-  <feature name='camel-ahc' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>wrap:mvn:org.asynchttpclient/async-http-client/${ahc-version}$Export-Package=org.asynchttpclient.*;version=${ahc-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:org.asynchttpclient/async-http-client-netty-utils/${ahc-version}$Export-Package=org.asynchttpclient.netty.util.*;version=${ahc-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-transport-native-kqueue/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
-    <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:com.typesafe.netty/netty-reactive-streams/${netty-reactive-streams-version}</bundle>
-    <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-ahc/${project.version}</bundle>
-  </feature>
-  <feature name='camel-ahc-ws' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-ahc</feature>
-    <bundle>mvn:org.apache.camel/camel-ahc-ws/${project.version}</bundle>
-  </feature>
   <feature name='camel-amqp' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-jms</feature>
     <bundle dependency='true'>mvn:org.apache.qpid/qpid-jms-client/${qpid-jms-client-version}</bundle>
