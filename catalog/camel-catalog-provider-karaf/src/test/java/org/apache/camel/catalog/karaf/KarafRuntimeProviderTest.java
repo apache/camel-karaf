@@ -69,7 +69,6 @@ public class KarafRuntimeProviderTest {
         assertTrue(names.contains("bean"));
 
         // regular components
-        assertTrue(names.contains("ahc"));
         assertTrue(names.contains("ftp"));
         assertTrue(names.contains("http"));
         assertTrue(names.contains("jetty"));
