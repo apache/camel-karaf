@@ -1164,7 +1164,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
                 if (json == null && mode != null) {
                     if (RestBindingMode.json.equals(mode) || RestBindingMode.json_xml.equals(mode)) {
                         // jackson is the default json data format
-                        json = "json-jackson";
+                        json = "jackson";
                     }
                 }
                 if (json != null) {
