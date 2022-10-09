@@ -38,6 +38,6 @@ public class BlueprintResolveComponentFromCamelContextTest extends CamelBlueprin
         result.expectedMinimumMessageCount(1);
 
         // The route is driven by a timer, so we should receive at least one message within 5 seconds
-        assertMockEndpointsSatisfied(5, TimeUnit.SECONDS);
+        MockEndpoint.assertIsSatisfied(context, 5, TimeUnit.SECONDS);
     }
 }
