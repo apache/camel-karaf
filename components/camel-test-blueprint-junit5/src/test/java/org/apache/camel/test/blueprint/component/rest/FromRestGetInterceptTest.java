@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint.component.rest;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ public class FromRestGetInterceptTest extends CamelBlueprintTestSupport {
         String out = template.requestBody("seda:get-say-hello", "I was here", String.class);
         assertEquals("Bye World", out);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

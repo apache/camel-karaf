@@ -38,7 +38,7 @@ public class SimpleTransformBlueprintTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:in", "Cheese");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Test
@@ -49,6 +49,6 @@ public class SimpleTransformBlueprintTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:in", "Foo");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 }

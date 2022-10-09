@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -34,7 +35,7 @@ public class BlueprintProduceConsumeImplicitPropertyTest extends CamelBlueprintT
 
         template.sendBody("seda:input", "Hello World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

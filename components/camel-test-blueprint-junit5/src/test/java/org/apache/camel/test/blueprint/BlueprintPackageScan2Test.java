@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -38,7 +39,7 @@ public class BlueprintPackageScan2Test extends CamelBlueprintTestSupport {
         template.sendBody("direct:start", "World");
 
         // assert mocks
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

@@ -41,7 +41,7 @@ public class MultipleCamelContextsTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:second", "World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         for (Exchange exchange : result.getExchanges()) {
             assertStringContains(exchange.getIn().getBody(String.class), "from second context");

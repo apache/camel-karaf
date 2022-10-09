@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -33,7 +34,7 @@ public class AttributeNewLineTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:start", "Hello World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         Object stub = context.hasEndpoint("stub:GET    /v1/phonebook/companies/{companyCode}?oauth=OPTIONAL");
         assertNotNull(stub, "Should have stub endpoint with double spaces");

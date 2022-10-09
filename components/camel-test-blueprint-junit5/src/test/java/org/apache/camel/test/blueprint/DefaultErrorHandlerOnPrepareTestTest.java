@@ -21,7 +21,9 @@ import org.apache.camel.Processor;
 import org.junit.jupiter.api.Test;
 
 import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DefaultErrorHandlerOnPrepareTestTest extends CamelBlueprintTestSupport {
 

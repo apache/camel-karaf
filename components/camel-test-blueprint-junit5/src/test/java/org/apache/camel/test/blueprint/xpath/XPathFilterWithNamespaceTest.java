@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint.xpath;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
 
         sendBody("direct:start", matchingBody);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
 
         sendBody("direct:start", notMatchingBody);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

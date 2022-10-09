@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 import static org.apache.camel.test.junit5.TestSupport.isPlatform;
@@ -38,7 +39,7 @@ public class PropertyInjectTest extends CamelBlueprintTestSupport {
 
         template.sendBody("seda:start", "Camel");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

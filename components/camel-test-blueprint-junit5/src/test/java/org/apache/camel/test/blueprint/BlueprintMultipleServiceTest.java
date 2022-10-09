@@ -16,10 +16,6 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
-
 import org.apache.camel.CamelContext;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.component.mock.MockComponent;
@@ -27,6 +23,10 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.util.KeyValueHolder;
 import org.junit.jupiter.api.Test;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.List;
 
 public class BlueprintMultipleServiceTest extends CamelBlueprintTestSupport {
 
@@ -75,7 +75,7 @@ public class BlueprintMultipleServiceTest extends CamelBlueprintTestSupport {
         fakeServiceOneMock.expectedMessageCount(1);
         fakeServiceTwoMock.expectedMessageCount(1);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
     }
 

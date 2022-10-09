@@ -18,7 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InflightRepositoryRefTest extends CamelBlueprintTestSupport {
 

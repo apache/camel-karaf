@@ -16,10 +16,11 @@
  */
 package org.apache.camel.test.blueprint.component.rest;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FromRestGetOnExceptionTest extends CamelBlueprintTestSupport {
 
@@ -35,7 +36,7 @@ public class FromRestGetOnExceptionTest extends CamelBlueprintTestSupport {
         String out = template.requestBody("seda:get-say-hello", "I was here", String.class);
         assertEquals("Handled the error", out);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 

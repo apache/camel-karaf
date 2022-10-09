@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BlueprintRoutesConfigurationBuilderIdOrPatternTest extends CamelBlueprintTestSupport {
 
@@ -39,7 +40,7 @@ public class BlueprintRoutesConfigurationBuilderIdOrPatternTest extends CamelBlu
         }
         template.sendBody("direct:start2", "Bye World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

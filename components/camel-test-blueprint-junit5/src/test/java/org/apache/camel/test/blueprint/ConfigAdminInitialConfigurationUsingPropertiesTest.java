@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Properties;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
 
 /**
  * A test showing that if Blueprint XML contains property placeholders, some property source has to be defined.
@@ -41,7 +42,7 @@ public class ConfigAdminInitialConfigurationUsingPropertiesTest extends CamelBlu
     public void testConfigAdmin() throws Exception {
         getMockEndpoint("mock:result").expectedBodiesReceived("Bye World");
         template.sendBody("direct:start", "World");
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

@@ -16,8 +16,6 @@
  */
 package org.apache.camel.test.blueprint.component.rest;
 
-import java.util.Map;
-
 import org.apache.camel.CamelContext;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
@@ -25,6 +23,8 @@ import org.apache.camel.component.seda.SedaEndpoint;
 import org.apache.camel.spi.RestConfiguration;
 import org.apache.camel.spi.RestConsumerFactory;
 import org.apache.camel.support.ClassicUuidGenerator;
+
+import java.util.Map;
 
 public class DummyRestConsumerFactory implements RestConsumerFactory {
 

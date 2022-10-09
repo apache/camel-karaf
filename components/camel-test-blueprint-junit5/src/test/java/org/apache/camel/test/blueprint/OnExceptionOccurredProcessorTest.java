@@ -18,6 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,7 +36,7 @@ public class OnExceptionOccurredProcessorTest extends CamelBlueprintTestSupport 
 
         template.sendBody("direct:start", "Hello World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         MyProcessor myProcessor = context.getRegistry().lookupByNameAndType("myProcessor", MyProcessor.class);
         // 1 = first time + 3 redelivery attempts

@@ -18,6 +18,7 @@ package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 public class DeadLetterChannelOnPrepareTestTest extends CamelBlueprintTestSupport {
@@ -34,7 +35,7 @@ public class DeadLetterChannelOnPrepareTestTest extends CamelBlueprintTestSuppor
 
         template.sendBody("direct:start", "Hello World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     public static class MyPrepareProcessor implements Processor {

@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Properties;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
 
 /**
  *
@@ -48,7 +49,7 @@ public class ConfigAdminOverridePropertiesTest extends CamelBlueprintTestSupport
 
         template.sendBody("direct:start", "World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

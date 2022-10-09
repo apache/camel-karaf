@@ -16,13 +16,14 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.List;
-
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BlueprintPropertiesLocationElementImplicitTest extends CamelBlueprintTestSupport {
     @Override

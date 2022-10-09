@@ -23,7 +23,10 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.WhenDefinition;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CustomIdIssuesTest extends CamelBlueprintTestSupport {
 

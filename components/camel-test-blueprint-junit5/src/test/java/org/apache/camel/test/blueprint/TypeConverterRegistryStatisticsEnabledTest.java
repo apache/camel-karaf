@@ -16,10 +16,13 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.spi.TypeConverterRegistry;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TypeConverterRegistryStatisticsEnabledTest extends CamelBlueprintTestSupport {
 
@@ -35,7 +38,7 @@ public class TypeConverterRegistryStatisticsEnabledTest extends CamelBlueprintTe
         template.sendBody("direct:start", "3");
         template.sendBody("direct:start", "7");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         TypeConverterRegistry reg = context.getTypeConverterRegistry();
         assertTrue(reg.getStatistics().isStatisticsEnabled(), "Should be enabled");

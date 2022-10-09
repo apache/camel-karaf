@@ -16,14 +16,16 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Dictionary;
-import java.util.Map;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.util.KeyValueHolder;
 import org.junit.jupiter.api.Test;
 import org.osgi.framework.ServiceReference;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Dictionary;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class BlueprintAddServiceTest extends CamelBlueprintTestSupport {
 
@@ -45,7 +47,7 @@ public class BlueprintAddServiceTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:start", "Camel");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         ServiceReference<?> ref = getBundleContext().getServiceReference("myService");
         assertEquals("Carlsberg", ref.getProperty("beer"));

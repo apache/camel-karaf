@@ -16,19 +16,20 @@
  */
 package org.apache.camel.test.blueprint.management;
 
+import org.apache.camel.ServiceStatus;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
+import org.junit.jupiter.api.Test;
+
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-
-import org.apache.camel.ServiceStatus;
-import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
-import org.junit.jupiter.api.Test;
-
 import static org.apache.camel.test.junit5.TestSupport.isPlatform;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ManagedRefEndpointTest extends CamelBlueprintTestSupport {
 
@@ -57,7 +58,7 @@ public class ManagedRefEndpointTest extends CamelBlueprintTestSupport {
         getMockEndpoint("mock:result").expectedMessageCount(1);
         getMockEndpoint("foo").expectedMessageCount(1);
         template.sendBody("direct:start", "Hello World");
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         MBeanServer mbeanServer = getMBeanServer();
 

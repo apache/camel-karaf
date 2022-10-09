@@ -46,7 +46,7 @@ public class SimpleTransformAnnotationsBlueprintTest extends CamelBlueprintTestS
 
         producerTemplate.sendBody("Cheese");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Test
@@ -56,6 +56,6 @@ public class SimpleTransformAnnotationsBlueprintTest extends CamelBlueprintTestS
 
         producerTemplate.sendBody("Foo");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 }

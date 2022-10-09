@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -43,7 +44,7 @@ public class ConfigAdminNoReloadLoadConfigurationFileDefaultPropertiesTest exten
 
         template.sendBody("direct:start", "World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

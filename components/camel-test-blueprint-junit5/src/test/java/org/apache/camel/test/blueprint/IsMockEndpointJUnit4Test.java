@@ -20,7 +20,7 @@ import org.apache.camel.EndpointInject;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class IsMockEndpointJUnit4Test extends CamelBlueprintTestSupport {
    
@@ -53,7 +53,7 @@ public class IsMockEndpointJUnit4Test extends CamelBlueprintTestSupport {
 
         assertNotNull(context.hasEndpoint("mock:seda:result"));
         assertNotNull(context.hasEndpoint("mock:baz"));
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class IsMockEndpointJUnit4Test extends CamelBlueprintTestSupport {
         template.sendBody("direct:foo", "Hello World");
 
         assertNotNull(context.hasEndpoint("mock:bar"));
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Test
@@ -73,6 +73,6 @@ public class IsMockEndpointJUnit4Test extends CamelBlueprintTestSupport {
         template.sendBody("direct:foo", "Hello World");
 
         assertNotNull(context.hasEndpoint("mock:baz"));
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 }

@@ -16,9 +16,6 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.camel.Consumer;
 import org.apache.camel.Endpoint;
 import org.apache.camel.Processor;
@@ -29,7 +26,12 @@ import org.apache.camel.component.seda.SedaEndpoint;
 import org.apache.camel.spi.SupervisingRouteController;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SupervisingRouteControllerTest extends CamelBlueprintTestSupport {
 

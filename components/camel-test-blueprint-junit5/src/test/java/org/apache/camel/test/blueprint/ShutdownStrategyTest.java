@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShutdownStrategyTest extends CamelBlueprintTestSupport {
 

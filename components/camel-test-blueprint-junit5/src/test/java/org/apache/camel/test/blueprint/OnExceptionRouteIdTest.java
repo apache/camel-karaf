@@ -16,10 +16,12 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.model.RouteDefinition;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OnExceptionRouteIdTest extends CamelBlueprintTestSupport {
 
@@ -35,7 +37,7 @@ public class OnExceptionRouteIdTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:foo", "Hello World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         RouteDefinition route = context.getRouteDefinition("foo");
         assertNotNull(route);

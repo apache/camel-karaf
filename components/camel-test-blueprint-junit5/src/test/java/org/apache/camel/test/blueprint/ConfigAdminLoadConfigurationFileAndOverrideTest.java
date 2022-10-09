@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Dictionary;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
+
+import java.util.Dictionary;
 
 // START SNIPPET: e1
 /**
@@ -59,7 +60,7 @@ public class ConfigAdminLoadConfigurationFileAndOverrideTest extends CamelBluepr
 
         template.sendBody("direct:start", "World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
 }

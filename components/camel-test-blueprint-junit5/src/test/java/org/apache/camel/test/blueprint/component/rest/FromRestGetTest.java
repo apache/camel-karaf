@@ -16,8 +16,7 @@
  */
 package org.apache.camel.test.blueprint.component.rest;
 
-import java.util.Arrays;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.model.ToDefinition;
 import org.apache.camel.model.rest.CollectionFormat;
 import org.apache.camel.model.rest.RestDefinition;
@@ -25,8 +24,11 @@ import org.apache.camel.model.rest.RestParamType;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.apache.camel.test.junit5.TestSupport.assertIsInstanceOf;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class FromRestGetTest extends CamelBlueprintTestSupport {
 
@@ -92,7 +94,7 @@ public class FromRestGetTest extends CamelBlueprintTestSupport {
         // the rest becomes routes and the input is a seda endpoint created by the DummyRestConsumerFactory
         getMockEndpoint("mock:update").expectedMessageCount(1);
         template.sendBody("seda:post-say-bye", "I was here");
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         String out = template.requestBody("seda:get-say-hello", "Me", String.class);
         assertEquals("Hello World", out);

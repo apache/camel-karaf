@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Properties;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
 
 /**
  * A test showing that Blueprint XML property placeholders work correctly with
@@ -37,7 +38,7 @@ public class BlueprintDefaultValuesTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:start", null);
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 
     @Override

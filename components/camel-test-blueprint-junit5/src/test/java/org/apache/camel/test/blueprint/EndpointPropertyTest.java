@@ -17,10 +17,12 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.blueprint.BlueprintCamelContext;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.component.seda.SedaEndpoint;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EndpointPropertyTest extends CamelBlueprintTestSupport {
 
@@ -34,7 +36,7 @@ public class EndpointPropertyTest extends CamelBlueprintTestSupport {
         getMockEndpoint("mock:result").expectedMessageCount(2);
         template.sendBody("ref:foo", "Hello World");
         template.sendBody("ref:bar", "Bye World");
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         BlueprintCamelContext blue = context().adapt(BlueprintCamelContext.class);
 

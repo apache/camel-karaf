@@ -16,13 +16,15 @@
  */
 package org.apache.camel.test.blueprint.management;
 
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ManagedNamePatternFixedTest extends CamelBlueprintTestSupport {
 
@@ -45,7 +47,7 @@ public class ManagedNamePatternFixedTest extends CamelBlueprintTestSupport {
     public void testManagedNamePattern() throws Exception {
         getMockEndpoint("mock:result").expectedMessageCount(1);
         template.sendBody("direct:start", "World");
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         MBeanServer mbeanServer = context.getManagementStrategy().getManagementAgent().getMBeanServer();
 

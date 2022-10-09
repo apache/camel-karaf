@@ -21,7 +21,9 @@ import org.apache.camel.cloud.ServiceCallConstants;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServiceCallFilterTest extends CamelBlueprintTestSupport {
     @Test

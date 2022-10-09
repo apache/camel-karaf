@@ -16,9 +16,10 @@
  */
 package org.apache.camel.test.blueprint;
 
-import java.util.Dictionary;
-
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
+
+import java.util.Dictionary;
 
 /**
  * This is the first of two tests which will load a Blueprint .cfg file (which will initialize configadmin), containing
@@ -59,6 +60,6 @@ public class ConfigAdminLoadMultiConfigurationFileAndOverrideTest extends CamelB
 
         template.sendBody("direct:otherStart", "World");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
     }
 }

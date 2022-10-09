@@ -16,11 +16,12 @@
  */
 package org.apache.camel.test.blueprint.converter;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.camel.test.blueprint.Foo;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomConverterTest extends CamelBlueprintTestSupport {
     
@@ -36,7 +37,7 @@ public class CustomConverterTest extends CamelBlueprintTestSupport {
 
         template.sendBody("direct:start", "John,Doe");
 
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         Foo foo = getMockEndpoint("mock:result").getReceivedExchanges().get(0).getIn().getBody(Foo.class);
         assertEquals("John", foo.getFirst());

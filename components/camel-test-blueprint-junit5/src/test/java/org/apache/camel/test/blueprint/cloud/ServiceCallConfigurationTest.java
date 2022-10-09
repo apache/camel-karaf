@@ -21,7 +21,8 @@ import org.apache.camel.model.cloud.StaticServiceCallServiceDiscoveryConfigurati
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ServiceCallConfigurationTest extends CamelBlueprintTestSupport {
     @Override

@@ -17,12 +17,13 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.model.ProcessorDefinition;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // START SNIPPET: example
 // tag::example[]
@@ -52,7 +53,7 @@ public class DebugBlueprintTest extends CamelBlueprintTestSupport {
         template.sendBody("direct:start", "World");
 
         // assert mocks
-        assertMockEndpointsSatisfied();
+        MockEndpoint.assertIsSatisfied(context);
 
         // assert on the debugBefore/debugAfter methods below being called as we've enabled the debugger
         assertTrue(debugBeforeMethodCalled);

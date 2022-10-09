@@ -19,7 +19,8 @@ package org.apache.camel.test.blueprint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * A test showing that if Blueprint XML contains property placeholders, some property source has to be defined.

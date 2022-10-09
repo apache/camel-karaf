@@ -19,7 +19,8 @@ package org.apache.camel.test.blueprint;
 import org.apache.camel.component.seda.SedaComponent;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BlueprintComponentPropertyPlaceholderTest extends CamelBlueprintTestSupport {
 
