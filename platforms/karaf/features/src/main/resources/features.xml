@@ -2234,14 +2234,6 @@
     <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-thrift/${project.version}</bundle>
   </feature>
-  <feature name='camel-tika' version='${project.version}' start-level='50'>
-    <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.tika/tika-bundle-standard/${tika-version}</bundle>
-    <bundle dependency='true'>mvn:org.apache.tika/tika-parser-html-commons/${tika-version}</bundle>
-    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle>mvn:org.apache.camel/camel-tika/${project.version}</bundle>
-  </feature>
   <feature name='camel-tracing' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-tracing/${project.version}</bundle>
