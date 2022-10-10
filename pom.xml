@@ -297,7 +297,7 @@
         <squareup-retrofit2-bundle-version>2.5.0_2</squareup-retrofit2-bundle-version>
         <stax2-api-bundle-version>3.1.4</stax2-api-bundle-version>
         <stax2v4-api-bundle-version>4.2</stax2v4-api-bundle-version>
-        <stringtemplate-bundle-version>4.3.3_1</stringtemplate-bundle-version>
+        <stringtemplate-bundle-version>4.3.4_1</stringtemplate-bundle-version>
         <tagsoup-bundle-version>1.2.1_1</tagsoup-bundle-version>
         <testcontainers-version>1.13.0</testcontainers-version>
         <tinybundles-version>2.1.1</tinybundles-version>
