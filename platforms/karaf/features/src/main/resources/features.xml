@@ -801,8 +801,6 @@
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
     <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>
     <bundle dependency='true'>mvn:com.dropbox.core/dropbox-core-sdk/${dropbox-version}</bundle>
-    <!-- Should not be required -->
-    <bundle dependency='true'>mvn:org.jetbrains.kotlin/kotlin-osgi-bundle/1.6.21</bundle>
     <bundle>mvn:org.apache.camel/camel-dropbox/${project.version}</bundle>
   </feature>
   <feature name='camel-ehcache' version='${project.version}' start-level='50'>
