@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Files;
 
 import org.apache.aries.util.io.IOUtils;
 import org.apache.camel.ProducerTemplate;
@@ -64,7 +65,7 @@ public class MainTest {
                 .set("Bundle-ManifestVersion", "2")
                 .set("Bundle-SymbolicName", SYMBOLIC_NAME)
                 .set("Bundle-Version", "1.0.0");
-        File tb = File.createTempFile(SYMBOLIC_NAME + "-", ".jar", new File("target"));
+        File tb = Files.createTempFile(new File("target").toPath(), SYMBOLIC_NAME + "-", ".jar").toFile();
         FileOutputStream out = new FileOutputStream(tb);
         IOUtils.copy(bundle.build(), out);
         out.close();
