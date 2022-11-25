@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>platforms</artifactId>
-        <version>3.18.4-SNAPSHOT</version>
+        <version>3.18.4</version>
     </parent>
 
     <artifactId>karaf-platform</artifactId>
