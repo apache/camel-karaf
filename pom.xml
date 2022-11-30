@@ -221,6 +221,7 @@
         <jboss-logging-version>3.4.1.Final</jboss-logging-version>
         <jdom-bundle-version>2.0.6_1</jdom-bundle-version>
         <jira-guava-bundle-version>30.1.1_1</jira-guava-bundle-version>
+        <jedis-bundle-version>3.7.0_1</jedis-bundle-version>
         <jetty9-version>9.4.32.v20200930</jetty9-version>
         <jodatime-bundle-version>1.6.2</jodatime-bundle-version>
         <jolt-bundle-version>0.1.6_1</jolt-bundle-version>
@@ -287,6 +288,8 @@
         <solr-bundle-version>8.11.1_1</solr-bundle-version>
         <spring-batch-bundle-version>4.3.7_1</spring-batch-bundle-version>
         <spring-data-commons-bundle-version>2.6.2_1</spring-data-commons-bundle-version>
+        <spring-data-keyvalue-bundle-version>2.6.2_1</spring-data-keyvalue-bundle-version>
+        <spring-data-redis-bundle-version>2.6.2_1</spring-data-redis-bundle-version>
         <spring-ldap-bundle-version>2.3.7.RELEASE_1</spring-ldap-bundle-version>
         <spring-ws-bundle-version>3.0.8.RELEASE_1</spring-ws-bundle-version>
         <spring-xml-bundle-version>3.0.7.RELEASE_1</spring-xml-bundle-version>
