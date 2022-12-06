@@ -44,3 +44,9 @@ To leverage camel-blueprint in OSGi, you only need the Aries Blueprint bundle an
 in addition to camel-core-xml and its dependencies.
 
 If you use Karaf, you can use the feature named camel-blueprint which will install all the required bundles.
+
+== Archetype Supported
+
+|camel-archetype-blueprint |This archetype is used to
+create a new Maven project for Camel routes to be running in OSGi using
+Blueprint.
