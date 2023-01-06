@@ -37,7 +37,6 @@
         <module>camel-blueprint-main</module>
         <module>camel-test-blueprint</module>
         <module>camel-test-blueprint-junit5</module>
-        <module>camel-cmis-osgi</module>
         <module>camel-cxf-blueprint</module>
         <module>camel-cxf-transport-blueprint</module>
         <module>camel-eventadmin</module>
