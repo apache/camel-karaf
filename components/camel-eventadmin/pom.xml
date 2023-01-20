@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>components</artifactId>
-        <version>3.18.5</version>
+        <version>3.18.6-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-eventadmin</artifactId>
