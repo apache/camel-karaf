@@ -72,7 +72,6 @@
     <bundle>mvn:org.apache.camel/camel-dataformat/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-dataset/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-direct/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-directvm/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-file/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-language/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-log/${project.version}</bundle>
@@ -85,7 +84,6 @@
     <bundle>mvn:org.apache.camel/camel-stub/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-timer/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-validator/${project.version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-vm/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-xpath/${project.version}</bundle>
     <bundle>mvn:org.apache.camel/camel-xslt/${project.version}</bundle>
     <conditional>
