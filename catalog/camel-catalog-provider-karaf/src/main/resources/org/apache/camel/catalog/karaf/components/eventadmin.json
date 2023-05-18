@@ -11,7 +11,7 @@
     "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-eventadmin",
-    "version": "3.20.4-SNAPSHOT",
+    "version": "3.20.5.SNAPSHOT",
     "scheme": "eventadmin",
     "extendsScheme": "",
     "syntax": "eventadmin:topic",
