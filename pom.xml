@@ -219,7 +219,7 @@
         <junit-bundle-version>4.13.2_1</junit-bundle-version>
         <jzlib-bundle-version>1.1.3_2</jzlib-bundle-version>
         <kafka-bundle-version>2.8.1_1</kafka-bundle-version>
-        <karaf4-version>4.3.6</karaf4-version>
+        <karaf4-version>4.3.9</karaf4-version>
         <kxml2-bundle-version>2.3.0_3</kxml2-bundle-version>
         <kubernetes-client-jackson-version>2.13.0</kubernetes-client-jackson-version>
         <libphonenumber-bundle-version>8.12.38_1</libphonenumber-bundle-version>
