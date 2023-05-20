@@ -10,6 +10,6 @@
     "supportLevel": "Stable",
     "groupId": "org.apache.camel.karaf",
     "artifactId": "camel-test-blueprint",
-    "version": "3.18.5-SNAPSHOT"
+    "version": "3.18.7-SNAPSHOT"
   }
 }
