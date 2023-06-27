@@ -1,0 +1,32 @@
+= Contributing
+
+== Building the code
+
+You need https://maven.apache.org[Apache Maven] version 3.8.0 or greater to build the code. You can either use your own Maven package or build using the Maven wrapper (`mvnw`) provided with the project.
+
+[source,bash]
+----
+mvn clean install -Pfastinstall
+----
+
+== Verifying Karaf features
+
+Camel-Karaf now lives in a separate repository, so to verify a Karaf feature, you'll need to fork the https://github.com/apache/camel-karaf[camel-karaf repository].
+
+To check a new Karaf feature or an existing one, you should run a verification on the features.xml file. You'll need to follow these steps:
+
+1. The first step is to run a full build of Camel.
+2. Then, run the following commands to verify the features:
+
+[source,bash]
+----
+cd platform/karaf/features/
+mvn clean install
+----
+
+If you modified a component/dataformat or updated a dependency in the main camel repository, you'll first need to build the main camel locally and then run a full build of camel-karaf.
+
+
+== Reporting a bug or problem
+
+The Camel Karaf project uses the https://issues.apache.org/jira/browse/CAMEL[Apache Foundation Jira instance] for tracking issues, tasks, and feature requests.
