@@ -1,1 +1,2 @@
+* xref:contributing.adoc[Contributing]
 * xref:components.adoc[Supported components]
