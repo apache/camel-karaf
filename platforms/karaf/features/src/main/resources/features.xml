@@ -622,7 +622,7 @@
     <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>
     <bundle>wrap:mvn:org.eclipse.californium/californium-core/${californium-version}</bundle>
     <bundle>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional</bundle>
-    <bundle>wrap:mvn:org.eclipse.californium/element-connector-tcp-netty/${californium-version}</bundle>
+    <bundle>wrap:mvn:org.eclipse.californium/element-connector-tcp-netty/${californium-netty-version}</bundle>
     <bundle>wrap:mvn:org.eclipse.californium/scandium/${californium-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-coap/${project.version}</bundle>
   </feature>
