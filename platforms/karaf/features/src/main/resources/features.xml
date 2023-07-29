@@ -620,14 +620,6 @@
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.orbitz-consul-client/${consul-client-bundle-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-consul/${project.version}</bundle>
   </feature>
-  <feature name='camel-corda' version='${project.version}' start-level='50'>
-    <feature version='${project.version}'>camel-core</feature>
-    <bundle dependency='true'>mvn:io.reactivex/rxjava/1.3.8</bundle>
-    <bundle dependency='true'>wrap:mvn:net.corda/corda-core/${corda-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:net.corda/corda-node-api/${corda-version}</bundle>
-    <bundle dependency='true'>wrap:mvn:net.corda/corda-rpc/${corda-version}</bundle>
-    <bundle>mvn:org.apache.camel/camel-corda/${project.version}</bundle>
-  </feature>
   <feature name='camel-couchdb' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lightcouch/${lightcouch-bundle-version}</bundle>
