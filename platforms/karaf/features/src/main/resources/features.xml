@@ -685,6 +685,13 @@
     <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
     <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
   </feature>
+  <feature name='camel-cxf-spring' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-cxf</feature>
+    <bundle>mvn:org.apache.camel/camel-cxf-spring-common/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-cxf-spring-rest/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-cxf-spring-soap/${project.version}</bundle>
+    <bundle>mvn:org.apache.camel/camel-cxf-spring-transport/${project.version}</bundle>
+  </feature>
   <feature name='camel-digitalocean' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>
