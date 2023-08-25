@@ -123,7 +123,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         super.doBuild();
     }
 
-    public void destroy() throws Exception {
+    public void destroy() {
         LOG.trace("destroy {}", this);
 
         // remove listener and stop this CamelContext
@@ -140,7 +140,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
             }
             registration = null;
         }
-        bundleStateService.setBundleState(bundleContext.getBundle(), this.getName(), null);
+        bundleStateService.setContextState(this.getName(), null);
 
         // must stop Camel
         stop();
@@ -237,11 +237,11 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         try {
             // let's set a more suitable TCCL while starting the context
             Thread.currentThread().setContextClassLoader(getApplicationContextClassLoader());
-            bundleStateService.setBundleState(bundleContext.getBundle(), this.getName(), BlueprintCamelStateService.State.Starting);
+            bundleStateService.setContextState(this.getName(), BlueprintCamelStateService.State.Starting);
             super.start();
-            bundleStateService.setBundleState(bundleContext.getBundle(), this.getName(), BlueprintCamelStateService.State.Active);
+            bundleStateService.setContextState(this.getName(), BlueprintCamelStateService.State.Active);
         } catch (Exception e) {
-            bundleStateService.setBundleState(bundleContext.getBundle(), this.getName(), BlueprintCamelStateService.State.Failure, e);
+            bundleStateService.setContextState(this.getName(), BlueprintCamelStateService.State.Failure, e);
             routeDefinitionValid.set(false);
             throw e;
         } finally {

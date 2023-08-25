@@ -47,7 +47,7 @@ public class KarafBundleStateService implements BundleStateService {
     public String getDiag(Bundle bundle) {
         if (getState(bundle) == BundleState.Failure) {
             // return stacktraces for failed camel contexts
-            Map<String, Throwable> exceptions = camelStateService.getExceptions(bundle);
+            Map<String, Throwable> exceptions = camelStateService.getExceptions();
             StringWriter sw = new StringWriter();
             for (String contextId : exceptions.keySet()) {
                 sw.append("Camel context \"").append(contextId).append("\"\n");
