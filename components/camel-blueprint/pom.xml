@@ -38,6 +38,7 @@
         <label>java,osgi</label>
         <camel.osgi.import>
             javax.xml.bind*;version="[2.2,3.0)",
+            org.osgi.service.event;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
