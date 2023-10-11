@@ -314,7 +314,7 @@
         <xalan-bundle-version>2.7.2_3</xalan-bundle-version>
         <xerces-bundle-version>2.12.0_1</xerces-bundle-version>
         <xmlgraphics-commons-bundle-version>2.3_1</xmlgraphics-commons-bundle-version>
-        <xmlresolver-bundle-version>5.1.2_1</xmlresolver-bundle-version>
+        <xmlresolver-bundle-version>5.1.2_2</xmlresolver-bundle-version>
         <xpp3-bundle-version>1.1.4c_7</xpp3-bundle-version>
         <xstream-bundle-version>1.4.19_1</xstream-bundle-version>
         <zipkin-libthrift-version>0.13.0</zipkin-libthrift-version>
