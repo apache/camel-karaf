@@ -574,6 +574,30 @@
     <bundle dependency="true">mvn:com.github.ben-manes.caffeine/caffeine/${caffeine-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-caffeine-lrucache/${project.version}</bundle>
   </feature>
+  <feature name='camel-cassandraql' version='${project.version}' start-level='50'>
+    <feature version='${project.version}'>camel-core</feature>
+    <bundle dependency='true'>mvn:com.datastax.oss/java-driver-shaded-guava/${cassandra-shaded-guava}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
+    <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
+    <!-- need older metrics version -->
+    <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/${cassandra-metrics-version}</bundle>
+    <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-json/${cassandra-metrics-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${cassandra-jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${cassandra-jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${cassandra-jackson2-version}</bundle>
+    <bundle dependency='true'>mvn:com.datastax.oss/java-driver-core/${cassandra-driver-version}</bundle>
+    <bundle dependency='true'>mvn:com.datastax.oss/java-driver-query-builder/${cassandra-driver-version}</bundle>
+    <bundle dependency='true'>mvn:com.typesafe/config/${typesafe-config}</bundle>
+    <bundle dependency='true'>mvn:org.hdrhistogram/HdrHistogram/${hdrhistrogram-version}</bundle>
+    <bundle dependency='true'>mvn:com.datastax.oss/native-protocol/${datastax-native-protocol}</bundle>
+    <bundle>mvn:org.apache.camel/camel-cassandraql/${project.version}</bundle>
+  </feature>  
   <feature name='camel-cbor' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
