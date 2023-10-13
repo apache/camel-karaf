@@ -145,12 +145,15 @@
         <braintree-jackson2-version>2.12.3</braintree-jackson2-version>
         <build-helper-maven-plugin-version>1.12</build-helper-maven-plugin-version>
         <c3p0-bundle-version>0.9.5.5_1</c3p0-bundle-version>
+        <cassandra-jackson2-version>2.13.2</cassandra-jackson2-version>
+        <cassandra-metrics-version>4.1.18</cassandra-metrics-version>
+        <cassandra-shaded-guava>25.1-jre-graal-sub-1</cassandra-shaded-guava>
         <chunk-templates-bundle-version>3.6.2_1</chunk-templates-bundle-version>
         <classmate-version>1.5.1</classmate-version>
         <cometd-java-server-bundle-version>2.3.1_2</cometd-java-server-bundle-version>
         <commons-httpclient-bundle-version>3.1_7</commons-httpclient-bundle-version>
         <consul-client-bundle-version>1.3.3_1</consul-client-bundle-version>
-        <datastax-native-protocol>1.4.10</datastax-native-protocol>
+        <datastax-native-protocol>1.5.1</datastax-native-protocol>
         <digitalocean-api-client-bundle-version>2.17_1</digitalocean-api-client-bundle-version>
         <digitalpetri-fsm-client>0.2</digitalpetri-fsm-client>
         <digitalpetri-netty-client>0.3</digitalpetri-netty-client>
