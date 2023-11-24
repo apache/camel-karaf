@@ -17,63 +17,23 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>karaf</artifactId>
-        <version>3.22.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <artifactId>camel-karaf</artifactId>
+        <version>4.3.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>tests</artifactId>
-    <name>Camel Karaf :: Integration Tests</name>
-    <description>Camel Karaf Integration Tests</description>
+    <artifactId>camel-karaf-tests</artifactId>
     <packaging>pom</packaging>
-
-    <properties>
-        <camel.osgi.export.pkg />
-    </properties>
+    <name>Apache Camel :: Karaf :: Tests</name>
 
     <modules>
-        <module>camel-blueprint-cxf-test</module>
-        <module>camel-blueprint-test</module>
-        <module>camel-itest-osgi</module>
+        <module>camel-test-scr</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-bundle-plugin</artifactId>
-                <version>${camel-version}</version>
-                <configuration>
-                 </configuration>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <profiles>
-        <!-- osgi tests -->
-        <profile>
-            <id>osgi.test</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <modules>
-                <module>camel-itest-osgi</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>

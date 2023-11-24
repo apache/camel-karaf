@@ -1,1 +1,0 @@
-../../../../components/camel-eventadmin/src/main/docs/eventadmin-component.adoc

@@ -1,1 +1,0 @@
-../../../../components/camel-paxlogging/src/main/docs/paxlogging-component.adoc

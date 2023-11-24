@@ -28,8 +28,18 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-core-osgi</artifactId>
+    <artifactId>camel-core-engine</artifactId>
     <packaging>bundle</packaging>
+    <name>Apache Camel :: Karaf :: Core :: Engine</name>
+
+    <properties>
+        <camel.osgi.export>
+            org.apache.camel*;version=${camel.version}
+        </camel.osgi.export>
+        <camel.osgi.import>
+            *
+        </camel.osgi.import>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -37,49 +47,28 @@
             <artifactId>camel-core-engine</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <version>7.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.cmpn</artifactId>
-            <version>7.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.7</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.9</version>
-                <extensions>true</extensions>
-                <inherited>true</inherited>
-                <configuration>
-                    <instructions>
-                        <Export-Package>
-                            org.apache.camel*
-                        </Export-Package>
-                        <Import-Package>
-                            org.osgi.service.event;resolution:=optional,
-                            *
-                        </Import-Package>
-                        <Provide-Capability>
-                            osgi.extender; osgi.extender="org.apache.camel"; uses:="org.apache.camel.core.osgi.impl";
-                            version:Version="$(version;==;4.3.0)"
-                        </Provide-Capability>
-                        <Bundle-Activator>org.apache.camel.karaf.core.Activator</Bundle-Activator>
-                    </instructions>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.apache.camel:camel-core-engine</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

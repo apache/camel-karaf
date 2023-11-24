@@ -1,7 +1,0 @@
-There are indexCount:[relative="{indexer-rel-filter}",family="example"] {indexer-human-readable-kind-plural} in indexUniqueCount:[relative="{indexer-rel-filter}",family="example",format="$.{indexer-kind}.artifactId",contentAs=json] features (indexCount:[relative="{indexer-rel-filter}",family="example",transform=karaf.deprecatedFilter{indexer-human-readable-kind},contentAs=json,requires={requires}] deprecated)
-
-[width="100%",cols="3,3,1,5",options="header"]
-|===
-| {indexer-human-readable-kind} | Feature | Since | Description
-|===
-indexTable::[relative="{indexer-rel-filter}",family="example",cellformats="karaf.extensionRef('{page-component-version}','{indexer-module}','{indexer-kind}',$)|karaf.v('artifactId','{indexer-kind}', $)|karaf.v('firstVersion','{indexer-kind}', $)|util.description($.{indexer-kind})",contentAs=json,transform=karaf.sort{indexer-human-readable-kind},requires={requires}]

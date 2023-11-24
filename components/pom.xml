@@ -1,165 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.
     The ASF licenses this file to You under the Apache License, Version 2.0
     (the "License"); you may not use this file except in compliance with
     the License.  You may obtain a copy of the License at
+
          http://www.apache.org/licenses/LICENSE-2.0
+
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>karaf</artifactId>
-        <version>3.22.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
+        <artifactId>camel-karaf</artifactId>
+        <version>4.3.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>org.apache.camel.karaf</groupId>
-    <artifactId>components</artifactId>
-    <name>Camel Karaf :: Components Modules</name>
-    <description>Camel Karaf Components Modules</description>
+    <artifactId>camel-karaf-components</artifactId>
     <packaging>pom</packaging>
+    <name>Apache Camel :: Karaf :: Components</name>
 
     <modules>
-        <module>camel-bean-validator-osgi</module>
-        <module>camel-blueprint</module>
-        <module>camel-blueprint-main</module>
-        <module>camel-test-blueprint</module>
-        <module>camel-test-blueprint-junit5</module>
-        <module>camel-cxf-blueprint</module>
-        <module>camel-cxf-transport-blueprint</module>
-        <module>camel-eventadmin</module>
-        <module>camel-jcache-osgi</module>
-        <module>camel-kura</module>
-        <module>camel-paxlogging</module>
-        <module>camel-servlet-osgi</module>
-        <module>camel-test-karaf</module>
-        <module>camel-zookeeper-master-osgi</module>
+        <!-- wrappers -->
+        <module>camel-bean</module>
+        <module>camel-browse</module>
+        <module>camel-controlbus</module>
+        <module>camel-dataformat</module>
+        <module>camel-dataset</module>
+        <module>camel-direct</module>
+        <module>camel-file</module>
+        <module>camel-language</module>
+        <module>camel-log</module>
+        <module>camel-mock</module>
+        <module>camel-ref</module>
+        <module>camel-rest</module>
+        <module>camel-saga</module>
+        <module>camel-scheduler</module>
+        <module>camel-seda</module>
+        <module>camel-stub</module>
+        <module>camel-timer</module>
+        <module>camel-validator</module>
+        <module>camel-xpath</module>
+        <module>camel-xslt</module>
     </modules>
-
-    <properties>
-        <camel.osgi.manifest>${project.build.outputDirectory}/META-INF/MANIFEST.MF</camel.osgi.manifest>
-
-        <camel-prepare-component>true</camel-prepare-component>
-    </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-bundle-plugin</artifactId>
-                <version>${camel-version}</version>
-                <extensions>false</extensions>
-                <configuration>
-                    <supportIncrementalBuild>true</supportIncrementalBuild>
-                    <noWarningProjectTypes>pom</noWarningProjectTypes>
-                    <excludeDependencies>${camel.osgi.exclude.dependencies}</excludeDependencies>
-                    <instructions>
-                        <Bundle-Name>${project.artifactId}</Bundle-Name>
-                        <Bundle-SymbolicName>${camel.osgi.symbolic.name}</Bundle-SymbolicName>
-                        <Bundle-Activator>${camel.osgi.activator}</Bundle-Activator>
-                        <Import-Package>${camel.osgi.import}</Import-Package>
-                        <Export-Package>${camel.osgi.export}</Export-Package>
-                        <DynamicImport-Package>${camel.osgi.dynamic}</DynamicImport-Package>
-                        <Private-Package>${camel.osgi.private.pkg}</Private-Package>
-                        <Require-Capability>${camel.osgi.require.capability}</Require-Capability>
-                        <Provide-Capability>${camel.osgi.provide.capability}</Provide-Capability>
-                        <Implementation-Title>Apache Camel</Implementation-Title>
-                        <Implementation-Version>${project.version}</Implementation-Version>
-                        <Karaf-Info>Camel;${project.artifactId}=${project.version}</Karaf-Info>
-                        <_versionpolicy>${camel.osgi.import.default.version}</_versionpolicy>
-                        <_failok>${camel.osgi.failok}</_failok>
-                        <_removeheaders>Bnd-LastModified</_removeheaders>
-                        <_plugin>
-                            org.apache.felix.bundleplugin.BlueprintPlugin,
-                            aQute.lib.spring.SpringXMLType,
-                            org.apache.felix.bundleplugin.JpaPlugin,
-                            org.apache.camel.maven.bundle.CamelPlugin
-                        </_plugin>
-                    </instructions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>versions</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>cleanVersions</goal>
-                        </goals>
-                        <configuration>
-                            <versions>
-                                <camel.osgi.version.clean>${project.version}</camel.osgi.version.clean>
-                            </versions>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven-jar-plugin-version}</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>${camel.osgi.manifest}</manifestFile>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-package-maven-plugin</artifactId>
-                <version>${camel-version}</version>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate-component</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>src/generated/java</source>
-                            </sources>
-                            <resources>
-                                <resource>
-                                    <directory>src/generated/resources</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>

@@ -24,3 +24,12 @@ github:
     - java
     - karaf
     - osgi
+  ghp_branch: gh-pages
+  features:
+    wiki: false
+    issues: true
+    projects: false
+  enabled_merge_buttons:
+    squash: true
+    merge: true
+    rebase: true
