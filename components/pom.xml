@@ -33,6 +33,7 @@
     <name>Apache Camel :: Karaf :: Components</name>
 
     <modules>
+        <!-- TODO re-add camel-directvm and camel-vm components as they are heavily used in Karaf -->
         <!-- wrappers -->
         <module>camel-bean</module>
         <module>camel-browse</module>
