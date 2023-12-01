@@ -59,7 +59,13 @@ public class CamelComponent {
                                        from("timer:fire?period=5000")
                                                .setBody(constant("Hello World"))
                                                .log("[TEST] Body: ${body}")
+                                               .to("direct:inner")
                                                .setId("route-test");
+
+                                       from("direct:inner")
+                                               .log("[INNER TEST] Route consuming from direct endpoint received: ${body}")
+                                               .to("mock:test")
+                                               .setId("route-inner-test");
                                    }
                                }
         );
