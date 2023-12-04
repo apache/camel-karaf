@@ -53,6 +53,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- TODO add karaf feature verify goal -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -67,8 +68,13 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>target/feature/feature.xml</file>
+                                    <file>target/feature/camel-features.xml</file>
                                     <classifier>features</classifier>
+                                    <type>xml</type>
+                                </artifact>
+                                <artifact>
+                                    <file>target/feature/spring-features.xml</file>
+                                    <classifier>spring-features</classifier>
                                     <type>xml</type>
                                 </artifact>
                             </artifacts>
