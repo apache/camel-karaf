@@ -29,6 +29,7 @@
     </parent>
 
     <artifactId>camel-core-osgi</artifactId>
+    <name>Apache Camel :: Karaf :: OSGi</name>
     <packaging>bundle</packaging>
 
     <dependencies>
