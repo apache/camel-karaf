@@ -34,7 +34,7 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.component.dataformat.*;version=${camel.version}
+            org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
             *
