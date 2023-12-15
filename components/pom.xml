@@ -33,6 +33,7 @@
     <name>Apache Camel :: Karaf :: Components</name>
 
     <modules>
+        <module>camel-attachments</module>
         <module>camel-blueprint</module>
         <!-- TODO re-add camel-directvm and camel-vm components as they are heavily used in Karaf -->
         <!-- wrappers -->
@@ -40,11 +41,13 @@
         <module>camel-browse</module>
         <module>camel-controlbus</module>
         <module>camel-cron</module>
+        <module>camel-cxf</module>
         <module>camel-dataformat</module>
         <module>camel-dataset</module>
         <module>camel-direct</module>
         <module>camel-jms</module>
         <module>camel-file</module>
+        <module>camel-http-base</module>
         <module>camel-language</module>
         <module>camel-log</module>
         <module>camel-mock</module>
@@ -53,6 +56,8 @@
         <module>camel-saga</module>
         <module>camel-scheduler</module>
         <module>camel-seda</module>
+        <module>camel-spring</module>
+        <module>camel-spring-xml</module>
         <module>camel-stub</module>
         <module>camel-timer</module>
         <module>camel-validator</module>

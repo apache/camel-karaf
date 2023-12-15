@@ -85,10 +85,21 @@
 
     <!-- TODO use Karaf/Camel bom -->
     <properties>
+        <jdk.version>17</jdk.version>
+
         <camel.version>4.3.0-SNAPSHOT</camel.version>
+        <cxf.version>4.0.3</cxf.version>
+        <jakarta.activation.version.range>[2,3)</jakarta.activation.version.range>
         <karaf.version>4.4.4</karaf.version>
         <!-- TODO upgrade to Spring 6.1.1 -->
         <spring.version>6.0.12</spring.version>
+
+        <camel.osgi.version.clean>${camel.version}</camel.osgi.version.clean>
+        <camel.osgi.import.camel.version>version="${camel.version}"</camel.osgi.import.camel.version>
+
+        <maven-shade-plugin-version>3.5.1</maven-shade-plugin-version>
+        <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
+        <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
     </properties>
 
     <build>
@@ -97,7 +108,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>${maven-shade-plugin-version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -105,16 +116,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.9</version>
+                <version>${maven-bundle-plugin-version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
@@ -128,6 +139,7 @@
                         <Fragment-Host>${camel.osgi.fragment.host}</Fragment-Host>
                         <Provide-Capability>${camel.osgi.provide.capability}</Provide-Capability>
                         <Require-Capability>${camel.osgi.require.capability}</Require-Capability>
+                        <Export-Service>${camel.osgi.export.service}</Export-Service>
                         <_failok>${camel.osgi.failok}</_failok>
                         <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
                         <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency</_removeheaders>

@@ -31,7 +31,21 @@
     <artifactId>camel-blueprint</artifactId>
     <packaging>bundle</packaging>
     <name>Apache Camel :: Karaf :: Component :: Blueprint</name>
-
+    <properties>
+        <firstVersion>2.4.0</firstVersion>
+        <label>java,osgi</label>
+        <camel.osgi.export>
+            org.apache.camel.blueprint*,
+            org.apache.camel.util.blueprint*
+        </camel.osgi.export>
+        <camel.osgi.import>
+            jakarta.xml.bind*;version="[3,5)",
+            *
+        </camel.osgi.import>
+        <camel.osgi.private>
+            org.glassfish.jaxb*,
+        </camel.osgi.private>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -187,24 +201,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <inherited>true</inherited>
-                <configuration>
-                    <instructions>
-                        <Export-Package>
-                            org.apache.camel.blueprint*,
-                            org.apache.camel.util.blueprint*
-                        </Export-Package>
-                        <Import-Package>
-                            jakarta.xml.bind*;version="[4,5)",
-                            *
-                        </Import-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>3.1.0</version>
@@ -323,6 +319,11 @@
                                 <phase>process-classes</phase>
                                 <configuration>
                                     <target>
+                                        <!-- Workaround to fix the violation in CircuitBreakerDefinition -->
+                                        <replace file="${project.build.directory}/sources/camel-core-model/org/apache/camel/model/CircuitBreakerDefinition.java" value="@jakarta.xml.bind.annotation.XmlTransient private OnFallbackDefinition">
+                                            <replacetoken><![CDATA[@XmlElement
+    private OnFallbackDefinition]]></replacetoken>
+                                        </replace>
                                         <taskdef resource="net/sf/antcontrib/antcontrib.properties"
                                                  classpathref="maven.plugin.classpath"/>
                                         <echo>Copying to code together for the XSD generation</echo>
@@ -339,7 +340,6 @@
                                             <fileset dir="${project.build.directory}/sources/camel-core-xml">
                                                 <include name="org/apache/camel/core/xml/*.java"/>
                                                 <include name="org/apache/camel/core/xml/util/**/*.java"/>
-                                                <exclude name="org/apache/camel/core/xml/CamelProxyFactoryDefinition.java"/>
                                             </fileset>
                                             <fileset dir="${project.build.directory}/sources/camel-api">
                                                 <include name="org/apache/camel/ExchangePattern.java"/>
@@ -352,6 +352,7 @@
                                             <fileset dir="${project.build.directory}/sources/camel-core-model">
                                                 <include name="org/apache/camel/model/**/*.java"/>
                                                 <include name="org/apache/camel/package-info.java"/>
+                                                <exclude name="org/apache/camel/model/app/*.java" />
                                             </fileset>
                                             <fileset dir="${project.build.directory}/sources/camel-util">
                                                 <include name="org/apache/camel/util/concurrent/ThreadPoolRejectedPolicy.java"/>

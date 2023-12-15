@@ -34,7 +34,7 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
+            org.apache.camel.impl.cluster*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
             *
@@ -46,6 +46,12 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cluster</artifactId>
             <version>${camel.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

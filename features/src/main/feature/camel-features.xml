@@ -25,10 +25,56 @@
     <feature name="jakarta-activation" version="2.1.2">
         <bundle dependency="true">mvn:jakarta.activation/jakarta.activation-api/2.1.2</bundle>
     </feature>
+    <feature name="jakarta-annotation" version="2.1.1">
+        <bundle dependency="true">mvn:jakarta.annotation/jakarta.annotation-api/2.1.1</bundle>
+    </feature>
 
-    <feature name="jakarta-xml-bind" version="4.0.0">
+    <feature name="jakarta-xml-bind" version="4.0.1">
         <feature>jakarta-activation</feature>
-        <bundle dependency="true">mvn:jakarta.xml.bind/jakarta.xml.bind-api/4.0.0</bundle>
+        <bundle dependency="true">mvn:jakarta.xml.bind/jakarta.xml.bind-api/4.0.1</bundle>
+    </feature>
+
+    <feature name="jakarta-xml-ws" version="4.0.1">
+        <bundle dependency="true">mvn:jakarta.xml.ws/jakarta.xml.ws-api/4.0.1</bundle>
+    </feature>
+
+    <feature name="jakarta-ws-rs" version="3.1.0">
+        <bundle dependency="true">mvn:jakarta.ws.rs/jakarta.ws.rs-api/3.1.0</bundle>
+    </feature>
+
+    <feature name="jakarta-validation" version="3.0.2">
+        <bundle dependency="true">mvn:jakarta.validation/jakarta.validation-api/3.0.2</bundle>
+    </feature>
+
+    <feature name="jakarta-jws" version="3.0.0">
+        <bundle dependency="true">mvn:jakarta.jws/jakarta.jws-api/3.0.0</bundle>
+    </feature>
+
+    <feature name="jaxb-runtime" version="4.0.4">
+        <feature>jakarta-xml-bind</feature>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/4.0.4</bundle>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-impl/4.0.4</bundle>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-osgi/4.0.4</bundle>
+    </feature>
+
+    <feature name="jakarta-servlet" version="6.0.0">
+        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
+    </feature>
+
+    <feature name="jakarta-soap" version="3.0.1">
+        <bundle dependency="true">mvn:jakarta.xml.soap/jakarta.xml.soap-api/3.0.1</bundle>
+    </feature>
+
+    <feature name='xml-specs-api' version='${servicemix-specs-version}' start-level='10'>
+        <feature>jakarta-activation</feature>
+        <feature>jakarta-annotation</feature>
+        <feature>jakarta-xml-ws</feature>
+        <feature>jakarta-ws-rs</feature>
+        <feature>jakarta-soap</feature>
+        <feature>jakarta-xml-bind</feature>
+        <feature>jaxb-runtime</feature>
+        <bundle>mvn:org.codehaus.woodstox/stax2-api/4.2.1</bundle>
+        <bundle>mvn:com.fasterxml.woodstox/woodstox-core/6.5.1</bundle>
     </feature>
 
     <!-- Apache Camel core features -->
@@ -36,11 +82,11 @@
     <feature name="camel" version="${project.version}" start-level="50">
         <feature prerequisite="true">wrap</feature>
         <feature version="[${project.version},${project.version}]">camel-core</feature>
-        <!-- <feature version="[${project.version},${project.version}]">camel-blueprint</feature> -->
+        <feature version="[${project.version},${project.version}]">camel-blueprint</feature>
     </feature>
 
     <feature name="camel-core" version="${project.version}" start-level="50">
-        <feature>jakarta-xml-bind</feature>
+        <feature>xml-specs-api</feature>
         <bundle dependency="true">mvn:commons-codec/commons-codec/1.16.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-api/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-management-api/${project.version}</bundle>
@@ -114,6 +160,40 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cron/${project.version}</bundle>
     </feature>
 
+    <feature name='camel-cxf' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-blueprint</feature>
+        <feature version='${project.version}'>camel-spring</feature>
+        <feature>jakarta-servlet</feature>
+        <feature>jakarta-jws</feature>
+        <feature>jakarta-validation</feature>
+        <feature>xml-specs-api</feature>
+        <bundle dependency="true">mvn:org.apache.neethi/neethi/3.2.0</bundle>
+        <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/3.3.0_1</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
+        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-wsdl/${cxf.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-databinding-jaxb/${cxf.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-security/${cxf.version}</bundle>
+        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-bindings-xml/${cxf.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-core/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-common/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-bindings-soap/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-features-logging/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxrs/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxws/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-simple/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-rs-client/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-transports-http/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-addr/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-policy/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rest/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-soap/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
+    </feature>
     <feature name="camel-jms" version="${project.version}" start-level="50">
         <feature>camel-core</feature>
         <feature>spring-jms</feature>
@@ -121,4 +201,13 @@
         <bundle>mvn:org.apache.camel.karaf/camel-jms/${project.version}</bundle>
     </feature>
 
+    <feature name='camel-spring' version='${project.version}' start-level='50'>
+<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>-->
+        <feature version='${spring.version}'>spring</feature>
+        <feature version='${spring.version}'>spring-tx</feature>
+        <feature>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-core-xml/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-xml/${project.version}</bundle>
+    </feature>
 </features>
