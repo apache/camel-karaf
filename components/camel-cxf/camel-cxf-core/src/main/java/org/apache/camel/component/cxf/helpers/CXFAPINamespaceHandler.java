@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.camel.component.cxf.internal;
+package org.apache.camel.component.cxf.helpers;
 
 import java.net.URL;
 import java.util.Set;

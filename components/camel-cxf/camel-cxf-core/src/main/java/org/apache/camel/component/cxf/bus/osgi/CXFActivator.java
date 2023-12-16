@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.apache.camel.component.cxf.bus.blueprint.BlueprintNameSpaceHandlerFactory;
 import org.apache.camel.component.cxf.bus.blueprint.NamespaceHandlerRegisterer;
-import org.apache.camel.component.cxf.internal.CXFAPINamespaceHandler;
+import org.apache.camel.component.cxf.helpers.CXFAPINamespaceHandler;
 import org.apache.cxf.bus.extension.Extension;
 import org.apache.cxf.bus.extension.ExtensionRegistry;
 import org.apache.cxf.common.util.CollectionUtils;

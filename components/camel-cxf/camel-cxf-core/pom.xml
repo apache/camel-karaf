@@ -63,7 +63,12 @@
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
             jakarta.validation*;resolution:=optional;version="${cxf.validation.api.package.version}",
             !sun.misc,
-            org.apache.aries.blueprint
+            org.osgi.framework*,
+            org.apache.aries.blueprint,
+            org.w3c.dom,
+            org.xml.sax,
+            javax.xml*,
+            javax.management*,
         </camel.osgi.import>
         <camel.osgi.dynamicimport.pkg>
             org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*

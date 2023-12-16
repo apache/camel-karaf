@@ -36,7 +36,7 @@
         <camel.osgi.activator>org.apache.camel.component.cxf.jaxrs.client.blueprint.Activator</camel.osgi.activator>
         <camel.osgi.export>
             org.apache.camel.component.cxf.jaxrs.client.blueprint;version=${project.version},
-            org.apache.cxf.*;version=${cxf.version}
+            org.apache.cxf.jaxrs.client*;version=${cxf.version}
         </camel.osgi.export>
         <camel.osgi.import>
             org.springframework*;resolution:="optional";version="${cxf.osgi.spring.version}",
@@ -45,7 +45,10 @@
             javax.xml*,
             org.osgi.framework*,
             org.apache.aries.blueprint*,
-            org.w3c.dom
+            org.w3c.dom,
+            org.apache.camel.component.cxf.bus.blueprint,
+            org.apache.camel.component.cxf.jaxrs.blueprint,
+            org.apache.cxf.*;version="${cxf-version-range}",
         </camel.osgi.import>
         <camel.osgi.export.service>
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs-client"

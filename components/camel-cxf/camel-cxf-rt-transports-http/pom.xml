@@ -38,7 +38,10 @@
             org.apache.camel.component.cxf.transport.http.osgi;version=${project.version},
             org.apache.camel.component.cxf.transport.http.blueprint;version=${project.version},
             org.apache.camel.component.cxf.servlet.blueprint;version=${project.version},
-            org.apache.cxf.*;version=${cxf.version}
+            org.apache.cxf.transport.commons_text*;version=${cxf.version},
+            org.apache.cxf.transport.http*;version=${cxf.version},
+            org.apache.cxf.transport.servlet*;version=${cxf.version},
+            org.apache.cxf.transports.http.configuration*;version=${cxf.version},
         </camel.osgi.export>
         <camel.osgi.import>
             javax.net,
@@ -49,7 +52,13 @@
             com.sun.activation.registries;resolution:=optional,
             org.osgi.framework*,
             org.apache.aries.blueprint*,
-            org.osgi.service*
+            org.osgi.service*,
+            org.apache.camel.component.cxf.bus.blueprint,
+            org.apache.cxf.common*;version="${cxf-version-range}",
+            org.apache.cxf.transport*;version="${cxf-version-range}",
+            org.apache.cxf.service*;version="${cxf-version-range}",
+            org.apache.cxf.configuration*;version="${cxf-version-range}",
+            org.apache.camel.component.cxf.helpers,
         </camel.osgi.import>
         <camel.osgi.export.service>
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http/configuration"

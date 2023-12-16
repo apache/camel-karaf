@@ -20,11 +20,10 @@ package org.apache.camel.component.cxf.helpers;
 import java.net.URL;
 
 import org.apache.aries.blueprint.NamespaceHandler;
-import org.apache.camel.component.cxf.internal.CXFAPINamespaceHandler;
 
 public abstract class BaseNamespaceHandler implements NamespaceHandler {
 
-    private NamespaceHandler cxfApiNamespaceHandler = new CXFAPINamespaceHandler();
+    private final NamespaceHandler cxfApiNamespaceHandler = new CXFAPINamespaceHandler();
 
     /**
      * If namespace handler's schema imports other schemas from cxf-core bundle, this method
