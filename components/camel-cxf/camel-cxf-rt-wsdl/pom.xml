@@ -28,37 +28,33 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-cxf-transport</artifactId>
+    <artifactId>camel-cxf-rt-wsdl</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: CXF :: Transport</name>
+    <name>Apache Camel :: Karaf :: Components :: CXF :: Core for WSDL Based Technologies</name>
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.transport;version=${camel.version},
-            org.apache.camel.component.cxf.transport.header;version=${camel.version},
-            org.apache.camel.component.cxf.transport.message;version=${camel.version},
+            org.apache.cxf.wsdl;version=${cxf.version},
+            org.apache.cxf.wsdl.binding;version=${cxf.version},
+            org.apache.cxf.wsdl.interceptors;version=${cxf.version},
+            org.apache.cxf.wsdl.service.factory;version=${cxf.version},
+            org.apache.cxf.wsdl11;version=${cxf.version},
         </camel.osgi.export>
         <camel.osgi.import>
-            jakarta.xml.soap;version="${cxf.osgi.saaj.version}",
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
-            org.apache.cxf;version="${cxf-version-range}",
-            org.apache.cxf.message*;version="${cxf-version-range}",
-            org.apache.cxf.service*;version="${cxf-version-range}",
-            org.apache.cxf.transport*;version="${cxf-version-range}",
-            org.apache.cxf.ws.addressing*;version="${cxf-version-range}",
-            org.apache.camel*;${camel.osgi.import.camel.version},
-            org.slf4j,
+            jakarta.annotation*;version="${cxf.osgi.jakarta.annotation.version}",
+            org.apache.cxf.*;version="${cxf-version-range}",
         </camel.osgi.import>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf-transport</artifactId>
-            <version>${camel.version}</version>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-wsdl</artifactId>
+            <version>${cxf.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.apache.camel</groupId>
+                    <groupId>org.apache.cxf</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
@@ -79,7 +75,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-cxf-transport</include>
+                                    <include>org.apache.cxf:cxf-rt-wsdl</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

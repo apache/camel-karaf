@@ -28,44 +28,46 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-cxf-rt-ws-policy</artifactId>
+    <artifactId>camel-cxf-rt-transports-http-jetty</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: CXF :: WS Policy</name>
+    <name>Apache Camel :: Karaf :: Components :: CXF :: HTTP Jetty Transport</name>
 
     <properties>
-        <camel.osgi.activator>org.apache.camel.component.cxf.ws.policy.blueprint.Activator</camel.osgi.activator>
+        <camel.osgi.activator>org.apache.camel.component.cxf.transport.http_jetty.osgi.HTTPJettyTransportActivator</camel.osgi.activator>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.ws.policy.blueprint;version=${project.version},
-            org.apache.cxf.ws.policy*;version=${cxf.version}
+            org.apache.camel.component.cxf.transport.http_jetty.blueprint;version=${project.version},
+            org.apache.camel.component.cxf.transport.http_jetty.osgi;version=${project.version},
+            org.apache.cxf.transport.http_jetty*;version=${cxf.version},
+            org.apache.cxf.transports.http_jetty.configuration*;version=${cxf.version},
         </camel.osgi.export>
         <camel.osgi.import>
+            jakarta.servlet*;version="${cxf.osgi.jakarta.servlet.version}",
+            org.eclipse.jetty*;version="${cxf.jetty.osgi.version}",
+            org.osgi.service.blueprint*;resolution:=optional,
             org.springframework*;resolution:="optional";version="${cxf.osgi.spring.version}",
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
             jakarta.annotation*;version="${cxf.osgi.jakarta.annotation.version}",
+            org.osgi.service*,
             org.osgi.framework*,
             org.apache.aries.blueprint*,
             org.apache.camel.component.cxf.bus.blueprint,
-            org.apache.camel.component.cxf.helpers,
             org.apache.cxf.*;version="${cxf-version-range}",
-            org.apache.neethi*,
-            *
+            org.osgi.util*,
+            javax.management*,
+            org.apache.camel.component.cxf.helpers,
         </camel.osgi.import>
+        <camel.osgi.dynamicimport.pkg>
+            org.eclipse.jetty.jmx
+        </camel.osgi.dynamicimport.pkg>
         <camel.osgi.export.service>
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/ns/ws-policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2006/07/ws-policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://schemas.xmlsoap.org/ws/2004/09/policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2000/09/xmldsig#",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http-jetty/configuration"
         </camel.osgi.export.service>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-ws-policy</artifactId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
             <version>${cxf.version}</version>
             <exclusions>
                 <exclusion>
@@ -81,8 +83,14 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.xml.ws</groupId>
-            <artifactId>jakarta.xml.ws-api</artifactId>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-cxf-rt-transports-http</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
@@ -96,6 +104,12 @@
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.cmpn</artifactId>
+            <version>7.0.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -114,7 +128,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.cxf:cxf-rt-ws-policy</include>
+                                    <include>org.apache.cxf:cxf-rt-transports-http-jetty</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

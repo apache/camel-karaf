@@ -54,6 +54,8 @@
             org.apache.aries.blueprint*,
             org.apache.camel.component.cxf.bus.blueprint,
             org.apache.camel.component.cxf.helpers,
+            org.apache.cxf.resource.*;version="${cxf-version-range}",
+            org.apache.cxf;version="${cxf-version-range}",
         </camel.osgi.import>
         <camel.osgi.export.service>
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxws"

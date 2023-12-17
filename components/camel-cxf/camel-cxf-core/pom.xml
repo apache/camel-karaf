@@ -33,6 +33,7 @@
     <name>Apache Camel :: Karaf :: Components :: CXF :: Core</name>
 
     <properties>
+        <camel.osgi.activator>org.apache.camel.component.cxf.bus.osgi.CXFActivator</camel.osgi.activator>
         <camel.osgi.export>
             org.apache.camel.component.cxf.bus.blueprint;version=${project.version},
             org.apache.camel.component.cxf.bus.osgi;version=${project.version},
@@ -63,12 +64,15 @@
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
             jakarta.validation*;resolution:=optional;version="${cxf.validation.api.package.version}",
             !sun.misc,
+            org.osgi.util*,
+            org.osgi.service*,
             org.osgi.framework*,
             org.apache.aries.blueprint,
             org.w3c.dom,
             org.xml.sax,
             javax.xml*,
             javax.management*,
+            javax.crypto*,
         </camel.osgi.import>
         <camel.osgi.dynamicimport.pkg>
             org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*

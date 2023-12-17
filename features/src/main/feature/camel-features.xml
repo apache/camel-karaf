@@ -61,8 +61,25 @@
         <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
     </feature>
 
+    <feature name="jakarta-servlet" version="6.0.0">
+        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
+    </feature>
+
     <feature name="jakarta-soap" version="3.0.1">
         <bundle dependency="true">mvn:jakarta.xml.soap/jakarta.xml.soap-api/3.0.1</bundle>
+    </feature>
+
+    <feature name="jetty" version="11">
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-alpn-server/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-http/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-io/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-server/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-util/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-security/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-hpack/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-common/11.0.18</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-server/11.0.18</bundle>
+        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/5.0.0</bundle>
     </feature>
 
     <feature name='xml-specs-api' version='${servicemix-specs-version}' start-level='10'>
@@ -167,11 +184,11 @@
         <feature>jakarta-jws</feature>
         <feature>jakarta-validation</feature>
         <feature>xml-specs-api</feature>
+        <feature>jetty</feature>
         <bundle dependency="true">mvn:org.apache.neethi/neethi/3.2.0</bundle>
         <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/3.3.0_1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
-        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-wsdl/${cxf.version}</bundle>
         <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-databinding-jaxb/${cxf.version}</bundle>
         <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-security/${cxf.version}</bundle>
         <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-bindings-xml/${cxf.version}</bundle>
@@ -179,6 +196,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-core/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-common/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-wsdl/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-bindings-soap/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-features-logging/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxrs/${project.version}</bundle>
@@ -186,6 +204,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-simple/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-rs-client/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-transports-http/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-transports-http-jetty/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-addr/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-policy/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rest/${project.version}</bundle>

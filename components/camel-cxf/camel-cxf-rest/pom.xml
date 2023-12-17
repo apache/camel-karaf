@@ -71,7 +71,8 @@
             org.apache.camel.http.base*;${camel.osgi.import.camel.version},
             org.apache.camel.component.cxf.common*;${camel.osgi.import.camel.version},
             org.apache.cxf*;version="${cxf-version-range}",
-            javax.xml*
+            javax.xml*,
+            *
         </camel.osgi.import>
     </properties>
 

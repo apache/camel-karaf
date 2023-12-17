@@ -54,10 +54,7 @@
             org.apache.aries.blueprint*,
             org.osgi.service*,
             org.apache.camel.component.cxf.bus.blueprint,
-            org.apache.cxf.common*;version="${cxf-version-range}",
-            org.apache.cxf.transport*;version="${cxf-version-range}",
-            org.apache.cxf.service*;version="${cxf-version-range}",
-            org.apache.cxf.configuration*;version="${cxf-version-range}",
+            org.apache.cxf.*;version="${cxf-version-range}",
             org.apache.camel.component.cxf.helpers,
         </camel.osgi.import>
         <camel.osgi.export.service>
