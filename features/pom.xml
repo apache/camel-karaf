@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.3.0-SNAPSHOT</version>
+        <version>4.4.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -82,8 +82,7 @@
                     </framework>
                     <features>
                         <!-- camel-ignite requires to install apache ignite first -->
-                        <feature>camel-cxf</feature>
-<!--                        <feature>camel|camel-(?!(ignite|pgevent))*</feature>-->
+                        <feature>camel|camel-(?!(ignite|pgevent))*</feature>
                     </features>
                 </configuration>
                 <executions>

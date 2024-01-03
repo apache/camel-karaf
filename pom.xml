@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.3.0-SNAPSHOT</version>
+    <version>4.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -87,7 +87,7 @@
     <properties>
         <jdk.version>17</jdk.version>
 
-        <camel.version>4.3.0-SNAPSHOT</camel.version>
+        <camel.version>4.4.0-SNAPSHOT</camel.version>
         <cxf.version>4.0.3</cxf.version>
         <jakarta.activation.version.range>[2,3)</jakarta.activation.version.range>
         <karaf.version>4.4.4</karaf.version>
