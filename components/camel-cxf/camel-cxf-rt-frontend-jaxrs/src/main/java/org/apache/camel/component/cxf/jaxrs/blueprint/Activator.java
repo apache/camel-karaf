@@ -21,6 +21,7 @@ import jakarta.ws.rs.ext.RuntimeDelegate;
 
 import org.apache.camel.component.cxf.bus.blueprint.BlueprintNameSpaceHandlerFactory;
 import org.apache.camel.component.cxf.bus.blueprint.NamespaceHandlerRegisterer;
+import org.apache.cxf.jaxrs.impl.RuntimeDelegateImpl;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -41,6 +42,8 @@ public class Activator implements BundleActivator {
             // No Blueprint is available
         }
 
+        // Define the runtime delegate to use
+        RuntimeDelegate.setInstance(new RuntimeDelegateImpl());
     }
 
     @Override

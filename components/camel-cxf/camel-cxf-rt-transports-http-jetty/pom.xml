@@ -55,6 +55,7 @@
             org.osgi.util*,
             javax.management*,
             org.apache.camel.component.cxf.helpers,
+            org.glassfish.hk2.osgiresourcelocator
         </camel.osgi.import>
         <camel.osgi.dynamicimport.pkg>
             org.eclipse.jetty.jmx
