@@ -1,2 +1,0 @@
-org.apache.camel.component.cxf.transport.http_jetty.osgi.HTTPJettyDestinationFactory::true
-org.apache.cxf.transport.http_jetty.JettyHTTPServerEngineFactory::true

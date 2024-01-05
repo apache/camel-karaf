@@ -195,28 +195,9 @@
         <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/3.3.0_1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
-        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-databinding-jaxb/${cxf.version}</bundle>
-        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-security/${cxf.version}</bundle>
-        <bundle dependency="true">mvn:org.apache.cxf/cxf-rt-bindings-xml/${cxf.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-core/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-common/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-wsdl/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-databinding-jaxb/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-bindings-soap/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-features-logging/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxrs/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxws/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-simple/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-rs-client/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-transports-http/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-transports-http-jetty/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-addr/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-ws-policy/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rest/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-soap/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-all/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
     </feature>
