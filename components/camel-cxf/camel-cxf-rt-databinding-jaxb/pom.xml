@@ -28,38 +28,31 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-cxf-transport</artifactId>
+    <artifactId>camel-cxf-rt-databinding-jaxb</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: CXF :: Transport</name>
+    <name>Apache Camel :: Karaf :: Components :: CXF :: JAXB DataBinding</name>
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.transport;version=${camel.version},
-            org.apache.camel.component.cxf.transport.header;version=${camel.version},
-            org.apache.camel.component.cxf.transport.message;version=${camel.version},
+            org.apache.cxf.jaxb;version=${cxf.version},
+            org.apache.cxf.jaxb.attachment;version=${cxf.version},
+            org.apache.cxf.jaxb.io;version=${cxf.version},
         </camel.osgi.export>
         <camel.osgi.import>
-            jakarta.xml.soap;version="${cxf.osgi.saaj.version}",
+            jakarta.activation;version="${cxf.osgi.jakarta.activation.version}",
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
-            org.apache.cxf;version="${cxf-version-range}",
-            org.apache.cxf.message*;version="${cxf-version-range}",
-            org.apache.cxf.service*;version="${cxf-version-range}",
-            org.apache.cxf.transport*;version="${cxf-version-range}",
-            org.apache.cxf.headers*;version="${cxf-version-range}",
-            org.apache.cxf.ws.addressing*;version="${cxf-version-range}",
-            org.apache.camel*;${camel.osgi.import.camel.version},
-            org.slf4j,
+            *
         </camel.osgi.import>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf-transport</artifactId>
-            <version>${camel.version}</version>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-jaxb</artifactId>
+            <version>${cxf.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.apache.camel</groupId>
+                    <groupId>org.apache.cxf</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
@@ -80,7 +73,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-cxf-transport</include>
+                                    <include>org.apache.cxf:cxf-rt-databinding-jaxb</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

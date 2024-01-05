@@ -68,11 +68,13 @@
             org.osgi.service*,
             org.osgi.framework*,
             org.apache.aries.blueprint,
-            org.w3c.dom,
+            org.w3c.dom*,
             org.xml.sax,
             javax.xml*,
             javax.management*,
             javax.crypto*,
+            org.apache.ws*,
+            org.glassfish.jaxb.runtime.v2;version="${cxf.osgi.jakarta.bind.version}",
         </camel.osgi.import>
         <camel.osgi.dynamicimport.pkg>
             org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*

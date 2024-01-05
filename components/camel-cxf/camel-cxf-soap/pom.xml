@@ -40,8 +40,22 @@
         </camel.osgi.export>
         <camel.osgi.import>
             org.apache.camel.component.cxf.spring.*;resolution:=optional;version=${camel.version},
+            org.apache.camel;${camel.osgi.import.camel.version},
+            org.apache.camel.spi;${camel.osgi.import.camel.version},
+            org.apache.camel.support*;${camel.osgi.import.camel.version},
+            org.apache.camel.util*;${camel.osgi.import.camel.version},
+            org.apache.camel.attachment*;${camel.osgi.import.camel.version},
             jakarta.xml.soap*;version="${cxf.osgi.saaj.version}",
-            jakarta.xml.ws*;version="${cxf.osgi.jakarta.xml.ws.version}"
+            jakarta.xml.ws*;version="${cxf.osgi.jakarta.xml.ws.version}",
+            jakarta.jws*;version="${cxf.osgi.jakarta.jwsapi.version}",
+            org.apache.cxf*;version="${cxf-version-range}",
+            org.apache.camel.http.base*;${camel.osgi.import.camel.version},
+            org.apache.camel.component.cxf*;${camel.osgi.import.camel.version},
+            org.slf4j*,
+            javax.wsdl*,
+            javax.xml*,
+            javax.net*,
+            org.w3c*,
         </camel.osgi.import>
     </properties>
 

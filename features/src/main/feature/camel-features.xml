@@ -57,6 +57,11 @@
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-osgi/4.0.4</bundle>
     </feature>
 
+    <feature name="activation-runtime" version="2.0.1">
+        <feature>jakarta-activation</feature>
+        <bundle dependency="true">mvn:org.eclipse.angus/angus-activation/2.0.1</bundle>
+    </feature>
+
     <feature name="jakarta-servlet" version="6.0.0">
         <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
     </feature>
@@ -90,6 +95,7 @@
         <feature>jakarta-soap</feature>
         <feature>jakarta-xml-bind</feature>
         <feature>jaxb-runtime</feature>
+        <feature>activation-runtime</feature>
         <bundle>mvn:org.codehaus.woodstox/stax2-api/4.2.1</bundle>
         <bundle>mvn:com.fasterxml.woodstox/woodstox-core/6.5.1</bundle>
     </feature>
@@ -197,6 +203,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-core/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-common/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-wsdl/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-databinding-jaxb/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-bindings-soap/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-features-logging/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-rt-frontend-jaxrs/${project.version}</bundle>

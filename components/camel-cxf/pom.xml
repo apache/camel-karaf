@@ -65,6 +65,7 @@
     <modules>
         <module>camel-cxf-core</module>
         <module>camel-cxf-rt-wsdl</module>
+        <module>camel-cxf-rt-databinding-jaxb</module>
         <module>camel-cxf-rt-transports-http-jetty</module>
         <module>camel-cxf-rt-transports-http</module>
         <module>camel-cxf-rt-ws-policy</module>
