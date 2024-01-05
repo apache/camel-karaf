@@ -64,10 +64,7 @@
 
     <modules>
         <module>camel-cxf-all</module>
-<!--        <module>camel-cxf-spring-soap</module>-->
-<!--        <module>camel-cxf-spring-common</module>-->
-<!--        <module>camel-cxf-spring-rest</module>-->
-<!--        <module>camel-cxf-spring-transport</module>-->
+        <module>camel-cxf-spring-all</module>
         <module>camel-cxf-blueprint</module>
         <module>camel-cxf-transport-blueprint</module>
     </modules>

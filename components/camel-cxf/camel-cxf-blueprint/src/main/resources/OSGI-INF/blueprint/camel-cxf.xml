@@ -23,7 +23,7 @@
 
   <service interface="org.apache.aries.blueprint.NamespaceHandler">
     <service-properties>
-      <entry key="osgi.service.blueprint.namespace" value="http://camel.apache.org/schema/blueprint/cxf"/>
+      <entry key="osgi.service.blueprint.namespace" value="https://camel.apache.org/schema/blueprint/cxf"/>
     </service-properties>
     <bean class="org.apache.camel.component.cxf.blueprint.helpers.CxfNamespaceHandler"/>
   </service>

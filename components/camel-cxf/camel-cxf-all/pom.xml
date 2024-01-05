@@ -95,7 +95,6 @@
             jakarta.ws.rs*;version="${cxf.osgi.jakarta.ws.rs.version}",
             jakarta.xml.soap*;version="${cxf.osgi.saaj.version}",
             jakarta.servlet*;version="${cxf.osgi.jakarta.servlet.version}",
-            jakarta.activation*;version="${cxf.osgi.jakarta.activation.version}",
             org.eclipse.jetty*;version="${cxf.jetty.osgi.version}",
             org.glassfish.jaxb.runtime.v2;version="${cxf.osgi.jakarta.bind.version}",
             javax.cache*;resolution:=optional,
@@ -115,7 +114,7 @@
             javax.security*,
             org.w3c*,
             org.apache.ws*,
-            org.apache.camel*,
+            org.apache.camel*;version=${camel.version},
             org.apache.neethi*,
             org.glassfish.hk2.osgiresourcelocator
         </camel.osgi.import>
@@ -327,17 +326,6 @@
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-security</artifactId>
-            <version>${cxf.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-client</artifactId>
             <version>${cxf.version}</version>
             <exclusions>
                 <exclusion>

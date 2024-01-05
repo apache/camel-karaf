@@ -40,6 +40,13 @@
             jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
             org.apache.camel.component.cxf.helpers,
             org.apache.aries.blueprint,
+            org.w3c*,
+            org.osgi.util*,
+            org.osgi.service*,
+            org.osgi.framework*,
+            org.apache.aries.blueprint*,
+            org.apache.cxf.*;version=${cxf.version},
+            org.apache.camel.component.cxf.configuration.blueprint;version=${project.version},
             org.slf4j
         </camel.osgi.import>
     </properties>

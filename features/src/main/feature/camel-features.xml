@@ -201,6 +201,10 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
     </feature>
+    <feature name='camel-cxf-spring' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-cxf</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-spring-all/${project.version}</bundle>
+    </feature>
     <feature name="camel-jms" version="${project.version}" start-level="50">
         <feature>camel-core</feature>
         <feature>spring-jms</feature>
