@@ -33,35 +33,6 @@
     <name>Apache Camel :: Karaf :: Components :: CXF :: Parent</name>
     <description>Camel CXF parent</description>
 
-    <properties>
-        <cxf-version-range>[4,5)</cxf-version-range>
-        <cxf.osgi.osgi.version>8</cxf.osgi.osgi.version>
-        <cxf.osgi.asm.version>[9.5,10)</cxf.osgi.asm.version>
-        <cxf.osgi.spring.version>6</cxf.osgi.spring.version>
-        <cxf.osgi.slf4j.version>[2,3)</cxf.osgi.slf4j.version>
-        <cxf.osgi.jakarta.annotation.version>[2,3)</cxf.osgi.jakarta.annotation.version>
-        <cxf.osgi.jakarta.bind.version>[3,5)</cxf.osgi.jakarta.bind.version>
-        <cxf.osgi.jakarta.activation.version>[2,3)</cxf.osgi.jakarta.activation.version>
-        <cxf.osgi.jakarta.mail.version>[2,3)</cxf.osgi.jakarta.mail.version>
-        <cxf.osgi.jakarta.servlet.version>[5,7)</cxf.osgi.jakarta.servlet.version>
-        <cxf.osgi.jakarta.xml.ws.version>[3,5)</cxf.osgi.jakarta.xml.ws.version>
-        <cxf.osgi.jakarta.ws.rs.version>[3,4)</cxf.osgi.jakarta.ws.rs.version>
-        <cxf.cglib.osgi.version>[3.3,3.4)</cxf.cglib.osgi.version>
-        <cxf.osgi.cdi.version>[3,4)</cxf.osgi.cdi.version>
-        <cxf.osgi.jakarta.jwsapi.version>[3,4)</cxf.osgi.jakarta.jwsapi.version>
-        <cxf.osgi.saaj.version>[2,4)</cxf.osgi.saaj.version>
-        <cxf.opensaml.osgi.version>[4.2,5)</cxf.opensaml.osgi.version>
-        <cxf.ehcache.osgi.version>[3,4)</cxf.ehcache.osgi.version>
-        <cxf.jetty.osgi.version>[11,12)</cxf.jetty.osgi.version>
-        <cxf.osgi.netty.version>[4.1,5)</cxf.osgi.netty.version>
-        <cxf.undertow.xnio.osgi.version>[3.8,4)</cxf.undertow.xnio.osgi.version>
-        <cxf.undertow.osgi.version>[2.2,3)</cxf.undertow.osgi.version>
-        <cxf.osgi.jakarta.jms.version>[3.1,4)</cxf.osgi.jakarta.jms.version>
-        <cxf.osgi.jakarta.transaction.version>[2,3)</cxf.osgi.jakarta.transaction.version>
-        <cxf.validation.api.package.version>[2,4)</cxf.validation.api.package.version>
-
-    </properties>
-
     <modules>
         <module>camel-cxf-all</module>
         <module>camel-cxf-spring-all</module>

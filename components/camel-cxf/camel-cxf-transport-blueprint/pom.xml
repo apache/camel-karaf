@@ -37,7 +37,7 @@
             org.apache.camel.component.cxf.transport.blueprint;version=${project.version},
         </camel.osgi.export>
         <camel.osgi.import>
-            jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
+            jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
             org.apache.camel.component.cxf.helpers,
             org.apache.aries.blueprint,
             org.slf4j
@@ -75,19 +75,16 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
-            <version>8.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.cmpn</artifactId>
-            <version>7.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.aries.blueprint</groupId>
             <artifactId>org.apache.aries.blueprint.core</artifactId>
-            <version>1.10.3</version>
             <scope>provided</scope>
         </dependency>
 

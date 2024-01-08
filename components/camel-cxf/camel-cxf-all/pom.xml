@@ -77,26 +77,26 @@
             com.sun.tools*;resolution:=optional,
             com.sun.xml*;resolution:=optional,
             com.sun.codemodel.writer;resolution:=optional,
-            org.slf4j*;resolution:=optional;version="${cxf.osgi.slf4j.version}",
-            net.sf.cglib*;resolution:=optional;version="${cxf.cglib.osgi.version}",
-            org.springframework.aop*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.springframework.beans*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.springframework.context*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.springframework.core*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.springframework.util*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.springframework.web*;resolution:=optional;version="${cxf.osgi.spring.version}",
-            org.objectweb.asm*;resolution:=optional;version="${cxf.osgi.asm.version}",
-            jakarta.activation;version="${cxf.osgi.jakarta.activation.version}",
-            jakarta.annotation;version="${cxf.osgi.jakarta.annotation.version}",
-            jakarta.xml.ws*;version="${cxf.osgi.jakarta.xml.ws.version}",
-            jakarta.xml.bind*;version="${cxf.osgi.jakarta.bind.version}",
-            jakarta.validation*;resolution:=optional;version="${cxf.validation.api.package.version}",
-            jakarta.jws*;version="${cxf.osgi.jakarta.jwsapi.version}",
-            jakarta.ws.rs*;version="${cxf.osgi.jakarta.ws.rs.version}",
-            jakarta.xml.soap*;version="${cxf.osgi.saaj.version}",
-            jakarta.servlet*;version="${cxf.osgi.jakarta.servlet.version}",
-            org.eclipse.jetty*;version="${cxf.jetty.osgi.version}",
-            org.glassfish.jaxb.runtime.v2;version="${cxf.osgi.jakarta.bind.version}",
+            org.slf4j*;resolution:=optional;version="${camel.osgi.slf4j.version}",
+            net.sf.cglib*;resolution:=optional;version="${camel.cglib.osgi.version}",
+            org.springframework.aop*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.springframework.beans*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.springframework.context*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.springframework.core*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.springframework.util*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.springframework.web*;resolution:=optional;version="${camel.osgi.spring.version}",
+            org.objectweb.asm*;resolution:=optional;version="${camel.osgi.asm.version}",
+            jakarta.activation;version="${camel.osgi.jakarta.activation.version}",
+            jakarta.annotation;version="${camel.osgi.jakarta.annotation.version}",
+            jakarta.xml.ws*;version="${camel.osgi.jakarta.xml.ws.version}",
+            jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
+            jakarta.validation*;resolution:=optional;version="${camel.validation.api.package.version}",
+            jakarta.jws*;version="${camel.osgi.jakarta.jwsapi.version}",
+            jakarta.ws.rs*;version="${camel.osgi.jakarta.ws.rs.version}",
+            jakarta.xml.soap*;version="${camel.osgi.saaj.version}",
+            jakarta.servlet*;version="${camel.osgi.jakarta.servlet.version}",
+            org.eclipse.jetty*;version="${camel.jetty.osgi.version}",
+            org.glassfish.jaxb.runtime.v2;version="${camel.osgi.jakarta.bind.version}",
             javax.cache*;resolution:=optional,
             org.apache.cxf.tools*;resolution:=optional,
             org.apache.xml.resolver*;resolution:=optional,
@@ -359,26 +359,22 @@
         <dependency>
             <groupId>org.apache.aries.blueprint</groupId>
             <artifactId>org.apache.aries.blueprint.core</artifactId>
-            <version>1.10.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
-            <version>8.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.cmpn</artifactId>
-            <version>7.0.0</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.ws</groupId>
             <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
