@@ -30,7 +30,7 @@
 
     <artifactId>camel-blueprint</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Component :: Blueprint</name>
+    <name>Apache Camel :: Karaf :: Components :: Blueprint</name>
     <properties>
         <firstVersion>2.4.0</firstVersion>
         <label>java,osgi</label>

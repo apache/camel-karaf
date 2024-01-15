@@ -29,7 +29,7 @@
 
     <artifactId>camel-cxf-transport-blueprint</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Component :: CXF Transport Blueprint</name>
+    <name>Apache Camel :: Karaf :: Components :: CXF ::  Transport Blueprint</name>
 
     <properties>
         <firstVersion>3.2.0</firstVersion>
