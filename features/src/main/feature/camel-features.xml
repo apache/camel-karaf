@@ -66,15 +66,11 @@
         <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
     </feature>
 
-    <feature name="jakarta-servlet" version="6.0.0">
-        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/6.0.0</bundle>
-    </feature>
-
     <feature name="jakarta-soap" version="3.0.1">
         <bundle dependency="true">mvn:jakarta.xml.soap/jakarta.xml.soap-api/3.0.1</bundle>
     </feature>
 
-    <feature name="jetty" version="11">
+    <feature name="jetty" version="11.0.18">
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-alpn-server/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-http/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-io/11.0.18</bundle>
