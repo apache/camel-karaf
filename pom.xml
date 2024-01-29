@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-dependencies</artifactId>
-        <version>3.21.4</version>
+        <version>3.21.5-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.camel.karaf</groupId>
@@ -108,7 +108,7 @@
         <karaf4-version>4.4.4</karaf4-version>
 
         <!-- Camel target version -->
-        <camel-version>3.21.4</camel-version>
+        <camel-version>3.21.5-SNAPSHOT</camel-version>
 
         <ahc-version>2.12.3</ahc-version>
         <ant-bundle-version>1.7.0_6</ant-bundle-version>
@@ -276,7 +276,7 @@
         <perfmark-version>0.17.0</perfmark-version>
         <protobuf-guava-version>31.1-jre</protobuf-guava-version>
         <protobuf-javanano-version>3.1.0</protobuf-javanano-version>
-        <protobuf-version>3.21.4</protobuf-version>
+        <protobuf-version>3.21.5-SNAPSHOT</protobuf-version>
         <reflections-bundle-version>0.9.12_1</reflections-bundle-version>
         <regexp-bundle-version>1.4_1</regexp-bundle-version>
         <rescu-version>2.1.0</rescu-version>
@@ -781,7 +781,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <camel-version>3.21.4</camel-version>
+                <camel-version>3.21.5-SNAPSHOT</camel-version>
             </properties>
         </profile>
 
