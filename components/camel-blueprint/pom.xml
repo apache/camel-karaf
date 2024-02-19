@@ -257,7 +257,7 @@
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
                                             <artifactId>camel-api</artifactId>
-                                            <version>${project.version}</version>
+                                            <version>${camel.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
@@ -266,7 +266,7 @@
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
                                             <artifactId>camel-core-model</artifactId>
-                                            <version>${project.version}</version>
+                                            <version>${camel.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
@@ -276,7 +276,7 @@
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
                                             <artifactId>camel-core-xml</artifactId>
-                                            <version>${project.version}</version>
+                                            <version>${camel.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
@@ -285,7 +285,7 @@
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
                                             <artifactId>camel-util</artifactId>
-                                            <version>${project.version}</version>
+                                            <version>${camel.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>
@@ -294,7 +294,7 @@
                                         <artifactItem>
                                             <groupId>org.apache.camel</groupId>
                                             <artifactId>camel-spring-xml</artifactId>
-                                            <version>${project.version}</version>
+                                            <version>${camel.version}</version>
                                             <type>jar</type>
                                             <classifier>sources</classifier>
                                             <overWrite>true</overWrite>

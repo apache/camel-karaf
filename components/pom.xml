@@ -94,7 +94,6 @@
         <module>camel-elytron</module>
         <module>camel-etcd3</module>
         <module>camel-exec</module>
-        <module>camel-facebook</module>
         <module>camel-fastjson</module>
         <module>camel-file</module>
         <module>camel-file-watch</module>
@@ -143,7 +142,6 @@
         <module>camel-jfr</module>
         <module>camel-jgroups</module>
         <module>camel-jgroups-raft</module>
-<!--        <module>camel-jira</module>-->
         <module>camel-jms</module>
         <module>camel-jmx</module>
         <module>camel-jolt</module>
