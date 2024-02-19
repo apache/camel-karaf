@@ -41,6 +41,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -70,9 +71,6 @@
                     <descriptors>
                         <descriptor>file://${project.build.directory}/feature/camel-features.xml</descriptor>
                         <descriptor>file://${project.build.directory}/feature/spring-features.xml</descriptor>
-                        <!-- ideally, those profiles should be referenced in the features file -->
-<!--                        <descriptor>mvn:org.apache.karaf.features/framework/${karaf.version}/xml/features</descriptor>-->
-<!--                        <descriptor>mvn:org.apache.karaf.features/enterprise/${karaf.version}/xml/features</descriptor>-->
                         <descriptor>mvn:org.apache.karaf.features/spring/${karaf.version}/xml/features</descriptor>
                     </descriptors>
                     <distribution>org.apache.karaf.features:framework</distribution>
@@ -81,13 +79,12 @@
                         <feature>framework</feature>
                     </framework>
                     <features>
-                        <!-- camel-ignite requires to install apache ignite first -->
                         <feature>camel|camel-(?!(ignite|pgevent))*</feature>
                     </features>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>validate</id>
+                        <id>verify</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>verify</goal>
