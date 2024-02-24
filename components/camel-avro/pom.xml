@@ -37,8 +37,25 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !org.apache.avro*,
+            !com.fasterxml.jackson*,
+            !com.github*,
+            !org.apache.commons.compress*,
+            !org.objectweb.asm*,
+            !org.xerial.snappy*,
+            java.nio*;resolution:=optional,
+            org.brotli.dec;resolution:=optional,
+            org.tukaani*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            org.apache.avro*,
+            com.fasterxml.jackson*,
+            com.github*,
+            org.apache.commons.compress*,
+            org.objectweb.asm*,
+            org.xerial.snappy*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>

@@ -233,15 +233,10 @@
 <!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-atom/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-avro' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${avro-jackson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${avro-jackson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${avro-jackson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${avro-java-commons-compress-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-avro/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-avro' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-avro/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-aws2-athena' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
