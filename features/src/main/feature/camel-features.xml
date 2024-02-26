@@ -792,17 +792,10 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.mustache-compiler/${mustache-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-elasticsearch-rest/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-eventadmin' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>eventadmin</feature>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-eventadmin/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-exec' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-exec/${commons-exec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-exec/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-exec' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-exec/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-facebook' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.facebook4j/${facebook4j-core-bundle-version}</bundle>-->
