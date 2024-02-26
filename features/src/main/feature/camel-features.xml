@@ -679,11 +679,10 @@
 <!--        <bundle dependency='true'>wrap:mvn:ai.djl.mxnet/mxnet-native-auto/${djl-mxnet-native-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-djl/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-dns' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.dnsjava/${dnsjava-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-dns/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-dns' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-dns/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-docker' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.docker-java/${docker-java-bundle-version}</bundle>-->
