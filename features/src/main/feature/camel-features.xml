@@ -627,13 +627,10 @@
         <feature>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-cron/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-crypto' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcpg-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-crypto/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-crypto' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-crypto/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-csv' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-csv/${commons-csv-version}</bundle>-->
