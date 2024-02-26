@@ -619,16 +619,10 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.orbitz-consul-client/${consul-client-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-consul/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-couchdb' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lightcouch/${lightcouch-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-couchdb/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-couchdb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-couchdb/${project.version}</bundle>
+    </feature>
     <feature name="camel-cron" version="${project.version}" start-level="50">
         <feature>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-cron/${project.version}</bundle>
