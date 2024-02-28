@@ -37,8 +37,25 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !com.alibaba.fastjson*,
+            android*;resolution:=optional,
+            com.aliyun.odps*;resolution:=optional,
+            io.airlift*;resolution:=optional,
+            javax.servlet*;resolution:=optional,
+            javax.ws*;resolution:=optional,
+            jdk.incubator*;resolution:=optional,
+            kotlin*;resolution:=optional,
+            okhttp3*;resolution:=optional,
+            org.apache.arrow*;resolution:=optional,
+            org.glassfish.jersey*;resolution:=optional,
+            org.joda.time;resolution:=optional,
+            org.springframework*;resolution:=optional,
+            retrofit2*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            com.alibaba.fastjson*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>

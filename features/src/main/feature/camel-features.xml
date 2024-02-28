@@ -796,16 +796,10 @@
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-exec/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-facebook' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.facebook4j/${facebook4j-core-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-facebook/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-fastjson' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.fastjson/${fastjson-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-fastjson/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-fastjson' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-fastjson/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-file-watch' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:io.methvin/directory-watcher/${directory-watcher-version}</bundle>-->
