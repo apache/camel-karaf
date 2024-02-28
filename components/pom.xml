@@ -53,7 +53,6 @@
         <module>camel-bean</module>
         <module>camel-bean-validator</module>
         <module>camel-bindy</module>
-        <module>camel-bonita</module>
         <module>camel-box</module>
         <module>camel-braintree</module>
         <module>camel-browse</module>
