@@ -37,8 +37,13 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !org.schwering.irc*,
+            com.sun*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            org.schwering.irc*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>
