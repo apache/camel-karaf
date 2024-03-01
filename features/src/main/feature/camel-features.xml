@@ -1002,11 +1002,10 @@
 <!--        <bundle>mvn:org.apache.camel/camel-grpc/${project.version}</bundle>-->
 <!--    </feature>-->
 
-<!--    <feature name='camel-gson' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-gson/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-gson' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-gson/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-guava-eventbus' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-eventbus-version}</bundle>-->
