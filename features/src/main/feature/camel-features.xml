@@ -835,11 +835,10 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.fop/${fop-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-fop/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-freemarker' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.freemarker/freemarker/${freemarker-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-freemarker/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-freemarker' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-freemarker/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ftp' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:commons-net/commons-net/${commons-net-version}</bundle>-->
