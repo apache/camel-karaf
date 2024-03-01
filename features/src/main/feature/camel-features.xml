@@ -1077,16 +1077,10 @@
 <!--        <feature version='${ignite-version}'>ignite-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-ignite/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-influxdb' version='${project.version}' start-level='50'>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.influxdb-java/${influx-java-driver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${influx-guava-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okhttp/${okclient-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.retrofit/${squareup-retrofit2-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okio/${squareup-okio-bundle-version}</bundle>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-influxdb/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-influxdb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-influxdb/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-iota' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:org.iota/jota/${jota-version}</bundle>-->
