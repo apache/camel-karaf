@@ -1019,11 +1019,10 @@
 <!--        <bundle dependency='true'>mvn:com.hazelcast/hazelcast/${hazelcast-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-hazelcast/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-headersmap' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.java-util/${java-util-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-headersmap/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-headersmap' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-headersmap/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-hl7' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-netty</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
