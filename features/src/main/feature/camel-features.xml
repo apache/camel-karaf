@@ -1036,14 +1036,10 @@
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-ical' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-lang/commons-lang/${commons-lang-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:backport-util-concurrent/backport-util-concurrent/${backport-util-concurrent-version}$Bundle-SymbolicName=backport-util-concurrent.backport-util-concurrent&amp;Bundle-Version=${backport-util-concurrent-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.mnode.ical4j/ical4j/${ical4j-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ical/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-ical' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-ical/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-iec60870' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>-->
