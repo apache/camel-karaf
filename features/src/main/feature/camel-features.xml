@@ -1104,11 +1104,10 @@
         <feature version='${project.version}'>camel-jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jacksonxml/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-jasypt' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jasypt/${project.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt/${jasypt-bundle-version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jasypt' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jasypt/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-jaxb' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-jaxb/${project.version}</bundle>-->
