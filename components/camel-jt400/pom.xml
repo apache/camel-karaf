@@ -37,8 +37,17 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !com.ibm*,
+            !com.ms*,
+            !utilities*,
+            sun*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            com.ibm*,
+            com.ms*,
+            utilities*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>
