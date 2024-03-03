@@ -1100,12 +1100,10 @@
         <feature version='${project.version}'>camel-jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jackson-protobuf/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jacksonxml/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jacksonxml/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-jasypt' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-jasypt/${project.version}</bundle>-->
