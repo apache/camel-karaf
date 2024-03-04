@@ -1638,10 +1638,10 @@
 <!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-pgevent/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-printer' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-printer/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-printer' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-printer/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-protobuf' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>-->
