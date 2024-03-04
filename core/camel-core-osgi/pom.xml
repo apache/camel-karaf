@@ -37,6 +37,7 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-engine</artifactId>
             <version>${camel.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -59,21 +60,21 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.9</version>
+                <version>${maven-bundle-plugin-version}</version>
                 <extensions>true</extensions>
                 <inherited>true</inherited>
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.camel*
+                            org.apache.camel.karaf.core*
                         </Export-Package>
                         <Import-Package>
                             org.osgi.service.event;resolution:=optional,
                             *
                         </Import-Package>
                         <Provide-Capability>
-                            osgi.extender; osgi.extender="org.apache.camel"; uses:="org.apache.camel.core.osgi.impl";
-                            version:Version="$(version;==;4.3.0)"
+                            osgi.extender; osgi.extender="org.apache.camel"; uses:="org.apache.camel.karaf.core";
+                            version:Version="$(version;==;4.4.0)"
                         </Provide-Capability>
                         <Bundle-Activator>org.apache.camel.karaf.core.Activator</Bundle-Activator>
                     </instructions>

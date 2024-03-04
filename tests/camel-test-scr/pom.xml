@@ -40,6 +40,21 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-core-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core-engine</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <scope>provided</scope>
@@ -69,8 +84,6 @@
                             org.apache.camel.karaf.test
                         </Export-Package>
                         <Import-Package>
-                            !org.apache.camel.karaf.test,
-                            org.osgi.service.component*,
                             *
                         </Import-Package>
                     </instructions>

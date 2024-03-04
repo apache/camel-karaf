@@ -53,6 +53,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-xml-jaxp-util</artifactId>
+            <version>${camel.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,6 +81,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.apache.camel:camel-xml-jaxp</include>
+                                    <include>org.apache.camel:camel-xml-jaxp-util</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
