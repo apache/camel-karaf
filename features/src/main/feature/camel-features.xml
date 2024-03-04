@@ -1517,12 +1517,11 @@
 <!--        <bundle dependency='true'>wrap:mvn:org.dizitart/nitrite/${nitrite-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-nitrite/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-ognl' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ognl/${ognl-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ognl/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-ognl' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:ognl/ognl/3.4.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-ognl/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-olingo2' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <feature>http</feature>-->
