@@ -1341,15 +1341,10 @@
 <!--        <bundle dependency='true'>wrap:mvn:org.apache.yetus/audience-annotations/${yetus-audience-annotations-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-kudu/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-kura' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>scr</feature>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-kura/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-ldap' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ldap/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-ldap' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-ldap/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ldif' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.directory.api/api-i18n/2.0.0</bundle>-->
