@@ -37,8 +37,16 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !com.bazaarvoice.jolt*,
+            !com.fasterxml.jackson*,
+            java.nio*;resolution:=optional,
+            javax.inject*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            com.bazaarvoice.jolt*,
+            com.fasterxml.jackson*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>

@@ -800,16 +800,14 @@
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-fastjson/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-file-watch' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:io.methvin/directory-watcher/${directory-watcher-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-file-watch/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-flatpack' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:net.sf.flatpack/flatpack/${flatpack-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-flatpack/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-file-watch' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-file-watch/${project.version}</bundle>
+    </feature>
+    <feature name='camel-flatpack' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-flatpack/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-fop' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
@@ -837,17 +835,14 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.fop/${fop-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-fop/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-freemarker' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.freemarker/freemarker/${freemarker-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-freemarker/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-ftp' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-net/commons-net/${commons-net-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.github.mwiede/jsch/${jsch-version}$overwrite=merge&amp;Bundle-SymbolicName=org.apache.servicemix.bundles.jsch&amp;Export-Package=com.jcraft.jsch;version=0.1.55,com.jcraft.jsch.bc;version=0.1.55,com.jcraft.jsch.jbcrypt;version=0.1.55,com.jcraft.jsch.jce;version=0.1.55,com.jcraft.jsch.jgss;version=0.1.55,com.jcraft.jsch.juz;version=0.1.55,com.jcraft.jsch.jzlib;version=0.1.55,com.jcraft.jsch;version=${jsch-version},com.jcraft.jsch.bc;version=${jsch-version},com.jcraft.jsch.jbcrypt;version=${jsch-version},com.jcraft.jsch.jce;version=${jsch-version},com.jcraft.jsch.jgss;version=${jsch-version},com.jcraft.jsch.juz;version=${jsch-version},com.jcraft.jsch.jzlib;version=${jsch-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ftp/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-freemarker' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-freemarker/${project.version}</bundle>
+    </feature>
+    <feature name='camel-ftp' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-ftp/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-git' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.eclipse.jgit/org.eclipse.jgit/${jgit-version}</bundle>-->
@@ -1007,11 +1002,10 @@
 <!--        <bundle>mvn:org.apache.camel/camel-grpc/${project.version}</bundle>-->
 <!--    </feature>-->
 
-<!--    <feature name='camel-gson' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-gson/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-gson' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-gson/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-guava-eventbus' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-eventbus-version}</bundle>-->
@@ -1025,35 +1019,27 @@
 <!--        <bundle dependency='true'>mvn:com.hazelcast/hazelcast/${hazelcast-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-hazelcast/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-headersmap' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.java-util/${java-util-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-headersmap/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-headersmap' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-headersmap/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-hl7' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-netty</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
 <!--        <bundle dependency='true'>mvn:ca.uhn.hapi/hapi-osgi-base/${hapi-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-hl7/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-http' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-http-common/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-http/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-ical' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-lang/commons-lang/${commons-lang-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:backport-util-concurrent/backport-util-concurrent/${backport-util-concurrent-version}$Bundle-SymbolicName=backport-util-concurrent.backport-util-concurrent&amp;Bundle-Version=${backport-util-concurrent-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.mnode.ical4j/ical4j/${ical4j-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ical/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-http' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http/${project.version}</bundle>
+    </feature>
+    <feature name='camel-ical' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-ical/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-iec60870' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>-->
@@ -1087,27 +1073,14 @@
 <!--        <feature version='${ignite-version}'>ignite-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-ignite/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-influxdb' version='${project.version}' start-level='50'>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.influxdb-java/${influx-java-driver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${influx-guava-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okhttp/${okclient-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.retrofit/${squareup-retrofit2-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okio/${squareup-okio-bundle-version}</bundle>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-influxdb/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-iota' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.iota/jota/${jota-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-iota/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-irc' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.irclib/${irclib-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-irc/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-influxdb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-influxdb/${project.version}</bundle>
+    </feature>
+    <feature name='camel-irc' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-irc/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ironmq' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ironmq/${ironmq-bundle-version}</bundle>-->
@@ -1115,42 +1088,30 @@
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-ironmq/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-jackson' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jackson/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jackson-avro' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-avro/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${avro-java-commons-compress-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jackson-avro/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jackson-protobuf' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-protobuf/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.squareup/protoparser/4.0.3</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jackson-protobuf/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jacksonxml/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jasypt' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jasypt/${project.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt/${jasypt-bundle-version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jaxb' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jaxb/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jackson' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jackson/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jackson-avro' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jackson-avro/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jackson-protobuf' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jackson-protobuf/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jacksonxml/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jasypt' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jasypt/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jaxb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jaxb/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-jcache' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.javax-cache-api/${jcache-bundle-version}</bundle>-->
@@ -1163,10 +1124,10 @@
 <!--        <bundle dependency='true'>mvn:org.apache.jackrabbit/jackrabbit-jcr-commons/${jackrabbit-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-jcr/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-jdbc' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jdbc/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jdbc' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jdbc/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-jira' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
@@ -1199,27 +1160,14 @@
         <bundle dependency="true">mvn:jakarta.jms/jakarta.jms-api/3.1.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jms/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-jmx' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jmx/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-jolt' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bazaarvoice-jolt/${jolt-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jolt/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-johnzon' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.aries/org.apache.aries.util/${aries-util-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.aries.spifly/org.apache.aries.spifly.dynamic.bundle/${aries-spifly-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.apache.johnzon/johnzon-core/${johnzon-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.apache.johnzon/johnzon-mapper/${johnzon-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-json_1.1_spec/${geronimo-json-spec-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-johnzon/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jmx' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jmx/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jolt' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jolt/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-jpa' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <feature version='${spring-version-range}'>spring-jdbc</feature>-->
@@ -1313,20 +1261,14 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-jsonpath/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-jt400' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>transaction</feature>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jt400/${jt400-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jt400/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-kafka' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.kafka-clients/${kafka-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.xerial.snappy/snappy-java/${snappy-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.lz4/lz4-java/${lz4-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-kafka/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jt400' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jt400/${project.version}</bundle>
+    </feature>
+    <feature name='camel-kafka' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-kafka/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-kamelet' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-yaml-dsl</feature>-->
 <!--        <feature version='${project.version}'>camel-jackson</feature>-->
@@ -1399,15 +1341,10 @@
 <!--        <bundle dependency='true'>wrap:mvn:org.apache.yetus/audience-annotations/${yetus-audience-annotations-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-kudu/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-kura' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>scr</feature>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-kura/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-ldap' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ldap/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-ldap' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-ldap/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ldif' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.directory.api/api-i18n/2.0.0</bundle>-->
@@ -1456,16 +1393,10 @@
 <!--        <feature version='${cxf-version-range}'>cxf-jaxrs</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-lra/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-lucene' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene/${lucene-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene-analyzers-common/${lucene-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene-queryparser/${lucene-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene-queries/${lucene-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.lucene-sandbox/${lucene-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jakarta-regexp/${regexp-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-lucene/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-lucene' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-lucene/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-lumberjack' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
@@ -1481,31 +1412,24 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-lumberjack/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-lzf' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.ning/compress-lzf/${compress-lzf-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-lzf/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-mail' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.sun.mail/jakarta.mail/${jakarta-mail-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-mail/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-master' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-master/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-metrics' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/${metrics-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-jmx/${metrics-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-json/${metrics-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-metrics/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-lzf' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-lzf/${project.version}</bundle>
+    </feature>
+    <feature name='camel-mail' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:com.sun.mail/jakarta.mail/2.0.1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-mail/${project.version}</bundle>
+    </feature>
+    <feature name='camel-master' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-master/${project.version}</bundle>
+    </feature>
+    <feature name='camel-metrics' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-metrics/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-micrometer' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}</bundle>-->
@@ -1514,18 +1438,19 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-micrometer/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-mina' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-mina/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-minio' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:io.minio/minio/${minio-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${minio-commons-compress-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-minio/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-mina' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.mina/mina-core/2.2.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-mina/${project.version}</bundle>
+    </feature>
+    <feature name='camel-minio' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.minio/minio/8.5.9</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/2.15.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/1.26.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/4.12.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-minio/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-mllp' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-mllp/${project.version}</bundle>-->
@@ -1566,21 +1491,20 @@
 <!--        <bundle dependency='true'>mvn:org.mybatis/mybatis/${mybatis-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-mybatis/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-netty' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-netty/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-netty' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-common/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-buffer/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/2.12.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-netty/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-netty-http' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-netty</feature>-->
 <!--        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>-->

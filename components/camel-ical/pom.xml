@@ -37,8 +37,31 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !net.fortuna.ical4j*,
+            !com.github*,
+            !org.apache.commons.lang3*,
+            !org.apache.commons.validator*,
+            !org.apache.commons.beanutils*,
+            !org.apache.commons.collections*,
+            !org.apache.commons.digester*,
+            !org.apache.xerces*,
+            !org.jparsec*,
+            groovy*;resolution:=optional,
+            javax.cache*;resolution:=optional,
+            org.codehaus.groovy*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            net.fortuna.ical4j*,
+            com.github*,
+            org.apache.commons.lang3*,
+            org.apache.commons.validator*,
+            org.apache.commons.beanutils*,
+            org.apache.commons.collections*,
+            org.apache.commons.digester*,
+            org.apache.xerces*,
+            org.jparsec*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>

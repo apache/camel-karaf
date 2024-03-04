@@ -37,8 +37,13 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !io.methvin*,
+            com.sun*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.export>
+            io.methvin*
+        </camel.osgi.export>
     </properties>
 
     <dependencies>

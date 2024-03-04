@@ -37,8 +37,30 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !com.fasterxml.jackson*,
+            !org.codehaus.jackson*,
+            !org.apache.avro*,
+            !avro.shaded*,
+            !com.thoughtworks*,
+            !org.apache.commons.compress*,
+            !org.joda*,
+            !org.tukaani*,
+            !org.xerial.snappy*,
+            java.nio*;resolution:=optional,
+            javax.inject*;resolution:=optional,
             *
         </camel.osgi.import>
+        <camel.osgi.private>
+            com.fasterxml.jackson*,
+            org.apache.avro*,
+            avro.shaded*,
+            com.thoughtworks*,
+            org.apache.commons.compress*,
+            org.codehaus.jackson*,
+            org.joda*,
+            org.tukaani*,
+            org.xerial.snappy*
+        </camel.osgi.private>
     </properties>
 
     <dependencies>
