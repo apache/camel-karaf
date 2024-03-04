@@ -1491,21 +1491,20 @@
 <!--        <bundle dependency='true'>mvn:org.mybatis/mybatis/${mybatis-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-mybatis/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-netty' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-netty/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-netty' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-common/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-buffer/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/2.12.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-netty/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-netty-http' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-netty</feature>-->
 <!--        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>-->
