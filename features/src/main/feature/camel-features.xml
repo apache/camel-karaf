@@ -1505,13 +1505,13 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/2.12.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-netty/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-netty-http' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-netty</feature>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-http-base/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-netty-http/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-netty-http' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-netty</feature>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/4.1.106.Final</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-netty-http/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-nitrite' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:org.dizitart/nitrite/${nitrite-version}</bundle>-->
