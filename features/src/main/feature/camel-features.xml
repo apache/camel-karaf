@@ -1443,13 +1443,14 @@
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/2.2.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-mina/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-minio' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:io.minio/minio/${minio-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${minio-commons-compress-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-minio/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-minio' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.minio/minio/8.5.9</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/2.15.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/1.26.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/4.12.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-minio/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-mllp' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-mllp/${project.version}</bundle>-->
