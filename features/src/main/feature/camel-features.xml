@@ -1412,11 +1412,10 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-lumberjack/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-lzf' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.ning/compress-lzf/${compress-lzf-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-lzf/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-lzf' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-lzf/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-mail' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.sun.mail/jakarta.mail/${jakarta-mail-version}</bundle>-->
