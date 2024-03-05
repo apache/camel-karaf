@@ -79,6 +79,7 @@
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/2.16.1</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/2.16.1</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/2.16.1</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/2.16.1</bundle>
     </feature>
 
     <feature name="jetty" version="11.0.18">
@@ -585,6 +586,9 @@
     </feature>
     <feature name='camel-braintree' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-csv/1.10.0</bundle>
+        <bundle dependency='true'>mvn:com.braintreepayments.gateway/braintree-java/3.32.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-braintree/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-caffeine' version='${project.version}' start-level='50'>-->
