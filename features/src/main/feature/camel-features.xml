@@ -554,6 +554,8 @@
 <!--    </feature>-->
     <feature name='camel-barcode' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.google.zxing/core/3.5.3</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.zxing/javase/3.5.3</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-barcode/${project.version}</bundle>
     </feature>
     <feature name='camel-bindy' version='${project.version}' start-level='50'>

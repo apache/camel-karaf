@@ -37,14 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !com.google.zxing*,
-            !com.beust.jcommander*,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            com.google.zxing*,
-            com.beust.jcommander*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>
