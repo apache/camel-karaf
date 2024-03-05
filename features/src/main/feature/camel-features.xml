@@ -80,6 +80,7 @@
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/2.16.1</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/2.16.1</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/2.16.1</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.16.1</bundle>
     </feature>
 
     <feature name="jetty" version="11.0.18">
@@ -603,6 +604,7 @@
 <!--    </feature>-->
     <feature name='camel-cbor' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-cbor/${project.version}</bundle>
     </feature>
     <feature name='camel-chatscript' version='${project.version}' start-level='50'>
