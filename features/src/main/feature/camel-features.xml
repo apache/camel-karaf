@@ -729,6 +729,7 @@
 <!--    </feature>-->
     <feature name='camel-dns' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:dnsjava/dnsjava/3.5.3</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-dns/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-docker' version='${project.version}' start-level='50'>-->
