@@ -72,6 +72,7 @@
 
     <feature name="bouncycastle" version="1.77">
         <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/1.77</bundle>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcpg-jdk18on/1.77</bundle>
         <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk18on/1.77</bundle>
     </feature>
 
@@ -673,6 +674,7 @@
     </feature>
     <feature name='camel-crypto' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>bouncycastle</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-crypto/${project.version}</bundle>
     </feature>
     <feature name='camel-csv' version='${project.version}' start-level='50'>
