@@ -37,15 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !org.apache.lucene*,
-            !org.tartarus*,
-            com.sun*;resolution:=optional,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            org.apache.lucene*,
-            org.tartarus*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>
