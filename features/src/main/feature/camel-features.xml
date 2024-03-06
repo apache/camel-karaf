@@ -1170,6 +1170,7 @@
     </feature>
     <feature name='camel-jackson-protobuf' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-protobuf/2.16.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jackson-protobuf/${project.version}</bundle>
     </feature>
     <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>
