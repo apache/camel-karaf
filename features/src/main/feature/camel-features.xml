@@ -1345,6 +1345,7 @@
     </feature>
     <feature name='camel-kafka' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/3.6.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kafka/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-kamelet' version='${project.version}' start-level='50'>-->
