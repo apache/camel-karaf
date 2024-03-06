@@ -1181,6 +1181,7 @@
     </feature>
     <feature name='camel-jasypt' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.jasypt/jasypt/1.9.3</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jasypt/${project.version}</bundle>
     </feature>
     <feature name='camel-jaxb' version='${project.version}' start-level='50'>
