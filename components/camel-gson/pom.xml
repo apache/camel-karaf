@@ -37,12 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !com.google.gson*,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            com.google.gson*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>
