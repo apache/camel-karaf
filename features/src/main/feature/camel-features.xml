@@ -1090,6 +1090,7 @@
 <!--    </feature>-->
     <feature name='camel-http' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>http-client</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
