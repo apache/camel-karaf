@@ -849,6 +849,7 @@
     </feature>
     <feature name='camel-fastjson' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.alibaba/fastjson/2.0.46</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-fastjson/${project.version}</bundle>
     </feature>
     <feature name='camel-file-watch' version='${project.version}' start-level='50'>
