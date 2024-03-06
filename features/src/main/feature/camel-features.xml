@@ -1158,6 +1158,7 @@
 <!--    </feature>-->
     <feature name='camel-jackson' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jackson/${project.version}</bundle>
     </feature>
     <feature name='camel-jackson-avro' version='${project.version}' start-level='50'>
