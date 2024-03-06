@@ -1141,6 +1141,7 @@
 <!--    </feature>-->
     <feature name='camel-influxdb' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.influxdb/influxdb-java/2.24</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-influxdb/${project.version}</bundle>
     </feature>
     <feature name='camel-irc' version='${project.version}' start-level='50'>
