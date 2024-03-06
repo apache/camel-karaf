@@ -1079,6 +1079,7 @@
 <!--    </feature>-->
     <feature name='camel-headersmap' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.cedarsoftware/java-util/2.4.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-headersmap/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-hl7' version='${project.version}' start-level='50'>-->
