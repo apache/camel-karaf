@@ -37,19 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !com.jcraft*,
-            !org.apache.commons.net*,
-            !org.bouncycastle*,
-            !org.newsclub*,
-            com.sun*;resolution:=optional,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            com.jcraft*,
-            org.apache.commons.net*,
-            org.bouncycastle*,
-            org.newsclub*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>
