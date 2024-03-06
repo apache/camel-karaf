@@ -1146,6 +1146,7 @@
     </feature>
     <feature name='camel-irc' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.schwering/irclib/1.10</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-irc/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-ironmq' version='${project.version}' start-level='50'>-->
