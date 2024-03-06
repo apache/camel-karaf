@@ -1242,6 +1242,7 @@
     </feature>
     <feature name='camel-jolt' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.bazaarvoice.jolt/jolt-core/0.1.8</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jolt/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-jpa' version='${project.version}' start-level='50'>-->
