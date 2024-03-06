@@ -1511,6 +1511,10 @@
     </feature>
     <feature name='camel-metrics' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/4.2.25</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-jmx/4.2.25</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-json/4.2.25</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-metrics/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-micrometer' version='${project.version}' start-level='50'>-->
