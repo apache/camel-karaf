@@ -1098,6 +1098,12 @@
     </feature>
     <feature name='camel-ical' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/3.14.0</bundle>
+        <bundle dependency='true'>mvn:commons-validator/commons-validator/1.7</bundle>
+        <bundle dependency='true'>mvn:commons-beanutils/commons-beanutils/1.9.4</bundle>
+        <bundle dependency='true'>mvn:commons-collections/commons-collections/3.2.2</bundle>
+        <bundle dependency='true'>mvn:commons-digester/commons-digester/2.1</bundle>
+        <bundle dependency='true'>mvn:org.mnode.ical4j/ical4j/3.2.14</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ical/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-iec60870' version='${project.version}' start-level='50'>-->
