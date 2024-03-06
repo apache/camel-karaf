@@ -37,32 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !freemarker*,
-            !org.apache.tools*,
-            !org.apache.xml*,
-            !org.apache.xpath*,
-            !org.dom4j*,
-            !org.jaxen*,
-            !org.jdom*,
-            !org.mozilla*,
-            !org.zeroturnaround*,
-            com.sun*;resolution:=optional,
-            javax*;resolution:=optional,
-            org.apache.log*;resolution:=optional,
-            org.python*;resolution:=optional,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            freemarker*,
-            org.apache.tools*,
-            org.apache.xml*,
-            org.apache.xpath*,
-            org.dom4j*,
-            org.jaxen*,
-            org.jdom*,
-            org.mozilla*,
-            org.zeroturnaround*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>
