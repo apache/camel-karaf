@@ -80,6 +80,7 @@
         <module>camel-debug</module>
         <module>camel-digitalocean</module>
         <module>camel-direct</module>
+        <module>camel-directvm</module>
         <module>camel-disruptor</module>
         <module>camel-djl</module>
         <module>camel-dns</module>
