@@ -1542,26 +1542,22 @@
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-mllp/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-mongodb' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:org.mongodb/bson/${mongo-java-driver-version}</bundle>-->
-<!--        <feature prerequisite='true'>wrap</feature>-->
-<!--        &lt;!&ndash; Temporary workaround to fix https://jira.mongodb.org/browse/JAVA-4789, won't be needed once 4.8.0 will be released &ndash;&gt;-->
-<!--        <bundle dependency='true'>wrap:mvn:org.mongodb/mongodb-driver-core/${mongo-java-driver-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${mongo-java-driver-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-mongodb/${project.version}</bundle>-->
-<!--    </feature>-->
-<!--    <feature name='camel-mongodb-gridfs' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${project.version}'>camel-jackson</feature>-->
-<!--        <bundle dependency='true'>mvn:org.mongodb/bson/${mongo-java-driver-version}</bundle>-->
-<!--        <feature prerequisite='true'>wrap</feature>-->
-<!--        &lt;!&ndash; Temporary workaround to fix https://jira.mongodb.org/browse/JAVA-4789, won't be needed once 4.8.0 will be released &ndash;&gt;-->
-<!--        <bundle dependency='true'>wrap:mvn:org.mongodb/mongodb-driver-core/${mongo-java-driver-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${mongo-java-driver-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-mongodb-gridfs/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-mongodb' version='${project.version}' start-level='50'>
+            <feature version='${project.version}'>camel-core</feature>
+            <feature version='${project.version}'>camel-jackson</feature>
+            <bundle dependency='true'>mvn:org.mongodb/bson/${mongo-java-driver-version}</bundle>
+            <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-core/${mongo-java-driver-version}</bundle>
+            <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${mongo-java-driver-version}</bundle>
+            <bundle>mvn:org.apache.camel.karaf/camel-mongodb/${project.version}</bundle>
+    </feature>
+    <feature name='camel-mongodb-gridfs' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${project.version}'>camel-jackson</feature>
+        <bundle dependency='true'>mvn:org.mongodb/bson/${mongo-java-driver-version}</bundle>
+        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-core/${mongo-java-driver-version}</bundle>
+        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${mongo-java-driver-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-mongodb-gridfs/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-mustache' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.mustache-compiler/${mustache-bundle-version}</bundle>-->
