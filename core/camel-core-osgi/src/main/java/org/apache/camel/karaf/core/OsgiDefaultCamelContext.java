@@ -23,17 +23,13 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.support.DefaultRegistry;
 import org.osgi.framework.BundleContext;
 
-public class OsgiDefaultCamelContext extends DefaultCamelContext {
-
-    private final BundleContext bundleContext;
+public class OsgiDefaultCamelContext extends AbstractOsgiDefaultCamelContext {
 
     public OsgiDefaultCamelContext(BundleContext bundleContext) {
-        super(false);
+        super(bundleContext);
 
         // remove the OnCamelContextLifecycleStrategy that camel-core adds by default which does not work well for OSGi
         getLifecycleStrategies().removeIf(l -> l.getClass().getSimpleName().contains("OnCamelContextLifecycleStrategy"));
-
-        this.bundleContext = bundleContext;
 
         // inject common osgi
         OsgiCamelContextHelper.osgiUpdate(this, bundleContext);
@@ -54,7 +50,7 @@ public class OsgiDefaultCamelContext extends DefaultCamelContext {
         // CAMEL-3614: make sure we use a bundle context which imports org.apache.camel.impl.converter package
         BundleContext ctx = BundleContextUtils.getBundleContext(getClass());
         if (ctx == null) {
-            ctx = bundleContext;
+            ctx = getBundleContext();
         }
         return new OsgiTypeConverter(ctx, this, getInjector());
     }

@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.camel.TypeConverter;
 import org.apache.camel.blueprint.handler.CamelNamespaceHandler;
+import org.apache.camel.karaf.core.AbstractOsgiDefaultCamelContext;
 import org.apache.camel.karaf.core.OsgiBeanRepository;
 import org.apache.camel.karaf.core.OsgiCamelContextHelper;
 import org.apache.camel.karaf.core.OsgiCamelContextPublisher;
@@ -47,20 +48,18 @@ import org.slf4j.LoggerFactory;
 /**
  * OSGi Blueprint based {@link org.apache.camel.CamelContext}.
  */
-public class BlueprintCamelContext extends DefaultCamelContext implements ServiceListener, BlueprintListener {
+public class BlueprintCamelContext extends AbstractOsgiDefaultCamelContext implements ServiceListener, BlueprintListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(BlueprintCamelContext.class);
 
     protected final AtomicBoolean routeDefinitionValid = new AtomicBoolean(true);
 
-    private BundleContext bundleContext;
     private BlueprintContainer blueprintContainer;
     private ServiceRegistration<?> registration;
     private BlueprintCamelStateService bundleStateService;
 
     public BlueprintCamelContext(BundleContext bundleContext, BlueprintContainer blueprintContainer) {
-        super(false);
-        this.bundleContext = bundleContext;
+        super(bundleContext);
         this.blueprintContainer = blueprintContainer;
 
         // remove the OnCamelContextLifecycleStrategy that camel-core adds by default which does not work well for OSGi
@@ -76,9 +75,6 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         // Need to clean up the OSGi service when camel context is closed.
         addLifecycleStrategy(repo2);
 
-        getCamelContextExtension().addContextPlugin(ComponentResolver.class, new BlueprintComponentResolver(bundleContext));
-        getCamelContextExtension().addContextPlugin(LanguageResolver.class, new BlueprintLanguageResolver(bundleContext));
-        getCamelContextExtension().addContextPlugin(DataFormatResolver.class, new BlueprintDataFormatResolver(bundleContext));
         setApplicationContextClassLoader(new BundleDelegatingClassLoader(bundleContext.getBundle()));
         build();
     }
@@ -87,14 +83,6 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
     protected ModelJAXBContextFactory createModelJAXBContextFactory() {
         // must use classloader of the namespace handler
         return new BlueprintModelJAXBContextFactory(CamelNamespaceHandler.class.getClassLoader());
-    }
-
-    public BundleContext getBundleContext() {
-        return bundleContext;
-    }
-
-    public void setBundleContext(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
     }
 
     public BlueprintContainer getBlueprintContainer() {
@@ -116,6 +104,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
     @Override
     public void doBuild() throws Exception {
         LOG.trace("build {}", this);
+        final BundleContext bundleContext = getBundleContext();
         // add service listener so we can be notified when blueprint container is done
         // and we would be ready to start CamelContext
         bundleContext.addServiceListener(this);
@@ -128,7 +117,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
 
     public void destroy() throws Exception {
         LOG.trace("destroy {}", this);
-
+        final BundleContext bundleContext = getBundleContext();
         // remove listener and stop this CamelContext
         try {
             bundleContext.removeServiceListener(this);
@@ -229,7 +218,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
         // CAMEL-3614: make sure we use a bundle context which imports org.apache.camel.impl.converter package
         BundleContext ctx = BundleContextUtils.getBundleContext(getClass());
         if (ctx == null) {
-            ctx = bundleContext;
+            ctx = getBundleContext();
         }
         return new OsgiTypeConverter(ctx, this, getInjector());
     }
@@ -237,6 +226,7 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
     @Override
     public void start() {
         final ClassLoader original = Thread.currentThread().getContextClassLoader();
+        final BundleContext bundleContext = getBundleContext();
         try {
             // let's set a more suitable TCCL while starting the context
             Thread.currentThread().setContextClassLoader(getApplicationContextClassLoader());
@@ -289,5 +279,6 @@ public class BlueprintCamelContext extends DefaultCamelContext implements Servic
             LOG.trace("Ignoring maybeStart() as {} is already started", this);
         }
     }
+
 
 }

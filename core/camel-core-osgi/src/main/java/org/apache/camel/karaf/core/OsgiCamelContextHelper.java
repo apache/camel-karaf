@@ -43,16 +43,6 @@ public final class OsgiCamelContextHelper {
         camelContext.setManagementNameStrategy(new OsgiManagementNameStrategy(camelContext, bundleContext));
         LOG.debug("Using OsgiClassResolver");
         camelContext.setClassResolver(new OsgiClassResolver(camelContext, bundleContext));
-        LOG.debug("Using OsgiFactoryFinderResolver");
-        camelContext.getCamelContextExtension().addContextPlugin(FactoryFinderResolver.class, new OsgiFactoryFinderResolver(bundleContext));
-        LOG.debug("Using OsgiPackageScanClassResolver");
-        camelContext.getCamelContextExtension().addContextPlugin(PackageScanClassResolver.class, new OsgiPackageScanClassResolver(bundleContext));
-        LOG.debug("Using OsgiComponentResolver");
-        camelContext.getCamelContextExtension().addContextPlugin(ComponentResolver.class, new OsgiComponentResolver(bundleContext));
-        LOG.debug("Using OsgiLanguageResolver");
-        camelContext.getCamelContextExtension().addContextPlugin(LanguageResolver.class, new OsgiLanguageResolver(bundleContext));
-        LOG.debug("Using OsgiDataFormatResolver");
-        camelContext.getCamelContextExtension().addContextPlugin(DataFormatResolver.class, new OsgiDataFormatResolver(bundleContext));
     }
 
 }

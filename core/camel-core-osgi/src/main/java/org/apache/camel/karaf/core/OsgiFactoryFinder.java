@@ -30,7 +30,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 public class OsgiFactoryFinder extends DefaultFactoryFinder {
-    private BundleContext bundleContext;
+    private final BundleContext bundleContext;
 
     public OsgiFactoryFinder(BundleContext bundleContext, ClassResolver classResolver, String resourcePath) {
         super(classResolver, resourcePath);
