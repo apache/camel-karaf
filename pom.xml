@@ -92,6 +92,7 @@
         <camel.version>4.4.0</camel.version>
         <camel.osgi.asm.version>[9.5,10)</camel.osgi.asm.version>
         <camel.osgi.spring.version>6</camel.osgi.spring.version>
+        <spring.amqp.version>3.1.2</spring.amqp.version>
         <camel.osgi.slf4j.version>[2,3)</camel.osgi.slf4j.version>
         <camel.osgi.jakarta.annotation.version>[2,3)</camel.osgi.jakarta.annotation.version>
         <camel.osgi.jakarta.bind.version>[3,5)</camel.osgi.jakarta.bind.version>

@@ -34,9 +34,24 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
+            org.apache.camel*;version=${camel.version},
+            org.springframework.amqp*;version=${spring.amqp.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            !org.springframework.amqp*,
+            ch.qos.logback*;resolution:=optional,
+            com.fasterxml.jackson*;resolution:=optional,
+            com.jayway.jsonpath*;resolution:=optional,
+            org.apache.commons.pool2*;resolution:=optional,
+            org.apache.hc.client5*;resolution:=optional,
+            org.apache.hc.core5*;resolution:=optional,
+            org.apache.logging.log4j*;resolution:=optional,
+            org.reactivestreams*;resolution:=optional,
+            org.springframework.data*;resolution:=optional,
+            org.springframework.http*;resolution:=optional,
+            org.springframework.oxm*;resolution:=optional,
+            org.springframework.web*;resolution:=optional,
+            reactor.core*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
@@ -49,6 +64,28 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>${spring.amqp.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.amqp</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-amqp</artifactId>
+            <version>${spring.amqp.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.amqp</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
@@ -70,6 +107,8 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.apache.camel:camel-spring-rabbitmq</include>
+                                    <include>org.springframework.amqp:spring-rabbit</include>
+                                    <include>org.springframework.amqp:spring-amqp</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

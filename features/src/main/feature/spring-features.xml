@@ -37,4 +37,9 @@
         <feature>spring</feature>
         <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-tx/${spring.version}_1</bundle>
     </feature>
+
+    <feature name="spring-messaging" version="${spring.version}">
+        <feature>spring</feature>
+        <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-messaging/${spring.version}_1</bundle>
+    </feature>
 </features>

@@ -1758,12 +1758,17 @@
 <!--        <bundle>mvn:org.quickfixj/quickfixj-all/${quickfixj-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-quickfix/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-rabbitmq' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/${rabbitmq-amqp-client-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-rabbitmq/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>spring-tx</feature>
+        <feature>spring-messaging</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/2.0.5</bundle>
+        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/5.19.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/1.12.3$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/1.12.3</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/1.12.3$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
