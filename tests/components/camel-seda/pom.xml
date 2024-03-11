@@ -17,26 +17,18 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf</artifactId>
+        <artifactId>camel-karaf-components-test</artifactId>
         <version>4.4.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-karaf-tests</artifactId>
-    <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Tests</name>
+    <artifactId>camel-seda-test</artifactId>
+    <name>Apache Camel :: Karaf :: Tests :: Components :: Seda</name>
 
-    <modules>
-        <module>camel-test-scr</module>
-        <module>camel-integration-test</module>
-        <module>components</module>
-        <!-- <module>camel-test-jms</module> -->
-    </modules>
 
 </project>

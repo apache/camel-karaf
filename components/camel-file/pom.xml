@@ -40,7 +40,6 @@
             *
         </camel.osgi.import>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
