@@ -2241,12 +2241,12 @@
 <!--        <bundle>mvn:org.apache.camel/camel-vertx-common/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-vertx/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-velocity' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.velocity/velocity-engine-core/${velocity-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-velocity/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-velocity' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.velocity/velocity-engine-core/${velocity-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-velocity/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-weather' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
