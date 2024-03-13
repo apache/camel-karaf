@@ -33,7 +33,7 @@ public abstract class AbstractOsgiDefaultCamelContext extends DefaultCamelContex
 
     private static final ThreadLocal<BundleContext> CURRENT_BUNDLE_CONTEXT = new ThreadLocal<>();
 
-    private BundleContext bundleContext;
+    private final BundleContext bundleContext;
 
     protected AbstractOsgiDefaultCamelContext(BundleContext bundleContext) {
         super(init(bundleContext));
@@ -82,10 +82,6 @@ public abstract class AbstractOsgiDefaultCamelContext extends DefaultCamelContex
     public BundleContext getBundleContext() {
         // If the bundle context is not set, then use the current bundle context
         return bundleContext == null ? CURRENT_BUNDLE_CONTEXT.get() : bundleContext;
-    }
-
-    public void setBundleContext(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
     }
 
 }
