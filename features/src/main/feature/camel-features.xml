@@ -2251,6 +2251,7 @@
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
         <feature>http-client</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/5.2.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-weather/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-websocket' version='${project.version}' start-level='50'>-->
