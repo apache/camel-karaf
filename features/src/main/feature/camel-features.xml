@@ -2247,16 +2247,12 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-velocity/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-weather' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-weather/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-weather' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <feature>http-client</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-weather/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-websocket' version='${project.version}' start-level='50'>-->
 <!--        <feature>pax-web-jetty-websockets</feature>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
