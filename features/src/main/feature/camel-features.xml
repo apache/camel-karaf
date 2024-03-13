@@ -2034,13 +2034,12 @@
 <!--        <bundle>mvn:org.apache.camel/camel-attachments/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-spring-ws/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-sql' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${spring-version-range}'>spring-tx</feature>-->
-<!--        <feature version='${spring-version-range}'>spring-jdbc</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-sql/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-sql' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>spring-tx</feature>
+        <feature>spring-jdbc</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-sql/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ssh' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
