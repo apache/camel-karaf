@@ -292,6 +292,7 @@
         <module>camel-validator</module>
         <module>camel-velocity</module>
         <module>camel-vertx</module>
+        <module>camel-vm</module>
         <module>camel-wal</module>
         <module>camel-weather</module>
         <module>camel-web3j</module>

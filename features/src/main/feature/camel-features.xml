@@ -177,6 +177,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-xpath/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-xslt/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-directvm/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-vm/${project.version}</bundle>
         <!--
         <conditional>
             <condition>shell</condition>
