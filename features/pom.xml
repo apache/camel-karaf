@@ -69,8 +69,8 @@
                 <version>${karaf.version}</version>
                 <configuration>
                     <descriptors>
-                        <descriptor>file://${project.build.directory}/feature/camel-features.xml</descriptor>
-                        <descriptor>file://${project.build.directory}/feature/spring-features.xml</descriptor>
+                        <descriptor>file:${project.build.directory}/feature/camel-features.xml</descriptor>
+                        <descriptor>file:${project.build.directory}/feature/spring-features.xml</descriptor>
                         <descriptor>mvn:org.apache.karaf.features/spring/${karaf.version}/xml/features</descriptor>
                     </descriptors>
                     <distribution>org.apache.karaf.features:framework</distribution>

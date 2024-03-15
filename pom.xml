@@ -140,7 +140,6 @@
         <velocity-version>2.3</velocity-version>
         <bouncycastle-version>1.77</bouncycastle-version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
