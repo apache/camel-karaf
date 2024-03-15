@@ -120,6 +120,16 @@
         <bundle>mvn:com.fasterxml.woodstox/woodstox-core/6.5.1</bundle>
     </feature>
 
+    <feature name="awssdk" version="2.24.0" start-level="50">
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/auth/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/aws-core/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sdk-core/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-client-spi/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/regions/2.24.0</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/2.24.0</bundle>
+    </feature>
+
     <!-- Apache Camel core features -->
 
     <feature name="camel" version="${project.version}" start-level="50">
@@ -256,11 +266,12 @@
         <bundle dependency='true'>mvn:org.apache.avro/avro/1.11.3</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-avro/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-aws2-athena' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-aws2-athena/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-aws2-athena' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>awssdk</feature>
+        <bundle>wrap:mvn:software.amazon.awssdk/athena/2.24.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-aws2-athena/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-aws2-cw' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
@@ -281,15 +292,6 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-aws2-ecs/${project.version}</bundle>-->
 <!--    </feature>-->
-    <feature name="awssdk" version="2.24.0" start-level="50">
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/auth/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/aws-core/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sdk-core/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-client-spi/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/regions/2.24.0</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/2.24.0</bundle>
-    </feature>
     <feature name='camel-aws2-eks' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>awssdk</feature>
