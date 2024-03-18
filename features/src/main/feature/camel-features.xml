@@ -1095,13 +1095,11 @@
 <!--        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-guava-eventbus/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-hazelcast' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>transaction</feature>-->
-<!--        <bundle dependency='true'>mvn:com.eclipsesource.minimal-json/minimal-json/${minimal-json-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.hazelcast/hazelcast/${hazelcast-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-hazelcast/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-hazelcast' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:com.hazelcast/hazelcast/5.3.6</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-hazelcast/${project.version}</bundle>
+    </feature>
     <feature name='camel-headersmap' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.cedarsoftware/java-util/2.4.0</bundle>
