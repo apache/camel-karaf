@@ -2399,10 +2399,10 @@
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-zip-deflater/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-zipfile' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-zipfile/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-zipfile' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-zipfile/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-zipkin' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:io.zipkin.brave/brave/${brave-zipkin-version}</bundle>-->
