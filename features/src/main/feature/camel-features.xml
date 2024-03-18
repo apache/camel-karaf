@@ -369,12 +369,14 @@
         <bundle>wrap:mvn:software.amazon.awssdk/sns/2.24.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-sns/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-aws2-sqs' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-aws2-sqs/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-aws2-sqs' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>awssdk</feature>
+        <bundle dependency="true">mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/2.15.1</bundle>
+        <bundle>wrap:mvn:software.amazon.awssdk/sqs/2.24.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-aws2-sqs/${project.version}</bundle>
+    </feature>
     <feature name='camel-aws2-sts' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>awssdk</feature>
