@@ -1806,13 +1806,11 @@
         <bundle dependency="true">wrap:mvn:net.sf.saxon/Saxon-HE/12.4</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-saxon/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-schematron' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/${xmlresolver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.saxon/${saxon-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-schematron/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-schematron' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:commons-io/commons-io/2.15.1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-schematron/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-service' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-service/${project.version}</bundle>-->
