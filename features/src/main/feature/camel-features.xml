@@ -688,15 +688,14 @@
         <feature version='${project.version}'>camel-cxf</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-spring-all/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-digitalocean' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.digitalocean-api-client/${digitalocean-api-client-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-digitalocean/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-digitalocean' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version="[4,5)">http-client</feature>
+        <bundle dependency='true'>mvn:com.google.code.gson/gson/2.10.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.digitalocean-api-client/2.17_1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-digitalocean/${project.version}</bundle>
+    </feature>
     <feature name='camel-disruptor' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.lmax/disruptor/3.4.4</bundle>
