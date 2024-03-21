@@ -697,12 +697,12 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-docker/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-drill' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${spring-version-range}'>spring-jdbc</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.apache.drill.exec/drill-jdbc-all/${apache-drill-version}$Export-Package=org.apache.drill.*&amp;Import-Package=!org.apache.drill.*,!oadd.*&amp;Private-Package=oadd.*</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-drill/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-drill' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>spring-jdbc</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.drill.exec/drill-jdbc-all/${apache-drill-version}$Export-Package=org.apache.drill.jdbc.*;version=${apache-drill-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-drill/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-dropbox' version='${project.version}' start-level='50'>-->
 <!--        <feature version="${project.version}">camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
