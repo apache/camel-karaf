@@ -2165,12 +2165,11 @@
         <bundle dependency='true'>wrap:mvn:xpp3/xpp3/1.1.4c</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-xmpp/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-xslt-saxon' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/${xmlresolver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.saxon/${saxon-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-xslt-saxon/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-xslt-saxon' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:net.sf.saxon/Saxon-HE/${saxon-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-xslt-saxon/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-xstream' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.codehaus.jettison/jettison/${jettison-version}</bundle>-->
