@@ -102,9 +102,9 @@
         <bundle dependency="true">mvn:org.apache.httpcomponents/httpclient-osgi/4.5.14</bundle>
     </feature>
 
-    <feature name="http-client" version="5.2.1">
-        <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.core5/httpcore5/5.2.1</bundle>
-        <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.client5/httpclient5/5.2.1</bundle>
+    <feature name="http-client" version="${httpclient-version}">
+        <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.core5/httpcore5/${httpclient-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.client5/httpclient5/${httpclient-version}</bundle>
     </feature>
 
     <feature name="netty" version="${netty-version}">
@@ -837,12 +837,11 @@
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-grape/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-graphql' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-graphql/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-graphql' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${httpclient-version}'>http-client</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-graphql/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-groovy' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/${ant-bundle-version}</bundle>-->
