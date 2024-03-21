@@ -107,6 +107,16 @@
         <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.client5/httpclient5/5.2.1</bundle>
     </feature>
 
+    <feature name="netty" version="${netty-version}">
+        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+    </feature>
+
     <feature name='xml-specs-api' version='${servicemix-specs-version}' start-level='10'>
         <feature>jakarta-activation</feature>
         <feature>jakarta-annotation</feature>
@@ -1429,21 +1439,15 @@
 <!--    </feature>-->
     <feature name='camel-netty' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
-        <bundle dependency='true'>mvn:io.netty/netty-resolver/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-common/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-buffer/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-transport/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-handler/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:io.netty/netty-codec/4.1.106.Final</bundle>
-        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/2.12.0</bundle>
+        <feature>netty</feature>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-netty/${project.version}</bundle>
     </feature>
     <feature name='camel-netty-http' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-netty</feature>
-        <bundle dependency='true'>mvn:io.netty/netty-codec-http/4.1.106.Final</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-netty-http/${project.version}</bundle>
@@ -2184,31 +2188,19 @@
 <!--        <bundle>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-zendesk' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.cloudbees.thirdparty/zendesk-java-client/${zendesk-client-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.asynchttpclient/async-http-client/${ahc-version}$Export-Package=org.asynchttpclient.*;version=${ahc-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.asynchttpclient/async-http-client-netty-utils/${ahc-version}$Export-Package=org.asynchttpclient.netty.util.*;version=${ahc-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-kqueue/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.typesafe.netty/netty-reactive-streams/${netty-reactive-streams-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-zendesk/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-zendesk' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>netty</feature>
+        <bundle dependency='true'>mvn:org.asynchttpclient/async-http-client/2.12.3</bundle>
+        <bundle dependency='true'>mvn:org.asynchttpclient/async-http-client-netty-utils/2.12.3</bundle>
+        <bundle dependency='true'>wrap:mvn:com.cloudbees.thirdparty/zendesk-java-client/${zendesk-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:com.typesafe.netty/netty-reactive-streams/${netty-reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-zendesk/${project.version}</bundle>
+    </feature>
     <feature name='camel-zip-deflater' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-compress/1.26.0</bundle>
