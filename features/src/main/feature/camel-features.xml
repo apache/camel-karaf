@@ -445,46 +445,15 @@
         <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-datalake/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${reactor-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-core/${azure-core-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-common/${azure-storage-common-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-storage-queue/${azure-storage-queue-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.azure-identity/${azure-identity-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.opensaml/3.4.6_2</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:joda-time/joda-time/${jodatime2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-eventbus-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/3.2.6</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.santuario/xmlsec/${xmlsec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcutil-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.cryptacular/cryptacular/1.2.5</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-analysis/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-util/${asm.bundle.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-azure-storage-queue/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/12.20.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-queue/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-azure-eventhubs' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
