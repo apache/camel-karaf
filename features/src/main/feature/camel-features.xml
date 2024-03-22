@@ -1359,10 +1359,10 @@
         <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/4.12.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-minio/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-mllp' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-mllp/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-mllp' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-mllp/${project.version}</bundle>
+    </feature>
     <feature name='camel-mongodb' version='${project.version}' start-level='50'>
             <feature version='${project.version}'>camel-core</feature>
             <feature version='${project.version}'>camel-jackson</feature>
