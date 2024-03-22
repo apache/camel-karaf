@@ -824,13 +824,13 @@
         <bundle dependency='true'>mvn:org.threeten/threetenbp/1.6.8</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-pubsub/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-grape' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.groovy/groovy/${groovy-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-grape/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-grape' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.groovy/groovy/${groovy-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-grape/${project.version}</bundle>
+    </feature>
     <feature name='camel-graphql' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version='${httpclient-version}'>http-client</feature>
