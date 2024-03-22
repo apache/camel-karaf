@@ -1692,10 +1692,10 @@
         <bundle dependency='true'>mvn:commons-io/commons-io/2.15.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-schematron/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-service' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-service/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-service' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-service/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-servicenow' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <feature version='${cxf-version-range}'>cxf-core</feature>-->
