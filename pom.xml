@@ -507,7 +507,7 @@
         <zookeeper-version>3.9.1</zookeeper-version>
         <zxing-version>3.5.3</zxing-version>
         <!-- END: Maven Properties defining the version of 3rd party libraries used in Camel -->
-
+        <groovy-version>4.0.18</groovy-version>
         <camel.osgi.asm.version>[9.5,10)</camel.osgi.asm.version>
         <camel.osgi.spring.version>6</camel.osgi.spring.version>
         <spring.amqp.version>3.1.2</spring.amqp.version>
