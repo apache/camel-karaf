@@ -2074,16 +2074,11 @@
         <feature>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-xj/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-xmlsecurity' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan/${xalan-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.santuario/xmlsec/${xmlsec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xerces/${xerces-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/${xmlresolver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcel/${bcel-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-xmlsecurity/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-xmlsecurity' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.santuario/xmlsec/${xmlsec-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-xmlsecurity/${project.version}</bundle>
+    </feature>
     <feature name='camel-xmpp' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.igniterealtime.smack/smack-core/4.3.5</bundle>
