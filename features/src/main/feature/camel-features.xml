@@ -2071,23 +2071,14 @@
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-webhook/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-wordpress' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${cxf-version-range}'>cxf-core</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-jaxrs</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-features-logging</feature>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-eventbus-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-wordpress/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-wordpress' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-cxf</feature>
+        <feature>jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-base/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-json-provider/${jackson2-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-wordpress/${project.version}</bundle>
+    </feature>
     <feature name='camel-workday' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version='[5,6)'>http-client</feature>
