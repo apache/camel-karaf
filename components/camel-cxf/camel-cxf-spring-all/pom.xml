@@ -46,7 +46,7 @@
             org.springframework.core*;version="${camel.osgi.spring.version}",
             org.springframework.util*;version="${camel.osgi.spring.version}",
             org.springframework.web*;version="${camel.osgi.spring.version}",
-            org.apache.cxf.*;version=${cxf.version},
+            org.apache.cxf.*;version="${camel.osgi.cxf.version}",
             jakarta.activation;version="${camel.osgi.jakarta.activation.version}",
             jakarta.annotation;version="${camel.osgi.jakarta.annotation.version}",
             jakarta.xml.ws*;version="${camel.osgi.jakarta.xml.ws.version}",
@@ -57,7 +57,6 @@
             jakarta.xml.soap*;version="${camel.osgi.saaj.version}",
             jakarta.servlet*;version="${camel.osgi.jakarta.servlet.version}",
             javax.xml*,
-            org.apache.camel*;version=${camel.version},
         </camel.osgi.import>
     </properties>
 

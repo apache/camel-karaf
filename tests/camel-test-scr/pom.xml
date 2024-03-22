@@ -81,9 +81,10 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.camel.karaf.test
+                            org.apache.camel.karaf.test;version=${camel.version}
                         </Export-Package>
                         <Import-Package>
+                            org.apache.camel*;${camel.osgi.import.camel.version},
                             *
                         </Import-Package>
                     </instructions>

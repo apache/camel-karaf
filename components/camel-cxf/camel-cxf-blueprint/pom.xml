@@ -36,17 +36,19 @@
             org.apache.camel.component.cxf.blueprint.helpers;version=${project.version},
             org.apache.camel.component.cxf.blueprint.jaxrs;version=${project.version},
         </camel.osgi.export>
+        <camel.osgi.camel.import>
+            org.apache.camel.component.cxf.helpers;${camel.osgi.import.camel.version},
+            org.apache.camel.component.cxf.configuration.blueprint;${camel.osgi.import.camel.version},
+        </camel.osgi.camel.import>
         <camel.osgi.import>
             jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
-            org.apache.camel.component.cxf.helpers,
             org.apache.aries.blueprint,
             org.w3c*,
             org.osgi.util*,
             org.osgi.service*,
             org.osgi.framework*,
             org.apache.aries.blueprint*,
-            org.apache.cxf.*;version=${cxf.version},
-            org.apache.camel.component.cxf.configuration.blueprint;version=${project.version},
+            org.apache.cxf.*;version="${camel.osgi.cxf.version}",
             org.slf4j
         </camel.osgi.import>
     </properties>

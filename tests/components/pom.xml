@@ -171,9 +171,10 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.karaf.camel.test
+                            org.apache.karaf.camel.test;version=${camel.version}
                         </Export-Package>
                         <Import-Package>
+                            org.apache.camel*;${camel.osgi.import.camel.version},
                             *
                         </Import-Package>
                     </instructions>

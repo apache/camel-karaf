@@ -534,6 +534,7 @@
         <camel.validation.api.package.version>[2,4)</camel.validation.api.package.version>
         <commons-lang3-version>3.14.0</commons-lang3-version>
         <cxf.version>4.0.3</cxf.version>
+        <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
         <jakarta.activation.version.range>[2,3)</jakarta.activation.version.range>
         <jakarta.xml.ws.version>4.0.1</jakarta.xml.ws.version>
         <karaf.version>4.4.4</karaf.version>
@@ -546,8 +547,9 @@
         <spring.version>6.0.12</spring.version>
 
 
-        <camel.osgi.version.clean>${camel.version}</camel.osgi.version.clean>
-        <camel.osgi.import.camel.version>version="${camel.version}"</camel.osgi.import.camel.version>
+        <camel.osgi.version.clean>4.4</camel.osgi.version.clean>
+        <camel.osgi.import.camel.version>version="[$(version;==;${camel.osgi.version.clean}),$(version;=+;${camel.osgi.version.clean}))"</camel.osgi.import.camel.version>
+        <camel.osgi.camel.import>org.apache.camel.*;${camel.osgi.import.camel.version},</camel.osgi.camel.import>
 
         <maven-shade-plugin-version>3.5.1</maven-shade-plugin-version>
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
@@ -649,7 +651,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>${camel.osgi.export}</Export-Package>
-                        <Import-Package>${camel.osgi.import}</Import-Package>
+                        <Import-Package>${camel.osgi.camel.import}${camel.osgi.import}</Import-Package>
                         <Private-Package>${camel.osgi.private}</Private-Package>
                         <DynamicImport-Package>${camel.osgi.dynamicimport.pkg}</DynamicImport-Package>
                         <Embed-Dependency>${camel.osgi.embed.dependency}</Embed-Dependency>

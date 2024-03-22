@@ -66,10 +66,11 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.camel.karaf.core*
+                            org.apache.camel.karaf.core*;version=${camel.version}
                         </Export-Package>
                         <Import-Package>
                             org.osgi.service.event;resolution:=optional,
+                            org.apache.camel*;${camel.osgi.import.camel.version},
                             *
                         </Import-Package>
                         <Provide-Capability>

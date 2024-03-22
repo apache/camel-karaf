@@ -36,9 +36,11 @@
         <camel.osgi.export>
             org.apache.camel.component.cxf.transport.blueprint;version=${project.version},
         </camel.osgi.export>
+        <camel.osgi.camel.import>
+            org.apache.camel.component.cxf.helpers;${camel.osgi.import.camel.version},
+        </camel.osgi.camel.import>
         <camel.osgi.import>
             jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
-            org.apache.camel.component.cxf.helpers,
             org.apache.aries.blueprint,
             org.slf4j
         </camel.osgi.import>

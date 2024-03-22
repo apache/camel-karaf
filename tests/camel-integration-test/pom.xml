@@ -71,10 +71,11 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.karaf.camel.itests
+                            org.apache.karaf.camel.itests;version=${camel.version}
                         </Export-Package>
                         <Import-Package>
-                            org.apache.karaf.itests,org.ops4j.pax.exam,org.osgi.framework,org.junit,org.apache.camel.*,
+                            org.apache.karaf.itests,org.ops4j.pax.exam,org.osgi.framework,org.junit,
+                            org.apache.camel*;${camel.osgi.import.camel.version},
                             org.osgi.service.*
                         </Import-Package>
                     </instructions>

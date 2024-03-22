@@ -67,8 +67,11 @@
             org.apache.cxf.*;version=${cxf.version},
         </camel.osgi.export>
         <camel.osgi.activator>org.apache.camel.component.cxf.osgi.MainActivator</camel.osgi.activator>
+        <camel.osgi.camel.import>
+            org.apache.camel.component.cxf.spring.*;resolution:=optional;${camel.osgi.import.camel.version},
+            org.apache.camel*;${camel.osgi.import.camel.version},
+        </camel.osgi.camel.import>
         <camel.osgi.import>
-            org.apache.camel.component.cxf.spring.*;resolution:=optional;version=${camel.version},
             com.sun.xml.messaging.saaj.soap;resolution:=optional,
             com.sun.xml.internal.messaging.saaj.soap;resolution:=optional,
             com.ctc.wstx*;resolution:=optional,
@@ -114,7 +117,6 @@
             javax.security*,
             org.w3c*,
             org.apache.ws*,
-            org.apache.camel*;version=${camel.version},
             org.apache.neethi*,
             org.glassfish.hk2.osgiresourcelocator
         </camel.osgi.import>
