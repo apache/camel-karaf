@@ -560,22 +560,16 @@
         <feature>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-chatscript/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-coap' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle>wrap:mvn:org.eclipse.californium/californium-core/${californium-version}</bundle>-->
-<!--        <bundle>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional</bundle>-->
-<!--        <bundle>wrap:mvn:org.eclipse.californium/element-connector-tcp-netty/${californium-version}</bundle>-->
-<!--        <bundle>wrap:mvn:org.eclipse.californium/scandium/${californium-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-coap/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-coap' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>camel-netty</feature>
+        <feature>bouncycastle</feature>
+        <bundle dependency='true'>mvn:org.eclipse.californium/californium-core/${californium-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.californium/element-connector-tcp-netty/${californium-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.californium/scandium/${californium-scandium-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-coap/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-cometd' version='${project.version}' start-level='50'>-->
 <!--        <details>camel-cometd currently requires jetty 9</details>-->
 <!--        <feature version="[9,10)">jetty</feature>-->
