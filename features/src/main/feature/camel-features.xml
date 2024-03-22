@@ -616,7 +616,7 @@
         <bundle dependency="true">mvn:org.glassfish.hk2/osgi-resource-locator/2.5.0-b42</bundle>
         <bundle dependency="true">mvn:org.apache.neethi/neethi/3.2.0</bundle>
         <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
-        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/3.3.0_1</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/${cglib-version}_1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/1.6.3_1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
@@ -631,9 +631,9 @@
     <feature name='camel-digitalocean' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version="[4,5)">http-client</feature>
-        <bundle dependency='true'>mvn:com.google.code.gson/gson/2.10.1</bundle>
+        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.digitalocean-api-client/2.17_1</bundle>
+        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.digitalocean-api-client/${digitalocean-api-client-version}_1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-digitalocean/${project.version}</bundle>
     </feature>
     <feature name='camel-disruptor' version='${project.version}' start-level='50'>
@@ -1540,9 +1540,9 @@
         <feature>spring-messaging</feature>
         <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/2.0.5</bundle>
         <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/5.19.0</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/1.12.3$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/1.12.3</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/1.12.3$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>-->
@@ -2017,7 +2017,7 @@
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
         <feature>http-client</feature>
-        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/5.2.1</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/${httpclient-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-weather/${project.version}</bundle>
     </feature>
 <!--    <feature name='camel-websocket' version='${project.version}' start-level='50'>-->
