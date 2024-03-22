@@ -1971,15 +1971,13 @@
 <!--        <bundle>mvn:org.apache.camel/camel-test/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-test-spring/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-thrift' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.libthrift/${libthrift-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-thrift/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-thrift' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.thrift/libthrift/${libthrift-version}$overwrite=merge&amp;Export-Package=org.apache.thrift*;version=${libthrift-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-thrift/${project.version}</bundle>
+    </feature>
     <feature name='camel-tracing' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-tracing/${project.version}</bundle>
