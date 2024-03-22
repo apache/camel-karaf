@@ -1909,11 +1909,11 @@
 <!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-openapi-java/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-syslog' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${project.version}'>camel-netty</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-syslog/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-syslog' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${project.version}'>camel-netty</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-syslog/${project.version}</bundle>
+    </feature>
     <feature name='camel-tarfile' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
