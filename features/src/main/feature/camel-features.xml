@@ -836,12 +836,11 @@
         <feature version='${httpclient-version}'>http-client</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-graphql/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-groovy' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/${ant-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.codehaus.groovy/groovy/${groovy-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-groovy/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-groovy' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.groovy/groovy/${groovy-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-groovy/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-grok' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:io.krakens/java-grok/${java-grok-version}</bundle>-->
