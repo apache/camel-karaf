@@ -1945,11 +1945,21 @@
 <!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-telegram/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-test' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/${junit-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-test/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-test' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-commons/1.10.2</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-engine/1.10.2</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-launcher/1.10.2</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-params/${junit-jupiter-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-engine/${junit-jupiter-version}</bundle>
+        <bundle dependency='true'>mvn:org.mockito/mockito-core/${mockito-version}</bundle>
+        <bundle dependency='true'>mvn:net.bytebuddy/byte-buddy/${bytebuddy-version}</bundle>
+        <bundle dependency='true'>mvn:net.bytebuddy/byte-buddy-agent/${bytebuddy-version}</bundle>
+        <bundle dependency='true'>mvn:org.objenesis/objenesis/3.3</bundle>
+        <bundle dependency='true'>mvn:org.opentest4j/opentest4j/1.3.0</bundle>
+        <bundle dependency='true'> mvn:org.junit.jupiter/junit-jupiter-api/${junit-jupiter-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-test-junit5/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-test-karaf' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-test</feature>-->
 <!--        <bundle>mvn:biz.aQute.bnd/bndlib/${bndlib-version}</bundle>-->
