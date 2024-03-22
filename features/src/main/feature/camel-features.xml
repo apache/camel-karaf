@@ -1995,11 +1995,11 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-twilio/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-twitter' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.twitter4j/${twitter4j-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-twitter/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-twitter' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.twitter4j/twitter4j-core/${twitter4j-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-twitter/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.univocity/univocity-parsers/${univocity-parsers-version}</bundle>-->
