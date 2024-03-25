@@ -1074,18 +1074,15 @@
         <bundle dependency='true'>wrap:mvn:com.dashjoin/jsonata/${jsonata-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jsonata/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-json-validator' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.networknt/json-schema-validator/${networknt-json-schema-validator-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.jruby.joni/joni/${joni-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.jruby.jcodings/jcodings/${jcodings-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.ethlo.time/itu/${itu-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-json-validator/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-json-validator' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:com.networknt/json-schema-validator/${networknt-json-schema-validator-version}</bundle>
+        <bundle dependency='true'>mvn:com.ethlo.time/itu/1.8.0</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-json-validator/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-json-api' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:com.github.jasminb/jsonapi-converter/${jasminb-jsonapi-version}</bundle>-->
