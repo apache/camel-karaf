@@ -742,33 +742,11 @@
         <bundle dependency='true'>mvn:net.sf.flatpack/flatpack/4.0.18</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-flatpack/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-fop' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/${xmlresolver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xerces/${xerces-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xalan/${xalan-bundle-version}</bundle>-->
-<!--        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlgraphics-commons/${xmlgraphics-commons-bundle-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-svg-dom/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-svg-dom&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-anim/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-anim&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-css/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-css&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-dom/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-dom&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-parser/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-parser&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-util/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-util&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-bridge/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-bridge&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-script/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-script&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-xml/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-xml&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-awt-util/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-awt-util&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-gvt/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-gvt&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-transcoder/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-transcoder&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-svggen/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-svggen&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-extension/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-extension&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:org.apache.xmlgraphics/batik-ext/${xmlgraphics-batik-version}$Bundle-SymbolicName=org.apache.xmlgraphics.batik-ext&amp;Bundle-Version=${xmlgraphics-batik-version}</bundle>-->
-<!--        <bundle dependency="true">wrap:mvn:xml-apis/xml-apis-ext/${xml-apis-ext-version}$Bundle-SymbolicName=xml-apis-ext&amp;Bundle-Version=${xml-apis-ext-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcel/${bcel-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.fop/${fop-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-fop/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-fop' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.xmlgraphics/fop-core/${fop-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-fop/${project.version}</bundle>
+    </feature>
     <feature name='camel-freemarker' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.freemarker/freemarker/2.3.32</bundle>
