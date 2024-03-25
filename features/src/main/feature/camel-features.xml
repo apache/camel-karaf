@@ -2026,10 +2026,10 @@
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-web3j/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-webhook' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-webhook/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-webhook' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-webhook/${project.version}</bundle>
+    </feature>
     <feature name='camel-wordpress' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-cxf</feature>
         <feature>jackson</feature>
