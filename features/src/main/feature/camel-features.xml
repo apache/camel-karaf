@@ -1962,11 +1962,11 @@
         <bundle dependency='true'>wrap:mvn:org.twitter4j/twitter4j-core/${twitter4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-twitter/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.univocity/univocity-parsers/${univocity-parsers-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-univocity-parsers/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:com.univocity/univocity-parsers/${univocity-parsers-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-univocity-parsers/${project.version}</bundle>
+    </feature>
     <feature name='camel-vertx' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>netty</feature>
