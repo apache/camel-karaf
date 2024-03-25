@@ -155,6 +155,11 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/2.24.0</bundle>
     </feature>
 
+    <feature name="guava" version="${guava-version}">
+        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
+    </feature>
+
     <!-- Apache Camel core features -->
 
     <feature name="camel" version="${project.version}" start-level="50">
@@ -883,8 +888,7 @@
     </feature>
     <feature name='camel-guava-eventbus' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
-        <bundle dependency='true'>mvn:com.google.guava/guava/${guava-version}</bundle>
-        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
+        <feature version='${guava-version}'>guava</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-guava-eventbus/${project.version}</bundle>
     </feature>
     <feature name='camel-hazelcast' version='${project.version}' start-level='50'>
@@ -921,25 +925,18 @@
         <bundle dependency='true'>mvn:org.mnode.ical4j/ical4j/3.2.14</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ical/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-iec60870' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${google-guava-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.client/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.client.data/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.server/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.server.data/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.eclipse.neoscada.utils/org.eclipse.scada.utils/${neoscada-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-iec60870/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-iec60870' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${netty-version}'>netty</feature>
+        <feature version='${guava-version}'>guava</feature>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870/${neoscada-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.client/${neoscada-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.client.data/${neoscada-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.server/${neoscada-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.protocols/org.eclipse.neoscada.protocol.iec60870.server.data/${neoscada-version}</bundle>
+        <bundle dependency='true'>mvn:org.eclipse.neoscada.utils/org.eclipse.scada.utils/${neoscada-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-iec60870/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-ignite' version='${project.version}' start-level='50'>-->
 <!--        <details>-->
 <!--            <![CDATA[For performance reasons, Apache Ignite requires a JRE with the sun.nio.ch and com.sun.management low-level package.-->
