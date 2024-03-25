@@ -1563,11 +1563,11 @@
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-reactive-streams/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-reactive-streams/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-reactor' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-reactive-streams</feature>-->
 <!--        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>-->
