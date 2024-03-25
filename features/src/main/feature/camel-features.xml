@@ -1210,14 +1210,12 @@
 <!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-ldif/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-leveldb' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.fusesource.leveldbjni/leveldbjni-all/${leveldbjni-version}$Bundle-Version=${leveldbjni-version}&amp;Export-Package=*;-noimport:=true;version="${leveldbjni-version}"</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-leveldb/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-leveldb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:org.fusesource.leveldbjni/leveldbjni-all/${leveldbjni-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-leveldb/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-leveldb-java' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.google.guava/guava/${leveldb-guava-version}</bundle>-->
