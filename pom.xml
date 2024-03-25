@@ -360,7 +360,7 @@
         <littleproxy-version>2.1.1</littleproxy-version>
         <mapstruct-version>1.5.5.Final</mapstruct-version>
         <metrics-version>4.2.25</metrics-version>
-        <micrometer-version>1.12.3</micrometer-version>
+        <micrometer-version>1.12.4</micrometer-version>
         <micrometer-tracing-version>1.2.3</micrometer-tracing-version>
         <microprofile-config-version>3.1</microprofile-config-version>
         <microprofile-fault-tolerance-version>4.0.2</microprofile-fault-tolerance-version>
