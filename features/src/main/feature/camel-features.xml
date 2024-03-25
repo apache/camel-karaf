@@ -919,20 +919,21 @@
         <bundle dependency='true'>mvn:org.eclipse.neoscada.utils/org.eclipse.scada.utils/${neoscada-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-iec60870/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-ignite' version='${project.version}' start-level='50'>-->
-<!--        <details>-->
-<!--            <![CDATA[For performance reasons, Apache Ignite requires a JRE with the sun.nio.ch and com.sun.management low-level package.-->
+    <feature name='camel-ignite' version='${project.version}' start-level='50'>
+        <details>
+            <![CDATA[For performance reasons, Apache Ignite requires a JRE with the sun.nio.ch and com.sun.management low-level package.
 
-<!--        You need to add this package to the list of packages exported by the system bundle in the etc/jre.properties file.-->
+            You need to add this package to the list of packages exported by the system bundle in the etc/jre.properties file.
 
-<!--        Additionally, you must provision the Ignite Karaf features repository in your container: mvn:org.apache.ignite/ignite-osgi-karaf/${ignite-version}.-->
+            Additionally, you must provision the Ignite Karaf features repository in your container: mvn:org.apache.ignite/ignite-osgi-karaf/${ignite-version}.
 
-<!--        Please refer to the component page (https://camel.apache.org/ignite.html) and to the Ignite docs (https://apacheignite.readme.io/docs/osgi-installation-in-karaf#preparatory-steps) for more information.]]>-->
-<!--        </details>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${ignite-version}'>ignite-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ignite/${project.version}</bundle>-->
-<!--    </feature>-->
+            Please refer to the component page (https://camel.apache.org/ignite.html) and to the Ignite docs (https://apacheignite.readme.io/docs/osgi-installation-in-karaf#preparatory-steps) for more information.]]>
+        </details>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.ignite/ignite-core/${ignite-version}</bundle>
+        <bundle dependency='true'>mvn:javax.cache/cache-api/${jcache-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-ignite/${project.version}</bundle>
+    </feature>
     <feature name='camel-influxdb' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.influxdb/influxdb-java/2.24</bundle>
