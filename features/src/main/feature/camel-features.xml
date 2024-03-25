@@ -76,12 +76,12 @@
         <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk18on/1.77</bundle>
     </feature>
 
-    <feature name="jackson" version="2.16.1">
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/2.16.1</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/2.16.1</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/2.16.1</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/2.16.1</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.16.1</bundle>
+    <feature name="jackson" version="${jackson2-version}">
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/${jackson2-version}</bundle>
     </feature>
 
     <feature name="jetty" version="11.0.18">
@@ -1062,14 +1062,12 @@
 <!--        <feature version='${project.version}'>camel-ftp</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-jsch/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-jslt' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.schibsted.spt.data/jslt/${jslt-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jslt/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jslt' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version='${jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:com.schibsted.spt.data/jslt/${jslt-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jslt/${project.version}</bundle>
+    </feature>
     <feature name='camel-jsonata' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
