@@ -1230,12 +1230,10 @@
 <!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-leveldb/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-lra' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-core</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-jaxrs</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-lra/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-lra' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-lra/${project.version}</bundle>
+    </feature>
     <feature name='camel-lucene' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.lucene/lucene-core/9.9.2</bundle>
