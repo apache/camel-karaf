@@ -570,6 +570,19 @@
 <!--        <bundle dependency="true">mvn:com.github.ben-manes.caffeine/caffeine/${caffeine-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-caffeine-lrucache/${project.version}</bundle>-->
 <!--    </feature>-->
+    <feature name='camel-cassandraql' version='${project.version}' start-level='50'>
+        <feature version="${project.version}">camel-core</feature>
+        <feature>jackson</feature>
+        <feature>netty</feature>
+        <bundle dependency="true">mvn:com.datastax.oss/java-driver-core/${cassandra-driver-version}</bundle>
+        <bundle dependency='true'>mvn:com.datastax.oss/java-driver-query-builder/${cassandra-driver-version}</bundle>
+        <bundle dependency="true">mvn:com.datastax.oss/native-protocol/1.5.1</bundle>
+        <bundle dependency="true">mvn:com.datastax.oss/java-driver-shaded-guava/25.1-jre-graal-sub-1</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/${metrics-version}</bundle>
+        <bundle dependency='true'>mvn:com.typesafe/config/1.4.1</bundle>
+        <bundle dependency='true'>mvn:org.hdrhistogram/HdrHistogram/${hdrhistrogram-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cassandraql/${project.version}</bundle>
+    </feature>
     <feature name='camel-cbor' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
