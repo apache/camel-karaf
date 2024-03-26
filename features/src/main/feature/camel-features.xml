@@ -599,6 +599,13 @@
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-chunk/${project.version}</bundle>
     </feature>
+    <feature name='camel-cm-sms' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jakarta-validation</feature>
+        <feature version='[5,6)'>http-client</feature>
+        <bundle dependency='true'>mvn:com.googlecode.libphonenumber/libphonenumber/${libphonenumber-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-cm-sms/${project.version}</bundle>
+    </feature>
     <feature name='camel-coap' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>camel-netty</feature>
