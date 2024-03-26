@@ -2079,19 +2079,16 @@
         <bundle dependency='true'>mvn:org.apache.curator/curator-x-discovery/${curator-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-zookeeper/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-zookeeper-master' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper/${zookeeper-version}$Export-Package=org.apache.zookeeper;version=${zookeeper-version},org.apache.zookeeper.*;version=${zookeeper-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper-jute/${zookeeper-version}$Export-Package=org.apache.jute;version=${zookeeper-version},org.apache.zookeeper.*;version=${zookeeper-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${zookeeper-guava-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-zookeeper-master-osgi/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-zookeeper-master/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-zookeeper-master' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper/${zookeeper-version}$Export-Package=org.apache.zookeeper*;version=${zookeeper-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper-jute/${zookeeper-version}$Export-Package=org.apache.*;version=${zookeeper-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.guava/guava/32.1.3-jre</bundle> <!-- version 33 is not allowed here -->
+        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-zookeeper-master/${project.version}</bundle>
+    </feature>
 </features>
