@@ -862,11 +862,11 @@
         <bundle dependency='true'>mvn:org.apache.groovy/groovy/${groovy-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-groovy/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-grok' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:io.krakens/java-grok/${java-grok-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-grok/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-grok' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.krakens/java-grok/${java-grok-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-grok/${project.version}</bundle>
+    </feature>
     <feature name='camel-grpc' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>netty</feature>
@@ -881,7 +881,6 @@
         <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-grpc/${project.version}</bundle>
     </feature>
-
     <feature name='camel-gson' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.google.code.gson/gson/2.10.1</bundle>
