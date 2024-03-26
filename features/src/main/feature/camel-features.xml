@@ -1973,6 +1973,20 @@
         <bundle dependency='true'>wrap:mvn:org.twitter4j/twitter4j-core/${twitter4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-twitter/${project.version}</bundle>
     </feature>
+    <feature name='camel-undertow' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jakarta-servlet</feature>
+        <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
+        <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/1.5.4.Final$Export-Package=*;version=1.5.4.Final</bundle>
+        <bundle dependency='true'>mvn:org.jboss.xnio/xnio-api/3.8.9.Final</bundle>
+        <bundle dependency='true'>mvn:org.jboss.xnio/xnio-nio/3.8.9.Final</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jboss.threads/jboss-threads/3.5.0.Final</bundle>
+        <bundle dependency='true'>mvn:org.wildfly.client/wildfly-client-config/1.0.1.Final</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-undertow/${project.version}</bundle>
+    </feature>
     <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.univocity/univocity-parsers/${univocity-parsers-version}</bundle>
