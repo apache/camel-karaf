@@ -1400,6 +1400,11 @@
         <bundle dependency='true'>mvn:org.mybatis/mybatis/${mybatis-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-mybatis/${project.version}</bundle>
     </feature>
+    <feature name='camel-nats' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.nats/jnats/${jnats-version}$overwrite=merge&amp;Export-Package=io.nats.client.*;version=${jnats-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-nats/${project.version}</bundle>
+    </feature>
     <feature name='camel-netty' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>netty</feature>
