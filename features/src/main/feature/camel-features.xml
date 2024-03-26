@@ -1543,24 +1543,16 @@
 <!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-spring-redis/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-rest-openapi' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature version='${project.version}'>camel-http</feature>-->
-<!--        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-1-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-csv/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-smile/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jsonSchema/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:io.apicurio/apicurio-data-models/${apicurio-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-rest-openapi/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-rest-openapi' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:com.atlassian.oai/swagger-request-validator-core/${swagger-request-validator-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.swagger/swagger-parser/${swagger-java-parser-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.swagger.parser.v3/swagger-parser-core/${swagger-openapi3-java-parser-version}</bundle>
+        <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-models/${swagger-openapi3-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-rest-openapi/${project.version}</bundle>
+    </feature>
 
 <!--    <feature name='camel-rest-swagger' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
