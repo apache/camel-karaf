@@ -593,6 +593,12 @@
         <feature>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-chatscript/${project.version}</bundle>
     </feature>
+    <feature name='camel-chunk' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.x5dev/chunk-templates/${chunk-templates-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-chunk/${project.version}</bundle>
+    </feature>
     <feature name='camel-coap' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>camel-netty</feature>
