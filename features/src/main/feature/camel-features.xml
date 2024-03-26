@@ -1695,13 +1695,11 @@
         <bundle dependency='true'>mvn:org.apache.shiro/shiro-core/1.13.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-shiro/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-sjms' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        &lt;!&ndash; JTA is not currently supported by SJMS but is a required dependency of the Geronimo JMS Bundle &ndash;&gt;-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/${geronimo-jms-spec-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-sjms/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-sjms' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency="true">mvn:jakarta.jms/jakarta.jms-api/3.1.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-sjms/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-sjms2' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        &lt;!&ndash; JTA is not currently supported by SJMS but is a required dependency of the Geronimo JMS Bundle &ndash;&gt;-->
