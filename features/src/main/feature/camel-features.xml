@@ -1256,21 +1256,12 @@
         <bundle dependency='true'>wrap:mvn:org.apache.lucene/lucene-analysis-common/9.9.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-lucene/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-lumberjack' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-lumberjack/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-lumberjack' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>netty</feature>
+        <feature>jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-lumberjack/${project.version}</bundle>
+    </feature>
     <feature name='camel-lzf' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.ning/compress-lzf/1.1.2</bundle>
