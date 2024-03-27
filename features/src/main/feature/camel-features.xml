@@ -1377,11 +1377,11 @@
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-netty-http/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-nitrite' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:org.dizitart/nitrite/${nitrite-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-nitrite/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-nitrite' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.dizitart/nitrite/${nitrite-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-nitrite/${project.version}</bundle>
+    </feature>
     <feature name='camel-ognl' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:ognl/ognl/3.4.2</bundle>
