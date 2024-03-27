@@ -746,6 +746,10 @@
         <bundle dependency='true'>mvn:com.dropbox.core/dropbox-core-sdk/${dropbox-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-dropbox/${project.version}</bundle>
     </feature>
+    <feature name='camel-dynamic-router' version='${project.version}' start-level='50'>
+        <feature version="${project.version}">camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-dynamic-router/${project.version}</bundle>
+    </feature>
     <feature name='camel-ehcache' version='${project.version}' start-level='50'>
         <feature>scr</feature>
         <feature version="${project.version}">camel-core</feature>
