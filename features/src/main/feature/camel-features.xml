@@ -1166,6 +1166,16 @@
         <bundle dependency='true'>mvn:org.ow2.asm/asm/9.3</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jsonpath/${project.version}</bundle>
     </feature>
+    <feature name='camel-jta' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:jakarta.transaction/jakarta.transaction-api/${jakarta-transaction-api-version}</bundle>
+        <bundle dependency='true'>mvn:jakarta.enterprise/jakarta.enterprise.cdi-api/${jakarta-enterprise-cdi-api-version}</bundle>
+        <bundle dependency='true'>mvn:jakarta.enterprise/jakarta.enterprise.lang-model/4.0.1</bundle>
+        <bundle dependency='true'>mvn:jakarta.inject/jakarta.inject-api/${jakarta-inject-version}</bundle>
+        <bundle dependency='true'>mvn:jakarta.el/jakarta.el-api/${jakarta-el-api-version}</bundle>
+        <bundle dependency='true'>mvn:jakarta.interceptor/jakarta.interceptor-api/2.1.0</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jta/${project.version}</bundle>
+    </feature>
     <feature name='camel-jt400' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:net.sf.jt400/jt400/20.0.6</bundle>
