@@ -1324,6 +1324,11 @@
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-mail/${project.version}</bundle>
     </feature>
+    <feature name='camel-mapstruct' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.mapstruct/mapstruct/${mapstruct-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-mapstruct/${project.version}</bundle>
+    </feature>
     <feature name='camel-master' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-master/${project.version}</bundle>
