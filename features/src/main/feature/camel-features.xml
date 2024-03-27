@@ -1502,22 +1502,12 @@
         <bundle dependency='true'>mvn:org.postgresql/postgresql/${pgjdbc-driver-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-pg-replication-slot/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-pgevent' version='${project.version}' start-level='50'>-->
-<!--        <details>installing camel-pgevent may output an error in the log but it is installed correctly</details>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <feature>transaction</feature>-->
-<!--        <feature>jdbc</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.impossibl.pgjdbc-ng/pgjdbc-ng/${pgjdbc-ng-driver-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.netty/netty-tcnative-classes/${netty-tcnative-classes-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-pgevent/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-pgevent' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>netty</feature>
+        <bundle dependency='true'>wrap:mvn:com.impossibl.pgjdbc-ng/pgjdbc-ng/${pgjdbc-ng-driver-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-pgevent/${project.version}</bundle>
+    </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-printer/${project.version}</bundle>
