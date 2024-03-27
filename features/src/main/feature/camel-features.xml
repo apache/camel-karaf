@@ -1431,11 +1431,11 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/1.23.1-alpha</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-paho' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.eclipse.paho/org.eclipse.paho.client.mqttv3/${paho-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-paho/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-paho' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle>mvn:org.eclipse.paho/org.eclipse.paho.client.mqttv3/${paho-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-paho/${project.version}</bundle>
+    </feature>
 <!--    Paho v5 does not work in OSGi: https://github.com/eclipse/paho.mqtt.java/issues/857-->
     <feature name='camel-paho-mqtt5' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
