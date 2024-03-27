@@ -1512,15 +1512,11 @@
         <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/3.0.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-protobuf/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-pubnub' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.pubnub/pubnub-gson/${pubnub-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okhttp/${okclient-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okio/${squareup-okio-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.retrofit/${squareup-retrofit2-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-pubnub/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-pubnub' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.pubnub/pubnub-gson/${pubnub-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-pubnub/${project.version}</bundle>
+    </feature>
     <feature name='camel-python' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.python/jython-standalone/2.7.3</bundle>
