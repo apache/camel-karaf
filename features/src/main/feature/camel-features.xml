@@ -160,6 +160,12 @@
         <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
     </feature>
 
+    <!--For use where version 33 is not allowed -->
+    <feature name="guava" version="32.1.3">
+        <bundle dependency='true'>mvn:com.google.guava/guava/32.1.3-jre</bundle>
+        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
+    </feature>
+
     <!-- Apache Camel core features -->
 
     <feature name="camel" version="${project.version}" start-level="50">
@@ -864,11 +870,10 @@
 <!--    </feature>-->
     <feature name='camel-google-pubsub' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
+        <feature version="32.1.3">guava</feature>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-pubsub/1.126.2</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/2.24.0</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
-        <bundle dependency='true'>mvn:com.google.guava/guava/32.1.3-jre</bundle>
-        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/gax/2.41.0</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/gax-grpc/2.41.0</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-pubsub-v1/1.108.2</bundle>
@@ -1479,17 +1484,16 @@
         <feature version='${project.version}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-printer/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-protobuf' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${protobuf-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/guava/${protobuf-guava-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.1</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-protobuf/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-protobuf' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version="32.1.3">guava</feature>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${protobuf-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/3.0.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-protobuf/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-pubnub' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>wrap:mvn:com.pubnub/pubnub-gson/${pubnub-version}</bundle>-->
@@ -2096,13 +2100,12 @@
     <feature name='camel-zookeeper' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
+        <feature version="32.1.3">guava</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper/${zookeeper-version}$Export-Package=org.apache.zookeeper*;version=${zookeeper-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper-jute/${zookeeper-version}$Export-Package=org.apache.*;version=${zookeeper-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:com.google.guava/guava/32.1.3-jre</bundle> <!-- version 33 is not allowed here -->
-        <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
         <bundle dependency='true'>mvn:org.apache.curator/curator-x-discovery/${curator-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-zookeeper/${project.version}</bundle>
     </feature>
