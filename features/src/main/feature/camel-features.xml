@@ -1122,6 +1122,13 @@
         <bundle dependency='true'>wrap:mvn:com.bazaarvoice.jolt/jolt-core/${jolt-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jolt/${project.version}</bundle>
     </feature>
+    <feature name='camel-jooq' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.jooq/jooq/${jooq-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.r2dbc/r2dbc-spi/1.0.0.RELEASE</bundle>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jooq/${project.version}</bundle>
+    </feature>
     <feature name='camel-jpa' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version='${spring.version}'>spring-orm</feature>
