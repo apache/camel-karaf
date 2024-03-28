@@ -1135,10 +1135,10 @@
         <bundle dependency='true'>mvn:jakarta.persistence/jakarta.persistence-api/${jakarta-persistence-api-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jpa/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-jsch' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-ftp</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jsch/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-jsch' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-ftp</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jsch/${project.version}</bundle>
+    </feature>
     <feature name='camel-jslt' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version='${jackson2-version}'>jackson</feature>
