@@ -1737,18 +1737,14 @@
         <feature>camel-sjms</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-sjms2/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-slack' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.camel/camel-util-json/${project.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpcore-osgi/${httpcore4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.httpcomponents/httpclient-osgi/${httpclient4-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:javax.servlet/javax.servlet-api/${javax-servlet-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-client/${slack-api-model-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-model/${slack-api-model-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-slack/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-slack' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-client/${slack-api-model-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.slack.api/slack-api-model/${slack-api-model-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-slack/${project.version}</bundle>
+    </feature>
     <feature name='camel-smpp' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.jsmpp/jsmpp/${jsmpp-version}</bundle>
