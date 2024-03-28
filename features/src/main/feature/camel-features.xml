@@ -1822,16 +1822,13 @@
         <feature>spring-jdbc</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-sql/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-ssh' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.sshd/sshd-osgi/${sshd-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.bouncycastle/bcutil-jdk18on/${bouncycastle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:net.i2p.crypto/eddsa/${eddsa-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-ssh/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-ssh' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature version="${bouncycastle-version}">bouncycastle</feature>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcutil-jdk18on/${bouncycastle-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.sshd/sshd-osgi/${sshd-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-ssh/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-stax' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:com.fasterxml.woodstox/woodstox-core/${woodstox-core-version}</bundle>-->
