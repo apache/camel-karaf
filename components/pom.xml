@@ -53,6 +53,7 @@
         <module>camel-bean</module>
         <module>camel-bean-validator</module>
         <module>camel-bindy</module>
+        <module>camel-bonita</module>
         <module>camel-box</module>
         <module>camel-braintree</module>
         <module>camel-browse</module>
@@ -142,6 +143,7 @@
         <module>camel-jfr</module>
         <module>camel-jgroups</module>
         <module>camel-jgroups-raft</module>
+        <module>camel-jira</module>
         <module>camel-jms</module>
         <module>camel-jmx</module>
         <module>camel-jolt</module>

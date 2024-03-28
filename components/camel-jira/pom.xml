@@ -23,23 +23,19 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-google-parent</artifactId>
+        <artifactId>camel-karaf-components</artifactId>
         <version>4.5.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-google-pubsub</artifactId>
+    <artifactId>camel-jira</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Google :: PubSub</name>
+    <name>Apache Camel :: Karaf :: Components :: JIRA</name>
 
     <properties>
         <camel.osgi.export>
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
-        <camel.osgi.camel.import>
-            org.apache.camel.component.cloudevents*;version=${camel.version};resolution:=optional,
-            org.apache.camel*;version=${camel.version},
-        </camel.osgi.camel.import>
         <camel.osgi.import>
             *
         </camel.osgi.import>
@@ -48,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-google-pubsub</artifactId>
+            <artifactId>camel-jira</artifactId>
             <version>${camel.version}</version>
             <exclusions>
                 <exclusion>
@@ -73,7 +69,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-google-pubsub</include>
+                                    <include>org.apache.camel:camel-jira</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
