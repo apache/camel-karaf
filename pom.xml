@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.4.1-SNAPSHOT</version>
+    <version>4.5.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -89,7 +89,7 @@
 
         <aries.util.version>1.1.3</aries.util.version>
         <aries.version>1.10.3</aries.version>
-        <camel.version>4.4.1</camel.version>
+        <camel.version>4.5.0</camel.version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.18.3</activemq-version>
