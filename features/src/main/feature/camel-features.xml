@@ -1747,11 +1747,11 @@
         <bundle dependency='true'>mvn:org.jsmpp/jsmpp/${jsmpp-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-smpp/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-snakeyaml' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-snakeyaml/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-snakeyaml' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-snakeyaml/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-snmp' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.snmp4j/${snmp4j-version}</bundle>-->
