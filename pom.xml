@@ -544,7 +544,7 @@
         <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
         <jakarta.activation.version.range>[2,3)</jakarta.activation.version.range>
         <jakarta.xml.ws.version>4.0.1</jakarta.xml.ws.version>
-        <karaf.version>4.4.4</karaf.version>
+        <karaf.version>4.4.5</karaf.version>
         <osgi.version>8.0.0</osgi.version>
         <osgi.cmpn.version>7.0.0</osgi.cmpn.version>
         <osgi.service.event.version>1.4.1</osgi.service.event.version>
