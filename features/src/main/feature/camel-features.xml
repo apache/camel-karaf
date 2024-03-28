@@ -1742,11 +1742,11 @@
 <!--        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-slack/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-smpp' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.jsmpp/jsmpp/${jsmpp-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-smpp/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-smpp' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.jsmpp/jsmpp/${jsmpp-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-smpp/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-snakeyaml' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>-->
