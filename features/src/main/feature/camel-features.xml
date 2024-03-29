@@ -1751,7 +1751,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-servlet/${project.version}</bundle>
     </feature>
     <feature name='camel-shiro' version='${project.version}' start-level='50'>
-        <feature>spifly</feature>
+        <feature prerequisite="true">spifly</feature>
         <feature version='${project.version}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.shiro/shiro-core/${shiro-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.shiro/shiro-event/${shiro-version}</bundle>
