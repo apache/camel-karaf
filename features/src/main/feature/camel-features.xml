@@ -2106,6 +2106,13 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-webhook/${project.version}</bundle>
     </feature>
+    <feature name='camel-whatsapp' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-webhook</feature>
+        <feature version="[2.16,2.17)">jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-whatsapp/${project.version}</bundle>
+    </feature>
     <feature name='camel-wordpress' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cxf</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
