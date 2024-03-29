@@ -1882,13 +1882,11 @@
 <!--        <bundle dependency='true'>mvn:org.fusesource.hawtdispatch/hawtdispatch-transport/${hawtdispatch-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-stomp/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-string-template' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${project.version}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr/${antlr-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr-runtime/${antlr-runtime-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.stringtemplate/${stringtemplate-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-stringtemplate/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-string-template' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.antlr/ST4/${stringtemplate-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-stringtemplate/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-swagger-java' version='${project.version}' start-level='50'>-->
 <!--        <feature>http</feature>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
