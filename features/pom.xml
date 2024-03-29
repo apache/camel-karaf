@@ -80,7 +80,7 @@
                         <feature>framework</feature>
                     </framework>
                     <features>
-                        <feature>camel|camel-(?!(ignite|pgevent))*</feature>
+                        <feature>camel*</feature>
                     </features>
                 </configuration>
                 <executions>
