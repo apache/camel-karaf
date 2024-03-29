@@ -96,8 +96,6 @@
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/${jackson2-version}</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/${jackson2-version}</bundle>
     </feature>
 
     <feature name="jetty" version="11.0.18">
@@ -591,6 +589,7 @@
     <feature name='camel-braintree' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jr/jackson-jr-objects/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-csv/${commons-csv-version}</bundle>
         <bundle dependency='true'>mvn:com.braintreepayments.gateway/braintree-java/${braintree-gateway-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-braintree/${project.version}</bundle>
@@ -621,6 +620,7 @@
     <feature name='camel-cbor' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/${jackson2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cbor/${project.version}</bundle>
     </feature>
     <feature name='camel-chatscript' version='${project.version}' start-level='50'>
