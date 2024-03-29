@@ -1572,6 +1572,11 @@
         <bundle dependency='true'>wrap:mvn:com.pubnub/pubnub-gson/${pubnub-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-pubnub/${project.version}</bundle>
     </feature>
+    <feature name='camel-pulsar' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.pulsar/pulsar-client-admin/${pulsar-version}$Export-Package=org.apache.pulsar*;version=${pulsar-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-pulsar/${project.version}</bundle>
+    </feature>
     <feature name='camel-python' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.python/jython-standalone/${jython-version}</bundle>
