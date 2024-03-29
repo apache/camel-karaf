@@ -1868,6 +1868,23 @@
 <!--        <bundle>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-stax/${project.version}</bundle>-->
 <!--    </feature>-->
+    <feature name='camel-stitch' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <feature>netty</feature>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${reactor-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-stitch/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-stream' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${project.version}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-stream/${project.version}</bundle>-->
