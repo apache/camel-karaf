@@ -29,6 +29,11 @@
         <bundle dependency="true">mvn:jakarta.annotation/jakarta.annotation-api/2.1.1</bundle>
     </feature>
 
+    <feature name="jakarta-xml-bind" version="3.0.1">
+        <feature>jakarta-activation</feature>
+        <bundle dependency="true">mvn:jakarta.xml.bind/jakarta.xml.bind-api/3.0.1</bundle>
+    </feature>
+
     <feature name="jakarta-xml-bind" version="4.0.1">
         <feature>jakarta-activation</feature>
         <bundle dependency="true">mvn:jakarta.xml.bind/jakarta.xml.bind-api/4.0.1</bundle>
@@ -50,8 +55,15 @@
         <bundle dependency="true">mvn:jakarta.jws/jakarta.jws-api/3.0.0</bundle>
     </feature>
 
+    <feature name="jaxb-runtime" version="3.0.2">
+        <feature version="[3,4)">jakarta-xml-bind</feature>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/3.0.2</bundle>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-impl/3.0.2</bundle>
+        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-osgi/3.0.2</bundle>
+    </feature>
+
     <feature name="jaxb-runtime" version="4.0.4">
-        <feature>jakarta-xml-bind</feature>
+        <feature version="[4,5)">jakarta-xml-bind</feature>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/4.0.4</bundle>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-impl/4.0.4</bundle>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-osgi/4.0.4</bundle>
@@ -60,6 +72,10 @@
     <feature name="activation-runtime" version="2.0.1">
         <feature>jakarta-activation</feature>
         <bundle dependency="true">mvn:org.eclipse.angus/angus-activation/2.0.1</bundle>
+    </feature>
+
+    <feature name="jakarta-servlet" version="5.0.0">
+        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/5.0.0</bundle>
     </feature>
 
     <feature name="jakarta-servlet" version="6.0.0">
@@ -85,6 +101,7 @@
     </feature>
 
     <feature name="jetty" version="11.0.18">
+        <feature version="[5,6)">jakarta-servlet</feature>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-alpn-server/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-http/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-io/11.0.18</bundle>
@@ -94,11 +111,10 @@
         <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-hpack/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-common/11.0.18</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty.http2/http2-server/11.0.18</bundle>
-        <bundle dependency="true">mvn:jakarta.servlet/jakarta.servlet-api/5.0.0</bundle>
     </feature>
 
     <feature name="jetty" version="${jetty-version}">
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-alpn-server/${jetty-version}</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-http/${jetty-version}</bundle>
         <bundle dependency="true">mvn:org.eclipse.jetty/jetty-io/${jetty-version}</bundle>
@@ -548,6 +564,20 @@
         <bundle dependency='true'>mvn:com.ibm.icu/icu4j/${icu4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-bindy/${project.version}</bundle>
     </feature>
+    <feature name='camel-bonita' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <feature>jackson</feature>
+        <feature version="[5,6)">jakarta-servlet</feature>
+        <feature version="[3,4)">jaxb-runtime</feature>
+        <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-base/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-json-provider/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-core/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-security/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-frontend-jaxrs/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-transports-http/${cxf-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-bonita/${project.version}</bundle>
+    </feature>
     <feature name='camel-box' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature>jackson</feature>
@@ -623,7 +653,7 @@
     </feature>
     <feature name='camel-cometd' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <feature version="${jetty-version}">jetty</feature>
         <bundle dependency='true'>mvn:org.eclipse.jetty.ee10/jetty-ee10-servlet/${jetty-version}</bundle>
         <bundle dependency='true'>mvn:org.eclipse.jetty.ee10/jetty-ee10-servlets/${jetty-version}</bundle>
@@ -679,7 +709,7 @@
     <feature name='camel-cxf' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-blueprint</feature>
         <feature version='${project.version}'>camel-spring</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <feature>jakarta-jws</feature>
         <feature>jakarta-validation</feature>
         <feature version="[11,12)">jetty</feature>
@@ -746,7 +776,7 @@
     </feature>
     <feature name='camel-dropbox' version='${project.version}' start-level='50'>
         <feature version="${project.version}">camel-core</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:com.dropbox.core/dropbox-core-sdk/${dropbox-version}</bundle>
@@ -1455,7 +1485,7 @@
     <feature name='camel-olingo4' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
         <feature version="[4,5)">http-client</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <feature>jackson</feature>
         <bundle dependency='true'>mvn:org.apache.olingo/odata-commons-api/5.0.0</bundle>
         <bundle dependency='true'>mvn:org.apache.olingo/odata-commons-core/5.0.0</bundle>
@@ -1704,7 +1734,7 @@
 <!--    </feature>-->
     <feature name='camel-servlet' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
@@ -1982,7 +2012,7 @@
     </feature>
     <feature name='camel-undertow' version='${project.version}' start-level='50'>
         <feature version='${project.version}'>camel-core</feature>
-        <feature>jakarta-servlet</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/1.5.4.Final$Export-Package=*;version=1.5.4.Final</bundle>
