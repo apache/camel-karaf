@@ -555,7 +555,9 @@
 
 
         <camel.osgi.version.clean>4.5</camel.osgi.version.clean>
-        <camel.osgi.import.camel.version>version="[$(version;==;${camel.osgi.version.clean}),$(version;=+;${camel.osgi.version.clean}))"</camel.osgi.import.camel.version>
+        <camel.osgi.next.version.clean>4.6</camel.osgi.next.version.clean>
+        <camel.osgi.version.range>[${camel.osgi.version.clean},${camel.osgi.next.version.clean})</camel.osgi.version.range>
+        <camel.osgi.import.camel.version>version="${camel.osgi.version.range}"</camel.osgi.import.camel.version>
         <camel.osgi.camel.import>org.apache.camel.*;${camel.osgi.import.camel.version},</camel.osgi.camel.import>
 
         <maven-shade-plugin-version>3.5.1</maven-shade-plugin-version>
