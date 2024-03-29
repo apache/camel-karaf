@@ -1171,7 +1171,7 @@
     </feature>
     <feature name='camel-jslt' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <feature version='${jackson2-version}'>jackson</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:com.schibsted.spt.data/jslt/${jslt-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jslt/${project.version}</bundle>
     </feature>
@@ -1183,7 +1183,7 @@
     </feature>
     <feature name='camel-json-validator' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <feature version='${jackson2-version}'>jackson</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
         <bundle dependency='true'>mvn:com.networknt/json-schema-validator/${networknt-json-schema-validator-version}</bundle>
         <bundle dependency='true'>mvn:com.ethlo.time/itu/1.8.0</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>
@@ -1326,7 +1326,7 @@
     </feature>
     <feature name='camel-leveldb' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <feature version='${jackson2-version}'>jackson</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
         <bundle dependency='true'>mvn:org.fusesource.leveldbjni/leveldbjni-all/${leveldbjni-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-leveldb/${project.version}</bundle>
     </feature>
