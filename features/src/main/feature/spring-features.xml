@@ -17,40 +17,41 @@
     limitations under the License.
 
 -->
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name="spring-${spring.version}">
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name="spring-${spring-version}">
 
-    <feature name="spring" version="${spring.version}">
-        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aopalliance/1.0_6</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-core/${spring.version}_1</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-expression/${spring.version}_1</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-beans/${spring.version}_1</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-aop/${spring.version}_1</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-context/${spring.version}_1</bundle>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-context-support/${spring.version}_1</bundle>
+    <feature name="spring" version="${spring-version}">
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-core/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-expression/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-beans/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-aop/${spring-version}$Export-Package=org.*;version=${spring-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-context/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-context-support/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 
-    <feature name="spring-jms" version="${spring.version}">
-        <feature>spring</feature>
-        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-jms/${spring.version}_1</bundle>
+    <feature name="spring-jms" version="${spring-version}">
+        <feature version="${camel.osgi.spring.version}">spring-tx</feature>
+        <bundle dependency="true" start-level="10">mvn:jakarta.jms/jakarta.jms-api/${jakarta-jms-api-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-jms/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 
-    <feature name="spring-tx" version="${spring.version}">
-        <feature>spring</feature>
-        <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-tx/${spring.version}_1</bundle>
+    <feature name="spring-tx" version="${spring-version}">
+        <feature version="${camel.osgi.spring.version}">spring</feature>
+        <bundle dependency="true" start-level="10">mvn:jakarta.transaction/jakarta.transaction-api/${jakarta-transaction-api-version}</bundle>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-tx/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 
-    <feature name="spring-orm" version="${spring.version}">
-        <feature version='${spring.version}'>spring-jdbc</feature>
-        <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-orm/${spring.version}_1</bundle>
+    <feature name="spring-orm" version="${spring-version}">
+        <feature version='${camel.osgi.spring.version}'>spring-jdbc</feature>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-orm/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 
-    <feature name="spring-jdbc" version="${spring.version}">
-        <feature version='${spring.version}'>spring-tx</feature>
-        <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-jdbc/${spring.version}_1</bundle>
+    <feature name="spring-jdbc" version="${spring-version}">
+        <feature version='${camel.osgi.spring.version}'>spring-tx</feature>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-jdbc/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 
-    <feature name="spring-messaging" version="${spring.version}">
-        <feature>spring</feature>
-        <bundle start-level="30">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-messaging/${spring.version}_1</bundle>
+    <feature name="spring-messaging" version="${spring-version}">
+        <feature version='${camel.osgi.spring.version}'>spring</feature>
+        <bundle start-level="30">wrap:mvn:org.springframework/spring-messaging/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
 </features>
