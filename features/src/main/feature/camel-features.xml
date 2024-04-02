@@ -1713,20 +1713,26 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-service/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-servicenow' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-core</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-jaxrs</feature>-->
-<!--        <feature version='${cxf-version-range}'>cxf-rs-security-oauth2</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jdk8/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-servicenow/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-servicenow' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <feature version="[5,6)">jakarta-servlet</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jdk8/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-base/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.jakarta.rs/jackson-jakarta-rs-json-provider/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.ws.xmlschema/xmlschema-core/2.3.1</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-core/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-rs-client/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-rs-security-oauth2/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-frontend-jaxrs/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-security/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-transports-http/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-rs-json-basic/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-rs-security-jose-jaxrs/${cxf-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.cxf/cxf-rt-rs-security-jose/${cxf-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-servicenow/${project.version}</bundle>
+    </feature>
     <feature name='camel-servlet' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version="[6,7)">jakarta-servlet</feature>
