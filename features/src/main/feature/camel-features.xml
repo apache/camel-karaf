@@ -1858,12 +1858,11 @@
         <bundle dependency='true'>mvn:org.apache.sshd/sshd-osgi/${sshd-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ssh/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-stax' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.woodstox/woodstox-core/${woodstox-core-version}</bundle>-->
-<!--        <bundle>mvn:org.codehaus.woodstox/stax2-api/${stax2v4-api-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-stax/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-stax' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.woodstox/woodstox-core/${woodstox-core-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-stax/${project.version}</bundle>
+    </feature>
     <feature name='camel-stitch' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
