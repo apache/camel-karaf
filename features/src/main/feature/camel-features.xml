@@ -1498,6 +1498,23 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-http/4.1.107.Final</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-olingo4/${project.version}</bundle>
     </feature>
+    <feature name='camel-openstack' version='${project.version}' start-level='50'>
+        <feature prerequisite="true">spifly</feature>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <feature version='[33,34)'>guava</feature>
+        <!-- use wrap to override the guava version -->
+        <bundle dependency='true'>wrap:mvn:com.github.openstack4j.core/openstack4j-core/${openstack4j-version}$overwrite=merge&amp;Import-Package=com.fasterxml*,com.github*,javax*,org*,com.google*;version='[33,34)'</bundle>
+        <bundle dependency='true'>wrap:mvn:com.github.openstack4j.core.connectors/openstack4j-okhttp/${openstack4j-version}$overwrite=merge&amp;Import-Package=com.fasterxml*,okhttp3*,javax*,org*;resolution:=optional,com.google*;version='[33,34)'</bundle>
+        <bundle dependency='true'>wrap:mvn:com.github.java-json-tools/json-patch/${json-patch-version}$overwrite=merge&amp;Export-Package=com.github.fge*;version=${json-patch-version}&amp;Import-Package=com.fasterxml*,com.github*;javax*</bundle>
+        <bundle dependency='true'>wrap:mvn:com.github.java-json-tools/jackson-coreutils/2.0$overwrite=merge&amp;Export-Package=com.github.fge*;version=2.0&amp;Import-Package=com.fasterxml*,com.github*;javax*</bundle>
+        <bundle dependency='true'>mvn:com.github.java-json-tools/msg-simple/1.2</bundle>
+        <bundle dependency='true'>mvn:com.github.java-json-tools/btf/1.3</bundle>
+        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/logging-interceptor/${squareup-okhttp-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-openstack/${project.version}</bundle>
+    </feature>
     <feature name='camel-opentelemetry' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='${camel.osgi.version.range}'>camel-tracing</feature>
