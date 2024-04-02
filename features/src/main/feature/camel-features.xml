@@ -2025,6 +2025,13 @@
         <bundle dependency='true'>wrap:mvn:org.apache.thrift/libthrift/${libthrift-version}$overwrite=merge&amp;Export-Package=org.apache.thrift*;version=${libthrift-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-thrift/${project.version}</bundle>
     </feature>
+    <feature name='camel-tika' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.tika/tika-parser-html-commons/${tika-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-tika/${project.version}</bundle>
+    </feature>
     <feature name='camel-tracing' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-tracing/${project.version}</bundle>
