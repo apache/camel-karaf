@@ -1234,66 +1234,47 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-kamelet/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-kubernetes' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:javax.validation/validation-api/${validation-1-api-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jsr311-api-1.1.1/${servicemix-specs-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.generex/${generex-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.automaton/${automaton-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okio/${squareup-okio-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.okhttp/${okclient-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${google-findbugs-jsr305-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.aries.spifly/org.apache.aries.spifly.dynamic.bundle/${aries-spifly.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-analysis/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-commons/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-tree/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.ow2.asm/asm-util/${asm.bundle.version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.fabric8/zjsonpatch/${zjsonpatch-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-core/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-rbac/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-admissionregistration/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-apiextensions/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-apps/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-autoscaling/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-batch/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-certificates/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-coordination/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-discovery/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-events/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-extensions/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-networking/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-metrics/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-node/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-policy/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-scheduling/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-storageclass/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-common/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/kubernetes-model-flowcontrol/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-console/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-clusterautoscaling/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-hive/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-machine/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-machineconfig/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-monitoring/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-miscellaneous/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-operator/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-operatorhub/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-storageversionmigrator/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-tuned/${kubernetes-model-version}</bundle>-->
-<!--        <bundle>mvn:io.fabric8/openshift-model-whereabouts/${kubernetes-model-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.fabric8/kubernetes-client/${kubernetes-client-version}/jar/bundle</bundle>-->
-<!--        <bundle dependency='true'>mvn:io.fabric8/openshift-client/${kubernetes-client-version}/jar/bundle</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-kubernetes/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-kubernetes' version='${project.version}' start-level='50'>
+        <feature prerequisite="true">spifly</feature>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:io.fabric8/kubernetes-client-api/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-admissionregistration/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-apiextensions/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-apps/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-autoscaling/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-batch/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-certificates/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-coordination/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-core/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-common/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-discovery/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-events/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-extensions/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-flowcontrol/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-metrics/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-networking/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-node/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-policy/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-rbac/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-scheduling/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/kubernetes-model-storageclass/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-client-api/${kubernetes-client-version}/jar/bundle</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-clusterautoscaling/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-console/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-hive/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-machine/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-machineconfig/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-miscellaneous/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-monitoring/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-operator/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-operatorhub/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-storageversionmigrator/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-tuned/${kubernetes-client-version}</bundle>
+        <bundle dependency='true'>mvn:io.fabric8/openshift-model-whereabouts/${kubernetes-client-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-kubernetes/${project.version}</bundle>
+    </feature>
     <feature name='camel-kudu' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.kudu/kudu-client/${kudu-version}</bundle>
