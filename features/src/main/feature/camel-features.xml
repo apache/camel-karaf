@@ -1570,14 +1570,13 @@
 <!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel/camel-quartz/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-quickfix' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xmlresolver/${xmlresolver-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.saxon/${saxon-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.quickfixj/quickfixj-all/${quickfixj-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-quickfix/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-quickfix' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.quickfixj/quickfixj-core/${quickfixj-version}</bundle>
+        <bundle dependency='true'>mvn:org.quickfixj/quickfixj-messages-all/${quickfixj-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-quickfix/${project.version}</bundle>
+    </feature>
     <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='${camel.osgi.spring.version}'>spring-tx</feature>
