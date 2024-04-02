@@ -1880,10 +1880,10 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-stitch/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-stream' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-stream/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-stream' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-stream/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-stomp' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
 <!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>-->
