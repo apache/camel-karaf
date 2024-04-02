@@ -1822,11 +1822,11 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-batch-infrastructure/${spring-batch-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-spring-batch/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-spring-jdbc' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-jdbc</feature>-->
-<!--        <feature version='${camel.osgi.spring.version-range}'>spring-jdbc</feature>-->
-<!--        <bundle>mvn:org.apache.camel/camel-spring-jdbc/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-spring-jdbc' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-jdbc</feature>
+        <feature version='${camel.osgi.spring.version}'>spring-jdbc</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-jdbc/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-spring-ldap' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
 <!--        <feature>transaction</feature>-->
