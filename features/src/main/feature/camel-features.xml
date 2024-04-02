@@ -821,6 +821,14 @@
         <bundle dependency='true'>wrap:mvn:org.wildfly.security/wildfly-elytron/${wildfly-elytron}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-elytron/${project.version}</bundle>
     </feature>
+    <feature name='camel-etcd3' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <feature version='[4.1,5)'>netty</feature>
+        <bundle dependency='true'>wrap:mvn:io.etcd/jetcd-common/${jetcd-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.etcd/jetcd-core/${jetcd-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-etcd3/${project.version}</bundle>
+    </feature>
     <feature name='camel-exec' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-exec/${commons-exec-version}</bundle>
