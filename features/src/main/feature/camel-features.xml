@@ -2014,6 +2014,11 @@
 <!--        <bundle>mvn:org.apache.camel/camel-test/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-test-spring/${project.version}</bundle>-->
 <!--    </feature>-->
+    <feature name='camel-threadpoolfactory-vertx' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-threadpoolfactory-vertx/${project.version}</bundle>
+    </feature>
     <feature name='camel-thrift' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
