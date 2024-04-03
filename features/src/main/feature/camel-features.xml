@@ -1650,6 +1650,15 @@
         <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-redis/${project.version}</bundle>
     </feature>
+    <feature name='camel-resilience4j' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:io.github.resilience4j/resilience4j-core/${resilience4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.github.resilience4j/resilience4j-bulkhead/${resilience4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.github.resilience4j/resilience4j-circuitbreaker/${resilience4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.github.resilience4j/resilience4j-timelimiter/${resilience4j-version}</bundle>
+        <bundle dependency='true'>mvn:io.vavr/vavr/${vavr-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-resilience4j/${project.version}</bundle>
+    </feature>
     <feature name='camel-rest-openapi' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
