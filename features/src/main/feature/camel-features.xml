@@ -282,7 +282,6 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-arangodb/${project.version}</bundle>
     </feature>
-
     <feature name='camel-as2' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version="[4,5)">http-client</feature>
@@ -298,11 +297,11 @@
         <bundle dependency='true'>mvn:org.bouncycastle/bcprov-jdk18on/1.77</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-asn1/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-asterisk' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.asterisk-java/${asterisk-java-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-asterisk/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-asterisk' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.asteriskjava/asterisk-java/${asterisk-java-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-asterisk/${project.version}</bundle>
+    </feature>
     <feature name='camel-atom' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency="true">wrap:mvn:com.apptasticsoftware/rssreader/3.6.0</bundle>
