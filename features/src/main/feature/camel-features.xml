@@ -1921,20 +1921,24 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-stitch/${project.version}</bundle>
     </feature>
+    <feature name='camel-stomp' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <!--
+            The bundle wrap:mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1 provides javax.jms package
+            required by mvn:org.fusesource.stompjms/stompjms-client/${stompjms-version} bundle. The wrap protocol is used because
+            it is not a valid OSGI bundle.
+        -->
+        <bundle dependency='true'>wrap:mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1</bundle>
+        <bundle dependency='true'>mvn:org.fusesource.stompjms/stompjms-client/${stompjms-version}</bundle>
+        <bundle dependency='true'>mvn:org.fusesource.hawtbuf/hawtbuf/1.9</bundle>
+        <bundle dependency='true'>mvn:org.fusesource.hawtdispatch/hawtdispatch/1.20</bundle>
+        <bundle dependency='true'>mvn:org.fusesource.hawtdispatch/hawtdispatch-transport/1.20</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-stomp/${project.version}</bundle>
+    </feature>    
     <feature name='camel-stream' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-stream/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-stomp' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/${geronimo-jta-spec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/${geronimo-jms-spec-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.fusesource.stompjms/stompjms-client/${stompjms-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.fusesource.hawtbuf/hawtbuf/${hawtbuf-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.fusesource.hawtdispatch/hawtdispatch/${hawtdispatch-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:org.fusesource.hawtdispatch/hawtdispatch-transport/${hawtdispatch-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-stomp/${project.version}</bundle>-->
-<!--    </feature>-->
     <feature name='camel-string-template' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.antlr/ST4/${stringtemplate-version}</bundle>
