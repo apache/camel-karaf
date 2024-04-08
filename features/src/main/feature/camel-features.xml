@@ -1180,6 +1180,10 @@
         <bundle>mvn:org.apache.camel.karaf/camel-jetty-common/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jetty/${project.version}</bundle>
     </feature>
+    <feature name='camel-jfr' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-jfr/${project.version}</bundle>
+    </feature>
     <feature name='camel-jgroups' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.jgroups/jgroups/${jgroups-version}</bundle>
