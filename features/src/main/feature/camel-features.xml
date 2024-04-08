@@ -1557,7 +1557,18 @@
         <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-core-jakarta/${swagger-openapi3-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-openapi-java/${project.version}</bundle>
-    </feature>        
+    </feature>
+    <feature name='camel-opensearch' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <feature version="[4,5)">http-client</feature>
+        <bundle dependency='true'>mvn:jakarta.json/jakarta.json-api/${jakarta-json-api-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents/httpasyncclient/${httpasyncclient-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.opensearch.client/opensearch-java/${opensearch-java-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.opensearch.client/opensearch-rest-client/${opensearch-rest-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.opensearch.client/opensearch-rest-client-sniffer/${opensearch-rest-client-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-opensearch/${project.version}</bundle>
+    </feature>
     <feature name='camel-openstack' version='${project.version}' start-level='50'>
         <feature prerequisite="true">spifly</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
