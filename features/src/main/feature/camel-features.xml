@@ -2074,6 +2074,12 @@
         <feature version='${camel.osgi.version.range}'>camel-netty</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-syslog/${project.version}</bundle>
     </feature>
+    <feature name='camel-swift' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.prowidesoftware/pw-swift-core/SRU2023-10.1.13</bundle>
+        <bundle dependency='true'>wrap:mvn:com.prowidesoftware/pw-iso20022/${prowide-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-swift/${project.version}</bundle>
+    </feature>
     <feature name='camel-tarfile' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
