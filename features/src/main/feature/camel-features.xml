@@ -1082,6 +1082,12 @@
         <bundle dependency='true'>wrap:mvn:org.influxdb/influxdb-java/${influx-java-driver-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-influxdb/${project.version}</bundle>
     </feature>
+    <feature name='camel-influxdb2' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.influxdb/influxdb-client-java/${influx-client-java-driver-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.influxdb/influxdb-client-core/${influx-client-java-driver-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-influxdb2/${project.version}</bundle>
+    </feature>
     <feature name='camel-irc' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.schwering/irclib/${irclib-version}</bundle>
