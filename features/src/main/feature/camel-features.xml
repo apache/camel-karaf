@@ -1494,6 +1494,13 @@
         <bundle dependency='true'>wrap:mvn:org.dizitart/nitrite/${nitrite-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-nitrite/${project.version}</bundle>
     </feature>
+    <feature name='camel-oaipmh' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version="[5,6)">http-client</feature>
+        <bundle dependency='true'>mvn:joda-time/joda-time/${jodatime2-version}</bundle>
+        <bundle dependency='true'>mvn:org.jsoup/jsoup/${jsoup-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-oaipmh/${project.version}</bundle>
+    </feature>
     <feature name='camel-ognl' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:ognl/ognl/3.4.2</bundle>
