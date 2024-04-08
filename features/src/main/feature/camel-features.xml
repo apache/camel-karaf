@@ -1196,6 +1196,14 @@
         <bundle dependency='true'>mvn:jakarta.persistence/jakarta.persistence-api/${jakarta-persistence-api-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jpa/${project.version}</bundle>
     </feature>
+    <feature name="camel-jq" version="${project.version}" start-level="50">
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:net.thisptr/jackson-jq/${jackson-jq-version}$overwrite=merge&amp;Export-Package=net*;version=${jackson-jq-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jruby.jcodings/jcodings/1.0.58</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jruby.joni/joni/2.2.1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jq/${project.version}</bundle>
+    </feature>
     <feature name='camel-jsch' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-ftp</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jsch/${project.version}</bundle>
