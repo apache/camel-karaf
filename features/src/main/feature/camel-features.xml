@@ -1643,17 +1643,6 @@
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-quickfix/${project.version}</bundle>
     </feature>
-    <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
-        <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <feature version='${camel.osgi.spring.version}'>spring-tx</feature>
-        <feature version='${camel.osgi.spring.version}'>spring-messaging</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/2.0.5</bundle>
-        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/5.19.0</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
-    </feature>
     <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
@@ -1741,6 +1730,15 @@
         <bundle dependency='true'>wrap:mvn:org.python/jython/${jython-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.python/jython-standalone/${jython-standalone-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-robotframework/${project.version}</bundle>
+    </feature>
+    <feature name='camel-rocketmq' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.rocketmq/rocketmq-acl/${rocketmq-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.rocketmq/rocketmq-client/${rocketmq-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.rocketmq/rocketmq-common/${rocketmq-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.rocketmq/rocketmq-remoting/${rocketmq-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-rocketmq/${project.version}</bundle>
     </feature>
     <feature name='camel-rss' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-atom</feature>
@@ -1892,6 +1890,17 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.springframework.ldap/spring-ldap-core/${spring-ldap-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-ldap/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.spring.version}'>spring-tx</feature>
+        <feature version='${camel.osgi.spring.version}'>spring-messaging</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/2.0.5</bundle>
+        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/5.19.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
     </feature>
     <feature name='camel-spring-redis' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
