@@ -1011,6 +1011,11 @@
         <feature version='[33,34)'>guava</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-guava-eventbus/${project.version}</bundle>
     </feature>
+    <feature name='camel-hashicorp-vault' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.vault/spring-vault-core/${spring-vault-core-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-hashicorp-vault/${project.version}</bundle>
+    </feature>
     <feature name='camel-hazelcast' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.hazelcast/hazelcast/${hazelcast-version}</bundle>
