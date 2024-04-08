@@ -1628,6 +1628,12 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-alpha-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry/${project.version}</bundle>
     </feature>
+    <feature name='camel-optaplanner' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>wrap:mvn:org.kie/kie-api/8.44.0.Final</bundle>
+        <bundle>wrap:mvn:org.optaplanner/optaplanner-core-impl/${optaplanner-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-optaplanner/${project.version}</bundle>
+    </feature>
     <feature name='camel-paho' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.eclipse.paho/org.eclipse.paho.client.mqttv3/${paho-version}</bundle>
