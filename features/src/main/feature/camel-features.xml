@@ -1659,6 +1659,10 @@
         <bundle dependency='true'>wrap:mvn:com.impossibl.pgjdbc-ng/pgjdbc-ng/${pgjdbc-ng-driver-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-pgevent/${project.version}</bundle>
     </feature>
+    <feature name='camel-platform-http' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-platform-http/${project.version}</bundle>
+    </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-printer/${project.version}</bundle>
