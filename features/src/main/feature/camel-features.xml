@@ -2137,6 +2137,11 @@
         <bundle dependency='true'>wrap:mvn:org.apache.thrift/libthrift/${libthrift-version}$overwrite=merge&amp;Export-Package=org.apache.thrift*;version=${libthrift-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-thrift/${project.version}</bundle>
     </feature>
+    <feature name='camel-thymeleaf' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.thymeleaf/thymeleaf/${thymeleaf-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-thymeleaf/${project.version}</bundle>
+    </feature>
     <feature name='camel-tika' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
