@@ -1110,6 +1110,11 @@
         <bundle dependency='true'>wrap:mvn:org.jasypt/jasypt/${jasypt-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jasypt/${project.version}</bundle>
     </feature>
+    <feature name='camel-javascript' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.graalvm.polyglot/polyglot/${graaljs-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-javascript/${project.version}</bundle>
+    </feature>
     <feature name='camel-jaxb' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jaxb/${project.version}</bundle>
