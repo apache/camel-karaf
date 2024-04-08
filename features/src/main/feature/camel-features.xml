@@ -1185,6 +1185,12 @@
         <bundle dependency='true'>wrap:mvn:org.jgroups/jgroups/${jgroups-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jgroups/${project.version}</bundle>
     </feature>
+    <feature name='camel-jgroups-raft' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.jgroups/jgroups/${jgroups-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jgroups/jgroups-raft/${jgroups-raft-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jgroups-raft/${project.version}</bundle>
+    </feature>
     <feature name="camel-jms" version="${project.version}" start-level="50">
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version="${camel.osgi.spring.version}">spring-jms</feature>
