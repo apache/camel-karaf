@@ -1647,6 +1647,18 @@
         <bundle>wrap:mvn:org.eclipse.paho/org.eclipse.paho.mqttv5.client/1.2.5$overwrite=merge&amp;Export-Package=org.eclipse.paho.mqttv5.*;version=1.2.5</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-paho-mqtt5/${project.version}</bundle>
     </feature>
+    <feature name='camel-parquet-avro' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.hadoop/hadoop-common/${hadoop3-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.parquet/parquet-common/${parquet-avro-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.parquet/parquet-avro/${parquet-avro-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.parquet/parquet-hadoop/${parquet-avro-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-parquet-avro/${project.version}</bundle>
+    </feature>
 <!--    <feature name='camel-paxlogging' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
 <!--        <bundle>mvn:org.apache.camel.karaf/camel-paxlogging/${project.version}</bundle>-->
