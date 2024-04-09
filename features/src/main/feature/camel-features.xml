@@ -2340,6 +2340,15 @@
 <!--        <bundle>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>-->
 <!--    </feature>-->
+    <feature name='camel-zeebe' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.camunda/zeebe-client-java/${zeebe.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.camunda/zeebe-gateway-protocol-impl/${zeebe.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-api/${grpc-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-zeebe/${project.version}</bundle>
+    </feature>
     <feature name='camel-zendesk' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[4.1,5)'>netty</feature>
