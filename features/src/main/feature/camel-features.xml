@@ -1779,6 +1779,12 @@
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-quickfix/${project.version}</bundle>
     </feature>
+    <feature name='camel-reactive-executor-vertx' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[4.1,5)'>netty</feature>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-reactive-executor-vertx/${project.version}</bundle>
+    </feature>
     <feature name='camel-reactive-streams' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
