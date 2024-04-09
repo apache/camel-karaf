@@ -1701,6 +1701,19 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-platform-http/${project.version}</bundle>
     </feature>
+    <feature name='camel-plc4x' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>mvn:org.apache.plc4x/plc4j-api/${plc4x-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.plc4x/plc4j-scraper/${plc4x-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.plc4x/plc4j-connection-cache/${plc4x-version}</bundle>
+        <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-collections4/${commons-collections4-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-math3/${commons-math3-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-plc4x/${project.version}</bundle>
+    </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-printer/${project.version}</bundle>
