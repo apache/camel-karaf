@@ -1937,6 +1937,11 @@
         <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-slack/${project.version}</bundle>
     </feature>
+    <feature name='camel-smb' version='${project.version}' start-level='50'>
+        <feature version='${project.version}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.hierynomus/smbj/${smbj-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-smb/${project.version}</bundle>
+    </feature>
     <feature name='camel-smpp' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.jsmpp/jsmpp/${jsmpp-version}</bundle>
