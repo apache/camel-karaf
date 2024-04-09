@@ -1428,6 +1428,20 @@
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-mail/${project.version}</bundle>
     </feature>
+    <feature name='camel-mail-microsoft-oauth' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-mail</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:com.microsoft.azure/msal4j/${msal4j-version}$overwrite=merge&amp;Import-Package=com.sun.net.httpserver;resolution:=optional,*</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/content-type/2.3</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.github.stephenc.jcip/jcip-annotations/1.0-1</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/oauth2-oidc-sdk/11.9.1</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/lang-tag/1.7</bundle>
+        <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
+        <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
+        <bundle dependency='true'>mvn:org.ow2.asm/asm/9.3</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-mail-microsoft-oauth/${project.version}</bundle>
+    </feature>
     <feature name='camel-mapstruct' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle>mvn:org.mapstruct/mapstruct/${mapstruct-version}</bundle>
