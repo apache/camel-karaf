@@ -652,6 +652,10 @@
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-chunk/${project.version}</bundle>
     </feature>
+    <feature name='camel-cloudevents' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
+    </feature>
     <feature name='camel-cm-sms' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature>jakarta-validation</feature>
