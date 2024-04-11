@@ -472,16 +472,11 @@
 <!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
 <!--        <bundle>mvn:org.apache.camel/camel-aws-cloudtrail/${project.version}</bundle>-->
 <!--    </feature>-->
-<!--    <feature name='camel-aws-xray' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-core/${aws-xray-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-apache-http/${aws-xray-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-aws-sdk/${aws-xray-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-aws-sdk-instrumentor/${aws-xray-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-sql-postgres/${aws-xray-version}</bundle>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-sql-mysql/${aws-xray-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-aws-xray/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-aws-xray' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-core/${aws-xray-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-aws-xray/${project.version}</bundle>
+    </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
