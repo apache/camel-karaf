@@ -1478,6 +1478,18 @@
         <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-jmx/${metrics-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-micrometer/${project.version}</bundle>
     </feature>
+    <feature name='camel-micrometer-prometheus' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-micrometer</feature>
+        <feature version='${camel.osgi.version.range}'>camel-platform-http-main</feature>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-registry-prometheus/${micrometer-version}</bundle>
+        <bundle dependency='true'>mvn:io.prometheus/simpleclient_common/0.16.0</bundle>
+        <bundle dependency='true'>mvn:io.prometheus/simpleclient/0.16.0</bundle>
+        <bundle dependency='true'>mvn:io.prometheus/simpleclient_tracer_common/0.16.0</bundle>
+        <bundle dependency='true'>mvn:io.prometheus/simpleclient_tracer_otel/0.16.0</bundle>
+        <bundle dependency='true'>mvn:io.prometheus/simpleclient_tracer_otel_agent/0.16.0</bundle>
+        <bundle dependency='true'>mvn:io.smallrye/jandex/${jandex-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-micrometer-prometheus/${project.version}</bundle>
+    </feature>
     <feature name='camel-mina' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/2.2.2</bundle>
