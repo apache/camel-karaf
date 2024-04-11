@@ -473,6 +473,12 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/cloudtrail/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws-cloudtrail/${project.version}</bundle>
     </feature>
+    <feature name='camel-aws-config' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version="${aws-java-sdk2-version}">awssdk</feature>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/config/${aws-java-sdk2-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-aws-config/${project.version}</bundle>
+    </feature>
     <feature name='camel-aws-xray' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-core/${aws-xray-version}</bundle>
