@@ -759,6 +759,10 @@
         <bundle dependency='true'>wrap:mvn:com.lihaoyi/ujson_2.13/1.2.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-datasonnet/${project.version}</bundle>
     </feature>
+    <feature name='camel-debug' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-debug/${project.version}</bundle>
+    </feature>
     <feature name='camel-digitalocean' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version="[4,5)">http-client</feature>
