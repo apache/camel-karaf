@@ -302,6 +302,13 @@
         <bundle dependency='true'>mvn:org.asteriskjava/asterisk-java/${asterisk-java-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-asterisk/${project.version}</bundle>
     </feature>
+    <feature name='camel-atmosphere-websocket' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-servlet</feature>
+        <feature prerequisite="true">spifly</feature>
+        <!-- Wrap protocol used to work around the wrong version range used for the servlet API [2.5,4)  -->
+        <bundle dependency="true">wrap:mvn:org.atmosphere/atmosphere-runtime/${atmosphere-version}$overwrite=merge&amp;Import-Package=jakarta.servlet;version:="[6,7)",*;resolution:=optional</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-atmosphere-websocket/${project.version}</bundle>
+    </feature>
     <feature name='camel-atom' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency="true">wrap:mvn:com.apptasticsoftware/rssreader/3.6.0</bundle>
