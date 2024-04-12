@@ -542,6 +542,16 @@
         <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-schema-registry/${project.version}</bundle>
     </feature>
+    <feature name='camel-azure-servicebus' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-servicebus/7.15.1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-azure-servicebus/${project.version}</bundle>
+    </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
