@@ -1726,10 +1726,6 @@
         <bundle dependency='true'>wrap:mvn:org.apache.parquet/parquet-hadoop/${parquet-avro-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-parquet-avro/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-paxlogging' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-paxlogging/${project.version}</bundle>-->
-<!--    </feature>-->
     <feature name='camel-pdf' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
@@ -2200,16 +2196,6 @@
         <bundle dependency='true'> mvn:org.junit.jupiter/junit-jupiter-api/${junit-jupiter-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-test-junit5/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-test-karaf' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-test</feature>-->
-<!--        <bundle>mvn:biz.aQute.bnd/bndlib/${bndlib-version}</bundle>-->
-<!--        <bundle>mvn:org.ops4j.base/ops4j-base-io/${ops4j-base-version}</bundle>-->
-<!--        <bundle>mvn:org.ops4j.base/ops4j-base-lang/${ops4j-base-version}</bundle>-->
-<!--        <bundle>mvn:org.ops4j.base/ops4j-base-monitors/${ops4j-base-version}</bundle>-->
-<!--        <bundle>mvn:org.ops4j.base/ops4j-base-store/${ops4j-base-version}</bundle>-->
-<!--        <bundle>mvn:org.ops4j.pax.tinybundles/tinybundles/${tinybundles-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel.karaf/camel-test-karaf/${project.version}</bundle>-->
-<!--    </feature>-->
 <!--    <feature name='camel-test-spring' version='${project.version}' start-level='50'>-->
 <!--        <feature version='${camel.osgi.version.range}'>camel-spring</feature>-->
 <!--        <feature version='${camel.osgi.spring.version-range}'>spring-test</feature>-->
