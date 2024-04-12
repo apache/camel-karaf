@@ -464,16 +464,6 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/translate/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-translate/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-aws-secrets-manager' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.aws-java-sdk2/${aws-sdk-v2-bundle-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>-->
-<!--        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson2-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-aws-secrets-manager/${project.version}</bundle>-->
-<!--    </feature>-->
     <feature name='camel-aws-cloudtrail' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <feature version="${aws-java-sdk2-version}">awssdk</feature>
@@ -486,6 +476,14 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/config/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws-config/${project.version}</bundle>
     </feature>
+    <feature name='camel-aws-secrets-manager' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version="${aws-java-sdk2-version}">awssdk</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/cloudtrail/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/secretsmanager/${aws-java-sdk2-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-aws-secrets-manager/${project.version}</bundle>
+    </feature>  
     <feature name='camel-aws-xray' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-core/${aws-xray-version}</bundle>
