@@ -1881,6 +1881,10 @@
         <bundle dependency='true'>mvn:io.vavr/vavr/${vavr-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-resilience4j/${project.version}</bundle>
     </feature>
+    <feature name='camel-resourceresolver-github' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-resourceresolver-github/${project.version}</bundle>
+    </feature>
     <feature name='camel-rest-openapi' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
