@@ -1825,6 +1825,10 @@
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-quickfix/${project.version}</bundle>
     </feature>
+    <feature name='camel-reactive-executor-tomcat' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-reactive-executor-tomcat/${project.version}</bundle>
+    </feature>
     <feature name='camel-reactive-executor-vertx' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[4.1,5)'>netty</feature>
