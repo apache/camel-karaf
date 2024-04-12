@@ -513,7 +513,15 @@
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.2</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-key-vault/${project.version}</bundle>
-    </feature>  
+    </feature>
+    <feature name='camel-azure-schema-registry' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-azure-schema-registry/${project.version}</bundle>
+    </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
