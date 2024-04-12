@@ -1298,11 +1298,11 @@
         <bundle dependency='true'>mvn:org.yaml/snakeyaml/${snakeyaml-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-json-validator/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-json-api' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>wrap:mvn:com.github.jasminb/jsonapi-converter/${jasminb-jsonapi-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-jsonapi/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-json-api' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:com.github.jasminb/jsonapi-converter/${jasminb-jsonapi-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jsonapi/${project.version}</bundle>
+    </feature>
     <feature name='camel-jsonb' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:jakarta.json/jakarta.json-api/${jakarta-json-api-version}</bundle>
