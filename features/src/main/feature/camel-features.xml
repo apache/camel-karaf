@@ -2090,6 +2090,12 @@
         <bundle dependency='true'>wrap:mvn:org.springframework.data/spring-data-redis/${spring-data-redis-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-redis/${project.version}</bundle>
     </feature>
+    <feature name='camel-spring-security' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.spring.version}'>spring</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-core/${spring-security-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-security/${project.version}</bundle>
+    </feature>
     <feature name='camel-spring-ws' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-xslt-saxon</feature>
         <feature version='${camel.osgi.spring.version}'>spring</feature>
