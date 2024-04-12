@@ -28,67 +28,13 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-vertx</artifactId>
-    <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Vertx</name>
+    <artifactId>camel-vertx-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Apache Camel :: Karaf :: Components :: Vertx :: Parent</name>
 
-    <properties>
-        <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
-        </camel.osgi.export>
-        <camel.osgi.import>
-            *
-        </camel.osgi.import>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-vertx-common</artifactId>
-            <version>${camel.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-vertx</artifactId>
-            <version>${camel.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.apache.camel:camel-vertx-common</include>
-                                    <include>org.apache.camel:camel-vertx</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>camel-vertx-common</module>
+        <module>camel-vertx</module>
+    </modules>
 </project>
 

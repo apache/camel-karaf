@@ -1757,10 +1757,8 @@
     </feature>
     <feature name='camel-platform-http-vertx' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-platform-http</feature>
-        <feature version='[4.1,5)'>netty</feature>
+        <feature version='${camel.osgi.version.range}'>camel-vertx-common</feature>
         <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-vertx/${project.version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-auth-common/${vertx-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-auth-properties/${vertx-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-web/${vertx-version}</bundle>
@@ -2268,11 +2266,15 @@
         <bundle>mvn:org.apache.camel.karaf/camel-univocity-parsers/${project.version}</bundle>
     </feature>
     <feature name='camel-vertx' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-vertx-common</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-vertx/${project.version}</bundle>
+    </feature>
+    <feature name='camel-vertx-common' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <feature version='[2.16,2.17)'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-vertx/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-vertx-common/${project.version}</bundle>
     </feature>
     <feature name='camel-velocity' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
