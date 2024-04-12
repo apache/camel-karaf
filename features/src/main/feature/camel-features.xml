@@ -501,6 +501,19 @@
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-cosmosdb/${project.version}</bundle>
     </feature>
+    <feature name='camel-azure-key-vault' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs/5.18.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs-checkpointstore-blob/1.19.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-security-keyvault-secrets/4.8.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-azure-key-vault/${project.version}</bundle>
+    </feature>  
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
