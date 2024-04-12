@@ -483,7 +483,7 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/cloudtrail/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/secretsmanager/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws-secrets-manager/${project.version}</bundle>
-    </feature>  
+    </feature>
     <feature name='camel-aws-xray' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.amazonaws/aws-xray-recorder-sdk-core/${aws-xray-version}</bundle>
@@ -512,6 +512,15 @@
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>  
+    <feature name='camel-azure-files' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-ftp</feature>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-file-share/12.21.2</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-azure-files/${project.version}</bundle>
+    </feature>
     <feature name='camel-azure-key-vault' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
