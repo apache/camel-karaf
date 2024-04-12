@@ -411,9 +411,8 @@
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-redshift/${project.version}</bundle>
     </feature>
     <feature name='camel-aws2-s3' version='${project.version}' start-level='50'>
-        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <feature version="${aws-java-sdk2-version}">awssdk</feature>
-        <bundle dependency="true">mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/s3/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-s3/${project.version}</bundle>
     </feature>
@@ -432,9 +431,8 @@
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-sns/${project.version}</bundle>
     </feature>
     <feature name='camel-aws2-sqs' version='${project.version}' start-level='50'>
-        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <feature version="${aws-java-sdk2-version}">awssdk</feature>
-        <bundle dependency="true">mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sqs/${aws-java-sdk2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-aws2-sqs/${project.version}</bundle>
@@ -553,7 +551,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-azure-servicebus/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
-        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
@@ -561,7 +559,6 @@
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob-changefeed/${azure-storage-blob-changefeed-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
-        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-datalake' version='${project.version}' start-level='50'>
@@ -574,12 +571,11 @@
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-datalake/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
-        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/12.20.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
-        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-cloudevents/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-queue/${project.version}</bundle>
     </feature>
     <feature name='camel-base64' version='${project.version}' start-level='50'>
