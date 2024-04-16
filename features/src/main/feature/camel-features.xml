@@ -2209,13 +2209,12 @@
         <bundle dependency='true'> mvn:org.junit.jupiter/junit-jupiter-api/${junit-jupiter-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-test-junit5/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-test-spring' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-spring</feature>-->
-<!--        <feature version='${camel.osgi.spring.version-range}'>spring-test</feature>-->
-<!--        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.junit/${junit-bundle-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-test/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-test-spring/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-test-spring' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-spring</feature>
+        <feature version='${camel.osgi.version.range}'>camel-test</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework/spring-test/${spring-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-test-spring/${project.version}</bundle>
+    </feature>
     <feature name='camel-threadpoolfactory-vertx' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
