@@ -16,6 +16,8 @@
  */
 package org.apache.karaf.camel.itests;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +33,10 @@ public abstract class AbstractCamelKarafResultFileBasedITest extends AbstractCam
         return getTestComponentName();
     }
 
+    protected Charset getResultFileCharset() {
+        return StandardCharsets.UTF_8;
+    }
+
     protected int getTimeoutInSeconds() {
         return 5;
     }
@@ -43,9 +49,26 @@ public abstract class AbstractCamelKarafResultFileBasedITest extends AbstractCam
         return filePath;
     }
 
-    protected void assertResultFileContains(String fileExpectedContent) throws Exception {
-        Path filePath  = assertResultFileExists();
-        String content = new String(Files.readAllBytes(filePath));
-        assertEquals("The content of the result file is not correct", fileExpectedContent, content);
+    protected void assertResultFileContains(String expectedFileContent) throws Exception {
+        assertEquals(
+            "The content of the result file is not correct",
+            expectedFileContent, Files.readString(assertResultFileExists(), getResultFileCharset())
+        );
+    }
+
+    protected void assertResultFileIsSameAs(String expectedResultFileName) throws Exception {
+        assertResultFileContains(
+            Files.readString(createExpectedResultPath(expectedResultFileName))
+        );
+    }
+
+    protected void assertResultFileIsSameAs(String expectedResultFileName, Charset encoding) throws Exception {
+        assertResultFileContains(
+            Files.readString(createExpectedResultPath(expectedResultFileName), encoding)
+        );
+    }
+
+    protected Path createExpectedResultPath(String expectedResultFileName) {
+        return Path.of(getBaseDir(), "test-classes", expectedResultFileName);
     }
 }

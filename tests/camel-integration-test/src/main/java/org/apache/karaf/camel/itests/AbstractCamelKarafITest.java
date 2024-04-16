@@ -16,6 +16,8 @@ package org.apache.karaf.camel.itests;
 
 import java.io.File;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.junit.After;
 import org.junit.Before;
 import org.osgi.framework.Bundle;
@@ -38,6 +40,9 @@ import org.osgi.framework.BundleException;
 import static org.apache.karaf.camel.itests.Utils.toKebabCase;
 
 public abstract class AbstractCamelKarafITest extends KarafTestSupport {
+
+    protected CamelContext context;
+    protected ProducerTemplate template;
 
     public String getVersion() {
         return System.getProperty("project.version");
@@ -92,10 +97,32 @@ public abstract class AbstractCamelKarafITest extends KarafTestSupport {
         installBundle("file://%s/%s-%s.jar".formatted(getBaseDir(), testComponentName, getVersion()),true);
         assertBundleInstalled(testComponentName);
         assertBundleInstalledAndRunning(testComponentName);
+        initCamelContext();
+        initProducerTemplate();
+    }
+
+    private void initCamelContext() {
+        this.context = bundleContext.getService(bundleContext.getServiceReference(CamelContext.class));
+    }
+
+    private void initProducerTemplate() {
+        template = context.createProducerTemplate();
+        template.start();
     }
 
     @After
     public void destroy()  {
+        destroyProducerTemplate();
+        uninstallBundle();
+    }
+
+    private void destroyProducerTemplate() {
+        if (template != null) {
+            template.stop();
+        }
+    }
+
+    private void uninstallBundle() {
         Bundle bundle = findBundleByName(getTestComponentName());
         if (bundle == null) {
             return;

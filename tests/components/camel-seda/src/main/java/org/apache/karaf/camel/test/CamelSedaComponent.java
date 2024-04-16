@@ -19,14 +19,14 @@ import java.util.function.Function;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.karaf.camel.itests.AbstractCamelComponentResultFileBased;
+import org.apache.karaf.camel.itests.AbstractCamelComponentResultMockBased;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-seda-test",
         immediate = true
 )
-public class CamelSedaComponent extends AbstractCamelComponentResultFileBased {
+public class CamelSedaComponent extends AbstractCamelComponentResultMockBased {
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {

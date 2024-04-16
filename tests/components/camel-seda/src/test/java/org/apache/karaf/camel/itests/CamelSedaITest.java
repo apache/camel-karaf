@@ -13,6 +13,7 @@
  */
 package org.apache.karaf.camel.itests;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -22,10 +23,15 @@ import org.ops4j.pax.exam.spi.reactors.PerSuite;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerSuite.class)
-public class CamelSedaITest extends AbstractCamelKarafResultFileBasedITest {
+public class CamelSedaITest extends AbstractCamelKarafResultMockBasedITest {
+
+    @Override
+    protected void configureMock(MockEndpoint mock) {
+        mock.expectedBodiesReceived("OK");
+    }
 
     @Test
-    public void testResultFileContent() throws Exception {
-        assertResultFileContains("OK");
+    public void testResultMock() throws Exception {
+        assertMockEndpointsSatisfied();
     }
 }
