@@ -2302,6 +2302,11 @@
         <bundle dependency='true'>wrap:mvn:io.vertx/vertx-web-common/${vertx-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-vertx-http/${project.version}</bundle>
     </feature>
+    <feature name='camel-vertx-websocket' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-vertx-common</feature>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-web/${vertx-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-vertx-websocket/${project.version}</bundle>
+    </feature>
     <feature name='camel-velocity' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.velocity/velocity-engine-core/${velocity-version}</bundle>
