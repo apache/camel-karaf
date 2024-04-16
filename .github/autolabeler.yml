@@ -6,7 +6,7 @@
 # (the "License"); you may not use this file except in compliance with
 # the License.  You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+#    https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,32 +15,9 @@
 # limitations under the License.
 #
 
-github:
-  description: "Apache Camel Karaf support"
-  homepage: https://camel.apache.org
-  labels:
-    - camel
-    - integration
-    - java
-    - karaf
-    - osgi
-
-  enabled_merge_buttons:
-    merge: false
-    squash: true
-    rebase: true
-
-  protected_branches:
-    main:
-      required_linear_history: true
-
-  features:
-    wiki: true
-    issues: true
-    projects: true
-
-  collaborators:  # Note: the number of collaborators is limited to 10
-
-  ghp_branch: gh-pages
-  ghp_path: /
-
+build: [".github/**/*", ".gitignore", ".asf.yml", "**/pom.xml"]
+# we can add more label here per components/components groups
+components: ["components/**/*"]
+core: ["core/**/*"]
+tests: ["tests/**/*"]
+features: ["tests/**/*"]

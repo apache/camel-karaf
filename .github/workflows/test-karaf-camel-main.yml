@@ -15,36 +15,26 @@
 # limitations under the License.
 #
 
-name: Test Camel Karaf Main Branch
+name: Build and Test Apache Camel Karaf
 
 on:
-  schedule:
-    # Run at midnight every day
-    - cron:  '0 0 * * *'
+  push:
+    branches:
+      - 'main'
+      - 'camel-karaf-**'
+  pull_request:
+    paths-ignore:
+      - '.gitignore'
+      - '.asf.yml'
+      - 'LICENSE'
+      - 'NOTICE'
+
 jobs:
   build:
-    name: Test Camel Karaf Main Branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Camel project
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
-          repository: apache/camel
-          persist-credentials: false
-          ref: main
-          path: camel
-      - name: Set Up Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Build Camel Project
-        run: ./mvnw -V --no-transfer-progress clean install -DskipTests
-        working-directory: ${{ github.workspace }}/camel
-      - name: Checkout Camel-karaf project
-        uses: actions/checkout@v2
-        with:
-          ref: main
-          persist-credentials: false
-          fetch-depth: 0
-      - name: Build Camel-karaf Project
-        run: ./mvnw -V --no-transfer-progress clean install -DskipTests
+          java-version: 17
+        run: ./mvnw -V --no-transfer-progress clean install
