@@ -35,6 +35,7 @@
     <modules>
         <module>camel-vertx-common</module>
         <module>camel-vertx</module>
+        <module>camel-vertx-http</module>
     </modules>
 </project>
 
