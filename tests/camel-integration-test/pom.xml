@@ -76,7 +76,8 @@
                         <Import-Package>
                             org.apache.karaf.itests,org.ops4j.pax.exam,org.osgi.framework,org.junit,
                             org.apache.camel*;${camel.osgi.import.camel.version},
-                            org.osgi.service.*
+                            org.osgi.service.*,
+                            org.awaitility*
                         </Import-Package>
                     </instructions>
                     <excludeDependencies>geronimo-atinject_1.0_spec</excludeDependencies>
@@ -107,10 +108,9 @@
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

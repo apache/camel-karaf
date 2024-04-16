@@ -13,19 +13,16 @@
  */
 package org.apache.karaf.camel.itests;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.junit.PaxExam;
-import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
-import org.ops4j.pax.exam.spi.reactors.PerSuite;
+import org.apache.camel.model.RouteDefinition;
 
+public abstract class AbstractCamelComponentResultFileBased extends AbstractCamelComponent {
 
-@RunWith(PaxExam.class)
-@ExamReactorStrategy(PerSuite.class)
-public class CamelSedaITest extends AbstractCamelKarafResultFileBasedITest {
+    protected String getResultFileName() {
+        return getTestComponentName();
+    }
 
-    @Test
-    public void testResultFileContent() throws Exception {
-        assertResultFileContains("OK");
+    @Override
+    protected void configureConsumer(RouteDefinition consumerRoute) {
+        consumerRoute.toF("file:%s?fileName=%s", getBaseDir(), getResultFileName());
     }
 }

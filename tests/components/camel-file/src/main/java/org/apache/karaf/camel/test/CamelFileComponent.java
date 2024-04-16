@@ -15,25 +15,30 @@
  */
 package org.apache.karaf.camel.test;
 
+import java.util.function.Function;
+
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.karaf.camel.itests.AbstractCamelComponent;
+import org.apache.camel.model.RouteDefinition;
+import org.apache.karaf.camel.itests.AbstractCamelComponentResultFileBased;
 import org.osgi.service.component.annotations.Component;
 @Component(
         name = "karaf-camel-file-test",
         immediate = true
 )
-public class CamelComponent extends AbstractCamelComponent {
+public class CamelFileComponent extends AbstractCamelComponentResultFileBased {
 
     @Override
-    protected RouteBuilder createRouteBuilder() {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("file:/tmp?noop=true&delete=false").log("Received file: ${header.CamelFileName}")
-                        .setBody(constant("OK")) // Set the body of the message to "OK"
-                        .to("file:" + System.getProperty("project.target")
-                                + "?fileName=testResult.txt"); // Write the message to a file;
-            }
-        };
+    protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
+        return builder -> builder.fromF("file:%s?fileName=testResult.txt&noop=true&delete=false", getBaseDir())
+                .log("Receiving file: ${header.CamelFileName}");
     }
+
+    @Override
+    protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
+        producerRoute.log("Producing file: ${header.CamelFileName}")
+                .setBody(builder.constant("OK")) // Set the body of the message to "OK"
+                .toF("file:%s?fileName=testResult.txt", getBaseDir());
+    }
+
+
 }

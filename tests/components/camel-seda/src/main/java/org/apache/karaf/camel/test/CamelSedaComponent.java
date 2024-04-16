@@ -15,34 +15,29 @@
  */
 package org.apache.karaf.camel.test;
 
+import java.util.function.Function;
+
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.karaf.camel.itests.AbstractCamelComponent;
+import org.apache.camel.model.RouteDefinition;
+import org.apache.karaf.camel.itests.AbstractCamelComponentResultFileBased;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-seda-test",
         immediate = true
 )
-public class CamelSedaComponent extends AbstractCamelComponent {
+public class CamelSedaComponent extends AbstractCamelComponentResultFileBased {
+
     @Override
-    protected RouteBuilder createRouteBuilder() {
-        return new RouteBuilder() {
-                @Override
-                public void configure() throws Exception {
+    protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
+        return builder -> builder.from("seda:next").log("seda next called");
+    }
 
-                    from("timer://starter?repeatCount=1")
-                            .setBody(constant("OK")).to("direct:start");
-                    from("direct:start").autoStartup(true)
-                            .log("calling seda next")
-                            // send it to the seda queue that is async
-                            .to("seda:next")
-                            // return a constant response
-                            .transform(constant("OK"));
-                    from("seda:next").autoStartup(true)
-                            .log("seda next called")
-                            .to("file:"+System.getProperty("project.target")+"?fileName=testResult.txt"); // Write the message to a file
-
-                }
-        };
+    @Override
+    protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
+        producerRoute.setBody(builder.constant("OK"))
+                .log("calling seda next")
+                // send it to the seda queue that is async
+                .to("seda:next");
     }
 }

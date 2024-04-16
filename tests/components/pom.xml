@@ -32,6 +32,10 @@
     <packaging>pom</packaging>
     <name>Apache Camel :: Karaf :: Tests :: Components</name>
 
+    <properties>
+        <integration.test.project.resources>${project.basedir}/../../camel-integration-test/src/main/resources</integration.test.project.resources>
+    </properties>
+
     <modules>
         <module>camel-file</module>
         <module>camel-seda</module>
@@ -212,20 +216,6 @@
                         </goals>
                         <phase>integration-test</phase>
                         <configuration>
-                            <skip>true</skip>
-                            <excludes>
-                                <exclude>**/*Test.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <phase>integration-test</phase>
-                        <configuration>
-
                             <excludes>
                                 <exclude>none</exclude>
                             </excludes>
@@ -235,7 +225,10 @@
                             <systemPropertyVariables>
                                 <project.version>${project.version}</project.version>
                                 <project.target>${project.build.directory}</project.target>
+                                <integration.test.project.resources>${integration.test.project.resources}</integration.test.project.resources>
+                                <org.ops4j.pax.logging.DefaultServiceLog.level>ERROR</org.ops4j.pax.logging.DefaultServiceLog.level>
                             </systemPropertyVariables>
+                            <forkedProcessExitTimeoutInSeconds>5</forkedProcessExitTimeoutInSeconds>
                         </configuration>
                     </execution>
                 </executions>
