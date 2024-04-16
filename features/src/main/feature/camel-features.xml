@@ -2377,14 +2377,11 @@
         <bundle dependency='true'>wrap:mvn:net.sf.saxon/Saxon-HE/${saxon-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-xslt-saxon/${project.version}</bundle>
     </feature>
-<!--    <feature name='camel-yaml-dsl' version='${project.version}' start-level='50'>-->
-<!--        <feature version='${camel.osgi.version.range}'>camel-core</feature>-->
-<!--        <bundle dependency='true'>mvn:org.snakeyaml/snakeyaml-engine/${snakeyaml-engine-version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-yaml-dsl/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-yaml-dsl-common/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-yaml-dsl-deserializers/${project.version}</bundle>-->
-<!--        <bundle>mvn:org.apache.camel/camel-dsl-support/${project.version}</bundle>-->
-<!--    </feature>-->
+    <feature name='camel-yaml-dsl' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.snakeyaml/snakeyaml-engine/${snakeyaml-engine-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-yaml-dsl/${project.version}</bundle>
+    </feature>
     <feature name='camel-zeebe' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
