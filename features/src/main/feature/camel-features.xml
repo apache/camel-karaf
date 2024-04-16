@@ -168,7 +168,22 @@
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/regions/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/${aws-java-sdk2-version}</bundle>
     </feature>
-
+    <feature name="azure" version="1.46.0" start-level="50">
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
+    </feature>
+    <feature name="azure-storage" version="1.46.0" start-level="50">
+        <feature version='[1.46,1.47)'>azure</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
+    </feature>
+    <feature name="azure-eventhubs" version="1.46.0" start-level="50">
+        <feature version='[1.46,1.47)'>azure-storage</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs/5.18.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs-checkpointstore-blob/1.19.1</bundle>
+    </feature>
     <feature name="guava" version="${guava-version}">
         <bundle dependency='true'>mvn:com.google.guava/guava/${guava-version}</bundle>
         <bundle dependency='true'>mvn:com.google.guava/failureaccess/1.0.2</bundle>
@@ -490,92 +505,61 @@
     <feature name='camel-azure-cosmosdb' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
+        <feature version='[1.46,1.47)'>azure</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-cosmos/4.56.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-cosmosdb/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-eventhubs' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs/5.18.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs-checkpointstore-blob/1.19.1</bundle>
+        <feature version='[1.46,1.47)'>azure-eventhubs</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>  
     <feature name='camel-azure-files' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-ftp</feature>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
+        <feature version='[1.46,1.47)'>azure-storage</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-file-share/12.21.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-files/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-key-vault' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[2.16,2.17)'>jackson</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs/5.18.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-eventhubs-checkpointstore-blob/1.19.1</bundle>
+        <feature version='[1.46,1.47)'>azure-eventhubs</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-security-keyvault-secrets/4.8.0</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-key-vault/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-schema-registry' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
+        <feature version='[1.46,1.47)'>azure</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-schema-registry/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-servicebus' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
+        <feature version='[1.46,1.47)'>azure</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-core-amqp/2.9.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.46.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.2</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-messaging-servicebus/7.15.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-servicebus/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/3.4.34</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.1</bundle>
+        <feature version='[1.46,1.47)'>azure-storage</feature>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/12.25.2</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob-changefeed/${azure-storage-blob-changefeed-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-datalake' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='[1.46,1.47)'>azure-storage</feature>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-file-datalake/12.18.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-datalake/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-cloudevents</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.45.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-common/12.24.1</bundle>
+        <feature version='[1.46,1.47)'>azure-storage</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/12.20.1</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/1.11.1</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-queue/${project.version}</bundle>
     </feature>
     <feature name='camel-base64' version='${project.version}' start-level='50'>
