@@ -251,7 +251,7 @@
         <maven-owasp-plugin-version>5.3.1</maven-owasp-plugin-version>
         <maven-surefire-plugin-version>3.0.0-M4</maven-surefire-plugin-version>
         <mimepull-version>1.9.15</mimepull-version>
-        <minio-commons-compress-version>1.21</minio-commons-compress-version>
+        <minio-commons-compress-version>1.26.1</minio-commons-compress-version>
         <mockwebserver-version>0.1.7</mockwebserver-version>
         <mustache-guava-version>20.0</mustache-guava-version>
         <mustache-bundle-version>0.9.10_1</mustache-bundle-version>

@@ -1601,6 +1601,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>wrap:mvn:io.minio/minio/${minio-version}</bundle>
     <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
+    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${minio-commons-compress-version}</bundle>
     <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${okclient-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-minio/${project.version}</bundle>
@@ -2223,6 +2224,7 @@
     <feature version='${project.version}'>camel-core</feature>
     <bundle>mvn:org.apache.camel/camel-tarfile/${project.version}</bundle>
     <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
+    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
   </feature>
   <feature name='camel-telegram' version='${project.version}' start-level='50'>
@@ -2482,6 +2484,7 @@
   <feature name='camel-zip-deflater' version='${project.version}' start-level='50'>
     <feature version='${project.version}'>camel-core</feature>
     <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
+    <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
     <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
     <bundle>mvn:org.apache.camel/camel-zip-deflater/${project.version}</bundle>
   </feature>
