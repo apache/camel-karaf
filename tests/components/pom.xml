@@ -39,6 +39,7 @@
     <modules>
         <module>camel-file</module>
         <module>camel-seda</module>
+        <module>camel-jetty</module>
     </modules>
 
     <dependencyManagement>

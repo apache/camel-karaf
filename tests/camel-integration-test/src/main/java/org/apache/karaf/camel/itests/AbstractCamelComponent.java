@@ -94,4 +94,8 @@ public abstract class AbstractCamelComponent {
         }
         consumerRoute.routeId("consumer-%s".formatted(getTestComponentName()));
     }
+
+    public int getNextAvailablePort() {
+        return AbstractCamelKarafITest.getAvailablePort(30000, 40000);
+    }
 }
