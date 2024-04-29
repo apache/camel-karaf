@@ -26,7 +26,6 @@ import org.osgi.framework.Bundle;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.util.stream.Stream;
 
 import org.apache.karaf.itests.KarafTestSupport;
 import org.junit.Assert;
@@ -39,6 +38,7 @@ import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
 import org.osgi.framework.BundleException;
 
 import static org.apache.karaf.camel.itests.Utils.toKebabCase;
+import static org.ops4j.pax.exam.OptionUtils.combine;
 
 public abstract class AbstractCamelKarafITest extends KarafTestSupport {
 
@@ -80,16 +80,19 @@ public abstract class AbstractCamelKarafITest extends KarafTestSupport {
         String sshPort = Integer.toString(getAvailablePort(Integer.parseInt(MIN_SSH_PORT), Integer.parseInt(MAX_SSH_PORT)));
 
         Option[] options = new Option[]{
-                KarafDistributionOption.editConfigurationFilePut("etc/system.properties", "project.version", getVersion()),
-                KarafDistributionOption.editConfigurationFileExtend("etc/system.properties", "project.target", getBaseDir()),
+                CoreOptions.systemProperty("project.version").value(getVersion()),
+                CoreOptions.systemProperty("project.target").value(getBaseDir()),
                 KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/"+ getVersion() + "/xml/features", "scr","camel-core"),
                 CoreOptions.mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-integration-test").versionAsInProject(),
                 KarafDistributionOption.editConfigurationFilePut("etc/org.ops4j.pax.web.cfg", "org.osgi.service.http.port", httpPort),
                 KarafDistributionOption.editConfigurationFilePut("etc/org.apache.karaf.management.cfg", "rmiRegistryPort", rmiRegistryPort),
                 KarafDistributionOption.editConfigurationFilePut("etc/org.apache.karaf.management.cfg", "rmiServerPort", rmiServerPort),
-                KarafDistributionOption.editConfigurationFilePut("etc/org.apache.karaf.shell.cfg", "sshPort", sshPort),
+                KarafDistributionOption.editConfigurationFilePut("etc/org.apache.karaf.shell.cfg", "sshPort", sshPort)
         };
-        return Stream.of(super.config(), options).flatMap(Stream::of).toArray(Option[]::new);
+        Option[] systemProperties = PaxExamWithExternalResource.systemProperties().entrySet().stream()
+                .map(e -> CoreOptions.systemProperty(e.getKey()).value(e.getValue()))
+                .toArray(Option[]::new);
+        return combine(combine(super.config(), options), systemProperties);
     }
 
     @Before

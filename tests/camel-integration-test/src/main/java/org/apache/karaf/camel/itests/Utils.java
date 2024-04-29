@@ -16,12 +16,16 @@
  */
 package org.apache.karaf.camel.itests;
 
-final class Utils {
+public final class Utils {
 
     private Utils() {
     }
 
     static String toKebabCase(String name) {
         return name.replaceAll("([a-z0-9])([A-Z])", "$1-$2").toLowerCase();
+    }
+
+    public static int getNextAvailablePort() {
+        return AbstractCamelKarafITest.getAvailablePort(30000, 40000);
     }
 }
