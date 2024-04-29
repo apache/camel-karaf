@@ -549,7 +549,7 @@
         <osgi.cmpn.version>7.0.0</osgi.cmpn.version>
         <osgi.service.event.version>1.4.1</osgi.service.event.version>
         <osgi.service.component.version>1.5.1</osgi.service.component.version>
-        <slf4j.version>2.0.10</slf4j.version>
+        <slf4j.version>2.0.13</slf4j.version>
 
         <camel.osgi.version.clean>4.5</camel.osgi.version.clean>
         <camel.osgi.next.version.clean>4.6</camel.osgi.next.version.clean>
