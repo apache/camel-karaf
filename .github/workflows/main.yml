@@ -37,4 +37,5 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: 17
+          distribution: zulu
       - run: ./mvnw -V --no-transfer-progress clean install
