@@ -20,6 +20,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.junit.After;
 import org.junit.Before;
+import org.ops4j.pax.swissbox.tracker.ServiceLookup;
 import org.osgi.framework.Bundle;
 
 import java.net.InetAddress;
@@ -94,15 +95,22 @@ public abstract class AbstractCamelKarafITest extends KarafTestSupport {
     @Before
     public void init() throws Exception {
         String testComponentName = getTestComponentName();
-        installBundle("file://%s/%s-%s.jar".formatted(getBaseDir(), testComponentName, getVersion()),true);
-        assertBundleInstalled(testComponentName);
+        installRequiredFeatures();
+        installBundle("file://%s/%s-%s.jar".formatted(getBaseDir(), testComponentName, getVersion()), true);
         assertBundleInstalledAndRunning(testComponentName);
         initCamelContext();
         initProducerTemplate();
     }
 
+    protected void installRequiredFeatures() throws Exception {
+        String featureName = toKebabCase(this.getClass().getSimpleName()).replace("-itest", "");
+        if (null != featureService.getFeature(featureName)) {
+            installAndAssertFeature(featureName);
+        }
+    }
+
     private void initCamelContext() {
-        this.context = bundleContext.getService(bundleContext.getServiceReference(CamelContext.class));
+        this.context = ServiceLookup.getService(bundleContext, CamelContext.class);
     }
 
     private void initProducerTemplate() {
@@ -154,7 +162,7 @@ public abstract class AbstractCamelKarafITest extends KarafTestSupport {
         //need to check with the command because the status may be Active while it's displayed as Waiting in the console
         //because of an exception for instance
         String bundles = executeCommand("bundle:list -s -t 0 | grep %s".formatted(name));
-        Assert.assertTrue("bundle%s is in state %d /%s".formatted(bundle.getSymbolicName(), bundle.getState(), bundles),
+        Assert.assertTrue("bundle %s is in state %d /%s".formatted(bundle.getSymbolicName(), bundle.getState(), bundles),
                 bundles.contains("Active"));
     }
 }
