@@ -540,7 +540,7 @@
         <camel.osgi.jakarta.transaction.version>[2,3)</camel.osgi.jakarta.transaction.version>
         <camel.validation.api.package.version>[2,4)</camel.validation.api.package.version>
         <commons-lang3-version>3.14.0</commons-lang3-version>
-        <cxf.version>4.0.3</cxf.version>
+        <cxf.version>4.0.4</cxf.version>
         <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
         <jakarta.activation.version.range>[2,3)</jakarta.activation.version.range>
         <jakarta.xml.ws.version>4.0.1</jakarta.xml.ws.version>
