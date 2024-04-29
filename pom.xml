@@ -557,7 +557,7 @@
         <camel.osgi.import.camel.version>version="${camel.osgi.version.range}"</camel.osgi.import.camel.version>
         <camel.osgi.camel.import>org.apache.camel.*;${camel.osgi.import.camel.version},</camel.osgi.camel.import>
 
-        <maven-shade-plugin-version>3.5.1</maven-shade-plugin-version>
+        <maven-shade-plugin-version>3.5.3</maven-shade-plugin-version>
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
         <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
         <harmcrest.version>1.3_1</harmcrest.version>
