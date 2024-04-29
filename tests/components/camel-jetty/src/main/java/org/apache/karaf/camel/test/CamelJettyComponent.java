@@ -26,6 +26,7 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelComponentResultMockBased;
+import org.apache.karaf.camel.itests.Utils;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
@@ -34,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 )
 public class CamelJettyComponent extends AbstractCamelComponentResultMockBased {
 
-    private final int port = getNextAvailablePort();
+    private final int port = Utils.getNextAvailablePort();
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {

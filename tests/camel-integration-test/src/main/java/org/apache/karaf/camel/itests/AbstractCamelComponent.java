@@ -60,6 +60,7 @@ public abstract class AbstractCamelComponent {
         return new RouteBuilder() {
             @Override
             public void configure() {
+                configureCamelContext(this.getCamelContext());
                 if (producerEnabled()) {
                     configureProducer(
                             this, from("timer:producer?repeatCount=1").routeId("producer-%s".formatted(getTestComponentName()))
@@ -70,6 +71,10 @@ public abstract class AbstractCamelComponent {
                 }
             }
         };
+    }
+
+    protected void configureCamelContext(CamelContext camelContext) {
+        //nothing by default
     }
 
     protected boolean producerEnabled() {
@@ -93,9 +98,5 @@ public abstract class AbstractCamelComponent {
             return;
         }
         consumerRoute.routeId("consumer-%s".formatted(getTestComponentName()));
-    }
-
-    public int getNextAvailablePort() {
-        return AbstractCamelKarafITest.getAvailablePort(30000, 40000);
     }
 }

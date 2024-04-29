@@ -39,6 +39,7 @@
     <modules>
         <module>camel-file</module>
         <module>camel-seda</module>
+        <module>camel-elasticsearch</module>
         <module>camel-jetty</module>
     </modules>
 
@@ -182,7 +183,7 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.karaf.camel.test;version=${camel.version}
+                            org.apache.karaf.camel.test;version=${project.version}
                         </Export-Package>
                         <Import-Package>
                             org.apache.camel*;${camel.osgi.import.camel.version},
@@ -233,7 +234,7 @@
                                 <project.version>${project.version}</project.version>
                                 <project.target>${project.build.directory}</project.target>
                                 <integration.test.project.resources>${integration.test.project.resources}</integration.test.project.resources>
-                                <org.ops4j.pax.logging.DefaultServiceLog.level>ERROR</org.ops4j.pax.logging.DefaultServiceLog.level>
+                                <org.ops4j.pax.logging.DefaultServiceLog.level>WARN</org.ops4j.pax.logging.DefaultServiceLog.level>
                             </systemPropertyVariables>
                             <forkedProcessExitTimeoutInSeconds>5</forkedProcessExitTimeoutInSeconds>
                         </configuration>
