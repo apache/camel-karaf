@@ -37,4 +37,4 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: 17
-        run: ./mvnw -V --no-transfer-progress clean install
+      - run: ./mvnw -V --no-transfer-progress clean install
