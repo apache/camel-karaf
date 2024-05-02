@@ -970,6 +970,20 @@
         <bundle dependency='true'>mvn:org.threeten/threetenbp/1.6.8</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-pubsub/${project.version}</bundle>
     </feature>
+    <feature name='camel-google-secret-manager' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version="[32,33)">guava</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:com.google.api/api-common/2.28.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/2.45.0</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${google-auth-library-oauth2-http-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-pubsub/1.127.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-secretmanager-v1/${google-cloud-secretmanager-bom-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-pubsub-v1/1.109.1</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-google-secret-manager/${project.version}</bundle>
+    </feature>
     <feature name='camel-google-sheets' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='${camel.osgi.version.range}'>camel-jackson</feature>
