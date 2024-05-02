@@ -970,6 +970,24 @@
         <bundle dependency='true'>mvn:org.threeten/threetenbp/1.6.8</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-pubsub/${project.version}</bundle>
     </feature>
+    <feature name='camel-google-sheets' version='${project.version}' start-level='50'>
+        <feature version='${camel.osgi.version.range}'>camel-core</feature>
+        <feature version='${camel.osgi.version.range}'>camel-jackson</feature>
+        <feature version="[33,34)">guava</feature>
+        <feature version='[4,5)'>http-client</feature>
+        <bundle dependency='true'>mvn:com.google.api-client/google-api-client/${google-api-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.oauth-client/google-oauth-client/${google-oauth-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-gson/${google-cloud-http-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-apache-v2/${google-cloud-http-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-jackson2/${google-cloud-http-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/0.31.1</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/0.31.1</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.apis/google-api-services-sheets/${google-api-services-sheets-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-google-sheets/${project.version}</bundle>
+    </feature>
     <feature name='camel-grape' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.groovy/groovy/${groovy-version}</bundle>
