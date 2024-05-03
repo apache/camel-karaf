@@ -1,0 +1,7 @@
+= Apache Camel Karaf features
+
+Apache Camel Karaf supports the following Camel artifacts as Karaf features
+
+You can find the list of features directly in the repository: https://github.com/apache/camel-karaf/blob/main/features/src/main/feature/camel-features.xml
+
+include::partial$summary-table.adoc[]
