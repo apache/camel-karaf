@@ -37,12 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !org.apache.qpid*,
             *
         </camel.osgi.import>
-        <camel.osg.private>
-            org.apache.qpid*
-        </camel.osg.private>
     </properties>
 
     <dependencies>
