@@ -19,8 +19,6 @@
 -->
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name="camel-${project.version}">
 
-    <repository>mvn:org.apache.camel.karaf/apache-camel/${project.version}/xml/spring-features</repository>
-
     <!-- TODO: specs will be provided by Apache Karaf 4.5.x spec features repository. However, in order to have Camel 4.x working on Karaf 4.4.x, we define spec features here -->
     <feature name="jakarta-activation" version="2.1.2">
         <bundle dependency="true">mvn:jakarta.activation/jakarta.activation-api/2.1.2</bundle>
