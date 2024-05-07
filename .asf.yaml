@@ -40,6 +40,7 @@ github:
     projects: true
 
   collaborators:  # Note: the number of collaborators is limited to 10
+    - f2par0
 
   ghp_branch: gh-pages
   ghp_path: /
