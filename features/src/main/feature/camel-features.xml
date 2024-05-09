@@ -1128,10 +1128,12 @@
     <feature name='camel-http' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='[5,6)'>http-client</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http/${project.version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/${httpcore-version}</bundle>
     </feature>
     <feature name='camel-ical' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
