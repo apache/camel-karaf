@@ -27,7 +27,7 @@ import org.apache.karaf.shell.support.table.ShellTable;
 
 import java.net.URLDecoder;
 
-@Command(scope = "camel", name = "")
+@Command(scope = "camel", name = "endpoint-stats", description = "List the statistics of the Camel endpoints")
 @Service
 public class EndpointStats extends CamelCommandSupport implements Action {
 
