@@ -25,7 +25,7 @@ import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 
-@Command(scope = "camel", name = "")
+@Command(scope = "camel", name = "context-start", description = "Starts a Camel context")
 @Service
 public class ContextStart extends CamelCommandSupport implements Action {
 
