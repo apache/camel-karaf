@@ -16,7 +16,6 @@
  */
 package org.apache.camel.blueprint.handler;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
