@@ -64,7 +64,7 @@
 
     <modules>
         <module>core</module>
-        <!-- <module>shell</module> -->
+        <module>shell</module>
         <module>components</module>
         <module>features</module>
         <!-- <module>archetypes</module> -->
@@ -566,6 +566,7 @@
         <velocity-version>2.3</velocity-version>
         <bouncycastle-version>1.77</bouncycastle-version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -592,6 +593,11 @@
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.service.component.annotations</artifactId>
                 <version>${osgi.service.component.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.shell</groupId>
+                <artifactId>org.apache.karaf.shell.core</artifactId>
+                <version>${karaf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.aries.blueprint</groupId>
@@ -653,6 +659,7 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>${maven-bundle-plugin-version}</version>
                 <extensions>true</extensions>
+                <inherited>true</inherited>
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
