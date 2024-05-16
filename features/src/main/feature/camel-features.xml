@@ -280,7 +280,7 @@
 
     <feature name='camel-activemq' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-jms</feature>
-        <bundle dependency='true'>mvn:org.apache.activemq/activemq-client-jakarta/${activemq-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.activemq/activemq-client/${activemq-version}</bundle>
         <bundle dependency='true'>mvn:org.fusesource.hawtbuf/hawtbuf/1.11</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-activemq/${project.version}</bundle>
     </feature>
