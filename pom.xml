@@ -92,7 +92,7 @@
         <camel.version>4.5.0</camel.version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
-        <activemq-version>5.18.3</activemq-version>
+        <activemq-version>6.1.2</activemq-version>
         <activemq-artemis-version>2.32.0</activemq-artemis-version>
         <angus-mail-version>2.0.3</angus-mail-version>
         <apacheds-version>2.0.0.AM26</apacheds-version>

@@ -38,6 +38,7 @@
         </camel.osgi.export>
         <camel.osgi.import>
             com.thoughtworks.xstream*;resolution:=optional,
+            org.apache.activemq*;version="[5,7)",
             *
         </camel.osgi.import>
     </properties>
