@@ -1073,7 +1073,7 @@
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-core/2.35.0</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-core-http/2.35.0</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-storage/2.35.0</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}$overwrite=merge&amp;Import-Package=com.google.common.base;version="[33,34)",*</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-appengine/${google-cloud-http-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-gson/${google-cloud-http-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-jackson2/${google-cloud-http-client-version}</bundle>
