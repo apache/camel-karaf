@@ -565,6 +565,9 @@
         <mongo-java-driver-version>4.11.1</mongo-java-driver-version>
         <velocity-version>2.3</velocity-version>
         <bouncycastle-version>1.77</bouncycastle-version>
+
+        <spi-provider>SPI-Provider=*</spi-provider>
+        <spi-consumer>SPI-Consumer=*</spi-consumer>
     </properties>
 
     <dependencyManagement>
