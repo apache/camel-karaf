@@ -23,7 +23,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelJettyITest extends AbstractCamelKarafResultMockBasedITest {
+public class CamelJettyITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
 
     @Override
     protected void configureMock(MockEndpoint mock) {

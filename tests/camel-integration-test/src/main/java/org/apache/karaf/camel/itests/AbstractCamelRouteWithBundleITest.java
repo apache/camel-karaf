@@ -14,18 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.karaf.camel.itests;
 
-import org.apache.camel.model.RouteDefinition;
+import java.util.List;
 
-public abstract class AbstractCamelComponentResultMockBased extends AbstractCamelComponent {
+public abstract class AbstractCamelRouteWithBundleITest extends AbstractCamelRouteITest {
 
-    protected String getResultMockName() {
-        return getTestComponentName();
-    }
+
+    protected abstract String getTestBundleName();
 
     @Override
-    protected void configureConsumer(RouteDefinition consumerRoute) {
-        consumerRoute.toF("mock:%s", getResultMockName());
+    protected List<String> installRequiredBundles() throws Exception {
+        String testBundleName = getTestBundleName();
+        installBundle("file://%s/%s-%s.jar".formatted(getBaseDir(), testBundleName, getVersion()), true);
+        assertBundleInstalledAndRunning(testBundleName);
+        return List.of(testBundleName);
     }
 }

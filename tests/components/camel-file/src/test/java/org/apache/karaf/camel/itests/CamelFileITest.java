@@ -13,6 +13,8 @@
  */
 package org.apache.karaf.camel.itests;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -22,10 +24,15 @@ import org.ops4j.pax.exam.spi.reactors.PerSuite;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerSuite.class)
-public class CamelFileITest extends AbstractCamelKarafResultFileBasedITest {
+public class CamelFileITest extends AbstractCamelSingleComponentResultFileBasedRouteITest {
 
     @Test
     public void testResultFileContent() throws Exception {
         assertResultFileContains("OK");
+    }
+
+    @Override
+    protected List<String> getRequiredFeatures() {
+        return List.of();
     }
 }

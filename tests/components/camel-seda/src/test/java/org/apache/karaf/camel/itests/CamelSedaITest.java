@@ -13,6 +13,8 @@
  */
 package org.apache.karaf.camel.itests;
 
+import java.util.List;
+
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +25,7 @@ import org.ops4j.pax.exam.spi.reactors.PerSuite;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerSuite.class)
-public class CamelSedaITest extends AbstractCamelKarafResultMockBasedITest {
+public class CamelSedaITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
 
     @Override
     protected void configureMock(MockEndpoint mock) {
@@ -33,5 +35,10 @@ public class CamelSedaITest extends AbstractCamelKarafResultMockBasedITest {
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
+    }
+
+    @Override
+    protected List<String> getRequiredFeatures() {
+        return List.of();
     }
 }

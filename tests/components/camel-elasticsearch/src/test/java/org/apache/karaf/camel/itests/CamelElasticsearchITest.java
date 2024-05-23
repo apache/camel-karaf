@@ -28,7 +28,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 @UseExternalResourceProvider(CamelElasticsearchITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelElasticsearchITest extends AbstractCamelKarafResultMockBasedITest {
+public class CamelElasticsearchITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
 
     @Override
     protected void configureMock(MockEndpoint mock) {

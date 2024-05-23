@@ -25,15 +25,17 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.karaf.camel.itests.AbstractCamelComponentResultMockBased;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.apache.karaf.camel.itests.Utils;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-jetty-test",
-        immediate = true
+        immediate = true,
+        service = CamelRouteSupplier.class
 )
-public class CamelJettyComponent extends AbstractCamelComponentResultMockBased {
+public class CamelJettyRouteSupplier extends AbstractCamelSingleComponentResultMockBasedRouteSupplier {
 
     private final int port = Utils.getNextAvailablePort();
 

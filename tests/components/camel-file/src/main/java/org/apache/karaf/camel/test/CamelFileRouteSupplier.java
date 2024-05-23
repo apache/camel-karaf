@@ -19,13 +19,15 @@ import java.util.function.Function;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.karaf.camel.itests.AbstractCamelComponentResultFileBased;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultFileBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 @Component(
         name = "karaf-camel-file-test",
-        immediate = true
+        immediate = true,
+        service = CamelRouteSupplier.class
 )
-public class CamelFileComponent extends AbstractCamelComponentResultFileBased {
+public class CamelFileRouteSupplier extends AbstractCamelSingleComponentResultFileBasedRouteSupplier {
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
@@ -39,6 +41,4 @@ public class CamelFileComponent extends AbstractCamelComponentResultFileBased {
                 .setBody(builder.constant("OK")) // Set the body of the message to "OK"
                 .toF("file:%s?fileName=testResult.txt", getBaseDir());
     }
-
-
 }

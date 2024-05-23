@@ -83,7 +83,8 @@
                             org.apache.karaf.features,
                             org.ops4j.pax.swissbox.tracker,
                             org.osgi.service.*,
-                            org.awaitility*
+                            org.awaitility*,
+                            org.slf4j
                         </Import-Package>
                     </instructions>
                     <excludeDependencies>geronimo-atinject_1.0_spec</excludeDependencies>

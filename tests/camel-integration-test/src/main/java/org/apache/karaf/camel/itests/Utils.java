@@ -16,6 +16,10 @@
  */
 package org.apache.karaf.camel.itests;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+
 public final class Utils {
 
     private Utils() {
@@ -25,7 +29,20 @@ public final class Utils {
         return name.replaceAll("([a-z0-9])([A-Z])", "$1-$2").toLowerCase();
     }
 
+    public static int getAvailablePort(int min, int max) {
+        for (int port = min; port <= max; port++) {
+            try (ServerSocket socket = new ServerSocket()) {
+                socket.setReuseAddress(true);
+                socket.bind(new InetSocketAddress(InetAddress.getByName("localhost"), port), 1);
+                return socket.getLocalPort();
+            } catch (Exception e) {
+                System.err.println("Port " + port + " not available, trying next one");
+            }
+        }
+        throw new IllegalStateException("Can't find available network ports");
+    }
+
     public static int getNextAvailablePort() {
-        return AbstractCamelKarafITest.getAvailablePort(30000, 40000);
+        return getAvailablePort(30000, 40000);
     }
 }
