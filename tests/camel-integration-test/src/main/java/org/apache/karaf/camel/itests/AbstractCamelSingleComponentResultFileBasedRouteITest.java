@@ -27,7 +27,7 @@ import org.awaitility.Awaitility;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public abstract class AbstractCamelKarafResultFileBasedITest extends AbstractCamelKarafITest {
+public abstract class AbstractCamelSingleComponentResultFileBasedRouteITest extends AbstractCamelSingleComponentRouteITest {
 
     protected String getResultFileName() {
         return getTestComponentName();
@@ -35,10 +35,6 @@ public abstract class AbstractCamelKarafResultFileBasedITest extends AbstractCam
 
     protected Charset getResultFileCharset() {
         return StandardCharsets.UTF_8;
-    }
-
-    protected int getTimeoutInSeconds() {
-        return 5;
     }
 
     protected Path assertResultFileExists() {

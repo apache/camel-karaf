@@ -19,16 +19,17 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.es.ElasticsearchComponent;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.karaf.camel.itests.AbstractCamelComponentResultMockBased;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
-@Component(name = "karaf-camel-elasticsearch-test", immediate = true)
-public class CamelElasticsearchComponent extends AbstractCamelComponentResultMockBased {
+@Component(name = "karaf-camel-elasticsearch-test", immediate = true, service = CamelRouteSupplier.class)
+public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleComponentResultMockBasedRouteSupplier {
 
     private static final String INDEX_NAME = "testindex";
 
     @Override
-    protected void configureCamelContext(CamelContext camelContext) {
+    public void configure(CamelContext camelContext) {
         final ElasticsearchComponent elasticsearchComponent = new ElasticsearchComponent();
         elasticsearchComponent.setEnableSSL(true);
         elasticsearchComponent.setHostAddresses(

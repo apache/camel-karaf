@@ -14,31 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.karaf.camel.itests;
 
-import org.apache.camel.component.mock.MockEndpoint;
-import org.junit.After;
-import org.junit.Before;
+import org.apache.camel.model.RouteDefinition;
 
-public abstract class AbstractCamelKarafResultMockBasedITest extends AbstractCamelKarafITest {
-
-    @Before
-    public void setupMock() {
-        MockEndpoint endpoint = context.getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
-        endpoint.expectedMinimumMessageCount(1);
-        configureMock(endpoint);
+public class AbstractCamelSingleComponentResultMockBasedRouteSupplier extends AbstractCamelSingleComponentRouteSupplier {
+    protected String getResultMockName() {
+        return getTestComponentName();
     }
 
-    @After
-    public void cleanMock() {
-        MockEndpoint.resetMocks(context);
-    }
-
-    protected void configureMock(MockEndpoint mock) {
-        // Do nothing by default
-    }
-
-    protected void assertMockEndpointsSatisfied() throws InterruptedException {
-        MockEndpoint.assertIsSatisfied(context);
+    @Override
+    protected void configureConsumer(RouteDefinition consumerRoute) {
+        consumerRoute.toF("mock:%s", getResultMockName());
     }
 }
