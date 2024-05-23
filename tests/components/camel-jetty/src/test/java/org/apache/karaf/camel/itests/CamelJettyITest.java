@@ -26,7 +26,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 public class CamelJettyITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
 
     @Override
-    protected void configureMock(MockEndpoint mock) {
+    public void configureMock(MockEndpoint mock) {
         mock.expectedBodiesReceived("OK");
     }
 
@@ -34,5 +34,4 @@ public class CamelJettyITest extends AbstractCamelSingleComponentResultMockBased
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
     }
-
 }

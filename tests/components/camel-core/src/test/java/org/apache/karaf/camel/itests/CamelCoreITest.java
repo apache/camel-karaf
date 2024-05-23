@@ -15,30 +15,36 @@ package org.apache.karaf.camel.itests;
 
 import java.util.List;
 
-import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.test.CamelFileITest;
+import org.apache.karaf.camel.test.CamelSedaITest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
-import org.ops4j.pax.exam.spi.reactors.PerSuite;
+import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 
 @RunWith(PaxExam.class)
-@ExamReactorStrategy(PerSuite.class)
-public class CamelSedaITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
+@ExamReactorStrategy(PerClass.class)
+public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
     @Override
-    protected void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived("OK");
-    }
-
-    @Test
-    public void testResultMock() throws Exception {
-        assertMockEndpointsSatisfied();
+    protected String getTestBundleName() {
+        return "camel-core-test";
     }
 
     @Override
     protected List<String> getRequiredFeatures() {
         return List.of();
+    }
+
+    @Test
+    public void testCamelFile() throws Exception {
+        new CamelFileITest(context, template, getBaseDir()).testRoutes();
+    }
+
+    @Test
+    public void testCamelSeda() throws Exception {
+        new CamelSedaITest(context, template).testRoutes();
     }
 }

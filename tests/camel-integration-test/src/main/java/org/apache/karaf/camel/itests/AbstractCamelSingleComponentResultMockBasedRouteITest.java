@@ -16,31 +16,22 @@
  */
 package org.apache.karaf.camel.itests;
 
-import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.After;
 import org.junit.Before;
 
-public abstract class AbstractCamelSingleComponentResultMockBasedRouteITest extends AbstractCamelSingleComponentRouteITest {
+public abstract class AbstractCamelSingleComponentResultMockBasedRouteITest extends AbstractCamelSingleComponentRouteITest
+    implements CamelSingleComponentResultMockBasedRoute {
 
+    @Override
     @Before
     public void setupMock() {
-        MockEndpoint endpoint = context.getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
-        endpoint.expectedMinimumMessageCount(1);
-        configureMock(endpoint);
+        CamelSingleComponentResultMockBasedRoute.super.setupMock();
+        triggerProducerRoute();
     }
 
+    @Override
     @After
     public void cleanMock() {
-        if (context != null) {
-            MockEndpoint.resetMocks(context);
-        }
-    }
-
-    protected void configureMock(MockEndpoint mock) {
-        // Do nothing by default
-    }
-
-    protected void assertMockEndpointsSatisfied() throws InterruptedException {
-        MockEndpoint.assertIsSatisfied(context);
+        CamelSingleComponentResultMockBasedRoute.super.cleanMock();
     }
 }

@@ -37,8 +37,7 @@
     </properties>
 
     <modules>
-        <module>camel-file</module>
-        <module>camel-seda</module>
+        <module>camel-core</module>
         <module>camel-elasticsearch</module>
         <module>camel-jetty</module>
     </modules>

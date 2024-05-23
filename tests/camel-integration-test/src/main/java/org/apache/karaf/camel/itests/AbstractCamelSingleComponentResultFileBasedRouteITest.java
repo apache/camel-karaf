@@ -16,55 +16,14 @@
  */
 package org.apache.karaf.camel.itests;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.concurrent.TimeUnit;
+import org.junit.Before;
 
-import org.awaitility.Awaitility;
+public abstract class AbstractCamelSingleComponentResultFileBasedRouteITest extends AbstractCamelSingleComponentRouteITest
+    implements CamelSingleComponentResultFileBasedRoute {
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-public abstract class AbstractCamelSingleComponentResultFileBasedRouteITest extends AbstractCamelSingleComponentRouteITest {
-
-    protected String getResultFileName() {
-        return getTestComponentName();
-    }
-
-    protected Charset getResultFileCharset() {
-        return StandardCharsets.UTF_8;
-    }
-
-    protected Path assertResultFileExists() {
-        Path filePath  = Path.of(getBaseDir(), getResultFileName());
-        Awaitility.await().atMost(getTimeoutInSeconds(), TimeUnit.SECONDS)
-                .until(() -> Files.exists(filePath));
-        assertTrue(Files.exists(filePath));
-        return filePath;
-    }
-
-    protected void assertResultFileContains(String expectedFileContent) throws Exception {
-        assertEquals(
-            "The content of the result file is not correct",
-            expectedFileContent, Files.readString(assertResultFileExists(), getResultFileCharset())
-        );
-    }
-
-    protected void assertResultFileIsSameAs(String expectedResultFileName) throws Exception {
-        assertResultFileContains(
-            Files.readString(createExpectedResultPath(expectedResultFileName))
-        );
-    }
-
-    protected void assertResultFileIsSameAs(String expectedResultFileName, Charset encoding) throws Exception {
-        assertResultFileContains(
-            Files.readString(createExpectedResultPath(expectedResultFileName), encoding)
-        );
-    }
-
-    protected Path createExpectedResultPath(String expectedResultFileName) {
-        return Path.of(getBaseDir(), "test-classes", expectedResultFileName);
+    @Override
+    @Before
+    public void triggerProducerRoute() {
+        super.triggerProducerRoute();
     }
 }

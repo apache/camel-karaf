@@ -267,4 +267,12 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
         Assert.assertTrue("bundle %s is in state %d /%s".formatted(bundle.getSymbolicName(), bundle.getState(), bundles),
                 bundles.contains("Active"));
     }
+
+    public CamelContext getContext() {
+        return context;
+    }
+
+    public ProducerTemplate getTemplate() {
+        return template;
+    }
 }

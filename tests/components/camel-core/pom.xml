@@ -28,9 +28,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-file-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Components :: File</name>
-
-
+    <artifactId>camel-core-test</artifactId>
+    <name>Apache Camel :: Karaf :: Tests :: Components :: Core</name>
 
 </project>

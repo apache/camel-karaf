@@ -15,20 +15,21 @@
  * limitations under the License.
  */
 
-package org.apache.karaf.camel.itests;
+package org.apache.karaf.camel.test;
 
-import java.util.List;
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRoute;
 
-public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCamelRouteWithBundleITest
-        implements CamelSingleComponentRoute {
+public class CamelSedaITest extends AbstractCamelSingleComponentResultMockBasedRoute {
 
-    @Override
-    public String getTestBundleName() {
-        return CamelSingleComponentRoute.super.getTestBundleName();
+    public CamelSedaITest(CamelContext context, ProducerTemplate template) {
+        super(context, template);
     }
 
     @Override
-    public List<String> getRequiredFeatures() {
-        return CamelSingleComponentRoute.super.getRequiredFeatures();
+    public void configureMock(MockEndpoint mock) {
+        mock.expectedBodiesReceived("OK");
     }
 }

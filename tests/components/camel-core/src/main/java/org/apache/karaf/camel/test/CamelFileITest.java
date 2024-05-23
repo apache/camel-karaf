@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.karaf.camel.itests;
+package org.apache.karaf.camel.test;
 
-import java.util.List;
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultFileBasedRoute;
 
-public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCamelRouteWithBundleITest
-        implements CamelSingleComponentRoute {
+public class CamelFileITest extends AbstractCamelSingleComponentResultFileBasedRoute {
 
-    @Override
-    public String getTestBundleName() {
-        return CamelSingleComponentRoute.super.getTestBundleName();
+    public CamelFileITest(CamelContext context, ProducerTemplate template, String baseDir) {
+        super(context, template, baseDir);
     }
 
     @Override
-    public List<String> getRequiredFeatures() {
-        return CamelSingleComponentRoute.super.getRequiredFeatures();
+    protected void executeTest() throws Exception {
+        assertResultFileContains("OK");
     }
 }

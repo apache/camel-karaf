@@ -31,7 +31,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 public class CamelElasticsearchITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
 
     @Override
-    protected void configureMock(MockEndpoint mock) {
+    public void configureMock(MockEndpoint mock) {
         mock.expectedBodiesReceived("OK");
     }
 
