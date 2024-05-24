@@ -19,6 +19,9 @@ package org.apache.karaf.camel.itests;
 
 import java.util.List;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+
 public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCamelRouteWithBundleITest
         implements CamelSingleComponentRoute {
 
@@ -34,5 +37,15 @@ public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCam
     @Override
     public final List<String> getRequiredFeatures() {
         return CamelSingleComponentRoute.super.getRequiredFeatures();
+    }
+
+    @Override
+    public CamelContext getContext() {
+        return getContext(getClass());
+    }
+
+    @Override
+    public ProducerTemplate getTemplate() {
+        return getTemplate(getClass());
     }
 }

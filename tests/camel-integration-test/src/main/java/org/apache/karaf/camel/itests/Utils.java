@@ -45,4 +45,18 @@ public final class Utils {
     public static int getNextAvailablePort() {
         return getAvailablePort(30000, 40000);
     }
+
+    /**
+     * Get the Camel context name from the given class.
+     *
+     * @param clazz the class from which the Camel context name should be extracted
+     * @return the Camel context name if it can be found, {@code null} otherwise.
+     */
+    public static String getCamelContextName(Class<?> clazz) {
+        CamelKarafTestHint hint = clazz.getAnnotation(CamelKarafTestHint.class);
+        if (hint == null || hint.camelContextName().isEmpty()) {
+            return null;
+        }
+        return hint.camelContextName();
+    }
 }

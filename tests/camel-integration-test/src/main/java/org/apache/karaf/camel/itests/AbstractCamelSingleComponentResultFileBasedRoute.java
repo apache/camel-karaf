@@ -22,13 +22,11 @@ import org.apache.camel.ProducerTemplate;
 
 public abstract class AbstractCamelSingleComponentResultFileBasedRoute implements CamelSingleComponentResultFileBasedRoute {
 
-    private final CamelContext context;
-    private final ProducerTemplate template;
+    private final CamelContextProvider provider;
     private final String baseDir;
 
-    protected AbstractCamelSingleComponentResultFileBasedRoute(CamelContext context, ProducerTemplate template, String baseDir) {
-        this.context = context;
-        this.template = template;
+    protected AbstractCamelSingleComponentResultFileBasedRoute(CamelContextProvider provider, String baseDir) {
+        this.provider = provider;
         this.baseDir = baseDir;
     }
 
@@ -39,12 +37,12 @@ public abstract class AbstractCamelSingleComponentResultFileBasedRoute implement
 
     @Override
     public CamelContext getContext() {
-        return context;
+        return provider.getContext(getClass());
     }
 
     @Override
     public ProducerTemplate getTemplate() {
-        return template;
+        return provider.getTemplate(getClass());
     }
 
     public void testRoutes() throws Exception {

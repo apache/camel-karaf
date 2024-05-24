@@ -40,11 +40,11 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
     @Test
     public void testCamelFile() throws Exception {
-        new CamelFileITest(context, template, getBaseDir()).testRoutes();
+        new CamelFileITest(this, getBaseDir()).testRoutes();
     }
 
     @Test
     public void testCamelSeda() throws Exception {
-        new CamelSedaITest(context, template).testRoutes();
+        new CamelSedaITest(this).testRoutes();
     }
 }

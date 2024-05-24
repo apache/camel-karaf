@@ -22,22 +22,20 @@ import org.apache.camel.ProducerTemplate;
 
 public abstract class AbstractCamelSingleComponentResultMockBasedRoute implements CamelSingleComponentResultMockBasedRoute {
 
-    private final CamelContext context;
-    private final ProducerTemplate template;
+    private final CamelContextProvider provider;
 
-    protected AbstractCamelSingleComponentResultMockBasedRoute(CamelContext context, ProducerTemplate template) {
-        this.context = context;
-        this.template = template;
+    protected AbstractCamelSingleComponentResultMockBasedRoute(CamelContextProvider provider) {
+        this.provider = provider;
     }
 
     @Override
     public CamelContext getContext() {
-        return context;
+        return provider.getContext(getClass());
     }
 
     @Override
     public ProducerTemplate getTemplate() {
-        return template;
+        return provider.getTemplate(getClass());
     }
 
     public void testRoutes() throws Exception {

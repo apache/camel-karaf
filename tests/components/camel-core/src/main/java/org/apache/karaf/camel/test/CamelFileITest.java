@@ -17,14 +17,13 @@
 
 package org.apache.karaf.camel.test;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultFileBasedRoute;
+import org.apache.karaf.camel.itests.CamelContextProvider;
 
 public class CamelFileITest extends AbstractCamelSingleComponentResultFileBasedRoute {
 
-    public CamelFileITest(CamelContext context, ProducerTemplate template, String baseDir) {
-        super(context, template, baseDir);
+    public CamelFileITest(CamelContextProvider provider, String baseDir) {
+        super(provider, baseDir);
     }
 
     @Override

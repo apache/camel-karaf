@@ -33,12 +33,14 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@CamelKarafTestHint(camelContextName = CamelSuppliedRouteLauncher.CAMEL_CONTEXT_NAME)
 @Component(
         name = "camel-supplied-route-launcher",
         immediate = true
 )
 public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher implements ServiceListener {
 
+    public static final String CAMEL_CONTEXT_NAME = "supplied-route-launcher";
     private static final Logger LOG = LoggerFactory.getLogger(CamelSuppliedRouteLauncher.class);
     private final Map<String, List<RouteDefinition>> routes = new ConcurrentHashMap<>();
 
@@ -53,15 +55,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                BundleContext bundleContext = camelContext.getBundleContext();
-                LOG.info("Looking for CamelRouteSupplier services");
-                for (ServiceReference<CamelRouteSupplier> reference : bundleContext.getServiceReferences(CamelRouteSupplier.class, null)) {
-                    CamelRouteSupplier supplier = bundleContext.getService(reference);
-                    LOG.info("Found CamelRouteSupplier service: {}", supplier.getClass().getName());
-                    supplier.configure(camelContext);
-                    supplier.createRoutes(this);
-                    LOG.info("CamelRouteSupplier service {} configured and routes created", supplier.getClass().getName());
-                }
+                // no routes to add here as they will be added by the listener
             }
         };
     }

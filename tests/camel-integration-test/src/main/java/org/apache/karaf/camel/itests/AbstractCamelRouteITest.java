@@ -18,6 +18,9 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
@@ -41,13 +44,13 @@ import org.osgi.framework.ServiceReference;
 
 import static org.ops4j.pax.exam.OptionUtils.combine;
 
-public abstract class AbstractCamelRouteITest extends KarafTestSupport {
+public abstract class AbstractCamelRouteITest extends KarafTestSupport implements CamelContextProvider {
 
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
     public static final String CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY = "camel.karaf.itest.debug";
 
-    protected CamelContext context;
-    protected ProducerTemplate template;
+    private final Map<CamelContextKey, CamelContext> contexts = new ConcurrentHashMap<>();
+    private final Map<CamelContextKey, ProducerTemplate> templates = new ConcurrentHashMap<>();
     private List<String> requiredBundles;
 
     public String getVersion() {
@@ -154,8 +157,6 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
         installRequiredFeaturesRepositories();
         installRequiredFeatures();
         this.requiredBundles = installRequiredBundles();
-        initCamelContext();
-        initProducerTemplate();
     }
 
     /**
@@ -213,27 +214,22 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
      * Indicates whether the test is a blueprint test or not. By default, it's not a blueprint test.
      * @return {@code true} if the test is a blueprint test, {@code false} otherwise
      */
-    private boolean isBlueprintTest() {
-        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+    private static boolean isBlueprintTest(Class<?> clazz) {
+        CamelKarafTestHint hint = clazz.getAnnotation(CamelKarafTestHint.class);
         return hint != null && hint.isBlueprintTest();
     }
 
+    private static Mode getMode(Class<?> clazz) {
+        return isBlueprintTest(clazz) ? Mode.BLUEPRINT : Mode.CORE;
+    }
+
     private Mode getMode() {
-        return isBlueprintTest() ? Mode.BLUEPRINT : Mode.CORE;
-    }
-
-    private void initCamelContext() throws InvalidSyntaxException {
-        this.context = getMode().getCamelContextClass(bundleContext);
-    }
-
-    private void initProducerTemplate() {
-        template = context.createProducerTemplate();
-        template.start();
+        return getMode(getClass());
     }
 
     @After
     public final void destroy()  {
-        destroyProducerTemplate();
+        destroyProducerTemplates();
         uninstallRequiredBundles();
         uninstallRequiredFeatures();
         removeRequiredFeaturesRepositories();
@@ -284,10 +280,8 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
         }
     }
 
-    private void destroyProducerTemplate() {
-        if (template != null) {
-            template.stop();
-        }
+    private void destroyProducerTemplates() {
+        templates.values().forEach(ProducerTemplate::stop);
     }
 
     protected void assertBundleInstalledAndRunning(String name) {
@@ -301,12 +295,25 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
                 bundles.contains("Active"));
     }
 
-    public CamelContext getContext() {
-        return context;
+    @Override
+    public CamelContext getContext(Class<?> clazz) {
+        return contexts.computeIfAbsent(new CamelContextKey(clazz), key -> {
+            try {
+                return getMode(clazz).getCamelContextClass(bundleContext, key.getCamelContextName());
+            } catch (InvalidSyntaxException e) {
+                throw new IllegalStateException("No CamelContext could be found matching the criteria", e);
+            }
+        });
     }
 
-    public ProducerTemplate getTemplate() {
-        return template;
+    @Override
+    public ProducerTemplate getTemplate(Class<?> clazz) {
+        return templates.computeIfAbsent(new CamelContextKey(clazz),
+                key -> {
+                    ProducerTemplate template = getContext(clazz).createProducerTemplate();
+                    template.start();
+                    return template;
+                });
     }
 
     private enum Mode {
@@ -337,7 +344,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
 
         abstract Class<? extends CamelContext> getCamelContextClass();
 
-        CamelContext getCamelContextClass(BundleContext bundleContext) throws InvalidSyntaxException {
+        CamelContext getCamelContextClass(BundleContext bundleContext, String name) throws InvalidSyntaxException {
             ServiceReference<?>[] references = bundleContext.getServiceReferences(CamelContext.class.getName(), null);
             if (references == null) {
                 throw new IllegalStateException("No CamelContext available");
@@ -347,11 +354,39 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
                     continue;
                 }
                 CamelContext camelContext = (CamelContext) bundleContext.getService(reference);
-                if (camelContext.getClass().equals(getCamelContextClass())) {
+                if (camelContext.getClass().equals(getCamelContextClass())
+                        && (name == null || name.equals(camelContext.getName()))) {
                     return camelContext;
                 }
             }
-            throw new IllegalStateException("No CamelContext available");
+            throw new IllegalStateException("No CamelContext could be found matching the criteria (mode = " + this + ", name = " + name + ")");
+        }
+    }
+
+    private static class CamelContextKey {
+        private final String name;
+        private final boolean blueprint;
+
+        CamelContextKey(Class<?> clazz) {
+            this.name = Utils.getCamelContextName(clazz);
+            this.blueprint = isBlueprintTest(clazz);
+        }
+
+        public String getCamelContextName() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            CamelContextKey that = (CamelContextKey) o;
+            return blueprint == that.blueprint && Objects.equals(name, that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, blueprint);
         }
     }
 }

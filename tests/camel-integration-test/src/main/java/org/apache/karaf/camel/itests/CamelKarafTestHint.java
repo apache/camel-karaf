@@ -36,4 +36,9 @@ public @interface CamelKarafTestHint {
      * Specify the list of additional features required by the test.
      */
     String[] additionalRequiredFeatures() default {};
+
+    /**
+     * Specify the name of the Camel context to use in the test.
+     */
+    String camelContextName() default "";
 }

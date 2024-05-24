@@ -17,15 +17,14 @@
 
 package org.apache.karaf.camel.test;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRoute;
+import org.apache.karaf.camel.itests.CamelContextProvider;
 
 public class CamelSedaITest extends AbstractCamelSingleComponentResultMockBasedRoute {
 
-    public CamelSedaITest(CamelContext context, ProducerTemplate template) {
-        super(context, template);
+    public CamelSedaITest(CamelContextProvider provider) {
+        super(provider);
     }
 
     @Override

@@ -13,13 +13,10 @@
  */
 package org.apache.karaf.camel.itests;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.karaf.core.OsgiCamelContextPublisher;
 import org.apache.camel.karaf.core.OsgiDefaultCamelContext;
-import org.apache.camel.model.ModelCamelContext;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceEvent;
-import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
@@ -31,21 +28,34 @@ import org.osgi.service.component.annotations.Deactivate;
 public abstract class AbstractCamelRouteLauncher {
 
     protected OsgiDefaultCamelContext camelContext;
-    protected ServiceRegistration<CamelContext> serviceRegistration;
+    protected ServiceRegistration<?> serviceRegistration;
 
     @Activate
     public void activate(ComponentContext componentContext) throws Exception {
         BundleContext bundleContext = componentContext.getBundleContext();
         camelContext = new OsgiDefaultCamelContext(bundleContext);
-        serviceRegistration = bundleContext.registerService(CamelContext.class, camelContext, null);
+        String contextName = Utils.getCamelContextName(getClass());
+        if (contextName == null) {
+            throw new IllegalStateException("Camel context name not set for " + getClass().getName() + " using @CamelKarafTestHint annotation");
+        }
+        camelContext.getCamelContextExtension().setName(contextName);
+        serviceRegistration = new OsgiCamelContextPublisher(bundleContext).registerCamelContext(camelContext);
+        if (serviceRegistration == null) {
+            throw new IllegalStateException("Camel context registration failed for " + contextName + " most likely because the context name is already in use");
+        }
         camelContext.start();
         camelContext.addRoutes(createRouteBuilder());
     }
 
     @Deactivate
     public void deactivate() {
+        if (camelContext == null) {
+            return;
+        }
         camelContext.stop();
-        serviceRegistration.unregister();
+        if (serviceRegistration != null) {
+            serviceRegistration.unregister();
+        }
     }
 
     /**
