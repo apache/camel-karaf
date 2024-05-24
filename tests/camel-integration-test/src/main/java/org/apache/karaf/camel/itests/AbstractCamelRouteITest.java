@@ -16,6 +16,7 @@ package org.apache.karaf.camel.itests;
 
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.CamelContext;
@@ -175,8 +176,22 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
      */
     protected abstract List<String> getRequiredFeatures();
 
+    /**
+     * Gives the list of all required features including the additional features specified in
+     * the {@link CamelKarafTestHint#additionalRequiredFeatures()}.
+     */
+    private List<String> getAllRequiredFeatures() {
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        if (hint == null || hint.additionalRequiredFeatures().length == 0) {
+            return getRequiredFeatures();
+        }
+        List<String> requiredFeatures = new ArrayList<>(getRequiredFeatures());
+        requiredFeatures.addAll(List.of(hint.additionalRequiredFeatures()));
+        return requiredFeatures;
+    }
+
     private void installRequiredFeatures() throws Exception {
-        for (String featureName : getRequiredFeatures()) {
+        for (String featureName : getAllRequiredFeatures()) {
             if (featureService.getFeature(featureName) == null) {
                 throw new IllegalArgumentException("Feature %s is not available".formatted(featureName));
             }
@@ -250,7 +265,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
     }
 
     private void uninstallRequiredFeatures() {
-        for (String featureName : getRequiredFeatures()) {
+        for (String featureName : getAllRequiredFeatures()) {
             try {
                 featureService.uninstallFeature(featureName);
             } catch (Exception e) {

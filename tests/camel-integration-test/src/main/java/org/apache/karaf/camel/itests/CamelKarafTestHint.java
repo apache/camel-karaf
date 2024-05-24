@@ -5,6 +5,7 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.List;
 
 /**
  * The annotation uses to provide hints to the Camel Karaf test framework.
@@ -30,4 +31,9 @@ public @interface CamelKarafTestHint {
      * @return {@code true} if the test is a blueprint test, {@code false} otherwise
      */
     boolean isBlueprintTest() default false;
+
+    /**
+     * Specify the list of additional features required by the test.
+     */
+    String[] additionalRequiredFeatures() default {};
 }

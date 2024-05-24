@@ -27,8 +27,12 @@ public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCam
         return CamelSingleComponentRoute.super.getTestBundleName();
     }
 
+    /**
+     * Get the required features for this test. If more are needed,
+     * use {@link CamelKarafTestHint#externalResourceProvider()}.
+     */
     @Override
-    public List<String> getRequiredFeatures() {
+    public final List<String> getRequiredFeatures() {
         return CamelSingleComponentRoute.super.getRequiredFeatures();
     }
 }
