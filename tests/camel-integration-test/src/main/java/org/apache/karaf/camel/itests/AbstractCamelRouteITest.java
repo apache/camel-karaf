@@ -20,6 +20,8 @@ import java.util.List;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.blueprint.BlueprintCamelContext;
+import org.apache.camel.karaf.core.OsgiDefaultCamelContext;
 import org.apache.karaf.itests.KarafTestSupport;
 import org.jetbrains.annotations.NotNull;
 import org.junit.After;
@@ -30,9 +32,11 @@ import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionConfigurationFilePutOption;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
-import org.ops4j.pax.swissbox.tracker.ServiceLookup;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 
 import static org.ops4j.pax.exam.OptionUtils.combine;
 
@@ -72,7 +76,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
         Option[] options = new Option[]{
             CoreOptions.systemProperty("project.version").value(getVersion()),
             CoreOptions.systemProperty("project.target").value(getBaseDir()),
-            KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/%s/xml/features".formatted(getVersion()), "scr","camel-core"),
+            KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/%s/xml/features".formatted(getVersion()), "scr", getMode().getFeatureName()),
             CoreOptions.mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-integration-test").versionAsInProject(),
         };
         Option[] combine = combine(updatePorts(super.config()), options);
@@ -189,8 +193,20 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
         return List.of();
     }
 
-    private void initCamelContext() {
-        this.context = ServiceLookup.getService(bundleContext, CamelContext.class);
+    /**
+     * Indicates whether the test is a blueprint test or not. By default, it's not a blueprint test.
+     * @return {@code true} if the test is a blueprint test, {@code false} otherwise
+     */
+    protected boolean isBlueprintTest() {
+        return false;
+    }
+
+    private Mode getMode() {
+        return isBlueprintTest() ? Mode.BLUEPRINT : Mode.CORE;
+    }
+
+    private void initCamelContext() throws InvalidSyntaxException {
+        this.context = getMode().getCamelContextClass(bundleContext);
     }
 
     private void initProducerTemplate() {
@@ -274,5 +290,51 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
 
     public ProducerTemplate getTemplate() {
         return template;
+    }
+
+    private enum Mode {
+        BLUEPRINT {
+            @Override
+            String getFeatureName() {
+                return "camel-blueprint";
+            }
+
+            @Override
+            Class<? extends CamelContext> getCamelContextClass() {
+                return BlueprintCamelContext.class;
+            }
+        },
+        CORE {
+            @Override
+            String getFeatureName() {
+                return "camel-core";
+            }
+
+            @Override
+            Class<? extends CamelContext> getCamelContextClass() {
+                return OsgiDefaultCamelContext.class;
+            }
+        };
+
+        abstract String getFeatureName();
+
+        abstract Class<? extends CamelContext> getCamelContextClass();
+
+        CamelContext getCamelContextClass(BundleContext bundleContext) throws InvalidSyntaxException {
+            ServiceReference<?>[] references = bundleContext.getServiceReferences(CamelContext.class.getName(), null);
+            if (references == null) {
+                throw new IllegalStateException("No CamelContext available");
+            }
+            for (ServiceReference<?> reference : references) {
+                if (reference == null) {
+                    continue;
+                }
+                CamelContext camelContext = (CamelContext) bundleContext.getService(reference);
+                if (camelContext.getClass().equals(getCamelContextClass())) {
+                    return camelContext;
+                }
+            }
+            throw new IllegalStateException("No CamelContext available");
+        }
     }
 }

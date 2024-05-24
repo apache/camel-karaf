@@ -79,6 +79,7 @@
                             org.ops4j.pax.exam.options,
                             org.osgi.framework,
                             org.junit*,
+                            org.apache.camel.blueprint;resolution:=optional;${camel.osgi.import.camel.version},
                             org.apache.camel*;${camel.osgi.import.camel.version},
                             org.apache.karaf.features,
                             org.ops4j.pax.swissbox.tracker,
@@ -174,6 +175,12 @@
         <dependency>
             <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-mock</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-blueprint</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>

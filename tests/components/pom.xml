@@ -37,6 +37,7 @@
     </properties>
 
     <modules>
+        <module>camel-amqp</module>
         <module>camel-core</module>
         <module>camel-elasticsearch</module>
         <module>camel-jetty</module>
