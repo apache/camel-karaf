@@ -21,7 +21,9 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.testcontainers.containers.RabbitMQContainer;
 
 
-@UseExternalResourceProvider(CamelAmqpITest.ExternalResourceProviders.class)
+@CamelKarafTestHint(
+        externalResourceProvider = CamelAmqpITest.ExternalResourceProviders.class,
+        isBlueprintTest = true)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelAmqpITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {
@@ -34,11 +36,6 @@ public class CamelAmqpITest extends AbstractCamelSingleComponentResultMockBasedR
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
-    }
-
-    @Override
-    public boolean isBlueprintTest() {
-        return true;
     }
 
     public static final class ExternalResourceProviders {

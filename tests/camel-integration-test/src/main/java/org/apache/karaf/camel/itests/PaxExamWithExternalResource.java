@@ -44,12 +44,13 @@ import org.slf4j.LoggerFactory;
 /**
  * A fork of {@link PaxExam} that supports external resources which can be created and destroyed outside Karaf.
  * <p>
- * This runner is intended to be used with {@link UseExternalResourceProvider} annotation in order to create the
+ * This runner is intended to be used with {@link CamelKarafTestHint} annotation where
+ * {@link CamelKarafTestHint#externalResourceProvider()} is properly set in order to create the
  * external resources that are needed by the test. Please note that due to the way PaxExam works, the class cannot be
  * the same as the test class, but it can be a static inner class of it otherwise the class will need to be resolved
  * within Karaf which is what we want to avoid.
  *
- * @see UseExternalResourceProvider
+ * @see CamelKarafTestHint
  */
 public class PaxExamWithExternalResource extends Runner implements Filterable, Sortable {
     private static final Logger LOG = LoggerFactory.getLogger(PaxExamWithExternalResource.class);
@@ -69,10 +70,10 @@ public class PaxExamWithExternalResource extends Runner implements Filterable, S
     }
 
     private List<ExternalResource> beforeAll(Class<?> testClass) throws InvocationTargetException, IllegalAccessException {
-        UseExternalResourceProvider annotation = testClass.getAnnotation(UseExternalResourceProvider.class);
-        if (annotation != null) {
+        CamelKarafTestHint annotation = testClass.getAnnotation(CamelKarafTestHint.class);
+        if (annotation != null && annotation.externalResourceProvider() != Object.class) {
             List<ExternalResource> result = new ArrayList<>();
-            for (Method m : annotation.value().getMethods()) {
+            for (Method m : annotation.externalResourceProvider().getMethods()) {
                 if (isExternalResourceSupplier(m)) {
                     ExternalResource externalResource = (ExternalResource) m.invoke(null);
                     externalResource.before();
@@ -81,7 +82,7 @@ public class PaxExamWithExternalResource extends Runner implements Filterable, S
             }
             return result;
         }
-        LOG.warn("Class {} is not annotated with @UseExternalResourceProvider", testClass.getName());
+        LOG.warn("Class {} is not annotated with @CamelKarafTestHint or externalResourceProvider is not set", testClass.getName());
         return List.of();
     }
 

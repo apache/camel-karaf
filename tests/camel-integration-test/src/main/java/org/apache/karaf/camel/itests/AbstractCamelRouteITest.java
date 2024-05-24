@@ -144,7 +144,8 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
     }
 
     private boolean hasExternalResources() {
-        return getClass().isAnnotationPresent(UseExternalResourceProvider.class);
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        return hint != null && hint.externalResourceProvider() != Object.class;
     }
 
     @Before
@@ -197,8 +198,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport {
      * Indicates whether the test is a blueprint test or not. By default, it's not a blueprint test.
      * @return {@code true} if the test is a blueprint test, {@code false} otherwise
      */
-    protected boolean isBlueprintTest() {
-        return false;
+    private boolean isBlueprintTest() {
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        return hint != null && hint.isBlueprintTest();
     }
 
     private Mode getMode() {

@@ -36,7 +36,6 @@
         <module>camel-test-scr</module>
         <module>camel-integration-test</module>
         <module>components</module>
-        <!-- <module>camel-test-jms</module> -->
     </modules>
 
 </project>

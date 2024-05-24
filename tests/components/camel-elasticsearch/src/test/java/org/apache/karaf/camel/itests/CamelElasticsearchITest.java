@@ -25,7 +25,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
-@UseExternalResourceProvider(CamelElasticsearchITest.ExternalResourceProviders.class)
+@CamelKarafTestHint(externalResourceProvider = CamelElasticsearchITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelElasticsearchITest extends AbstractCamelSingleComponentResultMockBasedRouteITest {

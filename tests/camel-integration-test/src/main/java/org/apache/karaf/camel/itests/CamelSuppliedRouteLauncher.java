@@ -60,7 +60,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
                     LOG.info("Found CamelRouteSupplier service: {}", supplier.getClass().getName());
                     supplier.configure(camelContext);
                     supplier.createRoutes(this);
-                    LOG.info("CamelRouteSupplier service {} configured and route created", supplier.getClass().getName());
+                    LOG.info("CamelRouteSupplier service {} configured and routes created", supplier.getClass().getName());
                 }
             }
         };
