@@ -37,12 +37,12 @@ public abstract class AbstractCamelSingleComponentResultFileBasedRoute implement
 
     @Override
     public CamelContext getContext() {
-        return provider.getContext(getClass());
+        return provider.getContext();
     }
 
     @Override
     public ProducerTemplate getTemplate() {
-        return provider.getTemplate(getClass());
+        return provider.getTemplate();
     }
 
     public void testRoutes() throws Exception {

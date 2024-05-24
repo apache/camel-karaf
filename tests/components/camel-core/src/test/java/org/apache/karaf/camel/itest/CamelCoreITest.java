@@ -11,12 +11,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.camel.itests;
+package org.apache.karaf.camel.itest;
 
 import java.util.List;
 
-import org.apache.karaf.camel.test.CamelFileITest;
-import org.apache.karaf.camel.test.CamelSedaITest;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelRouteWithBundleITest;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultFileBasedRoute;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRoute;
+import org.apache.karaf.camel.itests.CamelContextProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -46,5 +49,29 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
     @Test
     public void testCamelSeda() throws Exception {
         new CamelSedaITest(this).testRoutes();
+    }
+
+    public static class CamelFileITest extends AbstractCamelSingleComponentResultFileBasedRoute {
+
+        public CamelFileITest(CamelContextProvider provider, String baseDir) {
+            super(provider, baseDir);
+        }
+
+        @Override
+        protected void executeTest() throws Exception {
+            assertResultFileContains("OK");
+        }
+    }
+
+    public static class CamelSedaITest extends AbstractCamelSingleComponentResultMockBasedRoute {
+
+        public CamelSedaITest(CamelContextProvider provider) {
+            super(provider);
+        }
+
+        @Override
+        public void configureMock(MockEndpoint mock) {
+            mock.expectedBodiesReceived("OK");
+        }
     }
 }

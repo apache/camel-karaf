@@ -11,13 +11,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.camel.itests;
+package org.apache.karaf.camel.itest;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.Duration;
 
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.GenericContainerResource;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
+import org.apache.karaf.camel.itests.TemporaryFile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;

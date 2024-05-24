@@ -11,9 +11,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.karaf.camel.itests;
+package org.apache.karaf.camel.itest;
 
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelSingleComponentResultMockBasedRouteITest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;

@@ -282,6 +282,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
 
     private void destroyProducerTemplates() {
         templates.values().forEach(ProducerTemplate::stop);
+        templates.clear();
     }
 
     protected void assertBundleInstalledAndRunning(String name) {

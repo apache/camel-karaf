@@ -41,11 +41,11 @@ public abstract class AbstractCamelSingleComponentRouteITest extends AbstractCam
 
     @Override
     public CamelContext getContext() {
-        return getContext(getClass());
+        return super.getContext();
     }
 
     @Override
     public ProducerTemplate getTemplate() {
-        return getTemplate(getClass());
+        return super.getTemplate();
     }
 }
