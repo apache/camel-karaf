@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-google-parent</artifactId>
-        <version>4.5.0-SNAPSHOT</version>
+        <version>4.6.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -37,8 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.camel.import>
-            org.apache.camel.component.cloudevents*;version=${camel.version};resolution:=optional,
-            org.apache.camel*;version=${camel.version},
+            org.apache.camel.component.cloudevents*;${camel.osgi.import.camel.version};resolution:=optional,
+            *
         </camel.osgi.camel.import>
         <camel.osgi.import>
             *

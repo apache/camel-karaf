@@ -19,6 +19,7 @@ package org.apache.camel.blueprint.handler;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -33,6 +34,7 @@ import jakarta.xml.bind.Binder;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 
+import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.blueprint.CamelRouteConfigurationContextFactoryBean;
 import org.apache.camel.builder.LegacyDeadLetterChannelBuilder;
 import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
@@ -949,12 +951,12 @@ public class CamelNamespaceHandler implements NamespaceHandler {
                 for (Field field : fields) {
                     PropertyInject propertyInject = field.getAnnotation(PropertyInject.class);
                     if (propertyInject != null) {
-                        injectFieldProperty(field, propertyInject.value(), propertyInject.defaultValue(), bean, beanName);
+                        injectFieldProperty(field, bean, propertyInject.value(), propertyInject.defaultValue(), propertyInject.separator());
                     }
 
                     BeanInject beanInject = field.getAnnotation(BeanInject.class);
                     if (beanInject != null) {
-                        injectFieldBean(field, beanInject.value(), bean, beanName);
+                        injectFieldBean(field, bean, beanInject.value());
                     }
 
                     EndpointInject endpointInject = field.getAnnotation(EndpointInject.class);
@@ -977,11 +979,11 @@ public class CamelNamespaceHandler implements NamespaceHandler {
             setField(field, bean, getInjectionValue(field.getType(), endpointUri, endpointProperty, field.getName(), bean, beanName));
         }
 
-        protected void injectFieldProperty(Field field, String propertyName, String propertyDefaultValue, Object bean, String beanName) {
-            setField(field, bean, getInjectionPropertyValue(field.getType(), propertyName, propertyDefaultValue, field.getName(), bean, beanName));
+        protected void injectFieldProperty(Field field, Object bean, String propertyName, String propertyDefaultValue, String separator) {
+            setField(field, bean, getInjectionPropertyValue(field.getType(), field.getGenericType(), propertyName, propertyDefaultValue, separator));
         }
 
-        public void injectFieldBean(Field field, String name, Object bean, String beanName) {
+        public void injectFieldBean(Field field, Object bean, String name) {
             setField(field, bean, getInjectionBeanValue(field.getType(), name));
         }
 
@@ -1018,7 +1020,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
         protected void setterInjection(Method method, Object bean, String beanName) {
             PropertyInject propertyInject = method.getAnnotation(PropertyInject.class);
             if (propertyInject != null) {
-                setterPropertyInjection(method, propertyInject.value(), propertyInject.defaultValue(), bean, beanName);
+                setterPropertyInjection(method, bean, propertyInject.value(), propertyInject.defaultValue(), propertyInject.separator());
             }
 
             BeanInject beanInject = method.getAnnotation(BeanInject.class);
@@ -1039,13 +1041,12 @@ public class CamelNamespaceHandler implements NamespaceHandler {
             }
         }
 
-        protected void setterPropertyInjection(Method method, String propertyValue, String propertyDefaultValue, Object bean, String beanName) {
+        protected void setterPropertyInjection(Method method, Object bean, String propertyName, String propertyDefaultValue, String separator) {
             Class<?>[] parameterTypes = method.getParameterTypes();
             if (parameterTypes.length != 1) {
                 LOG.warn("Ignoring badly annotated method for injection due to incorrect number of parameters: {}", method);
             } else {
-                String propertyName = org.apache.camel.util.ObjectHelper.getPropertyName(method);
-                Object value = getInjectionPropertyValue(parameterTypes[0], propertyValue, propertyDefaultValue, propertyName, bean, beanName);
+                Object value = getInjectionPropertyValue(parameterTypes[0], method.getGenericParameterTypes()[0], propertyName, propertyDefaultValue, separator);
                 ObjectHelper.invokeMethod(method, bean, value);
             }
         }
