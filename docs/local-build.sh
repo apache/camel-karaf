@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -15,26 +17,8 @@
 # limitations under the License.
 #
 
-name: Build and Test Apache Camel Karaf
+CW=./../../camel-website
+LOCAL=./../camel-karaf
 
-on:
-  push:
-    branches:
-      - 'main'
-      - 'camel-karaf-**'
-  pull_request:
-    paths-ignore:
-      - '.gitignore'
-      - '.asf.yml'
-      - 'LICENSE'
-      - 'NOTICE'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: 17
-        run: ./mvnw -V --no-transfer-progress clean install
+cd $CW || (echo 'camel-website not in expected location $CW' && exit)
+./antora-local-build.sh $LOCAL $*
