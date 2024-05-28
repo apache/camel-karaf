@@ -37,8 +37,8 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.camel.import>
-            org.apache.camel.component.cron*;version=${camel.version};resolution:=optional,
-            org.apache.camel*;version=${camel.version},
+            org.apache.camel.component.cron*;${camel.osgi.import.camel.version};resolution:=optional,
+            org.apache.camel*;${camel.osgi.import.camel.version},
         </camel.osgi.camel.import>
         <camel.osgi.import>
             *
