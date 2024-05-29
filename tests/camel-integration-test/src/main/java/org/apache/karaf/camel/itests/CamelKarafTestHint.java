@@ -41,4 +41,10 @@ public @interface CamelKarafTestHint {
      * Specify the name of the Camel context to use in the test.
      */
     String camelContextName() default "";
+
+    /**
+     * Specify the list of Camel route suppliers to use within the context of the test. By default, all detected
+     * Camel route suppliers are used.
+     */
+    String[] camelRouteSuppliers() default {};
 }

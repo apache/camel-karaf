@@ -20,11 +20,11 @@ package org.apache.karaf.camel.itests;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
@@ -32,6 +32,8 @@ import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY;
 
 @CamelKarafTestHint(camelContextName = CamelSuppliedRouteLauncher.CAMEL_CONTEXT_NAME)
 @Component(
@@ -43,11 +45,32 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     public static final String CAMEL_CONTEXT_NAME = "supplied-route-launcher";
     private static final Logger LOG = LoggerFactory.getLogger(CamelSuppliedRouteLauncher.class);
     private final Map<String, List<RouteDefinition>> routes = new ConcurrentHashMap<>();
+    private final Set<String> suppliers = ConcurrentHashMap.newKeySet();
 
     @Override
     public void activate(ComponentContext componentContext) throws Exception {
         super.activate(componentContext);
         camelContext.getBundleContext().addServiceListener(this);
+        loadSuppliers();
+    }
+
+    @Override
+    public void deactivate() {
+        suppliers.clear();
+        super.deactivate();
+    }
+
+    private void loadSuppliers() {
+        String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
+        if (property == null) {
+            return;
+        }
+        suppliers.addAll(List.of(property.split(",")));
+    }
+
+    @SuppressWarnings("SuspiciousMethodCalls")
+    private boolean ignore(ServiceReference<?> serviceReference) {
+        return !suppliers.isEmpty() && !suppliers.contains(serviceReference.getProperty("component.name"));
     }
 
     @Override
@@ -62,13 +85,19 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
 
     @Override
     public void serviceChanged(ServiceEvent serviceEvent) {
+        ServiceReference<?> serviceReference = serviceEvent.getServiceReference();
+        if (ignore(serviceReference)) {
+            LOG.debug("Ignoring CamelRouteSupplier service: {}", serviceReference.getProperties());
+            return;
+        }
         if (serviceEvent.getType() == ServiceEvent.REGISTERED) {
-            if (camelContext.getBundleContext().getService(serviceEvent.getServiceReference()) instanceof CamelRouteSupplier supplier) {
-                LOG.info("CamelRouteSupplier service registered: {}", supplier.getClass().getName());
+            if (camelContext.getBundleContext().getService(serviceReference) instanceof CamelRouteSupplier supplier) {
+                LOG.info("CamelRouteSupplier service registered: {} from the class {}", serviceReference.getProperties(),
+                        supplier.getClass().getName());
                 addRoutes(supplier);
             }
         } else if (serviceEvent.getType() == ServiceEvent.UNREGISTERING
-                && camelContext.getBundleContext().getService(serviceEvent.getServiceReference()) instanceof CamelRouteSupplier supplier) {
+                && camelContext.getBundleContext().getService(serviceReference) instanceof CamelRouteSupplier supplier) {
             LOG.info("CamelRouteSupplier service unregistered: {}", supplier.getClass().getName());
             removeRoutes(supplier);
         }

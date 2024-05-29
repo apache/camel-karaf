@@ -17,10 +17,12 @@ package org.apache.karaf.camel.itests;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
@@ -41,6 +43,8 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.ops4j.pax.exam.OptionUtils.combine;
 
@@ -48,22 +52,37 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
 
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
     public static final String CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY = "camel.karaf.itest.debug";
+    static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.suppliers";
 
+    private static final Logger LOG = LoggerFactory.getLogger(AbstractCamelRouteITest.class);
     private final Map<CamelContextKey, CamelContext> contexts = new ConcurrentHashMap<>();
     private final Map<CamelContextKey, ProducerTemplate> templates = new ConcurrentHashMap<>();
     private List<String> requiredBundles;
 
-    public String getVersion() {
-        return System.getProperty("project.version");
+    public String getCamelKarafVersion() {
+        String version = System.getProperty("camel.karaf.version");
+        if (version == null) {
+            version = Utils.loadCamelKarafVersion();
+        }
+        return version;
     }
 
     public String getBaseDir() {
-        return System.getProperty("project.target");
+        String location = System.getProperty("project.target");
+        if (location == null) {
+            throw new IllegalStateException("The system property 'project.target' must be set to the target directory of" +
+                    " the project or the method getBaseDir must be overridden to provide the base directory");
+        }
+        return location;
     }
 
     public File getUsersFile() {
         // retrieve the users.properties file from the resources folder to avoid file duplication
-        return new File(System.getProperty("integration.test.project.resources"), "etc/users.properties");
+        String location = System.getProperty("users.file.location");
+        if (location == null) {
+            location = Utils.loadUsersFileIfAbsent(getBaseDir());
+        }
+        return new File(location);
     }
 
     @Override
@@ -77,20 +96,27 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     @Configuration
     @Override
     public Option[] config() {
+        String camelKarafVersion = getCamelKarafVersion();
+        if (camelKarafVersion == null) {
+            throw new IllegalArgumentException("The system property 'camel.karaf.version' must be set or the method " +
+                    "getCamelKarafVersion must be overridden to provide the version of Camel Karaf to use");
+        }
         Option[] options = new Option[]{
-            CoreOptions.systemProperty("project.version").value(getVersion()),
             CoreOptions.systemProperty("project.target").value(getBaseDir()),
-            KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/%s/xml/features".formatted(getVersion()), "scr", getMode().getFeatureName()),
-            CoreOptions.mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-integration-test").versionAsInProject(),
+            KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/%s/xml/features".formatted(camelKarafVersion), "scr", getMode().getFeatureName()),
+            CoreOptions.mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-integration-test").version(camelKarafVersion)
         };
         Option[] combine = combine(updatePorts(super.config()), options);
         if (isDebugModeEnabled()) {
             combine = combine(combine, KarafDistributionOption.debugConfiguration(Integer.toString(getDebugPort()), true));
         }
         if (hasExternalResources()) {
-            return combine(combine, getExternalResourceOptions());
+            combine = combine(combine, getExternalResourceOptions());
         }
-        return combine;
+        if (hasCamelRouteSupplierFilter()) {
+            combine = combine(combine, getCamelRouteSupplierFilter());
+        }
+        return combine(combine, getAdditionalOptions());
     }
 
     /**
@@ -150,6 +176,24 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     private boolean hasExternalResources() {
         CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
         return hint != null && hint.externalResourceProvider() != Object.class;
+    }
+
+
+    private Option getCamelRouteSupplierFilter() {
+        return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY)
+                .value(String.join(",", getClass().getAnnotation(CamelKarafTestHint.class).camelRouteSuppliers()));
+    }
+
+    private boolean hasCamelRouteSupplierFilter() {
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        return hint != null && hint.camelRouteSuppliers().length > 0;
+    }
+
+    /**
+     * Returns the list of additional options to add to the configuration.
+     */
+    protected Option[] getAdditionalOptions() {
+        return new Option[0];
     }
 
     @Before
@@ -220,7 +264,11 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     }
 
     private static Mode getMode(Class<?> clazz) {
-        return isBlueprintTest(clazz) ? Mode.BLUEPRINT : Mode.CORE;
+        return getMode(isBlueprintTest(clazz));
+    }
+
+    private static Mode getMode(boolean blueprint) {
+        return blueprint ? Mode.BLUEPRINT : Mode.CORE;
     }
 
     private Mode getMode() {
@@ -243,7 +291,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
             try {
                 uninstallBundle(bundleName);
             } catch (Exception e) {
-                // Ignore me
+                LOG.warn("Error while uninstalling bundle {}", bundleName, e);
             }
         }
     }
@@ -256,7 +304,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         try {
             bundle.uninstall();
         } catch (BundleException e) {
-            // Ignore me
+            LOG.warn("Error while uninstalling bundle {}", bundleName, e);
         }
     }
 
@@ -265,7 +313,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
             try {
                 featureService.uninstallFeature(featureName);
             } catch (Exception e) {
-                // Ignore me
+                LOG.warn("Error while uninstalling feature {}", featureName, e);
             }
         }
     }
@@ -275,7 +323,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
             try {
                 featureService.removeRepository(new URI(featuresRepository));
             } catch (Exception e) {
-                // Ignore me
+                LOG.warn("Error while removing features repository {}", featuresRepository, e);
             }
         }
     }
@@ -312,6 +360,27 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         return templates.computeIfAbsent(new CamelContextKey(clazz),
                 key -> {
                     ProducerTemplate template = getContext(clazz).createProducerTemplate();
+                    template.start();
+                    return template;
+                });
+    }
+
+    @Override
+    public CamelContext getContext(String name, boolean isBlueprintTest) {
+        return contexts.computeIfAbsent(new CamelContextKey(name, isBlueprintTest), key -> {
+            try {
+                return getMode(isBlueprintTest).getCamelContextClass(bundleContext, key.getCamelContextName());
+            } catch (InvalidSyntaxException e) {
+                throw new IllegalStateException("No CamelContext could be found matching the criteria", e);
+            }
+        });
+    }
+
+    @Override
+    public ProducerTemplate getTemplate(String name, boolean isBlueprintTest) {
+        return templates.computeIfAbsent(new CamelContextKey(name, isBlueprintTest),
+                key -> {
+                    ProducerTemplate template = getContext(name, isBlueprintTest).createProducerTemplate();
                     template.start();
                     return template;
                 });
@@ -368,9 +437,13 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         private final String name;
         private final boolean blueprint;
 
+        CamelContextKey(String name, boolean blueprint) {
+            this.name = name;
+            this.blueprint = blueprint;
+        }
+
         CamelContextKey(Class<?> clazz) {
-            this.name = Utils.getCamelContextName(clazz);
-            this.blueprint = isBlueprintTest(clazz);
+            this(Utils.getCamelContextName(clazz), isBlueprintTest(clazz));
         }
 
         public String getCamelContextName() {

@@ -1,0 +1,65 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.karaf.camel.examples.itest;
+
+import java.util.List;
+
+import org.apache.camel.Endpoint;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelRouteWithBundleITest;
+import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.ops4j.pax.exam.junit.PaxExam;
+import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
+import org.ops4j.pax.exam.spi.reactors.PerClass;
+
+import static org.junit.Assert.assertNotNull;
+
+@CamelKarafTestHint(isBlueprintTest = true)
+@RunWith(PaxExam.class)
+@ExamReactorStrategy(PerClass.class)
+public class CamelBlueprintExampleWithBothTest extends AbstractCamelRouteWithBundleITest {
+
+    @Override
+    protected List<String> getRequiredFeatures() {
+        return List.of();
+    }
+
+    @Override
+    protected String getTestBundleName() {
+        return "camel-karaf-examples-blueprint-dsl-only-test";
+    }
+
+
+    @Test
+    public void testBlueprintDSL1() throws Exception {
+        verify("ctx1", 1);
+    }
+
+
+    @Test
+    public void testBlueprintDSL2() throws Exception {
+        verify("ctx2",2);
+    }
+
+    private void verify(String contextName, int id) throws InterruptedException {
+        Endpoint endpoint = getContext(contextName).hasEndpoint("direct:example%d".formatted(id));
+        assertNotNull(endpoint);
+        MockEndpoint mock = getContext(contextName).getEndpoint("mock:example%d".formatted(id), MockEndpoint.class);
+        mock.expectedBodiesReceived("Hello World");
+        getTemplate(contextName).sendBody("direct:example%d".formatted(id), "Hello World");
+        mock.assertIsSatisfied();
+    }
+}
