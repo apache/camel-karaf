@@ -32,7 +32,7 @@ public class CamelBeanRouteSupplier extends AbstractCamelSingleFeatureResultMock
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        configureConsumer(producerRoute.bean(BeanTest.class,"setBody").log("body is now ${body}"));
+        configureConsumer(producerRoute.bean(BeanTest.class, "setBody").log("body is now ${body}"));
     }
 
     @Override
