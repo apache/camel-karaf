@@ -35,9 +35,9 @@ public class CamelMailRouteSupplier extends AbstractCamelSingleFeatureResultMock
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         return builder ->
-                builder.from(
-                        "pop3://camel@localhost:%s?password=foo&initialDelay=100&delay=500"
-                                .formatted(System.getProperty("pop3.port"))).log("received message ${body} from:${header.from} to:${header.to} subj: ${header.subject}");
+                builder.fromF(
+                        "pop3://camel@localhost:%s?password=foo&initialDelay=100&delay=500",System.getProperty("pop3.port"))
+                        .log("received message ${body} from:${header.from} to:${header.to} subj: ${header.subject}");
     }
 
     @Override
@@ -47,7 +47,7 @@ public class CamelMailRouteSupplier extends AbstractCamelSingleFeatureResultMock
                 .setHeader("Subject", builder.constant("Test"))
                 .setHeader("From", builder.constant("origin@localhost"))
                 .setHeader("To", builder.constant("camel@localhost"))
-                .to("smtp://camel@localhost:%s?password=foo".formatted(System.getProperty("smtp.port")));
+                .toF("smtp://camel@localhost:%s?password=foo",System.getProperty("smtp.port"));
     }
 }
 

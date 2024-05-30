@@ -52,8 +52,8 @@ public class CamelMailITest extends AbstractCamelSingleFeatureResultMockBasedRou
                             .withEnv("GREENMAIL_OPTS", "-Dgreenmail.users=camel:foo@localhost -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled");
 
             return new GenericContainerResource<>(greenMailContainer, resource -> {
-                resource.setProperty("smtp.port", "%s".formatted(smtpport));
-                resource.setProperty("pop3.port", "%s".formatted(pop3port));
+                resource.setProperty("smtp.port", Integer.toString(smtpport));
+                resource.setProperty("pop3.port", Integer.toString(pop3port));
             });
         }
     }
