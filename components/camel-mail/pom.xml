@@ -38,7 +38,6 @@
         </camel.osgi.export>
         <camel.osgi.import>
             jakarta.mail*;version="[2,3)",
-            org.eclipse.angus*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
