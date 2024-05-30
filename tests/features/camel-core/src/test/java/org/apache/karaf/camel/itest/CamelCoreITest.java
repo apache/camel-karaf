@@ -56,6 +56,11 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
         new CamelTimerITest(this).testRoutes();
     }
 
+    @Test
+    public void testCamelBean() throws Exception {
+        new CamelBeanITest(this).testRoutes();
+    }
+
     public static class CamelFileITest extends AbstractCamelSingleFeatureResultFileBasedRoute {
 
         public CamelFileITest(CamelContextProvider provider, String baseDir) {
@@ -83,6 +88,18 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
     public static class CamelTimerITest extends AbstractCamelSingleFeatureResultMockBasedRoute {
 
         public CamelTimerITest(CamelContextProvider provider) {
+            super(provider);
+        }
+
+        @Override
+        public void configureMock(MockEndpoint mock) {
+            mock.expectedBodiesReceived("OK");
+        }
+    }
+
+    public static class CamelBeanITest extends AbstractCamelSingleFeatureResultMockBasedRoute {
+
+        public CamelBeanITest(CamelContextProvider provider) {
             super(provider);
         }
 
