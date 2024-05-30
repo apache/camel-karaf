@@ -271,7 +271,7 @@
         <ironmq-version>3.0.5</ironmq-version>
         <ivy-version>2.5.2</ivy-version>
         <jackson-jq-version>1.0.0-preview.20240207</jackson-jq-version>
-        <jackson2-version>2.16.2</jackson2-version>
+        <jackson2-version>2.17.1</jackson2-version>
         <jackrabbit-version>2.21.25</jackrabbit-version>
         <jasminb-jsonapi-version>0.13</jasminb-jsonapi-version>
         <jandex-version>3.1.7</jandex-version>
@@ -554,13 +554,13 @@
         <camel.osgi.version.range>[${camel.osgi.version.clean},${camel.osgi.next.version.clean})</camel.osgi.version.range>
         <camel.osgi.import.camel.version>version="${camel.osgi.version.range}"</camel.osgi.import.camel.version>
         <camel.osgi.camel.import>org.apache.camel.*;${camel.osgi.import.camel.version},</camel.osgi.camel.import>
+        <camel.osgi.jackson2.version>[2.17,2.18)</camel.osgi.jackson2.version>
 
         <maven-shade-plugin-version>3.5.3</maven-shade-plugin-version>
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
         <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
         <harmcrest.version>1.3_1</harmcrest.version>
         <geronimo-atinject.version>1.2</geronimo-atinject.version>
-        <jackson-version>2.17.1</jackson-version>
 
         <spi-provider>SPI-Provider=*</spi-provider>
         <spi-consumer>SPI-Consumer=*</spi-consumer>
