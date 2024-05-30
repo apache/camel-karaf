@@ -71,13 +71,21 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.karaf.camel.itests;version=${camel.version}
+                            org.apache.karaf.camel.itests;version=${project.version},
                         </Export-Package>
                         <Import-Package>
-                            org.apache.karaf.itests,org.ops4j.pax.exam,org.osgi.framework,org.junit,
+                            org.apache.karaf.itests,
+                            org.ops4j.pax.exam,
+                            org.ops4j.pax.exam.options,
+                            org.osgi.framework,
+                            org.junit*,
+                            org.apache.camel.blueprint;resolution:=optional;${camel.osgi.import.camel.version},
                             org.apache.camel*;${camel.osgi.import.camel.version},
+                            org.apache.karaf.features,
+                            org.ops4j.pax.swissbox.tracker,
                             org.osgi.service.*,
-                            org.awaitility*
+                            org.awaitility*,
+                            org.slf4j
                         </Import-Package>
                     </instructions>
                     <excludeDependencies>geronimo-atinject_1.0_spec</excludeDependencies>
@@ -107,6 +115,11 @@
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-junit4</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
@@ -163,6 +176,18 @@
             <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-mock</artifactId>
             <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-blueprint</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${testcontainers-version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
