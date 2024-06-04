@@ -541,7 +541,7 @@
         <camel.validation.api.package.version>[2,4)</camel.validation.api.package.version>
         <commons-lang3-version>3.14.0</commons-lang3-version>
         <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
-        <jakarta.xml.ws.version>4.0.1</jakarta.xml.ws.version>
+        <jakarta.xml.ws.version>4.0.2</jakarta.xml.ws.version>
         <karaf.version>4.4.6</karaf.version>
         <osgi.version>8.0.0</osgi.version>
         <osgi.cmpn.version>7.0.0</osgi.cmpn.version>
