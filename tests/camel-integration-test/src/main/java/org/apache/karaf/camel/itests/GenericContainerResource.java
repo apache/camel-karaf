@@ -67,7 +67,6 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
 
     @Override
     public void after() {
-        container.stop();
         for (ExternalResource dependency : dependencies) {
             try {
                 dependency.after();
@@ -75,6 +74,7 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
                 LOG.warn("Error cleaning dependency: {}", dependency.getClass().getName(), e);
             }
         }
+        container.stop();
         LOG.info("Container {} stopped", container.getDockerImageName());
     }
 
