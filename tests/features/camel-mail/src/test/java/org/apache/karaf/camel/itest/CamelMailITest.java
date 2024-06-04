@@ -13,18 +13,23 @@
  */
 package org.apache.karaf.camel.itest;
 
+import java.util.function.Consumer;
+
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
-import org.testcontainers.containers.FixedHostPortGenericContainer;
+import org.testcontainers.containers.GenericContainer;
 
 @CamelKarafTestHint(externalResourceProvider = CamelMailITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelMailITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    private static final int SMTP_PORT = 3025;
+    private static final int POP3_PORT = 3110;
 
     @Override
     public void configureMock(MockEndpoint mock) {
@@ -36,24 +41,17 @@ public class CamelMailITest extends AbstractCamelSingleFeatureResultMockBasedRou
         assertMockEndpointsSatisfied();
     }
 
-    public static class MailContainer extends FixedHostPortGenericContainer<MailContainer> {
-        public MailContainer(String dockerImage) {
-            super(dockerImage);
-        }
-    }
-
     public static final class ExternalResourceProviders {
-        public static GenericContainerResource<MailContainer> createGreenMailContainer() {
-            int smtpport = Utils.getNextAvailablePort();
-            int pop3port = Utils.getNextAvailablePort(port -> port != smtpport);
-            final MailContainer greenMailContainer =
-                    new MailContainer("greenmail/standalone:2.0.1").withFixedExposedPort(smtpport, 3025)
-                            .withFixedExposedPort(pop3port, 3110)
+
+        public static GenericContainerResource createGreenMailContainer() {
+            final GenericContainer<?> greenMailContainer =
+                    new GenericContainer<>("greenmail/standalone:2.0.1")
+                            .withExposedPorts(SMTP_PORT, POP3_PORT)
                             .withEnv("GREENMAIL_OPTS", "-Dgreenmail.users=camel:foo@localhost -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled");
 
-            return new GenericContainerResource<>(greenMailContainer, resource -> {
-                resource.setProperty("smtp.port", Integer.toString(smtpport));
-                resource.setProperty("pop3.port", Integer.toString(pop3port));
+            return new GenericContainerResource(greenMailContainer, (Consumer<GenericContainerResource>) resource -> {
+                resource.setProperty("smtp.port", Integer.toString(greenMailContainer.getMappedPort(SMTP_PORT)));
+                resource.setProperty("pop3.port", Integer.toString(greenMailContainer.getMappedPort(POP3_PORT)));
             });
         }
     }
