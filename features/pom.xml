@@ -64,6 +64,21 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.camel.karaf</groupId>
+                <artifactId>camel-karaf-feature-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>ensure-wrap-bundle-version</goal>
+                        </goals>
+                        <configuration>
+                            <featuresFilePath>file:${project.build.directory}/feature/camel-features.xml</featuresFilePath>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
                 <version>${karaf.version}</version>

@@ -17,7 +17,7 @@
     limitations under the License.
 
 -->
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0" name="camel-${project.version}">
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="camel-${project.version}">
 
     <!-- TODO: specs will be provided by Apache Karaf 4.5.x spec features repository. However, in order to have Camel 4.x working on Karaf 4.4.x, we define spec features here -->
     <feature name="jakarta-activation" version="${jakarta-activation-version}">

@@ -70,6 +70,7 @@
         <!-- <module>archetypes</module> -->
         <!-- <module>bom</module> -->
         <module>tests</module>
+        <module>tooling</module>
     </modules>
 
     <scm>
@@ -548,6 +549,7 @@
         <osgi.service.event.version>1.4.1</osgi.service.event.version>
         <osgi.service.component.version>1.5.1</osgi.service.component.version>
         <slf4j.version>2.0.13</slf4j.version>
+        <servicemix-specs-version>10</servicemix-specs-version> 
 
         <camel.osgi.version.clean>4.6</camel.osgi.version.clean>
         <camel.osgi.next.version.clean>4.7</camel.osgi.next.version.clean>
