@@ -91,9 +91,7 @@ public class EnsureWrapBundleVersionMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException {
         Features featuresData = JaxbUtil.unmarshal(getFeaturesFilePath(), false);
-        List<Feature> features = featuresData.getFeature();
-
-        processFeatures(features);
+        processFeatures(featuresData.getFeature());
 
         marshal(featuresData);
     }
