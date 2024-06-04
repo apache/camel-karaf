@@ -226,7 +226,7 @@ public class EnsureWrapBundleVersionMojo extends AbstractMojo {
         String cleanVersion = VersionCleaner.clean(version);
         if (getLog().isDebugEnabled()) {
             getLog().debug(
-                    "Bundle location '%s' will be set with Bundle-Version '%s', the output of org.apache.felix.utils.version.VersionCleaner.clean(%s)"
+                    "Bundle location '%s' will be set with Bundle-Version '%s', the output of VersionCleaner.clean(%s)"
                             .formatted(location, cleanVersion, version));
         }
 
