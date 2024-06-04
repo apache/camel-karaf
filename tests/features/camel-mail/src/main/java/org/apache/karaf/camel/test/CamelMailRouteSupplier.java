@@ -36,7 +36,7 @@ public class CamelMailRouteSupplier extends AbstractCamelSingleFeatureResultMock
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         return builder ->
                 builder.fromF(
-                        "pop3://camel@localhost:%s?password=foo&initialDelay=100&delay=500",System.getProperty("pop3.port"))
+                        "pop3://camel@localhost:%s?password=foo&initialDelay=100&delay=500", System.getProperty("pop3.port"))
                         .log("received message ${body} from:${header.from} to:${header.to} subj: ${header.subject}");
     }
 
