@@ -47,7 +47,8 @@ public class CamelMailITest extends AbstractCamelSingleFeatureResultMockBasedRou
             int smtpport = Utils.getNextAvailablePort();
             int pop3port = Utils.getNextAvailablePort(port -> port != smtpport);
             final MailContainer greenMailContainer =
-                    new MailContainer("greenmail/standalone:2.0.1").withFixedExposedPort(smtpport, 3025)
+                    new MailContainer("greenmail/standalone:2.0.1")
+                            .withFixedExposedPort(smtpport, 3025)
                             .withFixedExposedPort(pop3port, 3110)
                             .withEnv("GREENMAIL_OPTS", "-Dgreenmail.users=camel:foo@localhost -Dgreenmail.setup.test.all -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.auth.disabled");
 
