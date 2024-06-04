@@ -158,13 +158,29 @@
     </feature>
 
     <feature name="awssdk" version="${aws-java-sdk2-version}" start-level="50">
+        <feature prerequisite="true">spifly</feature>
+        <feature version="[4,5)">http-client</feature>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/auth/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/aws-core/${aws-java-sdk2-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sdk-core/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sdk-core/${aws-java-sdk2-version}$${spi-consumer}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-client-spi/${aws-java-sdk2-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/${aws-java-sdk2-version}$${spi-provider}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/regions/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/identity-spi/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/profiles/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/endpoints-spi/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-auth-spi/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-auth-aws/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-auth/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/metrics-spi/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/aws-query-protocol/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/protocol-core/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/checksums/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/checksums-spi/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/json-utils/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/third-party-jackson-core/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
     </feature>
     <feature name="azure" version="1.48.0" start-level="50">
         <bundle dependency='true'>wrap:mvn:com.azure/azure-core/1.48.0</bundle>
