@@ -50,8 +50,8 @@ public class CamelAws2SesITest extends AbstractCamelSingleFeatureResultMockBased
         public static GenericContainerResource<LocalStackContainer> createAws2SesContainer() {
 
             final LocalStackContainer localStackContainer =
-                    new LocalStackContainer(DockerImageName.parse("localstack/localstack:latest")).withServices(
-                            LocalStackContainer.Service.SES);
+                    new LocalStackContainer(DockerImageName.parse("localstack/localstack:latest"))
+                        .withServices(LocalStackContainer.Service.SES);
             return new GenericContainerResource<>(localStackContainer, resource -> {
                 try {
                     localStackContainer.execInContainer("aws", "configure", "set", "aws_access_key_id", ACCESS_KEY, "--profile",
