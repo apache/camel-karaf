@@ -47,7 +47,7 @@ public class CamelMailRouteSupplier extends AbstractCamelSingleFeatureResultMock
                 .setHeader("Subject", builder.constant("Test"))
                 .setHeader("From", builder.constant("origin@localhost"))
                 .setHeader("To", builder.constant("camel@localhost"))
-                .toF("smtp://camel@localhost:%s?password=foo",System.getProperty("smtp.port"));
+                .toF("smtp://camel@localhost:%s?password=foo", System.getProperty("smtp.port"));
     }
 }
 
