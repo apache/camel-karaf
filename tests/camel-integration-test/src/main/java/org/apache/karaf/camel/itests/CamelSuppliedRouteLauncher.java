@@ -70,7 +70,14 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
 
     @SuppressWarnings("SuspiciousMethodCalls")
     private boolean ignore(ServiceReference<?> serviceReference) {
-        return !suppliers.isEmpty() && !suppliers.contains(serviceReference.getProperty("component.name"));
+        boolean result = false;
+        if (!suppliers.isEmpty()) {
+            Object componentName = serviceReference.getProperty("component.name");
+            if (componentName != null && !suppliers.contains(serviceReference.getProperty("component.name"))) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
