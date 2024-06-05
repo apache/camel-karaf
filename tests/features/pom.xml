@@ -43,6 +43,7 @@
         <module>camel-core</module>
         <module>camel-elasticsearch</module>
         <module>camel-jetty</module>
+        <module>camel-netty-http</module>
         <module>camel-mail</module>
     </modules>
 
