@@ -73,9 +73,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
         boolean result = false;
         if (!suppliers.isEmpty()) {
             Object componentName = serviceReference.getProperty("component.name");
-            if (componentName != null && !suppliers.contains(serviceReference.getProperty("component.name"))) {
-                result = true;
-            }
+            result = componentName != null && !suppliers.contains(componentName);
         }
         return result;
     }
