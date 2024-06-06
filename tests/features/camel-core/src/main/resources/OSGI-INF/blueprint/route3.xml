@@ -18,11 +18,14 @@
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint" id="ctx2">
-        <route id="leg-2">
-            <from uri="direct-vm:nextOne"/>
-            <log message="second leg"/>
-            <to uri="vm:test-vm"/>
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint" id="ctx3">
+        <route id="leg-3">
+            <from uri="vm:test-vm"/>
+            <setBody>
+                <constant>OK</constant>
+            </setBody>
+            <log message="third leg"/>
+            <to uri="mock:camel-vm-test"/>
         </route>
     </camelContext>
 </blueprint>

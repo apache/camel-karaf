@@ -53,6 +53,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
     public static final String CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY = "camel.karaf.itest.debug";
     static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.suppliers";
+    static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.ignore.suppliers";
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractCamelRouteITest.class);
     private final Map<CamelContextKey, CamelContext> contexts = new ConcurrentHashMap<>();
@@ -115,6 +116,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         }
         if (hasCamelRouteSupplierFilter()) {
             combine = combine(combine, getCamelRouteSupplierFilter());
+        }
+        if (hasCamekKarafTestHint()) {
+            combine = combine(combine, getCamelRouteIgnoreSupplier());
         }
         return combine(combine, getAdditionalOptions());
     }
@@ -188,6 +192,17 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
         return hint != null && hint.camelRouteSuppliers().length > 0;
     }
+
+    private boolean hasCamekKarafTestHint() {
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        return hint != null;
+    }
+
+    private Option getCamelRouteIgnoreSupplier() {
+        return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY)
+                .value(Boolean.toString(getClass().getAnnotation(CamelKarafTestHint.class).ignoreRouteSuppliers()));
+    }
+
 
     /**
      * Returns the list of additional options to add to the configuration.

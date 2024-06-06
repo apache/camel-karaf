@@ -13,6 +13,9 @@
  */
 package org.apache.karaf.camel.itest;
 
+import static org.junit.Assert.assertNotNull;
+
+import org.apache.camel.CamelContext;
 import org.apache.camel.Endpoint;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
@@ -25,7 +28,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-@CamelKarafTestHint(isBlueprintTest = true, camelRouteSuppliers = "")
+@CamelKarafTestHint(isBlueprintTest = true, ignoreRouteSuppliers = true)
 public class CamelVmITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
    public String getCamelFeatureName() {
@@ -38,17 +41,26 @@ public class CamelVmITest extends AbstractCamelSingleFeatureResultMockBasedRoute
     }
 
     public void setupMock() {
-        MockEndpoint endpoint = getContext("ctx2").getEndpoint("mock:%s".formatted("camel-vm-test"), MockEndpoint.class);
+        MockEndpoint endpoint = getConsumerContext().getEndpoint("mock:camel-vm-test", MockEndpoint.class);
+        assertNotNull(endpoint);
         endpoint.setFailFast(false);
-        configureMock(endpoint);
-        Endpoint directEndpoint = getContext("ctx1").hasEndpoint("direct:%s".formatted("camel-vm-test"));
+        endpoint.expectedBodiesReceived("OK");
+        Endpoint directEndpoint = getSupplierContext().hasEndpoint("direct:camel-vm-test");
         if (directEndpoint != null) {
            getTemplate().send(directEndpoint, getProcessorToCallOnSend());
         }
    }
 
+    private CamelContext getSupplierContext() {
+        return getContext("ctx1");
+    }
+
+   private CamelContext getConsumerContext() {
+       return getContext("ctx3");
+   }
+
    @Test
    public void testDirectVM() throws Exception {
-       MockEndpoint.assertIsSatisfied(getContext("ctx1"));
+       MockEndpoint.assertIsSatisfied(getConsumerContext());
    }
 }

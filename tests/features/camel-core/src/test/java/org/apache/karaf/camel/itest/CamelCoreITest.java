@@ -16,7 +16,10 @@ package org.apache.karaf.camel.itest;
 import java.util.List;
 
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.karaf.camel.itests.*;
+import org.apache.karaf.camel.itests.AbstractCamelRouteWithBundleITest;
+import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultFileBasedRoute;
+import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRoute;
+import org.apache.karaf.camel.itests.CamelContextProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -35,6 +38,8 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
     @Override
     protected List<String> getRequiredFeatures() {
+        //camel-blueprint is not strictly required for the RouteSuppliers, but since the bundle contains some blueprints in
+        // OSGI-INF, the feature must be installed to avoid a class resolution error.
         return List.of("camel-blueprint");
     }
 

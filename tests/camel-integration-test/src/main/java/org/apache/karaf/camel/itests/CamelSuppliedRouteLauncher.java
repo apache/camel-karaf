@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY;
 import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY;
 
 @CamelKarafTestHint(camelContextName = CamelSuppliedRouteLauncher.CAMEL_CONTEXT_NAME)
@@ -46,6 +47,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     private static final Logger LOG = LoggerFactory.getLogger(CamelSuppliedRouteLauncher.class);
     private final Map<String, List<RouteDefinition>> routes = new ConcurrentHashMap<>();
     private final Set<String> suppliers = ConcurrentHashMap.newKeySet();
+    private boolean ignoreSuppliers;
 
     @Override
     public void activate(ComponentContext componentContext) throws Exception {
@@ -61,17 +63,22 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     }
 
     private void loadSuppliers() {
-        String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
-        if (property == null) {
-            return;
+        final String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
+        if (property != null) {
+            suppliers.addAll(List.of(property.split(",")));
         }
-        suppliers.addAll(List.of(property.split(",")));
+        String ignoreProperty = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY);
+        if (ignoreProperty != null) {
+            ignoreSuppliers = Boolean.parseBoolean(ignoreProperty);
+        }
     }
 
     @SuppressWarnings("SuspiciousMethodCalls")
     private boolean ignore(ServiceReference<?> serviceReference) {
         boolean result = false;
-        if (!suppliers.isEmpty()) {
+        if (ignoreSuppliers) {
+            result = true;
+        } else if (!suppliers.isEmpty()) {
             Object componentName = serviceReference.getProperty("component.name");
             result = componentName != null && !suppliers.contains(componentName);
         }
