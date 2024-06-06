@@ -39,6 +39,7 @@
     <modules>
         <module>camel-amqp</module>
         <module>camel-aws2-ses</module>
+        <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>
         <module>camel-core</module>
         <module>camel-elasticsearch</module>
