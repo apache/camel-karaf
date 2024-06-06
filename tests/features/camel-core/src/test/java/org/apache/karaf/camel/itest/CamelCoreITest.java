@@ -16,10 +16,7 @@ package org.apache.karaf.camel.itest;
 import java.util.List;
 
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.karaf.camel.itests.AbstractCamelRouteWithBundleITest;
-import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultFileBasedRoute;
-import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRoute;
-import org.apache.karaf.camel.itests.CamelContextProvider;
+import org.apache.karaf.camel.itests.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -38,7 +35,7 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
     @Override
     protected List<String> getRequiredFeatures() {
-        return List.of();
+        return List.of("camel-blueprint");
     }
 
     @Test
