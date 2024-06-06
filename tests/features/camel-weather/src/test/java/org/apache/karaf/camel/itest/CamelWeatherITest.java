@@ -26,8 +26,6 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 @CamelKarafTestHint(isBlueprintTest = true)
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-
-// here should be for camel-weather
 public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
     @Override
