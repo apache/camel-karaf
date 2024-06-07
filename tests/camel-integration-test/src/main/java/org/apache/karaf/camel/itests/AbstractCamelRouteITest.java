@@ -197,7 +197,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
 
     private Option getIgnoreCamelRouteSupplier() {
         return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY)
-                .value(Boolean.toString(getClass().getAnnotation(CamelKarafTestHint.class).ignoreRouteSuppliers()));
+                .value(Boolean.toString(Boolean.TRUE));
     }
 
 
