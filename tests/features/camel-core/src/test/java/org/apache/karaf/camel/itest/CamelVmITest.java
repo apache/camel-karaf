@@ -46,12 +46,11 @@ public class CamelVmITest extends AbstractCamelSingleFeatureResultMockBasedRoute
         endpoint.setFailFast(false);
         endpoint.expectedBodiesReceived("OK");
         Endpoint directEndpoint = getSupplierContext().hasEndpoint("direct:camel-vm-test");
-        if (directEndpoint != null) {
-           getTemplate("ctx1").send(directEndpoint, getProcessorToCallOnSend());
-        }
+        assertNotNull(directEndpoint);
+        getTemplate("ctx1").send(directEndpoint, getProcessorToCallOnSend());
    }
 
-    private CamelContext getSupplierContext() {
+   private CamelContext getSupplierContext() {
         return getContext("ctx1");
     }
 

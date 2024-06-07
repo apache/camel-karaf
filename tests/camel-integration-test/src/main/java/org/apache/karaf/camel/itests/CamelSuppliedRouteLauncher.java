@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY;
+import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY;
 import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY;
 
 @CamelKarafTestHint(camelContextName = CamelSuppliedRouteLauncher.CAMEL_CONTEXT_NAME)
@@ -63,14 +63,16 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     }
 
     private void loadSuppliers() {
-        final String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
-        if (property != null) {
-            suppliers.addAll(List.of(property.split(",")));
-        }
-        String ignoreProperty = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_IGNORE_SUPPLIERS_PROPERTY);
+        String ignoreProperty = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY);
         if (ignoreProperty != null) {
-            ignoreSuppliers = Boolean.parseBoolean(ignoreProperty);
+            ignoreSuppliers = true;
+            return;
         }
+        String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
+        if (property == null) {
+            return;
+        }
+        suppliers.addAll(List.of(property.split(",")));
     }
 
     @SuppressWarnings("SuspiciousMethodCalls")
