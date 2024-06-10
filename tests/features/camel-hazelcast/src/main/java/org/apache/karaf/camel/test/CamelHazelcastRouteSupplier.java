@@ -18,22 +18,16 @@ package org.apache.karaf.camel.test;
 import static org.apache.camel.builder.Builder.constant;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Route;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.hazelcast.HazelcastConstants;
-import org.apache.camel.component.hazelcast.HazelcastDefaultComponent;
 import org.apache.camel.component.hazelcast.HazelcastOperation;
-import org.apache.camel.component.hazelcast.policy.HazelcastRoutePolicy;
-import org.apache.camel.impl.engine.DurationRoutePolicy;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.spi.RoutePolicy;
-import org.apache.camel.support.RoutePolicySupport;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
-import com.hazelcast.config.*;
+import com.hazelcast.config.Config;
+import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 

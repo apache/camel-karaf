@@ -45,12 +45,6 @@ public class CamelHazelcastITest extends AbstractCamelSingleFeatureResultMockBas
         assertMockEndpointsSatisfied();
     }
 
-    @After
-    public void stopCamelContext() {
-        //to trigger graceful shutdown of hazelcast components before uninstalling bundles
-        getContext().stop();
-    }
-
     public static final class ExternalResourceProviders {
         public static AvailablePortProvider createAvailablePortProvider() {
             return new AvailablePortProvider(List.of("hz.port"));

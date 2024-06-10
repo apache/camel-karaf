@@ -43,6 +43,11 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
         return List.of("camel-blueprint");
     }
 
+    @Override
+    protected void stopContext() {
+        //do nothing because the same supplier context is used across the different tests in camel-core
+    }
+
     @Test
     public void testCamelFile() throws Exception {
         new CamelFileITest(this, getBaseDir()).testRoutes();
