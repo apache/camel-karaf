@@ -41,6 +41,11 @@ public class CamelJavaExampleWithBothTest extends AbstractCamelRouteWithBundleIT
         return "camel-karaf-examples-java-dsl-only-test";
     }
 
+    @Override
+    protected void stopContext() {
+        // do nothing to keep routes in context between tests
+    }
+
     @Test
     public void testJavaDSL1() throws Exception {
         verify(1);
