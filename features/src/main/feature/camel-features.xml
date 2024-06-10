@@ -838,6 +838,7 @@
         <feature>scr</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency="true">mvn:org.ehcache/ehcache/${ehcache3-version}</bundle>
+        <bundle dependency="true">mvn:javax.cache/cache-api/${jcache-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ehcache/${project.version}</bundle>
     </feature>
     <feature name='camel-elasticsearch' version='${project.version}' start-level='50'>
@@ -1333,7 +1334,7 @@
     </feature>
     <feature name='camel-jcache' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:javax.cache/cache-api/1.1.1</bundle>
+        <bundle dependency='true'>mvn:javax.cache/cache-api/${jcache-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jcache/${project.version}</bundle>
     </feature>
     <feature name='camel-jcr' version='${project.version}' start-level='50'>

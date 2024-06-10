@@ -15,7 +15,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
@@ -23,24 +22,32 @@
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
              http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
-        <route>
-            <from uri="direct:camel-weather-test"/>
-            <to uri="weather:foo?location=Madrid,Spain&amp;appid=a41d1a8030257b941fafc3c4ccf5a99a"/>
-            <log message="Get doc: ${body}"/>
-            <setBody>
-                <constant>OK</constant>
-            </setBody>
-            <to uri="mock:camel-weather-test"/>
-        </route>
+    <!-- Allow the use of system properties -->
+    <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]"/>
 
-        <route>
-            <from uri="weather:foo?location=London,UK&amp;appid=a41d1a8030257b941fafc3c4ccf5a99a"/>
-            <log message="Get doc: ${body}"/>
+    <bean id="sns2Configuration" class="org.apache.camel.component.aws2.sns.Sns2Configuration">
+        <property name="accessKey" value="$[localstack.sns.accessKey]"/>
+        <property name="secretKey" value="$[localstack.sns.secretKey]"/>
+        <property name="region" value="$[localstack.sns.region]"/>
+        <property name="overrideEndpoint" value="true"/>
+        <property name="uriEndpointOverride" value="http://$[localstack.sns.host]:$[localstack.sns.port]"/>
+    </bean>
+
+    <bean id="aws2-sns" class="org.apache.camel.component.aws2.sns.Sns2Component">
+        <property name="configuration" ref="sns2Configuration"/>
+    </bean>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
+        <route id="sendToSnsRoute">
+            <from uri="direct:camel-aws2-sns-test"/>
+            <setBody>
+                <constant>Hello, this is a test message from AWS SNS!</constant>
+            </setBody>
+            <to uri="aws2-sns://my-topic"/>
+            <log message="Sent message: ${body}"/>
             <setBody>
                 <constant>OK</constant>
             </setBody>
-            <to uri="mock:camel-weather-test"/>
+            <to uri="mock:camel-aws2-sns-test"/>
         </route>
     </camelContext>
 </blueprint>
