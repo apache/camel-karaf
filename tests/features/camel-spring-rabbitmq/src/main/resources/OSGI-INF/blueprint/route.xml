@@ -27,6 +27,7 @@
 
     <bean id="rabbitConnectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
         <argument value="$[spring.rabbitmq.host]"/>
+        <argument value="$[spring.rabbitmq.port]"/>
     </bean>
 
     <bean id="spring-rabbitmq" class="org.apache.camel.component.springrabbit.SpringRabbitMQComponent">

@@ -49,6 +49,7 @@ public class CamelSpringRabbitmqITest extends AbstractCamelSingleFeatureResultMo
 
             return new GenericContainerResource<>(rabbitMQContainer, resource -> {
                 resource.setProperty("spring.rabbitmq.host", rabbitMQContainer.getHost());
+                resource.setProperty("spring.rabbitmq.port", Integer.toString(rabbitMQContainer.getAmqpPort()));
             });
         }
     }

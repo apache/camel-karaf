@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>camel-spring-rabbitmq-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Features :: RabbitMQ</name>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: Spring RabbitMQ</name>
 
     <dependencies>
         <dependency>
