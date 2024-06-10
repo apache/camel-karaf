@@ -47,6 +47,7 @@
         <module>camel-jetty</module>
         <module>camel-netty-http</module>
         <module>camel-mail</module>
+        <module>camel-quartz</module>
         <module>camel-spring-rabbitmq</module>
     </modules>
 
