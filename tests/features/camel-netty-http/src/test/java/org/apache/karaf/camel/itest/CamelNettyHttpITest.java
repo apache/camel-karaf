@@ -22,7 +22,9 @@ import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@CamelKarafTestHint(externalResourceProvider = CamelNettyHttpITest.ExternalResourceProviders.class)
+@CamelKarafTestHint(
+        externalResourceProvider = CamelNettyHttpITest.ExternalResourceProviders.class,
+        camelRouteSuppliers = "karaf-camel-netty-http-test")
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelNettyHttpITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {

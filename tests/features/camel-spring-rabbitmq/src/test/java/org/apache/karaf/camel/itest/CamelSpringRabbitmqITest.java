@@ -16,21 +16,23 @@ package org.apache.karaf.camel.itest;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.GenericContainerResource;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
+import org.testcontainers.containers.RabbitMQContainer;
+import org.testcontainers.utility.DockerImageName;
 
-
-@CamelKarafTestHint(isBlueprintTest = true)
-@RunWith(PaxExam.class)
+@CamelKarafTestHint(externalResourceProvider = CamelSpringRabbitmqITest.ExternalResourceProviders.class, isBlueprintTest = true)
+@RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+public class CamelSpringRabbitmqITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived("OK-Producer","OK-Consumer");
+        mock.expectedBodiesReceived("OK");
     }
 
     @Test
@@ -38,4 +40,17 @@ public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBased
         assertMockEndpointsSatisfied();
     }
 
+    public static final class ExternalResourceProviders {
+
+        public static GenericContainerResource<RabbitMQContainer> createSpringRabbitMqContainer() {
+
+            final RabbitMQContainer rabbitMQContainer =
+                    new RabbitMQContainer(DockerImageName.parse("rabbitmq:3.13.1"));
+
+            return new GenericContainerResource<>(rabbitMQContainer, resource -> {
+                resource.setProperty("spring.rabbitmq.host", rabbitMQContainer.getHost());
+                resource.setProperty("spring.rabbitmq.port", Integer.toString(rabbitMQContainer.getAmqpPort()));
+            });
+        }
+    }
 }

@@ -15,7 +15,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
@@ -23,24 +22,39 @@
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
              http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
-    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
-        <route>
-            <from uri="direct:camel-weather-test"/>
-            <to uri="weather:foo?location=Madrid,Spain&amp;appid=a41d1a8030257b941fafc3c4ccf5a99a"/>
-            <log message="Get message(producer): ${body}"/>
+    <!-- Allow the use of system properties -->
+    <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]"/>
+
+    <bean id="rabbitConnectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+        <argument value="$[spring.rabbitmq.host]"/>
+        <argument value="$[spring.rabbitmq.port]"/>
+    </bean>
+
+    <bean id="spring-rabbitmq" class="org.apache.camel.component.springrabbit.SpringRabbitMQComponent">
+        <property name="connectionFactory" ref="rabbitConnectionFactory"/>
+    </bean>
+
+    <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/blueprint">
+
+        <route id="rabbitRouteSend">
+            <from uri="direct:camel-spring-rabbitmq-test"/>
+            <setHeader name="theHeader">
+                <constant>This is header</constant>
+            </setHeader>
             <setBody>
-                <constant>OK-Producer</constant>
+                <constant>Hello Camel</constant>
             </setBody>
-            <to uri="mock:camel-weather-test"/>
+            <to uri="spring-rabbitmq:exchangeName?routingKey=routingKey"/>
+            <log message="Message sent to RabbitMQ: ${body} headers ${header.theHeader}"/>
         </route>
 
-        <route>
-            <from uri="weather:foo?location=London,UK&amp;appid=a41d1a8030257b941fafc3c4ccf5a99a"/>
-            <log message="Get message(consumer): ${body}"/>
+        <route id="rabbitRouteReceive">
+            <from uri="spring-rabbitmq:exchangeName?routingKey=routingKey"/>
+            <log message="Message received from RabbitMQ: ${body} headers ${header.theHeader}"/>
             <setBody>
-                <constant>OK-Consumer</constant>
+                <constant>OK</constant>
             </setBody>
-            <to uri="mock:camel-weather-test"/>
+            <to uri="mock:camel-spring-rabbitmq-test"/>
         </route>
     </camelContext>
 </blueprint>

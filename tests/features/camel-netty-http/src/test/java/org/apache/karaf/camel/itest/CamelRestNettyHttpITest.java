@@ -13,24 +13,39 @@
  */
 package org.apache.karaf.camel.itest;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.AvailablePortProvider;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-
-@CamelKarafTestHint(isBlueprintTest = true)
-@RunWith(PaxExam.class)
+@CamelKarafTestHint(
+        externalResourceProvider = CamelRestNettyHttpITest.ExternalResourceProviders.class,
+        camelRouteSuppliers = "karaf-camel-rest-netty-http-test")
+@RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+public class CamelRestNettyHttpITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    @Override
+    public String getTestComponentName() {
+        return "camel-netty-http-test";
+    }
+
+    @Override
+    public String getCamelFeatureName() {
+        return "camel-netty-http";
+    }
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived("OK-Producer","OK-Consumer");
+        mock.expectedBodiesReceived("OK");
     }
 
     @Test
@@ -38,4 +53,10 @@ public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBased
         assertMockEndpointsSatisfied();
     }
 
+    public static final class ExternalResourceProviders {
+        public static AvailablePortProvider createAvailablePortProvider() {
+            return new AvailablePortProvider(List.of("rest.port"));
+        }
+
+    }
 }
