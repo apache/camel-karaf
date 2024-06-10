@@ -13,22 +13,17 @@
  */
 package org.apache.karaf.camel.itest;
 
-import java.util.List;
-
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.karaf.camel.itests.*;
+import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@CamelKarafTestHint(
-        externalResourceProvider = CamelNettyHttpITest.ExternalResourceProviders.class,
-        camelRouteSuppliers = "karaf-camel-netty-http-test")
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelNettyHttpITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
-
+public class CamelEhcacheITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
     @Override
     public void configureMock(MockEndpoint mock) {
@@ -38,12 +33,5 @@ public class CamelNettyHttpITest extends AbstractCamelSingleFeatureResultMockBas
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
-    }
-
-    public static final class ExternalResourceProviders {
-        public static AvailablePortProvider createAvailablePortProvider() {
-            return new AvailablePortProvider(List.of("http.port"));
-        }
-
     }
 }
