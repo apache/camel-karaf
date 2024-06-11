@@ -24,8 +24,18 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-@CamelKarafTestHint(additionalRequiredFeatures = "camel-hazelcast")
-public class CamelJcacheITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+@CamelKarafTestHint(additionalRequiredFeatures = "camel-hazelcast", camelRouteSuppliers = "karaf-camel-jcache-hz-test")
+public class CamelJcacheHzITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    @Override
+    public String getCamelFeatureName() {
+        return "camel-jcache";
+    }
+
+    @Override
+    public String getTestBundleName() {
+        return "camel-jcache-test";
+    }
 
     @Override
     public void configureMock(MockEndpoint mock) {

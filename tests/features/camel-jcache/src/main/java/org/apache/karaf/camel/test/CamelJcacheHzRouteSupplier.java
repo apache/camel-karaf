@@ -28,13 +28,14 @@ import org.osgi.service.component.annotations.Component;
 import com.hazelcast.cache.HazelcastCachingProvider;
 
 @Component(
-        name = "karaf-camel-jcache-test",
+        name = "karaf-camel-jcache-hz-test",
         immediate = true,
         service = CamelRouteSupplier.class
 )
-public class CamelJcacheRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
+public class CamelJcacheHzRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
     public static final String TEST_CACHE_NAME = "mycache";
+    public static final String PROVIDER_CLASS = "com.hazelcast.cache.HazelcastCachingProvider";
 
     @Override
     public void configure(CamelContext camelContext) {
@@ -44,7 +45,7 @@ public class CamelJcacheRouteSupplier extends AbstractCamelSingleFeatureResultMo
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         return builder ->
-                builder.fromF("jcache://%s?cachingProvider=%s&lookupProviders=true", TEST_CACHE_NAME,HazelcastCachingProvider.class.getName())
+                builder.fromF("jcache://%s?cachingProvider=%s&lookupProviders=true", TEST_CACHE_NAME, PROVIDER_CLASS)
                         .log("received message ${body}");
     }
 
@@ -54,7 +55,7 @@ public class CamelJcacheRouteSupplier extends AbstractCamelSingleFeatureResultMo
                 .setBody(builder.constant("OK"))
                 .setHeader(JCacheConstants.ACTION).constant("PUT")
                 .setHeader(JCacheConstants.KEY).constant("OK")
-                .toF("jcache://%s?cachingProvider=%s&lookupProviders=true", TEST_CACHE_NAME,HazelcastCachingProvider.class.getName())
+                .toF("jcache://%s?cachingProvider=%s&lookupProviders=true", TEST_CACHE_NAME, PROVIDER_CLASS)
                 .log("Cached value: ${body}");
     }
 }
