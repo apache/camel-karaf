@@ -14,20 +14,17 @@
 package org.apache.karaf.camel.itest;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
-import org.apache.karaf.camel.itests.AvailablePortProvider;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@CamelKarafTestHint(externalResourceProvider = CamelHazelcastITest.ExternalResourceProviders.class)
+@CamelKarafTestHint
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelHazelcastITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
@@ -37,17 +34,11 @@ public class CamelHazelcastITest extends AbstractCamelSingleFeatureResultMockBas
     @Override
     public void configureMock(MockEndpoint mock) {
         //Map + replicated Map + 2 for list + Queue + Set + Topic
-        mock.expectedBodiesReceived( Collections.nCopies(7, "OK"));
+        mock.expectedBodiesReceivedInAnyOrder( "OK_List","OK_List","OK_Map","OK_RMap","OK_Queue","OK_Set","OK_Topic");
     }
 
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
-    }
-
-    public static final class ExternalResourceProviders {
-        public static AvailablePortProvider createAvailablePortProvider() {
-            return new AvailablePortProvider(List.of("hz.port"));
-        }
     }
 }

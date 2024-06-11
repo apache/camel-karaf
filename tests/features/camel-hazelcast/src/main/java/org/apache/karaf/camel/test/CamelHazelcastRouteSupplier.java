@@ -27,7 +27,6 @@ import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import com.hazelcast.config.Config;
-import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
@@ -37,12 +36,9 @@ public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResul
 
     @Override
     public void configure(CamelContext camelContext) {
+        System.setProperty("hazelcast.shutdownhook.enabled","false");
         Config hazelcastConfig = new Config();
-        NetworkConfig networkConfig = hazelcastConfig.getNetworkConfig();
-        networkConfig.setPort(Integer.parseInt(System.getProperty("hz.port")));
-
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(hazelcastConfig);
-
         camelContext.getRegistry().bind("hzInstance", hazelcastInstance);
     }
 
@@ -55,12 +51,12 @@ public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResul
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
 
-        configureConsumer(builder.from("hazelcast-list:myList?hazelcastInstance=#hzInstance").log("list received ${body}").setBody(constant("OK")));
-        configureConsumer(builder.from("hazelcast-map:myMap?hazelcastInstance=#hzInstance").log("map received ${body}").setBody(constant("OK")));
-        configureConsumer(builder.from("hazelcast-replicatedmap:myRMap?hazelcastInstance=#hzInstance").log("rmap received ${body}").setBody(constant("OK")));
-        configureConsumer(builder.from("hazelcast-queue:myQueue?hazelcastInstance=#hzInstance").log("queue received ${body}").setBody(constant("OK")));
-        configureConsumer(builder.from("hazelcast-set:mySet?hazelcastInstance=#hzInstance").log("set received ${body}").setBody(constant("OK")));
-        configureConsumer(builder.from("hazelcast-topic:myTopic?hazelcastInstance=#hzInstance").log("topic received ${body}").setBody(constant("OK")));
+        configureConsumer(builder.from("hazelcast-list:myList?hazelcastInstance=#hzInstance").log("list received ${body}").setBody(constant("OK_List")));
+        configureConsumer(builder.from("hazelcast-map:myMap?hazelcastInstance=#hzInstance").log("map received ${body}").setBody(constant("OK_Map")));
+        configureConsumer(builder.from("hazelcast-replicatedmap:myRMap?hazelcastInstance=#hzInstance").log("rmap received ${body}").setBody(constant("OK_RMap")));
+        configureConsumer(builder.from("hazelcast-queue:myQueue?hazelcastInstance=#hzInstance").log("queue received ${body}").setBody(constant("OK_Queue")));
+        configureConsumer(builder.from("hazelcast-set:mySet?hazelcastInstance=#hzInstance").log("set received ${body}").setBody(constant("OK_Set")));
+        configureConsumer(builder.from("hazelcast-topic:myTopic?hazelcastInstance=#hzInstance").log("topic received ${body}").setBody(constant("OK_Topic")));
 
         producerRoute
                 .log("insert in Hz MAP")
