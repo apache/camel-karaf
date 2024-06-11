@@ -46,6 +46,7 @@ public class CamelJavaExampleWithBothTest extends AbstractCamelRouteWithBundleIT
         verify(1);
     }
 
+
     @Test
     public void testJavaDSL2() throws Exception {
         verify(2);
