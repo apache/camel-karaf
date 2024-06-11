@@ -16,33 +16,19 @@
  */
 package org.apache.camel.karaf.feature.maven;
 
-import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.felix.utils.version.VersionCleaner;
 import org.apache.karaf.features.internal.model.Bundle;
-import org.apache.karaf.features.internal.model.Feature;
-import org.apache.karaf.features.internal.model.Features;
-import org.apache.karaf.features.internal.model.JaxbUtil;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.osgi.framework.Version;
 
 @Mojo(name = "ensure-wrap-bundle-version", defaultPhase = LifecyclePhase.PROCESS_RESOURCES)
-public class EnsureWrapBundleVersionMojo extends AbstractMojo {
+public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
 
-    private static final String FILE_PROTOCOL = "file:";
-
-    private static final String WRAP_PROTOCOL = "wrap:mvn:";
-    private static final List<String> HEADERS_AFTER_BUNDLE_VEIRSION = Arrays.asList(
-            //"Bundle-Version",
+    private static final List<String> HEADERS_AFTER_BUNDLE_VERSION = Arrays.asList(
             "DynamicImport-Package",
             "Export-Package",
             "Export-Service",
@@ -53,83 +39,17 @@ public class EnsureWrapBundleVersionMojo extends AbstractMojo {
             "Require-Bundle",
             "Require-Capability");
     
-    private static final String DEFAULT_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>";
-    private static final String LICENCE_HEADER = """
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    (the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
-
-         http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
--->""";
-
     static final String BUNDLE_VERSION = "Bundle-Version";
 
-    @Parameter(property = "featuresFilePath", required = true)
-    private String featuresFilePath;
-
-    public String getFeaturesFilePath() {
-        return featuresFilePath;
-    }
-
-    public void setFeaturesFilePath(String featuresFilePath) {
-        this.featuresFilePath = featuresFilePath;
-    }
-
     @Override
-    public void execute() throws MojoExecutionException {
-        Features featuresData = JaxbUtil.unmarshal(getFeaturesFilePath(), false);
-        processFeatures(featuresData.getFeature());
-
-        marshal(featuresData);
-    }
-
-    private void marshal(Features featuresData) throws MojoExecutionException {
-        try (StringWriter writer = new StringWriter()) {
-            JaxbUtil.marshal(featuresData, writer);
-
-            String result = writer.toString().replace(DEFAULT_HEADER, LICENCE_HEADER);
-
-            Path path = Paths.get(getFeaturesFilePath().replaceFirst(FILE_PROTOCOL, ""));
-            Files.writeString(path, result);
-
-            getLog().info("File '%s' was successfully modified and saved".formatted(getFeaturesFilePath()));
+    protected boolean processWrappedBundle(Bundle bundle) {
+        String location = bundle.getLocation();
+        try {
+            bundle.setLocation(processLocation(location));
         } catch (Exception e) {
-            getLog().error("File '%s' was successfully modified but an error occurred while saving it"
-                    .formatted(getFeaturesFilePath()), e);
-            throw new MojoExecutionException(e);
+            getLog().error("Could not process the Bundle location '%s': %s".formatted(location, e.getMessage()), e);
         }
-    }
-
-    private void processFeatures(List<Feature> features) {
-        for (Feature feature : features) {
-            processFeature(feature);
-        }
-    }
-
-    private void processFeature(Feature feature) {
-        for (Bundle bundle : feature.getBundle()) {
-            String location = bundle.getLocation();
-            if (location != null && location.startsWith(WRAP_PROTOCOL)) {
-                try {
-                    bundle.setLocation(processLocation(location));
-                } catch (Exception e) {
-                    getLog().error("Could not process the Bundle location '%s': %s".formatted(location, e.getMessage()), e);
-                }
-            }
-        }
+        return false;
     }
 
     String processLocation(String location) throws Exception {
@@ -147,11 +67,11 @@ public class EnsureWrapBundleVersionMojo extends AbstractMojo {
             return updateExistingVersion(location, bundleVersionHeader);
         }
 
-        String wrapProtocolOptions = location.substring(versionEndIndex + 1, location.length());
+        String wrapProtocolOptions = location.substring(versionEndIndex + 1);
         StringBuilder sb = new StringBuilder(location);
 
         // insert before existing headers header
-        for (String header : HEADERS_AFTER_BUNDLE_VEIRSION) {
+        for (String header : HEADERS_AFTER_BUNDLE_VERSION) {
             // add Bundle-Version before
             if (location.contains(header)) {
                 int versionHeaderStartIndex = location.indexOf(header);
