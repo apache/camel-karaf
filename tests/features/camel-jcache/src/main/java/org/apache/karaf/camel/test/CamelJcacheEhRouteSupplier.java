@@ -15,23 +15,17 @@
  */
 package org.apache.karaf.camel.test;
 
-import org.apache.camel.CamelContext;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
-        name = "karaf-camel-jcache-hz-test",
+        name = "karaf-camel-jcache-eh-test",
         immediate = true,
         service = CamelRouteSupplier.class
 )
-public class CamelJcacheHzRouteSupplier extends AbstractCamelJcacheRouteSupplier {
+public class CamelJcacheEhRouteSupplier extends AbstractCamelJcacheRouteSupplier {
 
-    public static final String PROVIDER_CLASS = "com.hazelcast.cache.HazelcastCachingProvider";
-
-    @Override
-    public void configure(CamelContext camelContext) {
-        System.setProperty("hazelcast.jcache.provider.type", "member");
-    }
+    public static final String PROVIDER_CLASS = "org.ehcache.jsr107.EhcacheCachingProvider";
 
     @Override
     protected String getProvider() {
