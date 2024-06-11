@@ -13,8 +13,6 @@
  */
 package org.apache.karaf.camel.itest;
 
-import java.util.Collections;
-
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;

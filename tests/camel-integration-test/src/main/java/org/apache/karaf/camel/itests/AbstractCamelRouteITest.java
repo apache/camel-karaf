@@ -23,7 +23,6 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.CamelContextLifecycle;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.blueprint.BlueprintCamelContext;
 import org.apache.camel.karaf.core.OsgiDefaultCamelContext;
@@ -291,20 +290,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     @After
     public final void destroy()  {
         destroyProducerTemplates();
-        //to trigger graceful shutdown of components before uninstalling bundles
-        stopContext();
         uninstallRequiredBundles();
         uninstallRequiredFeatures();
         removeRequiredFeaturesRepositories();
-    }
-
-    protected void stopContext() {
-        try {
-            contexts.values().forEach(CamelContextLifecycle::stop);
-            contexts.clear();
-        } catch (Exception e) {
-            LOG.warn("Error while stopping context", e);
-        }
     }
 
     private void uninstallRequiredBundles() {
