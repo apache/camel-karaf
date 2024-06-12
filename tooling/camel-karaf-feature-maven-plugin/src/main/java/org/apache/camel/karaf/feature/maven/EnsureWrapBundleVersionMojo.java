@@ -42,21 +42,21 @@ public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
     static final String BUNDLE_VERSION = "Bundle-Version";
 
     @Override
-    protected boolean processWrappedBundle(Bundle bundle) {
+    protected boolean processWrappedBundle(WrappedBundle wrappedBundle) {
+        Bundle bundle = wrappedBundle.getBundle();
         String location = bundle.getLocation();
         try {
-            bundle.setLocation(processLocation(location));
+            bundle.setLocation(processLocation(wrappedBundle));
         } catch (Exception e) {
             getLog().error("Could not process the Bundle location '%s': %s".formatted(location, e.getMessage()), e);
         }
         return false;
     }
 
-    String processLocation(String location) throws Exception {
-        int versionStartIndex = getVersionStartIndex(location);
-        int versionEndIndex = getVersionEndIndex(location, versionStartIndex);
+    String processLocation(WrappedBundle wrappedBundle) throws Exception {
+        String location = wrappedBundle.getBundle().getLocation();
 
-        String rawVersion = getVersion(location, versionStartIndex, versionEndIndex);
+        String rawVersion = wrappedBundle.getVersion();
         String version = getValidVersion(location, rawVersion);
 
         String bundleVersionHeader = "%s=%s".formatted(BUNDLE_VERSION, version);
@@ -67,7 +67,7 @@ public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
             return updateExistingVersion(location, bundleVersionHeader);
         }
 
-        String wrapProtocolOptions = location.substring(versionEndIndex + 1);
+        String instructions = wrappedBundle.getInstructions();
         StringBuilder sb = new StringBuilder(location);
 
         // insert before existing headers header
@@ -75,7 +75,7 @@ public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
             // add Bundle-Version before
             if (location.contains(header)) {
                 int versionHeaderStartIndex = location.indexOf(header);
-                if (wrapProtocolOptions.contains("$")) {
+                if (instructions.contains("$")) {
                     // "amp;" is automatically added
                     return sb.insert(versionHeaderStartIndex, "%s&".formatted(bundleVersionHeader)).toString();
                 } else {
@@ -86,56 +86,12 @@ public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
         }
 
         // insert at the end
-        if (wrapProtocolOptions.contains("$")) {
+        if (instructions == null) {
+            return sb.insert(location.length(), "$%s".formatted(bundleVersionHeader)).toString();
+        } else {
             // "amp;" is automatically added
             return sb.insert(location.length(), "&%s".formatted(bundleVersionHeader)).toString();
-        } else {
-            return sb.insert(location.length(), "$%s".formatted(bundleVersionHeader)).toString();
         }
-    }
-
-    /**
-     * @return artifact version first char index, inclusive
-     */
-    int getVersionStartIndex(String location) {
-        boolean artifactIdFound = false;
-        for (int i = 0; i < location.length(); i++) {
-            if ('/' == location.charAt(i)) {
-                if (!artifactIdFound) {
-                    artifactIdFound = true;
-                } else {
-                    return i + 1;
-                }
-            }
-        }
-
-        return -1;
-    }
-
-    int getVersionEndIndex(String location) {
-        return getVersionEndIndex(location, getVersionStartIndex(location));
-    }
-
-    /**
-     * @return artifact version last char index, inclusive
-     */
-    int getVersionEndIndex(String location, int versionStartIndex) {
-        // start at + 1 to ignore the potential $ coming from version placeholder
-        for (int i = versionStartIndex + 1; i < location.length(); i++) {
-            if ('$' == location.charAt(i)) {
-                return i - 1;
-            }
-        }
-
-        return location.length() - 1;
-    }
-
-    String getVersion(String Location) {
-        return getVersion(Location, getVersionStartIndex(Location), getVersionEndIndex(Location));
-    }
-
-    String getVersion(String location, int versionStartIndex, int versionEndIndex) {
-        return location.substring(versionStartIndex, versionEndIndex + 1);
     }
 
     String getValidVersion(String location, String version) throws Exception {

@@ -20,8 +20,6 @@ package org.apache.camel.karaf.feature.maven;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
 import org.apache.karaf.features.internal.model.Bundle;
@@ -41,7 +39,6 @@ import org.eclipse.aether.resolution.ArtifactRequest;
 @Mojo(name = "configure-wrap-spi-provider", defaultPhase = LifecyclePhase.PROCESS_RESOURCES)
 public class ConfigureWrapSpiProviderMojo extends AbstractWrapBundleMojo {
 
-    private static final Pattern WRAP_PROTOCOL = Pattern.compile("wrap:mvn:([^/]+)/([^/]+)/([^$]+)(\\$([^=]+=[^&]+)(&([^=]+=[^&]+))*)?");
     private static final String SPI_PROVIDER = "SPI-Provider";
     private static final String SPI_HEADER = "%s=*".formatted(SPI_PROVIDER);
 
@@ -86,20 +83,13 @@ public class ConfigureWrapSpiProviderMojo extends AbstractWrapBundleMojo {
     }
 
     @Override
-    protected boolean processWrappedBundle(Bundle bundle) {
-        String location = bundle.getLocation();
-        Matcher matcher = WRAP_PROTOCOL.matcher(location);
-        if (matcher.matches()) {
-            String groupId = matcher.group(1);
-            String artifactId = matcher.group(2);
-            String version = matcher.group(3);
-            String options = matcher.group(4);
-            if (options != null && options.contains(SPI_PROVIDER)) {
-                return false;
-            } else if (provideSPI(groupId, artifactId, version)) {
-                addHeader(bundle, options);
-                return true;
-            }
+    protected boolean processWrappedBundle(WrappedBundle bundle) {
+        String instructions = bundle.getInstructions();
+        if (instructions != null && instructions.contains(SPI_PROVIDER)) {
+            return false;
+        } else if (provideSPI(bundle.getGroupId(), bundle.getArtifactId(), bundle.getVersion())) {
+            addHeader(bundle.getBundle(), instructions);
+            return true;
         }
         return false;
     }
@@ -107,11 +97,11 @@ public class ConfigureWrapSpiProviderMojo extends AbstractWrapBundleMojo {
     /**
      * Add the SPI-Provider header to the given bundle's location.
      */
-    private static void addHeader(Bundle bundle, String options) {
+    private static void addHeader(Bundle bundle, String instructions) {
         String separator;
-        if (options == null) {
+        if (instructions == null) {
             separator = "$";
-        } else if (options.endsWith("&") || options.endsWith("$")) {
+        } else if (instructions.endsWith("&") || instructions.endsWith("$")) {
             separator = "";
         } else {
             separator = "&";

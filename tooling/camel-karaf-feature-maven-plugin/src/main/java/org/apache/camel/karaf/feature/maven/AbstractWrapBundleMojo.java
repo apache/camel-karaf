@@ -22,16 +22,15 @@ import org.apache.karaf.features.internal.model.Feature;
 
 public abstract class AbstractWrapBundleMojo extends AbstractFeaturesMojo {
 
-    private static final String WRAP_PROTOCOL = "wrap:mvn:";
-
     @Override
     protected void processFeature(Feature feature) {
         boolean processed = false;
         for (Bundle bundle : feature.getBundle()) {
-            String location = bundle.getLocation();
-            if (location != null && location.startsWith(WRAP_PROTOCOL)) {
-                processed |= processWrappedBundle(bundle);
+            WrappedBundle wrappedBundle = WrappedBundle.fromBundle(bundle);
+            if (wrappedBundle == null) {
+                continue;
             }
+            processed |= processWrappedBundle(wrappedBundle);
         }
         if (processed) {
             onFeatureUpdated(feature);
@@ -48,8 +47,8 @@ public abstract class AbstractWrapBundleMojo extends AbstractFeaturesMojo {
     /**
      * Process the given wrapped bundle.
      *
-     * @param bundle the bundle
+     * @param bundle     the wrapped bundle to process
      * @return {@code true} if the feature has been updated, {@code false} otherwise
      */
-    protected abstract boolean processWrappedBundle(Bundle bundle);
+    protected abstract boolean processWrappedBundle(WrappedBundle bundle);
 }
