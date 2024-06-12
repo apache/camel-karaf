@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+    <!-- Allow the use of system properties -->
+    <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]" />
+    <bean id="activemqConfig" class="org.apache.camel.component.activemq.ActiveMQConfiguration">
+        <property name="connectionFactory" ref="activemqConnectionFactory"/>
+    </bean>
+
+    <bean id="activemqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <argument value="tcp://$[activemq.host]:$[activemq.port]"/>
+        <property name="watchTopicAdvisories" value="false"/>
+        <property name="userName" value="$[activemq.username]"/>
+        <property name="password" value="$[activemq.password]"/>
+    </bean>
+
+    <bean id="activemq" class="org.apache.camel.component.activemq.ActiveMQComponent">
+        <property name="configuration" ref="activemqConfig"/>
+    </bean>
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
+        <route id="activeMqProducerRoute">
+            <from uri="direct:camel-activemq-test"/>
+            <setBody>
+                <simple>Hello Camel</simple>
+            </setBody>
+            <log message="Sending message to ActiveMQ: ${body}"/>
+            <to uri="activemq:queue:activemqQueueName"/>
+            <log message="Message sent to ActiveMQ: ${body}"/>
+        </route>
+        <route id="activeMqConsumerRoute">
+            <from uri="activemq:queue:activemqQueueName"/>
+            <log message="Message received from ActiveMQ: ${body}"/>
+            <setBody>
+                <constant>OK</constant>
+            </setBody>
+            <to uri="mock:camel-activemq-test"/>
+        </route>
+    </camelContext>
+
+</blueprint>
