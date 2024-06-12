@@ -29,6 +29,7 @@ import org.osgi.service.component.annotations.Component;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.spi.properties.ClusterProperty;
 
 @Component(name = "karaf-camel-hazelcast-test", immediate = true, service = CamelRouteSupplier.class)
 public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
@@ -36,7 +37,7 @@ public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResul
 
     @Override
     public void configure(CamelContext camelContext) {
-        System.setProperty("hazelcast.shutdownhook.enabled","false");
+        ClusterProperty.SHUTDOWNHOOK_ENABLED.setSystemProperty("false");
         Config hazelcastConfig = new Config();
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(hazelcastConfig);
         camelContext.getRegistry().bind("hzInstance", hazelcastInstance);

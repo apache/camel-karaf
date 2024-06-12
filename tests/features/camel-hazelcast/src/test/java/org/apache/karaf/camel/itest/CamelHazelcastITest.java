@@ -25,8 +25,6 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 @ExamReactorStrategy(PerClass.class)
 public class CamelHazelcastITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
-    private static final int HZ_PORT = 5701;
-
     @Override
     public void configureMock(MockEndpoint mock) {
         //Map + replicated Map + 2 for list + Queue + Set + Topic
