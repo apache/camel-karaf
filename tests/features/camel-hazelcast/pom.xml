@@ -30,7 +30,6 @@
     <artifactId>camel-hazelcast-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Hazelcast</name>
 
-
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
