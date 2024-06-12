@@ -30,7 +30,7 @@ public class CamelOlingo2ITest extends AbstractCamelSingleFeatureResultMockBased
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceivedInAnyOrder("OK-Consumer","OK-Producer");
+        mock.expectedBodiesReceivedInAnyOrder("OK-Consumer", "OK-Producer");
     }
 
     @Test
