@@ -158,13 +158,12 @@
     </feature>
 
     <feature name="awssdk" version="${aws-java-sdk2-version}" start-level="50">
-        <feature prerequisite="true">spifly</feature>
         <feature version="[4,5)">http-client</feature>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/auth/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/aws-core/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/sdk-core/${aws-java-sdk2-version}$${spi-consumer}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/http-client-spi/${aws-java-sdk2-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/${aws-java-sdk2-version}$${spi-provider}</bundle>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/apache-client/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/regions/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/utils/${aws-java-sdk2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/identity-spi/${aws-java-sdk2-version}</bundle>
@@ -338,7 +337,6 @@
     </feature>
     <feature name='camel-atmosphere-websocket' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-servlet</feature>
-        <feature prerequisite="true">spifly</feature>
         <!-- Wrap protocol used to work around the wrong version range used for the servlet API [2.5,4)  -->
         <bundle dependency="true">wrap:mvn:org.atmosphere/atmosphere-runtime/${atmosphere-version}$overwrite=merge&amp;Import-Package=jakarta.servlet;version:="[6,7)",*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-atmosphere-websocket/${project.version}</bundle>
@@ -838,6 +836,7 @@
         <feature>scr</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency="true">mvn:org.ehcache/ehcache/${ehcache3-version}</bundle>
+        <bundle dependency="true">mvn:javax.cache/cache-api/${jcache-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ehcache/${project.version}</bundle>
     </feature>
     <feature name='camel-elasticsearch' version='${project.version}' start-level='50'>
@@ -1036,7 +1035,6 @@
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version="[33,34)">guava</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <feature prerequisite="true">spifly</feature>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-pubsub/1.127.1</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/2.28.0</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
@@ -1063,13 +1061,13 @@
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-common-protos/2.36.0$Export-Package=com.google.longrunning*;version=2.36.0,*</bundle>
         <bundle dependency='true'>wrap:mvn:io.perfmark/perfmark-api/0.27.0</bundle>
         <bundle dependency='true'>wrap:mvn:io.grpc/grpc-stub/${grpc-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-netty/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-core/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-grpclb/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-googleapis/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-xds/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-services/${grpc-version}$${spi-provider}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-util/${grpc-version}$${spi-provider}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-netty/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-core/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-grpclb/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-googleapis/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-xds/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-services/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-util/${grpc-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-pubsub/${project.version}</bundle>
     </feature>
     <feature name='camel-google-secret-manager' version='${project.version}' start-level='50'>
@@ -1333,7 +1331,7 @@
     </feature>
     <feature name='camel-jcache' version='${project.version}' start-level='50'>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:javax.cache/cache-api/1.1.1</bundle>
+        <bundle dependency='true'>mvn:javax.cache/cache-api/${jcache-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jcache/${project.version}</bundle>
     </feature>
     <feature name='camel-jcr' version='${project.version}' start-level='50'>
@@ -1528,7 +1526,6 @@
         <bundle>mvn:org.apache.camel.karaf/camel-kamelet/${project.version}</bundle>
     </feature>
     <feature name='camel-kubernetes' version='${project.version}' start-level='50'>
-        <feature prerequisite="true">spifly</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='${camel.osgi.jackson2.version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:io.fabric8/kubernetes-client/${kubernetes-client-version}</bundle>
@@ -1847,7 +1844,6 @@
         <bundle>mvn:org.apache.camel.karaf/camel-opensearch/${project.version}</bundle>
     </feature>
     <feature name='camel-openstack' version='${project.version}' start-level='50'>
-        <feature prerequisite="true">spifly</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <feature version='${camel.osgi.jackson2.version}'>jackson</feature>
         <feature version='[33,34)'>guava</feature>
@@ -2171,7 +2167,6 @@
         <bundle>mvn:org.apache.camel.karaf/camel-servlet/${project.version}</bundle>
     </feature>
     <feature name='camel-shiro' version='${project.version}' start-level='50'>
-        <feature prerequisite="true">spifly</feature>
         <feature version='${camel.osgi.version.range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.shiro/shiro-core/${shiro-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.shiro/shiro-event/${shiro-version}</bundle>

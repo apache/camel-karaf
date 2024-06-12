@@ -17,12 +17,10 @@ package org.apache.karaf.camel.itests;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
@@ -53,6 +51,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
     public static final String CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY = "camel.karaf.itest.debug";
     static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.suppliers";
+    static final String CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.ignore.route.suppliers";
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractCamelRouteITest.class);
     private final Map<CamelContextKey, CamelContext> contexts = new ConcurrentHashMap<>();
@@ -113,7 +112,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         if (hasExternalResources()) {
             combine = combine(combine, getExternalResourceOptions());
         }
-        if (hasCamelRouteSupplierFilter()) {
+        if (ignoreCamelRouteSuppliers()) {
+            combine = combine(combine, getIgnoreCamelRouteSupplier());
+        } else if (hasCamelRouteSupplierFilter()) {
             combine = combine(combine, getCamelRouteSupplierFilter());
         }
         return combine(combine, getAdditionalOptions());
@@ -188,6 +189,17 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
         return hint != null && hint.camelRouteSuppliers().length > 0;
     }
+
+    private boolean ignoreCamelRouteSuppliers() {
+        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
+        return hint != null && hint.ignoreRouteSuppliers();
+    }
+
+    private Option getIgnoreCamelRouteSupplier() {
+        return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY)
+                .value(Boolean.toString(Boolean.TRUE));
+    }
+
 
     /**
      * Returns the list of additional options to add to the configuration.

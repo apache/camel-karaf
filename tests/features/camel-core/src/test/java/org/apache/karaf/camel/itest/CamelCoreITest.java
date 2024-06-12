@@ -38,7 +38,9 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
     @Override
     protected List<String> getRequiredFeatures() {
-        return List.of();
+        //camel-blueprint is not strictly required for the RouteSuppliers, but since the bundle contains some blueprints in
+        // OSGI-INF, the feature must be installed to avoid a class resolution error.
+        return List.of("camel-blueprint");
     }
 
     @Test

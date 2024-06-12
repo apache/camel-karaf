@@ -32,6 +32,10 @@
     <packaging>pom</packaging>
     <name>Apache Camel :: Karaf :: Features</name>
 
+    <properties>
+        <spi-consumer>SPI-Consumer=*</spi-consumer>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
@@ -71,6 +75,7 @@
                     <execution>
                         <goals>
                             <goal>ensure-wrap-bundle-version</goal>
+                            <goal>configure-wrap-spi-provider</goal>
                         </goals>
                         <configuration>
                             <featuresFilePath>file:${project.build.directory}/feature/camel-features.xml</featuresFilePath>
