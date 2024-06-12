@@ -30,7 +30,7 @@ public class CamelWeatherITest extends AbstractCamelSingleFeatureResultMockBased
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceivedInAnyOrder("OK-Producer","OK-Consumer");
+        mock.expectedBodiesReceivedInAnyOrder("OK-Producer", "OK-Consumer");
     }
 
     @Test
