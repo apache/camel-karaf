@@ -34,7 +34,6 @@ import com.hazelcast.spi.properties.ClusterProperty;
 @Component(name = "karaf-camel-hazelcast-test", immediate = true, service = CamelRouteSupplier.class)
 public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
-
     @Override
     public void configure(CamelContext camelContext) {
         ClusterProperty.SHUTDOWNHOOK_ENABLED.setSystemProperty("false");
