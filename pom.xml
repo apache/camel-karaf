@@ -563,9 +563,6 @@
         <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
         <harmcrest.version>1.3_1</harmcrest.version>
         <geronimo-atinject.version>1.2</geronimo-atinject.version>
-
-        <spi-provider>SPI-Provider=*</spi-provider>
-        <spi-consumer>SPI-Consumer=*</spi-consumer>
     </properties>
 
     <dependencyManagement>
