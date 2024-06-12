@@ -49,6 +49,7 @@
         <module>camel-mail</module>
         <module>camel-quartz</module>
         <module>camel-spring-rabbitmq</module>
+        <module>camel-weather</module>
     </modules>
 
     <dependencyManagement>
