@@ -28,7 +28,7 @@ public class CamelHazelcastITest extends AbstractCamelSingleFeatureResultMockBas
     @Override
     public void configureMock(MockEndpoint mock) {
         //Map + replicated Map + 2 for list + Queue + Set + Topic
-        mock.expectedBodiesReceivedInAnyOrder( "OK_List","OK_List","OK_Map","OK_RMap","OK_Queue","OK_Set","OK_Topic");
+        mock.expectedBodiesReceivedInAnyOrder("OK_List", "OK_List", "OK_Map", "OK_RMap", "OK_Queue", "OK_Set", "OK_Topic");
     }
 
     @Test
