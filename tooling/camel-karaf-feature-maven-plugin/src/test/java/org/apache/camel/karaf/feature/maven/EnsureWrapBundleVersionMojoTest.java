@@ -17,9 +17,11 @@
 package org.apache.camel.karaf.feature.maven;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.apache.karaf.features.internal.model.Bundle;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EnsureWrapBundleVersionMojoTest {
 
@@ -27,68 +29,41 @@ public class EnsureWrapBundleVersionMojoTest {
 
     @Test
     void modifyLocationTest() throws Exception {
+        Bundle bundle = new Bundle();
         // add bundle version at the end as first wrap protocol option
-        String location = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0";
+        bundle.setLocation("wrap:mvn:org.apache.olingo/odata-server-core/5.0.0");
         String expected = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$Bundle-Version=5.0.0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
+        WrappedBundle wrappedBundle = WrappedBundle.fromBundle(bundle);
+        assertNotNull(wrappedBundle);
+        assertEquals(expected, ensureVersionMojo.processLocation(wrappedBundle));
 
         // add bundle version at the end but not as first wrap protocol option
-        location = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge";
+        bundle.setLocation("wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge");
         expected = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge&Bundle-Version=5.0.0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
+        wrappedBundle = WrappedBundle.fromBundle(bundle);
+        assertNotNull(wrappedBundle);
+        assertEquals(expected, ensureVersionMojo.processLocation(wrappedBundle));
 
         // add bundle version before existing wrap protocol header that should be declared after
-        location = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge&Export-Package=org.apache.olingo.*;version=5.0.0";
+        bundle.setLocation("wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge&Export-Package=org.apache.olingo.*;version=5.0.0");
         expected = "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge&Bundle-Version=5.0.0&Export-Package=org.apache.olingo.*;version=5.0.0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
+        wrappedBundle = WrappedBundle.fromBundle(bundle);
+        assertNotNull(wrappedBundle);
+        assertEquals(expected, ensureVersionMojo.processLocation(wrappedBundle));
 
         // original version won't work in Karaf
-        location = "wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0";
+        bundle.setLocation("wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0");
         expected = "wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0$Bundle-Version=0.0.0.v1-rev20240209-2_0_0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
+        wrappedBundle = WrappedBundle.fromBundle(bundle);
+        assertNotNull(wrappedBundle);
+        assertEquals(expected, ensureVersionMojo.processLocation(wrappedBundle));
 
         // bundle version header is present but it won't work in Karaf
-        location = "wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0$Bundle-Version=v1-rev20240209-2.0.0";
+        bundle.setLocation("wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0$Bundle-Version=v1-rev20240209-2.0.0");
         expected = "wrap:mvn:com.google.apis/google-api-services-storage/v1-rev20240209-2.0.0$Bundle-Version=0.0.0.v1-rev20240209-2_0_0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
-
-        // bundle version header is present and points to the wrong value but it will
-        // work in Karaf
-        location = "mvn:commons-io/commons-io/2.15.1$Bundle-Version=2.15.0";
-        expected = "mvn:commons-io/commons-io/2.15.1$Bundle-Version=2.15.0";
-        assertEquals(expected, ensureVersionMojo.processLocation(location));
-    }
-
-    @Test
-    void getVersionStartIndexTest() {
-        assertEquals(51,
-                ensureVersionMojo.getVersionStartIndex("wrap:mvn:org.apache.httpcomponents.core5/httpcore5/5.2.1"));
-        assertEquals(51, ensureVersionMojo.getVersionStartIndex(
-                "wrap:mvn:org.eclipse.californium/element-connector/3.11.0$overwrite=merge&Import-Package=net.i2p.crypto.eddsa;resolution:=optional"));
-    }
-
-    @Test
-    void getVersionEndIndexTest() {
-        assertEquals(55,
-                ensureVersionMojo.getVersionEndIndex("wrap:mvn:org.apache.httpcomponents.core5/httpcore5/5.2.1"));
-        assertEquals(56, ensureVersionMojo.getVersionEndIndex(
-                "wrap:mvn:org.eclipse.californium/element-connector/3.11.0$overwrite=merge&Import-Package=net.i2p.crypto.eddsa;resolution:=optional"));
-    }
-
-    @Test
-    void getVersionTest() {
-        assertEquals("${google-oauth-client-version}", ensureVersionMojo.getVersion(
-                "wrap:mvn:com.google.oauth-client/google-oauth-client-jetty/${google-oauth-client-version}$overwrite=merge&Import-Package=com.sun.net.httpserver;resolution:=optional,*"));
-
-        assertEquals("8.44.0.Final", ensureVersionMojo.getVersion("wrap:mvn:org.kie/kie-api/8.44.0.Final"));
-
-        assertEquals("5.0.0", ensureVersionMojo.getVersion(
-                "wrap:mvn:org.apache.olingo/odata-server-core/5.0.0$overwrite=merge&Export-Package=org.apache.olingo.*;version=5.0.0"));
-
-        assertEquals("${grpc-version}",
-                ensureVersionMojo.getVersion("wrap:mvn:io.grpc/grpc-core/${grpc-version}$${spi-provider}"));
-
-        assertEquals("1.63.0", ensureVersionMojo.getVersion("wrap:mvn:io.grpc/grpc-googleapis/1.63.0$SPI-Provider=*"));
+        wrappedBundle = WrappedBundle.fromBundle(bundle);
+        assertNotNull(wrappedBundle);
+        assertEquals(expected, ensureVersionMojo.processLocation(wrappedBundle));
     }
 
     @Test

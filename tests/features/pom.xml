@@ -37,6 +37,7 @@
     </properties>
 
     <modules>
+        <module>camel-activemq</module>
         <module>camel-amqp</module>
         <module>camel-aws2-ses</module>
         <module>camel-aws2-sns</module>
@@ -44,12 +45,15 @@
         <module>camel-core</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
+        <module>camel-hazelcast</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>
         <module>camel-netty-http</module>
         <module>camel-mail</module>
+        <module>camel-olingo2</module>
         <module>camel-quartz</module>
         <module>camel-spring-rabbitmq</module>
+        <module>camel-weather</module>
     </modules>
 
     <dependencyManagement>

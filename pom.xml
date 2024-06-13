@@ -515,7 +515,6 @@
         <zookeeper-version>3.9.2</zookeeper-version>
         <zxing-version>3.5.3</zxing-version>
         <!-- END: Maven Properties defining the version of 3rd party libraries used in Camel -->
-        <groovy-version>4.0.18</groovy-version>
         <camel.osgi.asm.version>[9.5,10)</camel.osgi.asm.version>
         <camel.osgi.spring.version>[6.1,6.2)</camel.osgi.spring.version>
         <spring.amqp.version>3.1.5</spring.amqp.version>
@@ -540,7 +539,6 @@
         <camel.osgi.jakarta.jms.version>[3.1,4)</camel.osgi.jakarta.jms.version>
         <camel.osgi.jakarta.transaction.version>[2,3)</camel.osgi.jakarta.transaction.version>
         <camel.validation.api.package.version>[2,4)</camel.validation.api.package.version>
-        <commons-lang3-version>3.14.0</commons-lang3-version>
         <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
         <jakarta.xml.ws.version>4.0.2</jakarta.xml.ws.version>
         <karaf.version>4.4.6</karaf.version>
@@ -563,9 +561,6 @@
         <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
         <harmcrest.version>1.3_1</harmcrest.version>
         <geronimo-atinject.version>1.2</geronimo-atinject.version>
-
-        <spi-provider>SPI-Provider=*</spi-provider>
-        <spi-consumer>SPI-Consumer=*</spi-consumer>
     </properties>
 
     <dependencyManagement>
