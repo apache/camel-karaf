@@ -37,6 +37,10 @@
             org.apache.camel*;version=${camel.version}
         </camel.osgi.export>
         <camel.osgi.import>
+            javax.cache;resolution:=optional,
+            javax.cache.integration;resolution:=optional,
+            javax.cache.configuration;resolution:=optional,
+            javax.cache.processor;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
