@@ -40,6 +40,7 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-hazelcast</artifactId>
             <version>${camel.version}</version>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

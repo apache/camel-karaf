@@ -19,6 +19,8 @@ import org.apache.camel.CamelContext;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
+import com.hazelcast.spi.properties.ClusterProperty;
+
 @Component(
         name = "karaf-camel-jcache-hz-test",
         immediate = true,
@@ -30,7 +32,7 @@ public class CamelJcacheHzRouteSupplier extends AbstractCamelJcacheRouteSupplier
 
     @Override
     public void configure(CamelContext camelContext) {
-        System.setProperty("hazelcast.jcache.provider.type", "member");
+        ClusterProperty.JCACHE_PROVIDER_TYPE.setSystemProperty("member");
     }
 
     @Override
