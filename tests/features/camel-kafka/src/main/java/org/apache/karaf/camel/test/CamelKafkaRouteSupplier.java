@@ -39,7 +39,7 @@ public class CamelKafkaRouteSupplier extends AbstractCamelSingleFeatureResultMoc
         KafkaComponent kafka = new KafkaComponent();
         KafkaConfiguration config = new KafkaConfiguration();
         config.setBreakOnFirstError(true);
-        config.setBrokers("localhost:%s".formatted(System.getProperty("kafka.port")));
+        config.setBrokers(System.getProperty("kafka.server"));
         kafka.setConfiguration(config);
         camelContext.addComponent("kafka", kafka);
     }
@@ -57,7 +57,7 @@ public class CamelKafkaRouteSupplier extends AbstractCamelSingleFeatureResultMoc
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.log("calling kafka topic")
                 .setBody(builder.constant("OK"))
-                .toF("kafka://%s?", KAFKA_TOPIC)
+                .toF("kafka://%s", KAFKA_TOPIC)
                 .log("kafka topic called");
     }
 }
