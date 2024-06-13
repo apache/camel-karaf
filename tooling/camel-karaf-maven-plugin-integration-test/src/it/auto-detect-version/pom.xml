@@ -24,7 +24,7 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.apache.camel.karaf</groupId>
-    <artifactId>camel-karaf-feature-maven-plugin-configure-spi-test</artifactId>
+    <artifactId>camel-karaf-feature-maven-plugin-auto-detect-version-test</artifactId>
     <version>@project.version@</version>
     <packaging>pom</packaging>
 
@@ -37,7 +37,7 @@ under the License.
                 <executions>
                     <execution>
                         <goals>
-                            <goal>configure-wrap-spi-provider</goal>
+                            <goal>auto-detect-version</goal>
                         </goals>
                         <configuration>
                             <featuresFilePath>file:${project.basedir}/src/main/feature/features.xml</featuresFilePath>

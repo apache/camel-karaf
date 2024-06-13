@@ -318,22 +318,4 @@
         <module>camel-zookeeper</module>
         <module>camel-zookeeper-master</module>
     </modules>
-
-    <build>
-        <plugins>
-            <!-- generates an osgi repository added to the test karaf containing the dependencies-->
-            <plugin>
-                <groupId>org.apache.servicemix.tooling</groupId>
-                <artifactId>depends-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-depends-file</id>
-                        <goals>
-                            <goal>generate-depends-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

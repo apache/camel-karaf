@@ -24,7 +24,7 @@ import org.apache.karaf.features.internal.model.Bundle;
 
 public class WrappedBundle {
 
-    private static final Pattern WRAP_PROTOCOL = Pattern.compile("wrap:mvn:([^/]+)/([^/]+)/([^$]+|\\$\\{[^}]+})(\\$([^=]+=[^&]+|\\$\\{[^}]+}=[^&]|\\$\\{[^}]+})(&([^=]+=[^&]+|\\$\\{[^}]+}=[^&]|\\$\\{[^}]+}))*)?");
+    private static final Pattern WRAP_PROTOCOL = Pattern.compile("wrap:mvn:([^/]+)/([^/]+)/([^$]+|\\$\\{[^}]+})(\\$.*)?");
 
     /**
      * The group id of the bundle
