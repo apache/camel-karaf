@@ -34,9 +34,6 @@ import org.testcontainers.utility.DockerImageName;
 @ExamReactorStrategy(PerClass.class)
 public class CamelKafkaITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CamelKafkaITest.class);
-
-    private static final int KAFKA_PORT = 9092;
 
     @Override
     public void configureMock(MockEndpoint mock) {
