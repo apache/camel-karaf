@@ -52,7 +52,7 @@ public class CamelKafkaITest extends AbstractCamelSingleFeatureResultMockBasedRo
 
         public static GenericContainerResource createKafkaContainer() {
             final KafkaContainer kafkaContainer =
-                    new KafkaContainer( DockerImageName.parse("confluentinc/cp-kafka:7.6.1"));
+                    new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.6.1"));
 
             return new GenericContainerResource(kafkaContainer, (Consumer<GenericContainerResource>) resource -> {
                 resource.setProperty("kafka.server", kafkaContainer.getBootstrapServers());
