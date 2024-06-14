@@ -38,8 +38,7 @@ public class CamelSaxonRouteSupplier extends AbstractCamelSingleFeatureResultMoc
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.log("calling xquery endpoint")
                 .setBody(builder.constant("<person><city>London</city></person>"))
-                .choice()
-                .when().xpath("person/city = 'London'")
+                .filter().xquery("/person/city = 'London'")
                 .setBody(builder.constant("""
                         <person user="james">
                             <firstName>James</firstName>
@@ -48,9 +47,7 @@ public class CamelSaxonRouteSupplier extends AbstractCamelSingleFeatureResultMoc
                         </person>"""))
                 .to("xquery:file://%s/classes/myTransform.xq".formatted(System.getProperty("project.target")))
                 .log("${body}")
-                .toF("mock:%s", getResultMockName())
-                .otherwise()
-                .setBody(builder.constant("KO"));
+                .toF("mock:%s", getResultMockName());
     }
 }
 
