@@ -53,6 +53,7 @@
         <module>camel-mail</module>
         <module>camel-olingo2</module>
         <module>camel-quartz</module>
+        <module>camel-saxon</module>
         <module>camel-spring-rabbitmq</module>
         <module>camel-weather</module>
     </modules>
