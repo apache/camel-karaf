@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
             <artifactId>framework</artifactId>
-            <version>${karaf.version}</version>
+            <version>${karaf-version}</version>
             <type>kar</type>
             <scope>provided</scope>
         </dependency>
@@ -87,15 +87,15 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
-                <version>${karaf.version}</version>
+                <version>${karaf-version}</version>
                 <configuration>
                     <descriptors>
                         <descriptor>file:${project.build.directory}/feature/camel-features.xml</descriptor>
-                        <descriptor>mvn:org.apache.karaf.features/specs/${karaf.version}/xml/features</descriptor>
-                        <descriptor>mvn:org.apache.karaf.features/spring/${karaf.version}/xml/features</descriptor>
+                        <descriptor>mvn:org.apache.karaf.features/specs/${karaf-version}/xml/features</descriptor>
+                        <descriptor>mvn:org.apache.karaf.features/spring/${karaf-version}/xml/features</descriptor>
                     </descriptors>
                     <distribution>org.apache.karaf.features:framework</distribution>
-                    <javase>${jdk.version}</javase>
+                    <javase>${jdk-version}</javase>
                     <framework>
                         <feature>framework</feature>
                     </framework>

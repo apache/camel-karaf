@@ -86,11 +86,9 @@
 
     <!-- TODO use Karaf/Camel bom -->
     <properties>
-        <jdk.version>17</jdk.version>
+        <jdk-version>17</jdk-version>
 
-        <aries.util.version>1.1.3</aries.util.version>
-        <aries.version>1.10.3</aries.version>
-        <camel.version>4.6.0</camel.version>
+        <camel-version>4.6.0</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>6.1.2</activemq-version>
@@ -515,52 +513,72 @@
         <zookeeper-version>3.9.2</zookeeper-version>
         <zxing-version>3.5.3</zxing-version>
         <!-- END: Maven Properties defining the version of 3rd party libraries used in Camel -->
-        <camel.osgi.asm.version>[9.5,10)</camel.osgi.asm.version>
-        <camel.osgi.spring.version>[6.1,6.2)</camel.osgi.spring.version>
-        <spring.amqp.version>3.1.5</spring.amqp.version>
-        <camel.osgi.slf4j.version>[2,3)</camel.osgi.slf4j.version>
-        <camel.osgi.jakarta.annotation.version>[2,3)</camel.osgi.jakarta.annotation.version>
-        <camel.osgi.jakarta.bind.version>[3,5)</camel.osgi.jakarta.bind.version>
-        <camel.osgi.jakarta.activation.version>[2,3)</camel.osgi.jakarta.activation.version>
-        <camel.osgi.jakarta.mail.version>[2,3)</camel.osgi.jakarta.mail.version>
-        <camel.osgi.jakarta.servlet.version>[5,7)</camel.osgi.jakarta.servlet.version>
-        <camel.osgi.jakarta.xml.ws.version>[3,5)</camel.osgi.jakarta.xml.ws.version>
-        <camel.osgi.jakarta.ws.rs.version>[3,4)</camel.osgi.jakarta.ws.rs.version>
-        <camel.cglib.osgi.version>[3.3,3.4)</camel.cglib.osgi.version>
-        <camel.osgi.cdi.version>[3,4)</camel.osgi.cdi.version>
-        <camel.osgi.jakarta.jwsapi.version>[3,4)</camel.osgi.jakarta.jwsapi.version>
-        <camel.osgi.saaj.version>[2,4)</camel.osgi.saaj.version>
-        <camel.opensaml.osgi.version>[4.2,5)</camel.opensaml.osgi.version>
-        <camel.ehcache.osgi.version>[3,4)</camel.ehcache.osgi.version>
-        <camel.jetty.osgi.version>[11,12)</camel.jetty.osgi.version>
-        <camel.osgi.netty.version>[4.1,5)</camel.osgi.netty.version>
-        <camel.undertow.xnio.osgi.version>[3.8,4)</camel.undertow.xnio.osgi.version>
-        <camel.undertow.osgi.version>[2.2,3)</camel.undertow.osgi.version>
-        <camel.osgi.jakarta.jms.version>[3.1,4)</camel.osgi.jakarta.jms.version>
-        <camel.osgi.jakarta.transaction.version>[2,3)</camel.osgi.jakarta.transaction.version>
-        <camel.validation.api.package.version>[2,4)</camel.validation.api.package.version>
-        <camel.osgi.cxf.version>[4.0,4.1)</camel.osgi.cxf.version>
-        <jakarta.xml.ws.version>4.0.2</jakarta.xml.ws.version>
-        <karaf.version>4.4.6</karaf.version>
-        <osgi.version>8.0.0</osgi.version>
-        <osgi.cmpn.version>7.0.0</osgi.cmpn.version>
-        <osgi.service.event.version>1.4.1</osgi.service.event.version>
-        <osgi.service.component.version>1.5.1</osgi.service.component.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <servicemix-specs-version>10</servicemix-specs-version> 
 
-        <camel.osgi.version.clean>4.6</camel.osgi.version.clean>
-        <camel.osgi.next.version.clean>4.7</camel.osgi.next.version.clean>
-        <camel.osgi.version.range>[${camel.osgi.version.clean},${camel.osgi.next.version.clean})</camel.osgi.version.range>
-        <camel.osgi.import.camel.version>version="${camel.osgi.version.range}"</camel.osgi.import.camel.version>
-        <camel.osgi.camel.import>org.apache.camel.*;${camel.osgi.import.camel.version},</camel.osgi.camel.import>
-        <camel.osgi.jackson2.version>[2.17,2.18)</camel.osgi.jackson2.version>
+        <!-- OSGI version ranges -->
+        <camel-osgi-asm-version>[9.5,10)</camel-osgi-asm-version>
+        <camel-osgi-cglib-version>[3.3,3.4)</camel-osgi-cglib-version>
+        <camel-osgi-jackson2-version>[2.17,2.18)</camel-osgi-jackson2-version>
+        <camel-osgi-jakarta-annotation-version>[2,3)</camel-osgi-jakarta-annotation-version>
+        <camel-osgi-jakarta-activation-version>[2.1,3)</camel-osgi-jakarta-activation-version>
+        <camel-osgi-jakarta-activation-runtime-version>[2,3)</camel-osgi-jakarta-activation-runtime-version>
+        <camel-osgi-jakarta-bind-version>[3,5)</camel-osgi-jakarta-bind-version>
+        <camel-osgi-jakarta-jws-version>[3,4)</camel-osgi-jakarta-jws-version>
+        <camel-osgi-jakarta-servlet-version>[5,7)</camel-osgi-jakarta-servlet-version>
+        <camel-osgi-jakarta-soap-version>[3,4)</camel-osgi-jakarta-soap-version>
+        <camel-osgi-jakarta-validation-version>[2,4)</camel-osgi-jakarta-validation-version>
+        <camel-osgi-jakarta-ws-rs-version>[3.1,4)</camel-osgi-jakarta-ws-rs-version>
+        <camel-osgi-jakarta-xml-ws-version>[4,5)</camel-osgi-jakarta-xml-ws-version>
+        <camel-osgi-jetty-version>[11,12)</camel-osgi-jetty-version>
+        <camel-osgi-spring-version>[6.1,6.2)</camel-osgi-spring-version>
+        <camel-osgi-saaj-version>[2,4)</camel-osgi-saaj-version>
+        <camel-osgi-slf4j-version>[2,3)</camel-osgi-slf4j-version>
+        <camel-osgi-cxf-version>[4.0,4.1)</camel-osgi-cxf-version>
 
+        <!-- Camel Karaf OSGI version ranges -->
+        <camel-osgi-version-clean>4.6</camel-osgi-version-clean>
+        <camel-osgi-next-version-clean>4.7</camel-osgi-next-version-clean>
+        <camel-osgi-version-range>[${camel-osgi-version-clean},${camel-osgi-next-version-clean})</camel-osgi-version-range>
+        <camel-osgi-import-camel-version>version="${camel-osgi-version-range}"</camel-osgi-import-camel-version>
+        <camel-osgi-camel-import>org.apache.camel.*;${camel-osgi-import-camel-version},</camel-osgi-camel-import>
+
+        <!-- Other dependencies version not inherited from Camel -->
+        <angus-activation-version>2.0.2</angus-activation-version>
+        <aries-util-version>1.1.3</aries-util-version>
+        <aries-version>1.10.3</aries-version>
+        <azure-core-version>1.48.0</azure-core-version>
+        <azure-identity-version>1.12.0</azure-identity-version>
+        <azure-messaging-eventhubs-checkpointstore-blob-version>1.19.3</azure-messaging-eventhubs-checkpointstore-blob-version>
+        <azure-messaging-eventhubs-version>5.18.3</azure-messaging-eventhubs-version>
+        <azure-storage-common-version>12.24.4</azure-storage-common-version>
+        <geronimo-atinject-version>1.2</geronimo-atinject-version>
+        <guava32-version>32.1.3-jre</guava32-version>
+        <harmcrest-version>1.3_1</harmcrest-version>
+        <httpclient4-version>4.5.14</httpclient4-version>
+        <httpcore4-version>4.4.16</httpcore4-version>
+        <jakarta-annotation2-api-version>2.1.1</jakarta-annotation2-api-version>
+        <jakarta-servlet5-api-version>5.0.0</jakarta-servlet5-api-version>
+        <jakarta-validation-api-version>3.0.2</jakarta-validation-api-version>
+        <jakarta-ws-rs-api-version>3.1.0</jakarta-ws-rs-api-version>
+        <jakarta-xml-bind3-api-version>3.0.1</jakarta-xml-bind3-api-version>
+        <jaxb3-core-version>3.0.2</jaxb3-core-version>
+        <jaxb3-impl-version>3.0.2</jaxb3-impl-version>
+        <jaxb3-osgi-version>3.0.2</jaxb3-osgi-version>
+        <jetty11-version>11.0.21</jetty11-version>
+        <karaf-version>4.4.6</karaf-version>
+        <netty-incubator-transport-classes-io_uring-version>0.0.25.Final</netty-incubator-transport-classes-io_uring-version>
+        <osgi-cmpn-version>7.0.0</osgi-cmpn-version>
+        <osgi-resource-locator-version>2.5.0-b42</osgi-resource-locator-version>
+        <osgi-service-event-version>1.4.1</osgi-service-event-version>
+        <osgi-service-component-version>1.5.1</osgi-service-component-version>
+        <osgi-version>8.0.0</osgi-version>
+        <servicemix-specs-version>10</servicemix-specs-version>
+        <slf4j-version>2.0.13</slf4j-version>
+        <spring-amqp-version>3.1.5</spring-amqp-version>
+
+        <!-- Plugin versions -->
         <maven-shade-plugin-version>3.6.0</maven-shade-plugin-version>
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
         <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
-        <harmcrest.version>1.3_1</harmcrest.version>
-        <geronimo-atinject.version>1.2</geronimo-atinject.version>
     </properties>
 
     <dependencyManagement>
@@ -568,63 +586,63 @@
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>osgi.core</artifactId>
-                <version>${osgi.version}</version>
+                <version>${osgi-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>osgi.cmpn</artifactId>
-                <version>${osgi.cmpn.version}</version>
+                <version>${osgi-cmpn-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.service.event</artifactId>
-                <version>${osgi.service.event.version}</version>
+                <version>${osgi-service-event-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.service.component</artifactId>
-                <version>${osgi.service.component.version}</version>
+                <version>${osgi-service-component-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
                 <artifactId>org.osgi.service.component.annotations</artifactId>
-                <version>${osgi.service.component.version}</version>
+                <version>${osgi-service-component-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.karaf.shell</groupId>
                 <artifactId>org.apache.karaf.shell.core</artifactId>
-                <version>${karaf.version}</version>
+                <version>${karaf-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.aries.blueprint</groupId>
                 <artifactId>org.apache.aries.blueprint.core</artifactId>
-                <version>${aries.version}</version>
+                <version>${aries-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.aries</groupId>
                 <artifactId>org.apache.aries.util</artifactId>
-                <version>${aries.util.version}</version>
+                <version>${aries-util-version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.xml.ws</groupId>
                 <artifactId>jakarta.xml.ws-api</artifactId>
-                <version>${jakarta.xml.ws.version}</version>
+                <version>${jakarta-xml-ws-api-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
+                <version>${slf4j-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.servicemix.bundles</groupId>
                 <artifactId>org.apache.servicemix.bundles.hamcrest</artifactId>
-                <version>${harmcrest.version}</version>
+                <version>${harmcrest-version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.geronimo.specs</groupId>
                 <artifactId>geronimo-atinject_1.0_spec</artifactId>
-                <version>${geronimo-atinject.version}</version>
+                <version>${geronimo-atinject-version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -650,8 +668,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
+                    <source>${jdk-version}</source>
+                    <target>${jdk-version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -664,7 +682,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>${camel.osgi.export}</Export-Package>
-                        <Import-Package>${camel.osgi.camel.import}${camel.osgi.import}</Import-Package>
+                        <Import-Package>${camel-osgi-camel-import}${camel.osgi.import}</Import-Package>
                         <Private-Package>${camel.osgi.private}</Private-Package>
                         <DynamicImport-Package>${camel.osgi.dynamicimport.pkg}</DynamicImport-Package>
                         <Embed-Dependency>${camel.osgi.embed.dependency}</Embed-Dependency>

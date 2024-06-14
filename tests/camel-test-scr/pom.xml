@@ -52,7 +52,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-engine</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
@@ -81,10 +81,10 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.camel.karaf.test;version=${camel.version}
+                            org.apache.camel.karaf.test;version=${camel-version}
                         </Export-Package>
                         <Import-Package>
-                            org.apache.camel*;${camel.osgi.import.camel.version},
+                            org.apache.camel*;${camel-osgi-import-camel-version},
                             *
                         </Import-Package>
                     </instructions>

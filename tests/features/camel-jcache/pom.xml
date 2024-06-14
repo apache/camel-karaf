@@ -34,12 +34,12 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jcache</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-hazelcast</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <optional>true</optional>
         </dependency>
     </dependencies>

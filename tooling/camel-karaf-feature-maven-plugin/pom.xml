@@ -29,15 +29,15 @@
     <name>Apache Camel :: Karaf :: Tooling :: Feature Maven Plugin</name>
 
     <properties>
-        <felix.utils.version>1.11.8</felix.utils.version>
-        <maven.version>3.9.7</maven.version>
+        <felix-utils-version>1.11.8</felix-utils-version>
+        <maven-version>3.9.7</maven-version>
     </properties>
     
     <dependencies>
         <dependency>
             <groupId>org.apache.karaf.features</groupId>
             <artifactId>org.apache.karaf.features.core</artifactId>
-            <version>${karaf.version}</version>
+            <version>${karaf-version}</version>
         </dependency>
          
         <dependency>
@@ -47,20 +47,20 @@
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.utils</artifactId>
-            <version>${felix.utils.version}</version>
+            <version>${felix-utils-version}</version>
         </dependency>
 
         <!-- maven plugin -->
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version>${maven.version}</version>
+            <version>${maven-version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>${maven.version}</version>
+            <version>${maven-version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

@@ -34,28 +34,28 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.spring;version=${camel.version},
-            org.apache.camel.component.cxf.spring.jaxrs;version=${camel.version},
-            org.apache.camel.component.cxf.spring.jaxws;version=${camel.version},
-            org.apache.camel.component.cxf.spring.transport;version=${camel.version}
+            org.apache.camel.component.cxf.spring;version=${camel-version},
+            org.apache.camel.component.cxf.spring.jaxrs;version=${camel-version},
+            org.apache.camel.component.cxf.spring.jaxws;version=${camel-version},
+            org.apache.camel.component.cxf.spring.transport;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            org.springframework*;version="${camel.osgi.spring.version}",
-            org.springframework.beans*;version="${camel.osgi.spring.version}",
-            org.springframework.context*;version="${camel.osgi.spring.version}",
-            org.springframework.core*;version="${camel.osgi.spring.version}",
-            org.springframework.util*;version="${camel.osgi.spring.version}",
-            org.springframework.web*;version="${camel.osgi.spring.version}",
-            org.apache.cxf.*;version="${camel.osgi.cxf.version}",
-            jakarta.activation;version="${camel.osgi.jakarta.activation.version}",
-            jakarta.annotation;version="${camel.osgi.jakarta.annotation.version}",
-            jakarta.xml.ws*;version="${camel.osgi.jakarta.xml.ws.version}",
-            jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
-            jakarta.validation*;resolution:=optional;version="${camel.validation.api.package.version}",
-            jakarta.jws*;version="${camel.osgi.jakarta.jwsapi.version}",
-            jakarta.ws.rs*;version="${camel.osgi.jakarta.ws.rs.version}",
-            jakarta.xml.soap*;version="${camel.osgi.saaj.version}",
-            jakarta.servlet*;version="${camel.osgi.jakarta.servlet.version}",
+            org.springframework*;version="${camel-osgi-spring-version}",
+            org.springframework.beans*;version="${camel-osgi-spring-version}",
+            org.springframework.context*;version="${camel-osgi-spring-version}",
+            org.springframework.core*;version="${camel-osgi-spring-version}",
+            org.springframework.util*;version="${camel-osgi-spring-version}",
+            org.springframework.web*;version="${camel-osgi-spring-version}",
+            org.apache.cxf.*;version="${camel-osgi-cxf-version}",
+            jakarta.activation;version="${camel-osgi-jakarta-activation-version}",
+            jakarta.annotation;version="${camel-osgi-jakarta-annotation-version}",
+            jakarta.xml.ws*;version="${camel-osgi-jakarta-xml-ws-version}",
+            jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
+            jakarta.validation*;resolution:=optional;version="${camel-osgi-jakarta-validation-version}",
+            jakarta.jws*;version="${camel-osgi-jakarta-jws-version}",
+            jakarta.ws.rs*;version="${camel-osgi-jakarta-ws-rs-version}",
+            jakarta.xml.soap*;version="${camel-osgi-saaj-version}",
+            jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
             javax.xml*,
         </camel.osgi.import>
     </properties>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-spring-common</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -75,7 +75,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-spring-rest</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -86,7 +86,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-spring-soap</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-spring-transport</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>

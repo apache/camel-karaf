@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.karaf.features.internal.model.Bundle;
 import org.apache.karaf.features.internal.model.Feature;
@@ -238,7 +237,7 @@ public class AutoDetectVersionMojo extends AbstractFeaturesMojo {
                     .getArtifactResults()
                     .stream()
                     .map(ArtifactResult::getArtifact)
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             getLog().warn("Dependencies of the artifact %s could not be resolved: %s".formatted(artifactId, e.getMessage()));
             if (getLog().isDebugEnabled()) {
