@@ -36,7 +36,7 @@ public class CamelSaxonRouteSupplier extends AbstractCamelSingleFeatureResultMoc
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.log("calling mail endpoint")
+        producerRoute.log("calling xquery endpoint")
                 .setBody(builder.constant("<person><city>London</city></person>"))
                 .choice()
                 .when().xpath("person/city = 'London'")
