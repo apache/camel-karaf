@@ -34,7 +34,6 @@ import org.testcontainers.utility.DockerImageName;
 @ExamReactorStrategy(PerClass.class)
 public class CamelKafkaITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
-
     @Override
     public void configureMock(MockEndpoint mock) {
         mock.expectedBodiesReceived("OK");
