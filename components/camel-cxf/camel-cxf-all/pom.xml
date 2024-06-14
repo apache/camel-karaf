@@ -35,16 +35,16 @@
     <properties>
         <camel.osgi.export>
             org.apache.camel.component.cxf.osgi;version=${project.version},
-            org.apache.camel.component.cxf.common;version=${camel.version},
-            org.apache.camel.component.cxf.common.header;version=${camel.version},
-            org.apache.camel.component.cxf.common.message;version=${camel.version},
-            org.apache.camel.component.cxf.converter;version=${camel.version},
-            org.apache.camel.component.cxf.util;version=${camel.version},
+            org.apache.camel.component.cxf.common;version=${camel-version},
+            org.apache.camel.component.cxf.common.header;version=${camel-version},
+            org.apache.camel.component.cxf.common.message;version=${camel-version},
+            org.apache.camel.component.cxf.converter;version=${camel-version},
+            org.apache.camel.component.cxf.util;version=${camel-version},
             org.apache.camel.component.cxf.bus.blueprint;version=${project.version},
             org.apache.camel.component.cxf.bus.osgi;version=${project.version},
             org.apache.camel.component.cxf.configuration.blueprint;version=${project.version},
             org.apache.camel.component.cxf.helpers;version=${project.version},
-            org.apache.camel.component.cxf.jaxrs;version="${camel.version}",
+            org.apache.camel.component.cxf.jaxrs;version="${camel-version}",
             org.apache.camel.component.cxf.ext.logging.osgi;version=${project.version},
             org.apache.camel.component.cxf.jaxrs.blueprint;version=${project.version},
             org.apache.camel.component.cxf.jaxws.blueprint;version=${project.version},
@@ -57,20 +57,20 @@
             org.apache.camel.component.cxf.transport.http_jetty.osgi;version=${project.version},
             org.apache.camel.component.cxf.ws.addressing.blueprint;version=${project.version},
             org.apache.camel.component.cxf.ws.policy.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.feature;version=${camel.version},
-            org.apache.camel.component.cxf.interceptors;version=${camel.version},
-            org.apache.camel.component.cxf.jaxws;version=${camel.version},
-            org.apache.camel.component.cxf.transport;version=${camel.version},
-            org.apache.camel.component.cxf.transport.header;version=${camel.version},
-            org.apache.camel.component.cxf.transport.message;version=${camel.version},
+            org.apache.camel.component.cxf.feature;version=${camel-version},
+            org.apache.camel.component.cxf.interceptors;version=${camel-version},
+            org.apache.camel.component.cxf.jaxws;version=${camel-version},
+            org.apache.camel.component.cxf.transport;version=${camel-version},
+            org.apache.camel.component.cxf.transport.header;version=${camel-version},
+            org.apache.camel.component.cxf.transport.message;version=${camel-version},
             org.apache.camel.component.cxf.binding.soap.blueprint;version=${project.version},
             org.apache.cxf.*;version=${cxf-version},
         </camel.osgi.export>
         <camel.osgi.activator>org.apache.camel.component.cxf.osgi.MainActivator</camel.osgi.activator>
-        <camel.osgi.camel.import>
-            org.apache.camel.component.cxf.spring.*;resolution:=optional;${camel.osgi.import.camel.version},
-            org.apache.camel*;${camel.osgi.import.camel.version},
-        </camel.osgi.camel.import>
+        <camel-osgi-camel-import>
+            org.apache.camel.component.cxf.spring.*;resolution:=optional;${camel-osgi-import-camel-version},
+            org.apache.camel*;${camel-osgi-import-camel-version},
+        </camel-osgi-camel-import>
         <camel.osgi.import>
             com.sun.xml.messaging.saaj.soap;resolution:=optional,
             com.sun.xml.internal.messaging.saaj.soap;resolution:=optional,
@@ -80,26 +80,26 @@
             com.sun.tools*;resolution:=optional,
             com.sun.xml*;resolution:=optional,
             com.sun.codemodel.writer;resolution:=optional,
-            org.slf4j*;resolution:=optional;version="${camel.osgi.slf4j.version}",
-            net.sf.cglib*;resolution:=optional;version="${camel.cglib.osgi.version}",
-            org.springframework.aop*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.springframework.beans*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.springframework.context*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.springframework.core*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.springframework.util*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.springframework.web*;resolution:=optional;version="${camel.osgi.spring.version}",
-            org.objectweb.asm*;resolution:=optional;version="${camel.osgi.asm.version}",
-            jakarta.activation;version="${camel.osgi.jakarta.activation.version}",
-            jakarta.annotation;version="${camel.osgi.jakarta.annotation.version}",
-            jakarta.xml.ws*;version="${camel.osgi.jakarta.xml.ws.version}",
-            jakarta.xml.bind*;version="${camel.osgi.jakarta.bind.version}",
-            jakarta.validation*;resolution:=optional;version="${camel.validation.api.package.version}",
-            jakarta.jws*;version="${camel.osgi.jakarta.jwsapi.version}",
-            jakarta.ws.rs*;version="${camel.osgi.jakarta.ws.rs.version}",
-            jakarta.xml.soap*;version="${camel.osgi.saaj.version}",
-            jakarta.servlet*;version="${camel.osgi.jakarta.servlet.version}",
-            org.eclipse.jetty*;version="${camel.jetty.osgi.version}",
-            org.glassfish.jaxb.runtime.v2;version="${camel.osgi.jakarta.bind.version}",
+            org.slf4j*;resolution:=optional;version="${camel-osgi-slf4j-version}",
+            net.sf.cglib*;resolution:=optional;version="${camel-osgi-cglib-version}",
+            org.springframework.aop*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.beans*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.context*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.core*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.util*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.web*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.objectweb.asm*;resolution:=optional;version="${camel-osgi-asm-version}",
+            jakarta.activation;version="${camel-osgi-jakarta-activation-version}",
+            jakarta.annotation;version="${camel-osgi-jakarta-annotation-version}",
+            jakarta.xml.ws*;version="${camel-osgi-jakarta-xml-ws-version}",
+            jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
+            jakarta.validation*;resolution:=optional;version="${camel-osgi-jakarta-validation-version}",
+            jakarta.jws*;version="${camel-osgi-jakarta-jws-version}",
+            jakarta.ws.rs*;version="${camel-osgi-jakarta-ws-rs-version}",
+            jakarta.xml.soap*;version="${camel-osgi-saaj-version}",
+            jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
+            org.eclipse.jetty*;version="${camel-osgi-jetty-version}",
+            org.glassfish.jaxb.runtime.v2;version="${camel-osgi-jakarta-bind-version}",
             javax.cache*;resolution:=optional,
             org.apache.cxf.tools*;resolution:=optional,
             org.apache.xml.resolver*;resolution:=optional,
@@ -152,7 +152,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-common</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -174,7 +174,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-rest</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -339,7 +339,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-soap</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -350,7 +350,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-transport</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>

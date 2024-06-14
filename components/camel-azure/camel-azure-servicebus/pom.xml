@@ -34,12 +34,12 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
+            org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
-        <camel.osgi.camel.import>
-            org.apache.camel.component.cloudevents*;${camel.osgi.import.camel.version};resolution:=optional,
-            org.apache.camel*;${camel.osgi.import.camel.version},
-        </camel.osgi.camel.import>
+        <camel-osgi-camel-import>
+            org.apache.camel.component.cloudevents*;${camel-osgi-import-camel-version};resolution:=optional,
+            org.apache.camel*;${camel-osgi-import-camel-version},
+        </camel-osgi-camel-import>
         <camel.osgi.import>
             *
         </camel.osgi.import>
@@ -49,7 +49,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-azure-servicebus</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
