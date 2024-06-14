@@ -31,7 +31,7 @@ public class CamelSaxonRouteSupplier extends AbstractCamelSingleFeatureResultMoc
 
     @Override
     protected boolean consumerEnabled() {
-        return  false;
+        return false;
     }
 
     @Override
