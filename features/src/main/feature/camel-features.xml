@@ -2576,6 +2576,7 @@
     <feature name='camel-xslt-saxon' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:net.sf.saxon/Saxon-HE/${saxon-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.xmlresolver/xmlresolver/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-xslt-saxon/${project.version}</bundle>
     </feature>
     <feature name='camel-yaml-dsl' version='${project.version}' start-level='50'>
