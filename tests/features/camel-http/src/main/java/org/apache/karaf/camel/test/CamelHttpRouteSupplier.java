@@ -40,7 +40,7 @@ public class CamelHttpRouteSupplier extends AbstractCamelSingleFeatureResultMock
         configureConsumer(
             producerRoute.log("calling local http server")
                     .setHeader("CamelHttpMethod", constant("GET"))
-                    .toF("http://localhost:%s",System.getProperty("http.port"))
+                    .toF("http://localhost:%s", System.getProperty("http.port"))
                     .log("got ${body}"));
     }
 }
