@@ -30,7 +30,6 @@
 
     <properties>
         <felix-utils-version>1.11.8</felix-utils-version>
-        <maven-version>3.9.7</maven-version>
     </properties>
     
     <dependencies>
