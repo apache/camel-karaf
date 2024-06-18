@@ -87,7 +87,7 @@ public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRout
 
             serverFactory.addListener("default", listener);
 
-            return new FtpServerResource(serverFactory.createServer(),ftpPort);
+            return new FtpServerResource(serverFactory.createServer(), ftpPort);
 
         }
     }
