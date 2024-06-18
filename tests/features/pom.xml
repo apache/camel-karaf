@@ -46,6 +46,7 @@
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
         <module>camel-hazelcast</module>
+        <module>camel-http</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>
         <module>camel-kafka</module>
