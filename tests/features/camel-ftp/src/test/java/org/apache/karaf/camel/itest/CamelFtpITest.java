@@ -14,6 +14,7 @@
 package org.apache.karaf.camel.itest;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.ftpserver.ConnectionConfigFactory;
@@ -28,9 +29,9 @@ import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.WritePermission;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.AvailablePortProvider;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
-import org.apache.karaf.camel.itests.Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -41,6 +42,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 @ExamReactorStrategy(PerClass.class)
 public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
+    public static final String FTP_PORT_PROPERTY = "ftp.port";
 
     @Override
     public void configureMock(MockEndpoint mock) {
@@ -54,9 +56,11 @@ public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRout
 
     public static final class ExternalResourceProviders {
 
-        public static FtpServerResource createFtpServer() throws FtpException {
+        private static final AvailablePortProvider portProvider = new AvailablePortProvider(List.of(FTP_PORT_PROPERTY));
 
-            final int ftpPort = Utils.getNextAvailablePort();
+        public static FtpServerResource createFtpServer() throws FtpException {
+            portProvider.before();
+            final int ftpPort = Integer.parseInt(portProvider.properties().get(FTP_PORT_PROPERTY));
             NativeFileSystemFactory fsf = new NativeFileSystemFactory();
             fsf.setCreateHome(true);
 
@@ -88,7 +92,6 @@ public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRout
             serverFactory.addListener("default", listener);
 
             return new FtpServerResource(serverFactory.createServer(), ftpPort);
-
         }
     }
 }

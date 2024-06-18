@@ -1,5 +1,7 @@
 package org.apache.karaf.camel.itest;
 
+import static org.apache.karaf.camel.itest.CamelFtpITest.FTP_PORT_PROPERTY;
+
 import java.util.Map;
 
 import org.apache.ftpserver.FtpServer;
@@ -32,6 +34,6 @@ public class FtpServerResource implements ExternalResource {
 
     @Override
     public Map<String, String> properties() {
-        return Map.of("ftp.port", Integer.toString(port));
+        return Map.of(FTP_PORT_PROPERTY, Integer.toString(port));
     }
 }
