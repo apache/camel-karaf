@@ -32,6 +32,6 @@ public class FtpServerResource implements ExternalResource {
 
     @Override
     public Map<String, String> properties() {
-        return Map.of("ftp.port",Integer.toString(port));
+        return Map.of("ftp.port", Integer.toString(port));
     }
 }
