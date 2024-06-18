@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>camel-ftp-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Features :: Mail</name>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: FTP</name>
 
     <dependencies>
         <dependency>
