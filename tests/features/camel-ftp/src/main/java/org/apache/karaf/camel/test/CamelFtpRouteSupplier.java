@@ -36,15 +36,15 @@ public class CamelFtpRouteSupplier extends AbstractCamelSingleFeatureResultMockB
         //uploads a file "test.txt" containing "OK"
         producerRoute.log("storing file in ftp")
                 .setBody(builder.constant("OK"))
-                .toF("ftp://localhost:%s/test.txt?username=scott&password=tiger&binary=true&passiveMode=true&delay=1000",
-                        System.getProperty("ftp.port"));
+                .toF("ftp://localhost:%s/test.txt?username=%s&password=%s&binary=true&passiveMode=true",
+                        System.getProperty("ftp.port"),System.getProperty("ftp.username"),System.getProperty("ftp.password"));
     }
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         //download the file "test.txt" and get the content
-        return builder -> builder.fromF("ftp://localhost:%s/test.txt?username=scott&password=tiger&binary=true&passiveMode=true&delay=1000",
-                        System.getProperty("ftp.port"))
+        return builder -> builder.fromF("ftp://localhost:%s/test.txt?username=%s&password=%s&binary=true&passiveMode=true&delay=1000",
+                    System.getProperty("ftp.port"),System.getProperty("ftp.username"),System.getProperty("ftp.password"))
                 .convertBodyTo(String.class);
     }
 }
