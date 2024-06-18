@@ -43,15 +43,16 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
 
     private static final String TEST_BLOB_CONTAINER_NAME = "test-container";
     private static final String TEST_BLOB_NAME = "hello.txt";
+    private static final String TEST_ACCOUNT = System.getProperty("azure.accountName");
 
     @Override
     public void configure(CamelContext camelContext) {
-        final String accountName = System.getProperty("azure.accountName");
+
         final String host = System.getProperty("azure.host");
         final String port = System.getProperty("azure.port");
         final StorageSharedKeyCredential credential =
-                new StorageSharedKeyCredential(accountName, System.getProperty("azure.accountKey"));
-        final String endpoint = "http://" + host + ":" + port + "/" + accountName;
+                new StorageSharedKeyCredential(TEST_ACCOUNT, System.getProperty("azure.accountKey"));
+        final String endpoint = "http://" + host + ":" + port + "/" + TEST_ACCOUNT;
 
         final BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().endpoint(endpoint)
                 .credential(credential)
@@ -60,7 +61,7 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
 
         final BlobConfiguration configuration = new BlobConfiguration();
         configuration.setServiceClient(blobServiceClient);
-        configuration.setAccountName(accountName);
+        configuration.setAccountName(TEST_ACCOUNT);
         configuration.setCredentials(credential);
         configuration.setCredentialType(SHARED_KEY_CREDENTIAL);
 
@@ -72,7 +73,8 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
-        return builder -> builder.from("azure-storage-blob://devstoreaccount1/" + TEST_BLOB_CONTAINER_NAME + "?blobName=" + TEST_BLOB_NAME)
+        return builder -> builder.fromF("azure-storage-blob://%s/%s?blobName=%s", TEST_ACCOUNT,
+                        TEST_BLOB_CONTAINER_NAME, TEST_BLOB_NAME)
                 .setHeader(BLOB_CONTAINER_NAME, builder.constant(TEST_BLOB_CONTAINER_NAME))
                 .setHeader(BLOB_NAME, builder.constant(TEST_BLOB_NAME))
                 .log("Downloaded the blob with content: ${body}")
@@ -83,12 +85,12 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.setHeader(BLOB_OPERATION, builder.constant(BlobOperationsDefinition.createBlobContainer.name()))
                 .setHeader(BLOB_CONTAINER_NAME, builder.constant(TEST_BLOB_CONTAINER_NAME))
-                .toF("azure-storage-blob://devstoreaccount1")
+                .toF("azure-storage-blob://%s", TEST_ACCOUNT)
                 .log("Created container successful: ${body}")
                 .setHeader(BLOB_OPERATION, builder.constant(BlobOperationsDefinition.uploadBlockBlob.name()))
                 .setHeader(BLOB_NAME, builder.constant(TEST_BLOB_NAME))
                 .setBody(builder.constant("This is the blob!"))
-                .toF("azure-storage-blob://devstoreaccount1")
+                .toF("azure-storage-blob://%s", TEST_ACCOUNT)
                 .log("Uploaded blob successful: ${body}");
     }
 }

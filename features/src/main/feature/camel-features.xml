@@ -563,7 +563,6 @@
         <bundle>mvn:org.apache.camel.karaf/camel-azure-servicebus/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-blob' version='${project.version}' start-level='50'>
-        <feature prerequisite="true">spifly</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-storage</feature>
         <feature version='[4.1,5)'>netty</feature>
