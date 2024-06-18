@@ -56,42 +56,8 @@ public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRout
 
     public static final class ExternalResourceProviders {
 
-        private static final AvailablePortProvider portProvider = new AvailablePortProvider(List.of(FTP_PORT_PROPERTY));
-
         public static FtpServerResource createFtpServer() throws FtpException {
-            portProvider.before();
-            final int ftpPort = Integer.parseInt(portProvider.properties().get(FTP_PORT_PROPERTY));
-            NativeFileSystemFactory fsf = new NativeFileSystemFactory();
-            fsf.setCreateHome(true);
-
-            PropertiesUserManagerFactory pumf = new PropertiesUserManagerFactory();
-            pumf.setAdminName("admin");
-            pumf.setPasswordEncryptor(new ClearTextPasswordEncryptor());
-            pumf.setFile(null);
-
-            UserManager userMgr = pumf.createUserManager();
-
-            BaseUser user = new BaseUser();
-            user.setName("scott");
-            user.setPassword("tiger");
-            user.setHomeDirectory(System.getProperty("project.target"));
-            user.setAuthorities(Collections.singletonList(new WritePermission()));
-            userMgr.save(user);
-
-            FtpServerFactory serverFactory = new FtpServerFactory();
-            serverFactory.setUserManager(userMgr);
-            serverFactory.setFileSystem(fsf);
-            serverFactory.setConnectionConfig(new ConnectionConfigFactory().createConnectionConfig());
-
-            ListenerFactory factory = new ListenerFactory();
-            factory.setPort(ftpPort);
-            factory.setServerAddress("127.0.0.1");
-
-            final Listener listener = factory.createListener();
-
-            serverFactory.addListener("default", listener);
-
-            return new FtpServerResource(serverFactory.createServer(), ftpPort);
+            return new FtpServerResource();
         }
     }
 }
