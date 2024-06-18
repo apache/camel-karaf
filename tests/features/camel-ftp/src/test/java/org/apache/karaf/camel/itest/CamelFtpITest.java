@@ -56,7 +56,7 @@ public class CamelFtpITest extends AbstractCamelSingleFeatureResultMockBasedRout
 
         public static FtpServerResource createFtpServer() throws FtpException {
 
-            final int ftpPort = Utils.getNextAvailablePort(null);
+            final int ftpPort = Utils.getNextAvailablePort();
             NativeFileSystemFactory fsf = new NativeFileSystemFactory();
             fsf.setCreateHome(true);
 
