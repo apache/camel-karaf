@@ -48,9 +48,6 @@
         <route id="activeMqConsumerRoute">
             <from uri="jms:queue:jmsQueueName"/>
             <log message="Message received from JMS: ${body}"/>
-            <setBody>
-                <constant>OK</constant>
-            </setBody>
             <to uri="mock:camel-jms-test"/>
         </route>
     </camelContext>

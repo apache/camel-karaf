@@ -35,7 +35,7 @@ public class CamelJmsITest extends AbstractCamelSingleFeatureResultMockBasedRout
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived("OK");
+        mock.expectedBodiesReceived("Hello Camel");
     }
 
     @Test
