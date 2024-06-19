@@ -44,7 +44,7 @@ public class CamelFtpRouteSupplier extends AbstractCamelSingleFeatureResultMockB
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         //download the file "test.txt" and get the content
         return builder -> builder.fromF("ftp://localhost:%s/test.txt?username=%s&password=%s&binary=true&passiveMode=true&delay=1000",
-                    System.getProperty("ftp.port"),System.getProperty("ftp.username"),System.getProperty("ftp.password"))
+                    System.getProperty("ftp.port"), System.getProperty("ftp.username"), System.getProperty("ftp.password"))
                 .convertBodyTo(String.class);
     }
 }
