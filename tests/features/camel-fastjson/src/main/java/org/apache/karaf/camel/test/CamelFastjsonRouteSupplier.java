@@ -38,7 +38,7 @@ public class CamelFastjsonRouteSupplier extends AbstractCamelSingleFeatureResult
         return builder ->
                 builder.from("direct:consumejson")
                         .log("received message ${body}")
-                        .unmarshal().json(JsonLibrary.Fastjson,Map.class)
+                        .unmarshal().json(JsonLibrary.Fastjson, Map.class)
                         .log("unmarshalled ${body}")
                         .process(ex -> {
                             Map<?, ?> data = ex.getIn().getBody(Map.class);
