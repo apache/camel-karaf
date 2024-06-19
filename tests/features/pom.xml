@@ -42,6 +42,7 @@
         <module>camel-aws2-ses</module>
         <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>
+        <module>camel-azure-storage-blob</module>
         <module>camel-core</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
