@@ -13,6 +13,8 @@
  */
 package org.apache.karaf.camel.itest;
 
+import static org.apache.karaf.camel.test.CamelAzureStorageBlobRouteSupplier.TEST_BLOB_CONTENT;
+
 import org.apache.camel.component.mock.MockEndpoint;
 
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
@@ -35,7 +37,7 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
 
     @Override
     public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived("OK");
+        mock.expectedBodiesReceived(TEST_BLOB_CONTENT);
     }
 
     @Test

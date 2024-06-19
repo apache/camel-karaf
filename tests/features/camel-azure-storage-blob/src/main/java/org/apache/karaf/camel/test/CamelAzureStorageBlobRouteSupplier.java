@@ -44,6 +44,7 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
     private static final String TEST_BLOB_CONTAINER_NAME = "test-container";
     private static final String TEST_BLOB_NAME = "hello.txt";
     private static final String TEST_ACCOUNT = System.getProperty("azure.accountName");
+    public static final String TEST_BLOB_CONTENT = "This is the blob!";
 
     @Override
     public void configure(CamelContext camelContext) {
@@ -77,8 +78,7 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
                         TEST_BLOB_CONTAINER_NAME, TEST_BLOB_NAME)
                 .setHeader(BLOB_CONTAINER_NAME, builder.constant(TEST_BLOB_CONTAINER_NAME))
                 .setHeader(BLOB_NAME, builder.constant(TEST_BLOB_NAME))
-                .log("Downloaded the blob with content: ${body}")
-                .setBody(builder.constant("OK"));
+                .log("Downloaded the blob with content: ${body}");
     }
 
     @Override
@@ -89,7 +89,7 @@ public class CamelAzureStorageBlobRouteSupplier extends AbstractCamelSingleFeatu
                 .log("Created container successful: ${body}")
                 .setHeader(BLOB_OPERATION, builder.constant(BlobOperationsDefinition.uploadBlockBlob.name()))
                 .setHeader(BLOB_NAME, builder.constant(TEST_BLOB_NAME))
-                .setBody(builder.constant("This is the blob!"))
+                .setBody(builder.constant(TEST_BLOB_CONTENT))
                 .toF("azure-storage-blob://%s", TEST_ACCOUNT)
                 .log("Uploaded blob successful: ${body}");
     }
