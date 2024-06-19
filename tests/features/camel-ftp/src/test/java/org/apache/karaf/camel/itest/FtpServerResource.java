@@ -69,7 +69,7 @@ public class FtpServerResource extends ExternalResourceWithPrerequisite {
             user.setAuthorities(Collections.singletonList(new WritePermission()));
             userMgr.save(user);
 
-            properties().put("ftp.username", USER_NAME);
+            setProperty("ftp.username", USER_NAME);
             properties().put("ftp.password", PASSWORD);
 
             FtpServerFactory serverFactory = new FtpServerFactory();
