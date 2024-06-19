@@ -37,7 +37,7 @@ public class CamelFtpRouteSupplier extends AbstractCamelSingleFeatureResultMockB
         producerRoute.log("storing file in ftp")
                 .setBody(builder.constant("OK"))
                 .toF("ftp://localhost:%s/test.txt?username=%s&password=%s&binary=true&passiveMode=true",
-                        System.getProperty("ftp.port"),System.getProperty("ftp.username"),System.getProperty("ftp.password"));
+                        System.getProperty("ftp.port"), System.getProperty("ftp.username"), System.getProperty("ftp.password"));
     }
 
     @Override
