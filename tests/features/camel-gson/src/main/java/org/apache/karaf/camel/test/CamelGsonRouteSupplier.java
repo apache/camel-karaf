@@ -65,7 +65,7 @@ public class CamelGsonRouteSupplier extends AbstractCamelSingleFeatureResultMock
                 builder.from("direct:consumejson")
                         .log("received message ${body}")
                         .unmarshal().json(JsonLibrary.Gson, MyData.class)
-                        .process( ex -> {
+                        .process(ex -> {
                             MyData data = ex.getIn().getBody(MyData.class);
                             ex.getIn().setBody(data.getName());
                         });
