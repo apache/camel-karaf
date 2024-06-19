@@ -47,6 +47,7 @@
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
         <module>camel-ftp</module>
+        <module>camel-gson</module>
         <module>camel-hazelcast</module>
         <module>camel-http</module>
         <module>camel-jcache</module>
