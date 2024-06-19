@@ -73,7 +73,7 @@ public class CamelGsonRouteSupplier extends AbstractCamelSingleFeatureResultMock
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.process( ex -> ex.getIn().setBody(new MyData("OK",3)))
+        producerRoute.process( ex -> ex.getIn().setBody(new MyData("OK", 3)))
                 .marshal().json(JsonLibrary.Gson)
                 .log("serialized json ${body}")
                 .to("direct:consumejson");
