@@ -50,6 +50,7 @@
         <module>camel-http</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>
+        <module>camel-jms</module>
         <module>camel-kafka</module>
         <module>camel-netty-http</module>
         <module>camel-mail</module>
