@@ -37,44 +37,8 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !com.arangodb*,
-            !com.fasterxml.jackson*,
-            !io.netty*,
-            !com.aayushatharva.brotli4j*,
-            !com.github.luben*,
-            !com.google.protobuf*,
-            !com.jcraft.jzlib,
-            !com.ning.compress*,
-            !io.vertx*,
-            !lzma.sdk*,
-            !net.jpountz*,
-            !org.bouncycastle*,
-            !org.conscrypt*,
-            !org.eclipse.jetty*,
-            !org.jboss.marshalling*,
-            com.oracle*;resolution:=optional,
-            java.nio*;resolution:=optional,
-            reactor*;resolution:=optional,
-            sun*;resolution:=optional,
             *
         </camel.osgi.import>
-        <camel.osgi.private>
-            com.arangodb*,
-            com.fasterxml.jackson*,
-            io.netty*,
-            com.aayushatharva.brotli4j*,
-            com.github.luben*,
-            com.google.protobuf*,
-            com.jcraft.jzlib,
-            com.ning.compress*,
-            io.vertx*,
-            lzma.sdk*,
-            net.jpountz*,
-            org.bouncycastle*,
-            org.conscrypt*,
-            org.eclipse.jetty*,
-            org.jboss.marshalling*
-        </camel.osgi.private>
     </properties>
 
     <dependencies>

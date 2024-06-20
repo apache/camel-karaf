@@ -92,8 +92,14 @@
 
     <feature name="jackson" version="${jackson2-version}">
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}$overwrite=merge</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
+    </feature>
+
+    <feature name="jackson" version="2.16.2">
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/2.16.2</bundle>
+        <bundle dependency='true'>wrap:mvn:com.fasterxml.jackson.core/jackson-core/2.16.2$overwrite=merge</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/2.16.2</bundle>
     </feature>
 
     <feature name="jetty" version="${jetty11-version}">
@@ -315,6 +321,20 @@
 
     <feature name='camel-arangodb' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='[2.16,2.17)'>jackson</feature>
+        <feature version='[4.1,5)'>netty</feature>
+        <bundle>wrap:mvn:com.arangodb/core/${auto-detect-version}$${spi-consumer}</bundle>
+        <bundle>wrap:mvn:com.arangodb/http-protocol/${auto-detect-version}</bundle>
+        <bundle>wrap:mvn:com.arangodb/jackson-serde-json/${auto-detect-version}$${spi-consumer}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-core/${vertx-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-web-client/${vertx-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-web-common/${vertx-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-uri-template/${vertx-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-auth-common/${vertx-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-arangodb/${project.version}</bundle>
     </feature>
     <feature name='camel-as2' version='${project.version}' start-level='50'>
