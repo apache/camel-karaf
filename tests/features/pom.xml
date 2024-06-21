@@ -63,6 +63,7 @@
         <module>camel-quartz</module>
         <module>camel-saxon</module>
         <module>camel-spring-rabbitmq</module>
+        <module>camel-velocity</module>
         <module>camel-weather</module>
         <module>camel-xslt-saxon</module>
     </modules>
