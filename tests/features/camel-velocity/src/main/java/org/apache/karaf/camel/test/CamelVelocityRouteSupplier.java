@@ -34,7 +34,7 @@ public class CamelVelocityRouteSupplier extends AbstractCamelSingleFeatureResult
 
     @Override
     protected boolean consumerEnabled() {
-        return  false;
+        return false;
     }
 
     @Override
