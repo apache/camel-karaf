@@ -33,6 +33,7 @@
     <name>Apache Camel :: Karaf :: Components :: AWS :: Parent</name>
 
     <modules>
+        <module>camel-aws-bedrock</module>
         <module>camel-aws-cloudtrail</module>
         <module>camel-aws-config</module>
         <module>camel-aws-secrets-manager</module>
