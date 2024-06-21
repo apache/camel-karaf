@@ -48,6 +48,7 @@
         <module>camel-elasticsearch</module>
         <module>camel-fastjson</module>
         <module>camel-ftp</module>
+        <module>camel-google-pubsub</module>
         <module>camel-gson</module>
         <module>camel-hazelcast</module>
         <module>camel-http</module>
