@@ -42,7 +42,7 @@ public class CamelVelocityRouteSupplier extends AbstractCamelSingleFeatureResult
         producerRoute.log("calling velocity endpoint")
                 .setHeader("greeting", constant("Hello"))
                 .setBody(builder.constant("World"))
-                .to("velocity:file://%s/classes/greeting.vm".formatted(System.getProperty("project.target")))
+                .toF("velocity:file://%s/classes/greeting.vm, System.getProperty("project.target"))
                 .log("${body}")
                 .toF("mock:%s", getResultMockName());
 
