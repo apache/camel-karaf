@@ -92,14 +92,16 @@
 
     <feature name="jackson" version="${jackson2-version}">
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson2-version}</bundle>
+        <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
         <bundle dependency='true'>wrap:mvn:com.fasterxml.jackson.core/jackson-core/${jackson2-version}$overwrite=merge</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson2-version}</bundle>
     </feature>
 
-    <feature name="jackson" version="2.16.2">
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/2.16.2</bundle>
-        <bundle dependency='true'>wrap:mvn:com.fasterxml.jackson.core/jackson-core/2.16.2$overwrite=merge</bundle>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/2.16.2</bundle>
+    <feature name="jackson" version="${jackson216-version}">
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson216-version}</bundle>
+        <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
+        <bundle dependency='true'>wrap:mvn:com.fasterxml.jackson.core/jackson-core/${jackson216-version}$overwrite=merge</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson216-version}</bundle>
     </feature>
 
     <feature name="jetty" version="${jetty11-version}">
