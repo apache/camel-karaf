@@ -39,6 +39,7 @@
     <modules>
         <module>camel-activemq</module>
         <module>camel-amqp</module>
+        <module>camel-arangodb</module>
         <module>camel-aws2-ses</module>
         <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>

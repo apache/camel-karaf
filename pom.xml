@@ -555,6 +555,7 @@
         <harmcrest-version>1.3_1</harmcrest-version>
         <httpclient4-version>4.5.14</httpclient4-version>
         <httpcore4-version>4.4.16</httpcore4-version>
+        <jackson216-version>2.16.2</jackson216-version>
         <jakarta-annotation2-api-version>2.1.1</jakarta-annotation2-api-version>
         <jakarta-servlet5-api-version>5.0.0</jakarta-servlet5-api-version>
         <jakarta-validation-api-version>3.0.2</jakarta-validation-api-version>
