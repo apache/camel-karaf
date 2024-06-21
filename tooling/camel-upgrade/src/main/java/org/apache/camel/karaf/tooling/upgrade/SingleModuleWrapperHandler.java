@@ -36,48 +36,21 @@ public class SingleModuleWrapperHandler extends WrapperHandler {
         super(camelKarafComponentRoot, camelComponentRoot, camelVersion);
     }
 
-    public void add(String component) throws IOException {
+    public void add(String originalComponentPath, String component) throws IOException {
         createModuleIfAbsent(component);
-        createSingleModulePom(component);
+        createSingleModulePom(originalComponentPath, component);
         addModuleToParentPom(component);
     }
 
-    private void createSingleModulePom(String component) throws IOException {
+    private void createSingleModulePom(String originalComponentPath, String component) throws IOException {
         Files.writeString(camelKarafComponentRoot.resolve(component).resolve("pom.xml"),
-                getSingleModulePom(component));
+                getSingleModulePom(originalComponentPath, component));
     }
 
-    private String getSingleModulePom(String component) throws IOException {
+    private String getSingleModulePom(String originalComponentPath, String component) throws IOException {
         return SINGLE_MODULE_POM.replace("#{camel-version}", camelVersion)
                 .replace("#{camel-component-id}", component)
-                .replace("#{camel-component-name}", getComponentName(component));
-    }
-
-    private String getComponentName(String component) throws IOException {
-        Path pom = camelComponentRoot.resolve(component).resolve("pom.xml");
-        String result = null;
-        if (Files.exists(pom)) {
-            result = getComponentNameFomPom(pom);
-        }
-        if (result == null) {
-            result = getComponentNameFromId(component);
-        }
-        return result;
-    }
-
-    private static String getComponentNameFomPom(Path pom) throws IOException {
-        try {
-            MavenXpp3Reader reader = new MavenXpp3Reader();
-            Model model = reader.read(new FileReader(pom.toFile()));
-            String name = model.getName();
-            int index = name.lastIndexOf("::");
-            if (index == -1) {
-                return null;
-            }
-            return name.substring(index + 2).trim();
-        } catch (XmlPullParserException e) {
-            throw new RuntimeException(e);
-        }
+                .replace("#{camel-component-name}", getComponentName(originalComponentPath, component));
     }
 
     public void remove(String component) throws IOException {

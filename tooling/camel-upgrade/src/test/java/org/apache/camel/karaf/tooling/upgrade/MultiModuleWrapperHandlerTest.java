@@ -39,13 +39,13 @@ class MultiModuleWrapperHandlerTest {
                 camelKarafComponentRoot,
                 Paths.get("target/test-classes/multi-module-wrapper/camel"),
                 "4.0.0");
-        handler.add("camel-b", "camel-b2");
+        handler.add("camel-f", "camel-b", "camel-b2");
         Path pathRootPom = Paths.get("target/test-classes/multi-module-wrapper/camel-karaf/pom.xml");
         assertEquals(
                 Files.readString(Paths.get("target/test-classes/multi-module-wrapper/camel-karaf/expected-pom.xml")),
                 Files.readString(pathRootPom));
-        handler.add("camel-b", "camel-b1");
-        handler.add("camel-b", "camel-b3");
+        handler.add("camel-b1", "camel-b", "camel-b1");
+        handler.add("camel-b3", "camel-b", "camel-b3");
         Path pathPomB = camelKarafComponentRoot.resolve("camel-b/pom.xml");
         assertTrue(Files.exists(pathPomB));
         assertEquals(
@@ -56,7 +56,11 @@ class MultiModuleWrapperHandlerTest {
         assertEquals(
                 Files.readString(Paths.get("target/test-classes/multi-module-wrapper/camel-karaf/b1-pom-expected.xml")),
                 Files.readString(pathPom));
-        assertTrue(Files.exists(camelKarafComponentRoot.resolve("camel-b/camel-b2/pom.xml")));
+        pathPom = camelKarafComponentRoot.resolve("camel-b/camel-b2/pom.xml");
+        assertTrue(Files.exists(pathPom));
+        assertEquals(
+                Files.readString(Paths.get("target/test-classes/multi-module-wrapper/camel-karaf/b2-pom-expected.xml")),
+                Files.readString(pathPom));
         assertTrue(Files.exists(camelKarafComponentRoot.resolve("camel-b/camel-b3/pom.xml")));
         handler.remove("camel-b", "camel-b1");
         assertFalse(Files.exists(camelKarafComponentRoot.resolve("camel-b/camel-b1")));

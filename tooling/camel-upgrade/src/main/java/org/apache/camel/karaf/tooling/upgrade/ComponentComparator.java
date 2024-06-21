@@ -21,9 +21,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class ComponentComparator {
@@ -37,7 +41,7 @@ public abstract class ComponentComparator {
     }
 
     private static boolean isCamelComponentDirectory(File file) {
-        return file.isDirectory() && file.getName().startsWith("camel-");
+        return file.isDirectory() && file.getName().startsWith("camel-") && new File(file, "pom.xml").exists();
     }
 
     static boolean isCamelSubComponentDirectory(File file) {
@@ -48,55 +52,61 @@ public abstract class ComponentComparator {
                 && !file.getName().endsWith("-api");
     }
 
-    private static List<String> getComponentsInFolder(Path root) throws IOException {
+    private static Map<String, String> getComponentsInFolder(Path root) throws IOException {
         File[] files = root.toFile().listFiles(ComponentComparator::isCamelSubComponentDirectory);
         if (files == null) {
             throw new IOException("Unable to list the camel sub component in %s".formatted(root));
         }
+        String parent = root.getFileName().toString();
         if (files.length == 0) {
-            return List.of(root.getFileName().toString());
+            return Map.of(parent, parent);
         } else if (files.length == 1) {
-            return List.of(files[0].getName().replace("-component", ""));
+            String name = files[0].getName();
+            return Map.of(name.replace("-component", ""), "%s/%s".formatted(parent, name));
         } else {
             return Stream.of(files)
-                    .map(file -> file.getName().replace("-component", ""))
-                    .map(name -> "%s/%s".formatted(root.getFileName(), name))
-                    .toList();
+                    .map(File::getName)
+                    .map(name -> Map.entry(
+                        "%s/%s".formatted(parent, name.replace("-component", "")),
+                        "%s/%s".formatted(parent, name)))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
     }
 
-    private static Set<String> getComponents(Path root) throws IOException {
+    private static Map<String, String> getComponents(Path root) throws IOException {
         File[] files = root.toFile().listFiles(ComponentComparator::isCamelComponentDirectory);
         if (files == null) {
             throw new IOException("Unable to list the camel component in %s".formatted(root));
         }
-        List<String> components = new ArrayList<>();
+        Map<String, String> components = new TreeMap<>();
         for (File file : files) {
-            components.addAll(getComponentsInFolder(file.toPath()));
+            components.putAll(getComponentsInFolder(file.toPath()));
         }
-        components.sort(String::compareTo);
-        return new LinkedHashSet<>(components);
+        return components;
     }
 
     public void execute() throws IOException {
-        Set<String> componentsInCamelKaraf = getComponents(camelKarafComponentRoot);
-        Set<String> componentsInCamel = getComponents(camelComponentRoot);
+        Map<String, String> componentsInCamelKaraf = getComponents(camelKarafComponentRoot);
+        Map<String, String> componentsInCamel = getComponents(camelComponentRoot);
         beforeAddingComponents();
-        for (String component : componentsInCamel) {
-            if (componentsInCamelKaraf.contains(component)) {
+        for (Map.Entry<String, String> entry : componentsInCamel.entrySet()) {
+            String component = entry.getKey();
+            if (componentsInCamelKaraf.containsKey(component)) {
                 // The component is already in Camel Karaf
                 componentsInCamelKaraf.remove(component);
             } else {
+                String originalComponentPath = entry.getValue();
                 int index = component.indexOf('/');
                 if (index == -1) {
-                    onAddComponent(component);
+                    onAddComponent(originalComponentPath, component);
                 } else {
-                    onAddSubComponent(component.substring(0, index), component.substring(index + 1));
+                    onAddSubComponent(originalComponentPath, component.substring(0, index), component.substring(index + 1));
                 }
             }
         }
         beforeRemovingComponents();
-        for (String component : componentsInCamelKaraf) {
+        for (Map.Entry<String, String> entry : componentsInCamelKaraf.entrySet()) {
+            String component = entry.getKey();
             int index = component.indexOf('/');
             if (index == -1) {
                 onRemoveComponent(component);
@@ -114,9 +124,9 @@ public abstract class ComponentComparator {
         // Do nothing by default
     }
 
-    protected abstract void onAddSubComponent(String parent, String subComponent) throws IOException;
+    protected abstract void onAddSubComponent(String originalSubComponentPath, String parent, String subComponent) throws IOException;
 
-    protected abstract void onAddComponent(String component) throws IOException;
+    protected abstract void onAddComponent(String originalComponentPath, String component) throws IOException;
 
     protected abstract void onRemoveSubComponent(String parent, String subComponent) throws IOException;
 

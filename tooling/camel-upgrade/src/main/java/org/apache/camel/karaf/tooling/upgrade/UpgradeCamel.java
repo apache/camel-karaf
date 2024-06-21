@@ -115,36 +115,36 @@ public class UpgradeCamel {
         }
 
         @Override
-        protected void onAddSubComponent(String parent, String subComponent) throws IOException {
+        protected void onAddSubComponent(String originalSubComponentPath, String parent, String subComponent) throws IOException {
             if (EXCLUDED_COMPONENTS.contains(subComponent)) {
                 LOG.debug("Ignoring the sub component {}", subComponent);
                 return;
             }
             if (context.doAction("The sub component %s is not in Camel Karaf. Do you want to add it?".formatted(subComponent))) {
-                addSubComponent(parent, subComponent);
+                addSubComponent(originalSubComponentPath, parent, subComponent);
             }
         }
 
-        private void addSubComponent(String parent, String subComponent) throws IOException {
+        private void addSubComponent(String originalSubComponentPath, String parent, String subComponent) throws IOException {
             LOG.info("Adding sub component {}", subComponent);
-            context.multiModuleWrapperHandler().add(parent, subComponent);
+            context.multiModuleWrapperHandler().add(originalSubComponentPath, parent, subComponent);
             context.featureHandler().add(subComponent);
         }
 
         @Override
-        protected void onAddComponent(String component) throws IOException {
+        protected void onAddComponent(String originalComponentPath, String component) throws IOException {
             if (EXCLUDED_COMPONENTS.contains(component)) {
                 LOG.debug("Ignoring the component {}", component);
                 return;
             }
             if (context.doAction("The component %s is not in Camel Karaf. Do you want to add it?".formatted(component))) {
-                addComponent(component);
+                addComponent(originalComponentPath, component);
             }
         }
 
-        private void addComponent(String component) throws IOException {
+        private void addComponent(String originalComponentPath, String component) throws IOException {
             LOG.info("Adding component {}", component);
-            context.singleModuleWrapperHandler().add(component);
+            context.singleModuleWrapperHandler().add(originalComponentPath, component);
             context.featureHandler().add(component);
         }
 
