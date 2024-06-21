@@ -1,0 +1,62 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.karaf.camel.itest;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.AvailablePortProvider;
+import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
+import org.ops4j.pax.exam.spi.reactors.PerClass;
+
+@CamelKarafTestHint(
+        externalResourceProvider = CamelRestNettyHttpITest.ExternalResourceProviders.class,
+        camelRouteSuppliers = "karaf-camel-rest-netty-http-test")
+@RunWith(PaxExamWithExternalResource.class)
+@ExamReactorStrategy(PerClass.class)
+public class CamelRestNettyHttpITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    @Override
+    public String getTestComponentName() {
+        return "camel-netty-http-test";
+    }
+
+    @Override
+    public String getCamelFeatureName() {
+        return "camel-netty-http";
+    }
+
+    @Override
+    public void configureMock(MockEndpoint mock) {
+        mock.expectedBodiesReceived("OK");
+    }
+
+    @Test
+    public void testResultMock() throws Exception {
+        assertMockEndpointsSatisfied();
+    }
+
+    public static final class ExternalResourceProviders {
+        public static AvailablePortProvider createAvailablePortProvider() {
+            return new AvailablePortProvider(List.of("rest.port"));
+        }
+
+    }
+}

@@ -34,9 +34,13 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
+            org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
+            javax.cache;resolution:=optional,
+            javax.cache.integration;resolution:=optional,
+            javax.cache.configuration;resolution:=optional,
+            javax.cache.processor;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
@@ -45,7 +49,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-hazelcast</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>

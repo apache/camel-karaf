@@ -34,18 +34,20 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel.version}
+            !org.apache.camel.util*,
+            org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
             *
         </camel.osgi.import>
+        <camel.osgi.activator>org.apache.camel.component.jcache.osgi.Activator</camel.osgi.activator>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jcache</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.camel</groupId>
@@ -53,10 +55,36 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-util</artifactId>
+            <version>${camel-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- osgi support -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>recompile</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

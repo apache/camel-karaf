@@ -37,15 +37,34 @@
     </properties>
 
     <modules>
+        <module>camel-activemq</module>
         <module>camel-amqp</module>
         <module>camel-aws2-ses</module>
+        <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>
+        <module>camel-azure-storage-blob</module>
         <module>camel-core</module>
+        <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
+        <module>camel-fastjson</module>
+        <module>camel-ftp</module>
+        <module>camel-gson</module>
+        <module>camel-hazelcast</module>
+        <module>camel-http</module>
+        <module>camel-jcache</module>
         <module>camel-jetty</module>
+        <module>camel-jms</module>
+        <module>camel-kafka</module>
         <module>camel-netty-http</module>
         <module>camel-mail</module>
+        <module>camel-olingo2</module>
+        <module>camel-paho-mqtt5</module>
+        <module>camel-quartz</module>
+        <module>camel-saxon</module>
+        <module>camel-spring-rabbitmq</module>
         <module>camel-velocity</module>
+        <module>camel-weather</module>
+        <module>camel-xslt-saxon</module>
     </modules>
 
     <dependencyManagement>
@@ -53,14 +72,14 @@
             <dependency>
                 <groupId>org.apache.karaf</groupId>
                 <artifactId>karaf-bom</artifactId>
-                <version>${karaf.version}</version>
+                <version>${karaf-version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.karaf.itests</groupId>
                 <artifactId>common</artifactId>
-                <version>${karaf.version}</version>
+                <version>${karaf-version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -82,13 +101,13 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-engine</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-mock</artifactId>
-            <version>${camel.version}</version>
+            <version>${camel-version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -191,7 +210,7 @@
                             org.apache.karaf.camel.test;version=${project.version}
                         </Export-Package>
                         <Import-Package>
-                            org.apache.camel*;${camel.osgi.import.camel.version},
+                            org.apache.camel*;${camel-osgi-import-camel-version},
                             *
                         </Import-Package>
                     </instructions>

@@ -60,6 +60,7 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
         container.start();
         onStarted.accept(this);
         for (ExternalResource dependency : dependencies) {
+            dependency.before();
             dependency.properties().forEach(this::setProperty);
         }
         LOG.info("Container {} started", container.getDockerImageName());

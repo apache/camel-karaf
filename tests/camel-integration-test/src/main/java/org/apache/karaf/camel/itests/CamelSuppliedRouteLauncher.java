@@ -33,6 +33,7 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY;
 import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY;
 
 @CamelKarafTestHint(camelContextName = CamelSuppliedRouteLauncher.CAMEL_CONTEXT_NAME)
@@ -46,6 +47,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     private static final Logger LOG = LoggerFactory.getLogger(CamelSuppliedRouteLauncher.class);
     private final Map<String, List<RouteDefinition>> routes = new ConcurrentHashMap<>();
     private final Set<String> suppliers = ConcurrentHashMap.newKeySet();
+    private boolean ignoreSuppliers;
 
     @Override
     public void activate(ComponentContext componentContext) throws Exception {
@@ -61,6 +63,11 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
     }
 
     private void loadSuppliers() {
+        String ignoreProperty = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY);
+        if (ignoreProperty != null) {
+            ignoreSuppliers = true;
+            return;
+        }
         String property = System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY);
         if (property == null) {
             return;
@@ -70,7 +77,14 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
 
     @SuppressWarnings("SuspiciousMethodCalls")
     private boolean ignore(ServiceReference<?> serviceReference) {
-        return !suppliers.isEmpty() && !suppliers.contains(serviceReference.getProperty("component.name"));
+        boolean result = false;
+        if (ignoreSuppliers) {
+            result = true;
+        } else if (!suppliers.isEmpty()) {
+            Object componentName = serviceReference.getProperty("component.name");
+            result = componentName != null && !suppliers.contains(componentName);
+        }
+        return result;
     }
 
     @Override

@@ -33,9 +33,6 @@
     <name>Apache Camel :: Karaf :: Components</name>
 
     <modules>
-        <module>camel-blueprint</module>
-        <!-- TODO re-add camel-directvm and camel-vm components as they are heavily used in Karaf -->
-        <!-- wrappers -->
         <module>camel-activemq</module>
         <module>camel-amqp</module>
         <module>camel-arangodb</module>
@@ -53,6 +50,7 @@
         <module>camel-bean</module>
         <module>camel-bean-validator</module>
         <module>camel-bindy</module>
+        <module>camel-blueprint</module>
         <module>camel-bonita</module>
         <module>camel-box</module>
         <module>camel-braintree</module>
@@ -318,22 +316,4 @@
         <module>camel-zookeeper</module>
         <module>camel-zookeeper-master</module>
     </modules>
-
-    <build>
-        <plugins>
-            <!-- generates an osgi repository added to the test karaf containing the dependencies-->
-            <plugin>
-                <groupId>org.apache.servicemix.tooling</groupId>
-                <artifactId>depends-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-depends-file</id>
-                        <goals>
-                            <goal>generate-depends-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
