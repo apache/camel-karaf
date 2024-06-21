@@ -17,6 +17,7 @@
 
 package org.apache.camel.karaf.tooling.upgrade;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -25,6 +26,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.model.Model;
+import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 import static org.apache.camel.karaf.tooling.upgrade.Utils.replaceFileContent;
 
@@ -118,6 +122,33 @@ public abstract class WrapperHandler {
         }
         result.append(pom, start, pom.length());
         return result.toString();
+    }
+
+    protected String getComponentName(String originalComponentPath, String component) throws IOException {
+        Path pom = camelComponentRoot.resolve(originalComponentPath).resolve("pom.xml");
+        String result = null;
+        if (Files.exists(pom)) {
+            result = getComponentNameFomPom(pom);
+        }
+        if (result == null) {
+            result = getComponentNameFromId(component);
+        }
+        return result;
+    }
+
+    private static String getComponentNameFomPom(Path pom) throws IOException {
+        try {
+            MavenXpp3Reader reader = new MavenXpp3Reader();
+            Model model = reader.read(new FileReader(pom.toFile()));
+            String name = model.getName();
+            int index = name.lastIndexOf("::");
+            if (index == -1) {
+                return null;
+            }
+            return name.substring(index + 2).trim();
+        } catch (XmlPullParserException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected static String getComponentNameFromId(String componentId) {

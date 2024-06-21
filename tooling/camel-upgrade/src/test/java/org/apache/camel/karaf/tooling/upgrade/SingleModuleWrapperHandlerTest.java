@@ -38,23 +38,31 @@ class SingleModuleWrapperHandlerTest {
                 Paths.get("target/test-classes/single-module-wrapper/camel-karaf"),
                 Paths.get("target/test-classes/single-module-wrapper/camel"),
                 "4.0.0");
-        handler.add("camel-a");
+        handler.add("camel-a", "camel-a");
         Path pathPom = Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-a/pom.xml");
         assertTrue(Files.exists(pathPom));
         assertEquals(
                 Files.readString(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/a-pom-expected.xml")),
                 Files.readString(pathPom));
-        handler.add("camel-c");
+        handler.add("camel-c", "camel-c");
         pathPom = Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-c/pom.xml");
         assertTrue(Files.exists(pathPom));
         assertEquals(
                 Files.readString(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/c-pom-expected.xml")),
                 Files.readString(pathPom));
-        handler.add("camel-e");
+        handler.add("camel-e", "camel-e");
         assertTrue(Files.exists(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-e/pom.xml")));
+        handler.add("camel-a/camel-f", "camel-f");
+        pathPom = Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-f/pom.xml");
+        assertTrue(Files.exists(pathPom));
+        assertEquals(
+                Files.readString(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/f-pom-expected.xml")),
+                Files.readString(pathPom));
         assertEquals(
                 Files.readString(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/pom-expected.xml")),
                 Files.readString(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/pom.xml")));
+        handler.remove("camel-f");
+        assertFalse(Files.exists(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-f")));
         handler.remove("camel-c");
         assertFalse(Files.exists(Paths.get("target/test-classes/single-module-wrapper/camel-karaf/camel-c")));
         handler.remove("camel-e");

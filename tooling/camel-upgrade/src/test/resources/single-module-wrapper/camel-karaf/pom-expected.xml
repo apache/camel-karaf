@@ -38,5 +38,6 @@
         <module>camel-c</module>
         <module>camel-d</module>
         <module>camel-e</module>
+        <module>camel-f</module>
     </modules>
 </project>

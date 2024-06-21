@@ -34,11 +34,11 @@ public class MultiModuleWrapperHandler extends WrapperHandler {
         super(camelKarafComponentRoot, camelComponentRoot, camelVersion);
     }
 
-    public void add(String parent, String subComponent) throws IOException {
+    public void add(String originalSubComponentPath, String parent, String subComponent) throws IOException {
         createModuleIfAbsent(parent);
         createModuleIfAbsent("%s/%s".formatted(parent, subComponent));
         createMultiModuleParentPomIfAbsent(parent);
-        createMultiModulePom(parent, subComponent);
+        createMultiModulePom(originalSubComponentPath, parent, subComponent);
         addSubModuleToParentPom(parent, subComponent);
         addModuleToParentPom(parent);
     }
@@ -61,15 +61,15 @@ public class MultiModuleWrapperHandler extends WrapperHandler {
         replaceFileContent(camelKarafComponentRoot.resolve(parent).resolve("pom.xml"), pom -> getParentPomWithComponent(pom, subComponent));
     }
 
-    private void createMultiModulePom(String parent, String subComponent) throws IOException {
+    private void createMultiModulePom(String originalSubComponentPath, String parent, String subComponent) throws IOException {
         Files.writeString(camelKarafComponentRoot.resolve(parent).resolve(subComponent).resolve("pom.xml"),
-                getMultiModulePom(parent, subComponent));
+                getMultiModulePom(originalSubComponentPath, parent, subComponent));
     }
 
-    private String getMultiModulePom(String parent, String subComponent) {
+    private String getMultiModulePom(String originalSubComponentPath, String parent, String subComponent) throws IOException {
         return MULTI_MODULE_POM.replace("#{camel-version}", camelVersion)
                 .replace("#{camel-component-id}", subComponent)
-                .replace("#{camel-component-name}", getComponentNameFromId(subComponent))
+                .replace("#{camel-component-name}", getComponentName(originalSubComponentPath, subComponent))
                 .replace("#{camel-parent-component-id}", parent)
                 .replace("#{camel-parent-component-name}", getComponentNameFromId(parent));
     }
