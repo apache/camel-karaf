@@ -28,21 +28,17 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-google-parent</artifactId>
+    <artifactId>camel-debezium-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Google : Parent</name>
+    <name>Apache Camel :: Karaf :: Components :: Debezium :: Parent</name>
 
     <modules>
-        <module>camel-google-bigquery</module>
-        <module>camel-google-calendar</module>
-        <module>camel-google-drive</module>
-        <module>camel-google-functions</module>
-        <module>camel-google-mail</module>
-        <module>camel-google-pubsub</module>
-        <module>camel-google-pubsub-lite</module>
-        <module>camel-google-secret-manager</module>
-        <module>camel-google-sheets</module>
-        <module>camel-google-storage</module>
+        <module>camel-debezium-common</module>
+        <module>camel-debezium-db2</module>
+        <module>camel-debezium-mongodb</module>
+        <module>camel-debezium-mysql</module>
+        <module>camel-debezium-oracle</module>
+        <module>camel-debezium-postgres</module>
+        <module>camel-debezium-sqlserver</module>
     </modules>
 </project>
-
