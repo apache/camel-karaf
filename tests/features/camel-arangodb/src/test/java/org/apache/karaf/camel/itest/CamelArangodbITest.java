@@ -33,7 +33,6 @@ public class CamelArangodbITest extends AbstractCamelSingleFeatureResultMockBase
 
     public static final Integer PORT_DEFAULT = 8529;
 
-
     @Override
     public void configureMock(MockEndpoint mock) {
         mock.expectedBodiesReceived("OK");
