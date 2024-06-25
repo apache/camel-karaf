@@ -559,7 +559,7 @@
         <osgi-version>8.0.0</osgi-version>
         <servicemix-specs-version>10</servicemix-specs-version>
         <slf4j-version>2.0.13</slf4j-version>
-        <spring-amqp-version>3.1.5</spring-amqp-version>
+        <spring-amqp-version>3.1.6</spring-amqp-version>
 
         <!-- Plugin versions -->
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
