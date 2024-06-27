@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>camel-aws2-s3-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Features :: AWS S3</name>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: AWS2 S3</name>
 
     <dependencies>
         <dependency>
