@@ -28,5 +28,5 @@
     </parent>
 
     <artifactId>camel-karaf-examples-blueprint-dsl-only-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Samples :: Blueprint DSL Only</name>
+    <name>Apache Camel :: Karaf :: Tests :: Examples :: Blueprint DSL Only</name>
 </project>

@@ -28,5 +28,5 @@
     </parent>
 
     <artifactId>camel-karaf-examples-mixed-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Samples :: Mixed</name>
+    <name>Apache Camel :: Karaf :: Tests :: Examples :: Mixed</name>
 </project>

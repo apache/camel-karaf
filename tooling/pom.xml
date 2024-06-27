@@ -27,9 +27,15 @@
     <artifactId>tooling</artifactId>
     <packaging>pom</packaging>
     <name>Apache Camel :: Karaf :: Tooling</name>
-    
+
+    <properties>
+        <maven-version>3.9.8</maven-version>
+    </properties>
+
     <modules>
         <module>camel-karaf-feature-maven-plugin</module>
+        <module>camel-karaf-maven-plugin-integration-test</module>
+        <module>camel-upgrade</module>
     </modules>
     
 </project>

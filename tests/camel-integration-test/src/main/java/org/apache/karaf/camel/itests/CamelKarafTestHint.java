@@ -47,4 +47,9 @@ public @interface CamelKarafTestHint {
      * Camel route suppliers are used.
      */
     String[] camelRouteSuppliers() default {};
+
+    /**
+     * Forces to ignore all Camel route suppliers within the context of the tests. False by default.
+     */
+    boolean ignoreRouteSuppliers() default false;
 }
