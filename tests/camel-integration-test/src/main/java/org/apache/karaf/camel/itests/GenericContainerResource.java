@@ -51,6 +51,9 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
      * @param onStarted the callback to be called when the container is started
      */
     public GenericContainerResource(T container, Consumer<GenericContainerResource<T>> onStarted) {
+        this.container = container;
+        this.onStarted = onStarted;
+    }
 
     @Override
     public void before() {
