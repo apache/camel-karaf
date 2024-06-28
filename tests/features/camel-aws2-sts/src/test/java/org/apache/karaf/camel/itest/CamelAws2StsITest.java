@@ -39,7 +39,7 @@ public class CamelAws2StsITest extends AbstractCamelSingleFeatureResultMockBased
 
     @Test
     public void testResultMock() throws Exception {
-        MockEndpoint.assertIsSatisfied(getContext());
+        assertMockEndpointsSatisfied();
     }
 
     public static final class ExternalResourceProviders {
