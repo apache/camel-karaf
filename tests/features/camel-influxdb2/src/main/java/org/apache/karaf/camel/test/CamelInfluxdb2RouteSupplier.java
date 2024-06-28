@@ -33,30 +33,29 @@ import static org.apache.camel.builder.Builder.constant;
 @Component(name = "karaf-camel-influxdb2-test", immediate = true, service = CamelRouteSupplier.class)
 public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
-    private static final String ADMIN_TOKEN = "_QGcCkmN0_tzesB9OemUNR7c3WEqk35LV8ymQRhiSy6x9tQIPw0DgWCSpcnC0B_kIEeNG6aLpAoCAV1-lDRzKA==";
-    private static final String ORG = "test-org";
-    private static final String BUCKET = "test-bucket";
-    private InfluxDBClient myInfluxDBClient;
+    private static final String ORG = System.getProperty("influxdb2.org");
+    private static final String BUCKET = System.getProperty("influxdb2.bucket");
 
     @Override
     public void configure(CamelContext camelContext) {
         final int influxdb2Port = Integer.parseInt(System.getProperty("influxdb2.port"));
-        myInfluxDBClient = InfluxDBClientFactory.create("http://localhost:" + influxdb2Port, ADMIN_TOKEN.toCharArray(), ORG, BUCKET);
+        InfluxDBClient myInfluxDBClient = InfluxDBClientFactory.create("http://localhost:%s".formatted(influxdb2Port),
+                System.getProperty("influxdb2.admin.token").toCharArray(), ORG, BUCKET);
 
-        camelContext.getRegistry().bind("myInfluxDBClient", myInfluxDBClient);
+        camelContext.getRegistry().bind("myDbClient", myInfluxDBClient);
     }
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute
                 .log("calling influxdb2")
-                .to("influxdb2:myDbClient?operation=ping&org=test-org&bucket=test-bucket&autoCreateBucket=true")
+                .toF("influxdb2:myDbClient?operation=ping&org=%s&bucket=%s&autoCreateBucket=true",ORG,BUCKET)
                 .setBody(builder.constant("OK_PING"))
                 .log("Ping response: ${body}")
                 .toF("mock:%s", getResultMockName())
                 .log("calling to write to influxdb2")
                 .setBody(constant(getSampleWriteData()))
-                .to("influxdb2:myDbClient?operation=insert&org=test-org&bucket=test-bucket&autoCreateBucket=true")
+                .toF("influxdb2:myDbClient?operation=insert&org=%s&bucket=%s&autoCreateBucket=true",ORG,BUCKET)
                 .setBody(builder.constant("OK_INSERT"))
                 .log("Insert response: ${body}")
                 .toF("mock:%s", getResultMockName());
@@ -69,7 +68,6 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
 
     private Map<String, String> getSampleWriteData() {
         Map<String, String> dbData = new HashMap<>();
-
         dbData.put("CamelInfluxDB2MeasurementName", "cpu");
         dbData.put("time", "1307816001290");
         dbData.put("idle", "90L");

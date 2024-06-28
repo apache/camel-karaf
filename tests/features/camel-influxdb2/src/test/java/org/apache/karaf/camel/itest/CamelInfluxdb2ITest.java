@@ -46,25 +46,28 @@ public class CamelInfluxdb2ITest extends AbstractCamelSingleFeatureResultMockBas
 
     public static final class ExternalResourceProviders {
         private static final String ADMIN_TOKEN = "_QGcCkmN0_tzesB9OemUNR7c3WEqk35LV8ymQRhiSy6x9tQIPw0DgWCSpcnC0B_kIEeNG6aLpAoCAV1-lDRzKA==";
+        private static final String ORG = "test-org";
+        private static final String BUCKET = "test-bucket";
 
         public static GenericContainerResource createInfluxdb2Container() {
 
-            final GenericContainer<?> influxDBContainer = new InfluxDBContainer<>(DockerImageName.parse("influxdb:2.0.7"))
+            final GenericContainer<?> influxDBContainer =
+                    new InfluxDBContainer<>(DockerImageName.parse("influxdb:2.0.7"))
                     .withAdminToken(ADMIN_TOKEN)
-                    .withUsername("test-user")
-                    .withPassword("test-pass")
-                    .withBucket("test-bucket")
-                    .withOrganization("test-org")
+                    .withBucket(BUCKET)
+                    .withOrganization(ORG)
                     .withAuthEnabled(true)
                     .withExposedPorts(8086);
-
 
             return new GenericContainerResource(influxDBContainer, (Consumer<GenericContainerResource>)
                     resource -> {
                         resource.setProperty("influxdb2.port", Integer.toString(influxDBContainer.getMappedPort(8086)));
-                        resource.setProperty("admin.token", ADMIN_TOKEN);
+                        resource.setProperty("influxdb2.admin.token", ADMIN_TOKEN);
+                        resource.setProperty("influxdb2.bucket", BUCKET);
+                        resource.setProperty("influxdb2.org", ORG);
                     }
             );
         }
     }
+
 }
