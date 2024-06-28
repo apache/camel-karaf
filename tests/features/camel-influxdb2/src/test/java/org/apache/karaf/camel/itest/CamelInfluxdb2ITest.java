@@ -49,9 +49,7 @@ public class CamelInfluxdb2ITest extends AbstractCamelSingleFeatureResultMockBas
 
         public static GenericContainerResource createInfluxdb2Container() {
 
-            final GenericContainer<?> influxDBContainer = new InfluxDBContainer<>(
-                    DockerImageName.parse("influxdb:2.0.7")
-            )
+            final GenericContainer<?> influxDBContainer = new InfluxDBContainer<>(DockerImageName.parse("influxdb:2.0.7"))
                     .withAdminToken(ADMIN_TOKEN)
                     .withUsername("test-user")
                     .withPassword("test-pass")
@@ -67,8 +65,6 @@ public class CamelInfluxdb2ITest extends AbstractCamelSingleFeatureResultMockBas
                         resource.setProperty("admin.token", ADMIN_TOKEN);
                     }
             );
-
         }
     }
-
 }

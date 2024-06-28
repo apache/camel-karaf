@@ -38,7 +38,6 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
     private static final String BUCKET = "test-bucket";
     private InfluxDBClient myInfluxDBClient;
 
-
     @Override
     public void configure(CamelContext camelContext) {
         final int influxdb2Port = Integer.parseInt(System.getProperty("influxdb2.port"));
@@ -49,7 +48,6 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-
         producerRoute
                 .log("calling influxdb2")
                 .to("influxdb2:myDbClient?operation=ping&org=test-org&bucket=test-bucket&autoCreateBucket=true")
@@ -62,14 +60,12 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
                 .setBody(builder.constant("OK_INSERT"))
                 .log("Insert response: ${body}")
                 .toF("mock:%s", getResultMockName());
-
     }
 
     @Override
     protected boolean consumerEnabled() {
         return false;
     }
-
 
     private Map<String, String> getSampleWriteData() {
         Map<String, String> dbData = new HashMap<>();
