@@ -69,5 +69,4 @@ public class CamelInfluxdb2ITest extends AbstractCamelSingleFeatureResultMockBas
             );
         }
     }
-
 }

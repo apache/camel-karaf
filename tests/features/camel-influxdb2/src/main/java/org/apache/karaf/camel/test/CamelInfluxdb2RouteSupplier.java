@@ -49,13 +49,13 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute
                 .log("calling influxdb2")
-                .toF("influxdb2:myDbClient?operation=ping&org=%s&bucket=%s&autoCreateBucket=true",ORG,BUCKET)
+                .toF("influxdb2:myDbClient?operation=ping&org=%s&bucket=%s&autoCreateBucket=true", ORG, BUCKET)
                 .setBody(builder.constant("OK_PING"))
                 .log("Ping response: ${body}")
                 .toF("mock:%s", getResultMockName())
                 .log("calling to write to influxdb2")
                 .setBody(constant(getSampleWriteData()))
-                .toF("influxdb2:myDbClient?operation=insert&org=%s&bucket=%s&autoCreateBucket=true",ORG,BUCKET)
+                .toF("influxdb2:myDbClient?operation=insert&org=%s&bucket=%s&autoCreateBucket=true", ORG, BUCKET)
                 .setBody(builder.constant("OK_INSERT"))
                 .log("Insert response: ${body}")
                 .toF("mock:%s", getResultMockName());
