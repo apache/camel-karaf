@@ -158,7 +158,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>${maven-resources-plugin-version}</version>
                 <executions>
                     <execution>
                         <id>copy-generated-resources-jaxb</id>
@@ -199,7 +199,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${maven-jaxb2-plugin-version}</version>
                 <executions>
                     <execution>
                         <id>generate-schema</id>
@@ -306,7 +306,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>${maven-antrun-plugin-version}</version>
                         <inherited>true</inherited>
                         <executions>
                             <execution>
