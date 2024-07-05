@@ -41,6 +41,7 @@
         <module>camel-amqp</module>
         <module>camel-arangodb</module>
         <module>camel-asn1</module>
+        <module>camel-as2</module>
         <module>camel-aws2-iam</module>
         <module>camel-aws2-s3</module>
         <module>camel-aws2-ses</module>
