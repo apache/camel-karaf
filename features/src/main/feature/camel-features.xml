@@ -343,6 +343,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version="[5,6)">http-client</feature>
         <feature version="[${bouncycastle-version},2)">bouncycastle</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/${httpclient-version}</bundle>
         <!-- Wrap protocol used to export a private package that is used by camel-as2  -->
         <bundle dependency='true'>wrap:mvn:org.bouncycastle/bcutil-jdk18on/${bouncycastle-version}$overwrite=merge&amp;Export-Package=org.bouncycastle.*;version=${bouncycastle-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.velocity/velocity-engine-core/${velocity-version}</bundle>
