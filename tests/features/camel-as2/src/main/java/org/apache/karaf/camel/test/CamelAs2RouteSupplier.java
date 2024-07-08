@@ -116,14 +116,11 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
 
     @Override
     public void createRoutes(RouteBuilder builder) {
-        if (consumerEnabled()) {
-            configureConsumer(consumerRoute().apply(builder));
-        }
-        if (producerEnabled()) {
-            configureProducer(
-                    builder, builder.fromF("direct:%s", getTestComponentName()).routeId("producer-%s".formatted(getTestComponentName()))
-            );
-        }
+        //creating producer before consumer as in the parent class causes an http connection exception
+        //so invert the order for this specific supplier
+        configureConsumer(consumerRoute().apply(builder));
+        configureProducer(builder,
+                builder.fromF("direct:%s", getTestComponentName()).routeId("producer-%s".formatted(getTestComponentName())));
     }
 }
 
