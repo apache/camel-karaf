@@ -1,0 +1,25 @@
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0">
+    <requiredProperties>
+        <requiredProperty key="featureName"/>
+        <requiredProperty key="featureNameLower">
+            <defaultValue>${featureName.toLowerCase()}</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="groupId">
+            <defaultValue>org.apache.karaf.camel</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="artifactId">
+            <defaultValue>camel-${featureNameLower}-test</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="version">
+            <defaultValue>4.6.0-SNAPSHOT</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/java</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>
