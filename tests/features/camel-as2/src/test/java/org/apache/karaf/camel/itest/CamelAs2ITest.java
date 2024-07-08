@@ -45,5 +45,4 @@ public class CamelAs2ITest extends AbstractCamelSingleFeatureResultMockBasedRout
             return new AvailablePortProvider(List.of("as2.port"));
         }
     }
-
 }

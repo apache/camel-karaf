@@ -93,14 +93,13 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
         return builder ->
                 builder.from("as2://server/listen?requestUriPattern=/")
                         .log("received message ${body}")
-                        .setBody(constant("OK"))
-                        ;
+                        .setBody(constant("OK"));
     }
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.setHeader("CamelAS2.requestUri",constant(REQUEST_URI))
-                .setHeader("CamelAS2.subject",constant(SUBJECT))
+        producerRoute.setHeader("CamelAS2.requestUri", constant(REQUEST_URI))
+                .setHeader("CamelAS2.subject", constant(SUBJECT))
                 .setHeader("CamelAS2.from", constant(FROM))
                 .setHeader("CamelAS2.as2From", constant(AS2_NAME))
                 .setHeader("CamelAS2.as2To", constant(AS2_NAME))
