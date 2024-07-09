@@ -8,7 +8,7 @@ framework provided by `org.apache.camel.karaf:camel-integration-test`.
 ### Usage
 
 This tool is using maven archetype:generate plugin, for instance, to 
-initialize a test for camel-Atom , go to camel-karaf/tests/features/ , run
+initialize an integration test for the component camel-atom, go to `camel-karaf/tests/features/`, then run
     
 ```shell
 mvn archetype:generate -DfeatureName=Atom -DarchetypeGroupId=org.apache.camel.karaf -DarchetypeArtifactId=camel-karaf-test-feature-archetype -DarchetypeVersion=4.6.0-SNAPSHOT 
