@@ -33,14 +33,12 @@ public class CamelAtomRouteSupplier extends AbstractCamelSingleFeatureResultMock
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         return builder ->
-                builder.fromF("atom://file:%s/test-classes/data/feed.atom?delay=500",System.getProperty("project.target"))
+                builder.fromF("atom://file:%s/test-classes/data/feed.atom?delay=500", System.getProperty("project.target"))
                         .log("received message ${body}");
     }
 
     protected boolean producerEnabled() {
         return false;
     }
-
-
 }
 

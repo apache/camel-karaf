@@ -50,7 +50,7 @@ public class CamelAtomITest extends AbstractCamelSingleFeatureResultMockBasedRou
         int counter = 0;
         for (Exchange exchange : list) {
             Item entry = exchange.getIn().getBody(Item.class);
-            assertNotNull( "No entry found for exchange: " + exchange,entry);
+            assertNotNull("No entry found for exchange: " + exchange, entry);
 
             String expectedTitle = expectedTitles[counter];
             String title = entry.getTitle().get();
@@ -64,5 +64,4 @@ public class CamelAtomITest extends AbstractCamelSingleFeatureResultMockBasedRou
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
     }
-
 }
