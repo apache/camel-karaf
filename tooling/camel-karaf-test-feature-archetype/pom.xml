@@ -27,6 +27,7 @@
     </parent>
 
     <artifactId>camel-karaf-test-feature-archetype</artifactId>
+    <name>Apache Camel :: Karaf :: Tooling :: Integration Test Archetype</name>
 
     <properties>
         <maven-archetype-version>3.2.1</maven-archetype-version>
