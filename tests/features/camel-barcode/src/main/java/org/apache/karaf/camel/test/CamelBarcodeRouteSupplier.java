@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.util.function.Function;
 
@@ -66,15 +67,16 @@ public class CamelBarcodeRouteSupplier extends AbstractCamelSingleFeatureResultM
                             BitMatrix blackMatrix = bitmap.getBlackMatrix();
                             blackMatrix.rotate180();
                             File file =  Path.of(System.getProperty("barcode.image")).toFile();
-                            FileOutputStream outputStream = new FileOutputStream(file);
-                            MatrixToImageWriter.writeToStream(blackMatrix, "png", outputStream);
+                            try (FileOutputStream outputStream = new FileOutputStream(file)) {
+                                MatrixToImageWriter.writeToStream(blackMatrix, "png", outputStream);
+                            }
                             exchange.getIn().setBody(file);
                         }
                     })
                     .unmarshal(code1)
                     .log("unmarshalled ${body}");
         } catch (IOException e) {
-            throw new IllegalStateException(e);
+            throw new UncheckedIOException(e);
         }
     }
 
