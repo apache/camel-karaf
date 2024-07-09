@@ -49,6 +49,7 @@
         <module>camel-aws2-sqs</module>
         <module>camel-aws2-sts</module>
         <module>camel-azure-storage-blob</module>
+        <module>camel-barcode</module>
         <module>camel-core</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
