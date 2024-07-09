@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
     this work for additional information regarding copyright ownership.
@@ -15,28 +17,16 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <artifactId>camel-karaf-features-test</artifactId>
+        <version>${version}</version>
     </parent>
-    
-    <artifactId>tooling</artifactId>
-    <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Tooling</name>
 
-    <properties>
-        <maven-version>3.9.8</maven-version>
-    </properties>
-
-    <modules>
-        <module>camel-karaf-feature-maven-plugin</module>
-        <module>camel-karaf-maven-plugin-integration-test</module>
-        <module>camel-karaf-test-feature-archetype</module>
-        <module>camel-upgrade</module>
-    </modules>
-    
+    <artifactId>camel-${featureNameLower}-test</artifactId>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: ${featureName}</name>
 </project>
