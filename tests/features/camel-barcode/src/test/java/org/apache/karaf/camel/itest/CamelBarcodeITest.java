@@ -49,7 +49,7 @@ public class CamelBarcodeITest extends AbstractCamelSingleFeatureResultMockBased
 
     public static final class ExternalResourceProviders {
         public static TemporaryFile createTempFile() throws IOException {
-            return new TemporaryFile(IMAGE_PROPERTY,"barcode","png");
+            return new TemporaryFile(IMAGE_PROPERTY, "barcode", "png");
         }
     }
 }
