@@ -22,7 +22,6 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
-
 @Component(
         name = "karaf-camel-atom-test",
         immediate = true,
