@@ -44,7 +44,7 @@ public class CamelBarcodeITest extends AbstractCamelSingleFeatureResultMockBased
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
-        assertTrue(Files.exists(Path.of(System.getProperty(IMAGE_PROPERTY))));
+        assertTrue(Files.size(Path.of(System.getProperty(IMAGE_PROPERTY))) > 0);
     }
 
     public static final class ExternalResourceProviders {
