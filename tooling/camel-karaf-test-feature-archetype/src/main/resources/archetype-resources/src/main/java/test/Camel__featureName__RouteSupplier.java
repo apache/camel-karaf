@@ -24,7 +24,6 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
-
 @Component(
         name = "karaf-camel-${featureNameLower}-test",
         immediate = true,
@@ -32,12 +31,10 @@ import org.osgi.service.component.annotations.Component;
 )
 public class Camel${featureName}RouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
-
     @Override
     public void configure(CamelContext context) {
 
     }
-
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
@@ -51,7 +48,5 @@ public class Camel${featureName}RouteSupplier extends AbstractCamelSingleFeature
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
 
     }
-
-
 }
 

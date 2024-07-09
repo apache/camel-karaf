@@ -29,6 +29,4 @@
 
     <artifactId>camel-${featureNameLower}-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: ${featureName}</name>
-
-
 </project>
