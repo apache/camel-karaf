@@ -30,7 +30,6 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 import com.apptasticsoftware.rssreader.Item;
 
-@CamelKarafTestHint
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelAtomITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
