@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.function.Function;
 
@@ -55,8 +54,6 @@ public class CamelBarcodeRouteSupplier extends AbstractCamelSingleFeatureResultM
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
 
         try (DataFormat code1 = new BarcodeDataFormat(200, 200, BarcodeImageType.PNG, BarcodeFormat.CODE_39)) {
-            final Path testDirectory = Files.createTempFile("barcode", ".png");
-
             return builder -> builder.from("timer://testTimer?repeatCount=1")
                     .setBody(constant("OK"))
                     .marshal(code1)
@@ -68,8 +65,7 @@ public class CamelBarcodeRouteSupplier extends AbstractCamelSingleFeatureResultM
                                     new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(ImageIO.read(bis))));
                             BitMatrix blackMatrix = bitmap.getBlackMatrix();
                             blackMatrix.rotate180();
-                            File file = testDirectory.toFile();
-                            file.deleteOnExit();
+                            File file =  Path.of(System.getProperty("barcode.image")).toFile();
                             FileOutputStream outputStream = new FileOutputStream(file);
                             MatrixToImageWriter.writeToStream(blackMatrix, "png", outputStream);
                             exchange.getIn().setBody(file);

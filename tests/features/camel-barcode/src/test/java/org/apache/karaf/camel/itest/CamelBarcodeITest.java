@@ -13,17 +13,28 @@
  */
 package org.apache.karaf.camel.itest;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
+import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
+import org.apache.karaf.camel.itests.TemporaryFile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@RunWith(PaxExam.class)
+@CamelKarafTestHint(externalResourceProvider = CamelBarcodeITest.ExternalResourceProviders.class)
+@RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelBarcodeITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    public static final String IMAGE_PROPERTY = "barcode.image";
 
     @Override
     public void configureMock(MockEndpoint mock) {
@@ -33,5 +44,12 @@ public class CamelBarcodeITest extends AbstractCamelSingleFeatureResultMockBased
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
+        assertTrue(Files.exists(Path.of(System.getProperty(IMAGE_PROPERTY))));
+    }
+
+    public static final class ExternalResourceProviders {
+        public static TemporaryFile createTempFile() throws IOException {
+            return new TemporaryFile(IMAGE_PROPERTY,"barcode","png");
+        }
     }
 }
