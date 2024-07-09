@@ -1,4 +1,4 @@
-# Apache Camel Karaf Archetype
+# Apache Camel Karaf Integration Test Archetype
 
 ### Introduction
 
