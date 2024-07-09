@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
 
     Licensed to the Apache Software Foundation (ASF) under one or more
@@ -42,6 +42,7 @@
         <module>camel-arangodb</module>
         <module>camel-as2</module>
         <module>camel-asn1</module>
+        <module>camel-atom</module>
         <module>camel-aws2-iam</module>
         <module>camel-aws2-s3</module>
         <module>camel-aws2-ses</module>
