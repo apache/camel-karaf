@@ -2,8 +2,8 @@
 
 ### Introduction
 
-This archetype is to initialize a maven project to test a camel-feature inside karaf using the 
-org.apache.camel.karaf:camel-integration-test
+This archetype is to initialize a maven project to write an integration test for a Camel Karaf feature using the 
+framework provided by `org.apache.camel.karaf:camel-integration-test`.
 
 ### Usage
 
@@ -14,4 +14,4 @@ initialize a test for camel-Atom , go to camel-karaf/tests/features/ , run
 mvn archetype:generate -DfeatureName=Atom -DarchetypeGroupId=org.apache.camel.karaf -DarchetypeArtifactId=camel-karaf-test-feature-archetype -DarchetypeVersion=4.6.0-SNAPSHOT 
 ```
 
-Then rename the directory camel-atom-test to camel-atom and adapt pom.xml, fill the supplier class and integration test.
+Then rename the directory `camel-atom-test` to `camel-atom`, adapt the file `pom.xml`, and finally fill in the supplier class and integration test.

@@ -31,10 +31,12 @@ import org.osgi.service.component.annotations.Component;
 )
 public class Camel${featureName}RouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
+    /*
     @Override
     public void configure(CamelContext context) {
 
     }
+    */
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
