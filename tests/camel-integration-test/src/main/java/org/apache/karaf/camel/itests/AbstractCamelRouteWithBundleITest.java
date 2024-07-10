@@ -17,12 +17,14 @@
 
 package org.apache.karaf.camel.itests;
 
+import static org.ops4j.pax.exam.OptionUtils.combine;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
-
-import static org.ops4j.pax.exam.OptionUtils.combine;
 
 public abstract class AbstractCamelRouteWithBundleITest extends AbstractCamelRouteITest {
 
@@ -41,7 +43,8 @@ public abstract class AbstractCamelRouteWithBundleITest extends AbstractCamelRou
             throw new IllegalArgumentException("The system property project.version must be set to the version of the " +
                     "test bundle to install or the method getTestBundleVersion must be overridden to provide the version");
         }
-        installBundle("file://%s/%s-%s.jar".formatted(getBaseDir(), testBundleName, testBundleVersion), true);
+        Path bundlePath = Paths.get("%s/%s-%s.jar".formatted(getBaseDir(), testBundleName, testBundleVersion));
+        installBundle(bundlePath.toUri().toString(), true);
         assertBundleInstalledAndRunning(testBundleName);
         return List.of(testBundleName);
     }
