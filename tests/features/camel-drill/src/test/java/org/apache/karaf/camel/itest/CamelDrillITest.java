@@ -61,6 +61,7 @@ public class CamelDrillITest extends AbstractCamelSingleFeatureResultMockBasedRo
             withExposedPorts(ORIGINAL_JDBC_PORT)
                 .waitingFor(Wait.forListeningPort())
                 // prevent the container from stopping prematurely in non interactive sessions
+                // see https://github.com/apache/drill/issues/2829 for more details
                 .withCreateContainerCmdModifier(cmd -> cmd.withTty(true));
         }
     }
