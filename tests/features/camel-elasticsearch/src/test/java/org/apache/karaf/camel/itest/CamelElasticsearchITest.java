@@ -53,13 +53,13 @@ public class CamelElasticsearchITest extends AbstractCamelSingleFeatureResultMoc
 
         public static GenericContainerResource<ElasticsearchContainer> createElasticsearchContainer() {
             final ElasticsearchContainer elasticsearchContainer =
-                    new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:8.11.1").withPassword(PASSWORD);
+                    new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:8.14.3").withPassword(PASSWORD);
             // Increase the timeout from 60 seconds to 90 seconds to ensure that it will be long enough
             // on the build pipeline
             elasticsearchContainer.setWaitStrategy(
                     new LogMessageWaitStrategy()
                             .withRegEx(".*(\"message\":\\s?\"started[\\s?|\"].*|] started\n$)")
-                            .withStartupTimeout(Duration.ofSeconds(90)));
+                            .withStartupTimeout(Duration.ofMinutes(5)));
             return new GenericContainerResource<>(elasticsearchContainer,
                     resource -> {
                         resource.getContainer().caCertAsBytes().ifPresent(content -> {

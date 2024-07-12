@@ -11,7 +11,7 @@ This tool is using maven archetype:generate plugin, for instance, to
 initialize an integration test for the component camel-atom, go to `camel-karaf/tests/features/`, then run
     
 ```shell
-mvn archetype:generate -DfeatureName=Atom -DarchetypeGroupId=org.apache.camel.karaf -DarchetypeArtifactId=camel-karaf-test-feature-archetype -DarchetypeVersion=4.6.0-SNAPSHOT 
+mvn archetype:generate -DfeatureName=Atom -DarchetypeGroupId=org.apache.camel.karaf -DarchetypeArtifactId=camel-karaf-test-feature-archetype -DarchetypeVersion=4.7.0-SNAPSHOT 
 ```
 
 Then rename the directory `camel-atom-test` to `camel-atom`, adapt the file `pom.xml`, and finally fill in the supplier class and integration test.

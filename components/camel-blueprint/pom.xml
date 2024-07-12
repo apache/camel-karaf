@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <version>4.7.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -220,6 +220,7 @@
                             <patterns>
                                 <pattern>Helper.java</pattern>
                                 <pattern>Adapter.java</pattern>
+                                <pattern>BeanModelDevConsole.java</pattern>
                             </patterns>
                         </filter>
                     </schemaSourceExcludeFilters>
