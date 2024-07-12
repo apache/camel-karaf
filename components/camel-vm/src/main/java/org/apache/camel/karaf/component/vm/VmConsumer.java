@@ -43,44 +43,4 @@ public class VmConsumer extends SedaConsumer implements CamelContextAware {
         this.camelContext = camelContext;
     }
 
-    /**
-     * Strategy to prepare exchange for being processed by this consumer
-     *
-     * @param exchange the exchange
-     * @return the exchange to process by this consumer
-     */
-    @Override
-    protected Exchange prepareExchange(Exchange exchange) {
-        // send a new copy exchange with the camel context from this consumer
-        Exchange newExchange = new DefaultExchange(getCamelContext(), exchange.getPattern());
-        if (exchange.hasProperties()) {
-            newExchange.getExchangeExtension().setProperties(safeCopyProperties(exchange.getProperties()));
-        }
-        exchange.getExchangeExtension().copyInternalProperties(newExchange);
-        // safe copy message history using a defensive copy
-        List<MessageHistory> history = (List<MessageHistory>) exchange.getProperty(ExchangePropertyKey.MESSAGE_HISTORY);
-        if (history != null) {
-            // use thread-safe list as message history may be accessed concurrently
-            newExchange.setProperty(ExchangePropertyKey.MESSAGE_HISTORY, new CopyOnWriteArrayList<>(history));
-        }
-        // no handover
-        // exchange.getExchangeExtension().handoverCompletions(newExchange);
-        newExchange.setIn(exchange.getIn().copy());
-        if (exchange.hasOut()) {
-            newExchange.setOut(exchange.getOut().copy());
-        }
-        newExchange.setException(exchange.getException());
-        // this consumer grabbed the exchange so mark its from this route/endpoint
-        newExchange.getExchangeExtension().setFromEndpoint(getEndpoint());
-        newExchange.getExchangeExtension().setFromRouteId(getRouteId());
-        return newExchange;
-    }
-
-    private static Map<String, Object> safeCopyProperties(Map<String, Object> properties) {
-        if (properties == null) {
-            return null;
-        }
-        return new ConcurrentHashMap<>(properties);
-    }
-
 }

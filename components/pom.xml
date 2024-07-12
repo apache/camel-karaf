@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <version>4.7.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -34,6 +34,7 @@
 
     <modules>
         <module>camel-activemq</module>
+        <module>camel-activemq6</module>
         <module>camel-ai</module>
         <module>camel-amqp</module>
         <module>camel-arangodb</module>
@@ -72,6 +73,7 @@
         <module>camel-couchdb</module>
         <module>camel-cron</module>
         <module>camel-crypto</module>
+        <module>camel-crypto-pgp</module>
         <module>camel-csimple-joor</module>
         <module>camel-csv</module>
         <module>camel-cxf</module>
@@ -188,7 +190,6 @@
         <module>camel-micrometer</module>
         <module>camel-micrometer-prometheus</module>
         <module>camel-microprofile</module>
-        <module>camel-milvus</module>
         <module>camel-mina</module>
         <module>camel-minio</module>
         <module>camel-mllp</module>
@@ -208,6 +209,7 @@
         <module>camel-olingo2</module>
         <module>camel-olingo4</module>
         <module>camel-openapi-java</module>
+        <module>camel-openapi-validator</module>
         <module>camel-opensearch</module>
         <module>camel-openstack</module>
         <module>camel-opentelemetry</module>
@@ -218,7 +220,6 @@
         <module>camel-pdf</module>
         <module>camel-pg-replication-slot</module>
         <module>camel-pgevent</module>
-        <module>camel-pinecone</module>
         <module>camel-platform-http</module>
         <module>camel-platform-http-jolokia</module>
         <module>camel-platform-http-main</module>
@@ -229,7 +230,6 @@
         <module>camel-pubnub</module>
         <module>camel-pulsar</module>
         <module>camel-python</module>
-        <module>camel-qdrant</module>
         <module>camel-quartz</module>
         <module>camel-quickfix</module>
         <module>camel-reactive-executor-tomcat</module>
@@ -261,6 +261,7 @@
         <module>camel-sjms2</module>
         <module>camel-slack</module>
         <module>camel-smb</module>
+        <module>camel-smooks</module>
         <module>camel-smpp</module>
         <module>camel-snakeyaml</module>
         <module>camel-snmp</module>

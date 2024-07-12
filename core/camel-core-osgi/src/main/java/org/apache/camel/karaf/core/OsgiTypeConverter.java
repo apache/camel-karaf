@@ -246,7 +246,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
                         DefaultTypeConverter.class.getClassLoader(),
                         DefaultCamelContext.class.getClassLoader()));
             }
-        }, injector, false);
+        }, injector, false, camelContext.isTypeConverterStatisticsEnabled());
 
         // inject CamelContext
         answer.setCamelContext(camelContext);
@@ -286,8 +286,9 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
 
-        public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, boolean loadTypeConverters) {
-            super(resolver, injector, loadTypeConverters);
+        public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, boolean loadTypeConverters,
+                                        boolean statisticsEnabled) {
+            super(resolver, injector, loadTypeConverters, statisticsEnabled);
         }
 
         @Override

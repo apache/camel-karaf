@@ -23,14 +23,14 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <artifactId>camel-ai-parent</artifactId>
+        <version>4.7.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-qdrant</artifactId>
+    <artifactId>camel-pinecone</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Qdrant</name>
+    <name>Apache Camel :: Karaf :: Components :: Ai :: Pinecone</name>
 
     <properties>
         <camel.osgi.export>
@@ -44,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-qdrant</artifactId>
+            <artifactId>camel-pinecone</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -69,7 +69,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-qdrant</include>
+                                    <include>org.apache.camel:camel-pinecone</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

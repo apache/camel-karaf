@@ -23,14 +23,14 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
-        <version>4.6.0-SNAPSHOT</version>
+        <artifactId>camel-ai-parent</artifactId>
+        <version>4.7.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-pinecone</artifactId>
+    <artifactId>camel-langchain4j-core</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Pinecone</name>
+    <name>Apache Camel :: Karaf :: Components :: Ai :: Core</name>
 
     <properties>
         <camel.osgi.export>
@@ -44,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-pinecone</artifactId>
+            <artifactId>camel-langchain4j-core</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -69,7 +69,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-pinecone</include>
+                                    <include>org.apache.camel:camel-langchain4j-core</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
