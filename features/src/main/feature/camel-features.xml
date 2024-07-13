@@ -941,7 +941,9 @@
     <feature name='camel-drill' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-spring-version}'>spring-jdbc</feature>
-        <bundle dependency='true'>wrap:mvn:org.apache.drill.exec/drill-jdbc-all/${apache-drill-version}$Export-Package=org.apache.drill.jdbc.*;version=${apache-drill-version}</bundle>
+        <!-- force SPI-Provider to a single value because it's not needed = * causes class not found exceptions,
+        the bundled jar does not contain all necessary jersey dependencies -->
+        <bundle dependency='true'>wrap:mvn:org.apache.drill.exec/drill-jdbc-all/${apache-drill-version}$Export-Package=org.apache.drill.jdbc.*;version=${apache-drill-version}&amp;SPI-Provider=java.sql.Driver</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-drill/${project.version}</bundle>
     </feature>
     <feature name='camel-dropbox' version='${project.version}' start-level='50'>

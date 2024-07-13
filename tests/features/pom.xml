@@ -53,8 +53,11 @@
         <module>camel-azure-storage-blob</module>
         <module>camel-barcode</module>
         <module>camel-base64</module>
+        <module>camel-bindy</module>
+        <module>camel-caffeine</module>
         <module>camel-cbor</module>
         <module>camel-core</module>
+        <module>camel-drill</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
         <module>camel-fastjson</module>
