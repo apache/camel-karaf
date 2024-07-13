@@ -39,6 +39,7 @@ public class CamelBindyRouteSupplier extends AbstractCamelSingleFeatureResultMoc
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
 
         BindyCsvDataFormat camelDataFormat = new BindyCsvDataFormat(Order.class);
+        camelDataFormat.setLocale("en");
 
         producerRoute.process(ex -> ex.getIn().setBody(CSV))
                 .unmarshal(camelDataFormat)
