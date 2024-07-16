@@ -671,12 +671,15 @@
         <bundle>mvn:org.apache.camel.karaf/camel-base64/${project.version}</bundle>
     </feature>
     <feature name='camel-bean-validator' version='${project.version}' start-level='50'>
+        <feature prerequisite="true">spifly</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version="[3,4)">jakarta-validation</feature>
-        <bundle>mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}</bundle>
-        <bundle>mvn:org.jboss.logging/jboss-logging/${jboss-logging-version}</bundle>
-        <bundle>mvn:com.fasterxml/classmate/${auto-detect-version}</bundle>
-        <bundle>mvn:jakarta.el/jakarta.el-api/${jakarta-el-api-version}</bundle>
+        <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
+        <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge</bundle>
+        <bundle dependency='true'>mvn:org.jboss.logging/jboss-logging/${jboss-logging-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml/classmate/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:org.glassfish.expressly/expressly/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:jakarta.el/jakarta.el-api/${jakarta-el5-api-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-bean-validator/${project.version}</bundle>
     </feature>
     <feature name='camel-barcode' version='${project.version}' start-level='50'>
