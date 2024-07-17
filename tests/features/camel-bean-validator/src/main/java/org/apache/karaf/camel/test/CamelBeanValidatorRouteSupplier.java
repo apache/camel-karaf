@@ -41,7 +41,7 @@ public class CamelBeanValidatorRouteSupplier extends AbstractCamelSingleFeatureR
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.setBody(constant(new User("John",90)))
+        producerRoute.setBody(constant(new User("John", 90)))
                 .to("bean-validator://x")
                 .log("body {body}")
                 .toF("mock:%s", getResultMockName());

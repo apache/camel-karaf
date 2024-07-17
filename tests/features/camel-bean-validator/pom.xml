@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>camel-bean-validator-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Features :: BeanValidator</name>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: Bean validator</name>
 
     <dependencies>
         <dependency>
