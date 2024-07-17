@@ -52,7 +52,7 @@ public class CamelFlatpackITest extends AbstractCamelSingleFeatureResultMockBase
             Message in = exchange.getIn();
             Map<?, ?> body = in.getBody(Map.class);
             assertNotNull(body);
-            assertEquals(expectedItemDescriptions[counter], "ITEM_DESC", body.get("ITEM_DESC"));
+            assertEquals(EXPECTED_ITEM_DESCRIPTIONS[counter], "ITEM_DESC", body.get("ITEM_DESC"));
             counter++;
         }
     }
