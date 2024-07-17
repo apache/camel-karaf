@@ -1884,6 +1884,7 @@
     <feature name='camel-leveldb' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:org.iq80.leveldb/leveldb/${leveldb-version}</bundle>
         <bundle dependency='true'>mvn:org.fusesource.leveldbjni/leveldbjni-all/${leveldbjni-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-leveldb/${project.version}</bundle>
     </feature>

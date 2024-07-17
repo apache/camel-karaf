@@ -37,7 +37,9 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            *
+            *,
+            org.iq80.leveldb.impl;resolution:=optional,
+            org.fusesource.leveldbjni;resolution:=optional
         </camel.osgi.import>
     </properties>
 
