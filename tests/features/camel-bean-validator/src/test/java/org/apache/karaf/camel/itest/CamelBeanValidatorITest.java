@@ -34,12 +34,4 @@ public class CamelBeanValidatorITest extends AbstractCamelSingleFeatureResultMoc
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
     }
-
-    /*@Override
-    protected List<String> installRequiredBundles() throws Exception {
-        List<String> result = super.installRequiredBundles();
-        result.add("mvn:org.hibernate.validator/hibernate-validator/8.0.1.Final");
-        return result;
-    }*/
-
 }
