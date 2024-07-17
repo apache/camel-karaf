@@ -41,7 +41,7 @@ public class CamelFlatpackITest extends AbstractCamelSingleFeatureResultMockBase
             "A BOLT","1000","2.75","20050101"
             """;
 
-    private static final String[] expectedItemDescriptions = { "SOME VALVE", "AN ENGINE", "A BELT", "A BOLT" };
+    private static final String[] EXPECTED_ITEM_DESCRIPTIONS = { "SOME VALVE", "AN ENGINE", "A BELT", "A BOLT" };
 
     @Override
     public void configureMock(MockEndpoint mock) {
