@@ -60,7 +60,7 @@ public class CamelFlatpackITest extends AbstractCamelSingleFeatureResultMockBase
             assertEquals("ITEM_DESC", EXPECTED_ITEM_DESCRIPTIONS[counter], body.get("ITEM_DESC"));
             counter++;
         }
-        assertEquals(4,counter);
+        assertEquals(4, counter);
     }
 
     @Override
