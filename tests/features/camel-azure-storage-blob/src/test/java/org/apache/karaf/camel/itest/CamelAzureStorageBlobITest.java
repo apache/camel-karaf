@@ -52,7 +52,7 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
 
         public static GenericContainerResource<AzuriteContainer> createAzureStorageBlobContainer() {
 
-            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.29.0");
+            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.31.0");
 
             return new GenericContainerResource<>(azuriteContainer, resource -> {
                 resource.setProperty("azure.host", azuriteContainer.getHost());
