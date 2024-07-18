@@ -34,5 +34,4 @@ public abstract class AbstractCamelSingleFeatureResultMockBasedRouteITest extend
     public void cleanMock() {
         CamelSingleFeatureResultMockBasedRoute.super.cleanMock();
     }
-
 }
