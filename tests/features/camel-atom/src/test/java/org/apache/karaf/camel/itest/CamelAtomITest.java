@@ -21,7 +21,6 @@ import java.util.List;
 import org.apache.camel.Exchange;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
-import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -37,6 +36,13 @@ public class CamelAtomITest extends AbstractCamelSingleFeatureResultMockBasedRou
     @Override
     public void configureMock(MockEndpoint mock) {
         mock.expectedMessageCount(7);
+    }
+
+    @Test
+    public void testResultMock() throws Exception {
+        assertMockEndpointsSatisfied();
+        MockEndpoint mock = getMockEndpoint();
+        assertNotNull(mock);
         List<Exchange> list = mock.getReceivedExchanges();
         String[] expectedTitles = {
                 "Speaking at the Irish Java Technology Conference on Thursday and Friday",
@@ -53,14 +59,10 @@ public class CamelAtomITest extends AbstractCamelSingleFeatureResultMockBasedRou
 
             String expectedTitle = expectedTitles[counter];
             String title = entry.getTitle().get();
-            assertEquals(expectedTitle, title, "Title of message " + counter);
+            assertEquals("Title of message " + counter, expectedTitle, title);
 
             counter++;
         }
-    }
-
-    @Test
-    public void testResultMock() throws Exception {
-        assertMockEndpointsSatisfied();
+        assertEquals(expectedTitles.length, counter);
     }
 }

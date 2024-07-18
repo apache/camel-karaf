@@ -16,6 +16,7 @@
  */
 package org.apache.karaf.camel.itests;
 
+import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.After;
 import org.junit.Before;
 
@@ -34,4 +35,5 @@ public abstract class AbstractCamelSingleFeatureResultMockBasedRouteITest extend
     public void cleanMock() {
         CamelSingleFeatureResultMockBasedRoute.super.cleanMock();
     }
+
 }
