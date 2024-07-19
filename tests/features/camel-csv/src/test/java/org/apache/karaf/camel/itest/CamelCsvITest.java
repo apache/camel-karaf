@@ -31,12 +31,13 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 @ExamReactorStrategy(PerClass.class)
 public class CamelCsvITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
-    private static final String ORIGINAL_CSV_SAMPLE = 
-            "Jack Dalton, 115, mad at Averell\n" +
-            "Joe Dalton, 105, calming Joe\n" +
-            "William Dalton, 105, keeping Joe from killing Averell\n" +
-            "Averell Dalton, 80, playing with Rantanplan\n" +
-            "Lucky Luke, 120, capturing the Daltons\n";
+    private static final String ORIGINAL_CSV_SAMPLE = """
+            Jack Dalton, 115, mad at Averell
+            Joe Dalton, 105, calming Joe
+            William Dalton, 105, keeping Joe from killing Averell
+            Averell Dalton, 80, playing with Rantanplan
+            Lucky Luke, 120, capturing the Daltons
+            """;
 
     @Override
     public String getBodyToSend() {

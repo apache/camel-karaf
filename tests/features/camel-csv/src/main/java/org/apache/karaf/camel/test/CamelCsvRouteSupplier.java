@@ -17,9 +17,9 @@ package org.apache.karaf.camel.test;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.model.dataformat.CsvDataFormat;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.osgi.service.component.annotations.Component;
-import org.apache.camel.model.dataformat.CsvDataFormat;
 
 @Component(
         name = "karaf-camel-csv-test",
