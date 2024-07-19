@@ -58,6 +58,7 @@
         <module>camel-caffeine</module>
         <module>camel-cbor</module>
         <module>camel-core</module>
+        <module>camel-crypto</module>
         <module>camel-csv</module>
         <module>camel-dns</module>
         <!-- TODO: Fix the integration test and re-add it https://github.com/apache/camel-karaf/issues/438 -->
