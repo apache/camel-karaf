@@ -46,20 +46,21 @@ public class CamelFlatpackITest extends AbstractCamelSingleFeatureResultMockBase
     @Override
     public void configureMock(MockEndpoint mock) {
         mock.expectedMessageCount(4);
+    }
+
+    @Test
+    public void testResultMock() throws Exception {
+        MockEndpoint mock = getMockEndpoint();
         List<Exchange> list = mock.getReceivedExchanges();
         int counter = 0;
         for (Exchange exchange : list) {
             Message in = exchange.getIn();
             Map<?, ?> body = in.getBody(Map.class);
             assertNotNull(body);
-            assertEquals(EXPECTED_ITEM_DESCRIPTIONS[counter], "ITEM_DESC", body.get("ITEM_DESC"));
+            assertEquals("ITEM_DESC", EXPECTED_ITEM_DESCRIPTIONS[counter], body.get("ITEM_DESC"));
             counter++;
         }
-    }
-
-    @Test
-    public void testResultMock() throws Exception {
-        assertMockEndpointsSatisfied();
+        assertEquals(4, counter);
     }
 
     @Override

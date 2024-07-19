@@ -15,6 +15,7 @@
  */
 package org.apache.karaf.camel.test;
 
+import java.util.Map;
 import java.util.function.Function;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -34,6 +35,7 @@ public class CamelFlatpackRouteSupplier extends AbstractCamelSingleFeatureResult
         return builder ->
                 builder.fromF("flatpack:delim:file:%s/test-classes/INVENTORY-Delimited.pzmap.xml",
                                 System.getProperty("project.target"))
+                        .convertBodyTo(Map.class)
                         .log("received message ${body}");
     }
 
