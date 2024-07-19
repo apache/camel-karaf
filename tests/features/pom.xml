@@ -59,6 +59,7 @@
         <module>camel-caffeine</module>
         <module>camel-cbor</module>
         <module>camel-core</module>
+        <module>camel-csv</module>
         <!-- TODO: Fix the integration test and re-add it https://github.com/apache/camel-karaf/issues/438 -->
         <!--module>camel-docker</module-->
         <module>camel-drill</module>

@@ -6,7 +6,7 @@ import org.apache.camel.component.mock.MockEndpoint;
 public interface CamelSingleFeatureResultMockBasedRoute extends CamelSingleFeatureRoute {
 
     default void setupMock() {
-        MockEndpoint endpoint = getContext().getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
+        MockEndpoint endpoint = getMockEndpoint();
         endpoint.setFailFast(false);
         configureMock(endpoint);
     }
@@ -16,6 +16,10 @@ public interface CamelSingleFeatureResultMockBasedRoute extends CamelSingleFeatu
         if (context != null) {
             MockEndpoint.resetMocks(context);
         }
+    }
+
+    default MockEndpoint getMockEndpoint() {
+        return getContext().getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
     }
 
     default void configureMock(MockEndpoint mock) {
