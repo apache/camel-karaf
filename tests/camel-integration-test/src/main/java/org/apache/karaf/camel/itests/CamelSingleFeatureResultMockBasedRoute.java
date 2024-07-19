@@ -18,15 +18,15 @@ public interface CamelSingleFeatureResultMockBasedRoute extends CamelSingleFeatu
         }
     }
 
+    default MockEndpoint getMockEndpoint() {
+        return getContext().getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
+    }
+
     default void configureMock(MockEndpoint mock) {
         mock.expectedMinimumMessageCount(1);
     }
 
     default void assertMockEndpointsSatisfied() throws InterruptedException {
         MockEndpoint.assertIsSatisfied(getContext());
-    }
-
-    default MockEndpoint getMockEndpoint() {
-        return getContext().getEndpoint("mock:%s".formatted(getTestComponentName()), MockEndpoint.class);
     }
 }

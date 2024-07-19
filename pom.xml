@@ -77,7 +77,8 @@
         <connection>scm:git:https://github.com/apache/camel-karaf</connection>
         <developerConnection>scm:git:https://github.com/apache/camel-karaf</developerConnection>
         <url>scm:git:https://github.com/apache/camel-karaf</url>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <issueManagement>
         <system>github</system>
@@ -522,7 +523,8 @@
         <!-- Camel Karaf OSGI version ranges -->
         <camel-osgi-version-clean>4.7</camel-osgi-version-clean>
         <camel-osgi-next-version-clean>4.8</camel-osgi-next-version-clean>
-        <camel-osgi-version-range>[${camel-osgi-version-clean},${camel-osgi-next-version-clean})</camel-osgi-version-range>
+        <camel-osgi-version-range>[${camel-osgi-version-clean},${camel-osgi-next-version-clean})
+        </camel-osgi-version-range>
         <camel-osgi-import-camel-version>version="${camel-osgi-version-range}"</camel-osgi-import-camel-version>
         <camel-osgi-camel-import>org.apache.camel.*;${camel-osgi-import-camel-version},</camel-osgi-camel-import>
 
@@ -532,7 +534,8 @@
         <aries-version>1.10.3</aries-version>
         <azure-core-version>1.49.1</azure-core-version>
         <azure-identity-version>1.13.0</azure-identity-version>
-        <azure-messaging-eventhubs-checkpointstore-blob-version>1.19.5</azure-messaging-eventhubs-checkpointstore-blob-version>
+        <azure-messaging-eventhubs-checkpointstore-blob-version>1.19.5
+        </azure-messaging-eventhubs-checkpointstore-blob-version>
         <azure-messaging-eventhubs-version>5.18.5</azure-messaging-eventhubs-version>
         <azure-storage-common-version>12.25.1</azure-storage-common-version>
         <geronimo-atinject-version>1.2</geronimo-atinject-version>
@@ -553,7 +556,8 @@
         <jaxb3-osgi-version>3.0.2</jaxb3-osgi-version>
         <jetty11-version>11.0.21</jetty11-version>
         <karaf-version>4.4.6</karaf-version>
-        <netty-incubator-transport-classes-io_uring-version>0.0.25.Final</netty-incubator-transport-classes-io_uring-version>
+        <netty-incubator-transport-classes-io_uring-version>0.0.25.Final
+        </netty-incubator-transport-classes-io_uring-version>
         <osgi-cmpn-version>7.0.0</osgi-cmpn-version>
         <osgi-resource-locator-version>2.5.0-b42</osgi-resource-locator-version>
         <osgi-service-event-version>1.4.1</osgi-service-event-version>
@@ -572,6 +576,7 @@
         <maven-dependency-plugin-version>3.7.1</maven-dependency-plugin-version>
         <maven-jar-plugin-version>3.4.2</maven-jar-plugin-version>
         <maven-jaxb2-plugin-version>3.2.0</maven-jaxb2-plugin-version>
+        <maven-release-plugin-version>3.1.1</maven-release-plugin-version>
         <maven-resources-plugin-version>3.3.1</maven-resources-plugin-version>
         <maven-shade-plugin-version>3.6.0</maven-shade-plugin-version>
     </properties>
@@ -665,8 +670,25 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven-jar-plugin-version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin-version}</version>
+                    <configuration>
+                        <localCheckout>true</localCheckout>
+                        <pushChanges>true</pushChanges>
+                        <tagNameFormat>@{project.artifactId}-@{project.version}</tagNameFormat>
+                        <useReleaseProfile>false</useReleaseProfile>
+                        <preparationGoals>clean install</preparationGoals>
+                        <goals>deploy</goals>
+                        <!-- The profile we want to use when doing the release -->
+                        <arguments>-Prelease,apache-release</arguments>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -698,12 +720,165 @@
                         <Export-Service>${camel.osgi.export.service}</Export-Service>
                         <_failok>${camel.osgi.failok}</_failok>
                         <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
-                        <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency</_removeheaders>
+                        <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency
+                        </_removeheaders>
                     </instructions>
                     <unpackBundle>true</unpackBundle>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <defaultGoal>deploy</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <source>${jdk-version}</source>
+                                    <doclint>none</doclint>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>source-jar</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- We want to deploy the artifact to a staging location for perusal -->
+                    <plugin>
+                        <inherited>true</inherited>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <updateReleaseInfo>true</updateReleaseInfo>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <source>${jdk-version}</source>
+                            <additionalOptions>${javadoc.opts}</additionalOptions>
+                            <!-- disable Javadoc linting for buildung the release with Java 11 -->
+                            <doclint>none</doclint>
+                        </configuration>
+                    </plugin>
+                    <!-- We want to sign the artifact, the POM, and all attached artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <configuration>
+                            <passphrase>${gpg.passphrase}</passphrase>
+                            <useAgent>${gpg.useagent}</useAgent>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+                            <failIfNoTests>false</failIfNoTests>
+                            <skipITs>true</skipITs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+                            <failIfNoTests>false</failIfNoTests>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-test</id>
+                                <phase>none</phase><!-- No need to even load the plugin during releases -->
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
