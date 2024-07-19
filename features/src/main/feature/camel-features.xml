@@ -194,8 +194,9 @@
     </feature>
     <feature name="azure" version="${azure-core-version}" start-level="50">
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/${azure-core-version}$${spi-consumer}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-core/${azure-core-version}$${spi-consumer}&amp;Import-Package=*;resolution:=optional,com.fasterxml.jackson.dataformat.xml.deser;resolution:=optional,com.fasterxml.jackson.dataformat.xml.ser;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/${azure-identity-version}</bundle>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${auto-detect-version}</bundle>
@@ -637,7 +638,6 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-storage</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob-changefeed/${azure-storage-blob-changefeed-version}</bundle>
         <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>

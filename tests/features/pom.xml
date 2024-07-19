@@ -50,8 +50,7 @@
         <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>
         <module>camel-aws2-sts</module>
-        <!-- TODO: Fix the integration test and re-add it -->
-        <!--module>camel-azure-storage-blob</module-->
+        <module>camel-azure-storage-blob</module>
         <module>camel-barcode</module>
         <module>camel-base64</module>
         <module>camel-bean-validator</module>
