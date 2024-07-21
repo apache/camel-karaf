@@ -547,7 +547,7 @@
         <jakarta-annotation2-api-version>2.1.1</jakarta-annotation2-api-version>
         <jakarta-el5-api-version>5.0.0</jakarta-el5-api-version>
         <jakarta-servlet5-api-version>5.0.0</jakarta-servlet5-api-version>
-        <jakarta-validation-api-version>3.0.2</jakarta-validation-api-version>
+        <jakarta-validation-api-version>3.1.0</jakarta-validation-api-version>
         <jakarta-ws-rs-api-version>3.1.0</jakarta-ws-rs-api-version>
         <jakarta-xml-bind3-api-version>3.0.1</jakarta-xml-bind3-api-version>
         <javax-servlet3-api-version>3.1.0</javax-servlet3-api-version>
