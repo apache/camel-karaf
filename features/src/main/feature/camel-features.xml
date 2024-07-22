@@ -193,15 +193,27 @@
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
     </feature>
     <feature name="azure" version="${azure-core-version}" start-level="50">
+        <feature version='[${azure-core-version},2)'>azure-msal4j</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${jackson2-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-core/${azure-core-version}$${spi-consumer}&amp;Import-Package=*;resolution:=optional,com.fasterxml.jackson.dataformat.xml.deser;resolution:=optional,com.fasterxml.jackson.dataformat.xml.ser;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/${azure-identity-version}</bundle>
-        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-identity/${azure-identity-version}$Import-Package=com.sun.jna,*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:net.java.dev.jna/jna/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-xml/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-json/${auto-detect-version}</bundle>
+    </feature>
+    <feature name="azure-msal4j" version="${azure-core-version}" start-level="50">
+        <bundle dependency='true'>mvn:com.nimbusds/content-type/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/lang-tag/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt}</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/oauth2-oidc-sdk/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
+        <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>    
+        <bundle dependency='true'>wrap:mvn:com.github.stephenc.jcip/jcip-annotations/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.microsoft.azure/msal4j/${msal4j-version}$overwrite=merge&amp;Import-Package=com.sun.net.httpserver;resolution:=optional,*</bundle>
     </feature>
     <feature name="azure-storage" version="${azure-core-version}" start-level="50">
         <feature version='[${azure-core-version},2)'>azure</feature>
@@ -605,7 +617,7 @@
     <feature name='camel-azure-eventhubs' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-eventhubs</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>  
     <feature name='camel-azure-files' version='${project.version}' start-level='50'>
@@ -619,7 +631,7 @@
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='[${azure-core-version},2)'>azure-eventhubs</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-security-keyvault-secrets/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-key-vault/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-schema-registry' version='${project.version}' start-level='50'>
@@ -638,7 +650,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-storage</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob-changefeed/${azure-storage-blob-changefeed-version}</bundle>
         <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
@@ -1919,16 +1931,9 @@
         <bundle>mvn:org.apache.camel.karaf/camel-mail/${project.version}</bundle>
     </feature>
     <feature name='camel-mail-microsoft-oauth' version='${project.version}' start-level='50'>
+        <feature version='[${azure-core-version},2)'>azure-msal4j</feature>
         <feature version='${camel-osgi-version-range}'>camel-mail</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
-        <bundle dependency='true'>wrap:mvn:com.microsoft.azure/msal4j/${msal4j-version}$overwrite=merge&amp;Import-Package=com.sun.net.httpserver;resolution:=optional,*</bundle>
-        <bundle dependency='true'>mvn:com.nimbusds/content-type/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.github.stephenc.jcip/jcip-annotations/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:com.nimbusds/oauth2-oidc-sdk/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:com.nimbusds/lang-tag/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:net.minidev/json-smart/${json-smart-version}</bundle>
-        <bundle dependency='true'>mvn:net.minidev/accessors-smart/${json-smart-version}</bundle>
         <bundle dependency='true'>mvn:org.ow2.asm/asm/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-mail-microsoft-oauth/${project.version}</bundle>
     </feature>
