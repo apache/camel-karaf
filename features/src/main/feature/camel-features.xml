@@ -783,7 +783,7 @@
         <feature version='${camel-osgi-version-range}'>camel-netty</feature>
         <feature version='[${bouncycastle-version},2)'>bouncycastle</feature>
         <bundle dependency='true'>mvn:org.eclipse.californium/californium-core/${californium-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.californium/element-connector/${californium-version}$overwrite=merge&amp;Import-Package=net.i2p.crypto.eddsa;resolution:=optional,*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:org.eclipse.californium/element-connector-tcp-netty/${californium-version}</bundle>
         <bundle dependency='true'>mvn:org.eclipse.californium/scandium/${californium-scandium-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-coap/${project.version}</bundle>
