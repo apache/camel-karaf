@@ -57,6 +57,7 @@
         <module>camel-bindy</module>
         <module>camel-caffeine</module>
         <module>camel-cbor</module>
+        <module>camel-coap</module>
         <module>camel-core</module>
         <module>camel-crypto</module>
         <module>camel-csv</module>
