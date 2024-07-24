@@ -60,6 +60,7 @@
         <module>camel-core</module>
         <module>camel-crypto</module>
         <module>camel-csv</module>
+        <module>camel-disruptor</module>
         <module>camel-dns</module>
         <!-- TODO: Fix the integration test and re-add it https://github.com/apache/camel-karaf/issues/438 -->
         <!--module>camel-docker</module-->
