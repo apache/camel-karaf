@@ -58,6 +58,7 @@
         <module>camel-caffeine</module>
         <module>camel-cbor</module>
         <module>camel-core</module>
+        <module>camel-cometd</module>
         <module>camel-crypto</module>
         <module>camel-csv</module>
         <module>camel-dns</module>
