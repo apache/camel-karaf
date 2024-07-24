@@ -819,8 +819,17 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version="[4,5)">http-client</feature>
         <bundle dependency='true'>wrap:mvn:com.ibm.cloud/cloudant/${cloudant-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.ibm.cloud/cloudant-common/${cloudant-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.ibm.cloud/sdk-core/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:com.google.code.gson/gson/${auto-detect-version}</bundle>
+        <!-- 'sdk-core' requires 'com.google.gson.internal*', which is not exported by the original bundle -->
+        <bundle dependency='true'>wrap:mvn:com.google.code.gson/gson/${gson-version}$overwrite=merge&amp;Export-Package=com.google.gson*;version=${gson-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio/${squareup-okio-version}</bundle>
+        <!-- both 'okhttp' and 'okhttp-urlconnection' export 'okhttp3',
+        the fragmented host option will enforce both bundles to share the same class loader,
+        'okhttp' was chosen as the host because 'okhttp-urlconnection' contains only one package with 2 classes -->
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}$Bundle-SymbolicName=com.squareup.okhttp3.okhttp</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-urlconnection/${squareup-okhttp-version}$Fragment-Host=com.squareup.okhttp3.okhttp;bundle-version=${squareup-okhttp-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-couchdb/${project.version}</bundle>
     </feature>
     <feature name="camel-cron" version="${project.version}" start-level="50">
