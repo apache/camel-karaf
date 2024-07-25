@@ -19,25 +19,18 @@ import static org.apache.camel.builder.Builder.constant;
 
 import java.util.function.Function;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
-import org.cometd.server.http.JSONHttpTransport;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-cometd-test",
         immediate = true,
-        service = CamelCometdRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelCometdRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
-
-    @Override
-    public void configure(CamelContext camelContext) {
-        JSONHttpTransport.class.getClass();
-        camelContext.setApplicationContextClassLoader(this.getClass().getClassLoader());
-    }
 
     @Override
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
@@ -53,7 +46,7 @@ public class CamelCometdRouteSupplier extends AbstractCamelSingleFeatureResultMo
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.toF("cometd://127.0.0.1:%s/service/test?baseResource=file:%s/test-classes/webapp&timeout=240000&"
                         + "interval=0&maxInterval=30000&multiFrameInterval=1500&jsonCommented=true&logLevel=2",
-                System.getProperty("cometd.port"), System.getProperty("project.target"));
+                System.getProperty("cometd.port"), System.getProperty("project.target")).log("sent message");
     }
 }
 

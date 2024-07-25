@@ -13,13 +13,19 @@
  */
 package org.apache.karaf.camel.itest;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.AvailablePortProvider;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.CamelSuppliedRouteLauncher;
+import org.apache.karaf.camel.itests.ExternalResource;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
+import org.apache.karaf.camel.test.CamelCometdRouteSupplier;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -35,6 +41,23 @@ public class CamelCometdITest extends AbstractCamelSingleFeatureResultMockBasedR
         mock.expectedBodiesReceived("OK");
     }
 
+
+    //override to install the test bundle without starting it as it is a Fragment
+    @Override
+    protected List<String> installRequiredBundles() throws Exception {
+        String testBundleName = getTestBundleName();
+        String testBundleVersion = getTestBundleVersion();
+        if (testBundleVersion == null) {
+            throw new IllegalArgumentException("The system property project.version must be set to the version of the " +
+                    "test bundle to install or the method getTestBundleVersion must be overridden to provide the version");
+        }
+        Path bundlePath = Paths.get("%s/%s-%s.jar".formatted(getBaseDir(), testBundleName, testBundleVersion));
+        installBundle(bundlePath.toUri().toString(), false);
+        //refresh the host bundle to make the test fragment available
+        findBundleByName("camel-integration-test").update();
+        return List.of(testBundleName);
+    }
+
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
@@ -43,6 +66,25 @@ public class CamelCometdITest extends AbstractCamelSingleFeatureResultMockBasedR
     public static final class ExternalResourceProviders {
         public static AvailablePortProvider createAvailablePortProvider() {
             return new AvailablePortProvider(List.of("cometd.port"));
+        }
+
+        public static ExternalResource createSupplierClassProperty() {
+            return new ExternalResource() {
+
+                @Override
+                public void before() {
+                }
+
+                @Override
+                public void after() {
+                }
+
+                @Override
+                public Map<String, String> properties() {
+                    return Map.of(CamelSuppliedRouteLauncher.SUPPLIER_CLASS, CamelCometdRouteSupplier.class.getName());
+                }
+            };
+
         }
     }
 }

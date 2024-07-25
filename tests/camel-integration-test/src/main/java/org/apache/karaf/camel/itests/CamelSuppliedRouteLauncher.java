@@ -17,6 +17,7 @@
 
 package org.apache.karaf.camel.itests;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,7 @@ import static org.apache.karaf.camel.itests.AbstractCamelRouteITest.CAMEL_KARAF_
 public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher implements ServiceListener {
 
     public static final String CAMEL_CONTEXT_NAME = "supplied-route-launcher";
+    public static final String SUPPLIER_CLASS = "supplier-class";
     private static final Logger LOG = LoggerFactory.getLogger(CamelSuppliedRouteLauncher.class);
     private final Map<String, List<RouteDefinition>> routes = new ConcurrentHashMap<>();
     private final Set<String> suppliers = ConcurrentHashMap.newKeySet();
@@ -89,6 +91,20 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
 
     @Override
     protected RouteBuilder createRouteBuilder() {
+        String supplierClass = System.getProperty(SUPPLIER_CLASS);
+        if (supplierClass != null) {
+            try {
+                Class<CamelRouteSupplier> supplier =
+                        (Class<CamelRouteSupplier>) this.getClass().getClassLoader().loadClass(supplierClass);
+                if (supplier != null) {
+                    addRoutes(supplier.getConstructor().newInstance());
+                }
+            } catch (ClassCastException | ClassNotFoundException | NoSuchMethodException | InstantiationException |
+                     IllegalAccessException | InvocationTargetException ex) {
+                LOG.info("could not load supplier class {}", supplierClass);
+                LOG.debug("exception during load", ex);
+            }
+        }
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
