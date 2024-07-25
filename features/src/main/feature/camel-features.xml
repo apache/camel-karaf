@@ -816,7 +816,18 @@
     </feature>
     <feature name='camel-consul' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version='[33,34)'>guava</feature>
         <bundle dependency='true'>wrap:mvn:org.kiwiproject/consul-client/${consul-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${consul-okhttp3-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jetbrains.kotlin/kotlin-stdlib/${consul-kotlin-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.retrofit2/retrofit/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.retrofit2/converter-jackson/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio/${consul-okio-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio-jvm/${consul-okio-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jdk8/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-guava/${jackson2-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-consul/${project.version}</bundle>
     </feature>
     <feature name='camel-couchbase' version='${project.version}' start-level='50'>
