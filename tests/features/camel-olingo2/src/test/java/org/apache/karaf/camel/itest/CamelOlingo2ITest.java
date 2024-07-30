@@ -16,15 +16,15 @@ package org.apache.karaf.camel.itest;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
+import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 
-@CamelKarafTestHint(isBlueprintTest = true)
-@RunWith(PaxExam.class)
+@CamelKarafTestHint(isBlueprintTest = true, externalResourceProvider = CamelOlingo2ITest.ExternalResourceProviders.class)
+@RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelOlingo2ITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
@@ -36,6 +36,13 @@ public class CamelOlingo2ITest extends AbstractCamelSingleFeatureResultMockBased
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
+    }
+
+    public static final class ExternalResourceProviders {
+
+        public static Olingo2Server createMockServer() {
+            return new Olingo2Server();
+        }
     }
 
 }

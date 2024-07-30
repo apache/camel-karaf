@@ -17,14 +17,13 @@
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0"
            xsi:schemaLocation="
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
              http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
 
     <camelContext xmlns="http://camel.apache.org/schema/blueprint">
         <route id="testOlingo2Route-consumer">
-            <from uri="olingo2://read?resourcePath=Products&amp;serviceUri=http://services.odata.org/V2/Northwind/Northwind.svc"/>
+            <from uri="olingo2:DEFAULT/read?resourcePath=Manufacturers&amp;serviceUri=http://localhost:{{olingo.port}}/"/>
             <log message="Get message(consumer): ${body}"/>
             <setBody>
                 <constant>OK-Consumer</constant>
@@ -34,7 +33,7 @@
 
         <route id="testOlingo2Route-producer">
             <from uri="direct:camel-olingo2-test"/>
-            <to uri="olingo2://read?resourcePath=Employees&amp;serviceUri=http://services.odata.org/V2/Northwind/Northwind.svc"/>
+            <to uri="olingo2:DEFAULT/read?resourcePath=Manufacturers&amp;serviceUri=http://localhost:{{olingo.port}}/"/>
             <log message="Get message(producer): ${body}"/>
             <setBody>
                 <constant>OK-Producer</constant>
