@@ -84,7 +84,8 @@
         <module>camel-leveldb</module>
         <module>camel-netty-http</module>
         <module>camel-mail</module>
-        <module>camel-olingo2</module>
+        <!-- TODO: Fix the integration test and re-add it https://github.com/apache/camel-karaf/issues/472 -->
+        <!--module>camel-olingo2</module-->
         <module>camel-paho-mqtt5</module>
         <module>camel-quartz</module>
         <module>camel-saxon</module>
