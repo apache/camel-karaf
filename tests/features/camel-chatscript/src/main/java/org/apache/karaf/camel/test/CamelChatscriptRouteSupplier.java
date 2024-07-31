@@ -49,7 +49,7 @@ public class CamelChatscriptRouteSupplier extends AbstractCamelSingleFeatureResu
         }
         configureConsumer(
                 producerRoute.setBody(new SimpleExpression(rq))
-                .toF("chatscript://localhost:%s/Harry?resetChat=true",System.getProperty("chatscript.port"))
+                .toF("chatscript://localhost:%s/Harry?resetChat=true", System.getProperty("chatscript.port"))
                 .log("received ${body}"));
     }
 
