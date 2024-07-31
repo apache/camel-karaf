@@ -57,6 +57,7 @@
         <module>camel-bindy</module>
         <module>camel-caffeine</module>
         <module>camel-cbor</module>
+        <module>camel-chatscript</module>
         <module>camel-coap</module>
         <module>camel-cometd</module>
         <module>camel-consul</module>
