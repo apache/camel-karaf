@@ -808,10 +808,12 @@
         <bundle dependency='true'>mvn:org.eclipse.jetty.ee10/jetty-ee10-servlets/${jetty-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-server-common/${cometd-java-server-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-server-http-jakarta/${cometd-java-server-version}</bundle>
+        <bundle dependency='true'>mvn:org.cometd.java/cometd-java-server-websocket-jetty/${cometd-java-server-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-common/${cometd-java-server-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-api-server/${cometd-java-server-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-api-common/${cometd-java-server-version}</bundle>
         <bundle dependency='true'>mvn:org.cometd.java/cometd-java-api-client/${cometd-java-server-version}</bundle>
+        <bundle dependency="true">mvn:org.eclipse.jetty/jetty-util-ajax/${jetty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cometd/${project.version}</bundle>
     </feature>
     <feature name='camel-consul' version='${project.version}' start-level='50'>
