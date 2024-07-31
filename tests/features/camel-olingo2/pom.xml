@@ -28,4 +28,30 @@
     <artifactId>camel-olingo2-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Olingo2</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>${squareup-okhttp-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>olingo-odata2-api</artifactId>
+            <version>${olingo2-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>${jakarta-ws-rs-api-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>olingo-odata2-core</artifactId>
+            <version>${olingo2-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
 </project>
