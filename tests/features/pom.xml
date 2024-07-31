@@ -59,6 +59,7 @@
         <module>camel-cbor</module>
         <module>camel-coap</module>
         <module>camel-cometd</module>
+        <module>camel-consul</module>
         <module>camel-core</module>
         <module>camel-couchdb</module>
         <module>camel-crypto</module>
