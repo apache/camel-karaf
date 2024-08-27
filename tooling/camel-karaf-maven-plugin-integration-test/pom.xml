@@ -29,7 +29,7 @@
     <name>Apache Camel :: Karaf :: Tooling :: Maven Plugin Integration Test</name>
 
     <properties>
-        <maven-invoker-plugin-version>3.7.0</maven-invoker-plugin-version>
+        <maven-invoker-plugin-version>3.8.0</maven-invoker-plugin-version>
     </properties>
 
     <build>
