@@ -72,6 +72,7 @@
         <module>camel-drill</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
+        <module>camel-exec</module>
         <module>camel-fastjson</module>
         <module>camel-flatpack</module>
         <module>camel-ftp</module>
