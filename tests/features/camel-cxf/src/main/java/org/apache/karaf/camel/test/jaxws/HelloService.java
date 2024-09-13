@@ -14,18 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.apache.karaf.camel.test.jaxws;
 
-package org.apache.camel.component.cxf.transport.http_jetty.blueprint;
+import java.util.List;
 
-import org.w3c.dom.Element;
+public interface HelloService {
+    String sayHello();
 
-import org.apache.aries.blueprint.ParserContext;
-import org.apache.camel.component.cxf.configuration.blueprint.AbstractBPBeanDefinitionParser;
-import org.osgi.service.blueprint.reflect.Metadata;
+    void ping();
 
-public class JettyServerEngineParser extends AbstractBPBeanDefinitionParser {
+    int getInvocationCount();
 
-    public Metadata parse(Element element, ParserContext context) {
-        return null;
-    }
+    String echo(String text) throws Exception;
+
+    Boolean echoBoolean(Boolean bool);
+
+    String complexParameters(List<String> par1, List<String> par2);
+
 }
