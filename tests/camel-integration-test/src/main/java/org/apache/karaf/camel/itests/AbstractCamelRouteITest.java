@@ -50,6 +50,10 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
 
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
     public static final String CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY = "camel.karaf.itest.debug";
+    static final int CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_DEFAULT = 3;
+    static final int CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_DEFAULT = 5;
+    static final String CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_PROPERTY = "camel.karaf.itest.context.finder.retry";
+    static final String CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_PROPERTY = "camel.karaf.itest.context.finder.retry.interval";
     static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.suppliers";
     static final String CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.ignore.route.suppliers";
 
@@ -125,7 +129,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
      * {@link #CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY} is set.
      * @return {@code true} if the debug mode is enabled, {@code false} otherwise
      */
-    private boolean isDebugModeEnabled() {
+    private static boolean isDebugModeEnabled() {
         return System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY) != null;
     }
 
@@ -134,8 +138,34 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
      * {@link #CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY}. The default value is {@link #CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT}.
      * @return the debug port
      */
-    private int getDebugPort() {
+    private static int getDebugPort() {
         return Integer.getInteger(CAMEL_KARAF_INTEGRATION_TEST_DEBUG_PROPERTY, CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT);
+    }
+
+    /**
+     * Returns the number of retries to perform when trying to find a Camel context, corresponding to the value of the
+     * system property {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_PROPERTY}. The default value is
+     * {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_DEFAULT}.
+     * @return the number of retries
+     */
+    private static int getContextFinderRetry() {
+        return Integer.getInteger(
+            CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_PROPERTY,
+            CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_DEFAULT
+        );
+    }
+
+    /**
+     * Returns the interval in seconds between each retry when trying to find a Camel context, corresponding to the value of the
+     * system property {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_PROPERTY}. The default value is
+     * {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_DEFAULT}.
+     * @return
+     */
+    private static int getContextFinderRetryInterval() {
+        return Integer.getInteger(
+            CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_PROPERTY,
+            CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_DEFAULT
+        );
     }
 
     /**
@@ -427,9 +457,27 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         abstract Class<? extends CamelContext> getCamelContextClass();
 
         CamelContext getCamelContextClass(BundleContext bundleContext, String name) throws InvalidSyntaxException {
+            for (int i = 0; i < getContextFinderRetry(); i++) {
+                CamelContext camelContext = findCamelContext(bundleContext, name);
+                if (camelContext != null) {
+                    return camelContext;
+                }
+                LOG.warn("No CamelContext could be found matching the criteria (mode = {}, name = {}), retrying in {} seconds",
+                        this, name, getContextFinderRetryInterval());
+                try {
+                    Thread.sleep(getContextFinderRetryInterval() * 1_000L);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+            throw new IllegalStateException("No CamelContext could be found matching the criteria (mode = " + this + ", name = " + name + ")");
+        }
+
+        private CamelContext findCamelContext(BundleContext bundleContext, String name) throws InvalidSyntaxException {
             ServiceReference<?>[] references = bundleContext.getServiceReferences(CamelContext.class.getName(), null);
             if (references == null) {
-                throw new IllegalStateException("No CamelContext available");
+                return null;
             }
             for (ServiceReference<?> reference : references) {
                 if (reference == null) {
@@ -441,7 +489,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
                     return camelContext;
                 }
             }
-            throw new IllegalStateException("No CamelContext could be found matching the criteria (mode = " + this + ", name = " + name + ")");
+            return null;
         }
     }
 

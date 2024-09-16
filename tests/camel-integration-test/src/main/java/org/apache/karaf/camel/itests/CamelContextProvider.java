@@ -32,6 +32,13 @@ public interface CamelContextProvider {
     }
 
     /**
+     * Returns the {@link CamelContext} associated with a java test
+     */
+    default CamelContext getDefaultContext() {
+        return getContext(null, false);
+    }
+
+    /**
      * Returns the {@link ProducerTemplate} associated with the given class according to the annotation
      * {@link CamelKarafTestHint}.
      */
@@ -55,5 +62,12 @@ public interface CamelContextProvider {
      */
     default ProducerTemplate getTemplate(String name) {
         return getTemplate(name, true);
+    }
+
+    /**
+     * Returns the {@link ProducerTemplate} associated with a java test
+     */
+    default ProducerTemplate getDefaultTemplate() {
+        return getTemplate(null, false);
     }
 }

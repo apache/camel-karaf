@@ -28,6 +28,10 @@ public abstract class AbstractCamelSingleFeatureResultMockBasedRoute implements 
         this.provider = provider;
     }
 
+    protected CamelContextProvider getProvider() {
+        return provider;
+    }
+
     @Override
     public CamelContext getContext() {
         return provider.getContext();
