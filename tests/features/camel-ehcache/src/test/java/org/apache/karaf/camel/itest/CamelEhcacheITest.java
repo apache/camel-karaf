@@ -15,13 +15,13 @@ package org.apache.karaf.camel.itest;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
-import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@RunWith(PaxExamWithExternalResource.class)
+@RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelEhcacheITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
