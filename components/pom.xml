@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.7.0-SNAPSHOT</version>
+        <version>4.8.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -266,6 +266,7 @@
         <module>camel-snakeyaml</module>
         <module>camel-snmp</module>
         <module>camel-soap</module>
+        <module>camel-solr</module>
         <module>camel-splunk</module>
         <module>camel-splunk-hec</module>
         <module>camel-spring</module>
@@ -288,6 +289,7 @@
         <module>camel-stub</module>
         <module>camel-swift</module>
         <module>camel-syslog</module>
+        <module>camel-tahu</module>
         <module>camel-tarfile</module>
         <module>camel-telegram</module>
         <module>camel-test</module>

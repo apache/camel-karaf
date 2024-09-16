@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-core</artifactId>
-        <version>4.7.0-SNAPSHOT</version>
+        <version>4.8.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -37,6 +37,7 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
+            io.quarkus.arc;resolution:=optional,*
             *
         </camel.osgi.import>
     </properties>

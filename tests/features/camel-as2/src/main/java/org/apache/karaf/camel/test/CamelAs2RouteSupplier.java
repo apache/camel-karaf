@@ -98,19 +98,19 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.setHeader("CamelAS2.requestUri", constant(REQUEST_URI))
-                .setHeader("CamelAS2.subject", constant(SUBJECT))
-                .setHeader("CamelAS2.from", constant(FROM))
-                .setHeader("CamelAS2.as2From", constant(AS2_NAME))
-                .setHeader("CamelAS2.as2To", constant(AS2_NAME))
-                .setHeader("CamelAS2.as2MessageStructure", constant(AS2MessageStructure.PLAIN))
-                .setHeader("CamelAS2.ediMessageContentType",
+        producerRoute.setHeader("CamelAs2.requestUri", constant(REQUEST_URI))
+                .setHeader("CamelAs2.subject", constant(SUBJECT))
+                .setHeader("CamelAs2.from", constant(FROM))
+                .setHeader("CamelAs2.as2From", constant(AS2_NAME))
+                .setHeader("CamelAs2.as2To", constant(AS2_NAME))
+                .setHeader("CamelAs2.as2MessageStructure", constant(AS2MessageStructure.PLAIN))
+                .setHeader("CamelAs2.ediMessageContentType",
                         constant(ContentType.create(AS2MediaType.APPLICATION_EDIFACT, StandardCharsets.US_ASCII.name())))
-                .setHeader("CamelAS2.ediMessageTransferEncoding", constant(EDI_MESSAGE_CONTENT_TRANSFER_ENCODING))
-                .setHeader("CamelAS2.dispositionNotificationTo", constant(FROM))
-                .setHeader("CamelAS2.attachedFileName", constant(""))
+                .setHeader("CamelAs2.ediMessageTransferEncoding", constant(EDI_MESSAGE_CONTENT_TRANSFER_ENCODING))
+                .setHeader("CamelAs2.dispositionNotificationTo", constant(FROM))
+                .setHeader("CamelAs2.attachedFileName", constant(""))
                 .setBody(constant(EDI_MESSAGE))
-                .to("as2:client/send?inBody=ediMessage")
+                .to("as2://client/send?inBody=ediMessage")
                 .log("message sent successfully");
     }
 
