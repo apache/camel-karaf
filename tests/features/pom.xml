@@ -65,6 +65,7 @@
         <module>camel-couchdb</module>
         <module>camel-crypto</module>
         <module>camel-csv</module>
+        <module>camel-cxf</module>
         <module>camel-disruptor</module>
         <module>camel-dns</module>
         <!-- TODO: Fix the integration test and re-add it https://github.com/apache/camel-karaf/issues/438 -->
@@ -238,7 +239,7 @@
                 <configuration>
                     <instructions>
                         <Export-Package>
-                            org.apache.karaf.camel.test;version=${project.version}
+                            org.apache.karaf.camel.test*;version=${project.version}
                         </Export-Package>
                         <Import-Package>
                             org.apache.camel*;${camel-osgi-import-camel-version},

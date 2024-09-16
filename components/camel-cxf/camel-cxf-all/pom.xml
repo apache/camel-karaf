@@ -53,8 +53,6 @@
             org.apache.camel.component.cxf.transport.http.osgi;version=${project.version},
             org.apache.camel.component.cxf.transport.http.blueprint;version=${project.version},
             org.apache.camel.component.cxf.servlet.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.transport.http_jetty.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.transport.http_jetty.osgi;version=${project.version},
             org.apache.camel.component.cxf.ws.addressing.blueprint;version=${project.version},
             org.apache.camel.component.cxf.ws.policy.blueprint;version=${project.version},
             org.apache.camel.component.cxf.feature;version=${camel-version},
@@ -64,7 +62,7 @@
             org.apache.camel.component.cxf.transport.header;version=${camel-version},
             org.apache.camel.component.cxf.transport.message;version=${camel-version},
             org.apache.camel.component.cxf.binding.soap.blueprint;version=${project.version},
-            org.apache.cxf.*;version=${cxf-version},
+            org.apache.cxf*;version=${cxf-version},
         </camel.osgi.export>
         <camel.osgi.activator>org.apache.camel.component.cxf.osgi.MainActivator</camel.osgi.activator>
         <camel-osgi-camel-import>
@@ -98,7 +96,6 @@
             jakarta.ws.rs*;version="${camel-osgi-jakarta-ws-rs-version}",
             jakarta.xml.soap*;version="${camel-osgi-saaj-version}",
             jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
-            org.eclipse.jetty*;version="${camel-osgi-jetty-version}",
             org.glassfish.jaxb.runtime.v2;version="${camel-osgi-jakarta-bind-version}",
             javax.cache*;resolution:=optional,
             org.apache.cxf.tools*;resolution:=optional,
@@ -121,7 +118,7 @@
             org.glassfish.hk2.osgiresourcelocator
         </camel.osgi.import>
         <camel.osgi.dynamicimport.pkg>
-            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*,org.eclipse.jetty.jmx
+            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*
         </camel.osgi.dynamicimport.pkg>
         <camel.osgi.export.service>
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/core",
@@ -135,7 +132,6 @@
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/simple",
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs-client",
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http/configuration",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http-jetty/configuration",
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/ws/addressing",
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/policy",
             org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/ns/ws-policy",
@@ -272,17 +268,6 @@
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>${cxf-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.cxf</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-ws-addr</artifactId>
             <version>${cxf-version}</version>
             <exclusions>
@@ -406,7 +391,6 @@
                                     <include>org.apache.cxf:cxf-rt-frontend-jaxws</include>
                                     <include>org.apache.cxf:cxf-rt-frontend-simple</include>
                                     <include>org.apache.cxf:cxf-rt-transports-http</include>
-                                    <include>org.apache.cxf:cxf-rt-transports-http-jetty</include>
                                     <include>org.apache.cxf:cxf-rt-cxf-rt-security</include>
                                     <include>org.apache.cxf:cxf-rt-cxf-rt-rs-client</include>
                                     <include>org.apache.cxf:cxf-rt-ws-addr</include>

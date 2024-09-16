@@ -45,6 +45,10 @@ public abstract class AbstractCamelSingleFeatureResultFileBasedRoute implements 
         return provider.getTemplate();
     }
 
+    protected CamelContextProvider getProvider() {
+        return provider;
+    }
+
     public void testRoutes() throws Exception {
         triggerProducerRoute();
         executeTest();
