@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
         name = "karaf-camel-${featureNameLower}-test",
         immediate = true,
-        service = Camel${featureName}RouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class Camel${featureName}RouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
