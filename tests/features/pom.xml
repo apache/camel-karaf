@@ -82,6 +82,7 @@
         <module>camel-hazelcast</module>
         <module>camel-http</module>
         <module>camel-influxdb2</module>
+        <module>camel-jackson</module>
         <module>camel-jacksonxml</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>
