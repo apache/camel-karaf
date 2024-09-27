@@ -20,6 +20,7 @@ import org.apache.camel.component.chatscript.ChatScriptMessage;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.language.SimpleExpression;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,7 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component(
         name = "karaf-camel-chatscript-test",
         immediate = true,
-        service = CamelChatscriptRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelChatscriptRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

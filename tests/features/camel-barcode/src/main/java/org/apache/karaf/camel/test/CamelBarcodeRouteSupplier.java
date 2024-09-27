@@ -35,6 +35,7 @@ import org.apache.camel.dataformat.barcode.BarcodeImageType;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.spi.DataFormat;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import com.google.zxing.BarcodeFormat;
@@ -47,7 +48,7 @@ import com.google.zxing.common.HybridBinarizer;
 @Component(
         name = "karaf-camel-barcode-test",
         immediate = true,
-        service = CamelBarcodeRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelBarcodeRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

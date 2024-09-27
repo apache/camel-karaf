@@ -19,12 +19,13 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.dataformat.CsvDataFormat;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-csv-test",
         immediate = true,
-        service = CamelCsvRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelCsvRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

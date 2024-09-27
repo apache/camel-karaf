@@ -22,12 +22,13 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-${featureNameLower}-test",
         immediate = true,
-        service = Camel${featureName}RouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class Camel${featureName}RouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

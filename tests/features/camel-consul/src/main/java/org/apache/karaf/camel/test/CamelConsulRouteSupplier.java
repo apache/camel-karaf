@@ -26,12 +26,13 @@ import org.apache.camel.component.consul.endpoint.ConsulHealthActions;
 import org.apache.camel.component.consul.endpoint.ConsulKeyValueActions;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-consul-test",
         immediate = true,
-        service = CamelConsulRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelConsulRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

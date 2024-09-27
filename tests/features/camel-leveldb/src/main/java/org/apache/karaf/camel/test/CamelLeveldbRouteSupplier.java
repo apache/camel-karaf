@@ -25,12 +25,13 @@ import org.apache.camel.component.leveldb.LevelDBAggregationRepository;
 import org.apache.camel.component.leveldb.serializer.JacksonLevelDBSerializer;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-leveldb-test",
         immediate = true,
-        service = CamelLeveldbRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelLeveldbRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

@@ -24,13 +24,14 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.dataformat.avro.AvroDataFormat;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 
 @Component(
         name = "karaf-camel-avro-test",
         immediate = true,
-        service = CamelAvroRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelAvroRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
