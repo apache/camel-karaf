@@ -16,6 +16,7 @@
 package org.apache.karaf.camel.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
@@ -26,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 @Component(
         name = "karaf-camel-jackson-test",
@@ -86,7 +87,7 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
                 .process(ex -> {
                     MyData data = ex.getIn().getBody(MyData.class);
                     assertEquals(JSON_SAMPLE_NAME, data.getName());
-                    assertEquals(null, data.getNikname());
+                    assertNull(data.getNikname());
                     assertEquals(JSON_SAMPLE_AGE, data.getAge());
                 })
                 .log("Will marshal: ${body}")
@@ -95,10 +96,10 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
                 .process(ex -> {
                     String data = ex.getIn().getBody(String.class);
 
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    JsonNode jsonNode = objectMapper.readTree(data);
+                    JsonMapper jsonMapper = new JsonMapper();
+                    JsonNode jsonNode = jsonMapper.readTree(data);
                     assertEquals(JSON_SAMPLE_NAME, jsonNode.get("name").asText());
-                    assertEquals(null, jsonNode.get("nikname"));
+                    assertNull(jsonNode.get("nikname"));
                     assertEquals(JSON_SAMPLE_AGE, jsonNode.get("age").asInt());
                 }).toF("mock:%s", getResultMockName());
     }
