@@ -18,12 +18,13 @@ package org.apache.karaf.camel.test;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-exec-test",
         immediate = true,
-        service = CamelExecRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelExecRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

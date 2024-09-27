@@ -21,12 +21,13 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.caffeine.CaffeineConstants;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-caffeine-test",
         immediate = true,
-        service = CamelCaffeineRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelCaffeineRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

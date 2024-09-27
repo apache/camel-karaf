@@ -24,12 +24,13 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.cbor.CBORDataFormat;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-cbor-test",
         immediate = true,
-        service = CamelCborRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelCborRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

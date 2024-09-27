@@ -24,12 +24,13 @@ import org.apache.camel.component.couchdb.CouchDbConstants;
 import org.apache.camel.component.couchdb.CouchDbOperations;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 @Component(
         name = "karaf-camel-couchdb-test",
         immediate = true,
-        service = CamelCouchdbRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelCouchdbRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 

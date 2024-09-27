@@ -20,6 +20,7 @@ import static org.apache.camel.builder.Builder.constant;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
+import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import jakarta.validation.constraints.Min;
@@ -28,7 +29,7 @@ import jakarta.validation.constraints.NotNull;
 @Component(
         name = "karaf-camel-bean-validator-test",
         immediate = true,
-        service = CamelBeanValidatorRouteSupplier.class
+        service = CamelRouteSupplier.class
 )
 public class CamelBeanValidatorRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
