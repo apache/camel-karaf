@@ -28,7 +28,7 @@
     <name>Apache Camel :: Karaf :: Tooling :: Integration Test Archetype</name>
 
     <properties>
-        <maven-archetype-version>3.2.1</maven-archetype-version>
+        <maven-archetype-version>3.3.0</maven-archetype-version>
     </properties>
 
     <build>
