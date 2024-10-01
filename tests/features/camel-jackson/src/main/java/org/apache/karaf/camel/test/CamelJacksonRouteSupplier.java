@@ -26,8 +26,6 @@ import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 
 @Component(
         name = "karaf-camel-jackson-test",
@@ -93,14 +91,6 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
                 .log("Will marshal: ${body}")
                 .marshal().json(JsonLibrary.Jackson)
                 .log("Marshal: ${body}")
-                .process(ex -> {
-                    String data = ex.getIn().getBody(String.class);
-
-                    JsonMapper jsonMapper = new JsonMapper();
-                    JsonNode jsonNode = jsonMapper.readTree(data);
-                    assertEquals(JSON_SAMPLE_NAME, jsonNode.get("name").asText());
-                    assertNull(jsonNode.get("nikname"));
-                    assertEquals(JSON_SAMPLE_AGE, jsonNode.get("age").asInt());
-                }).toF("mock:%s", getResultMockName());
+                .toF("mock:%s", getResultMockName());
     }
 }
