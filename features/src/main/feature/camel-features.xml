@@ -1587,8 +1587,9 @@
     <feature name='camel-jackson-avro' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-jackson</feature>
         <feature version='[33,34)'>guava</feature>
-        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.avro/avro/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.avro/avro/${avro-version}</bundle>
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-core-asl/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.codehaus.jackson/jackson-mapper-asl/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:com.thoughtworks.paranamer/paranamer/${auto-detect-version}</bundle>
