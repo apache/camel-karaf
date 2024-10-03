@@ -730,6 +730,7 @@
                         <Provide-Capability>${camel.osgi.provide.capability}</Provide-Capability>
                         <Require-Capability>${camel.osgi.require.capability}</Require-Capability>
                         <Export-Service>${camel.osgi.export.service}</Export-Service>
+                        <SPI-Consumer>${camel.osgi.spi.consumer}</SPI-Consumer>
                         <_failok>${camel.osgi.failok}</_failok>
                         <_versionpolicy>[$(version;==;$(@)),$(version;+;$(@)))</_versionpolicy>
                         <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency

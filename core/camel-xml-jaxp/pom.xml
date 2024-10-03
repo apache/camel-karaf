@@ -39,6 +39,7 @@
         <camel.osgi.import>
             *
         </camel.osgi.import>
+        <camel.osgi.spi.consumer>javax.xml.stream.XMLInputFactory#newInstance()</camel.osgi.spi.consumer>
     </properties>
 
     <dependencies>

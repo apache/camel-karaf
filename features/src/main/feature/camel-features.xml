@@ -1618,6 +1618,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-javascript/${project.version}</bundle>
     </feature>
     <feature name='camel-jaxb' version='${project.version}' start-level='50'>
+        <feature prerequisite="true">spifly</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-jaxb/${project.version}</bundle>
     </feature>
