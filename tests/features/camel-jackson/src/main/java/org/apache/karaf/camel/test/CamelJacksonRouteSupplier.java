@@ -45,7 +45,7 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class MyData {
         private String name;
-        private String nikname;
+        private String nickname;
         private int age;
 
         // empty constructor is needed by default
@@ -60,12 +60,12 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
             this.name = name;
         }
 
-        public String getNikname() {
-            return nikname;
+        public String getNickname() {
+            return nickname;
         }
 
-        public void setNikname(String nikname) {
-            this.nikname = nikname;
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
         }
 
         public int getAge() {
@@ -85,7 +85,7 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
                 .process(ex -> {
                     MyData data = ex.getIn().getBody(MyData.class);
                     assertEquals(JSON_SAMPLE_NAME, data.getName());
-                    assertNull(data.getNikname());
+                    assertNull(data.getNickname());
                     assertEquals(JSON_SAMPLE_AGE, data.getAge());
                 })
                 .log("Will marshal: ${body}")

@@ -38,7 +38,8 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 )
 public class CamelJaxbRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
-    public static final String XML_SAMPLE_NAME = "Jhon";
+    public static final String JAXB_BEAN = "jaxbBean";
+    public static final String XML_SAMPLE_NAME = "Jax";
     public static final int XML_SAMPLE_AGE = 33;
 
     @Override
@@ -50,25 +51,25 @@ public class CamelJaxbRouteSupplier extends AbstractCamelSingleFeatureResultMock
     public void configure(CamelContext context) {
         JaxbDataFormat jaxb = new JaxbDataFormat();
         jaxb.setContextPath(MyData.class.getName()); // org.apache.karaf.camel.test.CamelJaxbRouteSupplier$MyData
-        jaxb.setContextPathIsClassName("true");
-        jaxb.setPrettyPrint("false");
-        jaxb.setFragment("true"); // don't generate the XML declaration header
+        jaxb.setContextPathIsClassName(Boolean.TRUE.toString());
+        jaxb.setPrettyPrint(Boolean.FALSE.toString());
+        jaxb.setFragment(Boolean.TRUE.toString()); // don't generate the XML declaration header
 
-        context.getRegistry().bind("jaxbBean", jaxb);
+        context.getRegistry().bind(JAXB_BEAN, jaxb);
     }
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.log("Will unmarshal: ${body}")
-            .unmarshal("jaxbBean")
+            .unmarshal(JAXB_BEAN)
             .log("Unmarshal: ${body}")
             .process(ex -> {
                 MyData data = ex.getIn().getBody(MyData.class);
                 assertEquals(XML_SAMPLE_NAME, data.getName());
-                assertNull(data.getNikname());
+                assertNull(data.getNickname());
                 assertEquals(XML_SAMPLE_AGE, data.getAge());
             }).log("Will marshal: ${body}")
-            .marshal("jaxbBean")
+            .marshal(JAXB_BEAN)
             .log("Marshal: ${body}")
             .toF("mock:%s", getResultMockName());
     }
@@ -81,7 +82,7 @@ public class CamelJaxbRouteSupplier extends AbstractCamelSingleFeatureResultMock
         private String name;
 
         @XmlElement(required = false)
-        private String nikname;
+        private String nickname;
 
         @XmlElement(required = true)
         private int age;
@@ -90,8 +91,8 @@ public class CamelJaxbRouteSupplier extends AbstractCamelSingleFeatureResultMock
             return name;
         }
 
-        public String getNikname() {
-            return nikname;
+        public String getNickname() {
+            return nickname;
         }
 
         public int getAge() {
