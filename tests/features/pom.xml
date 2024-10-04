@@ -84,6 +84,7 @@
         <module>camel-influxdb2</module>
         <module>camel-jackson</module>
         <module>camel-jackson-avro</module>
+        <module>camel-jackson-protobuf</module>
         <module>camel-jacksonxml</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>

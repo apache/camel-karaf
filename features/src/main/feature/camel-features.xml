@@ -1598,7 +1598,7 @@
     </feature>
     <feature name='camel-jackson-protobuf' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-jackson</feature>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-protobuf/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-protobuf/${jackson2-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jackson-protobuf/${project.version}</bundle>
     </feature>
     <feature name='camel-jacksonxml' version='${project.version}' start-level='50'>
