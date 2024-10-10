@@ -15,7 +15,6 @@ package org.apache.karaf.camel.itest;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
-import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.test.CamelJaxbRouteSupplier;
 import org.junit.Test;
 import org.junit.runner.RunWith;
