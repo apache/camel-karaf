@@ -23,7 +23,6 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-@CamelKarafTestHint
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class CamelJaxbITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
