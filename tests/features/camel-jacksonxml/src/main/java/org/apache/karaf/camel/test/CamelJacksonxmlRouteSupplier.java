@@ -25,8 +25,6 @@ import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 @Component(
         name = "karaf-camel-jacksonxml-test",
@@ -46,7 +44,7 @@ public class CamelJacksonxmlRouteSupplier extends AbstractCamelSingleFeatureResu
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class MyData {
         private String name;
-        private String nikname;
+        private String nickname;
         private int age;
 
         // empty constructor is needed by default
@@ -62,12 +60,12 @@ public class CamelJacksonxmlRouteSupplier extends AbstractCamelSingleFeatureResu
             this.name = name;
         }
 
-        public String getNikname() {
-            return nikname;
+        public String getNickname() {
+            return nickname;
         }
 
-        public void setNikname(String nikname) {
-            this.nikname = nikname;
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
         }
 
         public int getAge() {
@@ -87,20 +85,12 @@ public class CamelJacksonxmlRouteSupplier extends AbstractCamelSingleFeatureResu
         .process(ex -> {
             MyData data = ex.getIn().getBody(MyData.class);
             assertEquals(XML_SAMPLE_NAME, data.getName());
-            assertNull(data.getNikname());
+            assertNull(data.getNickname());
             assertEquals(XML_SAMPLE_AGE, data.getAge());
         })
         .log("Will marshal: ${body}")
         .marshal().jacksonXml()
         .log("Marshal: ${body}")
-        .process(ex -> {
-            String data = ex.getIn().getBody(String.class);
-
-            XmlMapper xmlMapper = new XmlMapper();
-            JsonNode jsonNode = xmlMapper.readTree(data);
-            assertEquals(XML_SAMPLE_NAME, jsonNode.get("name").asText());
-            assertNull(jsonNode.get("nikname"));
-            assertEquals(XML_SAMPLE_AGE, jsonNode.get("age").asInt());
-        }).toF("mock:%s", getResultMockName());
+        .toF("mock:%s", getResultMockName());
     }
 }

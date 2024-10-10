@@ -27,18 +27,18 @@
         <version>4.8.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>camel-jackson-test</artifactId>
-    <name>Apache Camel :: Karaf :: Tests :: Features :: Jackson</name>
-
-    <dependencies>
+    <artifactId>camel-jaxb-test</artifactId>
+    <name>Apache Camel :: Karaf :: Tests :: Features :: Jaxb</name>
+    
+        <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson2-version}</version>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${jakarta-xml-bind-api-version}</version>
         </dependency>
     </dependencies>
 </project>

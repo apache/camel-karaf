@@ -86,6 +86,7 @@
         <module>camel-jackson-avro</module>
         <module>camel-jackson-protobuf</module>
         <module>camel-jacksonxml</module>
+        <module>camel-jaxb</module>
         <module>camel-jcache</module>
         <module>camel-jetty</module>
         <module>camel-jms</module>
