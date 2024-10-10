@@ -75,7 +75,7 @@
                         </Import-Package>
                         <Provide-Capability>
                             osgi.extender; osgi.extender="org.apache.camel"; uses:="org.apache.camel.karaf.core";
-                            version:Version="$(version;==;4.5.0)"
+                            version:Version="$(version;==;${camel-version})"
                         </Provide-Capability>
                         <Bundle-Activator>org.apache.camel.karaf.core.Activator</Bundle-Activator>
                     </instructions>
