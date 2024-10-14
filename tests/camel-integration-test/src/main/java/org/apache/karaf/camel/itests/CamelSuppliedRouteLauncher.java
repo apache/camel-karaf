@@ -124,6 +124,7 @@ public class CamelSuppliedRouteLauncher extends AbstractCamelRouteLauncher imple
                 return;
             }
             camelContext.removeRouteDefinitions(routeDefinitions);
+            supplier.cleanUp(camelContext);
             LOG.info("Route(s) removed from CamelRouteSupplier service: {}", supplier.getClass().getName());
         } catch (Exception e) {
             throw new RuntimeException(e);

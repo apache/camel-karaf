@@ -38,11 +38,20 @@ public class CamelInfluxdb2RouteSupplier extends AbstractCamelSingleFeatureResul
 
     @Override
     public void configure(CamelContext camelContext) {
-        final int influxdb2Port = Integer.parseInt(System.getProperty("influxdb2.port"));
-        InfluxDBClient myInfluxDBClient = InfluxDBClientFactory.create("http://localhost:%s".formatted(influxdb2Port),
+        final int influxdb2Port = Integer.getInteger("influxdb2.port");
+        InfluxDBClient influxDBClient = InfluxDBClientFactory.create("http://localhost:%s".formatted(influxdb2Port),
                 System.getProperty("influxdb2.admin.token").toCharArray(), ORG, BUCKET);
 
-        camelContext.getRegistry().bind("myDbClient", myInfluxDBClient);
+        camelContext.getRegistry().bind("myDbClient", influxDBClient);
+    }
+
+    @Override
+    public void cleanUp(CamelContext camelContext) {
+        InfluxDBClient influxDBClient = camelContext.getRegistry().lookupByNameAndType("myDbClient", InfluxDBClient.class);
+        if (influxDBClient == null) {
+            return;
+        }
+        influxDBClient.close();
     }
 
     @Override

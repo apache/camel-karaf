@@ -35,7 +35,6 @@
             <groupId>dnsjava</groupId>
             <artifactId>dnsjava</artifactId>
             <version>${dnsjava-version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

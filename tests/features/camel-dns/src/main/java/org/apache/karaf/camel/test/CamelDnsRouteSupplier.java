@@ -15,11 +15,13 @@
  */
 package org.apache.karaf.camel.test;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
+import org.xbill.DNS.NioClient;
 
 @Component(
         name = "karaf-camel-dns-test",
@@ -33,6 +35,12 @@ public class CamelDnsRouteSupplier extends AbstractCamelSingleFeatureResultMockB
     @Override
     protected boolean consumerEnabled() {
         return false;
+    }
+
+    @Override
+    public void cleanUp(CamelContext camelContext) {
+        // Close it explicitly to prevent NoClassDefFoundError after the test
+        NioClient.close();
     }
 
     @Override

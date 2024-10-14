@@ -36,10 +36,18 @@ public class CamelHazelcastRouteSupplier extends AbstractCamelSingleFeatureResul
 
     @Override
     public void configure(CamelContext camelContext) {
-        ClusterProperty.SHUTDOWNHOOK_ENABLED.setSystemProperty("false");
         Config hazelcastConfig = new Config();
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(hazelcastConfig);
         camelContext.getRegistry().bind("hzInstance", hazelcastInstance);
+    }
+
+    @Override
+    public void cleanUp(CamelContext camelContext) {
+        HazelcastInstance hazelcastInstance = camelContext.getRegistry().lookupByNameAndType("hzInstance", HazelcastInstance.class);
+        if (hazelcastInstance == null) {
+            return;
+        }
+        hazelcastInstance.shutdown();
     }
 
     @Override

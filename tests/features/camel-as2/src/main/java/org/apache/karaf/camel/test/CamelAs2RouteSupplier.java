@@ -75,7 +75,7 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
 
     @Override
     public void configure(CamelContext context) {
-        final int port = Integer.parseInt(System.getProperty("as2.port"));
+        final int port = Integer.getInteger("as2.port");
         final AS2Configuration configuration = new AS2Configuration();
         configuration.setTargetHostname("localhost");
         configuration.setTargetPortNumber(port);

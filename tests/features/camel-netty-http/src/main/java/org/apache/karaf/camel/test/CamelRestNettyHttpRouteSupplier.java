@@ -34,7 +34,7 @@ public class CamelRestNettyHttpRouteSupplier extends AbstractCamelSingleFeatureR
         RestConfiguration config = new RestConfiguration();
         config.setComponent("netty-http");
         config.setHost("127.0.0.1");
-        config.setPort(Integer.parseInt(System.getProperty(REST_PORT)));
+        config.setPort(Integer.getInteger(REST_PORT));
         camelContext.setRestConfiguration(config);
     }
 

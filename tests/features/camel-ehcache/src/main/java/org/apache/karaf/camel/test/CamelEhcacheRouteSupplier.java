@@ -51,7 +51,16 @@ public class CamelEhcacheRouteSupplier extends AbstractCamelSingleFeatureResultM
                 )
                 .build(true);
 
-        camelContext.getRegistry().bind("cacheManager",cacheManager);
+        camelContext.getRegistry().bind("cacheManager", cacheManager);
+    }
+
+    @Override
+    public void cleanUp(CamelContext camelContext) {
+        CacheManager cacheManager = camelContext.getRegistry().lookupByNameAndType("cacheManager", CacheManager.class);
+        if (cacheManager == null) {
+            return;
+        }
+        cacheManager.close();
     }
 
     @Override
