@@ -120,6 +120,10 @@
                     <groupId>org.apache.karaf</groupId>
                     <artifactId>org.apache.karaf.client</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.ops4j.pax.logging</groupId>
+                    <artifactId>pax-logging-logback</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!-- Required to use shell commands in the tests -->
