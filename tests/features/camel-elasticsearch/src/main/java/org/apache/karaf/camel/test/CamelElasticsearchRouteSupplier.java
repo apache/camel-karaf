@@ -39,7 +39,7 @@ public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleFeatureR
         elasticsearchComponent.setPassword(System.getProperty("elasticsearch.password"));
         elasticsearchComponent.setCertificatePath("file:%s".formatted(System.getProperty("elasticsearch.cafile")));
 
-        camelContext.addComponent("elasticsearch",elasticsearchComponent);
+        camelContext.addComponent("elasticsearch", elasticsearchComponent);
     }
 
     @Override

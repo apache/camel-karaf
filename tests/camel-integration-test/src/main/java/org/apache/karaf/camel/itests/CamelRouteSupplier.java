@@ -23,4 +23,11 @@ public interface CamelRouteSupplier {
      * @param builder the Camel route builder
      */
     void createRoutes(RouteBuilder builder);
+
+    /**
+     * Cleans up the Camel context before removing the routes.
+     */
+    default void cleanUp(CamelContext camelContext) {
+        // Do nothing by default
+    }
 }

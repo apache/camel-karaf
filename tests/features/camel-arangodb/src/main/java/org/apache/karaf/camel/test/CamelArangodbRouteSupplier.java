@@ -42,7 +42,7 @@ public class CamelArangodbRouteSupplier extends AbstractCamelSingleFeatureResult
 
     @Override
     public void configure(CamelContext camelContext) {
-        final int arangoPort = Integer.parseInt(System.getProperty("arango.port"));
+        final int arangoPort = Integer.getInteger("arango.port");
         ArangoDB arangoDb = new ArangoDB.Builder().host("localhost", arangoPort).build();
 
         arangoDb.createDatabase(DATABASE_NAME);
@@ -54,7 +54,14 @@ public class CamelArangodbRouteSupplier extends AbstractCamelSingleFeatureResult
         arangoDbComponent.getConfiguration().setHost("localhost");
         arangoDbComponent.getConfiguration().setPort(arangoPort);
 
-        camelContext.addComponent("arangodb",arangoDbComponent);
+        camelContext.addComponent("arangodb", arangoDbComponent);
+    }
+
+    @Override
+    public void cleanUp(CamelContext camelContext) {
+        if (camelContext.hasComponent("arangodb") instanceof ArangoDbComponent arangoDbComponent) {
+            arangoDbComponent.getArangoDB().shutdown();
+        }
     }
 
     @Override
