@@ -34,10 +34,24 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel-version}
+            org.apache.camel*;version=${camel-version},
+            org.apache.drill*;version=${apache-drill-version},
         </camel.osgi.export>
+        <camel.osgi.private>
+            com.google.protobuf*,
+            com.google.common*,
+            io.netty*,
+            org.apache.calcite.avatica*,
+        </camel.osgi.private>
         <camel.osgi.import>
-            *
+            javassist*,
+            com.typesafe.config*,
+            org.reflections*,
+            com.codahale.metrics,
+            com.codahale.metrics.jmx,
+            com.codahale.metrics.jvm,
+            org.apache.commons.text*,
+            *;resolution:=optional
         </camel.osgi.import>
     </properties>
 
@@ -51,7 +65,21 @@
                     <groupId>org.apache.camel</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.apache.drill.exec</groupId>
+                    <artifactId>drill-jdbc-all</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.drill.exec</groupId>
+            <artifactId>drill-jdbc</artifactId>
+            <version>${apache-drill-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.drill.exec</groupId>
+            <artifactId>drill-java-exec</artifactId>
+            <version>${apache-drill-version}</version>
         </dependency>
     </dependencies>
 
@@ -70,8 +98,33 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.apache.camel:camel-drill</include>
+                                    <include>org.apache.drill:drill-common</include>
+                                    <include>org.apache.drill:drill-protocol</include>
+                                    <include>org.apache.drill:drill-logical</include>
+                                    <include>org.apache.drill:drill-shaded-guava</include>
+                                    <include>org.apache.drill.exec:drill-jdbc</include>
+                                    <include>org.apache.drill.exec:drill-rpc</include>
+                                    <include>org.apache.drill.exec:drill-java-exec</include>
+                                    <include>org.apache.drill.exec:vector</include>
+                                    <include>org.apache.drill.memory:drill-memory-base</include>
                                 </includes>
                             </artifactSet>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>drill-module.conf</resource>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>bootstrap-storage-plugins.json</exclude>
+                                        <exclude>codegen/**</exclude>
+                                        <exclude>**/*.java</exclude>
+                                        <exclude>org/apache/parquet/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>

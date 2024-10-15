@@ -1010,9 +1010,16 @@
     <feature name='camel-drill' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-spring-version}'>spring-jdbc</feature>
-        <!-- force SPI-Provider to a single value because it's not needed = * causes class not found exceptions,
-        the bundled jar does not contain all necessary jersey dependencies -->
-        <bundle dependency='true'>wrap:mvn:org.apache.drill.exec/drill-jdbc-all/${apache-drill-version}$Export-Package=org.apache.drill.jdbc.*;version=${apache-drill-version}&amp;SPI-Provider=java.sql.Driver</bundle>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:com.typesafe/config/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.reflections/reflections/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:org.javassist/javassist/${javassist-version}</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-core/${metrics-version}</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-jmx/${metrics-version}</bundle>
+        <bundle dependency='true'>mvn:io.dropwizard.metrics/metrics-jvm/${metrics-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-text/${commons-text-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.carrotsearch/hppc/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-drill/${project.version}</bundle>
     </feature>
     <feature name='camel-dropbox' version='${project.version}' start-level='50'>

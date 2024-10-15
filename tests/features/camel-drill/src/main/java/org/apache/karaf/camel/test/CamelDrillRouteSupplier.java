@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
 )
 public class CamelDrillRouteSupplier extends AbstractCamelSingleFeatureResultMockBasedRouteSupplier {
 
-    private final static String SELECT_QUERY = "select * from cp.`employee.json` limit 3";
+    private static final String SELECT_QUERY = "select * from cp.`employee.json` limit 3";
 
     @Override
     protected boolean consumerEnabled() {
