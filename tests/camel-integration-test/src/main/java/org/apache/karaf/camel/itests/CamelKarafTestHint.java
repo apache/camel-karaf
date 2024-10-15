@@ -16,6 +16,11 @@ import java.util.List;
 public @interface CamelKarafTestHint {
 
     /**
+     * The default timeout in seconds for the test.
+     */
+    int DEFAULT_TIMEOUT = 300;
+
+    /**
      * Specify the class that provides the methods to create all the external resources required by the test.
      * In the provider class, each public static method that returns an instance of a subtype of {@link ExternalResource}
      * with no parameters is considered as an {@link ExternalResource} supplier, so it will be invoked before executing
@@ -52,4 +57,14 @@ public @interface CamelKarafTestHint {
      * Forces to ignore all Camel route suppliers within the context of the tests. False by default.
      */
     boolean ignoreRouteSuppliers() default false;
+
+    /**
+     * Specify whether the test should be retried on failure. By default, no retry is performed.
+     */
+    boolean retryOnFailure() default false;
+
+    /**
+     * Specify the timeout in seconds for the test. By default, the timeout is 300 seconds.
+     */
+    int timeout() default DEFAULT_TIMEOUT;
 }

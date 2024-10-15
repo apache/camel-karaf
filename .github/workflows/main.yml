@@ -38,4 +38,4 @@ jobs:
         with:
           java-version: 17
           distribution: zulu
-      - run: ./mvnw -V --no-transfer-progress clean install
+      - run: ./mvnw -V --no-transfer-progress clean install -Ddump.logs.on.failure=true
