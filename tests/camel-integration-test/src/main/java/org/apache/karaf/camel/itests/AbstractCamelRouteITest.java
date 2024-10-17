@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
@@ -31,9 +33,12 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.CoreOptions;
+import org.ops4j.pax.exam.ExamFactory;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.container.remote.RBCRemoteTargetOptions;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionConfigurationFilePutOption;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
 import org.osgi.framework.Bundle;
@@ -44,8 +49,10 @@ import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.karaf.camel.itests.CamelKarafTestHint.DEFAULT_TIMEOUT;
 import static org.ops4j.pax.exam.OptionUtils.combine;
 
+@ExamFactory(TestContainerFactoryFailureAware.class)
 public abstract class AbstractCamelRouteITest extends KarafTestSupport implements CamelContextProvider {
 
     public static final int CAMEL_KARAF_INTEGRATION_TEST_DEBUG_DEFAULT_PORT = 8889;
@@ -56,11 +63,21 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
     static final String CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_PROPERTY = "camel.karaf.itest.context.finder.retry.interval";
     static final String CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.route.suppliers";
     static final String CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY = "camel.karaf.itest.ignore.route.suppliers";
+    static final String CAMEL_KARAF_INTEGRATION_TEST_DUMP_LOGS_PROPERTY = "camel.karaf.itest.dump.logs";
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractCamelRouteITest.class);
     private final Map<CamelContextKey, CamelContext> contexts = new ConcurrentHashMap<>();
     private final Map<CamelContextKey, ProducerTemplate> templates = new ConcurrentHashMap<>();
+    @Rule
+    public final DumpFileOnError dumpFileOnError;
     private List<String> requiredBundles;
+
+    protected AbstractCamelRouteITest() {
+        this.retry = new Retry(retryOnFailure());
+        this.dumpFileOnError = new DumpFileOnError(
+            getKarafLogFile(), System.err, Boolean.getBoolean(CAMEL_KARAF_INTEGRATION_TEST_DUMP_LOGS_PROPERTY)
+        );
+    }
 
     public String getCamelKarafVersion() {
         String version = System.getProperty("camel.karaf.version");
@@ -105,6 +122,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
                     "getCamelKarafVersion must be overridden to provide the version of Camel Karaf to use");
         }
         Option[] options = new Option[]{
+            CoreOptions.systemTimeout(timeoutInMillis()),
+            RBCRemoteTargetOptions.waitForRBCFor((int) timeoutInMillis()),
+            CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_DUMP_LOGS_PROPERTY).value(System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_DUMP_LOGS_PROPERTY, "false")),
             CoreOptions.systemProperty("project.target").value(getBaseDir()),
             KarafDistributionOption.features("mvn:org.apache.camel.karaf/apache-camel/%s/xml/features".formatted(camelKarafVersion), "scr", getMode().getFeatureName()),
             CoreOptions.mavenBundle().groupId("org.apache.camel.karaf").artifactId("camel-integration-test").version(camelKarafVersion)
@@ -122,6 +142,13 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
             combine = combine(combine, getCamelRouteSupplierFilter());
         }
         return combine(combine, getAdditionalOptions());
+    }
+
+    /**
+     * @return the location of the Karaf log file.
+     */
+    private static @NotNull File getKarafLogFile() {
+        return new File(System.getProperty("karaf.log"), "karaf.log");
     }
 
     /**
@@ -159,7 +186,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
      * Returns the interval in seconds between each retry when trying to find a Camel context, corresponding to the value of the
      * system property {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_PROPERTY}. The default value is
      * {@link #CAMEL_KARAF_INTEGRATION_TEST_CONTEXT_FINDER_RETRY_INTERVAL_DEFAULT}.
-     * @return
+     * @return the interval in seconds between each retry when trying to find a Camel context
      */
     private static int getContextFinderRetryInterval() {
         return Integer.getInteger(
@@ -197,6 +224,9 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         return options;
     }
 
+    /**
+     * @return the options provided by the external resources.
+     */
     @NotNull
     private static Option[] getExternalResourceOptions() {
         return PaxExamWithExternalResource.systemProperties().entrySet().stream()
@@ -204,32 +234,84 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
                 .toArray(Option[]::new);
     }
 
-    private boolean hasExternalResources() {
-        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
-        return hint != null && hint.externalResourceProvider() != Object.class;
+    /**
+     * Returns the timeout in milliseconds for the test, corresponding to the value of the
+     * {@link CamelKarafTestHint#timeout()} annotation multiplied by one thousand.
+     * @return the timeout in milliseconds for the test
+     */
+    private long timeoutInMillis() {
+        return TimeUnit.SECONDS.toMillis(getCamelKarafTestHint().map(CamelKarafTestHint::timeout).orElse(DEFAULT_TIMEOUT));
     }
 
+    /**
+     * Indicates whether the test should be retried on failure. By default, no retry is performed.
+     * @return {@code true} if the test should be retried on failure, {@code false} otherwise
+     */
+    private boolean retryOnFailure() {
+        return getCamelKarafTestHint().filter(CamelKarafTestHint::retryOnFailure).isPresent();
+    }
 
+    /**
+     * Indicates whether the test requires external resources or not. By default, no external resources are required.
+     * @return {@code true} if the test requires external resources, {@code false} otherwise
+     */
+    private boolean hasExternalResources() {
+        return getCamelKarafTestHint().filter(hint -> hint.externalResourceProvider() != Object.class).isPresent();
+    }
+
+    /**
+     * @return the {@link CamelKarafTestHint} annotation of the test class
+     */
+    private Optional<CamelKarafTestHint> getCamelKarafTestHint() {
+        return getCamelKarafTestHint(getClass());
+    }
+
+    /**
+     * @return the {@link CamelKarafTestHint} annotation of the given test class
+     */
+    private static Optional<CamelKarafTestHint> getCamelKarafTestHint(Class<?> clazz) {
+        return Optional.ofNullable(clazz.getAnnotation(CamelKarafTestHint.class));
+    }
+
+    /**
+     * @return the option to enable only the Camel route suppliers provided in the {@link CamelKarafTestHint} annotation.
+     */
     private Option getCamelRouteSupplierFilter() {
         return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_ROUTE_SUPPLIERS_PROPERTY)
-                .value(String.join(",", getClass().getAnnotation(CamelKarafTestHint.class).camelRouteSuppliers()));
+                .value(String.join(",", getCamelKarafTestHint().orElseThrow().camelRouteSuppliers()));
     }
 
+    /**
+     * Indicates whether specific Camel route suppliers have been provided in the {@link CamelKarafTestHint} annotation.
+     * @return {@code true} if specific Camel route suppliers have been provided, {@code false} otherwise
+     */
     private boolean hasCamelRouteSupplierFilter() {
-        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
-        return hint != null && hint.camelRouteSuppliers().length > 0;
+        return getCamelKarafTestHint().filter(hint -> hint.camelRouteSuppliers().length > 0).isPresent();
     }
 
+    /**
+     * Indicates whether all Camel route suppliers should be ignored or not. By default, all Camel route suppliers are used.
+     * @return {@code true} if all Camel route suppliers should be ignored, {@code false} otherwise
+     */
     private boolean ignoreCamelRouteSuppliers() {
-        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
-        return hint != null && hint.ignoreRouteSuppliers();
+        return getCamelKarafTestHint().filter(CamelKarafTestHint::ignoreRouteSuppliers).isPresent();
     }
 
+    /**
+     * Indicates whether additional required features have been provided in the {@link CamelKarafTestHint} annotation.
+     * @return {@code true} if additional required features have been provided, {@code false} otherwise
+     */
+    private boolean hasAdditionalRequiredFeatures() {
+        return getCamelKarafTestHint().filter(hint -> hint.additionalRequiredFeatures().length > 0).isPresent();
+    }
+
+    /**
+     * @return the option to ignore all Camel route suppliers.
+     */
     private Option getIgnoreCamelRouteSupplier() {
         return CoreOptions.systemProperty(CAMEL_KARAF_INTEGRATION_TEST_IGNORE_ROUTE_SUPPLIERS_PROPERTY)
                 .value(Boolean.toString(Boolean.TRUE));
     }
-
 
     /**
      * Returns the list of additional options to add to the configuration.
@@ -252,6 +334,10 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         return List.of();
     }
 
+    /**
+     * Install all the required features repositories.
+     * @throws Exception if an error occurs while installing a features repository
+     */
     private void installRequiredFeaturesRepositories() throws Exception {
         for (String featuresRepository : getRequiredFeaturesRepositories()) {
             addFeaturesRepository(featuresRepository);
@@ -268,15 +354,18 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
      * the {@link CamelKarafTestHint#additionalRequiredFeatures()}.
      */
     private List<String> getAllRequiredFeatures() {
-        CamelKarafTestHint hint = getClass().getAnnotation(CamelKarafTestHint.class);
-        if (hint == null || hint.additionalRequiredFeatures().length == 0) {
-            return getRequiredFeatures();
+        if (hasAdditionalRequiredFeatures()) {
+            List<String> requiredFeatures = new ArrayList<>(getRequiredFeatures());
+            requiredFeatures.addAll(List.of(getCamelKarafTestHint().orElseThrow().additionalRequiredFeatures()));
+            return requiredFeatures;
         }
-        List<String> requiredFeatures = new ArrayList<>(getRequiredFeatures());
-        requiredFeatures.addAll(List.of(hint.additionalRequiredFeatures()));
-        return requiredFeatures;
+        return getRequiredFeatures();
     }
 
+    /**
+     * Installs the required features for the test.
+     * @throws Exception if an error occurs while installing a feature
+     */
     private void installRequiredFeatures() throws Exception {
         for (String featureName : getAllRequiredFeatures()) {
             if (featureService.getFeature(featureName) == null) {
@@ -301,8 +390,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
      * @return {@code true} if the test is a blueprint test, {@code false} otherwise
      */
     private static boolean isBlueprintTest(Class<?> clazz) {
-        CamelKarafTestHint hint = clazz.getAnnotation(CamelKarafTestHint.class);
-        return hint != null && hint.isBlueprintTest();
+        return getCamelKarafTestHint(clazz).filter(CamelKarafTestHint::isBlueprintTest).isPresent();
     }
 
     private static Mode getMode(Class<?> clazz) {
@@ -381,7 +469,7 @@ public abstract class AbstractCamelRouteITest extends KarafTestSupport implement
         Assert.assertEquals(Bundle.ACTIVE, bundle.getState());
         //need to check with the command because the status may be Active while it's displayed as Waiting in the console
         //because of an exception for instance
-        String bundles = executeCommand("bundle:list -s -t 0 | grep %s".formatted(name));
+        String bundles = executeCommand("bundle:list -s -t 0 | grep %s".formatted(name), timeoutInMillis(), false);
         Assert.assertTrue("bundle %s is in state %d /%s".formatted(bundle.getSymbolicName(), bundle.getState(), bundles),
                 bundles.contains("Active"));
     }

@@ -16,8 +16,12 @@
  */
 package org.apache.karaf.camel.itests;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.UncheckedIOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -25,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.IntPredicate;
+import java.util.stream.Stream;
 
 import org.jetbrains.annotations.NotNull;
 import org.ops4j.pax.exam.MavenUtils;
@@ -118,5 +123,24 @@ public final class Utils {
         }
         throw new IllegalStateException("Can't find the users.properties file, please provide it using the system " +
                 "property users.file.location");
+    }
+
+    /**
+     * Dump the given file into the stream.
+     */
+    static void dumpFile(File file, PrintStream out) {
+        if (file.exists()) {
+            out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            out.printf(">>>>> START Dumping file %s%n", file.getName());
+            out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            try (Stream<String> lines = Files.lines(file.toPath())) {
+                lines.forEach(out::println);
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
+            out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            out.printf("<<<<< END Dumping file %s%n", file.getName());
+            out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        }
     }
 }

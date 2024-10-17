@@ -33,6 +33,7 @@
     <name>Apache Camel :: Karaf :: Tests :: Features</name>
 
     <properties>
+        <dump.logs.on.failure>false</dump.logs.on.failure>
         <users.file.location>${project.basedir}/../../camel-integration-test/src/main/resources/etc/users.properties</users.file.location>
     </properties>
 
@@ -296,6 +297,7 @@
                                 <include>**/*Test.java</include>
                             </includes>
                             <systemPropertyVariables>
+                                <camel.karaf.itest.dump.logs>${dump.logs.on.failure}</camel.karaf.itest.dump.logs>
                                 <camel.karaf.version>${project.version}</camel.karaf.version>
                                 <project.version>${project.version}</project.version>
                                 <project.target>${project.build.directory}</project.target>
