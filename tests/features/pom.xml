@@ -68,6 +68,7 @@
         <module>camel-crypto</module>
         <module>camel-csv</module>
         <module>camel-cxf</module>
+        <module>camel-debezium-postgres</module>
         <module>camel-disruptor</module>
         <module>camel-dns</module>
         <module>camel-docker</module>
