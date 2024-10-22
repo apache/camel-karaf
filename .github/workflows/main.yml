@@ -33,6 +33,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet \
+            /opt/ghc \
+            "/usr/local/share/boost" \
+            "$AGENT_TOOLSDIRECTORY"
+          docker system prune -af
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:

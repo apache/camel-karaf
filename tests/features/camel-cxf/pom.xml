@@ -84,7 +84,7 @@
                                 <org.ops4j.pax.logging.DefaultServiceLog.level>WARN</org.ops4j.pax.logging.DefaultServiceLog.level>
                                 <cxf.version>${cxf-version}</cxf.version>
                             </systemPropertyVariables>
-                            <forkedProcessExitTimeoutInSeconds>5</forkedProcessExitTimeoutInSeconds>
+                            <forkedProcessExitTimeoutInSeconds>10</forkedProcessExitTimeoutInSeconds>
                         </configuration>
                     </execution>
                 </executions>

@@ -26,6 +26,7 @@ import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.utility.ResourceReaper;
 
 /**
  * A JUnit ExternalResource that starts and stops a TestContainer.
@@ -35,6 +36,7 @@ import org.testcontainers.containers.GenericContainer;
 public class GenericContainerResource<T extends GenericContainer<T>> implements ExternalResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(GenericContainerResource.class);
+    private static final String CAMEL_KARAF_INTEGRATION_TEST_KEEP_DOCKER_IMAGES_PROPERTY = "camel.karaf.itest.keep.docker.images";
     private final T container;
     private final Map<String, String> properties = new HashMap<>();
     private final List<ExternalResource> dependencies = new ArrayList<>();
@@ -63,7 +65,7 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
             dependency.before();
             dependency.properties().forEach(this::setProperty);
         }
-        LOG.info("Container {} started", container.getDockerImageName());
+        LOG.info("Container {}/{} started", container.getDockerImageName(), container.getContainerId());
     }
 
     @Override
@@ -75,8 +77,23 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
                 LOG.warn("Error cleaning dependency: {}", dependency.getClass().getName(), e);
             }
         }
+        String containerId = container.getContainerId();
         container.stop();
-        LOG.info("Container {} stopped", container.getDockerImageName());
+        LOG.info("Container {}/{} stopped", container.getDockerImageName(), containerId);
+        if (cleanupDockerImagesOnExit()) {
+            removeDockerImage();
+        }
+    }
+
+    /**
+     * Remove the Docker image of the container.
+     */
+    private void removeDockerImage() {
+        ResourceReaper resourceReaper = ResourceReaper.instance();
+        String dockerImageName = container.getDockerImageName();
+        resourceReaper.registerImageForCleanup(dockerImageName);
+        resourceReaper.performCleanup();
+        LOG.info("Docker Image {} removed", dockerImageName);
     }
 
     @Override
@@ -94,5 +111,12 @@ public class GenericContainerResource<T extends GenericContainer<T>> implements 
 
     public void addDependency(ExternalResource dependency) {
         dependencies.add(dependency);
+    }
+
+    /**
+     * Indicates whether the Docker images should be removed after the test.
+     */
+    private static boolean cleanupDockerImagesOnExit() {
+        return !Boolean.parseBoolean(System.getProperty(CAMEL_KARAF_INTEGRATION_TEST_KEEP_DOCKER_IMAGES_PROPERTY, "false"));
     }
 }
