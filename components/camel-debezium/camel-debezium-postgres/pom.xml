@@ -53,6 +53,18 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Must be removed once the split package issue is fixed in Camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-debezium-common</artifactId>
+            <version>${camel-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -69,6 +81,8 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
+                                    <!-- Must be removed once the split package issue is fixed in Camel -->
+                                    <include>org.apache.camel:camel-debezium-common</include>
                                     <include>org.apache.camel:camel-debezium-postgres</include>
                                 </includes>
                             </artifactSet>
