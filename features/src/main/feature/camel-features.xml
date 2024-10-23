@@ -944,6 +944,9 @@
     <feature name='camel-debezium-mongodb' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mongodb/${debezium-version}</bundle>
+        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:org.mongodb/bson/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-mongodb/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-mysql' version='${project.version}' start-level='50'>
