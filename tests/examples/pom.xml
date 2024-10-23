@@ -234,7 +234,7 @@
                                 <project.target>${project.build.directory}</project.target>
                                 <org.ops4j.pax.logging.DefaultServiceLog.level>WARN</org.ops4j.pax.logging.DefaultServiceLog.level>
                             </systemPropertyVariables>
-                            <forkedProcessExitTimeoutInSeconds>5</forkedProcessExitTimeoutInSeconds>
+                            <forkedProcessExitTimeoutInSeconds>10</forkedProcessExitTimeoutInSeconds>
                         </configuration>
                     </execution>
                 </executions>

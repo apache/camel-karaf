@@ -34,6 +34,7 @@
 
     <properties>
         <dump.logs.on.failure>false</dump.logs.on.failure>
+        <keep.docker.images.on.exit>false</keep.docker.images.on.exit>
         <users.file.location>${project.basedir}/../../camel-integration-test/src/main/resources/etc/users.properties</users.file.location>
     </properties>
 
@@ -297,13 +298,14 @@
                             </includes>
                             <systemPropertyVariables>
                                 <camel.karaf.itest.dump.logs>${dump.logs.on.failure}</camel.karaf.itest.dump.logs>
+                                <camel.karaf.itest.keep.docker.images>${keep.docker.images.on.exit}</camel.karaf.itest.keep.docker.images>
                                 <camel.karaf.version>${project.version}</camel.karaf.version>
                                 <project.version>${project.version}</project.version>
                                 <project.target>${project.build.directory}</project.target>
                                 <users.file.location>${users.file.location}</users.file.location>
                                 <org.ops4j.pax.logging.DefaultServiceLog.level>WARN</org.ops4j.pax.logging.DefaultServiceLog.level>
                             </systemPropertyVariables>
-                            <forkedProcessExitTimeoutInSeconds>5</forkedProcessExitTimeoutInSeconds>
+                            <forkedProcessExitTimeoutInSeconds>10</forkedProcessExitTimeoutInSeconds>
                         </configuration>
                     </execution>
                 </executions>
