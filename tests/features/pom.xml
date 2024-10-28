@@ -68,6 +68,7 @@
         <module>camel-crypto</module>
         <module>camel-csv</module>
         <module>camel-cxf</module>
+        <module>camel-debezium-mongodb</module>
         <module>camel-debezium-mysql</module>
         <module>camel-debezium-postgres</module>
         <module>camel-disruptor</module>
