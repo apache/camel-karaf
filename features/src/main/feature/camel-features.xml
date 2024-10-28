@@ -939,6 +939,7 @@
     <feature name='camel-debezium-db2' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-db2/${debezium-version}</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-db2/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-mongodb' version='${project.version}' start-level='50'>
@@ -964,6 +965,14 @@
     <feature name='camel-debezium-oracle' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-oracle/${debezium-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-ddl-parser/${auto-detect-version}</bundle>
+        <!-- Use the wrap protocol to make org.antlr.v4.gui optional-->
+        <bundle>wrap:mvn:org.antlr/antlr4-runtime/${auto-detect-version}$overwrite=merge&amp;Import-Package=org.antlr.v4.gui*;resolution:=optional,*</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.oracle.database.nls/orai18n/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.oracle.database.jdbc/ojdbc8/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-oracle/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-postgres' version='${project.version}' start-level='50'>
@@ -976,6 +985,8 @@
     <feature name='camel-debezium-sqlserver' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-sqlserver/${debezium-version}</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.microsoft.sqlserver/mssql-jdbc/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-sqlserver/${project.version}</bundle>
     </feature>
     <feature name='camel-debug' version='${project.version}' start-level='50'>
