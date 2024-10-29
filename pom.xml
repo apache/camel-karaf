@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.8.0-SNAPSHOT</version>
+    <version>4.8.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -91,10 +91,10 @@
         <maven.compiler.source>${jdk-version}</maven.compiler.source>
         <maven.compiler.target>${jdk-version}</maven.compiler.target>
 
-        <camel-version>4.8.0</camel-version>
+        <camel-version>4.8.1</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
-        <activemq-version>5.18.5</activemq-version>
+        <activemq-version>5.18.6</activemq-version>
         <activemq6-version>6.1.3</activemq6-version>
         <activemq-artemis-version>2.37.0</activemq-artemis-version>
         <amazon-kinesis-client-version>2.6.0</amazon-kinesis-client-version>
@@ -110,9 +110,9 @@
         <asterisk-java-version>3.39.0</asterisk-java-version>
         <atlassian-fugue-version>6.1.0</atlassian-fugue-version>
         <atmosphere-version>3.0.10</atmosphere-version>
-        <avro-version>1.12.0</avro-version>
-        <avro-ipc-jetty-version>1.12.0</avro-ipc-jetty-version>
-        <avro-ipc-netty-version>1.12.0</avro-ipc-netty-version>
+        <avro-version>1.11.4</avro-version>
+        <avro-ipc-jetty-version>1.11.4</avro-ipc-jetty-version>
+        <avro-ipc-netty-version>1.11.4</avro-ipc-netty-version>
         <awaitility-version>4.2.2</awaitility-version>
         <aws-java-sdk2-version>2.27.19</aws-java-sdk2-version>
         <aws-xray-version>2.18.1</aws-xray-version>
@@ -262,7 +262,7 @@
         <irclib-version>1.10</irclib-version>
         <ironmq-version>3.0.5</ironmq-version>
         <ivy-version>2.5.2</ivy-version>
-        <jackson-jq-version>1.0.0-preview.20240207</jackson-jq-version>
+        <jackson-jq-version>1.0.0</jackson-jq-version>
         <jackson2-version>2.17.2</jackson2-version>
         <jackrabbit-version>2.22.0</jackrabbit-version>
         <jasminb-jsonapi-version>0.14</jasminb-jsonapi-version>
@@ -293,7 +293,7 @@
         <jboss-logging-version>3.6.0.Final</jboss-logging-version>
         <jboss-marshalling-version>1.4.10.Final</jboss-marshalling-version>
         <jboss-transaction-spi-version>7.6.1.Final</jboss-transaction-spi-version>
-        <jboss-xnio-version>3.3.8.Final</jboss-xnio-version>
+        <jboss-xnio-version>3.8.14.Final</jboss-xnio-version>
         <jcache-version>1.1.1</jcache-version>
         <jcr-version>2.0</jcr-version>
         <jedis-client-version>5.1.5</jedis-client-version>
@@ -392,15 +392,15 @@
         <opensearch-version>2.11.0</opensearch-version>
         <opensearch-testcontainers-version>2.1.0</opensearch-testcontainers-version>
         <openstack4j-version>3.12</openstack4j-version>
-        <opentelemetry-version>1.41.0</opentelemetry-version>
-        <opentelemetry-log4j2-version>2.7.0-alpha</opentelemetry-log4j2-version>
-        <opentelemetry-incubator-version>1.41.0-alpha</opentelemetry-incubator-version>
-        <opentelemetry-alpha-version>1.23.1-alpha</opentelemetry-alpha-version>
+        <opentelemetry-version>1.43.0</opentelemetry-version>
+        <opentelemetry-log4j2-version>2.8.0-alpha</opentelemetry-log4j2-version>
+        <opentelemetry-incubator-version>1.43.0-alpha</opentelemetry-incubator-version>
+        <opentelemetry-alpha-version>1.27.0-alpha</opentelemetry-alpha-version>
         <optaplanner-version>9.44.0.Final</optaplanner-version>
         <paho-version>1.2.5</paho-version>
         <parson-version>1.1.7</parson-version>
-        <parquet-common-version>1.14.2</parquet-common-version>
-        <parquet-avro-version>1.14.2</parquet-avro-version>
+        <parquet-common-version>1.14.3</parquet-common-version>
+        <parquet-avro-version>1.14.3</parquet-avro-version>
         <pdfbox-version>3.0.3</pdfbox-version>
         <pgjdbc-driver-version>42.7.4</pgjdbc-driver-version>
         <pgjdbc-ng-driver-version>0.8.9</pgjdbc-ng-driver-version>
@@ -409,7 +409,7 @@
         <plc4x-version>0.12.0</plc4x-version>
         <pooled-jms-version>3.1.6</pooled-jms-version>
         <proto-google-common-protos-version>2.22.0</proto-google-common-protos-version>
-        <protobuf-version>3.25.3</protobuf-version>
+        <protobuf-version>3.25.5</protobuf-version>
         <protonpack-version>1.8</protonpack-version>
         <protostream-version>5.0.8.Final</protostream-version>
         <prowide-version>SRU2023-10.1.7</prowide-version>
@@ -477,7 +477,7 @@
         <tika-version>2.9.2</tika-version>
         <twilio-version>10.4.2</twilio-version>
         <twitter4j-version>4.1.2</twitter4j-version>
-        <undertow-version>2.3.17.Final</undertow-version>
+        <undertow-version>2.3.18.Final</undertow-version>
         <univocity-parsers-version>2.9.1</univocity-parsers-version>
         <validation-api-version>2.0.1.Final</validation-api-version>
         <vavr-version>0.10.4</vavr-version>
