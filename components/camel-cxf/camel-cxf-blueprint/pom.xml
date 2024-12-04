@@ -33,16 +33,14 @@
     <properties>
         <firstVersion>3.2.0</firstVersion>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.blueprint.helpers;version=${project.version},
-            org.apache.camel.component.cxf.blueprint.jaxrs;version=${project.version},
+            org.apache.camel.component.cxf.blueprint*;version=${project.version},
+            org.apache.camel.component.cxf.jaxrs.blueprint;version=${project.version},
         </camel.osgi.export>
-        <camel-osgi-camel-import>
-            org.apache.camel.component.cxf.helpers;${camel-osgi-import-camel-version},
-            org.apache.camel.component.cxf.configuration.blueprint;${camel-osgi-import-camel-version},
-        </camel-osgi-camel-import>
         <camel.osgi.import>
             jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
-            org.apache.aries.blueprint,
+            jakarta.ws.rs*;version="${camel-osgi-jakarta-ws-rs-version}",
+            jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
+            org.apache.aries.blueprint*,
             org.w3c*,
             org.osgi.util*,
             org.osgi.service*,
@@ -51,6 +49,29 @@
             org.apache.cxf.*;version="${camel-osgi-cxf-version}",
             org.slf4j
         </camel.osgi.import>
+        <camel.osgi.activator>org.apache.camel.component.cxf.blueprint.MainActivator</camel.osgi.activator>
+        <camel.osgi.export.service>
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/core",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/beans",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/parameterized-types",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/security",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://schemas.xmlsoap.org/wsdl/",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/bindings/soap",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxws",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/simple",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs-client",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http/configuration",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/ws/addressing",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/policy",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/ns/ws-policy",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2006/07/ws-policy",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://schemas.xmlsoap.org/ws/2004/09/policy",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2000/09/xmldsig#",
+            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+        </camel.osgi.export.service>
     </properties>
 
     <dependencies>
@@ -114,7 +135,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>./src/main/resources/schema/blueprint/camel-cxf.xsd</file>
+                                    <file>./src/main/resources/schemas/blueprint/camel-cxf.xsd</file>
                                     <classifier>blueprint</classifier>
                                     <type>xsd</type>
                                 </artifact>

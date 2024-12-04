@@ -22,7 +22,7 @@ import org.w3c.dom.Element;
 
 import org.apache.aries.blueprint.ParserContext;
 import org.apache.aries.blueprint.mutable.MutableBeanMetadata;
-import org.apache.camel.component.cxf.configuration.blueprint.AbstractBPBeanDefinitionParser;
+import org.apache.camel.component.cxf.blueprint.configuration.AbstractBPBeanDefinitionParser;
 import org.apache.cxf.common.util.StringUtils;
 import org.osgi.service.blueprint.reflect.BeanMetadata;
 

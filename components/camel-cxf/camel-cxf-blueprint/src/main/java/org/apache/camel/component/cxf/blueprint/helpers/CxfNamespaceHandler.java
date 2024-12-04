@@ -17,15 +17,12 @@
 package org.apache.camel.component.cxf.blueprint.helpers;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import org.apache.aries.blueprint.ParserContext;
-import org.apache.camel.component.cxf.helpers.BaseNamespaceHandler;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 import org.osgi.service.blueprint.reflect.Metadata;
 import org.slf4j.Logger;
@@ -37,7 +34,7 @@ public class CxfNamespaceHandler extends BaseNamespaceHandler {
     @Override
     public URL getSchemaLocation(String s) {
         if ("https://camel.apache.org/schema/blueprint/cxf".equals(s) || "https://camel.apache.org/schema/blueprint/cxf/".equals(s)) {
-            return getClass().getClassLoader().getResource("schema/blueprint/camel-cxf.xsd");
+            return getClass().getClassLoader().getResource("schemas/blueprint/camel-cxf.xsd");
         }
         return super.findCoreSchemaLocation(s);
     }
@@ -45,7 +42,7 @@ public class CxfNamespaceHandler extends BaseNamespaceHandler {
     @Override
     @SuppressWarnings({"rawtypes"})
     public Set<Class> getManagedClasses() {
-        return new HashSet<>(Arrays.asList(CxfNamespaceHandler.class));
+        return Set.of(CxfNamespaceHandler.class);
     }
 
     @Override
