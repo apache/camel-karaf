@@ -19,7 +19,6 @@ package org.apache.camel.blueprint.handler;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -34,15 +33,6 @@ import jakarta.xml.bind.Binder;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 
-import org.apache.camel.RuntimeCamelException;
-import org.apache.camel.blueprint.CamelRouteConfigurationContextFactoryBean;
-import org.apache.camel.builder.LegacyDeadLetterChannelBuilder;
-import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
-import org.apache.camel.builder.LegacyNoErrorHandlerBuilder;
-import org.apache.camel.reifier.errorhandler.ErrorHandlerReifier;
-import org.apache.camel.reifier.errorhandler.LegacyDeadLetterChannelReifier;
-import org.apache.camel.reifier.errorhandler.LegacyDefaultErrorHandlerReifier;
-import org.apache.camel.reifier.errorhandler.LegacyNoErrorHandlerReifier;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -71,8 +61,12 @@ import org.apache.camel.blueprint.BlueprintModelJAXBContextFactory;
 import org.apache.camel.blueprint.CamelContextFactoryBean;
 import org.apache.camel.blueprint.CamelEndpointFactoryBean;
 import org.apache.camel.blueprint.CamelRestContextFactoryBean;
+import org.apache.camel.blueprint.CamelRouteConfigurationContextFactoryBean;
 import org.apache.camel.blueprint.CamelRouteContextFactoryBean;
 import org.apache.camel.blueprint.CamelRouteTemplateContextFactoryBean;
+import org.apache.camel.builder.LegacyDeadLetterChannelBuilder;
+import org.apache.camel.builder.LegacyDefaultErrorHandlerBuilder;
+import org.apache.camel.builder.LegacyNoErrorHandlerBuilder;
 import org.apache.camel.core.xml.AbstractCamelFactoryBean;
 import org.apache.camel.impl.engine.CamelPostProcessorHelper;
 import org.apache.camel.impl.engine.DefaultCamelContextNameStrategy;
@@ -91,13 +85,15 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.SendDefinition;
 import org.apache.camel.model.SortDefinition;
 import org.apache.camel.model.ToDefinition;
-import org.apache.camel.model.ToDynamicDefinition;
 import org.apache.camel.model.UnmarshalDefinition;
-import org.apache.camel.model.WireTapDefinition;
 import org.apache.camel.model.language.ExpressionDefinition;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.model.rest.VerbDefinition;
+import org.apache.camel.reifier.errorhandler.ErrorHandlerReifier;
+import org.apache.camel.reifier.errorhandler.LegacyDeadLetterChannelReifier;
+import org.apache.camel.reifier.errorhandler.LegacyDefaultErrorHandlerReifier;
+import org.apache.camel.reifier.errorhandler.LegacyNoErrorHandlerReifier;
 import org.apache.camel.spi.CamelContextNameStrategy;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.spi.DataFormatResolver;
@@ -124,7 +120,6 @@ import org.osgi.service.blueprint.reflect.Metadata;
 import org.osgi.service.blueprint.reflect.RefMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import static org.osgi.service.blueprint.reflect.ComponentMetadata.ACTIVATION_LAZY;
 import static org.osgi.service.blueprint.reflect.ServiceReferenceMetadata.AVAILABILITY_MANDATORY;
@@ -209,7 +204,7 @@ public class CamelNamespaceHandler implements NamespaceHandler {
     @Override
     @SuppressWarnings({"rawtypes"})
     public Set<Class> getManagedClasses() {
-        return new HashSet<>(Arrays.asList(BlueprintCamelContext.class));
+        return Set.of(BlueprintCamelContext.class);
     }
 
     @Override

@@ -34,34 +34,7 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.component.cxf.osgi;version=${project.version},
-            org.apache.camel.component.cxf.common;version=${camel-version},
-            org.apache.camel.component.cxf.common.header;version=${camel-version},
-            org.apache.camel.component.cxf.common.message;version=${camel-version},
-            org.apache.camel.component.cxf.converter;version=${camel-version},
-            org.apache.camel.component.cxf.util;version=${camel-version},
-            org.apache.camel.component.cxf.bus.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.bus.osgi;version=${project.version},
-            org.apache.camel.component.cxf.configuration.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.helpers;version=${project.version},
-            org.apache.camel.component.cxf.jaxrs;version="${camel-version}",
-            org.apache.camel.component.cxf.ext.logging.osgi;version=${project.version},
-            org.apache.camel.component.cxf.jaxrs.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.jaxws.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.frontend.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.jaxrs.client.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.transport.http.osgi;version=${project.version},
-            org.apache.camel.component.cxf.transport.http.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.servlet.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.ws.addressing.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.ws.policy.blueprint;version=${project.version},
-            org.apache.camel.component.cxf.feature;version=${camel-version},
-            org.apache.camel.component.cxf.interceptors;version=${camel-version},
-            org.apache.camel.component.cxf.jaxws;version=${camel-version},
-            org.apache.camel.component.cxf.transport;version=${camel-version},
-            org.apache.camel.component.cxf.transport.header;version=${camel-version},
-            org.apache.camel.component.cxf.transport.message;version=${camel-version},
-            org.apache.camel.component.cxf.binding.soap.blueprint;version=${project.version},
+            org.apache.camel.component.cxf*;version=${camel-version},
             org.apache.cxf*;version=${cxf-version},
         </camel.osgi.export>
         <camel.osgi.activator>org.apache.camel.component.cxf.osgi.MainActivator</camel.osgi.activator>
@@ -104,7 +77,6 @@
             org.osgi.util*,
             org.osgi.service*,
             org.osgi.framework*,
-            org.apache.aries.blueprint*,
             org.xml.sax,
             javax.xml*,
             javax.management*,
@@ -120,28 +92,6 @@
         <camel.osgi.dynamicimport.pkg>
             org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*
         </camel.osgi.dynamicimport.pkg>
-        <camel.osgi.export.service>
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/core",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/beans",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/parameterized-types",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/configuration/security",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://schemas.xmlsoap.org/wsdl/",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/bindings/soap",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxws",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/simple",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/blueprint/jaxrs-client",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/transports/http/configuration",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/ws/addressing",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://cxf.apache.org/policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/ns/ws-policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2006/07/ws-policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://schemas.xmlsoap.org/ws/2004/09/policy",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://www.w3.org/2000/09/xmldsig#",
-            org.apache.aries.blueprint.NamespaceHandler;osgi.service.blueprint.namespace="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
-        </camel.osgi.export.service>
     </properties>
 
     <dependencies>
@@ -344,11 +294,6 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.apache.aries.blueprint</groupId>
-            <artifactId>org.apache.aries.blueprint.core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>osgi.core</artifactId>
             <scope>provided</scope>
@@ -400,6 +345,14 @@
                                     <include>org.apache.camel:camel-cxf-transport</include>
                                 </includes>
                             </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>schemas/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>

@@ -20,9 +20,6 @@ package org.apache.camel.component.cxf.bus.osgi;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.camel.component.cxf.bus.blueprint.BlueprintNameSpaceHandlerFactory;
-import org.apache.camel.component.cxf.bus.blueprint.NamespaceHandlerRegisterer;
-import org.apache.camel.component.cxf.helpers.CXFAPINamespaceHandler;
 import org.apache.cxf.bus.extension.Extension;
 import org.apache.cxf.bus.extension.ExtensionRegistry;
 import org.apache.cxf.common.util.CollectionUtils;
@@ -40,7 +37,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * - CXFBundleListener
  * - Attaching ManagedWorkqueues to config admin service
  * - OsgiBusListener
- * - Blueprint namespaces
  */
 public class CXFActivator implements BundleActivator {
 
@@ -53,6 +49,7 @@ public class CXFActivator implements BundleActivator {
 
 
     /** {@inheritDoc}*/
+    @Override
     public void start(BundleContext context) throws Exception {
         workQueues = new ManagedWorkQueueList();
         cxfBundleListener = new CXFExtensionBundleListener(context.getBundle().getBundleId());
@@ -71,23 +68,6 @@ public class CXFActivator implements BundleActivator {
         extensions.add(createOsgiBusListenerExtension(context));
         extensions.add(createManagedWorkQueueListExtension(workQueues));
         ExtensionRegistry.addExtensions(extensions);
-
-        BlueprintNameSpaceHandlerFactory factory = new BlueprintNameSpaceHandlerFactory() {
-
-            @Override
-            public Object createNamespaceHandler() {
-                return new CXFAPINamespaceHandler();
-            }
-        };
-        NamespaceHandlerRegisterer.register(context, factory,
-                "http://cxf.apache.org/blueprint/core",
-                "http://cxf.apache.org/configuration/beans",
-                "http://cxf.apache.org/configuration/parameterized-types",
-                "http://cxf.apache.org/configuration/security",
-                "http://schemas.xmlsoap.org/wsdl/",
-                "http://www.w3.org/2005/08/addressing",
-                "http://schemas.xmlsoap.org/ws/2004/08/addressing");
-
     }
 
     private <T> ServiceRegistration<T> registerManagedServiceFactory(BundleContext context,
@@ -120,6 +100,7 @@ public class CXFActivator implements BundleActivator {
     }
 
     /** {@inheritDoc}*/
+    @Override
     public void stop(BundleContext context) throws Exception {
         context.removeBundleListener(cxfBundleListener);
         cxfBundleListener.shutdown();

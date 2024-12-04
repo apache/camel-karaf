@@ -47,7 +47,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.exam.OptionUtils.combine;
 
-@CamelKarafTestHint(externalResourceProvider = CamelCxfITest.ExternalResourceProviders.class,
+@CamelKarafTestHint(isBlueprintTest = true, externalResourceProvider = CamelCxfITest.ExternalResourceProviders.class,
         additionalRequiredFeatures = "camel-undertow")
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
@@ -79,8 +79,17 @@ public class CamelCxfITest extends AbstractCamelSingleFeatureRouteITest {
         testNewCustomerWithQueryParam();
     }
 
+    @Test
+    public void testCxfRsBlueprint() throws Exception {
+        testGetCustomerOnlyHeadersInBlueprint();
+    }
+
     private String getPortPathRs() {
-        return ExternalResourceProviders.getCxfRsPort() + "/CamelCxfRsRouteSupplier";
+        return ExternalResourceProviders.getCxfRsPort() + "/CamelCxfRsRouteSupplier/rest";
+    }
+
+    private String getPortPathRsBlueprint() {
+        return ExternalResourceProviders.getCxfRsBlueprintPort() + "/rss";
     }
 
     private String getWsEndpointAddress() {
@@ -107,8 +116,22 @@ public class CamelCxfITest extends AbstractCamelSingleFeatureRouteITest {
         );
     }
 
+    private void testGetCustomerOnlyHeadersInBlueprint() throws Exception {
+        URI uri = URI.create("http://localhost:%s/customerservice/customers/456".formatted(getPortPathRsBlueprint()));
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(uri)
+                .header("Accept", "text/xml")
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        assertEquals(200, response.statusCode());
+        Customer entity = (Customer) jaxb.createUnmarshaller().unmarshal(new StringReader(response.body()));
+        assertEquals(456, entity.getId());
+    }
+
     private void testGetCustomerOnlyHeaders() throws Exception {
-        URI uri = URI.create("http://localhost:%s/rest/customerservice/customers/123".formatted(getPortPathRs()));
+        URI uri = URI.create("http://localhost:%s/customerservice/customers/123".formatted(getPortPathRs()));
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -122,7 +145,7 @@ public class CamelCxfITest extends AbstractCamelSingleFeatureRouteITest {
     }
 
     private void testNewCustomerWithQueryParam() throws Exception {
-        URI uri = URI.create("http://localhost:%s/rest/customerservice/customers?age=12".formatted(getPortPathRs()));
+        URI uri = URI.create("http://localhost:%s/customerservice/customers?age=12".formatted(getPortPathRs()));
         StringWriter sw = new StringWriter();
         jaxb.createMarshaller().marshal(new Customer(123, "Raul"), sw);
         HttpRequest request = HttpRequest.newBuilder()
@@ -147,7 +170,7 @@ public class CamelCxfITest extends AbstractCamelSingleFeatureRouteITest {
         HelloService helloService = (HelloService) proxyFactory.create();
 
         String result = helloService.echo(TEST_MESSAGE);
-        assertEquals("We should get the echo string result from router", result, "echo " + TEST_MESSAGE);
+        assertEquals("We should get the echo string result from router", "echo " + TEST_MESSAGE, result);
 
         Boolean bool = helloService.echoBoolean(Boolean.TRUE);
         assertNotNull("The result should not be null", bool);
@@ -182,14 +205,19 @@ public class CamelCxfITest extends AbstractCamelSingleFeatureRouteITest {
 
     public static final class ExternalResourceProviders {
         public static final String CXF_RS_PORT = "cxf.rs.port";
+        public static final String CXF_RS_BLUEPRINT_PORT = "cxf.rs.blueprint.port";
         public static final String CXF_WS_PORT = "cxf.ws.port";
 
         public static AvailablePortProvider createAvailablePortProvider() {
-            return new AvailablePortProvider(List.of(CXF_RS_PORT, CXF_WS_PORT));
+            return new AvailablePortProvider(List.of(CXF_RS_PORT, CXF_WS_PORT, CXF_RS_BLUEPRINT_PORT));
         }
 
         static String getCxfRsPort() {
             return System.getProperty(CXF_RS_PORT);
+        }
+
+        static String getCxfRsBlueprintPort() {
+            return System.getProperty(CXF_RS_BLUEPRINT_PORT);
         }
 
         static String getCxfWsPort() {

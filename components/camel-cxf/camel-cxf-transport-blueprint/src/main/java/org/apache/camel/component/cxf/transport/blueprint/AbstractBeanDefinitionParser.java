@@ -24,7 +24,7 @@ import org.w3c.dom.NamedNodeMap;
 
 import org.apache.aries.blueprint.ParserContext;
 import org.apache.aries.blueprint.mutable.MutableBeanMetadata;
-import org.apache.camel.component.cxf.configuration.blueprint.AbstractBPBeanDefinitionParser;
+import org.apache.camel.component.cxf.blueprint.configuration.AbstractBPBeanDefinitionParser;
 import org.apache.cxf.common.util.StringUtils;
 import org.osgi.service.blueprint.reflect.BeanMetadata;
 import org.osgi.service.blueprint.reflect.Metadata;
@@ -66,7 +66,6 @@ public class AbstractBeanDefinitionParser extends AbstractBPBeanDefinitionParser
         for (int i = 0; i < atts.getLength(); i++) {
             Attr node = (Attr) atts.item(i);
             String val = node.getValue();
-            //String pre = node.getPrefix();
             String name = node.getLocalName();
             if ("camelContextId".equals(name)) {
                 camelContextId = val;
