@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.8.2-SNAPSHOT</version>
+        <version>4.9.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
-            <version>${spring-amqp-version}</version>
+            <version>${spring-rabbitmq-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.amqp</groupId>
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-amqp</artifactId>
-            <version>${spring-amqp-version}</version>
+            <version>${spring-rabbitmq-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.amqp</groupId>

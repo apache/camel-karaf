@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-cxf-parent</artifactId>
-        <version>4.8.2-SNAPSHOT</version>
+        <version>4.9.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -61,7 +61,7 @@
             org.springframework.web*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.objectweb.asm*;resolution:=optional;version="${camel-osgi-asm-version}",
             jakarta.activation;version="${camel-osgi-jakarta-activation-version}",
-            jakarta.annotation;version="${camel-osgi-jakarta-annotation-version}",
+            jakarta.annotation;version="${camel-osgi-jakarta-annotation2-version}",
             jakarta.xml.ws*;version="${camel-osgi-jakarta-xml-ws-version}",
             jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
             jakarta.validation*;resolution:=optional;version="${camel-osgi-jakarta-validation-version}",

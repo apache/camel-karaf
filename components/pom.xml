@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.8.2-SNAPSHOT</version>
+        <version>4.9.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -63,6 +63,7 @@
         <module>camel-cassandraql</module>
         <module>camel-cbor</module>
         <module>camel-chunk</module>
+        <module>camel-clickup</module>
         <module>camel-cloudevents</module>
         <module>camel-cm-sms</module>
         <module>camel-coap</module>
@@ -104,9 +105,11 @@
         <module>camel-file-watch</module>
         <module>camel-flatpack</module>
         <module>camel-flink</module>
+        <module>camel-flowable</module>
         <module>camel-fop</module>
         <module>camel-freemarker</module>
         <module>camel-ftp</module>
+        <module>camel-fury</module>
         <module>camel-geocoder</module>
         <module>camel-git</module>
         <module>camel-github</module>
@@ -204,6 +207,7 @@
         <module>camel-netty-http</module>
         <module>camel-nitrite</module>
         <module>camel-oaipmh</module>
+        <module>camel-observability-services</module>
         <module>camel-observation</module>
         <module>camel-ognl</module>
         <module>camel-olingo2</module>
