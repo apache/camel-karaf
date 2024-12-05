@@ -28,6 +28,11 @@
     <artifactId>camel-cxf-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: CXF</name>
 
+    <properties>
+        <camel.karaf.test.additional.imports>
+            org.apache.camel.component.cxf.jaxrs.blueprint,
+        </camel.karaf.test.additional.imports>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>jakarta.ws.rs</groupId>

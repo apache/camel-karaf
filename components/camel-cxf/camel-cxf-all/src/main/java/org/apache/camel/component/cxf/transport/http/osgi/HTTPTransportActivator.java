@@ -17,9 +17,6 @@
 
 package org.apache.camel.component.cxf.transport.http.osgi;
 
-import org.apache.camel.component.cxf.bus.blueprint.BlueprintNameSpaceHandlerFactory;
-import org.apache.camel.component.cxf.bus.blueprint.NamespaceHandlerRegisterer;
-import org.apache.camel.component.cxf.transport.http.blueprint.HttpBPHandler;
 import org.apache.cxf.common.util.CollectionUtils;
 import org.apache.cxf.common.util.PropertyUtils;
 import org.apache.cxf.transport.http.DestinationRegistry;
@@ -38,6 +35,7 @@ public class HTTPTransportActivator implements BundleActivator {
     private static final String DISABLE_DEFAULT_HTTP_TRANSPORT = "org.apache.cxf.osgi.http.transport.disable";
     private ServiceTracker<HttpService, ?> httpServiceTracker;
 
+    @Override
     public void start(final BundleContext context) throws Exception {
 
         ConfigAdminHttpConduitConfigurer conduitConfigurer = new ConfigAdminHttpConduitConfigurer();
@@ -56,22 +54,13 @@ public class HTTPTransportActivator implements BundleActivator {
         DestinationRegistry destinationRegistry = new DestinationRegistryImpl();
         HTTPTransportFactory transportFactory = new HTTPTransportFactory(destinationRegistry);
 
+        // HttpService is no longer available in OSGI 8
 //        HttpServiceTrackerCust customizer = new HttpServiceTrackerCust(destinationRegistry, context);
 //        httpServiceTracker = new ServiceTracker<>(context, HttpService.class, customizer);
 //        httpServiceTracker.open();
 
         context.registerService(DestinationRegistry.class.getName(), destinationRegistry, null);
         context.registerService(HTTPTransportFactory.class.getName(), transportFactory, null);
-
-        BlueprintNameSpaceHandlerFactory factory = new BlueprintNameSpaceHandlerFactory() {
-
-            @Override
-            public Object createNamespaceHandler() {
-                return new HttpBPHandler();
-            }
-        };
-        NamespaceHandlerRegisterer.register(context, factory,
-                "http://cxf.apache.org/transports/http/configuration");
     }
 
     private <T> ServiceRegistration<T> registerService(BundleContext context, Class<T> serviceInterface,
@@ -80,6 +69,7 @@ public class HTTPTransportActivator implements BundleActivator {
                 CollectionUtils.singletonDictionary(Constants.SERVICE_PID, servicePid));
     }
 
+    @Override
     public void stop(BundleContext context) throws Exception {
         if (httpServiceTracker != null) {
             httpServiceTracker.close();

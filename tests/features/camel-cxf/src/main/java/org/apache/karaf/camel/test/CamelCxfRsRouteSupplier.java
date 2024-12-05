@@ -48,6 +48,12 @@ public class CamelCxfRsRouteSupplier implements CamelRouteSupplier {
             exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 200);
         });
 
+        builder.from("direct-vm:getCustomer").process(exchange -> {
+            assertEquals("456", exchange.getIn().getHeader("id"));
+            exchange.getMessage().setBody(new Customer(456, "John"));
+            exchange.getMessage().setHeader(Exchange.HTTP_RESPONSE_CODE, 200);
+        });
+
         builder.from("direct:newCustomer").process(exchange -> {
             Customer c = exchange.getIn().getBody(Customer.class);
             assertNotNull(c);
