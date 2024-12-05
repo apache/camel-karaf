@@ -33,6 +33,8 @@
     <name>Apache Camel :: Karaf :: Tests :: Features</name>
 
     <properties>
+        <camel.karaf.test.additional.imports/>
+        <camel.karaf.test.fragment.host/>
         <dump.logs.on.failure>false</dump.logs.on.failure>
         <keep.docker.images.on.exit>false</keep.docker.images.on.exit>
         <users.file.location>${project.basedir}/../../camel-integration-test/src/main/resources/etc/users.properties</users.file.location>
@@ -255,9 +257,12 @@
                             org.apache.karaf.camel.test*;version=${project.version}
                         </Export-Package>
                         <Import-Package>
+                            !org.apache.karaf.camel.test,
+                            ${camel.karaf.test.additional.imports}
                             org.apache.camel*;${camel-osgi-import-camel-version},
                             *
                         </Import-Package>
+                        <Fragment-Host>${camel.karaf.test.fragment.host}</Fragment-Host>
                     </instructions>
                 </configuration>
                 <executions>

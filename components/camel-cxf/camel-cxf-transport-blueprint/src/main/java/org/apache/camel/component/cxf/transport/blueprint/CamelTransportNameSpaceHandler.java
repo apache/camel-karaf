@@ -17,15 +17,13 @@
 package org.apache.camel.component.cxf.transport.blueprint;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import org.apache.aries.blueprint.ParserContext;
-import org.apache.camel.component.cxf.helpers.BaseNamespaceHandler;
+import org.apache.camel.component.cxf.blueprint.helpers.BaseNamespaceHandler;
 import org.osgi.service.blueprint.reflect.ComponentMetadata;
 import org.osgi.service.blueprint.reflect.Metadata;
 import org.slf4j.Logger;
@@ -42,7 +40,7 @@ public class CamelTransportNameSpaceHandler extends BaseNamespaceHandler {
     @Override
     @SuppressWarnings("rawtypes")
     public Set<Class> getManagedClasses() {
-        return new HashSet<>(Arrays.asList(CamelTransportNameSpaceHandler.class));
+        return Set.of(CamelTransportNameSpaceHandler.class);
     }
 
     @Override
@@ -62,7 +60,7 @@ public class CamelTransportNameSpaceHandler extends BaseNamespaceHandler {
             answer = new CamelConduitDefinitionParser().parse(element, context);
         }
         if ("destination".equals(s)) {
-            LOG.debug("parsing the detination element");
+            LOG.debug("parsing the destination element");
             answer = new CamelDestinationDefinitionParser().parse(element, context);
         }
         return answer;

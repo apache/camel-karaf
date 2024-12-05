@@ -33,7 +33,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 
 public class CxfRsBlueprintEndpoint extends CxfRsEndpoint {
-    private AbstractJAXRSFactoryBean bean;
+    private final AbstractJAXRSFactoryBean bean;
     private BlueprintContainer blueprintContainer;
     private BundleContext bundleContext;
     private BlueprintCamelContext blueprintCamelContext;
