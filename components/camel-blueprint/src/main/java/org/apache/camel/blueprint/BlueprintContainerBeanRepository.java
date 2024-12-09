@@ -61,13 +61,13 @@ public class BlueprintContainerBeanRepository implements BeanRepository {
         }
 
         // just to be safe
-        if (answer == null) {
+        if (!type.isInstance(answer)) {
             return null;
         }
 
         try {
             return type.cast(answer);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             String msg = "Found bean: " + name + " in BlueprintContainer: " + blueprintContainer
                     + " of type: " + answer.getClass().getName() + " expected type was: " + type;
             throw new NoSuchBeanException(name, msg, e);
