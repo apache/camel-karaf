@@ -933,8 +933,7 @@
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-core/${debezium-version}$DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}</bundle>
         <bundle>wrap:mvn:io.debezium/debezium-storage-file/${debezium-version}</bundle>
-        <!-- Uncomment when the split package issue is fixed in Camel -->
-        <!--<bundle>mvn:org.apache.camel.karaf/camel-debezium-common/${project.version}</bundle>-->
+        <bundle>mvn:org.apache.camel.karaf/camel-debezium-common/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-db2' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
