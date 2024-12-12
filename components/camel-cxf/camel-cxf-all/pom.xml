@@ -272,6 +272,61 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-management</artifactId>
+            <version>${cxf-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>${cxf-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-search</artifactId>
+            <version>${cxf-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-json-basic</artifactId>
+            <version>${cxf-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description</artifactId>
+            <version>${cxf-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf-soap</artifactId>
             <version>${camel-version}</version>
@@ -338,6 +393,11 @@
                                     <include>org.apache.cxf:cxf-rt-transports-http</include>
                                     <include>org.apache.cxf:cxf-rt-cxf-rt-security</include>
                                     <include>org.apache.cxf:cxf-rt-cxf-rt-rs-client</include>
+                                    <include>org.apache.cxf:cxf-rt-management</include>
+                                    <include>org.apache.cxf:cxf-rt-rs-extension-providers</include>
+                                    <include>org.apache.cxf:cxf-rt-rs-extension-search</include>
+                                    <include>org.apache.cxf:cxf-rt-rs-json-basic</include>
+                                    <include>org.apache.cxf:cxf-rt-rs-service-description</include>
                                     <include>org.apache.cxf:cxf-rt-ws-addr</include>
                                     <include>org.apache.cxf:cxf-rt-ws-policy</include>
                                     <include>org.apache.cxf:cxf-rt-wsdl</include>
