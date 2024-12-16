@@ -28,19 +28,17 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-http-common</artifactId>
+    <artifactId>camel-servlet-osgi</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: HTTP Common</name>
-
-    <!-- That's a temporary camel karaf component to use javax.servlet namespace (not jakarta.servlet) as it's the one supported by Pax Web and OSGi HTTP service -->
+    <name>Apache Camel :: Karaf :: Components :: Servlet OSGi</name>
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel-version}
+            org.apache.camel.karaf.component.servlet.osgi.*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            javax.servlet*;resolution:=optional,
-            io.quarkus*;resolution:=optional,
+            org.osgi.service.http,
+            javax.servlet*;version="[4,7)",
             *
         </camel.osgi.import>
     </properties>
@@ -48,22 +46,12 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-http-base</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cloud</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
             <artifactId>camel-support</artifactId>
             <version>${camel-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-attachments</artifactId>
+            <artifactId>camel-servlet</artifactId>
             <version>${camel-version}</version>
         </dependency>
 
@@ -71,6 +59,18 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>4.0.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.cmpn</artifactId>
+            <version>7.0.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -150,4 +150,3 @@
     </build>
 
 </project>
-

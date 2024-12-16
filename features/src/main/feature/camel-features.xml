@@ -393,12 +393,13 @@
         <bundle dependency='true'>mvn:org.javassist/javassist/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-asterisk/${project.version}</bundle>
     </feature>
-    <feature name='camel-atmosphere-websocket' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-servlet</feature>
+    <!-- this feature depends to camel-servlet which only supports jakarta.servlet-api 4.x (not 6.x yet) -->
+    <!-- <feature name='camel-atmosphere-websocket' version='${project.version}' start-level='50'> -->
+        <!-- <feature version='${camel-osgi-version-range}'>camel-servlet</feature> -->
         <!-- Wrap protocol used to work around the wrong version range used for the servlet API [2.5,4)  -->
-        <bundle dependency="true">wrap:mvn:org.atmosphere/atmosphere-runtime/${atmosphere-version}$overwrite=merge&amp;Import-Package=jakarta.servlet;version:="[6,7)",*;resolution:=optional</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-atmosphere-websocket/${project.version}</bundle>
-    </feature>
+        <!-- <bundle dependency="true">wrap:mvn:org.atmosphere/atmosphere-runtime/${atmosphere-version}$overwrite=merge&amp;Import-Package=jakarta.servlet;version:="[6,7)",*;resolution:=optional</bundle> -->
+        <!-- <bundle>mvn:org.apache.camel.karaf/camel-atmosphere-websocket/${project.version}</bundle> -->
+    <!-- </feature> -->
     <feature name='camel-atom' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency="true">wrap:mvn:com.apptasticsoftware/rssreader/${auto-detect-version}</bundle>
@@ -2671,12 +2672,13 @@
         <bundle>mvn:org.apache.camel.karaf/camel-servicenow/${project.version}</bundle>
     </feature>
     <feature name='camel-servlet' version='${project.version}' start-level='50'>
+        <feature prerequisite="true">http</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version="[6,7)">jakarta-servlet</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-servlet/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-servlet-osgi/${project.version}</bundle>
     </feature>
     <feature name='camel-shiro' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
