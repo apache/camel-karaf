@@ -1,1 +1,6 @@
-* xref:components.adoc[Supported components]
+* xref:index.adoc[User Guide]
+** xref:components.adoc[Supported components]
+*** xref:eventadmin-component.adoc[EventAdmin component]
+*** xref:paxlogging-component.adoc[PaxLogging component]
+** xref:blueprint.adoc[Blueprint]
+** xref:kura.adoc[Kura]
