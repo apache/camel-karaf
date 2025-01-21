@@ -45,7 +45,6 @@ public class CamelDebeziumMysqlITest extends AbstractCamelSingleFeatureResultMoc
 
     public static final class ExternalResourceProviders {
 
-        private static final String DEBEZIUM_VERSION = "2.7";
         private static final String MYSQL_IMAGE = "quay.io/debezium/example-mysql";
         private static final String SOURCE_DB_NAME = "inventory";
         private static final String SOURCE_DB_TABLE = String.format("%s.products", SOURCE_DB_NAME);
@@ -54,7 +53,7 @@ public class CamelDebeziumMysqlITest extends AbstractCamelSingleFeatureResultMoc
 
         public static GenericContainerResource<MYSQLContainer> createMySQLContainer() {
 
-            MYSQLContainer container = new MYSQLContainer(DockerImageName.parse(MYSQL_IMAGE).withTag(DEBEZIUM_VERSION)
+            MYSQLContainer container = new MYSQLContainer(DockerImageName.parse(MYSQL_IMAGE).withTag(System.getProperty("debezium.version"))
                     .asCompatibleSubstituteFor("mysql"))
                     .withUsername(SOURCE_DB_USERNAME)
                     .withPassword(SOURCE_DB_PASSWORD);
