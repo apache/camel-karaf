@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-features-test</artifactId>
-        <version>4.9.0-SNAPSHOT</version>
+        <version>4.9.0</version>
     </parent>
 
     <artifactId>camel-csv-test</artifactId>
