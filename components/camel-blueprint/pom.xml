@@ -43,7 +43,7 @@
             *
         </camel.osgi.import>
         <camel.osgi.private>
-            org.glassfish.jaxb*,
+            org.glassfish.jaxb*
         </camel.osgi.private>
     </properties>
     <dependencies>

@@ -122,6 +122,8 @@
                                         <exclude>codegen/**</exclude>
                                         <exclude>**/*.java</exclude>
                                         <exclude>org/apache/parquet/**</exclude>
+                                        <exclude>META-INF/LICENSE**</exclude>
+                                        <exclude>META-INF/NOTICE**</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
