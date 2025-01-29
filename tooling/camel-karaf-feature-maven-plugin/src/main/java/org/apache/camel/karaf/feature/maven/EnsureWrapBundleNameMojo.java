@@ -18,7 +18,8 @@ package org.apache.camel.karaf.feature.maven;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.karaf.features.internal.model.Bundle;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -85,44 +86,59 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
     String processLocation(WrappedBundle wrappedBundle) throws Exception {
         String location = wrappedBundle.getBundle().getLocation();
         String instructions = wrappedBundle.getInstructions();
-        AtomicBoolean dollarNeeded = new AtomicBoolean(!(instructions!=null && instructions.contains("$")));
+        boolean dollarNeeded = !(instructions != null && instructions.contains("$"));
 
         String bundleNameHeader = "%s=Wrap%%20of%%20%s".formatted(BUNDLE_NAME, toPascalCase(wrappedBundle.getArtifactId()));
         String bundleSymbolicNameHeader = "%s=wrap_%s.%s".formatted(BUNDLE_SYMBOLIC_NAME, wrappedBundle.getGroupId(), wrappedBundle.getArtifactId());
+        Map<String, String> headers = new TreeMap<>(); //sorted by key
+        headers.put(BUNDLE_NAME, bundleNameHeader);
+        headers.put(BUNDLE_SYMBOLIC_NAME, bundleSymbolicNameHeader);
 
-        location = insertHeaderIfNeeded(dollarNeeded, location, BUNDLE_NAME, bundleNameHeader);
-        return insertHeaderIfNeeded(dollarNeeded, location, BUNDLE_SYMBOLIC_NAME, bundleSymbolicNameHeader);
+        return insertHeaderIfNeeded(dollarNeeded, location, headers);
     }
 
-    private String insertHeaderIfNeeded(AtomicBoolean dollarNeeded, String location, String headerName, String fullHeader) {
-        if (location.contains(headerName)) {
-            return location;
-        }
-        StringBuilder sb = new StringBuilder(location);
 
-        // insert before existing headers header
-        for (String header : HEADERS_AFTER_BUNDLE_NAME) {
-            // add Bundle-Version before
-            if (location.contains(header)) {
-                int versionHeaderStartIndex = location.indexOf(header);
-                if (dollarNeeded.get()) {
-                    // "amp;" is automatically added
-                    dollarNeeded.set(false);
-                    return sb.insert(versionHeaderStartIndex, "$%s&".formatted(fullHeader)).toString();
-                } else {
-                    // "amp;" is automatically added
-                    return sb.insert(versionHeaderStartIndex, "%s&".formatted(fullHeader)).toString();
+    private String insertHeaderIfNeeded(boolean dollarNeeded, String location, Map<String, String> headers) {
+
+        StringBuilder sb = new StringBuilder(location);
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            if (location.contains(entry.getKey())) {
+                continue;
+            }
+            boolean hasChanged = false;
+            // insert before existing headers header
+            for (String header : HEADERS_AFTER_BUNDLE_NAME) {
+                // add Bundle-Version before
+                if (location.contains(header)) {
+                    int versionHeaderStartIndex = location.indexOf(header);
+                    if (dollarNeeded) {
+                        // "amp;" is automatically added
+                        dollarNeeded = false;
+                        location = sb.insert(versionHeaderStartIndex, "$%s&".formatted(entry.getValue())).toString();
+                        hasChanged = true;
+                        break;
+                    } else {
+                        // "amp;" is automatically added
+                        location = sb.insert(versionHeaderStartIndex, "%s&".formatted(entry.getValue())).toString();
+                        hasChanged = true;
+                        break;
+                    }
                 }
             }
-        }
+            if (hasChanged) {
+                //header already handled, go to next
+                continue;
+            }
 
-        // insert at the end
-        if (dollarNeeded.get()) {
-            dollarNeeded.set(false);
-            return sb.insert(location.length(), "$%s".formatted(fullHeader)).toString();
-        } else {
-            // "amp;" is automatically added
-            return sb.insert(location.length(), "&%s".formatted(fullHeader)).toString();
+            // insert at the end
+            if (dollarNeeded) {
+                dollarNeeded = false;
+                location = sb.insert(location.length(), "$%s".formatted(entry.getValue())).toString();
+            } else {
+                // "amp;" is automatically added
+                location = sb.insert(location.length(), "&%s".formatted(entry.getValue())).toString();
+            }
         }
+        return location;
     }
 }
