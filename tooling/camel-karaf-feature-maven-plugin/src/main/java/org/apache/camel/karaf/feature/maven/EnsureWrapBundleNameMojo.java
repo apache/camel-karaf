@@ -39,8 +39,8 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
             "Require-Bundle",
             "Require-Capability");
     
-    static final String BUNDLE_NAME = "Bundle-Name";
-    static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName";
+    private static final String BUNDLE_NAME = "Bundle-Name";
+    private static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName";
 
     static String toPascalCase(String kebabCase) {
         // Handle null or empty string
@@ -55,18 +55,18 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
         // Capitalize first letter of each word
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-            if (!word.isEmpty()) {
-                result.append(Character.toUpperCase(word.charAt(0)));
-                if (word.length() > 1) {
-                    result.append(word.substring(1).toLowerCase());
-                }
-                // Only add %20 if it's not the last word
-                if (i < words.length - 1) {
-                    result.append("%20");
-                }
+            if (word.isEmpty()) {
+                continue;
+            }
+            result.append(Character.toUpperCase(word.charAt(0)));
+            if (word.length() > 1) {
+                result.append(word.substring(1).toLowerCase());
+            }
+            // Only add %20 if it's not the last word
+            if (i < words.length - 1) {
+                result.append("%20");
             }
         }
-
         return result.toString();
     }
 
@@ -105,13 +105,13 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
             // add Bundle-Version before
             if (location.contains(header)) {
                 int versionHeaderStartIndex = location.indexOf(header);
-                if (!dollarNeeded.get()) {
-                    // "amp;" is automatically added
-                    return sb.insert(versionHeaderStartIndex, "%s&".formatted(fullHeader)).toString();
-                } else {
+                if (dollarNeeded.get()) {
                     // "amp;" is automatically added
                     dollarNeeded.set(false);
                     return sb.insert(versionHeaderStartIndex, "$%s&".formatted(fullHeader)).toString();
+                } else {
+                    // "amp;" is automatically added
+                    return sb.insert(versionHeaderStartIndex, "%s&".formatted(fullHeader)).toString();
                 }
             }
         }
