@@ -76,6 +76,7 @@
                         <goals>
                             <goal>auto-detect-version</goal>
                             <goal>ensure-wrap-bundle-version</goal>
+                            <goal>ensure-wrap-bundle-name</goal>
                             <goal>configure-wrap-spi-provider</goal>
                         </goals>
                         <configuration>
