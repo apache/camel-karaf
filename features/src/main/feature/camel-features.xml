@@ -859,7 +859,7 @@
         the fragmented host option will enforce both bundles to share the same class loader,
         'okhttp' was chosen as the host because 'okhttp-urlconnection' contains only one package with 2 classes -->
         <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}$Bundle-SymbolicName=com.squareup.okhttp3.okhttp</bundle>
-        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-urlconnection/${squareup-okhttp-version}$Fragment-Host=wrap_com.squareup.okhttp3.okhttp;bundle-version=${squareup-okhttp-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-urlconnection/${squareup-okhttp-version}$Fragment-Host=com.squareup.okhttp3.okhttp;bundle-version=${squareup-okhttp-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-couchdb/${project.version}</bundle>
     </feature>
