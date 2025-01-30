@@ -43,7 +43,7 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
     private static final String BUNDLE_NAME = "Bundle-Name";
     private static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName";
 
-    static String toPascalCase(String kebabCase) {
+    private static String toPascalCase(String kebabCase) {
         // Handle null or empty string
         if (kebabCase == null || kebabCase.isEmpty()) {
             return kebabCase;
@@ -86,7 +86,7 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
     String processLocation(WrappedBundle wrappedBundle) throws Exception {
         String location = wrappedBundle.getBundle().getLocation();
         String instructions = wrappedBundle.getInstructions();
-        boolean dollarNeeded = !(instructions != null && instructions.contains("$"));
+        boolean dollarNeeded = instructions == null || !instructions.contains("$");
 
         String bundleNameHeader = "%s=Wrap%%20of%%20%s".formatted(BUNDLE_NAME, toPascalCase(wrappedBundle.getArtifactId()));
         String bundleSymbolicNameHeader = "%s=wrap_%s.%s".formatted(BUNDLE_SYMBOLIC_NAME, wrappedBundle.getGroupId(), wrappedBundle.getArtifactId());
@@ -115,14 +115,12 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
                         // "amp;" is automatically added
                         dollarNeeded = false;
                         location = sb.insert(versionHeaderStartIndex, "$%s&".formatted(entry.getValue())).toString();
-                        hasChanged = true;
-                        break;
                     } else {
                         // "amp;" is automatically added
                         location = sb.insert(versionHeaderStartIndex, "%s&".formatted(entry.getValue())).toString();
-                        hasChanged = true;
-                        break;
                     }
+                    hasChanged = true;
+                    break;
                 }
             }
             if (hasChanged) {
