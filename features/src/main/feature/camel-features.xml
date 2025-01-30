@@ -1128,7 +1128,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.alibaba/fastjson/${fastjson-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.alibaba.fastjson2/fastjson2/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.alibaba.fastjson2/fastjson2-extension/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.alibaba.fastjson2/fastjson2-extension/${auto-detect-version}$Fragment-Host=wrap_com.alibaba.fastjson2.fastjson2</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-fastjson/${project.version}</bundle>
     </feature>
     <feature name='camel-fhir' version='${project.version}' start-level='50'>
