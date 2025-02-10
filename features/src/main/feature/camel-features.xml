@@ -682,6 +682,19 @@
     <feature name='camel-azure-storage-queue' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-storage</feature>
+        <feature version='[4.1,5)'>netty</feature>
+        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-queue/${project.version}</bundle>
     </feature>
