@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.10.0-SNAPSHOT</version>
+        <version>4.10.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -39,7 +39,9 @@
             org.apache.camel.util.blueprint*;version=${project.version}
         </camel.osgi.export>
         <camel.osgi.import>
-            jakarta.xml.bind*;version="[3,5)",
+            jakarta.xml.bind*;version="[4,5)",
+            com.sun.xml.fastinfoset*;resolution:=optional,
+            org.jvnet*;resolution:=optional,
             *
         </camel.osgi.import>
         <camel.osgi.private>
@@ -315,11 +317,6 @@
                                 <phase>process-classes</phase>
                                 <configuration>
                                     <target>
-                                        <!-- Workaround to fix the violation in CircuitBreakerDefinition -->
-                                        <replace file="${project.build.directory}/sources/camel-core-model/org/apache/camel/model/CircuitBreakerDefinition.java" value="@jakarta.xml.bind.annotation.XmlTransient private OnFallbackDefinition">
-                                            <replacetoken><![CDATA[@XmlElement
-    private OnFallbackDefinition]]></replacetoken>
-                                        </replace>
                                         <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath" />
                                         <echo>Copying to code together for the XSD generation</echo>
                                         <mkdir dir="${project.build.directory}/schema-src" />
