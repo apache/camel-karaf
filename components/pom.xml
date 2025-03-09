@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.10.0-SNAPSHOT</version>
+        <version>4.10.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -176,6 +176,7 @@
         <module>camel-knative</module>
         <module>camel-kubernetes</module>
         <module>camel-kudu</module>
+        <module>camel-kserve</module>
         <module>camel-language</module>
         <module>camel-ldap</module>
         <module>camel-ldif</module>
@@ -205,6 +206,7 @@
         <module>camel-nats</module>
         <module>camel-netty</module>
         <module>camel-netty-http</module>
+        <module>camel-neo4j</module>
         <module>camel-nitrite</module>
         <module>camel-oaipmh</module>
         <module>camel-observability-services</module>
@@ -296,6 +298,7 @@
         <module>camel-tahu</module>
         <module>camel-tarfile</module>
         <module>camel-telegram</module>
+        <module>camel-tensorflow-serving</module>
         <module>camel-test</module>
         <module>camel-test-spring</module>
         <module>camel-threadpoolfactory-vertx</module>

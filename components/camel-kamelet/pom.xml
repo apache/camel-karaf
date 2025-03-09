@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.10.0-SNAPSHOT</version>
+        <version>4.10.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -40,9 +40,10 @@
             org.apache.camel.component.jackson.*;resolution:=optional;${camel-osgi-import-camel-version},
             org.apache.camel.component.kafka.*;resolution:=optional;${camel-osgi-import-camel-version},
             org.apache.camel*;${camel-osgi-import-camel-version},
+            dev.langchain4j*;resolution:=optional,
+            ai.djl.modality;resolution:=optional,
         </camel-osgi-camel-import>
         <camel.osgi.import>
-            ai.djl.modality*;resolution:=optional,
             com.fasterxml.jackson.*;resolution:=optional,
             com.mongodb*;resolution:=optional,
             net.sf.extjwnl*;resolution:=optional,
