@@ -56,6 +56,7 @@
         <module>camel-aws2-sqs</module>
         <module>camel-aws2-sts</module>
         <module>camel-azure-storage-blob</module>
+        <module>camel-azure-storage-queue</module>
         <module>camel-barcode</module>
         <module>camel-base64</module>
         <module>camel-bean-validator</module>
