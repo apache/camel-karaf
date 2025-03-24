@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
-        <version>33</version>
+        <version>34</version>
     </parent>
 
     <groupId>org.apache.camel.karaf</groupId>
@@ -602,13 +602,7 @@
         <maven-antrun-plugin-version>3.1.0</maven-antrun-plugin-version>
         <maven-build-helper-plugin-version>3.6.0</maven-build-helper-plugin-version>
         <maven-bundle-plugin-version>5.1.9</maven-bundle-plugin-version>
-        <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
-        <maven-dependency-plugin-version>3.8.0</maven-dependency-plugin-version>
-        <maven-jar-plugin-version>3.4.2</maven-jar-plugin-version>
         <maven-jaxb2-plugin-version>3.2.0</maven-jaxb2-plugin-version>
-        <maven-release-plugin-version>3.1.1</maven-release-plugin-version>
-        <maven-resources-plugin-version>3.3.1</maven-resources-plugin-version>
-        <maven-shade-plugin-version>3.6.0</maven-shade-plugin-version>
     </properties>
 
     <dependencyManagement>
@@ -684,26 +678,24 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven-shade-plugin-version}</version>
                     <configuration>
                         <!-- Need to keep the original pom file to be able to auto-detect the version of the dependencies -->
                         <createDependencyReducedPom>false</createDependencyReducedPom>
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${maven-dependency-plugin-version}</version>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${maven-build-helper-plugin-version}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-jar-plugin-version}</version>
+                    <groupId>org.apache.servicemix.tooling</groupId>
+                    <artifactId>depends-maven-plugin</artifactId>
+                    <version>1.5.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin-version}</version>
                     <configuration>
                         <localCheckout>true</localCheckout>
                         <pushChanges>true</pushChanges>
@@ -720,11 +712,6 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin-version}</version>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-remote-resources-plugin</artifactId>
