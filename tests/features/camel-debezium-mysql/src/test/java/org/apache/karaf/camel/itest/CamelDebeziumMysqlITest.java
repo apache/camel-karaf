@@ -53,7 +53,8 @@ public class CamelDebeziumMysqlITest extends AbstractCamelSingleFeatureResultMoc
 
         public static GenericContainerResource<MYSQLContainer> createMySQLContainer() {
 
-            MYSQLContainer container = new MYSQLContainer(DockerImageName.parse(MYSQL_IMAGE).withTag(System.getProperty("debezium.version"))
+            // TODO force debezium version to avoid root access issue (instead of System.getProperty("debezium.version"))
+            MYSQLContainer container = new MYSQLContainer(DockerImageName.parse(MYSQL_IMAGE).withTag("2.7.1.Final")
                     .asCompatibleSubstituteFor("mysql"))
                     .withUsername(SOURCE_DB_USERNAME)
                     .withPassword(SOURCE_DB_PASSWORD);
