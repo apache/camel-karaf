@@ -35,6 +35,16 @@
             <version>${camel-version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
     <profiles>
         <profile>
             <id>disable-test-for-unsupported-architectures</id>
@@ -56,4 +66,5 @@
             </build>
         </profile>
     </profiles>
+
 </project>

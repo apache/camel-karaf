@@ -27,4 +27,16 @@
 
     <artifactId>camel-karaf-examples-blueprint-dsl-only-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Examples :: Blueprint DSL Only</name>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -29,4 +29,16 @@
     <artifactId>camel-core-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Core</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
