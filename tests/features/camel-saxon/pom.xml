@@ -28,4 +28,16 @@
     <artifactId>camel-saxon-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Saxon</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>

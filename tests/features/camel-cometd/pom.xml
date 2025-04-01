@@ -35,4 +35,16 @@
         </camel.karaf.test.additional.imports>
         <camel.karaf.test.fragment.host>camel-integration-test</camel.karaf.test.fragment.host>
     </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

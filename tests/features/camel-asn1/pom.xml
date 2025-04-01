@@ -28,4 +28,13 @@
     <artifactId>camel-asn1-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: ASN1</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>

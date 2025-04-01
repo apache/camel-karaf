@@ -27,6 +27,7 @@
 
     <artifactId>camel-jms-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: JMS</name>
+
     <dependencies>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -35,5 +36,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>

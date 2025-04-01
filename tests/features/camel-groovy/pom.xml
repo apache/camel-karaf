@@ -28,4 +28,13 @@
     <artifactId>camel-groovy-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Groovy</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
