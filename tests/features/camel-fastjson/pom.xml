@@ -28,4 +28,13 @@
     <artifactId>camel-fastjson-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Fastjson</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>

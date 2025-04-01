@@ -28,4 +28,13 @@
     <artifactId>camel-gson-test</artifactId>
     <name>Apache Camel :: Karaf :: Tests :: Features :: Gson</name>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
