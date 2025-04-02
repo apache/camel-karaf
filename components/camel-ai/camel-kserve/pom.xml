@@ -23,21 +23,21 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
+        <artifactId>camel-ai-parent</artifactId>
         <version>4.10.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-tensorflow-serving</artifactId>
+    <artifactId>camel-kserve</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Tensorflow Serving</name>
+    <name>Apache Camel :: Karaf :: Components :: Kserve</name>
 
     <properties>
         <camel.osgi.export>
+            inference*;version=${camel-version},
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            !tensorflow.serving,
             *
         </camel.osgi.import>
     </properties>
@@ -45,7 +45,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-tensorflow-serving</artifactId>
+            <artifactId>camel-kserve</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -59,7 +59,7 @@
     <build>
         <resources>
             <resource>
-                <directory>../../src/main/resources</directory>
+                <directory>../../../src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
         </resources>
@@ -76,7 +76,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-tensorflow-serving</include>
+                                    <include>org.apache.camel:camel-kserve</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

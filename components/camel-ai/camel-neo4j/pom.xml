@@ -23,18 +23,17 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
+        <artifactId>camel-ai-parent</artifactId>
         <version>4.10.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-kserve</artifactId>
+    <artifactId>camel-neo4j</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Kserve</name>
+    <name>Apache Camel :: Karaf :: Components :: Neo4j</name>
 
     <properties>
         <camel.osgi.export>
-            inference*;version=${camel-version},
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
@@ -45,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-kserve</artifactId>
+            <artifactId>camel-neo4j</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -59,7 +58,7 @@
     <build>
         <resources>
             <resource>
-                <directory>../../src/main/resources</directory>
+                <directory>../../../src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
         </resources>
@@ -76,7 +75,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-kserve</include>
+                                    <include>org.apache.camel:camel-neo4j</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
