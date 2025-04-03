@@ -27,6 +27,7 @@ import org.apache.karaf.shell.api.action.lifecycle.Service;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+import java.util.List;
 import java.util.Set;
 
 @Command(scope = "camel", name = "route-reset-stats", description = "Reset route performance stats from a Camel context")
@@ -40,23 +41,21 @@ public class RouteResetStats extends CamelCommandSupport implements Action {
     @Override
     public Object execute() throws Exception {
 
-        CamelContext camelContext = getCamelContext(name);
-        if (camelContext == null) {
-            System.err.println("Camel context " + name + " not found");
-            return null;
-        }
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        ManagementAgent agent = camelContext.getManagementStrategy().getManagementAgent();
-        if (agent != null) {
-            MBeanServer mBeanServer = agent.getMBeanServer();
+        for (CamelContext camelContext : camelContexts) {
+            ManagementAgent agent = camelContext.getManagementStrategy().getManagementAgent();
+            if (agent != null) {
+                MBeanServer mBeanServer = agent.getMBeanServer();
 
-            // reset route mbeans
-            ObjectName query = ObjectName.getInstance(agent.getMBeanObjectDomainName() + ":type=routes,*");
-            Set<ObjectName> mBeans = mBeanServer.queryNames(query, null);
-            for (ObjectName routeMBean : mBeans) {
-                String camelId = (String) mBeanServer.getAttribute(routeMBean, "CamelId");
-                if (camelId != null && camelId.equals(camelContext.getName())) {
-                    mBeanServer.invoke(routeMBean, "reset", new Object[]{true}, new String[]{"boolean"});
+                // reset route mbeans
+                ObjectName query = ObjectName.getInstance(agent.getMBeanObjectDomainName() + ":type=routes,*");
+                Set<ObjectName> mBeans = mBeanServer.queryNames(query, null);
+                for (ObjectName routeMBean : mBeans) {
+                    String camelId = (String) mBeanServer.getAttribute(routeMBean, "CamelId");
+                    if (camelId != null && camelId.equals(camelContext.getName())) {
+                        mBeanServer.invoke(routeMBean, "reset", new Object[]{true}, new String[]{"boolean"});
+                    }
                 }
             }
         }

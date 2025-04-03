@@ -25,11 +25,13 @@ import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 
+import java.util.List;
+
 @Command(scope = "camel", name = "route-stop", description = "Stop a Camel route")
 @Service
 public class RouteStop extends CamelCommandSupport implements Action {
 
-    @Argument(index = 0, name = "context", description = "The Camel context name", required = true, multiValued = false)
+    @Argument(index = 0, name = "context", description = "The Camel context name", required = false, multiValued = false)
     @Completion(CamelContextCompleter.class)
     String context;
 
@@ -39,13 +41,11 @@ public class RouteStop extends CamelCommandSupport implements Action {
 
     @Override
     public Object execute() throws Exception {
-        CamelContext camelContext = getCamelContext(context);
-        if (camelContext == null) {
-            System.err.println("Camel context " + context + " not found");
-            return null;
-        }
+        List<CamelContext> camelContexts = getCamelContext(context);
 
-        camelContext.getRouteController().stopRoute(route);
+        for (CamelContext camelContext : camelContexts) {
+            camelContext.getRouteController().stopRoute(route);
+        }
 
         return null;
     }

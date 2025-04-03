@@ -24,6 +24,8 @@ import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 
+import java.util.List;
+
 @Command(scope = "camel", name = "context-suspend", description = "Suspends a Camel context")
 @Service
 public class ContextSuspend extends CamelCommandSupport implements Action {
@@ -34,14 +36,14 @@ public class ContextSuspend extends CamelCommandSupport implements Action {
 
     @Override
     public Object execute() throws Exception {
-        CamelContext camelContext = getCamelContext(name);
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        if (camelContext == null) {
+        if (camelContexts.size() != 1) {
             System.err.println("Camel context " + name + " not found");
             return null;
         }
 
-        camelContext.suspend();
+        camelContexts.get(0).suspend();
 
         return null;
     }
