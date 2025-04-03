@@ -24,24 +24,26 @@ import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 
+import java.util.List;
+
 @Command(scope = "camel", name = "rest-api-doc", description = "List the Camel REST services API documentation (requires camel-swagger-java on classpath)")
 @Service
 public class RestApiDoc extends CamelCommandSupport implements Action {
 
-    @Argument(index = 0, name = "context", description = "The Camel context name where to look for the REST services", required = true, multiValued = false)
+    @Argument(index = 0, name = "context", description = "The Camel context name where to look for the REST services", required = false, multiValued = false)
     @Completion(CamelContextCompleter.class)
     String name;
 
     @Override
     public Object execute() throws Exception {
-        CamelContext camelContext = getCamelContext(name);
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        if (camelContext == null) {
+        if (camelContexts.size() != 1) {
             System.err.println("Camel context " + name + " not found");
             return null;
         }
 
-        String json = camelContext.getRestRegistry().apiDocAsJson();
+        String json = camelContexts.get(0).getRestRegistry().apiDocAsJson();
         if (json != null) {
             System.out.println(json);
         } else {

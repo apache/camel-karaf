@@ -24,6 +24,8 @@ import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 
+import java.util.List;
+
 @Command(scope = "camel", name = "context-stop", description = "Stop a Camel context, it becomes unavailable and can not be started again")
 @Service
 public class ContextStop extends CamelCommandSupport implements Action {
@@ -34,14 +36,14 @@ public class ContextStop extends CamelCommandSupport implements Action {
 
     @Override
     public Object execute() throws Exception {
-        CamelContext camelContext = getCamelContext(name);
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        if (camelContext == null) {
+        if (camelContexts.size() != 1) {
             System.err.println("Camel context " + name + " not found");
             return null;
         }
 
-        camelContext.stop();
+        camelContexts.get(0).stop();
 
         return null;
     }

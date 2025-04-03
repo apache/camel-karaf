@@ -62,10 +62,13 @@ public abstract class CamelCommandSupport {
     }
 
 
-    public CamelContext getCamelContext(String name) throws Exception {
+    public List<CamelContext> getCamelContext(String name) throws Exception {
+        if (name == null) {
+            return getCamelContexts();
+        }
         for (CamelContext camelContext : getCamelContexts()) {
             if (camelContext.getName().equals(name)) {
-                return camelContext;
+                return List.of(camelContext);
             }
         }
         return null;

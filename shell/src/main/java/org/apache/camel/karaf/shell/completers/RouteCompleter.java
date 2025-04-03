@@ -16,6 +16,7 @@
  */
 package org.apache.camel.karaf.shell.completers;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Route;
 import org.apache.camel.karaf.shell.CamelCommandSupport;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
@@ -42,8 +43,10 @@ public class RouteCompleter extends CamelCommandSupport implements Completer {
 
         try {
             StringsCompleter delegate = new StringsCompleter();
-            for (Route route : getCamelContext(contextName).getRoutes()) {
-                delegate.getStrings().add(route.getRouteId());
+            for (CamelContext camelContext : getCamelContext(contextName)) {
+                for (Route route : camelContext.getRoutes()) {
+                    delegate.getStrings().add(route.getRouteId());
+                }
             }
             return delegate.complete(session, commandLine, candidates);
         } catch (Exception e) {
