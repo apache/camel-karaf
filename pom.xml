@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.10.2-SNAPSHOT</version>
+    <version>4.10.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -91,7 +91,7 @@
         <maven.compiler.source>${jdk-version}</maven.compiler.source>
         <maven.compiler.target>${jdk-version}</maven.compiler.target>
 
-        <camel-version>4.10.2</camel-version>
+        <camel-version>4.10.3</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.18.6</activemq-version>
@@ -307,7 +307,7 @@
         <jcr-version>2.0</jcr-version>
         <jedis-client-version>5.2.0</jedis-client-version>
         <jetcd-version>0.8.4</jetcd-version>
-        <jetty-version>12.0.16</jetty-version>
+        <jetty-version>12.0.18</jetty-version>
         <jetty-for-solr-version>10.0.20</jetty-for-solr-version>
         <jetty-plugin-version>${jetty-version}</jetty-plugin-version>
         <jetty-runner-groupId>org.eclipse.jetty</jetty-runner-groupId>
@@ -321,7 +321,7 @@
         <jline-version>3.29.0</jline-version>
         <libthrift-version>0.21.0</libthrift-version>
         <jodatime2-version>2.13.1</jodatime2-version>
-        <jolokia-version>2.2.3</jolokia-version>
+        <jolokia-version>2.2.5</jolokia-version>
         <jolt-version>0.1.8</jolt-version>
         <jool-version>0.9.15</jool-version>
         <jooq-version>3.19.19</jooq-version>
@@ -384,7 +384,7 @@
         <narayana-version>5.13.1.Final</narayana-version>
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>5.28.1</neo4j-version>
-        <netty-version>4.1.118.Final</netty-version>
+        <netty-version>4.1.119.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.5</networknt-json-schema-validator-version>
         <nimbus-jose-jwt>10.0.1</nimbus-jose-jwt>
@@ -463,14 +463,14 @@
         <solr-zookeeper-version>3.9.3</solr-zookeeper-version>
         <splunk-version>1.9.5_1</splunk-version>
         <spock-version>2.3-groovy-4.0</spock-version>
-        <spring-batch-version>5.2.1</spring-batch-version>
-        <spring-data-redis-version>3.4.2</spring-data-redis-version>
+        <spring-batch-version>5.2.2</spring-batch-version>
+        <spring-data-redis-version>3.4.4</spring-data-redis-version>
         <spring-ldap-version>3.2.11</spring-ldap-version>
         <spring-vault-core-version>3.1.2</spring-vault-core-version>
-        <spring-version>6.2.3</spring-version>
-        <spring-rabbitmq-version>3.2.2</spring-rabbitmq-version>
-        <spring-security-version>6.4.3</spring-security-version>
-        <spring-ws-version>4.0.11</spring-ws-version>
+        <spring-version>6.2.5</spring-version>
+        <spring-rabbitmq-version>3.2.4</spring-rabbitmq-version>
+        <spring-security-version>6.4.4</spring-security-version>
+        <spring-ws-version>4.0.12</spring-ws-version>
         <squareup-okhttp-version>3.14.9</squareup-okhttp-version>
         <squareup-okio-version>1.17.5</squareup-okio-version>
         <sshd-version>2.14.0</sshd-version>
