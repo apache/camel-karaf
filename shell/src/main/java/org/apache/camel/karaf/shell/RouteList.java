@@ -29,6 +29,8 @@ import org.apache.karaf.shell.api.action.Completion;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 
+import java.util.List;
+
 @Command(scope = "camel", name = "route-list", description = "List Camel routes")
 @Service
 public class RouteList extends CamelCommandSupport implements Action {
@@ -48,30 +50,28 @@ public class RouteList extends CamelCommandSupport implements Action {
         table.column("Inflight #");
         table.column("Uptime");
 
-        CamelContext camelContext = getCamelContext(name);
-        if (camelContext == null) {
-            System.err.println("Camel context " + name + " not found");
-            return null;
-        }
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        for (Route route : camelContext.getRoutes()) {
-            ManagedCamelContext mcc = camelContext.getCamelContextExtension().getContextPlugin(ManagedCamelContext.class);
-            long exchangesTotal = 0;
-            long exchangesInflight = 0;
-            long exchangesFailed = 0;
-            if (mcc != null && mcc.getManagedCamelContext() != null) {
-                ManagedRouteMBean mr = mcc.getManagedRoute(route.getId());
-                exchangesFailed = mr.getExchangesFailed();
-                exchangesInflight = mr.getExchangesInflight();
-                exchangesTotal = mr.getExchangesTotal();
+        for (CamelContext camelContext : camelContexts) {
+            for (Route route : camelContext.getRoutes()) {
+                ManagedCamelContext mcc = camelContext.getCamelContextExtension().getContextPlugin(ManagedCamelContext.class);
+                long exchangesTotal = 0;
+                long exchangesInflight = 0;
+                long exchangesFailed = 0;
+                if (mcc != null && mcc.getManagedCamelContext() != null) {
+                    ManagedRouteMBean mr = mcc.getManagedRoute(route.getId());
+                    exchangesFailed = mr.getExchangesFailed();
+                    exchangesInflight = mr.getExchangesInflight();
+                    exchangesTotal = mr.getExchangesTotal();
+                }
+                table.addRow().addContent(route.getCamelContext().getName(),
+                        route.getId(),
+                        getRouteState(route),
+                        exchangesTotal,
+                        exchangesFailed,
+                        exchangesInflight,
+                        route.getUptime());
             }
-            table.addRow().addContent(route.getCamelContext().getName(),
-                    route.getId(),
-                    getRouteState(route),
-                    exchangesTotal,
-                    exchangesFailed,
-                    exchangesInflight,
-                    route.getUptime());
         }
 
         table.print(System.out);

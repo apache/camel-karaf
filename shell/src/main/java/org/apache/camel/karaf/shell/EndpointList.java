@@ -36,7 +36,7 @@ import java.util.List;
 @Service
 public class EndpointList extends CamelCommandSupport implements Action {
 
-    @Argument(index = 0, name = "context", description = "The name of the Camel context (support wildcard)", required = true, multiValued = false)
+    @Argument(index = 0, name = "context", description = "The name of the Camel context (support wildcard)", required = false, multiValued = false)
     @Completion(CamelContextCompleter.class)
     String name;
 
@@ -51,30 +51,27 @@ public class EndpointList extends CamelCommandSupport implements Action {
         table.column("Uri");
         table.column("Status");
 
-        CamelContext camelContext = getCamelContext(name);
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        if (camelContext == null) {
-            System.err.println("Camel context " + name + " not found");
-            return null;
-        }
-
-        List<Endpoint> endpoints = new ArrayList<>(camelContext.getEndpoints());
-        // sort routes
-        Collections.sort(endpoints, new Comparator<Endpoint>() {
-            @Override
-            public int compare(Endpoint e1, Endpoint e2) {
-                return e1.getEndpointKey().compareTo(e2.getEndpointKey());
+        for (CamelContext camelContext : camelContexts) {
+            List<Endpoint> endpoints = new ArrayList<>(camelContext.getEndpoints());
+            // sort routes
+            Collections.sort(endpoints, new Comparator<Endpoint>() {
+                @Override
+                public int compare(Endpoint e1, Endpoint e2) {
+                    return e1.getEndpointKey().compareTo(e2.getEndpointKey());
+                }
+            });
+            for (Endpoint endpoint : endpoints) {
+                String uri = endpoint.getEndpointUri();
+                if (decode) {
+                    // decode uri so its more human readable
+                    uri = URLDecoder.decode(uri, "UTF-8");
+                }
+                // sanitize and mask uri so we don't see passwords
+                uri = URISupport.sanitizeUri(uri);
+                table.addRow().addContent(camelContext.getName(), uri, getEndpointState(endpoint));
             }
-        });
-        for (Endpoint endpoint : endpoints) {
-            String uri = endpoint.getEndpointUri();
-            if (decode) {
-                // decode uri so its more human readable
-                uri = URLDecoder.decode(uri, "UTF-8");
-            }
-            // sanitize and mask uri so we don't see passwords
-            uri = URISupport.sanitizeUri(uri);
-            table.addRow().addContent(camelContext.getName(), uri, getEndpointState(endpoint));
         }
 
         table.print(System.out);

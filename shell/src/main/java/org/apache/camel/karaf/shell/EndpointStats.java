@@ -26,12 +26,13 @@ import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 
 import java.net.URLDecoder;
+import java.util.List;
 
 @Command(scope = "camel", name = "endpoint-stats", description = "List the statistics of the Camel endpoints")
 @Service
 public class EndpointStats extends CamelCommandSupport implements Action {
 
-    @Argument(index = 0, name = "context", description = "The name of the Camel context (support wildcard)", required = true, multiValued = false)
+    @Argument(index = 0, name = "context", description = "The name of the Camel context (support wildcard)", required = false, multiValued = false)
     @Completion(CamelContextCompleter.class)
     String name;
 
@@ -52,41 +53,38 @@ public class EndpointStats extends CamelCommandSupport implements Action {
         table.column("Dynamic");
         table.column("Total #");
 
-        CamelContext camelContext = getCamelContext(name);
+        List<CamelContext> camelContexts = getCamelContext(name);
 
-        if (camelContext == null) {
-            System.err.println("Camel context " + name + " not found");
-            return null;
-        }
+        for (CamelContext camelContext : camelContexts) {
+            if (camelContext.getRuntimeEndpointRegistry() != null) {
+                EndpointRegistry endpointRegistry = camelContext.getEndpointRegistry();
+                for (RuntimeEndpointRegistry.Statistic stat : camelContext.getRuntimeEndpointRegistry().getEndpointStatistics()) {
+                    String uri = stat.getUri();
+                    String routeId = stat.getRouteId();
+                    String direction = stat.getDirection();
+                    boolean isStatic = endpointRegistry.isStatic(uri);
+                    boolean isDynamic = endpointRegistry.isDynamic(uri);
+                    long hits = stat.getHits();
 
-        if (camelContext.getRuntimeEndpointRegistry() != null) {
-            EndpointRegistry endpointRegistry = camelContext.getEndpointRegistry();
-            for (RuntimeEndpointRegistry.Statistic stat : camelContext.getRuntimeEndpointRegistry().getEndpointStatistics()) {
-                String uri = stat.getUri();
-                String routeId = stat.getRouteId();
-                String direction = stat.getDirection();
-                boolean isStatic = endpointRegistry.isStatic(uri);
-                boolean isDynamic = endpointRegistry.isDynamic(uri);
-                long hits = stat.getHits();
+                    if (decode) {
+                        // decode uri so it's more human readable
+                        uri = URLDecoder.decode(uri, "UTF-8");
+                    }
+                    // sanitize and mask uri so we don't see passwords
+                    uri = URISupport.sanitizeUri(uri);
 
-                if (decode) {
-                    // decode uri so it's more human readable
-                    uri = URLDecoder.decode(uri, "UTF-8");
+                    // should we filter ?
+                    if (isValidRow(direction, Boolean.toString(isStatic), Boolean.toString(isDynamic))) {
+                        table.addRow().addContent(camelContext.getName(),
+                                uri,
+                                routeId,
+                                direction,
+                                isStatic,
+                                isDynamic,
+                                hits);
+                    }
+
                 }
-                // sanitize and mask uri so we don't see passwords
-                uri = URISupport.sanitizeUri(uri);
-
-                // should we filter ?
-                if (isValidRow(direction, Boolean.toString(isStatic), Boolean.toString(isDynamic))) {
-                    table.addRow().addContent(camelContext.getName(),
-                            uri,
-                            routeId,
-                            direction,
-                            isStatic,
-                            isDynamic,
-                            hits);
-                }
-
             }
         }
 

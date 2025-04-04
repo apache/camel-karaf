@@ -30,13 +30,14 @@ import javax.management.openmbean.CompositeData;
 import javax.management.openmbean.TabularData;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Command(scope = "camel", name = "context-inflight", description = "List inflight exchanges")
 @Service
 public class ContextInflight extends CamelCommandSupport implements Action {
 
-    @Argument(index = 0, name = "context", description = "The Camel context name", required = true, multiValued = false)
+    @Argument(index = 0, name = "context", description = "The Camel context name", required = false, multiValued = false)
     @Completion(CamelContextCompleter.class)
     String name;
 
@@ -52,37 +53,35 @@ public class ContextInflight extends CamelCommandSupport implements Action {
 
     @Override
     public Object execute() throws Exception {
-        CamelContext camelContext = getCamelContext(name);
-
-        if (camelContext == null) {
-            System.err.println("Camel context " + name + " not found");
-            return null;
-        }
+        List<CamelContext> camelContexts = getCamelContext(name);
 
         ShellTable table = new ShellTable();
         table.column("ExchangeId");
         table.column("From Route");
+        table.column("Context");
         table.column("Route");
         table.column("Node");
         table.column("Elapsed (ms)");
         table.column("Duration (ms)");
 
-        ManagementAgent agent = camelContext.getManagementStrategy().getManagementAgent();
-        if (agent != null) {
-            MBeanServer mBeanServer = agent.getMBeanServer();
-            ObjectName on = new ObjectName(agent.getMBeanObjectDomainName() + ":type=services,name=DefaultInflightRepository,context=" + camelContext.getManagementName());
-            if (mBeanServer.isRegistered(on)) {
-                TabularData list = (TabularData) mBeanServer.invoke(on, "browse", new Object[]{route, limit, sortByLongestDuration}, new String[]{"java.lang.String", "int", "boolean"});
-                Collection<CompositeData> values = (Collection<CompositeData>) list.values();
-                for (CompositeData data : values) {
-                    Map<String, Object> row = new LinkedHashMap<>();
-                    Object exchangeId = data.get("exchangeId");
-                    Object fromRouteId = data.get("fromRouteId");
-                    Object routeId = data.get("routeId");
-                    Object nodeId = data.get("nodeId");
-                    Object elapsed = data.get("elapsed");
-                    Object duration = data.get("duration");
-                    table.addRow().addContent(exchangeId, fromRouteId, routeId, nodeId, elapsed, duration);
+        for (CamelContext camelContext : camelContexts) {
+            ManagementAgent agent = camelContext.getManagementStrategy().getManagementAgent();
+            if (agent != null) {
+                MBeanServer mBeanServer = agent.getMBeanServer();
+                ObjectName on = new ObjectName(agent.getMBeanObjectDomainName() + ":type=services,name=DefaultInflightRepository,context=" + camelContext.getManagementName());
+                if (mBeanServer.isRegistered(on)) {
+                    TabularData list = (TabularData) mBeanServer.invoke(on, "browse", new Object[]{route, limit, sortByLongestDuration}, new String[]{"java.lang.String", "int", "boolean"});
+                    Collection<CompositeData> values = (Collection<CompositeData>) list.values();
+                    for (CompositeData data : values) {
+                        Map<String, Object> row = new LinkedHashMap<>();
+                        Object exchangeId = data.get("exchangeId");
+                        Object fromRouteId = data.get("fromRouteId");
+                        Object routeId = data.get("routeId");
+                        Object nodeId = data.get("nodeId");
+                        Object elapsed = data.get("elapsed");
+                        Object duration = data.get("duration");
+                        table.addRow().addContent(exchangeId, fromRouteId, camelContext.getName(), routeId, nodeId, elapsed, duration);
+                    }
                 }
             }
         }
