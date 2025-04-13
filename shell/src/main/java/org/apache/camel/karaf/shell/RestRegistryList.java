@@ -50,13 +50,13 @@ public class RestRegistryList extends CamelCommandSupport implements Action {
         table.column("Method");
         table.column("State");
 
-        CamelContext camelContext = getCamelContext(name);
-        if (camelContext == null) {
+        List<CamelContext> camelContexts = getCamelContext(name);
+        if (camelContexts.size() != 1) {
             System.err.println("Camel context " + name + " not found");
             return null;
         }
 
-        List<RestRegistry.RestService> services = new ArrayList<>(camelContext.getRestRegistry().listAllRestServices());
+        List<RestRegistry.RestService> services = new ArrayList<>(camelContexts.get(0).getRestRegistry().listAllRestServices());
         Collections.sort(services, new Comparator<RestRegistry.RestService>() {
             @Override
             public int compare(RestRegistry.RestService s1, RestRegistry.RestService s2) {
