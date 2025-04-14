@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>tooling</artifactId>
-        <version>4.10.3</version>
+        <version>4.10.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-karaf-test-feature-archetype</artifactId>
