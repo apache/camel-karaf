@@ -528,7 +528,7 @@
         <camel-osgi-jakarta-annotation-version>[3,4)</camel-osgi-jakarta-annotation-version>
         <camel-osgi-jakarta-activation-version>[2.1,3)</camel-osgi-jakarta-activation-version>
         <camel-osgi-jakarta-activation-runtime-version>[2,3)</camel-osgi-jakarta-activation-runtime-version>
-        <camel-osgi-jakarta-bind-version>[3,5)</camel-osgi-jakarta-bind-version>
+        <camel-osgi-jakarta-bind-version>[4,5)</camel-osgi-jakarta-bind-version>
         <camel-osgi-jakarta-jws-version>[3,4)</camel-osgi-jakarta-jws-version>
         <camel-osgi-jakarta-servlet-version>[5,7)</camel-osgi-jakarta-servlet-version>
         <camel-osgi-jakarta-soap-version>[3,4)</camel-osgi-jakarta-soap-version>
