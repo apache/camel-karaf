@@ -61,8 +61,6 @@
     <feature name="jaxb-runtime" version="${jaxb3-core-version}">
         <feature version="[3,4)">jakarta-xml-bind</feature>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/${jaxb3-core-version}</bundle>
-        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-impl/${jaxb3-impl-version}</bundle>
-        <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-osgi/${jaxb3-osgi-version}</bundle>
     </feature>
 
     <feature name="jaxb-runtime" version="${jaxb-core-version}">
@@ -70,7 +68,7 @@
         <bundle dependency="true">mvn:com.sun.istack/istack-commons-runtime/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jaxb/jaxb-core/${glassfish-jaxb-runtime-version}</bundle>
         <bundle dependency="true">mvn:org.glassfish.jaxb/jaxb-runtime/${glassfish-jaxb-runtime-version}</bundle>
-        <bundle dependency="true">wrap:mvn:org.glassfish.jaxb/txw2/${glassfish-jaxb-runtime-version}$Bundle-Name=JAXB TXW2&amp;Bundle-SymbolicName=org.glassfish.jaxb.tw2&amp;Bundle-Version=${glassfish-jaxb-runtime-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.glassfish.jaxb/txw2/${glassfish-jaxb-runtime-version}$Bundle-Name=JAXB%20TXW2&amp;Bundle-SymbolicName=org.glassfish.jaxb.tw2&amp;Bundle-Version=${glassfish-jaxb-runtime-version}</bundle>
         <bundle>mvn:org.glassfish.hk2/osgi-resource-locator/${osgi-resource-locator-version}</bundle>
     </feature>
 
@@ -2332,6 +2330,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='[3,4)'>jakarta-validation</feature>
+        <feature version='[3,4)'>jaxb-runtime</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.camel/camel-tooling-util/${camel-version}$Export-Package=org.apache.camel*;version=${camel-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.camel/camel-xml-io/${camel-version}$Export-Package=org.apache.camel*;version=${camel-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/${jackson2-version}</bundle>
