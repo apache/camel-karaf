@@ -55,6 +55,7 @@
         <module>camel-aws2-sns</module>
         <module>camel-aws2-sqs</module>
         <module>camel-aws2-sts</module>
+        <module>camel-azure-eventhubs</module>
         <module>camel-azure-storage-blob</module>
         <module>camel-azure-storage-queue</module>
         <module>camel-barcode</module>
