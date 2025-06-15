@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.10.4-SNAPSHOT</version>
+    <version>4.10.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -91,7 +91,7 @@
         <maven.compiler.source>${jdk-version}</maven.compiler.source>
         <maven.compiler.target>${jdk-version}</maven.compiler.target>
 
-        <camel-version>4.10.4</camel-version>
+        <camel-version>4.10.5</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.18.6</activemq-version>
@@ -138,7 +138,7 @@
         <cloudant-version>0.10.0</cloudant-version>
         <cometd-java-client-version>8.0.6</cometd-java-client-version>
         <cometd-java-server-version>8.0.6</cometd-java-server-version>
-        <commons-beanutils-version>1.9.4</commons-beanutils-version>
+        <commons-beanutils-version>1.11.0</commons-beanutils-version>
         <commons-codec-version>1.18.0</commons-codec-version>
         <commons-collections-version>3.2.2</commons-collections-version>
         <commons-collections4-version>4.4</commons-collections4-version>
@@ -232,7 +232,7 @@
         <graphql-java-version>22.3</graphql-java-version>
         <greenmail-version>2.1.3</greenmail-version>
         <grizzly-websockets-version>2.4.4</grizzly-websockets-version>
-        <groovy-version>4.0.26</groovy-version>
+        <groovy-version>4.0.27</groovy-version>
         <grpc-version>1.70.0</grpc-version>
         <grpc-google-auth-library-version>1.32.0</grpc-google-auth-library-version>
         <grpc-java-jwt-version>4.5.0</grpc-java-jwt-version>
@@ -271,7 +271,7 @@
         <ivy-version>2.5.3</ivy-version>
         <jackson-databind-nullable-version>0.2.6</jackson-databind-nullable-version>
         <jackson-jq-version>1.2.0</jackson-jq-version>
-        <jackson2-version>2.18.2</jackson2-version>
+        <jackson2-version>2.18.4</jackson2-version>
         <jackrabbit-version>2.22.0</jackrabbit-version>
         <jasminb-jsonapi-version>0.14</jasminb-jsonapi-version>
         <jandex-version>3.2.4</jandex-version>
@@ -307,7 +307,7 @@
         <jcr-version>2.0</jcr-version>
         <jedis-client-version>5.2.0</jedis-client-version>
         <jetcd-version>0.8.4</jetcd-version>
-        <jetty-version>12.0.19</jetty-version>
+        <jetty-version>12.0.20</jetty-version>
         <jetty-for-solr-version>10.0.20</jetty-for-solr-version>
         <jetty-plugin-version>${jetty-version}</jetty-plugin-version>
         <jetty-runner-groupId>org.eclipse.jetty</jetty-runner-groupId>
@@ -363,8 +363,8 @@
         <littleproxy-version>2.4.0</littleproxy-version>
         <mapstruct-version>1.6.3</mapstruct-version>
         <metrics-version>4.2.30</metrics-version>
-        <micrometer-version>1.14.6</micrometer-version>
-        <micrometer-tracing-version>1.4.5</micrometer-tracing-version>
+        <micrometer-version>1.14.7</micrometer-version>
+        <micrometer-tracing-version>1.4.6</micrometer-tracing-version>
         <microprofile-config-version>3.1</microprofile-config-version>
         <microprofile-fault-tolerance-version>4.1.1</microprofile-fault-tolerance-version>
         <milvus-client-version>2.5.4</milvus-client-version>
@@ -425,7 +425,7 @@
         <protostream-version>5.0.12.Final</protostream-version>
         <prowide-version>SRU2024-10.2.6</prowide-version>
         <pubnub-version>10.4.1</pubnub-version>
-        <pulsar-version>3.3.6</pulsar-version>
+        <pulsar-version>3.3.7</pulsar-version>
         <qdrant-client-version>1.13.0</qdrant-client-version>
         <qpid-broker-version>9.2.0</qpid-broker-version>
         <qpid-proton-j-version>0.34.1</qpid-proton-j-version>
@@ -464,13 +464,13 @@
         <splunk-version>1.9.5_1</splunk-version>
         <spock-version>2.3-groovy-4.0</spock-version>
         <spring-batch-version>5.2.2</spring-batch-version>
-        <spring-data-redis-version>3.4.5</spring-data-redis-version>
+        <spring-data-redis-version>3.4.6</spring-data-redis-version>
         <spring-ldap-version>3.2.12</spring-ldap-version>
-        <spring-vault-core-version>3.1.2</spring-vault-core-version>
-        <spring-version>6.2.6</spring-version>
-        <spring-rabbitmq-version>3.2.4</spring-rabbitmq-version>
-        <spring-security-version>6.4.5</spring-security-version>
-        <spring-ws-version>4.0.13</spring-ws-version>
+        <spring-vault-core-version>3.1.3</spring-vault-core-version>
+        <spring-version>6.2.7</spring-version>
+        <spring-rabbitmq-version>3.2.5</spring-rabbitmq-version>
+        <spring-security-version>6.4.6</spring-security-version>
+        <spring-ws-version>4.0.14</spring-ws-version>
         <squareup-okhttp-version>3.14.9</squareup-okhttp-version>
         <squareup-okio-version>1.17.5</squareup-okio-version>
         <sshd-version>2.14.0</sshd-version>
