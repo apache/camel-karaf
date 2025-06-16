@@ -43,8 +43,8 @@ public class CamelAzureEventhubsRouteSupplier extends AbstractCamelSingleFeature
     private static final String TEST_ACCOUNT = System.getProperty("azure.accountName");
     private static final String TEST_ACCOUNT_KEY = System.getProperty("azure.accountKey");
     public static final String TEST_CONTAINER = "mycontainer";
+    private final AtomicBoolean isReceived = new AtomicBoolean();
     private String connectionString;
-    private AtomicBoolean isReceived = new AtomicBoolean(false);
 
     @Override
     public void configure(CamelContext camelContext) {
@@ -86,7 +86,7 @@ public class CamelAzureEventhubsRouteSupplier extends AbstractCamelSingleFeature
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.log("sending a message: ${body}") //delay to make sure the consumer is connected
+        producerRoute.log("sending a message: ${body}") //loop to send until the consumer is started
                 .loopDoWhile(method(this, "shouldContinueSending"))
                     .toF("azure-eventhubs:?connectionString=%sEntityPath=eh1", connectionString)
                     .log("message sent")
