@@ -13,10 +13,6 @@
  */
 package org.apache.karaf.camel.itest;
 
-import static org.apache.karaf.camel.test.CamelAzureStorageBlobRouteSupplier.TEST_BLOB_CONTENT;
-
-import org.apache.camel.component.mock.MockEndpoint;
-
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.GenericContainerResource;
@@ -25,19 +21,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
+import org.testcontainers.azure.EventHubsEmulatorContainer;
+import org.testcontainers.containers.Network;
 import org.testcontainers.azure.AzuriteContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 
-@CamelKarafTestHint(externalResourceProvider = CamelAzureStorageBlobITest.ExternalResourceProviders.class)
+@CamelKarafTestHint(externalResourceProvider = CamelAzureEventhubsITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+public class CamelAzureEventhubsITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
 
-    private static final int AZURITE_ORIGINAL_PORT = 10000;
-
-    @Override
-    public void configureMock(MockEndpoint mock) {
-        mock.expectedBodiesReceived(TEST_BLOB_CONTENT);
-    }
+    public static final int EVENTHUBS_EMULATOR_PORT = 5672;
 
     @Test
     public void testResultMock() throws Exception {
@@ -48,12 +42,18 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
         private static final String DEFAULT_ACCOUNT_NAME = "devstoreaccount1";
         private static final String DEFAULT_ACCOUNT_KEY
                 = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+        private static final int AZURITE_ORIGINAL_PORT =  10000;
 
-        public static GenericContainerResource<AzuriteContainer> createAzureStorageBlobContainer() {
+        private static final Network network = Network.newNetwork();
+        private static final AzuriteContainer azuriteContainer =
+                new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.33.0")
+                        .withNetwork(network)
+                        .withNetworkAliases("azurite")
+                        .waitingFor(Wait.forListeningPort());
 
-            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.33.0");
+        public static GenericContainerResource<AzuriteContainer> createAzureStorageContainer() {
 
-            return new GenericContainerResource<>(azuriteContainer, resource -> {
+            return new GenericContainerResource<AzuriteContainer>(azuriteContainer, resource -> {
                 resource.setProperty("azure.host", azuriteContainer.getHost());
                 resource.setProperty("azure.port",
                         Integer.toString(azuriteContainer.getMappedPort(AZURITE_ORIGINAL_PORT)));
@@ -61,7 +61,17 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
                 resource.setProperty("azure.accountKey", DEFAULT_ACCOUNT_KEY);
             });
         }
+
+        public static GenericContainerResource<EventHubsEmulatorContainer> createAzureEventHubsContainer() {
+            EventHubsEmulatorContainer eventHubContainer =
+                    new EventHubsEmulatorContainer("mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.0.1")
+                            .withNetwork(network).withNetworkAliases("eventhubs-emulator").withAzuriteContainer(azuriteContainer)
+                            .withExposedPorts(EVENTHUBS_EMULATOR_PORT)
+                            .withEnv("ACCEPT_EULA", "Y");
+
+            return new GenericContainerResource<>(eventHubContainer, resource -> {
+                resource.setProperty("azure.connectionString", eventHubContainer.getConnectionString());
+            });
+        }
     }
-
-
 }
