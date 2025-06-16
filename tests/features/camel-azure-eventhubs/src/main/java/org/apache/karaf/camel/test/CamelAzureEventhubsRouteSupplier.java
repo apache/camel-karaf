@@ -86,11 +86,12 @@ public class CamelAzureEventhubsRouteSupplier extends AbstractCamelSingleFeature
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        producerRoute.log("sending a message: ${body}") //loop to send until the consumer is started
+        producerRoute.log("sending a message: ${body}")
+                //loop to send until the consumer is started
                 .loopDoWhile(method(this, "shouldContinueSending"))
+                    .delay(500)
                     .toF("azure-eventhubs:?connectionString=%sEntityPath=eh1", connectionString)
                     .log("message sent")
-                    .delay(1000)
                 .end();
     }
 
