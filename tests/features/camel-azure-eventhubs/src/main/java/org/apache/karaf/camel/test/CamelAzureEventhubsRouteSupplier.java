@@ -81,7 +81,7 @@ public class CamelAzureEventhubsRouteSupplier extends AbstractCamelSingleFeature
     protected Function<RouteBuilder, RouteDefinition> consumerRoute() {
         return builder-> builder.fromF("azure-eventhubs:?connectionString=%sEntityPath=eh1", connectionString)
                 .log("Received message from Event Hub: ${body}")
-                .process( ex -> isReceived.set(true));
+                .process(ex -> isReceived.set(true));
     }
 
     @Override
