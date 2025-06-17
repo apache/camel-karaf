@@ -25,8 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.wait.strategy.Wait;
+import org.testcontainers.azure.AzuriteContainer;
 
 @CamelKarafTestHint(externalResourceProvider = CamelAzureStorageBlobITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
@@ -52,7 +51,7 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
 
         public static GenericContainerResource<AzuriteContainer> createAzureStorageBlobContainer() {
 
-            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.31.0");
+            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.33.0");
 
             return new GenericContainerResource<>(azuriteContainer, resource -> {
                 resource.setProperty("azure.host", azuriteContainer.getHost());
@@ -64,14 +63,5 @@ public class CamelAzureStorageBlobITest extends AbstractCamelSingleFeatureResult
         }
     }
 
-    public static class AzuriteContainer extends GenericContainer<AzuriteContainer> {
 
-        public AzuriteContainer(final String containerName) {
-            super(containerName);
-
-            withExposedPorts(AZURITE_ORIGINAL_PORT)
-                    .waitingFor(Wait.forListeningPort());
-        }
-
-    }
 }

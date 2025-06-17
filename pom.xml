@@ -483,7 +483,7 @@
         <stax-api-version>1.0.1</stax-api-version>
         <stringtemplate-version>4.3.4</stringtemplate-version>
         <tahu-version>1.0.13</tahu-version>
-        <testcontainers-version>1.20.4</testcontainers-version>
+        <testcontainers-version>1.21.1</testcontainers-version>
         <thymeleaf-version>3.1.3.RELEASE</thymeleaf-version>
         <tika-version>2.9.3</tika-version>
         <twilio-version>10.6.8</twilio-version>
@@ -552,13 +552,13 @@
         <angus-activation-version>2.0.2</angus-activation-version>
         <aries-util-version>1.1.3</aries-util-version>
         <aries-version>1.10.3</aries-version>
-        <azure-core-version>1.49.1</azure-core-version>
+        <azure-core-version>1.54.1</azure-core-version>
         <azure-identity-version>1.15.0</azure-identity-version>
         <azure-json-version>1.3.0</azure-json-version>
-        <azure-messaging-eventhubs-checkpointstore-blob-version>1.19.5</azure-messaging-eventhubs-checkpointstore-blob-version>
-        <azure-messaging-eventhubs-version>5.18.5</azure-messaging-eventhubs-version>
+        <azure-messaging-eventhubs-checkpointstore-blob-version>1.20.2</azure-messaging-eventhubs-checkpointstore-blob-version>
+        <azure-messaging-eventhubs-version>5.20.0</azure-messaging-eventhubs-version>
         <azure-storage-common-version>12.28.0</azure-storage-common-version>
-        <azure-storage-blob-version>12.26.1</azure-storage-blob-version>
+        <azure-storage-blob-version>12.29.0</azure-storage-blob-version>
         <azure-storage-queue-version>12.24.0</azure-storage-queue-version>
         <azure-xml-version>1.1.0</azure-xml-version>
         <consul-kotlin-version>1.8.21</consul-kotlin-version>
