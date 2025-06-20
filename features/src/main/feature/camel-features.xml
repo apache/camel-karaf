@@ -3266,10 +3266,10 @@ Chain 2:
         <feature version="[32,33)">guava</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper/${zookeeper-version}$Export-Package=org.apache.zookeeper*;version=${zookeeper-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper-jute/${zookeeper-version}$Export-Package=org.apache.*;version=${zookeeper-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-x-discovery/${curator-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}/jar/osgi</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}/jar/osgi</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}/jar/osgi</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-x-discovery/${curator-version}/jar/osgi</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-zookeeper/${project.version}</bundle>
     </feature>
     <feature name='camel-zookeeper-master' version='${project.version}' start-level='50'>
@@ -3278,9 +3278,9 @@ Chain 2:
         <feature version="[32,33)">guava</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper/${zookeeper-version}$Export-Package=org.apache.zookeeper*;version=${zookeeper-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.zookeeper/zookeeper-jute/${zookeeper-version}$Export-Package=org.apache.*;version=${zookeeper-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-client/${curator-version}/jar/osgi</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-framework/${curator-version}/jar/osgi</bundle>
+        <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}/jar/osgi</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-zookeeper-master/${project.version}</bundle>
     </feature>
 </features>
