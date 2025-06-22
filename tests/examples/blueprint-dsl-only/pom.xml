@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-examples-test</artifactId>
-        <version>4.10.5</version>
+        <version>4.10.6-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-karaf-examples-blueprint-dsl-only-test</artifactId>
