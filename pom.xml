@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.10.5-SNAPSHOT</version>
+    <version>4.10.5</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -77,7 +77,7 @@
         <connection>scm:git:https://github.com/apache/camel-karaf</connection>
         <developerConnection>scm:git:https://github.com/apache/camel-karaf</developerConnection>
         <url>scm:git:https://github.com/apache/camel-karaf</url>
-      <tag>HEAD</tag>
+      <tag>camel-karaf-4.10.5</tag>
   </scm>
 
     <issueManagement>
