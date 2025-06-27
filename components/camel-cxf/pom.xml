@@ -38,6 +38,7 @@
         <module>camel-cxf-spring-all</module>
         <module>camel-cxf-blueprint</module>
         <module>camel-cxf-transport-blueprint</module>
+        <module>camel-cxf-transport-jetty</module>
     </modules>
 
 </project>

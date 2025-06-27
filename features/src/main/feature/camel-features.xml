@@ -936,7 +936,6 @@
         <feature version='${camel-osgi-version-range}'>camel-spring</feature>
         <feature version="${camel-osgi-jakarta-annotation2-version}">jakarta-annotation</feature>
         <feature version="[6,7)">jakarta-servlet</feature>
-        <feature version="${camel-osgi-jakarta-jws-version}">jakarta-jws</feature>
         <feature version="[3,4)">jakarta-validation</feature>
         <bundle dependency="true">mvn:org.glassfish.hk2/osgi-resource-locator/${osgi-resource-locator-version}</bundle>
         <bundle dependency="true">mvn:org.apache.neethi/neethi/${auto-detect-version}</bundle>
@@ -949,6 +948,11 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-all/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-blueprint/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
+    </feature>
+    <feature name='camel-cxf-jetty' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-jetty</feature>
+        <feature version='${camel-osgi-version-range}'>camel-cxf</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-jetty/${project.version}</bundle>
     </feature>
     <feature name='camel-cxf-spring' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-cxf</feature>
