@@ -54,10 +54,6 @@
         <bundle dependency="true">mvn:jakarta.validation/jakarta.validation-api/${jakarta-validation-api-version}</bundle>
     </feature>
 
-    <feature name="jakarta-jws" version="${jakarta-jws-api-version}">
-        <bundle dependency="true">mvn:jakarta.jws/jakarta.jws-api/${jakarta-jws-api-version}</bundle>
-    </feature>
-
     <feature name="jaxb-runtime" version="${jaxb3-core-version}">
         <feature version="[3,4)">jakarta-xml-bind</feature>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/${jaxb3-core-version}</bundle>
@@ -950,8 +946,9 @@
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-blueprint/${project.version}</bundle>
     </feature>
     <feature name='camel-cxf-jetty' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-jetty</feature>
+        <feature version="[12,13)">jetty</feature>
         <feature version='${camel-osgi-version-range}'>camel-cxf</feature>
+        <bundle dependency="true">mvn:org.eclipse.jetty.ee10/jetty-ee10-servlet/${jetty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-jetty/${project.version}</bundle>
     </feature>
     <feature name='camel-cxf-spring' version='${project.version}' start-level='50'>
