@@ -52,7 +52,7 @@
             jakarta.xml.ws*;version="${camel-osgi-jakarta-xml-ws-version}",
             jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
             jakarta.validation*;resolution:=optional;version="${camel-osgi-jakarta-validation-version}",
-            jakarta.jws*;version="${camel-osgi-jakarta-jws-version}",
+            jakarta.jws*;version="${camel-osgi-jakarta-xml-ws-version}",
             jakarta.ws.rs*;version="${camel-osgi-jakarta-ws-rs-version}",
             jakarta.xml.soap*;version="${camel-osgi-saaj-version}",
             jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
