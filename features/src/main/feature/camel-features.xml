@@ -54,6 +54,13 @@
         <bundle dependency="true">mvn:jakarta.validation/jakarta.validation-api/${jakarta-validation-api-version}</bundle>
     </feature>
 
+    <feature name="jakarta-soap-implementation" version="${jakarta-soap-implementation-version}">
+        <bundle dependency="true">wrap:mvn:org.jvnet.mimepull/mimepull/${jvnet-mimepull-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.jvnet.staxex/stax-ex/${jvnet-staxex-version}</bundle>
+        <bundle dependency="true">wrap:mvn:com.sun.xml.fastinfoset/FastInfoset/${sun-fastinfoset-version}</bundle>
+        <bundle dependency="true">wrap:mvn:com.sun.xml.messaging.saaj/saaj-impl/${jakarta-soap-implementation-version}</bundle>
+    </feature>
+
     <feature name="jaxb-runtime" version="${jaxb3-core-version}">
         <feature version="[3,4)">jakarta-xml-bind</feature>
         <bundle dependency="true">mvn:com.sun.xml.bind/jaxb-core/${jaxb3-core-version}</bundle>
@@ -933,6 +940,7 @@
         <feature version="${camel-osgi-jakarta-annotation2-version}">jakarta-annotation</feature>
         <feature version="[6,7)">jakarta-servlet</feature>
         <feature version="[3,4)">jakarta-validation</feature>
+        <feature version="${camel-osgi-saaj-version}">jakarta-soap-implementation</feature>
         <bundle dependency="true">mvn:org.glassfish.hk2/osgi-resource-locator/${osgi-resource-locator-version}</bundle>
         <bundle dependency="true">mvn:org.apache.neethi/neethi/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/${auto-detect-version}</bundle>
