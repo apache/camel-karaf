@@ -575,6 +575,10 @@
         <jakarta-validation-api-version>3.0.2</jakarta-validation-api-version>
         <jakarta-ws-rs-api-version>3.1.0</jakarta-ws-rs-api-version>
         <jakarta-xml-bind3-api-version>3.0.1</jakarta-xml-bind3-api-version>
+        <jakarta-soap-implementation-version>3.0.4</jakarta-soap-implementation-version>
+        <jvnet-mimepull-version>1.10.0</jvnet-mimepull-version>
+        <jvnet-staxex-version>2.1.0</jvnet-staxex-version>
+        <sun-fastinfoset-version>2.1.1</sun-fastinfoset-version>
         <javax-servlet3-api-version>3.1.0</javax-servlet3-api-version>
         <jaxb3-core-version>3.0.2</jaxb3-core-version>
         <jaxb3-impl-version>3.0.2</jaxb3-impl-version>
