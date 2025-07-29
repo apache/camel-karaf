@@ -91,7 +91,7 @@
         <maven.compiler.source>${jdk-version}</maven.compiler.source>
         <maven.compiler.target>${jdk-version}</maven.compiler.target>
 
-        <camel-version>4.10.5</camel-version>
+        <camel-version>4.10.6</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.18.6</activemq-version>
@@ -108,7 +108,6 @@
         <asn1bean-version>1.14.0</asn1bean-version>
         <assertj-version>3.27.3</assertj-version>
         <asterisk-java-version>3.41.0</asterisk-java-version>
-        <async-http-client-version>3.0.1</async-http-client-version>
         <atlassian-fugue-version>6.1.2</atlassian-fugue-version>
         <atmosphere-version>3.0.13</atmosphere-version>
         <avro-version>1.12.0</avro-version>
@@ -136,8 +135,8 @@
         <chunk-templates-version>3.6.2</chunk-templates-version>
         <classgraph-version>4.8.179</classgraph-version>
         <cloudant-version>0.10.0</cloudant-version>
-        <cometd-java-client-version>8.0.6</cometd-java-client-version>
-        <cometd-java-server-version>8.0.6</cometd-java-server-version>
+        <cometd-java-client-version>8.0.8</cometd-java-client-version>
+        <cometd-java-server-version>8.0.8</cometd-java-server-version>
         <commons-beanutils-version>1.11.0</commons-beanutils-version>
         <commons-codec-version>1.18.0</commons-codec-version>
         <commons-collections-version>3.2.2</commons-collections-version>
@@ -207,6 +206,7 @@
         <jakarta-json-api-version>2.1.3</jakarta-json-api-version>
         <jakarta-json-bind-api-version>3.0.1</jakarta-json-bind-api-version>
         <jakarta-transaction-api-version>2.0.1</jakarta-transaction-api-version>
+        <jakarta-jws-api-version>3.0.0</jakarta-jws-api-version>
         <jaxb-core-version>4.0.5</jaxb-core-version>
         <jaxb-impl-version>4.0.5</jaxb-impl-version>
         <jaxb-osgi-version>4.0.5</jaxb-osgi-version>
@@ -306,7 +306,7 @@
         <jcr-version>2.0</jcr-version>
         <jedis-client-version>5.2.0</jedis-client-version>
         <jetcd-version>0.8.4</jetcd-version>
-        <jetty-version>12.0.20</jetty-version>
+        <jetty-version>12.0.21</jetty-version>
         <jetty-for-solr-version>10.0.20</jetty-for-solr-version>
         <jetty-plugin-version>${jetty-version}</jetty-plugin-version>
         <jetty-runner-groupId>org.eclipse.jetty</jetty-runner-groupId>
@@ -383,7 +383,7 @@
         <narayana-version>5.13.1.Final</narayana-version>
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>5.28.1</neo4j-version>
-        <netty-version>4.1.119.Final</netty-version>
+        <netty-version>4.1.122.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.5</networknt-json-schema-validator-version>
         <nimbus-jose-jwt>10.0.1</nimbus-jose-jwt>
@@ -407,7 +407,7 @@
         <parquet-common-version>1.15.0</parquet-common-version>
         <parquet-avro-version>1.15.0</parquet-avro-version>
         <pdfbox-version>3.0.4</pdfbox-version>
-        <pgjdbc-driver-version>42.7.5</pgjdbc-driver-version>
+        <pgjdbc-driver-version>42.7.7</pgjdbc-driver-version>
         <pgjdbc-ng-driver-version>0.8.9</pgjdbc-ng-driver-version>
         <picocli-version>4.7.6</picocli-version>
         <pinecone-client-version>3.1.0</pinecone-client-version>
@@ -463,13 +463,13 @@
         <splunk-version>1.9.5_1</splunk-version>
         <spock-version>2.3-groovy-4.0</spock-version>
         <spring-batch-version>5.2.2</spring-batch-version>
-        <spring-data-redis-version>3.4.6</spring-data-redis-version>
-        <spring-ldap-version>3.2.12</spring-ldap-version>
+        <spring-data-redis-version>3.4.7</spring-data-redis-version>
+        <spring-ldap-version>3.2.13</spring-ldap-version>
         <spring-vault-core-version>3.1.3</spring-vault-core-version>
-        <spring-version>6.2.7</spring-version>
+        <spring-version>6.2.8</spring-version>
         <spring-rabbitmq-version>3.2.5</spring-rabbitmq-version>
-        <spring-security-version>6.4.6</spring-security-version>
-        <spring-ws-version>4.0.14</spring-ws-version>
+        <spring-security-version>6.4.7</spring-security-version>
+        <spring-ws-version>4.0.15</spring-ws-version>
         <squareup-okhttp-version>3.14.9</squareup-okhttp-version>
         <squareup-okio-version>1.17.5</squareup-okio-version>
         <sshd-version>2.14.0</sshd-version>
@@ -482,7 +482,7 @@
         <stax-api-version>1.0.1</stax-api-version>
         <stringtemplate-version>4.3.4</stringtemplate-version>
         <tahu-version>1.0.13</tahu-version>
-        <testcontainers-version>1.21.1</testcontainers-version>
+        <testcontainers-version>1.20.4</testcontainers-version>
         <thymeleaf-version>3.1.3.RELEASE</thymeleaf-version>
         <tika-version>2.9.3</tika-version>
         <twilio-version>10.6.8</twilio-version>
