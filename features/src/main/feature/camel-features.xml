@@ -1935,6 +1935,8 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
         <bundle dependency='true'>mvn:com.github.luben/zstd-jni/${auto-detect-version}</bundle>
+        <bundle dependency="true">mvn:org.xerial.snappy/snappy-java/${auto-detect-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.lz4/lz4-java/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kafka/${project.version}</bundle>
     </feature>
     <feature name='camel-kamelet' version='${project.version}' start-level='50'>
