@@ -2373,6 +2373,7 @@
     <feature name='camel-openapi-validator' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version='${camel-osgi-version-range}'>camel-rest-openapi</feature>
         <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-models/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.atlassian.oai/swagger-request-validator-core/${swagger-request-validator-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-openapi-validator/${project.version}</bundle>
