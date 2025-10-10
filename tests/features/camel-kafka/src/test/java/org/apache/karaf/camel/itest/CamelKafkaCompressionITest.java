@@ -16,22 +16,27 @@ package org.apache.karaf.camel.itest;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
-import org.apache.karaf.camel.itests.GenericContainerResource;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
-import org.testcontainers.containers.KafkaContainer;
-import org.testcontainers.utility.DockerImageName;
-
-import java.util.function.Consumer;
 
 @CamelKarafTestHint(externalResourceProvider = CamelKafkaITest.ExternalResourceProviders.class,
-        camelRouteSuppliers = "karaf-camel-kafka-test")
+        camelRouteSuppliers = "karaf-camel-kafka-compression-test")
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
-public class CamelKafkaITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+public class CamelKafkaCompressionITest extends AbstractCamelSingleFeatureResultMockBasedRouteITest {
+
+    @Override
+    public String getTestComponentName() {
+        return "camel-kafka-test";
+    }
+
+    @Override
+    public String getCamelFeatureName() {
+        return "camel-kafka";
+    }
 
     @Override
     public void configureMock(MockEndpoint mock) {
@@ -41,17 +46,5 @@ public class CamelKafkaITest extends AbstractCamelSingleFeatureResultMockBasedRo
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
-    }
-
-    public static final class ExternalResourceProviders {
-
-        public static GenericContainerResource createKafkaContainer() {
-            final KafkaContainer kafkaContainer =
-                    new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.6.1"));
-
-            return new GenericContainerResource(kafkaContainer, (Consumer<GenericContainerResource>) resource -> {
-                resource.setProperty("kafka.server", kafkaContainer.getBootstrapServers());
-            });
-        }
     }
 }
