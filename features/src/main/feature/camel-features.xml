@@ -1803,15 +1803,8 @@
     </feature>
     <feature name="camel-jms" version="${project.version}" start-level="50">
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
         <feature version="${camel-osgi-spring-version}">spring-jms</feature>
-        <!-- The SMX bundle of Spring JMS doesn't contain micrometer as part of its import packages, see https://issues.apache.org/jira/browse/SM-5706,
-            so we need to override the imports by wrapping the bundle until it is fixed in the SMX bundle project and in Karaf.
-            The Bundle-Version is updated by Bundle-Version=${spring-version}.2 so that the updated bundle is used
-            instead of the one provided by Karaf.
-        -->
-        <!-- Workaround START -->
-        <bundle start-level="30">wrap:mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.spring-jms/${servicemix-spring-jms-version}_1$overwrite=merge&amp;Import-package=io.micrometer;resolution:=optional,*;resolution:=optional&amp;Bundle-Version=${servicemix-spring-jms-version}.2</bundle>
-        <!-- Workaround END -->
         <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-commons/${micrometer-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jms/${project.version}</bundle>
