@@ -3091,6 +3091,8 @@ Chain 2:
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version="${camel-osgi-jakarta-annotation2-version}">jakarta-annotation</feature>
         <feature version="[6,7)">jakarta-servlet</feature>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-cpu/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-constraint/2.6.0</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/${auto-detect-version}$Export-Package=*;version=${auto-detect-version}</bundle>
