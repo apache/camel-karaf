@@ -2375,6 +2375,7 @@
     <feature name='camel-openapi-validator' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version='${camel-osgi-version-range}'>camel-rest-openapi</feature>
         <bundle dependency='true'>mvn:io.swagger.core.v3/swagger-models/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.atlassian.oai/swagger-request-validator-core/${swagger-request-validator-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-openapi-validator/${project.version}</bundle>
@@ -3092,6 +3093,8 @@ Chain 2:
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version="${camel-osgi-jakarta-annotation2-version}">jakarta-annotation</feature>
         <feature version="[6,7)">jakarta-servlet</feature>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-cpu/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-constraint/2.6.0</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/${auto-detect-version}$Export-Package=*;version=${auto-detect-version}</bundle>
