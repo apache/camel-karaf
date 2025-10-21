@@ -47,7 +47,8 @@
             org.osgi.framework*,
             org.apache.aries.blueprint*,
             org.apache.cxf.*;version="${camel-osgi-cxf-version}",
-            org.slf4j
+            org.slf4j,
+            *
         </camel.osgi.import>
         <camel.osgi.activator>org.apache.camel.component.cxf.blueprint.MainActivator</camel.osgi.activator>
         <camel.osgi.export.service>
