@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-features-test</artifactId>
-        <version>4.10.7-SNAPSHOT</version>
+        <version>4.10.7</version>
     </parent>
 
     <artifactId>camel-olingo2-test</artifactId>
