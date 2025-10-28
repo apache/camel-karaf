@@ -1,0 +1,7 @@
+[[BlueprintMain-BlueprintMain]]
+= Blueprint Main
+
+This module is used for running OSGi Blueprint standalone via a main class extended from `camel-main`.
+
+Note this is only recommended for development purposes, as the standalone mode is using a limited simulation
+of an OSGi container using Apache Felix Connector. Some OSGi features are not supported in this mode.
