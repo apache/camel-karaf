@@ -47,6 +47,8 @@
             com.sun.xml.internal.messaging.saaj.soap;resolution:=optional,
             com.ctc.wstx*;resolution:=optional,
             org.codehaus.stax2*;resolution:=optional,
+            org.codehaus.jettison*;resolution:=optional,
+            org.dom4j*;resolution:=optional,
             com.sun.msv*;resolution:=optional,
             com.sun.tools*;resolution:=optional,
             com.sun.xml*;resolution:=optional,
@@ -422,6 +424,9 @@
                                     </excludes>
                                 </filter>
                             </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
