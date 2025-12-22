@@ -22,62 +22,57 @@
            xsi:schemaLocation="
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-  <!-- use a dummy rest consumer factory for the rest engine -->
-  <bean id="dummy-rest" class="org.apache.camel.test.blueprint.component.rest.DummyRestConsumerFactory"/>
+    <!-- use a dummy rest consumer factory for the rest engine -->
+    <bean id="dummy-rest" class="org.apache.camel.test.blueprint.component.rest.DummyRestConsumerFactory"/>
 
-  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
-    <rest id="hello" path="/say/hello">
-      <description>Hello Service</description>
-      <get id="get-say">
-        <description>Says hello to you</description>
-        <to uri="direct:hello"/>
-      </get>
-    </rest>
-    <rest id="bye" path="/say/bye">
-      <description lang="en">Bye Service</description>
-      <get consumes="application/json">
-        <description>Says bye to you</description>
-          <param name="header_count" type="header" description="header param description1" dataType="integer" defaultValue="1" required="true">
-              <allowableValues>
-                  <value>1</value>
-                  <value>2</value>
-                  <value>3</value>
-                  <value>4</value>
-              </allowableValues>
-          </param>
-          <param name="header_letter" type="query" description="header param description2" dataType="string" defaultValue="b" collectionFormat="multi" required="false">
-              <allowableValues>
-                  <value>a</value>
-                  <value>b</value>
-                  <value>c</value>
-                  <value>d</value>
-              </allowableValues>
-          </param>
-          <responseMessage code="300" message="test msg" responseModel="java.lang.Integer">
-            <header name="rate" description="Rate limit" dataType="integer"/>
-          </responseMessage>
-        <to uri="direct:bye"/>
-      </get>
-      <post>
-        <description>Updates the bye message</description>
-        <to uri="mock:update"/>
-      </post>
-    </rest>
+        <rest id="hello" path="/say/hello" description="Hello Service">
+            <get id="get-say" description="Says hello to you">
+                <to uri="direct:hello"/>
+            </get>
+        </rest>
+        <rest id="bye" path="/say/bye" description="Bye Service">
+            <get consumes="application/json" description="Says bye to you">
+                <param name="header_count" type="header" description="header param description1" dataType="integer" defaultValue="1" required="true">
+                    <allowableValues>
+                        <value>1</value>
+                        <value>2</value>
+                        <value>3</value>
+                        <value>4</value>
+                    </allowableValues>
+                </param>
+                <param name="header_letter" type="query" description="header param description2" dataType="string" defaultValue="b" collectionFormat="multi" required="false">
+                    <allowableValues>
+                        <value>a</value>
+                        <value>b</value>
+                        <value>c</value>
+                        <value>d</value>
+                    </allowableValues>
+                </param>
+                <responseMessage code="300" message="test msg" responseModel="java.lang.Integer">
+                    <header name="rate" description="Rate limit" dataType="integer"/>
+                </responseMessage>
+                <to uri="direct:bye"/>
+            </get>
+            <post description="Updates the bye message">
+                <to uri="mock:update"/>
+            </post>
+        </rest>
 
-    <route>
-      <from uri="direct:hello"/>
-      <transform>
-        <constant>Hello World</constant>
-      </transform>
-    </route>
-    <route>
-      <from uri="direct:bye"/>
-      <transform>
-        <constant>Bye World</constant>
-      </transform>
-    </route>
+        <route>
+            <from uri="direct:hello"/>
+            <transform>
+                <constant>Hello World</constant>
+            </transform>
+        </route>
+        <route>
+            <from uri="direct:bye"/>
+            <transform>
+                <constant>Bye World</constant>
+            </transform>
+        </route>
 
-  </camelContext>
+    </camelContext>
 
 </blueprint>

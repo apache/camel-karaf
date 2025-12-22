@@ -40,8 +40,9 @@ public class TypeConverterRegistryStatisticsEnabledTest extends CamelBlueprintTe
 
         MockEndpoint.assertIsSatisfied(context);
 
+        assertTrue(context.isTypeConverterStatisticsEnabled(), "Should be enabled");
+
         TypeConverterRegistry reg = context.getTypeConverterRegistry();
-        assertTrue(reg.getStatistics().isStatisticsEnabled(), "Should be enabled");
 
         Long failed = reg.getStatistics().getFailedCounter();
         assertEquals(0, failed.intValue());

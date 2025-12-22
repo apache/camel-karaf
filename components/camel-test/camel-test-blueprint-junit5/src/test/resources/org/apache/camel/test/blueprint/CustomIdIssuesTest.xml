@@ -22,28 +22,23 @@
            xsi:schemaLocation="
              http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
 
-  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
 
-    <route customId="true" id="myRoute">
-      <description>here is a sample which processes the input files
-        (leaving them in place - see the 'noop' flag)
-        then performs content based routing on the message using XPath</description>
-      <from uri="file:src/data?noop=true" customId="true" id="fromFile">
-        <description/>
-      </from>
-      <choice customId="true" id="myChoice">
-        <when customId="true" id="UK">
-          <xpath>/person/city = 'London'</xpath>
-          <log message="UK message" customId="true" id="ukLog"/>
-          <to uri="file:target/messages/uk" customId="true" id="ukOutput"/>
-        </when>
-        <otherwise>
-          <log message="Other message"/>
-          <to uri="file:target/messages/others"/>
-        </otherwise>
-      </choice>
-    </route>
+        <route customId="true" id="myRoute" description="here is a sample which processes the input files, (leaving them in place - see the 'noop' flag) then performs content based routing on the message using XPath">
+            <from uri="file:src/data?noop=true" customId="true" id="fromFile"/>
+            <choice customId="true" id="myChoice">
+                <when customId="true" id="UK">
+                    <xpath>/person/city = 'London'</xpath>
+                    <log message="UK message" customId="true" id="ukLog"/>
+                    <to uri="file:target/messages/uk" customId="true" id="ukOutput"/>
+                </when>
+                <otherwise>
+                    <log message="Other message"/>
+                    <to uri="file:target/messages/others"/>
+                </otherwise>
+            </choice>
+        </route>
 
-  </camelContext>
+    </camelContext>
 
 </blueprint>

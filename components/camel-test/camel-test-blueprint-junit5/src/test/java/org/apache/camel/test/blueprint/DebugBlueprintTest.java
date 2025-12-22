@@ -17,8 +17,10 @@
 package org.apache.camel.test.blueprint;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.model.ProcessorDefinition;
+import org.apache.camel.test.junit5.DebugBreakpoint;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +42,23 @@ public class DebugBlueprintTest extends CamelBlueprintTestSupport {
     @Override
     protected String getBlueprintDescriptor() {
         return "org/apache/camel/test/blueprint/camelContext.xml";
+    }
+
+    @Override
+    protected DebugBreakpoint createDebugBreakpoint() {
+        return new DebugBreakpoint() {
+            @Override
+            protected void debugBefore(Exchange exchange, Processor processor, ProcessorDefinition<?> definition, String id, String label) {
+                LOG.info("Before " + definition + " with body " + exchange.getIn().getBody());
+                debugBeforeMethodCalled = true;
+            }
+
+            @Override
+            protected void debugAfter(Exchange exchange, Processor processor, ProcessorDefinition<?> definition, String id, String label, long timeTaken) {
+                LOG.info("After " + definition + " with body " + exchange.getIn().getBody());
+                debugAfterMethodCalled = true;
+            }
+        };
     }
 
     // here we have regular JUnit @Test method
@@ -64,18 +83,6 @@ public class DebugBlueprintTest extends CamelBlueprintTestSupport {
     public boolean isUseDebugger() {
         // must enable debugger
         return true;
-    }
-
-    @Override
-    protected void debugBefore(Exchange exchange, org.apache.camel.Processor processor, ProcessorDefinition<?> definition, String id, String label) {
-        LOG.info("Before " + definition + " with body " + exchange.getIn().getBody());
-        debugBeforeMethodCalled = true;
-    }
-
-    @Override
-    protected void debugAfter(Exchange exchange, org.apache.camel.Processor processor, ProcessorDefinition<?> definition, String id, String label, long timeTaken) {
-        LOG.info("After " + definition + " with body " + exchange.getIn().getBody());
-        debugAfterMethodCalled = true;
     }
 }
 // end::example[]

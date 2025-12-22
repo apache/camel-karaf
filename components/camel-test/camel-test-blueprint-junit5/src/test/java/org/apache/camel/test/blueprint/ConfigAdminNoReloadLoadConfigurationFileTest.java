@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.blueprint.CamelBlueprintConfigAdminPlaceholder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +32,10 @@ public class ConfigAdminNoReloadLoadConfigurationFileTest extends CamelBlueprint
 
     // START SNIPPET: e1
     @Override
-    protected String[] loadConfigAdminConfigurationFile() {
-        // String[0] = tell Camel the path of the .cfg file to use for OSGi ConfigAdmin in the blueprint XML file
-        // String[1] = tell Camel the persistence-id of the cm:property-placeholder in the blueprint XML file
-        return new String[]{"src/test/resources/etc/stuff.cfg", "stuff"};
+    protected CamelBlueprintConfigAdminPlaceholder[] loadConfigAdminConfigurationFile() {
+        return new CamelBlueprintConfigAdminPlaceholder[] {
+                new CamelBlueprintConfigAdminPlaceholder("src/test/resources/etc/stuff.cfg", "stuff")
+        };
     }
     // END SNIPPET: e1
 

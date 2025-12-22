@@ -17,11 +17,11 @@
 package org.apache.camel.blueprint;
 
 import org.apache.camel.CamelContext;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MyMainAppTest {
+class MyMainAppTest {
 
     public static void main(String[] args) throws Exception {
         MyMainAppTest me = new MyMainAppTest();
@@ -29,7 +29,7 @@ public class MyMainAppTest {
     }
 
     @Test
-    public void testMyMain() throws Exception {
+    void testMyMain() throws Exception {
         Main main = new Main();
         run(main);
         
@@ -37,7 +37,7 @@ public class MyMainAppTest {
         assertNotNull(camelContext);
     }
 
-    public void run(Main main) throws Exception {
+    void run(Main main) throws Exception {
         main.setBundleName("MyMainBundle");
         // as we run this test without packing ourselves as bundle, then include ourselves
         main.setIncludeSelfAsBundle(true);
@@ -45,7 +45,7 @@ public class MyMainAppTest {
         main.setDescriptors("org/apache/camel/blueprint/xpath/*.xml");
 
         // run for 1 second and then stop automatic
-        main.setDuration(1);
+        main.configure().setDurationMaxSeconds(1);
         main.run();
     }
 }

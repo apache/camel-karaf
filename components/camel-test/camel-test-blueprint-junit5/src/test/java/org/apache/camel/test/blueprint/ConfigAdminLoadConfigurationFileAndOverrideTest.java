@@ -16,6 +16,7 @@
  */
 package org.apache.camel.test.blueprint;
 
+import org.apache.camel.blueprint.CamelBlueprintConfigAdminPlaceholder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +36,11 @@ public class ConfigAdminLoadConfigurationFileAndOverrideTest extends CamelBluepr
     }
 
     @Override
-    protected String[] loadConfigAdminConfigurationFile() {
+    protected CamelBlueprintConfigAdminPlaceholder[] loadConfigAdminConfigurationFile() {
         // which .cfg file to use, and the name of the persistence-id
-        return new String[]{"src/test/resources/etc/stuff.cfg", "stuff"};
+        return new CamelBlueprintConfigAdminPlaceholder[] {
+                new CamelBlueprintConfigAdminPlaceholder("src/test/resources/etc/stuff.cfg", "stuff")
+        };
     }
 
     @Override

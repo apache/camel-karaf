@@ -32,7 +32,7 @@
         <to uri="direct:hello"/>
       </get>
     </rest>
-    <rest path="/say/bye">
+    <rest path="/say/bye" id="{{mySpecialId}}">
       <get consumes="application/json">
          <param name="header_count" type="header" description="header param description1" dataType="integer" defaultValue="1" required="true">
             <allowableValues>

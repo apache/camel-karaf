@@ -16,31 +16,36 @@
  */
 package org.apache.camel.test.blueprint;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.net.URL;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.jar.JarFile;
-
+import org.apache.aries.blueprint.compendium.cm.CmNamespaceHandler;
+import org.apache.camel.CamelContext;
+import org.apache.camel.RoutesBuilder;
+import org.apache.camel.blueprint.CamelBlueprintConfigAdminPlaceholder;
+import org.apache.camel.blueprint.CamelBlueprintHelper;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.component.properties.PropertiesComponent;
+import org.apache.camel.model.ModelCamelContext;
+import org.apache.camel.spi.Registry;
+import org.apache.camel.support.builder.xml.XMLConverterHelper;
+import org.apache.camel.test.junit5.*;
+import org.apache.camel.test.junit5.util.CamelContextTestHelper;
+import org.apache.camel.test.junit5.util.ExtensionHelper;
+import org.apache.camel.util.KeyValueHolder;
+import org.apache.camel.util.StopWatch;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
+import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.blueprint.container.BlueprintEvent;
+import org.osgi.service.cm.Configuration;
+import org.osgi.service.cm.ConfigurationAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -48,25 +53,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import org.apache.aries.blueprint.compendium.cm.CmNamespaceHandler;
-import org.apache.camel.CamelContext;
-import org.apache.camel.blueprint.CamelBlueprintHelper;
-import org.apache.camel.component.properties.PropertiesComponent;
-import org.apache.camel.model.ModelCamelContext;
-import org.apache.camel.support.builder.xml.XMLConverterHelper;
-import org.apache.camel.test.junit5.CamelTestSupport;
-import org.apache.camel.util.IOHelper;
-import org.apache.camel.util.KeyValueHolder;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.blueprint.container.BlueprintEvent;
-import org.osgi.service.cm.Configuration;
-import org.osgi.service.cm.ConfigurationAdmin;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.jar.JarFile;
 
 /**
  * Base class for OSGi Blueprint unit tests with Camel
  */
-public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
+public abstract class CamelBlueprintTestSupport extends AbstractTestSupport
+        implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
     private static final Logger LOG = LoggerFactory.getLogger(CamelBlueprintTestSupport.class);
 
@@ -76,6 +80,21 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     private static ThreadLocal<BundleContext> threadLocalBundleContext = new ThreadLocal<>();
     private volatile BundleContext bundleContext;
     private final Set<ServiceRegistration<?>> services = new LinkedHashSet<>();
+
+    private final StopWatch watch = new StopWatch();
+
+    @RegisterExtension
+    @Order(1)
+    public final ContextManagerExtension contextManagerExtension;
+    private CamelContextManager contextManager;
+
+    protected CamelBlueprintTestSupport() {
+        super(new TestExecutionConfiguration(), new CamelBlueprintContextConfiguration());
+
+        configureTest(testConfigurationBuilder);
+        configureContext(camelContextConfiguration);
+        contextManagerExtension = new ContextManagerExtension(testConfigurationBuilder, camelContextConfiguration);
+    }
 
     /**
      * Override this method if you don't want CamelBlueprintTestSupport create the test bundle
@@ -106,42 +125,35 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         System.setProperty("org.apache.aries.blueprint.synchronous", Boolean.toString(!useAsynchronousBlueprintStartup()));
 
         // load configuration file
-        String[] file = loadConfigAdminConfigurationFile();
-        String[][] configAdminPidFiles = new String[0][0];
-        if (file != null) {
-            if (file.length % 2 != 0) {  // This needs to return pairs of filename and pid
-                throw new IllegalArgumentException("The length of the String[] returned from loadConfigAdminConfigurationFile must divisible by 2, was " + file.length);
-            }
-            configAdminPidFiles = new String[file.length / 2][2];
-
-            int pair = 0;
-            for (int i = 0; i < file.length; i += 2) {
-                String fileName = file[i];
-                String pid = file[i + 1];
+        CamelBlueprintConfigAdminPlaceholder[] placeholders = loadConfigAdminConfigurationFile();
+        CamelBlueprintConfigAdminPlaceholder[] configAdminPersistenceIdFiles = new CamelBlueprintConfigAdminPlaceholder[0];
+        if (placeholders != null) {
+            for (CamelBlueprintConfigAdminPlaceholder placeholder : placeholders) {
+                String fileName = placeholder.getFilename();
                 if (!new File(fileName).exists()) {
                     throw new IllegalArgumentException("The provided file \"" + fileName + "\" from loadConfigAdminConfigurationFile doesn't exist");
                 }
-                configAdminPidFiles[pair][0] = fileName;
-                configAdminPidFiles[pair][1] = pid;
-                pair++;
             }
+            configAdminPersistenceIdFiles = placeholders;
         }
 
         // fetch initial configadmin configuration if provided programmatically
         Properties initialConfiguration = new Properties();
         String pid = setConfigAdminInitialConfiguration(initialConfiguration);
         if (pid != null) {
-            configAdminPidFiles = new String[][]{{prepareInitialConfigFile(initialConfiguration), pid}};
+            configAdminPersistenceIdFiles = new CamelBlueprintConfigAdminPlaceholder[]{
+                    new CamelBlueprintConfigAdminPlaceholder(prepareInitialConfigFile(initialConfiguration), pid)
+            };
         }
 
         final String symbolicName = getClass().getSimpleName();
         final BundleContext answer = CamelBlueprintHelper.createBundleContext(symbolicName, getBlueprintDescriptor(),
-            includeTestBundle(), getBundleFilter(), getBundleVersion(), getBundleDirectives(), configAdminPidFiles);
+                includeTestBundle(), getBundleFilter(), getBundleVersion(), getBundleDirectives(), configAdminPersistenceIdFiles);
 
         boolean expectReload = expectBlueprintContainerReloadOnConfigAdminUpdate();
 
         // must register override properties early in OSGi containers
-        extra = useOverridePropertiesWithPropertiesComponent();
+        var extra = useOverridePropertiesWithPropertiesComponent();
         if (extra != null) {
             answer.registerService(PropertiesComponent.OVERRIDE_PROPERTIES, extra, null);
         }
@@ -235,12 +247,11 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     }
 
     @BeforeEach
-    @Override
     public void setUp() throws Exception {
         System.setProperty("skipStartingCamelContext", "true");
         System.setProperty("registerBlueprintCamelContextEager", "true");
 
-        if (isCreateCamelContextPerClass()) {
+        if (testConfigurationBuilder.isCreateCamelContextPerClass()) {
             // test is per class, so only setup once (the first time)
             boolean first = threadLocalBundleContext.get() == null;
             if (first) {
@@ -251,14 +262,25 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             bundleContext = createBundleContext();
         }
 
-        super.setUp();
+        ExtensionHelper.hasUnsupported(getClass());
+
+        setupResources();
+
+        contextManager = contextManagerExtension.getContextManager();
+        contextManager.createCamelContext(this);
+        context = contextManager.context();
+
+
+
+        // only start timing after all the setup
+        watch.restart();
 
         // we don't have to wait for BP container's OSGi service - we've already waited
         // for BlueprintEvent.CREATED
 
         // start context when we are ready
         LOG.debug("Starting CamelContext: {}", context.getName());
-        if (isUseAdviceWith()) {
+        if (testConfigurationBuilder.isUseAdviceWith()) {
             LOG.info("Skipping starting CamelContext as isUseAdviceWith is set to true.");
         } else {
             context.start();
@@ -268,7 +290,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     /**
      * Override this method to add services to be registered on startup.
      * <p/>
-     * You can use the builder methods {@link #asService(Object, java.util.Dictionary)}, {@link #asService(Object, String, String)}
+     * You can use the builder methods {@link #asService(Object, Dictionary)}, {@link #asService(Object, String, String)}
      * to make it easy to add the services to the map.
      */
     protected void addServicesOnStartup(Map<String, KeyValueHolder<Object, Dictionary>> services) {
@@ -297,14 +319,11 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
                     NodeList nl = doc.getDocumentElement().getChildNodes();
                     for (int i = 0; i < nl.getLength(); i++) {
                         Node node = nl.item(i);
-                        if (node instanceof Element) {
-                            Element pp = (Element) node;
-                            if (cmNamesaces.contains(pp.getNamespaceURI())) {
-                                String us = pp.getAttribute("update-strategy");
-                                if (us != null && us.equals("reload")) {
-                                    expectedReload = true;
-                                    break;
-                                }
+                        if (node instanceof Element pp && cmNamesaces.contains(pp.getNamespaceURI())) {
+                            String us = pp.getAttribute("update-strategy");
+                            if (us.equals("reload")) {
+                                expectedReload = true;
+                                break;
                             }
                         }
                     }
@@ -327,21 +346,21 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     }
 
     /**
-     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(java.util.Map)}
+     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(Map)}
      */
     protected KeyValueHolder<Object, Dictionary> asService(Object service, Dictionary dict) {
         return new KeyValueHolder<>(service, dict);
     }
 
     /**
-     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(java.util.List)}
+     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(List)}
      */
     protected KeyValueHolder<String, KeyValueHolder<Object, Dictionary>> asKeyValueService(String name, Object service, Dictionary dict) {
         return new KeyValueHolder<>(name, new KeyValueHolder<>(service, dict));
     }
 
     /**
-     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(java.util.Map)}
+     * Creates a holder for the given service, which make it easier to use {@link #addServicesOnStartup(Map)}
      */
     protected KeyValueHolder<Object, Dictionary> asService(Object service, String key, String value) {
         Properties prop = new Properties();
@@ -372,7 +391,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
      *
      * @return the name of the path for the .cfg file to load, and the persistence-id of the property placeholder.
      */
-    protected String[] loadConfigAdminConfigurationFile() {
+    protected CamelBlueprintConfigAdminPlaceholder[] loadConfigAdminConfigurationFile() {
         return null;
     }
 
@@ -389,12 +408,31 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     }
 
     @AfterEach
-    @Override
-    public void tearDown() throws Exception {
+    public void afterEach() throws Exception {
         System.clearProperty("skipStartingCamelContext");
         System.clearProperty("registerBlueprintCamelContextEager");
 
-        super.tearDown();
+        tearDown(new TestInfo() {
+            @Override
+            public String getDisplayName() {
+                return "";
+            }
+
+            @Override
+            public Set<String> getTags() {
+                return Set.of();
+            }
+
+            @Override
+            public Optional<Class<?>> getTestClass() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<Method> getTestMethod() {
+                return Optional.empty();
+            }
+        });
 
         // unregister services
         if (bundleContext != null) {
@@ -412,6 +450,22 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             // now close jar files from the bundles
             closeBundleJArFile(bundles);
         }
+    }
+
+    public final void tearDown(TestInfo testInfo) throws Exception {
+        long time = watch.taken();
+        LOG.debug("tearDown()");
+
+        if (contextManager != null) {
+            contextManager.dumpRouteCoverage(getClass(), testInfo.getDisplayName(), time);
+            String dump = CamelContextTestHelper.getRouteDump(getDumpRoute());
+            contextManager.dumpRoute(getClass(), testInfo.getDisplayName(), dump);
+        } else {
+            LOG.warn(
+                    "A context manager is required to dump the route coverage for the Camel context but it's not available (it's null). "
+                            + "It's likely that the test is misconfigured!");
+        }
+        cleanupResources();
     }
 
     @Override
@@ -437,8 +491,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
                 field = val.getClass().getDeclaredField("m_jar");
                 field.setAccessible(true);
                 Object mJar = field.get(val);
-                if (mJar instanceof JarFile) {
-                    JarFile jf = (JarFile) mJar;
+                if (mJar instanceof JarFile jf) {
                     LOG.debug("Closing bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
                     jf.close();
                     LOG.trace("Closed bundle[{}] JarFile: {}", bundle.getBundleId(), jf.getName());
@@ -501,11 +554,11 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     protected String getBundleDirectives() {
         return null;
     }
-    
+
     /**
      * Returns how long to wait for Camel Context
      * to be created.
-     * 
+     *
      * @return timeout in milliseconds.
      */
     protected Long getCamelContextCreationTimeout() {
@@ -516,13 +569,13 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         try {
             Long val = Long.valueOf(tm);
             if (val < 0) {
-                throw new IllegalArgumentException("Value of " 
+                throw new IllegalArgumentException("Value of "
                         + SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT
                         + " cannot be negative.");
             }
             return val;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Value of " 
+            throw new IllegalArgumentException("Value of "
                     + SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT
                     + " has wrong format.", e);
         }
@@ -537,8 +590,7 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
     protected String getCamelContextFilter() {
         return null;
     }
-    
-    @Override
+
     protected CamelContext createCamelContext() throws Exception {
         CamelContext answer;
         Long timeout = getCamelContextCreationTimeout();
@@ -550,10 +602,10 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
             throw new IllegalArgumentException("getCamelContextCreationTimeout cannot return a negative value.");
         }
         // must override context so we use the correct one in testing
-        context = answer.adapt(ModelCamelContext.class);
+        context = (ModelCamelContext) answer;
         return answer;
     }
-   
+
 
     protected <T> T getOsgiService(Class<T> type) {
         return CamelBlueprintHelper.getOsgiService(bundleContext, type);
@@ -578,13 +630,112 @@ public abstract class CamelBlueprintTestSupport extends CamelTestSupport {
         File dir = new File("target/etc");
         dir.mkdirs();
         File cfg = Files.createTempFile(dir.toPath(), "properties-", ".cfg").toFile();
-        FileWriter writer = new FileWriter(cfg);
-        try {
+        try (FileWriter writer = new FileWriter(cfg)) {
             initialConfiguration.store(writer, null);
-        } finally {
-            IOHelper.close(writer);
         }
         return cfg.getAbsolutePath();
     }
 
+    /**
+     * Resolves the mandatory Mock endpoint using a URI of the form <code>mock:someName</code>
+     *
+     * @param  uri the URI which typically starts with "mock:" and has some name
+     * @return     the mandatory mock endpoint or an exception is thrown if it could not be resolved
+     */
+    protected final MockEndpoint getMockEndpoint(String uri) {
+        return TestSupport.getMockEndpoint(context, uri, true);
+    }
+
+    @Override
+    public void configureContext(CamelContextConfiguration camelContextConfiguration) {
+        if (camelContextConfiguration instanceof CamelBlueprintContextConfiguration camelBlueprintContextConfiguration) {
+            camelBlueprintContextConfiguration
+                    .withBlueprintCamelContextSupplier(this::createCamelContext)
+                    .withBlueprintPostProcessor(this::postProcessTest)
+                    .withBlueprintRoutesSupplier(this::createRouteBuilders)
+                    .withRegistryBinder(this::bindToRegistry)
+                    .withUseOverridePropertiesWithPropertiesComponent(useOverridePropertiesWithPropertiesComponent())
+                    .withRouteFilterExcludePattern(getRouteFilterExcludePattern())
+                    .withRouteFilterIncludePattern(getRouteFilterIncludePattern())
+                    .withMockEndpoints(isMockEndpoints())
+                    .withMockEndpointsAndSkip(isMockEndpointsAndSkip())
+                    .withBreakpoint(createDebugBreakpoint());
+        } else {
+            throw new IllegalArgumentException("camelContextConfiguration is not of type CamelBlueprintContextConfiguration");
+        }
+    }
+
+    @Override
+    public void configureTest(TestExecutionConfiguration testExecutionConfiguration) {
+        boolean coverage = CamelContextTestHelper.isRouteCoverageEnabled(isDumpRouteCoverage());
+        String dump = CamelContextTestHelper.getRouteDump(getDumpRoute());
+        boolean jmx = coverage || useJmx(); // route coverage requires JMX
+
+        testExecutionConfiguration.withJMX(jmx)
+                .withUseRouteBuilder(isUseRouteBuilder())
+                .withUseAdviceWith(isUseAdviceWith())
+                .withDumpRouteCoverage(coverage)
+                .withDumpRoute(dump);
+    }
+
+    /**
+     * Allows binding custom beans to the Camel {@link Registry}.
+     */
+    protected void bindToRegistry(Registry registry) throws Exception {
+        // noop
+    }
+
+    /**
+     * Factory method which derived classes can use to create an array of {@link RouteBuilder}s
+     * to define the routes for testing.
+     *
+     * @see #createRouteBuilder()
+     */
+    protected RoutesBuilder[] createRouteBuilders() throws Exception {
+        return new RoutesBuilder[] { createRouteBuilder() };
+    }
+
+
+
+    /**
+     * Factory method which derived classes can use to create a {@link RouteBuilder} to define the routes for testing
+     *
+     * @see #createRouteBuilders()
+     */
+    protected RoutesBuilder createRouteBuilder() throws Exception {
+        return new RouteBuilder() {
+            @Override
+            public void configure() {
+                // no routes added by default
+            }
+        };
+    }
+
+    protected void postProcessTest() throws Exception {
+        context = contextManager.context();
+        template = contextManager.template();
+        fluentTemplate = contextManager.fluentTemplate();
+        consumer = contextManager.consumer();
+    }
+
+    @Override
+    public void beforeTestExecution(ExtensionContext context) throws Exception {
+        LOG.trace("Before test execution {}", context.getDisplayName());
+        watch.restart();
+    }
+
+    @Override
+    public void afterTestExecution(ExtensionContext context) throws Exception {
+        watch.taken();
+    }
+
+    /**
+     * Method to overide to create a {@link DebugBreakpoint}
+     *
+     * @see #createRouteBuilders()
+     */
+    protected DebugBreakpoint createDebugBreakpoint() {
+        // No Debug Breakpoint by default
+        return null;
+    }
 }

@@ -20,6 +20,8 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.junit.jupiter.api.Test;
 
+import static org.apache.camel.test.junit5.TestSupport.sendBody;
+
 public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
 
     protected String matchingBody = "<person name='James' city='London' xmlns='http://example.com/person'/>";
@@ -34,7 +36,7 @@ public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
     public void testSendMatchingMessage() throws Exception {
         getMockEndpoint("mock:result").expectedBodiesReceived(matchingBody);
 
-        sendBody("direct:start", matchingBody);
+        sendBody(template, "direct:start", matchingBody);
 
         MockEndpoint.assertIsSatisfied(context);
     }
@@ -43,7 +45,7 @@ public class XPathFilterWithNamespaceTest extends CamelBlueprintTestSupport {
     public void testSendNotMatchingMessage() throws Exception {
         getMockEndpoint("mock:result").expectedMessageCount(0);
 
-        sendBody("direct:start", notMatchingBody);
+        sendBody(template, "direct:start", notMatchingBody);
 
         MockEndpoint.assertIsSatisfied(context);
     }

@@ -25,13 +25,14 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.spi.Registry;
 import org.apache.camel.support.DefaultRegistry;
 import org.apache.camel.support.service.ServiceSupport;
-import org.apache.camel.test.junit4.TestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class BlueprintComponentResolverTest extends TestSupport {
+import static org.junit.jupiter.api.Assertions.*;
+
+class BlueprintComponentResolverTest {
 
     @Test
-    public void testOsgiResolverFindComponentFallbackTest() throws Exception {
+    void testOsgiResolverFindComponentFallbackTest() throws Exception {
         Registry registry = new DefaultRegistry();
         registry.bind("allstar-component", new SampleComponent(true));
 
@@ -39,12 +40,12 @@ public class BlueprintComponentResolverTest extends TestSupport {
 
         BlueprintComponentResolver resolver = new BlueprintComponentResolver(null);
         Component component = resolver.resolveComponent("allstar", camelContext);
-        assertNotNull("We should find the super component", component);
-        assertTrue("We should get the super component here", component instanceof SampleComponent);
+        assertNotNull(component, "We should find the super component");
+        assertInstanceOf(SampleComponent.class, component, "We should get the super component here");
     }
 
     @Test
-    public void testOsgiResolverFindLanguageDoubleFallbackTest() throws Exception {
+    void testOsgiResolverFindLanguageDoubleFallbackTest() throws Exception {
         Registry registry = new DefaultRegistry();
         registry.bind("allstar", new SampleComponent(false));
         registry.bind("allstar-component", new SampleComponent(true));
@@ -53,9 +54,9 @@ public class BlueprintComponentResolverTest extends TestSupport {
 
         BlueprintComponentResolver resolver = new BlueprintComponentResolver(null);
         Component component = resolver.resolveComponent("allstar", camelContext);
-        assertNotNull("We should find the super component", component);
-        assertTrue("We should get the super component here", component instanceof SampleComponent);
-        assertFalse("We should NOT find the fallback component", ((SampleComponent) component).isFallback());
+        assertNotNull(component, "We should find the super component");
+        assertInstanceOf(SampleComponent.class, component, "We should get the super component here");
+        assertFalse(((SampleComponent) component).isFallback(), "We should NOT find the fallback component");
     }
 
     private static class SampleComponent extends ServiceSupport implements Component {

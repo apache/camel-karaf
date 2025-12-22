@@ -38,7 +38,7 @@ public class EndpointPropertyTest extends CamelBlueprintTestSupport {
         template.sendBody("ref:bar", "Bye World");
         MockEndpoint.assertIsSatisfied(context);
 
-        BlueprintCamelContext blue = context().adapt(BlueprintCamelContext.class);
+        BlueprintCamelContext blue = (BlueprintCamelContext) context;
 
         SedaEndpoint foo = (SedaEndpoint) blue.getBlueprintContainer().getComponentInstance("foo");
         assertNotNull(foo);

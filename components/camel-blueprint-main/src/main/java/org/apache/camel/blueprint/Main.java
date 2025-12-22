@@ -100,7 +100,7 @@ public class Main extends MainCommandLineSupport {
             LOG.debug("Starting Blueprint XML file: " + descriptors);
             if (configAdminPid != null && configAdminFileName != null) {
                 // pid/file is used to set INITIAL content of ConfigAdmin to be used when blueprint container is started
-                bundleContext = createBundleContext(bundleName, new String[] {configAdminFileName, configAdminPid});
+                bundleContext = createBundleContext(bundleName, new CamelBlueprintConfigAdminPlaceholder(configAdminFileName, configAdminPid));
             } else {
                 bundleContext = createBundleContext(bundleName);
             }
@@ -142,11 +142,11 @@ public class Main extends MainCommandLineSupport {
         return createBundleContext(getClass().getSimpleName());
     }
 
-    protected BundleContext createBundleContext(String name, String[]... configAdminPidFiles) throws Exception {
+    protected BundleContext createBundleContext(String name, CamelBlueprintConfigAdminPlaceholder... configAdminPidFiles) throws Exception {
         return createBundleContext(name, loader, configAdminPidFiles);
     }
 
-    protected BundleContext createBundleContext(String name, ClassLoader loader, String[]... configAdminPidFiles) throws Exception {
+    protected BundleContext createBundleContext(String name, ClassLoader loader, CamelBlueprintConfigAdminPlaceholder... configAdminPidFiles) throws Exception {
         return CamelBlueprintHelper.createBundleContext(name, descriptors, isIncludeSelfAsBundle(),
                 CamelBlueprintHelper.BUNDLE_FILTER, CamelBlueprintHelper.BUNDLE_VERSION, null,
                 loader, configAdminPidFiles);

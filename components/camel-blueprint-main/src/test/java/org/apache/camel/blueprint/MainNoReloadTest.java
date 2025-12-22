@@ -17,15 +17,15 @@
 package org.apache.camel.blueprint;
 
 import org.apache.camel.ProducerTemplate;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MainNoReloadTest {
+class MainNoReloadTest {
 
     @Test
-    public void testMyMain() throws Exception {
+    void testMyMain() throws Exception {
         Main main = new Main();
         main.setBundleName("MyMainBundle");
         // as we run this test without packing ourselves as bundle, then include ourselves
@@ -39,10 +39,10 @@ public class MainNoReloadTest {
         main.start();
 
         ProducerTemplate template = main.getCamelTemplate();
-        assertNotNull("We should get the template here", template);
+        assertNotNull(template, "We should get the template here");
 
         String result = template.requestBody("direct:start", "hello", String.class);
-        assertEquals("Get a wrong response", "Bye hello", result);
+        assertEquals("Bye hello", result, "Get a wrong response");
         main.stop();
     }
 

@@ -100,10 +100,10 @@ public final class CamelBlueprintHelper {
                                                     String bundleFilter, String testBundleVersion) throws Exception {
         return createBundleContext(name, descriptors, includeTestBundle, bundleFilter, testBundleVersion, null);
     }
-    
+
     public static BundleContext createBundleContext(String name, String descriptors, boolean includeTestBundle,
                                                     String bundleFilter, String testBundleVersion, String testBundleDirectives,
-                                                    String[]... configAdminPidFiles) throws Exception {
+                                                    CamelBlueprintConfigAdminPlaceholder... configAdminPidFiles) throws Exception {
         return createBundleContext(name, descriptors, includeTestBundle,
                 bundleFilter, testBundleVersion, testBundleDirectives,
                 null,
@@ -113,7 +113,7 @@ public final class CamelBlueprintHelper {
     public static BundleContext createBundleContext(String name, String descriptors, boolean includeTestBundle,
                                                     String bundleFilter, String testBundleVersion, String testBundleDirectives,
                                                     ClassLoader loader,
-                                                    String[]... configAdminPidFiles) throws Exception {
+                                                    CamelBlueprintConfigAdminPlaceholder... configAdminPidFiles) throws Exception {
         TinyBundle bundle = null;
         TinyBundle configAdminInitBundle = null;
 
@@ -222,7 +222,7 @@ public final class CamelBlueprintHelper {
             }
         }
     }
-    
+
     // pick up persistent file configuration
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void setPersistentFileForConfigAdmin(BundleContext bundleContext, String pid,
@@ -241,7 +241,7 @@ public final class CamelBlueprintHelper {
                 }
 
                 ConfigurationAdmin configAdmin = CamelBlueprintHelper
-                    .getOsgiService(bundleContext, ConfigurationAdmin.class);
+                        .getOsgiService(bundleContext, ConfigurationAdmin.class);
                 if (configAdmin != null) {
                     // ensure we update
                     // we *have to* use "null" as 2nd arg to have correct bundle location for Configuration object
@@ -327,7 +327,7 @@ public final class CamelBlueprintHelper {
      */
     public static void waitForBlueprintContainer(final Set<Long> eventHistory, BundleContext context,
                                                  final String symbolicName, final int bpEvent, final Runnable runAndWait)
-        throws InterruptedException {
+            throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         final Throwable[] pThrowable = new Throwable[] {null};
         ServiceRegistration<BlueprintListener> registration = context.registerService(BlueprintListener.class, new BlueprintListener() {
@@ -363,10 +363,10 @@ public final class CamelBlueprintHelper {
         }
     }
 
-    protected static TinyBundle createConfigAdminInitBundle(String[]... configAdminPidFiles) throws IOException {
+    protected static TinyBundle createConfigAdminInitBundle(CamelBlueprintConfigAdminPlaceholder... configAdminPidFiles) throws IOException {
         TinyBundle bundle = TinyBundles.bundle();
         StringWriter configAdminInit = null;
-        for (String[] configAdminPidFile : configAdminPidFiles) {
+        for (CamelBlueprintConfigAdminPlaceholder configAdminPidFile : configAdminPidFiles) {
             if (configAdminPidFile == null) {
                 continue;
             }
@@ -375,8 +375,8 @@ public final class CamelBlueprintHelper {
             } else {
                 configAdminInit.append(',');
             }
-            configAdminInit.append(configAdminPidFile[1]).append("=");
-            configAdminInit.append(new File(configAdminPidFile[0]).toURI().toString());
+            configAdminInit.append(configAdminPidFile.getPersistenceId()).append("=");
+            configAdminInit.append(new File(configAdminPidFile.getFilename()).toURI().toString());
         }
         bundle.add(TestBundleActivator.class);
         bundle.add(Util.class);

@@ -34,7 +34,8 @@ public class FromRestUriPrefixTest extends CamelBlueprintTestSupport {
     }
 
     protected int getExpectedNumberOfRoutes() {
-        return 2 + 3;
+        // routes are inlined
+        return 3;
     }
 
     @Test
@@ -54,7 +55,8 @@ public class FromRestUriPrefixTest extends CamelBlueprintTestSupport {
         to = assertIsInstanceOf(ToDefinition.class, rest.getVerbs().get(1).getTo());
         assertEquals("direct:bye", to.getUri());
 
-        // the rest becomes routes and the input is a seda endpoint created by the DummyRestConsumerFactory
+        // the rest becomes routes and the input is a seda endpoint created by
+        // the DummyRestConsumerFactory
         getMockEndpoint("mock:update").expectedMessageCount(1);
         template.sendBody("seda:post-say-hi", "I was here");
         MockEndpoint.assertIsSatisfied(context);

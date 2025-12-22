@@ -33,13 +33,10 @@ public class RestRefTest extends CamelBlueprintTestSupport {
         return "org/apache/camel/test/blueprint/component/rest/RestRefTest.xml";
     }
 
-    protected int getExpectedNumberOfRoutes() {
-        return 2 + 3;
-    }
-
     @Test
     public void testRestRefTest() throws Exception {
-        assertEquals(getExpectedNumberOfRoutes(), context.getRoutes().size());
+        // inlined routes
+        assertEquals(3, context.getRoutes().size());
 
         assertEquals(2, context.getRestDefinitions().size());
         RestDefinition rest = context.getRestDefinitions().get(0);

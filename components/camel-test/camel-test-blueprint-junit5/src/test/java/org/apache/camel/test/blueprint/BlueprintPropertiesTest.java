@@ -23,7 +23,7 @@ import org.osgi.framework.BundleException;
 import org.osgi.service.blueprint.container.BlueprintContainer;
 import org.osgi.service.blueprint.container.BlueprintEvent;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -37,7 +37,7 @@ public class BlueprintPropertiesTest extends CamelBlueprintTestSupport {
 
     @Test
     public void testProperties() throws Exception {
-        Bundle camelCore = getBundleBySymbolicName("org.apache.camel.karaf.camel-blueprint");
+        Bundle camelCore = getBundleBySymbolicName("camel-blueprint");
         Bundle test = getBundleBySymbolicName(getClass().getSimpleName());
 
         camelCore.stop();
@@ -46,24 +46,19 @@ public class BlueprintPropertiesTest extends CamelBlueprintTestSupport {
         Thread.sleep(500);
 
         test.start();
-        try {
-            getOsgiService(BlueprintContainer.class, "(osgi.blueprint.container.symbolicname=" + getClass().getSimpleName() + ")", 500);
-            fail("Expected a timeout");
-        } catch (RuntimeException e) {
-            // Expected timeout
-        }
+        String filter = "(osgi.blueprint.container.symbolicname=" + getClass().getSimpleName() + ")";
+        assertThrows(RuntimeException.class, () -> {
+                getOsgiService(BlueprintContainer.class, filter, 500);
+        });
 
         CamelBlueprintHelper.waitForBlueprintContainer(null, test.getBundleContext(), getClass().getSimpleName(), BlueprintEvent.CREATED,
-                new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    camelCore.start();
-                } catch (BundleException e) {
-                    throw new RuntimeException(e.getMessage(), e);
-                }
-            }
-        });
+                (Runnable) () -> {
+                    try {
+                        camelCore.start();
+                    } catch (BundleException e) {
+                        throw new RuntimeException(e.getMessage(), e);
+                    }
+                });
         getOsgiService(BlueprintContainer.class, "(osgi.blueprint.container.symbolicname=" + getClass().getSimpleName() + ")", 500);
     }
 

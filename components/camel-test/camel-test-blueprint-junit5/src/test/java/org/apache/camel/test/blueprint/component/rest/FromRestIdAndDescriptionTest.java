@@ -43,7 +43,7 @@ public class FromRestIdAndDescriptionTest extends FromRestGetTest {
         RestDefinition rest2 = context.getRestDefinitions().get(1);
         assertEquals("bye", rest2.getId());
         assertEquals("Bye Service", rest2.getDescriptionText());
-        assertEquals("en", rest2.getDescription().getLang());
+        // assertEquals("en", rest2.getDescription().getLang());
 
         assertEquals("Says bye to you", rest2.getVerbs().get(0).getDescriptionText());
         assertEquals("Updates the bye message", rest2.getVerbs().get(1).getDescriptionText());

@@ -17,27 +17,29 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>components</artifactId>
-        <version>3.22.0-SNAPSHOT</version>
+        <artifactId>camel-test-parent</artifactId>
+        <version>4.10.8-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>camel-test-blueprint-junit5</artifactId>
     <packaging>jar</packaging>
 
-    <name>Camel Karaf :: Test :: Blueprint :: Junit5</name>
-    <description>Camel unit testing with OSGi Blueprint and Junit5</description>
+    <name>Apache Camel :: Karaf :: Test :: Blueprint :: JUnit 5 </name>
+    <description>Camel unit testing with OSGi Blueprint</description>
 
     <properties>
         <firstVersion>3.18.0</firstVersion>
         <label>testing,java,osgi</label>
 
         <camel.osgi.import>
-            javax.xml.bind*;version="[2.2,3.0)",
+            jakarta.xml.bind*;version="[4,5)",
             *
         </camel.osgi.import>
     </properties>
@@ -53,27 +55,31 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-junit5</artifactId>
+            <version>${camel-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <type>test-jar</type>
+            <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cloud</artifactId>
+            <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-management</artifactId>
+            <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.karaf</groupId>
             <artifactId>camel-blueprint</artifactId>
+            <version>${project.version}</version>
             <!-- exclude aries blueprint as we add these dependencies explicit -->
             <exclusions>
                 <exclusion>
@@ -88,7 +94,6 @@
         <dependency>
             <groupId>org.apache.aries.proxy</groupId>
             <artifactId>org.apache.aries.proxy</artifactId>
-            <version>${aries-blueprint-proxy-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.aries.blueprint</groupId>
@@ -130,6 +135,7 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
+            <version>${commons-logging-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.felix</groupId>
@@ -154,7 +160,6 @@
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.fileinstall</artifactId>
-            <version>${felix-fileinstall-version}</version>
             <!-- exclude the following dependency which otherwise would pop up a lot of compilation
                  errors both by this and the camel-maven-plugin modules under eclipse. -->
             <exclusions>
@@ -173,21 +178,104 @@
             </exclusions>
         </dependency>
 
-        <!-- optional dependencies for running tests -->
+        <!-- Camel Karaf -->
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-main</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-core-languages</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-xpath</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-bean</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-mock</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-direct</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-log</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-ref</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Test -->
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j2-version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
+            <version>${log4j2-version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-rest</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-seda</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-timer</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-file</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.karaf</groupId>
+            <artifactId>camel-stub</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
 

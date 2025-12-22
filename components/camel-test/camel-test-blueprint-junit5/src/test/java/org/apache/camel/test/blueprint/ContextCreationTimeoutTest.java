@@ -33,7 +33,6 @@ public class ContextCreationTimeoutTest {
 
     @Test
     public void testDefault() {
-        System.clearProperty(CamelBlueprintTestSupport.SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT);
         CamelBlueprintTestSupport ts = new DefaultTestSupport();
         assertNull(ts.getCamelContextCreationTimeout());
     }
@@ -99,7 +98,6 @@ public class ContextCreationTimeoutTest {
     @Test
     public void testOverrideNormal() {
         final Long someValue = 60000L;
-        System.clearProperty(CamelBlueprintTestSupport.SPROP_CAMEL_CONTEXT_CREATION_TIMEOUT);
         CamelBlueprintTestSupport ts = new OverridingTestSupport(someValue);
         assertEquals(someValue, ts.getCamelContextCreationTimeout());
     }

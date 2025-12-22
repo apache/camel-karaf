@@ -16,27 +16,27 @@
  */
 package org.apache.camel.blueprint;
 
+import org.apache.aries.util.io.IOUtils;
+import org.apache.camel.ProducerTemplate;
+import org.junit.jupiter.api.Test;
+import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.core.TinyBundles;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 
-import org.apache.aries.util.io.IOUtils;
-import org.apache.camel.ProducerTemplate;
-import org.junit.Test;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.pax.tinybundles.core.TinyBundles;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-public class MainTest {
+class MainTest {
 
     private static final String SYMBOLIC_NAME = "testMainWithoutIncludingTestBundle";
 
     @Test
-    public void testMyMain() throws Exception {
+    void testMyMain() throws Exception {
         Main main = new Main();
         main.setBundleName("MyMainBundle");
         // as we run this test without packing ourselves as bundle, then include ourselves
@@ -50,15 +50,15 @@ public class MainTest {
         main.start();
         
         ProducerTemplate template = main.getCamelTemplate();
-        assertNotNull("We should get the template here", template);
+        assertNotNull(template, "We should get the template here");
         
         String result = template.requestBody("direct:start", "hello", String.class);
-        assertEquals("Get a wrong response", "Bye hello", result);
+        assertEquals("Bye hello", result, "Get a wrong response");
         main.stop();
     }
 
     @Test
-    public void testMainWithoutIncludingTestBundle() throws Exception {
+    void testMainWithoutIncludingTestBundle() throws Exception {
         TinyBundle bundle = TinyBundles.bundle();
         bundle.add("OSGI-INF/blueprint/camel.xml", getClass().getResourceAsStream("main-loadfile.xml"));
         bundle.set("Manifest-Version", "2")
@@ -89,10 +89,10 @@ public class MainTest {
         main.doStart();
 
         ProducerTemplate template = main.getCamelTemplate();
-        assertNotNull("We should get the template here", template);
+        assertNotNull(template, "We should get the template here");
 
         String result = template.requestBody("direct:start", "hello", String.class);
-        assertEquals("Get a wrong response", "Bye hello", result);
+        assertEquals("Bye hello", result, "Get a wrong response");
         main.stop();
     }
 

@@ -16,24 +16,26 @@
  */
 package org.apache.camel.blueprint;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import org.apache.camel.blueprint.handler.CamelNamespaceHandler;
-import org.apache.camel.test.junit4.TestSupport;
-import org.junit.Test;
 
-public class BlueprintJaxbRestTest extends TestSupport {
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Unmarshaller;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class BlueprintJaxbRestTest {
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -53,7 +55,7 @@ public class BlueprintJaxbRestTest extends TestSupport {
         Unmarshaller unmarshaller = context.createUnmarshaller();
         Object object = unmarshaller.unmarshal(elem);
         assertNotNull(object);
-        assertTrue(object instanceof CamelContextFactoryBean);
+        assertInstanceOf(CamelContextFactoryBean.class, object);
         assertNotNull(((CamelContextFactoryBean) object).getRoutes());
         assertEquals(0, ((CamelContextFactoryBean) object).getRoutes().size());
 
