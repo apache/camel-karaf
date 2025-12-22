@@ -55,6 +55,7 @@
         <module>camel-beanio</module>
         <module>camel-bindy</module>
         <module>camel-blueprint</module>
+        <module>camel-blueprint-main</module>
         <module>camel-bonita</module>
         <module>camel-box</module>
         <module>camel-braintree</module>
@@ -297,7 +298,6 @@
         <module>camel-tarfile</module>
         <module>camel-telegram</module>
         <module>camel-test</module>
-        <module>camel-test-spring</module>
         <module>camel-threadpoolfactory-vertx</module>
         <module>camel-thrift</module>
         <module>camel-thymeleaf</module>

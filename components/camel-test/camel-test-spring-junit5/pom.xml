@@ -25,10 +25,10 @@
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
         <version>4.10.8-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-test-spring</artifactId>
+    <artifactId>camel-test-spring-junit5</artifactId>
     <packaging>bundle</packaging>
     <name>Apache Camel :: Karaf :: Components :: Test Spring</name>
 
@@ -58,7 +58,7 @@
     <build>
         <resources>
             <resource>
-                <directory>../../src/main/resources</directory>
+                <directory>../../../src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
         </resources>

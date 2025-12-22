@@ -17,26 +17,20 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.0.0.xsd
+           ">
 
-    <modelVersion>4.0.0</modelVersion>
+  <cm:property-placeholder persistent-id="org.camelcookbook.testing">
+    <cm:default-properties>
+      <cm:property name="transform.message" value="Modified"/>
+    </cm:default-properties>
+  </cm:property-placeholder>
 
-    <parent>
-        <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
-        <version>4.10.8-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+</blueprint>
 
-    <artifactId>camel-test-parent</artifactId>
-    <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Test Parent</name>
-    <description>Camel Test parent</description>
 
-    <modules>
-        <module>camel-test-blueprint-junit5</module>
-        <module>camel-test-junit5</module>
-        <module>camel-test-spring-junit5</module>
-    </modules>
-
-</project>

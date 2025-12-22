@@ -1,0 +1,15 @@
+{
+  "other": {
+    "kind": "other",
+    "name": "test-blueprint-junit5",
+    "title": "Test Blueprint Junit5",
+    "description": "Camel unit testing with OSGi Blueprint and Junit5",
+    "deprecated": false,
+    "firstVersion": "3.18.0",
+    "label": "testing,java,osgi",
+    "supportLevel": "Stable",
+    "groupId": "org.apache.camel.karaf",
+    "artifactId": "camel-test-blueprint-junit5",
+    "version": "3.22.0-SNAPSHOT"
+  }
+}

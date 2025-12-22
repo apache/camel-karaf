@@ -17,26 +17,21 @@
     limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
+           ">
 
-    <modelVersion>4.0.0</modelVersion>
+  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <route>
+      <from uri="direct:in"/>
+      <transform>
+        <simple>{{transform.message}}: ${body}</simple>
+      </transform>
+      <to uri="mock:out"/>
+    </route>
+  </camelContext>
 
-    <parent>
-        <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
-        <version>4.10.8-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-
-    <artifactId>camel-test-parent</artifactId>
-    <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Test Parent</name>
-    <description>Camel Test parent</description>
-
-    <modules>
-        <module>camel-test-blueprint-junit5</module>
-        <module>camel-test-junit5</module>
-        <module>camel-test-spring-junit5</module>
-    </modules>
-
-</project>
+</blueprint>
