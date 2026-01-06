@@ -55,7 +55,6 @@
         <module>camel-beanio</module>
         <module>camel-bindy</module>
         <module>camel-blueprint</module>
-        <module>camel-blueprint-main</module>
         <module>camel-bonita</module>
         <module>camel-box</module>
         <module>camel-braintree</module>

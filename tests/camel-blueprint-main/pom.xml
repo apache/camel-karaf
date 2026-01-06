@@ -22,7 +22,7 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
+        <artifactId>camel-karaf-tests</artifactId>
         <version>4.10.8-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -30,7 +30,7 @@
     <artifactId>camel-blueprint-main</artifactId>
     <packaging>jar</packaging>
 
-    <name>Apache Camel :: Karaf :: Blueprint Main</name>
+    <name>Apache Camel :: Karaf :: Tests :: Blueprint Main</name>
     <description>Main support for OSGi Blueprint</description>
 
     <properties>

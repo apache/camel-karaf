@@ -34,7 +34,6 @@
     <description>Camel Test parent</description>
 
     <modules>
-        <module>camel-test-blueprint-junit5</module>
         <module>camel-test-junit5</module>
         <module>camel-test-spring-junit5</module>
     </modules>
