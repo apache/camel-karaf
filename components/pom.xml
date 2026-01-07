@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.10.8-SNAPSHOT</version>
+        <version>4.14.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -97,7 +97,6 @@
         <module>camel-elasticsearch</module>
         <module>camel-elasticsearch-rest-client</module>
         <module>camel-elytron</module>
-        <module>camel-etcd3</module>
         <module>camel-exec</module>
         <module>camel-fastjson</module>
         <module>camel-fhir</module>
@@ -109,7 +108,6 @@
         <module>camel-fop</module>
         <module>camel-freemarker</module>
         <module>camel-ftp</module>
-        <module>camel-fury</module>
         <module>camel-geocoder</module>
         <module>camel-git</module>
         <module>camel-github</module>
