@@ -613,7 +613,7 @@
         <jaxb3-osgi-version>3.0.2</jaxb3-osgi-version>
         <jetty11-version>11.0.21</jetty11-version>
         <junit4-version>4.13.2</junit4-version>
-        <karaf-version>4.4.7</karaf-version>
+        <karaf-version>4.4.8</karaf-version>
         <netty-incubator-transport-classes-io_uring-version>0.0.25.Final</netty-incubator-transport-classes-io_uring-version>
         <objenesis-version>3.4</objenesis-version>
         <osgi-cmpn-version>7.0.0</osgi-cmpn-version>

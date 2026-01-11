@@ -738,7 +738,6 @@
         <feature version="[3,4)">jakarta-validation</feature>
         <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
         <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge</bundle>
-        <bundle dependency='true'>mvn:org.jboss.logging/jboss-logging/${jboss-logging-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml/classmate/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.glassfish.expressly/expressly/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:jakarta.el/jakarta.el-api/${jakarta-el5-api-version}</bundle>
