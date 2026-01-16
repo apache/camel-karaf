@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.Objects;
 
 /**
  * The direct producer.
@@ -84,17 +85,17 @@ public class DirectVmBlockingProducer extends DefaultAsyncProducer {
     }
 
     private DirectVmConsumer awaitConsumer() {
-        ForegroundTask task = Tasks.foregroundTask().withBudget(Budgets.iterationTimeBudget()
-                .withMaxIterations(IterationBoundedBudget.UNLIMITED_ITERATIONS)
-                .withMaxDuration(Duration.ofMillis(endpoint.getTimeout()))
-                .withInterval(Duration.ofMillis(500))
-                .build())
+        ForegroundTask task = Tasks.foregroundTask()
+                .withBudget(Budgets.iterationTimeBudget()
+                        .withMaxIterations(IterationBoundedBudget.UNLIMITED_ITERATIONS)
+                        .withMaxDuration(Duration.ofMillis(endpoint.getTimeout()))
+                        .withInterval(Duration.ofMillis(500))
+                        .build())
                 .build();
 
         StopWatch watch = new StopWatch();
-        DirectVmConsumer answer = task.run(endpoint::getConsumer, a -> a != null).orElse(null);
+        DirectVmConsumer answer = task.run(endpoint.getCamelContext(), endpoint::getConsumer, Objects::nonNull).orElse(null);
         LOG.debug("Waited {} for consumer to be ready", watch.taken());
-
         return answer;
     }
 
