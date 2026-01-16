@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.10.8-SNAPSHOT</version>
+        <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -78,11 +78,14 @@
         <module>camel-csimple-joor</module>
         <module>camel-csv</module>
         <module>camel-cxf</module>
+        <module>camel-cyberark-vault</module>
+        <module>camel-dapr</module>
         <module>camel-dataformat</module>
         <module>camel-dataset</module>
         <module>camel-datasonnet</module>
         <module>camel-debezium</module>
         <module>camel-debug</module>
+        <module>camel-dfdl</module>
         <module>camel-dhis2</module>
         <module>camel-digitalocean</module>
         <module>camel-direct</module>
@@ -97,7 +100,6 @@
         <module>camel-elasticsearch</module>
         <module>camel-elasticsearch-rest-client</module>
         <module>camel-elytron</module>
-        <module>camel-etcd3</module>
         <module>camel-exec</module>
         <module>camel-fastjson</module>
         <module>camel-fhir</module>
@@ -107,9 +109,9 @@
         <module>camel-flink</module>
         <module>camel-flowable</module>
         <module>camel-fop</module>
+        <module>camel-fory</module>
         <module>camel-freemarker</module>
         <module>camel-ftp</module>
-        <module>camel-fury</module>
         <module>camel-geocoder</module>
         <module>camel-git</module>
         <module>camel-github</module>
@@ -118,6 +120,7 @@
         <module>camel-graphql</module>
         <module>camel-grok</module>
         <module>camel-groovy</module>
+        <module>camel-groovy-xml</module>
         <module>camel-grpc</module>
         <module>camel-gson</module>
         <module>camel-guava-eventbus</module>
@@ -129,18 +132,22 @@
         <module>camel-http-base</module>
         <module>camel-http-common</module>
         <module>camel-huawei</module>
+        <module>camel-ibm</module>
         <module>camel-ical</module>
         <module>camel-iec60870</module>
+        <module>camel-iggy</module>
         <module>camel-ignite</module>
         <module>camel-infinispan</module>
         <module>camel-influxdb</module>
         <module>camel-influxdb2</module>
         <module>camel-irc</module>
         <module>camel-ironmq</module>
+        <module>camel-iso8583</module>
         <module>camel-jackson</module>
         <module>camel-jackson-avro</module>
         <module>camel-jackson-protobuf</module>
         <module>camel-jacksonxml</module>
+        <module>camel-jandex</module>
         <module>camel-jasypt</module>
         <module>camel-javascript</module>
         <module>camel-jaxb</module>
@@ -173,6 +180,7 @@
         <module>camel-jte</module>
         <module>camel-kafka</module>
         <module>camel-kamelet</module>
+        <module>camel-keycloak</module>
         <module>camel-knative</module>
         <module>camel-kubernetes</module>
         <module>camel-kudu</module>
@@ -189,10 +197,13 @@
         <module>camel-mail-microsoft-oauth</module>
         <module>camel-mapstruct</module>
         <module>camel-master</module>
+        <module>camel-mdc</module>
         <module>camel-metrics</module>
         <module>camel-micrometer</module>
+        <module>camel-micrometer-observability</module>
         <module>camel-micrometer-prometheus</module>
         <module>camel-microprofile</module>
+        <module>camel-milo</module>
         <module>camel-mina</module>
         <module>camel-minio</module>
         <module>camel-mllp</module>
@@ -207,16 +218,20 @@
         <module>camel-netty-http</module>
         <module>camel-nitrite</module>
         <module>camel-oaipmh</module>
+        <module>camel-oauth</module>
         <module>camel-observability-services</module>
         <module>camel-observation</module>
         <module>camel-ognl</module>
         <module>camel-olingo2</module>
         <module>camel-olingo4</module>
+        <module>camel-once</module>
         <module>camel-openapi-java</module>
         <module>camel-openapi-validator</module>
         <module>camel-opensearch</module>
         <module>camel-openstack</module>
         <module>camel-opentelemetry</module>
+        <module>camel-opentelemetry-metrics</module>
+        <module>camel-opentelemetry2</module>
         <module>camel-optaplanner</module>
         <module>camel-paho</module>
         <module>camel-paho-mqtt5</module>
@@ -229,6 +244,7 @@
         <module>camel-platform-http-main</module>
         <module>camel-platform-http-vertx</module>
         <module>camel-plc4x</module>
+        <module>camel-pqc</module>
         <module>camel-printer</module>
         <module>camel-protobuf</module>
         <module>camel-pubnub</module>
@@ -243,6 +259,7 @@
         <module>camel-redis</module>
         <module>camel-ref</module>
         <module>camel-resilience4j</module>
+        <module>camel-resilience4j-micrometer</module>
         <module>camel-resourceresolver-github</module>
         <module>camel-rest</module>
         <module>camel-rest-openapi</module>
@@ -273,16 +290,7 @@
         <module>camel-solr</module>
         <module>camel-splunk</module>
         <module>camel-splunk-hec</module>
-        <module>camel-spring</module>
-        <module>camel-spring-batch</module>
-        <module>camel-spring-jdbc</module>
-        <module>camel-spring-ldap</module>
-        <module>camel-spring-main</module>
-        <module>camel-spring-rabbitmq</module>
-        <module>camel-spring-redis</module>
-        <module>camel-spring-security</module>
-        <module>camel-spring-ws</module>
-        <module>camel-spring-xml</module>
+        <module>camel-spring-parent</module>
         <module>camel-sql</module>
         <module>camel-ssh</module>
         <module>camel-stax</module>
@@ -290,12 +298,15 @@
         <module>camel-stomp</module>
         <module>camel-stream</module>
         <module>camel-stringtemplate</module>
+        <module>camel-stripe</module>
         <module>camel-stub</module>
         <module>camel-swift</module>
         <module>camel-syslog</module>
         <module>camel-tahu</module>
         <module>camel-tarfile</module>
         <module>camel-telegram</module>
+        <module>camel-telemetry</module>
+        <module>camel-telemetry-dev</module>
         <module>camel-test</module>
         <module>camel-test-spring</module>
         <module>camel-threadpoolfactory-vertx</module>
@@ -307,7 +318,6 @@
         <module>camel-twilio</module>
         <module>camel-twitter</module>
         <module>camel-undertow</module>
-        <module>camel-undertow-spring-security</module>
         <module>camel-univocity-parsers</module>
         <module>camel-validator</module>
         <module>camel-velocity</module>
