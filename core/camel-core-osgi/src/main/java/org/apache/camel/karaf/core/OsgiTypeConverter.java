@@ -16,12 +16,6 @@
  */
 package org.apache.camel.karaf.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
@@ -29,16 +23,16 @@ import org.apache.camel.NoTypeConversionAvailableException;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.TypeConverterExists;
-import org.apache.camel.TypeConverters;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.converter.DefaultTypeConverter;
-import org.apache.camel.impl.engine.DefaultPackageScanClassResolver;
 import org.apache.camel.spi.BulkTypeConverters;
 import org.apache.camel.spi.Injector;
 import org.apache.camel.spi.PackageScanClassResolver;
 import org.apache.camel.spi.TypeConverterLoader;
 import org.apache.camel.spi.TypeConverterRegistry;
+import org.apache.camel.spi.TypeConvertible;
 import org.apache.camel.support.SimpleTypeConverter;
+import org.apache.camel.support.scan.DefaultPackageScanClassResolver;
 import org.apache.camel.support.service.ServiceHelper;
 import org.apache.camel.support.service.ServiceSupport;
 import org.osgi.framework.BundleContext;
@@ -48,8 +42,17 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, TypeConverterRegistry,
-        ServiceTrackerCustomizer<TypeConverterLoader, Object> {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, TypeConverterRegistry, ServiceTrackerCustomizer<TypeConverterLoader, Object> {
+
     private static final Logger LOG = LoggerFactory.getLogger(OsgiTypeConverter.class);
 
     private final BundleContext bundleContext;
@@ -190,6 +193,11 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     @Override
+    public Map<Class<?>, TypeConverter> lookup(Class<?> toType) {
+        return getDelegate().lookup(toType);
+    }
+
+    @Override
     public void setInjector(Injector injector) {
         getDelegate().setInjector(injector);
     }
@@ -227,6 +235,11 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     @Override
     public void setTypeConverterExists(TypeConverterExists typeConverterExists) {
         getDelegate().setTypeConverterExists(typeConverterExists);
+    }
+
+    @Override
+    public void addConverter(TypeConvertible<?, ?> typeConvertible, TypeConverter typeConverter) {
+        getDelegate().addConverter(typeConvertible, typeConverter);
     }
 
     public DefaultTypeConverter getDelegate() {
@@ -273,7 +286,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             for (ServiceReference<TypeConverterLoader> sr : servicesList) {
                 try {
                     LOG.debug("loading type converter from bundle: {}", sr.getBundle().getSymbolicName());
-                    ((TypeConverterLoader)this.tracker.getService(sr)).load(answer);
+                    ((TypeConverterLoader) this.tracker.getService(sr)).load(answer);
                 } catch (Throwable t) {
                     throw new RuntimeCamelException("Error loading type converters from service: " + sr + " due: " + t.getMessage(), t);
                 }
@@ -284,7 +297,12 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         return answer;
     }
 
-    private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
+    @Override
+    public void close() throws IOException {
+        super.close();
+    }
+
+    private static class OsgiDefaultTypeConverter extends DefaultTypeConverter {
 
         public OsgiDefaultTypeConverter(PackageScanClassResolver resolver, Injector injector, boolean loadTypeConverters,
                                         boolean statisticsEnabled) {

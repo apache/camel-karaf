@@ -23,28 +23,20 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
+        <artifactId>camel-spring-parent</artifactId>
         <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-spring-parent</artifactId>
+    <artifactId>camel-spring-ai-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Spring :: Parent</name>
+    <name>Apache Camel :: Karaf :: Components :: Spring :: AI :: Parent</name>
 
     <modules>
-        <module>camel-spring</module>
-        <module>camel-spring-ai-parent</module>
-        <module>camel-spring-batch</module>
-        <module>camel-spring-cloud-config</module>
-        <module>camel-spring-jdbc</module>
-        <module>camel-spring-ldap</module>
-        <module>camel-spring-main</module>
-        <module>camel-spring-rabbitmq</module>
-        <module>camel-spring-redis</module>
-        <module>camel-spring-security</module>
-        <module>camel-spring-ws</module>
-        <module>camel-spring-xml</module>
-        <module>camel-undertow-spring-security</module>
+        <module>camel-spring-ai-chat</module>
+        <module>camel-spring-ai-embeddings</module>
+        <module>camel-spring-ai-vector-store</module>
+        <module>camel-spring-ai-tools</module>
     </modules>
+
 </project>

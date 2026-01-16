@@ -42,7 +42,7 @@ import org.apache.camel.Converter;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.TypeConverterLoaderException;
 import org.apache.camel.impl.converter.AnnotationTypeConverterLoader;
-import org.apache.camel.impl.scan.AnnotatedWithPackageScanFilter;
+import org.apache.camel.support.scan.AnnotatedWithPackageScanFilter;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.spi.ConfigurerResolver;
 import org.apache.camel.spi.DataFormat;

@@ -28,9 +28,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-test-junit6</artifactId>
+    <artifactId>camel-test-spring-junit5</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Test :: JUnit6</name>
+    <name>Apache Camel :: Karaf :: Components :: Test :: JUnit5</name>
 
     <properties>
         <camel.osgi.export>
@@ -44,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-junit6</artifactId>
+            <artifactId>camel-test-spring-junit5</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -69,7 +69,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-test-junit6</include>
+                                    <include>org.apache.camel:camel-test-spring-junit5</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

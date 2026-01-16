@@ -23,14 +23,14 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-test-parent</artifactId>
+        <artifactId>camel-test</artifactId>
         <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>camel-test-spring-junit6</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Test :: JUnit5</name>
+    <name>Apache Camel :: Karaf :: Components :: Test :: JUnit6</name>
 
     <properties>
         <camel.osgi.export>

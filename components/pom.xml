@@ -308,7 +308,6 @@
         <module>camel-telemetry</module>
         <module>camel-telemetry-dev</module>
         <module>camel-test</module>
-        <module>camel-test-spring</module>
         <module>camel-threadpoolfactory-vertx</module>
         <module>camel-thrift</module>
         <module>camel-thymeleaf</module>

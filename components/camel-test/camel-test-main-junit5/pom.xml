@@ -23,14 +23,14 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-spring-parent-parent</artifactId>
+        <artifactId>camel-test</artifactId>
         <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-spring-ai</artifactId>
+    <artifactId>camel-test-main-junit5</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Spring Parent :: Parent</name>
+    <name>Apache Camel :: Karaf :: Components :: Test :: JUnit5</name>
 
     <properties>
         <camel.osgi.export>
@@ -44,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-ai</artifactId>
+            <artifactId>camel-test-main-junit5</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -69,7 +69,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-spring-ai</include>
+                                    <include>org.apache.camel:camel-test-main-junit5</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

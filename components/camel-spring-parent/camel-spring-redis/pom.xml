@@ -23,14 +23,14 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-spring-parent-parent</artifactId>
+        <artifactId>camel-spring-parent</artifactId>
         <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>camel-spring-redis</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Spring Parent :: Spring Redis</name>
+    <name>Apache Camel :: Karaf :: Components :: Spring :: Redis</name>
 
     <properties>
         <camel.osgi.export>

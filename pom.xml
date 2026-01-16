@@ -67,8 +67,6 @@
         <module>shell</module>
         <module>components</module>
         <module>features</module>
-        <!-- <module>archetypes</module> -->
-        <!-- <module>bom</module> -->
         <module>tests</module>
         <module>tooling</module>
     </modules>
