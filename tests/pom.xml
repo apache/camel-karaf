@@ -33,6 +33,8 @@
     <name>Apache Camel :: Karaf :: Tests</name>
 
     <modules>
+        <module>camel-blueprint-main</module>
+        <module>camel-test-blueprint-junit5</module>
         <module>camel-test-scr</module>
         <module>camel-integration-test</module>
         <module>features</module>

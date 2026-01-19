@@ -28,61 +28,14 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-test-junit5</artifactId>
-    <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Test JUnit 5</name>
+    <artifactId>camel-test-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Apache Camel :: Karaf :: Test Parent</name>
+    <description>Camel Test parent</description>
 
-    <properties>
-        <camel.osgi.export>
-            org.apache.camel*;version=${camel-version}
-        </camel.osgi.export>
-        <camel.osgi.import>
-            *
-        </camel.osgi.import>
-    </properties>
+    <modules>
+        <module>camel-test-junit5</module>
+        <module>camel-test-spring-junit5</module>
+    </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-junit5</artifactId>
-            <version>${camel-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>../../src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.apache.camel:camel-test-junit5</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
-
