@@ -31,7 +31,7 @@
     <dependencies>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>influxdb</artifactId>
+            <artifactId>testcontainers-influxdb</artifactId>
             <version>${testcontainers-version}</version>
             <scope>test</scope>
         </dependency>

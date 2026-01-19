@@ -22,12 +22,12 @@ import org.apache.karaf.camel.itests.GenericContainerResource;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kiwiproject.consul.Consul;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 
-import com.orbitz.consul.Consul;
 
 @CamelKarafTestHint(externalResourceProvider = CamelConsulITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
