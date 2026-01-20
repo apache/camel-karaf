@@ -621,7 +621,7 @@
         <osgi-service-event-version>1.4.1</osgi-service-event-version>
         <osgi-service-component-version>1.5.1</osgi-service-component-version>
         <osgi-version>8.0.0</osgi-version>
-        <pax-tiny-bundle-version>3.0.0</pax-tiny-bundle-version>
+        <pax-tiny-bundle-version>4.0.1</pax-tiny-bundle-version>
         <protobuf4-version>4.29.1</protobuf4-version>
         <sal-api-version>5.1.4</sal-api-version>
         <servicemix-specs-version>10</servicemix-specs-version>
