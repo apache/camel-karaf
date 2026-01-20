@@ -88,6 +88,7 @@
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
                 <version>${karaf-version}</version>
+                <extensions>true</extensions>
                 <configuration>
                     <descriptors>
                         <descriptor>file:${project.build.directory}/feature/camel-features.xml</descriptor>

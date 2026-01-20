@@ -75,8 +75,8 @@
         <connection>scm:git:https://github.com/apache/camel-karaf</connection>
         <developerConnection>scm:git:https://github.com/apache/camel-karaf</developerConnection>
         <url>scm:git:https://github.com/apache/camel-karaf</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <issueManagement>
         <system>github</system>
@@ -107,11 +107,12 @@
         <asn1bean-version>1.14.0</asn1bean-version>
         <assertj-version>3.27.6</assertj-version>
         <asterisk-java-version>3.41.0</asterisk-java-version>
+        <async-http-client-version>3.0.6</async-http-client-version>
         <atlassian-fugue-version>6.1.2</atlassian-fugue-version>
         <atmosphere-version>3.0.14</atmosphere-version>
-        <avro-version>1.12.1</avro-version>
-        <avro-ipc-jetty-version>1.12.1</avro-ipc-jetty-version>
-        <avro-ipc-netty-version>1.12.1</avro-ipc-netty-version>
+        <avro-version>1.12.0</avro-version>
+        <avro-ipc-jetty-version>1.12.0</avro-ipc-jetty-version>
+        <avro-ipc-netty-version>1.12.0</avro-ipc-netty-version>
         <awaitility-version>4.3.0</awaitility-version>
         <aws-java-sdk2-version>2.41.2</aws-java-sdk2-version>
         <aws-xray-version>2.20.0</aws-xray-version>
@@ -132,7 +133,7 @@
         <cassandra-driver-version>4.19.2</cassandra-driver-version>
         <jta-api-1-2-version>1.2</jta-api-1-2-version>
         <cglib-version>3.3.0</cglib-version>
-        <checker-framework-version>3.52.1</checker-framework-version>
+        <checker-framework-version>3.53.0</checker-framework-version>
         <chicory-version>1.6.1</chicory-version>
         <chunk-templates-version>3.6.2</chunk-templates-version>
         <citrus-version>4.9.0</citrus-version>
@@ -180,7 +181,7 @@
         <disruptor-version>3.4.4</disruptor-version>
         <dnsjava-version>3.6.3</dnsjava-version>
         <djl-version>0.36.0</djl-version>
-        <docling-java-version>0.4.1</docling-java-version>
+        <docling-java-version>0.4.2</docling-java-version>
         <docker-java-version>3.7.0</docker-java-version>
         <dropbox-version>7.0.0</dropbox-version>
         <eddsa-version>0.3.0</eddsa-version>
@@ -199,7 +200,6 @@
         <fop-version>2.11</fop-version>
         <ftpserver-version>1.2.1</ftpserver-version>
         <freemarker-version>2.3.34</freemarker-version>
-        <fory-version>0.14.1</fory-version>
         <geronimo-annotation-1-0-spec-version>1.1.1</geronimo-annotation-1-0-spec-version>
         <geronimo-annotation-1-2-spec-version>1.0</geronimo-annotation-1-2-spec-version>
         <geronimo-atinject-1-0-spec-version>1.0</geronimo-atinject-1-0-spec-version>
@@ -233,7 +233,7 @@
         <google-cloud-bigquery-version>2.57.1</google-cloud-bigquery-version>
         <google-cloud-core-version>2.62.2</google-cloud-core-version>
         <google-cloud-functions-version>2.72.0</google-cloud-functions-version>
-        <google-cloud-http-client-version>2.0.3</google-cloud-http-client-version>
+        <google-cloud-http-client-version>1.47.1</google-cloud-http-client-version>
         <google-cloud-pubsub-version>1.144.1</google-cloud-pubsub-version>
         <google-cloud-pubsublite-version>1.15.20</google-cloud-pubsublite-version>
         <google-cloud-secretmanager-version>2.81.0</google-cloud-secretmanager-version>
@@ -289,7 +289,8 @@
         <ivy-version>2.5.3</ivy-version>
         <jackson-databind-nullable-version>0.2.8</jackson-databind-nullable-version>
         <jackson-jq-version>1.6.0</jackson-jq-version>
-        <jackson2-version>2.19.4</jackson2-version>
+        <jackson2-version>2.20.1</jackson2-version>
+        <jackson2-annotations-version>2.21</jackson2-annotations-version>
         <jackrabbit-version>2.22.2</jackrabbit-version>
         <jasminb-jsonapi-version>0.15</jasminb-jsonapi-version>
         <jandex-version>3.5.3</jandex-version>
@@ -409,10 +410,13 @@
         <narayana-version>5.13.1.Final</narayana-version>
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>6.0.2</neo4j-version>
-        <netty-version>4.1.130.Final</netty-version>
+        <netty-version>4.1.127.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.9</networknt-json-schema-validator-version>
-        <nimbus-jose-jwt>10.6</nimbus-jose-jwt>
+        <nimbus-jose-jwt-version>10.7</nimbus-jose-jwt-version>
+        <nimbus-lang-tag-version>1.7</nimbus-lang-tag-version>
+        <numbus-oauth2-version>11.31.1</numbus-oauth2-version>
+        <nimbus-content-type-version>2.3</nimbus-content-type-version>
         <nitrite-version>3.4.4</nitrite-version>
         <olingo2-version>2.0.13</olingo2-version>
         <olingo4-version>5.0.0</olingo4-version>
@@ -424,7 +428,8 @@
         <opensearch-java-client-version>3.4.0</opensearch-java-client-version>
         <opensearch-testcontainers-version>2.1.3</opensearch-testcontainers-version>
         <openstack4j-version>3.12</openstack4j-version>
-        <opentelemetry-version>1.57.0</opentelemetry-version>
+        <opentelemetry-version>1.58.0</opentelemetry-version>
+        <opentelemetry-semconv-version>1.37.0</opentelemetry-semconv-version>
         <opentelemetry-log4j2-version>2.22.0-alpha</opentelemetry-log4j2-version>
         <opentelemetry-incubator-version>1.43.0-alpha</opentelemetry-incubator-version>
         <opentelemetry-alpha-version>1.27.0-alpha</opentelemetry-alpha-version>
@@ -446,7 +451,7 @@
         <plexus-xml-version>3.0.1</plexus-xml-version>
         <pooled-jms-version>3.2.1</pooled-jms-version>
         <proto-google-common-protos-version>2.22.0</proto-google-common-protos-version>
-        <protobuf-version>3.25.5</protobuf-version>
+        <protobuf-version>3.25.8</protobuf-version>
         <protonpack-version>1.8</protonpack-version>
         <prowide-version>SRU2025-10.3.3</prowide-version>
         <pubnub-version>12.0.4</pubnub-version>
@@ -556,7 +561,7 @@
         <!-- OSGI version ranges -->
         <camel-osgi-asm-version>[9.5,10)</camel-osgi-asm-version>
         <camel-osgi-cglib-version>[3.3,3.4)</camel-osgi-cglib-version>
-        <camel-osgi-jackson2-version>[2.18,2.19)</camel-osgi-jackson2-version>
+        <camel-osgi-jackson2-version>[2.20,3)</camel-osgi-jackson2-version>
         <camel-osgi-jakarta-annotation2-version>[2,3)</camel-osgi-jakarta-annotation2-version>
         <camel-osgi-jakarta-annotation-version>[3,4)</camel-osgi-jakarta-annotation-version>
         <camel-osgi-jakarta-activation-version>[2.1,3)</camel-osgi-jakarta-activation-version>
@@ -606,10 +611,11 @@
         <jakarta-annotation2-api-version>2.1.1</jakarta-annotation2-api-version>
         <jakarta-el5-api-version>5.0.0</jakarta-el5-api-version>
         <jakarta-servlet5-api-version>5.0.0</jakarta-servlet5-api-version>
-        <jakarta-validation-api-version>3.0.2</jakarta-validation-api-version>
+        <jakarta-validation-api-version>3.1.1</jakarta-validation-api-version>
         <jakarta-ws-rs-api-version>3.1.0</jakarta-ws-rs-api-version>
         <jakarta-xml-bind3-api-version>3.0.1</jakarta-xml-bind3-api-version>
         <jakarta-soap-implementation-version>3.0.4</jakarta-soap-implementation-version>
+        <jspecify-version>1.0.0</jspecify-version>
         <jvnet-mimepull-version>1.10.0</jvnet-mimepull-version>
         <jvnet-staxex-version>2.1.0</jvnet-staxex-version>
         <sun-fastinfoset-version>2.1.1</sun-fastinfoset-version>
@@ -619,7 +625,9 @@
         <jaxb3-osgi-version>3.0.2</jaxb3-osgi-version>
         <jetty11-version>11.0.21</jetty11-version>
         <junit4-version>4.13.2</junit4-version>
-        <karaf-version>4.4.7</karaf-version>
+        <karaf-version>4.4.9</karaf-version>
+        <netty-incubator-quic-version>0.3.0-M3</netty-incubator-quic-version>
+        <netty-incubator-codec-classes-quic>0.0.74.Final</netty-incubator-codec-classes-quic>
         <netty-incubator-transport-classes-io_uring-version>0.0.25.Final</netty-incubator-transport-classes-io_uring-version>
         <objenesis-version>3.4</objenesis-version>
         <osgi-cmpn-version>7.0.0</osgi-cmpn-version>
@@ -788,15 +796,46 @@
 
     <repositories>
         <repository>
-            <id>atlassian-public</id>
-            <url>https://packages.atlassian.com/mvn/maven-external/</url>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
             <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>atlassian-public</id>
+            <url>https://packages.atlassian.com/maven/repository/public</url>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
             </releases>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-ga</id>
+            <name>Red Hat GA Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 

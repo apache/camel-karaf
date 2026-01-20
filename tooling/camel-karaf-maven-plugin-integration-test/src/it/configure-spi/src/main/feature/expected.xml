@@ -20,7 +20,7 @@
 <features name="test-configure-spi" xmlns="http://karaf.apache.org/xmlns/features/v1.6.0">
     <feature name="without-wrappers" version="1.0.0">
         <feature>jackson</feature>
-        <feature version="[4.1,5)">netty</feature>
+        <feature version="[4.2,5)">netty</feature>
         <bundle dependency="true">mvn:com.datastax.oss/native-protocol/1.5.1</bundle>
         <bundle dependency="true">mvn:com.typesafe/config/1.4.1</bundle>
     </feature>
