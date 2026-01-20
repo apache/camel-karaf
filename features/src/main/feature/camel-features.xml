@@ -975,9 +975,10 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:io.dapr/dapr-sdk/${dapr-version}$Bundle-SymbolicName=dapr-sdk&amp;Export-Package=io.dapr.*</bundle>
+        <bundle dependency='true'>wrap:mvn:io.dapr/dapr-sdk-workflows/${dapr-workflow-version}$Bundle-SymbolicName=dapr-sdk-workflows&amp;Export-Package=io.dapr.*</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${reactor-version}</bundle>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
-        <bundle dependency='true'>mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp5-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-dapr/${project.version}</bundle>
     </feature>
     <feature name='camel-datasonnet' version='${project.version}' start-level='50'>
@@ -1308,6 +1309,7 @@
         <feature version='[33,34)'>guava</feature>
         <feature version='[4,5)'>http-client</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:com.google.api-client/google-api-client/${google-api-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*&amp;Export-Package=com.google.api.client.auth*;version=${google-cloud-http-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.apis/google-api-services-bigquery/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${google-auth-library-oauth2-http-version}</bundle>
@@ -1644,7 +1646,7 @@
     <feature name='camel-ibm-secrets-manager' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
-        <bundle dependency="true">wrap:mvn:com.ibm.cloud.secrets-manager/ibm-cloud-secrets-manager-sdk/${ibm-secrets-manager-version}</bundle>
+        <bundle dependency="true">wrap:mvn:com.ibm.cloud/secrets-manager/${ibm-secrets-manager-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ibm-secrets-manager/${project.version}</bundle>
     </feature>
     <feature name='camel-ibm-watson-discovery' version='${project.version}' start-level='50'>
@@ -2027,6 +2029,7 @@
     <feature name='camel-keycloak' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency="true">mvn:com.github.ben-manes.caffeine/caffeine/${caffeine-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-keycloak/${project.version}</bundle>
     </feature>
     <feature name='camel-knative' version='${project.version}' start-level='50'>
@@ -2107,15 +2110,16 @@
     </feature>
     <feature name='camel-langchain4j-agent' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-agent/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent-api/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-tools/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-chat' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependency="true">wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-version}</bundle>
+        <bundle dependency="true">wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-beta-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-chat/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-core' version='${project.version}' start-level='50'>
@@ -2126,7 +2130,7 @@
     <feature name='camel-langchain4j-embeddings' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependency="true">wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-version}</bundle>
+        <bundle dependency="true">wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-beta-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-embeddings/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-embeddingstore' version='${project.version}' start-level='50'>
@@ -2655,6 +2659,7 @@
     </feature>
     <feature name='camel-pqc' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-pqc/${project.version}</bundle>
     </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
@@ -3087,6 +3092,7 @@ Chain 2:
         <bundle>mvn:org.apache.camel.karaf/camel-stringtemplate/${project.version}</bundle>
     </feature>
     <feature name='camel-stripe' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-stripe/${project.version}</bundle>
     </feature>
