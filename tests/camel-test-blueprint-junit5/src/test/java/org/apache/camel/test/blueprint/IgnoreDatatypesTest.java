@@ -29,11 +29,6 @@ public class IgnoreDatatypesTest extends CamelBlueprintTestSupport {
         return "org/apache/camel/test/blueprint/ignoreDatatypes.xml";
     }
 
-    @Override
-    protected String getBundleDirectives() {
-        return "blueprint.aries.xml-validation:=false";
-    }
-
     @Test
     public void testConfigAdmin() throws Exception {
         getMockEndpoint("mock:result").expectedBodiesReceived("Hello World");
