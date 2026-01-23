@@ -1357,7 +1357,7 @@
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-gson/${google-cloud-http-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-jackson2/${google-cloud-http-client-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-apache-v2/${google-cloud-http-client-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.oauth-client/google-oauth-client-java6/${google-oauth-client-version}$overwrite=merge&amp;Import-Package=com.google.api.client.json*;version=${google-api-client-version},*</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.oauth-client/google-oauth-client-java6/${google-oauth-client-version}$overwrite=merge&amp;Import-Package=com.google.api.client.json*;version=${google-cloud-http-client-version},*</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.oauth-client/google-oauth-client/${google-oauth-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.oauth-client/google-oauth-client-jetty/${google-oauth-client-version}$overwrite=merge&amp;Import-Package=com.sun.net.httpserver;resolution:=optional,*</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.apis/google-api-services-drive/${google-api-services-drive-version}</bundle>
@@ -1376,7 +1376,7 @@
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-functions/${google-cloud-functions-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-google-functions/${project.version}$overwrite=merge&amp;Import-Package=com.google.api.client.util*;version=${google-cloud-http-client-version,*</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-google-functions/${project.version}</bundle>
     </feature>
     <feature name='camel-google-mail' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>

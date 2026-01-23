@@ -38,6 +38,7 @@
         </camel.osgi.export>
         <camel.osgi.import>
             com.google.common*;version="[33,34)",
+            com.google.api.client.util*;version=${google-cloud-http-client-version},
             *
         </camel.osgi.import>
     </properties>
