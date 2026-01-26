@@ -100,9 +100,9 @@
     </feature>
 
     <feature name="bouncycastle" version="${bouncycastle-lts-version}">
-        <bundle dependency='true'>mvn:org.bouncycastle/bcpg-lts18on/${bouncycastle-lts-version}</bundle>
-        <bundle dependency='true'>mvn:org.bouncycastle/bcprov-lts18on/${bouncycastle-lts-version}</bundle>
-        <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-lts18on/${bouncycastle-lts-version}</bundle>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcpg-lts8on/${bouncycastle-lts-version}</bundle>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcprov-lts8on/${bouncycastle-lts-version}</bundle>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcpkix-lts8on/${bouncycastle-lts-version}</bundle>
     </feature>
 
     <feature name="jackson" version="${jackson2-version}">
@@ -1370,7 +1370,7 @@
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}$overwrite=merge&amp;Import-Package=com.google.common*;version="[33,34)",*</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
@@ -1425,8 +1425,8 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax-grpc/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax-grpc/${google-api-gax-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-pubsub-v1/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${grpc-google-auth-library-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
@@ -1442,7 +1442,7 @@
         <feature version="[33,34)">guava</feature>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-pubsub-v1/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${grpc-google-auth-library-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
@@ -1456,7 +1456,7 @@
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-pubsub/${auto-detect-version}</bundle>
@@ -1495,8 +1495,8 @@
         <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/gax-httpjson/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax-httpjson/${google-api-gax-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-core/${auto-detect-version}</bundle>
@@ -1513,11 +1513,39 @@
     <feature name='camel-google-vertexai' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version='[4,5)'>http-client</feature>
+        <bundle dependency='true'>mvn:org.threeten/threetenbp/${auto-detect-version}</bundle>
+        <bundle dependency="true">mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.google.genai/google-genai/${auto-detect-version}</bundle>
-<!--        <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-core/${auto-detect-version}</bundle>-->
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.api-client/google-api-client/${google-api-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-api/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opencensus/opencensus-contrib-http-util/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-api/${grpc-version}$${spi-consumer}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-core/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-alts/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-auth/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-stub/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-grpclb/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-context/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-protobuf/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-inprocess/${grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-netty-shaded/${grpc-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-aiplatform/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client/${google-cloud-http-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.http-client/google-http-client-gson/${google-cloud-http-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.j2objc/j2objc-annotations/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auto.value/auto-value/${google-auto-value-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.auto.value/auto-value-annotations/${google-auto-value-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/api-common/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax/${google-api-gax-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax-grpc/${google-api-gax-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api/gax-httpjson/${google-api-gax-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/grpc-google-iam-v1/${google-api-grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-iam-v1/${google-api-grpc-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-common-protos/${google-common-protos-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-vertexai-v1/${google-cloud-vertextai-v1-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-credentials/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-vertexai/${project.version}</bundle>
@@ -1664,6 +1692,7 @@
     <feature name='camel-ibm-secrets-manager' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
         <bundle dependency="true">wrap:mvn:com.ibm.cloud/sdk-core/${ibm-cloud-sdk-version}</bundle>
         <bundle dependency="true">wrap:mvn:com.ibm.cloud/secrets-manager/${ibm-secrets-manager-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ibm-secrets-manager/${project.version}</bundle>
@@ -1748,14 +1777,15 @@
     <feature name='camel-infinispan' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-infinispan-common</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-component-annotations/${infinispan-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-client-hotrod/${infinispan-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-infinispan/${project.version}</bundle>
     </feature>
     <feature name='camel-infinispan-common' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-component-annotations/${infinispan-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-commons/${infinispan-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-query/${infinispan-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-api/${infinispan-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-infinispan-common/${project.version}</bundle>
     </feature>
     <feature name='camel-infinispan-embedded' version='${project.version}' start-level='50'>
@@ -2061,10 +2091,10 @@
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='[5,6)'>http-client</feature>
         <bundle dependency="true">mvn:com.github.ben-manes.caffeine/caffeine/${caffeine-version}</bundle>
-        <bundle dependency="true">mvn:org.keycloak/keycloak-core/${keycloak-client-version}</bundle>
-        <bundle dependency="true">mvn:org.keycloak/keycloak-common/${keycloak-client-version}</bundle>
-        <bundle dependency="true">mvn:org.keycloak/keycloak-admin-client/${keycloak-client-version}</bundle>
-        <bundle dependency="true">mvn:org.keycloak/keycloak-authz-client/${keycloak-client-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.keycloak/keycloak-core/${keycloak-client-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.keycloak/keycloak-common/${keycloak-client-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.keycloak/keycloak-admin-client/${keycloak-client-version}</bundle>
+        <bundle dependency="true">wrap:mvn:org.keycloak/keycloak-authz-client/${keycloak-client-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-keycloak/${project.version}</bundle>
     </feature>
     <feature name='camel-knative' version='${project.version}' start-level='50'>
@@ -2143,15 +2173,16 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kudu/kudu-client/${kudu-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kudu/${project.version}</bundle>
     </feature>
-    <feature name='camel-langchain4j-api' version='${project.version}' start-level='50'>
+    <feature name='camel-langchain4j-agent-api' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-version-range}'>camel-langchain4j-tools</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-mcp/${langchain4j-beta-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent-api/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-agent' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-version-range}'>camel-langchain4j-api</feature>
-        <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent-api/${project.version}</bundle>
+        <feature version='${camel-osgi-version-range}'>camel-langchain4j-agent-api</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-chat' version='${project.version}' start-level='50'>
@@ -2215,12 +2246,12 @@
         <bundle dependency='true'>mvn:org.apache.directory.api/api-ldap-model/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.directory.api/api-ldap-schema-data/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.directory.api/api-util/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.directory.server/apacheds-core-api/${apacheds-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-collections4/${commons-collections4-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.directory.server/apacheds-core-api/${apacheds-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ldif/${project.version}</bundle>
     </feature>
     <feature name='camel-leveldb' version='${project.version}' start-level='50'>
@@ -2301,8 +2332,10 @@
     </feature>
     <feature name='camel-micrometer-observability' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version="${project.version}">camel-opentelemetry</feature>
-        <bundle>wrap:mvn:org.apache.camel/camel-opentelemetry/${camel-version}$Export-Package=org.apache.camel*;version=${camel-version}</bundle>
+        <feature version="${camel-osgi-version-range}">camel-opentelemetry</feature>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-tracing/${micrometer-tracing-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-tracing-test/${micrometer-tracing-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-micrometer-observability/${project.version}</bundle>
     </feature>
     <feature name='camel-micrometer-prometheus' version='${project.version}' start-level='50'>
@@ -2365,6 +2398,8 @@
     <feature name='camel-milo' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[33,34)'>guava</feature>
+        <bundle dependency='true'>wrap:mvn:com.digitalpetri.fsm/strict-machine/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.digitalpetri.netty/netty-channel-fsm/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-stack-core/${milo-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-client/${milo-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-server/${milo-version}</bundle>
@@ -2388,7 +2423,9 @@
         <bundle dependency='true'>wrap:mvn:io.minio/minio/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio-jvm/${squareup-okio3-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-jvm/${squareup-okhttp5-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jetbrains.kotlin/kotlin-stdlib/${kotlin-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-minio/${project.version}</bundle>
     </feature>
     <feature name='camel-mllp' version='${project.version}' start-level='50'>
@@ -2451,9 +2488,15 @@
     <feature name='camel-neo4j' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version="[${bouncycastle-version},2)">bouncycastle</feature>
         <feature version='[4.1,5)'>netty</feature>
+        <bundle dependency="true">mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
         <bundle dependency='true'>mvn:org.neo4j.driver/neo4j-java-driver/${neo4j-version}</bundle>
+        <bundle dependency='true'>mvn:org.neo4j.bolt/neo4j-bolt-connection/${neo4j-bolt-version}</bundle>
+        <bundle dependency='true'>mvn:org.neo4j.bolt/neo4j-bolt-connection-netty/${neo4j-bolt-version}</bundle>
+        <bundle dependency='true'>mvn:org.neo4j.bolt/neo4j-bolt-connection-pool/${neo4j-bolt-version}</bundle>
+        <bundle dependency='true'>mvn:org.neo4j.bolt/neo4j-bolt-connection-routed/${neo4j-bolt-version}</bundle>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${reactor-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
@@ -2473,6 +2516,7 @@
     </feature>
     <feature name='camel-oauth' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-platform-http-main</feature>
         <feature version="[5,6)">http-client</feature>
         <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
         <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt-version}</bundle>
@@ -2539,12 +2583,6 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-once/${project.version}</bundle>
     </feature>
-    <feature name='camel-openai' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
-        <bundle dependency="true">wrap:mvn:com.openai/openai-java/${openai-java-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-openai/${project.version}</bundle>
-    </feature>
     <feature name='camel-openapi-java' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
@@ -2601,10 +2639,11 @@
     <feature name='camel-opentelemetry' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-version-range}'>camel-tracing</feature>
+        <bundle dependency='true'>wrap:mvn:io.grpc/grpc-netty-shaded/${grpc-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-alpha-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry/${project.version}</bundle>
     </feature>
     <feature name='camel-opentelemetry-metrics' version='${project.version}' start-level='50'>
@@ -2728,6 +2767,8 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version="[${bouncycastle-version},2)">bouncycastle</feature>
+        <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/secretsmanager/${aws-java-sdk2-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.vault/spring-vault-core/${spring-vault-core-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-pqc/${project.version}</bundle>
     </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
