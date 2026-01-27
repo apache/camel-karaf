@@ -92,7 +92,7 @@ public class DirectVmBlockingProducer extends DefaultAsyncProducer {
                 .build();
 
         StopWatch watch = new StopWatch();
-        DirectVmConsumer answer = task.run(endpoint::getConsumer, a -> a != null).orElse(null);
+        DirectVmConsumer answer = task.run(endpoint.getCamelContext(), endpoint::getConsumer, a -> a != null).orElse(null);
         LOG.debug("Waited {} for consumer to be ready", watch.taken());
 
         return answer;

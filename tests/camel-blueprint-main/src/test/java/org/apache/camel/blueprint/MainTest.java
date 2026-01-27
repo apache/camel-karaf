@@ -19,8 +19,8 @@ package org.apache.camel.blueprint;
 import org.apache.aries.util.io.IOUtils;
 import org.apache.camel.ProducerTemplate;
 import org.junit.jupiter.api.Test;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.pax.tinybundles.core.TinyBundles;
+import org.ops4j.pax.tinybundles.TinyBundle;
+import org.ops4j.pax.tinybundles.TinyBundles;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,11 +60,11 @@ class MainTest {
     @Test
     void testMainWithoutIncludingTestBundle() throws Exception {
         TinyBundle bundle = TinyBundles.bundle();
-        bundle.add("OSGI-INF/blueprint/camel.xml", getClass().getResourceAsStream("main-loadfile.xml"));
-        bundle.set("Manifest-Version", "2")
-                .set("Bundle-ManifestVersion", "2")
-                .set("Bundle-SymbolicName", SYMBOLIC_NAME)
-                .set("Bundle-Version", "1.0.0");
+        bundle.addResource("OSGI-INF/blueprint/camel.xml", getClass().getResourceAsStream("main-loadfile.xml"));
+        bundle.setHeader("Manifest-Version", "2")
+                .setHeader("Bundle-ManifestVersion", "2")
+                .setHeader("Bundle-SymbolicName", SYMBOLIC_NAME)
+                .setHeader("Bundle-Version", "1.0.0");
         File tb = Files.createTempFile(new File("target").toPath(), SYMBOLIC_NAME + "-", ".jar").toFile();
         FileOutputStream out = new FileOutputStream(tb);
         IOUtils.copy(bundle.build(), out);

@@ -63,7 +63,7 @@ public abstract class AbstractOsgiDefaultCamelContext extends DefaultCamelContex
     @Override
     protected PackageScanClassResolver createPackageScanClassResolver() {
         LOG.debug("Using OsgiPackageScanClassResolver");
-        return new OsgiPackageScanClassResolver(getBundleContext());
+        return (PackageScanClassResolver) new OsgiPackageScanClassResolver(getBundleContext());
     }
 
     @Override

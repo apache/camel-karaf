@@ -56,8 +56,8 @@ import org.apache.felix.connect.launch.BundleDescriptor;
 import org.apache.felix.connect.launch.ClasspathScanner;
 import org.apache.felix.connect.launch.PojoServiceRegistry;
 import org.apache.felix.connect.launch.PojoServiceRegistryFactory;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
-import org.ops4j.pax.tinybundles.core.TinyBundles;
+import org.ops4j.pax.tinybundles.TinyBundle;
+import org.ops4j.pax.tinybundles.TinyBundles;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -378,16 +378,16 @@ public final class CamelBlueprintHelper {
             configAdminInit.append(configAdminPidFile.getPersistenceId()).append("=");
             configAdminInit.append(new File(configAdminPidFile.getFilename()).toURI().toString());
         }
-        bundle.add(TestBundleActivator.class);
-        bundle.add(Util.class);
-        bundle.set("Manifest-Version", "2")
-                .set("Bundle-ManifestVersion", "2")
-                .set("Bundle-SymbolicName", "ConfigAdminInit")
-                .set("Bundle-Version", BUNDLE_VERSION)
-                .set("Bundle-Activator", TestBundleActivator.class.getName());
+        bundle.addClass(TestBundleActivator.class);
+        bundle.addClass(Util.class);
+        bundle.setHeader("Manifest-Version", "2")
+                .setHeader("Bundle-ManifestVersion", "2")
+                .setHeader("Bundle-SymbolicName", "ConfigAdminInit")
+                .setHeader("Bundle-Version", BUNDLE_VERSION)
+                .setHeader("Bundle-Activator", TestBundleActivator.class.getName());
 
         if (configAdminInit != null) {
-            bundle.set("X-Camel-Blueprint-ConfigAdmin-Init", configAdminInit.toString());
+            bundle.setHeader("X-Camel-Blueprint-ConfigAdmin-Init", configAdminInit.toString());
         }
 
         return bundle;
@@ -397,12 +397,12 @@ public final class CamelBlueprintHelper {
         TinyBundle bundle = TinyBundles.bundle();
         for (URL url : getBlueprintDescriptors(descriptors)) {
             LOG.info("Using Blueprint XML file: " + url.getFile());
-            bundle.add("OSGI-INF/blueprint/blueprint-" + url.getFile().replace("/", "-"), url);
+            bundle.addResource("OSGI-INF/blueprint/blueprint-" + url.getFile().replace("/", "-"), url);
         }
-        bundle.set("Manifest-Version", "2")
-                .set("Bundle-ManifestVersion", "2")
-                .set("Bundle-SymbolicName", name)
-                .set("Bundle-Version", version);
+        bundle.setHeader("Manifest-Version", "2")
+                .setHeader("Bundle-ManifestVersion", "2")
+                .setHeader("Bundle-SymbolicName", name)
+                .setHeader("Bundle-Version", version);
 
         return bundle;
     }

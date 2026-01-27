@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-infinispan-parent</artifactId>
-        <version>4.10.8-SNAPSHOT</version>
+        <version>4.14.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -38,6 +38,7 @@
         </camel.osgi.export>
         <camel.osgi.import>
             org.infinispan.protostream*;resolution:=optional,
+            dev.langchain4j*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>

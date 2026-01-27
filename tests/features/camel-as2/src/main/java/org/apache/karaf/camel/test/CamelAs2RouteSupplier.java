@@ -72,6 +72,7 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
             + "UNT+23+00000000000117'\n"
             + "UNZ+1+00000000000778'\n";
     private static final String EDI_MESSAGE_CONTENT_TRANSFER_ENCODING = "7bit";
+    private static final String EDI_MESSAGE_CONTENT_TYPE = AS2MediaType.APPLICATION_EDIFACT;
 
     @Override
     public void configure(CamelContext context) {
@@ -104,8 +105,7 @@ public class CamelAs2RouteSupplier extends AbstractCamelSingleFeatureResultMockB
                 .setHeader("CamelAs2.as2From", constant(AS2_NAME))
                 .setHeader("CamelAs2.as2To", constant(AS2_NAME))
                 .setHeader("CamelAs2.as2MessageStructure", constant(AS2MessageStructure.PLAIN))
-                .setHeader("CamelAs2.ediMessageContentType",
-                        constant(ContentType.create(AS2MediaType.APPLICATION_EDIFACT, StandardCharsets.US_ASCII.name())))
+                .setHeader("CamelAs2.ediMessageContentType", constant(EDI_MESSAGE_CONTENT_TYPE))
                 .setHeader("CamelAs2.ediMessageTransferEncoding", constant(EDI_MESSAGE_CONTENT_TRANSFER_ENCODING))
                 .setHeader("CamelAs2.dispositionNotificationTo", constant(FROM))
                 .setHeader("CamelAs2.attachedFileName", constant(""))
