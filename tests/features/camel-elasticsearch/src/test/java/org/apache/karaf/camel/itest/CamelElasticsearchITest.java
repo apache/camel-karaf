@@ -53,7 +53,7 @@ public class CamelElasticsearchITest extends AbstractCamelSingleFeatureResultMoc
 
         public static GenericContainerResource<ElasticsearchContainer> createElasticsearchContainer() {
             final ElasticsearchContainer elasticsearchContainer =
-                    new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:8.14.3").withPassword(PASSWORD);
+                    new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:9.1.2").withPassword(PASSWORD);
             // Increase the timeout from 60 seconds to 90 seconds to ensure that it will be long enough
             // on the build pipeline
             elasticsearchContainer.setWaitStrategy(
