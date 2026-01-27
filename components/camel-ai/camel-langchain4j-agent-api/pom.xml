@@ -23,22 +23,20 @@
 
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
-        <artifactId>camel-karaf-components</artifactId>
+        <artifactId>camel-ai-parent</artifactId>
         <version>4.17.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>camel-pqc</artifactId>
+    <artifactId>camel-langchain4j-agent-api</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: PQC</name>
+    <name>Apache Camel :: Karaf :: Components :: Ai :: Agent :: Api</name>
 
     <properties>
         <camel.osgi.export>
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            software.amazon.awssdk*;resolution:=optional,
-            org.springframework.vault*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
@@ -46,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-pqc</artifactId>
+            <artifactId>camel-langchain4j-agent-api</artifactId>
             <version>${camel-version}</version>
             <exclusions>
                 <exclusion>
@@ -58,6 +56,12 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>../../../src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,7 +75,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.apache.camel:camel-pqc</include>
+                                    <include>org.apache.camel:camel-langchain4j-agent-api</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
