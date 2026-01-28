@@ -37,6 +37,7 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
+            io.netty.*;version="[4.1,5)",
             *
         </camel.osgi.import>
     </properties>

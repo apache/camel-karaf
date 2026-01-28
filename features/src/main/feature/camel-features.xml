@@ -2326,6 +2326,7 @@
     <feature name='camel-micrometer' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-commons/${micrometer-version}</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-registry-jmx/${micrometer-version}</bundle>
@@ -2336,10 +2337,9 @@
     <feature name='camel-micrometer-observability' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-telemetry/${project.version}</bundle>
-
-<!--        <bundle>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$Import-Package=com.sun.management;resolution:=optional,*</bundle>-->
-
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}</bundle>
+        <bundle dependency='true'>mvn:com.github.ben-manes.caffeine/caffeine/${caffeine-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.dropwizard.metrics/metrics-core/${metrics-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=ch.qos.logback.*;resolution:=optional,com.sun.management;resolution:=optional,*</bundle>
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-tracing/${micrometer-tracing-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-tracing-test/${micrometer-tracing-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-micrometer-observability/${project.version}</bundle>
@@ -2349,15 +2349,16 @@
         <feature version='${camel-osgi-version-range}'>camel-platform-http-main</feature>
         <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-exposition-formats/${auto-detect-version}$overwrite=full&amp;Export-Package=*&amp;Import-Package=*</bundle>
         <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-exposition-textformats/${auto-detect-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-core/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-model/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-core/${prometheus-version}$overwrite=merge&amp;Import-Package=javax.annotation;resolution:=optional,*</bundle>
+        <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-model/${prometheus-version}$overwrite=merge&amp;Import-Package=javax.annotation;resolution:=optional,*</bundle>
         <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-tracer-common/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-tracer-initializer/${auto-detect-version:alias=io.prometheus/prometheus-metrics-tracer-common}</bundle>
         <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-tracer-otel/${auto-detect-version:alias=io.prometheus/prometheus-metrics-tracer-common}</bundle>
         <bundle dependency='true'>mvn:io.prometheus/prometheus-metrics-tracer-otel-agent/${auto-detect-version:alias=io.prometheus/prometheus-metrics-tracer-common}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-config/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.prometheus/prometheus-metrics-config/1.4.3$overwrite=merge&amp;Import-Package=javax.annotation;resolution:=optional,*</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-registry-prometheus/${micrometer-version}</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf4-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.smallrye/jandex/${jandex-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-micrometer-prometheus/${project.version}</bundle>
     </feature>
@@ -2409,7 +2410,7 @@
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.digitalpetri.fsm/strict-machine/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.digitalpetri.netty/netty-channel-fsm/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-stack-core/${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-stack-core/${milo-version}$overwrite=merge&amp;Import-Package=sun.security.provider.certpath;resolution:=optional,com.google.appengine.api*;resolution:=optional,*</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-core/${milo-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-client/${milo-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-server/${milo-version}</bundle>
@@ -2549,8 +2550,9 @@
     </feature>
     <feature name='camel-observation' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-tracing</feature>
-        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-commons/${micrometer-version}</bundle>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-tracing/${micrometer-tracing-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-observation/${project.version}</bundle>
     </feature>
@@ -3157,15 +3159,17 @@ Chain 2:
         <feature version='${camel-osgi-version-range}'>camel-spring</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:org.openapitools/jackson-databind-nullable/${jackson-databind-nullable-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ai-chat/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ai-embeddings/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ai-vector-store/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ai-tools/${project.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.camel.karaf/camel-spring-ai-chat/${project.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.camel.karaf/camel-spring-ai-embeddings/${project.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.camel.karaf/camel-spring-ai-vector-store/${project.version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.camel.karaf/camel-spring-ai-tools/${project.version}</bundle>
     </feature>
     <feature name='camel-spring-cloud-config' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-spring</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework/spring-web/${spring-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.springframework.boot/spring-boot/${spring-boot-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.springframework.boot/spring-boot-autoconfigure/${spring-boot-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.cloud/spring-cloud-config-client/${spring-cloud-config-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-cloud-config/${project.version}</bundle>
     </feature>
     <feature name='camel-sql' version='${project.version}' start-level='50'>
@@ -3234,7 +3238,7 @@ Chain 2:
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.google.code.gson/gson/${gson-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.stripe/stripe-java/${stripe-java-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.stripe/stripe-java/${stripe-java-version}$overwrite=merge&amp;Import-Package=com.sun.net.httpserver;resolution:=optional,*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-stripe/${project.version}</bundle>
     </feature>
     <feature name='camel-syslog' version='${project.version}' start-level='50'>
@@ -3278,6 +3282,7 @@ Chain 2:
     <feature name='camel-telemetry-dev' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-version-range}'>camel-telemetry</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-telemetry-dev/${project.version}</bundle>
     </feature>
     <feature name='camel-tensorflow-serving' version='${project.version}' start-level='50'>
@@ -3291,11 +3296,12 @@ Chain 2:
     </feature>
     <feature name='camel-test' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-commons/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-engine/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-launcher/${auto-detect-version:alias=org.junit.platform/junit-platform-engine}</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-commons/${junit-platform-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-engine/${junit-platform-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-launcher/${junit-platform-version}</bundle>
         <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-params/${junit-jupiter-version}</bundle>
         <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-engine/${junit-jupiter-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-api/${junit-jupiter-version}</bundle>
         <bundle dependency='true'>mvn:org.mockito/mockito-core/${mockito-version}</bundle>
         <bundle dependency='true'>mvn:net.bytebuddy/byte-buddy/${bytebuddy-version}</bundle>
         <bundle dependency='true'>mvn:net.bytebuddy/byte-buddy-agent/${bytebuddy-version}</bundle>
@@ -3305,12 +3311,15 @@ Chain 2:
         <bundle>mvn:org.apache.camel.karaf/camel-test-junit5/${project.version}</bundle>
     </feature>
     <feature name='camel-test-junit6' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-spring</feature>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-commons/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-engine/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.platform/junit-platform-launcher/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-params/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-engine/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.junit.jupiter/junit-jupiter-api/${junit-6-version}</bundle>
+        <bundle dependency='true'>mvn:org.mockito/mockito-core/${mockito-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-test-junit6/${project.version}</bundle>
-    </feature>
-    <feature name='camel-test-main-junit6' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle>mvn:org.apache.camel.karaf/camel-test-main-junit6/${project.version}</bundle>
     </feature>
     <feature name='camel-test-spring' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-spring</feature>
@@ -3319,7 +3328,7 @@ Chain 2:
         <bundle>mvn:org.apache.camel.karaf/camel-test-spring/${project.version}</bundle>
     </feature>
     <feature name='camel-test-spring-junit6' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-spring</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-test-spring-junit6/${project.version}</bundle>
     </feature>
     <feature name='camel-threadpoolfactory-vertx' version='${project.version}' start-level='50'>
@@ -3341,14 +3350,15 @@ Chain 2:
     </feature>
     <feature name='camel-tika' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.tika/tika-parser-html-commons/${tika-version}</bundle>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xerces/${xerces-version}_1</bundle>
+        <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-tika/${project.version}</bundle>
     </feature>
     <feature name='camel-torchserve' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <feature version="[3.1,4)">jakarta-validation</feature>
         <feature version='[5,6)'>http-client</feature>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.openapitools/jackson-databind-nullable/${jackson-databind-nullable-version}</bundle>
@@ -3441,6 +3451,9 @@ Chain 2:
     </feature>
     <feature name='camel-weaviate' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency="true">wrap:mvn:io.weaviate/client/${weaviate-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-weaviate/${project.version}</bundle>
     </feature>
     <feature name='camel-web3j' version='${project.version}' start-level='50'>
@@ -3577,4 +3590,5 @@ Chain 2:
         <bundle dependency='true'>mvn:org.apache.curator/curator-recipes/${curator-version}/jar/osgi</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-zookeeper-master/${project.version}</bundle>
     </feature>
+
 </features>
