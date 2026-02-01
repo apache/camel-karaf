@@ -1140,6 +1140,7 @@
         <bundle dependency='true'>mvn:jakarta.json/jakarta.json-api/${jakarta-json-api-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/1.37.0</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents/httpasyncclient/${httpasyncclient-version}</bundle>
         <bundle dependency='true'>mvn:jakarta.json/jakarta.json-api/${jakarta-json-api-version}</bundle>
         <bundle dependency='true'>mvn:jakarta.json.bind/jakarta.json.bind-api/${jakarta-json-bind-api-version}</bundle>
