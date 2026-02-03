@@ -72,6 +72,7 @@
                 <version>${project.version}</version>
                 <executions>
                     <execution>
+                        <id>Camel Features</id>
                         <goals>
                             <goal>auto-detect-version</goal>
                             <goal>ensure-wrap-bundle-version</goal>
@@ -81,6 +82,17 @@
                         <configuration>
                             <addWrapPrefix>false</addWrapPrefix>
                             <featuresFilePath>file:${project.build.directory}/feature/camel-features.xml</featuresFilePath>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Spring Features</id>
+                        <goals>
+                            <goal>ensure-wrap-bundle-version</goal>
+                            <goal>ensure-wrap-bundle-name</goal>
+                        </goals>
+                        <configuration>
+                            <addWrapPrefix>false</addWrapPrefix>
+                            <featuresFilePath>file:${project.build.directory}/feature/spring-features.xml</featuresFilePath>
                         </configuration>
                     </execution>
                 </executions>
