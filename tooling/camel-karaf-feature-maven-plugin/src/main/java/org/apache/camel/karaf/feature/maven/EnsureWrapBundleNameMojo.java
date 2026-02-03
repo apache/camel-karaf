@@ -16,14 +16,17 @@
  */
 package org.apache.camel.karaf.feature.maven;
 
+import org.apache.karaf.features.internal.model.Bundle;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.apache.karaf.features.internal.model.Bundle;
-import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.apache.maven.plugins.annotations.Mojo;
+import static org.osgi.framework.Constants.BUNDLE_NAME;
+import static org.osgi.framework.Constants.BUNDLE_SYMBOLICNAME;
 
 @Mojo(name = "ensure-wrap-bundle-name", defaultPhase = LifecyclePhase.PROCESS_RESOURCES)
 public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
@@ -39,9 +42,6 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
             "Provide-Capability",
             "Require-Bundle",
             "Require-Capability");
-    
-    private static final String BUNDLE_NAME = "Bundle-Name";
-    private static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName";
 
     private static String toPascalCase(String kebabCase) {
         // Handle null or empty string
@@ -86,13 +86,18 @@ public class EnsureWrapBundleNameMojo extends AbstractWrapBundleMojo {
     String processLocation(WrappedBundle wrappedBundle) throws Exception {
         String location = wrappedBundle.getBundle().getLocation();
         String instructions = wrappedBundle.getInstructions();
+        String artifactId = toPascalCase(wrappedBundle.getArtifactId());
         boolean dollarNeeded = instructions == null || !instructions.contains("$");
 
-        String bundleNameHeader = "%s=Wrap%%20of%%20%s".formatted(BUNDLE_NAME, toPascalCase(wrappedBundle.getArtifactId()));
-        String bundleSymbolicNameHeader = "%s=wrap_%s.%s".formatted(BUNDLE_SYMBOLIC_NAME, wrappedBundle.getGroupId(), wrappedBundle.getArtifactId());
+        String bundleNameHeader = addWrapPrefix ?
+                "%s=Wrap%%20of%%20%s".formatted(BUNDLE_NAME, artifactId) :
+                "%s=%s".formatted(BUNDLE_NAME, artifactId);
+        String bundleSymbolicNameHeader = addWrapPrefix ?
+                "%s=wrap_%s.%s".formatted(BUNDLE_SYMBOLICNAME, wrappedBundle.getGroupId(), wrappedBundle.getArtifactId()) :
+                "%s=%s.%s".formatted(BUNDLE_SYMBOLICNAME, wrappedBundle.getGroupId(), wrappedBundle.getArtifactId());
         Map<String, String> headers = new TreeMap<>(); //sorted by key
         headers.put(BUNDLE_NAME, bundleNameHeader);
-        headers.put(BUNDLE_SYMBOLIC_NAME, bundleSymbolicNameHeader);
+        headers.put(BUNDLE_SYMBOLICNAME, bundleSymbolicNameHeader);
 
         return insertHeaderIfNeeded(dollarNeeded, location, headers);
     }

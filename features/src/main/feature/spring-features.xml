@@ -54,4 +54,5 @@
         <feature version='${camel-osgi-spring-version}'>spring</feature>
         <bundle start-level="30">wrap:mvn:org.springframework/spring-messaging/${spring-version}$Export-Package=org.springframework.*;version=${spring-version}</bundle>
     </feature>
+
 </features>

@@ -62,6 +62,12 @@ public abstract class AbstractFeaturesMojo extends AbstractMojo {
     @Parameter
     private String featuresFileResultPath;
 
+    /**
+     * If true, the "Wrap" prefix will be additionally added to the Bundle-Name and Bundle-Symbolic-Name.
+     */
+    @Parameter(defaultValue = "true")
+    boolean addWrapPrefix = true;
+
     public String getFeaturesFilePath() {
         return featuresFilePath;
     }

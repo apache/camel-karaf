@@ -25,6 +25,8 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.osgi.framework.Version;
 
+import static org.osgi.framework.Constants.BUNDLE_VERSION;
+
 @Mojo(name = "ensure-wrap-bundle-version", defaultPhase = LifecyclePhase.PROCESS_RESOURCES)
 public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
 
@@ -38,8 +40,6 @@ public class EnsureWrapBundleVersionMojo extends AbstractWrapBundleMojo {
             "Provide-Capability",
             "Require-Bundle",
             "Require-Capability");
-    
-    static final String BUNDLE_VERSION = "Bundle-Version";
 
     @Override
     protected boolean processWrappedBundle(WrappedBundle wrappedBundle) {

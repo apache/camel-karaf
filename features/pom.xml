@@ -79,6 +79,7 @@
                             <goal>configure-wrap-spi-provider</goal>
                         </goals>
                         <configuration>
+                            <addWrapPrefix>false</addWrapPrefix>
                             <featuresFilePath>file:${project.build.directory}/feature/camel-features.xml</featuresFilePath>
                         </configuration>
                     </execution>

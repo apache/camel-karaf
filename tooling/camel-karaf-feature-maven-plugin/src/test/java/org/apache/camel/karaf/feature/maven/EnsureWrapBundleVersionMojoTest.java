@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.osgi.framework.Constants.BUNDLE_VERSION;
 
 public class EnsureWrapBundleVersionMojoTest {
 
@@ -108,11 +109,11 @@ public class EnsureWrapBundleVersionMojoTest {
     @Test
     void getBundleVersionHeaderEndIndexTest() {
         String location = "wrap:mvn:org.apache.qpid/qpid-jms-client/${qpid-jms-client-version}$Bundle-Version=${qpid-jms-client-version}&Import-Package=net.i2p.crypto.eddsa;resolution:=optional";
-        int versionHeaderStartIndex = location.indexOf(EnsureWrapBundleVersionMojo.BUNDLE_VERSION);
+        int versionHeaderStartIndex = location.indexOf(BUNDLE_VERSION);
         assertEquals(108, ensureVersionMojo.getBundleVersionHeaderEndIndex(location, versionHeaderStartIndex));
 
         location = "wrap:mvn:org.apache.qpid/qpid-jms-client/${qpid-jms-client-version}$Bundle-Version=${qpid-jms-client-version}";
-        versionHeaderStartIndex = location.indexOf(EnsureWrapBundleVersionMojo.BUNDLE_VERSION);
+        versionHeaderStartIndex = location.indexOf(BUNDLE_VERSION);
         assertEquals(108, ensureVersionMojo.getBundleVersionHeaderEndIndex(location, versionHeaderStartIndex));
     }
 }
