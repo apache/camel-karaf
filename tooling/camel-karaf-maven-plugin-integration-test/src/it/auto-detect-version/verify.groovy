@@ -19,32 +19,32 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 
-Path actual = Paths.get(basedir.getAbsolutePath(), "target/feature/result.xml");
+Path actual = Paths.get(basedir.getAbsolutePath(), "target", "feature", "result.xml")
+Path expected = Paths.get(basedir.getAbsolutePath(), "src", "main", "feature", "expected.xml")
+Path log = Paths.get(basedir.getAbsolutePath(), "build.log")
 
 if (!Files.exists(actual)) {
-    throw new FileNotFoundException("Could not find generated file: $actual");
+    throw new FileNotFoundException("Could not find generated file: $actual")
+}
+if (!Files.exists(expected)) {
+    throw new FileNotFoundException("Could not find expected file: $expected")
+}
+if (!Files.exists(log)) {
+    throw new FileNotFoundException("Could not find the log file: $log")
 }
 
-Path expected = Paths.get(basedir.getAbsolutePath(), "src/main/feature/expected.xml");
-
-if (!Files.exists(actual)) {
-    throw new FileNotFoundException("Could not find expected file: $expected");
-}
-
-String actualContent = Files.readString(actual);
-String expectedContent = Files.readString(expected);
+String actualContent = Files.readString(actual).replaceAll("\r\n", "\n").trim()
+String expectedContent = Files.readString(expected).replaceAll("\r\n", "\n").trim()
 
 if (actualContent != expectedContent) {
     throw new Exception("Expected and actual features files are not equal");
 }
 
-Path log = Paths.get(basedir.getAbsolutePath(), "build.log");
-
 if (!Files.exists(log)) {
     throw new FileNotFoundException("Could not find the log file: $log");
 }
 
-String logContent = Files.readString(log);
+String logContent = Files.readString(log).replaceAll("\r\n", "\n")
 
 if (!logContent.contains("[ERROR] No root bundles found")) {
     throw new Exception("Could not find the expected error message in the log file for the feature with-placeholders-but-no-root");

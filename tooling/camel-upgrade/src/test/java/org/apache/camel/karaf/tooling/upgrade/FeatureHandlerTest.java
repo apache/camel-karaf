@@ -44,8 +44,8 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/inject-before.xml"));
         handler.add("camel-a");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/inject-before-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/inject-before.xml")));
+            Files.readString(Paths.get("target/test-classes/features/inject-before-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/inject-before.xml")).replace("\r\n", "\n").strip());
     }
 
     @DisplayName("Should be able to inject a feature between existing features")
@@ -54,8 +54,8 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/inject-middle.xml"));
         handler.add("camel-c");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/inject-middle-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/inject-middle.xml")));
+            Files.readString(Paths.get("target/test-classes/features/inject-middle-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/inject-middle.xml")).replace("\r\n", "\n").strip());
     }
 
     @DisplayName("Should be able to inject a feature in last position")
@@ -64,8 +64,8 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/inject-after.xml"));
         handler.add("camel-e");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/inject-after-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/inject-after.xml")));
+            Files.readString(Paths.get("target/test-classes/features/inject-after-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/inject-after.xml")).replace("\r\n", "\n").strip());
     }
 
     @DisplayName("Should be able to remove a feature in first position")
@@ -74,8 +74,8 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/remove-before.xml"));
         handler.remove("camel-a");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/remove-before-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/remove-before.xml")));
+            Files.readString(Paths.get("target/test-classes/features/remove-before-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/remove-before.xml")).replace("\r\n", "\n").strip());
     }
 
     @DisplayName("Should be able to remove a feature between existing features")
@@ -84,8 +84,8 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/remove-middle.xml"));
         handler.remove("camel-b");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/remove-middle-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/remove-middle.xml")));
+            Files.readString(Paths.get("target/test-classes/features/remove-middle-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/remove-middle.xml")).replace("\r\n", "\n").strip());
     }
 
     @DisplayName("Should be able to remove a feature in last position")
@@ -94,7 +94,7 @@ class FeatureHandlerTest {
         FeatureHandler handler = new FeatureHandler(Paths.get("target/test-classes/features/remove-after.xml"));
         handler.remove("camel-c");
         assertEquals(
-            Files.readString(Paths.get("target/test-classes/features/remove-after-expected.xml")),
-            Files.readString(Paths.get("target/test-classes/features/remove-after.xml")));
+            Files.readString(Paths.get("target/test-classes/features/remove-after-expected.xml")).replace("\r\n", "\n").strip(),
+            Files.readString(Paths.get("target/test-classes/features/remove-after.xml")).replace("\r\n", "\n").strip());
     }
 }

@@ -70,8 +70,8 @@ class ParentPomUpdaterTest {
                 "4.1.0");
         updater.execute();
         assertEquals(
-                Files.readString(Paths.get("target/test-classes/parent-pom-updater/camel-karaf-pom-expected.xml")),
-                Files.readString(Paths.get("target/test-classes/parent-pom-updater/camel-karaf-pom.xml")));
+                Files.readString(Paths.get("target/test-classes/parent-pom-updater/camel-karaf-pom-expected.xml")).replace("\r\n", "\n").strip(),
+                Files.readString(Paths.get("target/test-classes/parent-pom-updater/camel-karaf-pom.xml")).replace("\r\n", "\n").strip());
     }
 
 }
