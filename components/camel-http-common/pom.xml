@@ -30,14 +30,17 @@
 
     <artifactId>camel-http-common</artifactId>
     <packaging>bundle</packaging>
-    <name>Apache Camel :: Karaf :: Components :: Common</name>
+    <name>Apache Camel :: Karaf :: Components :: HTTP Common</name>
+
+    <!-- That's a temporary camel karaf component to use javax.servlet namespace (not jakarta.servlet) as it's the one supported by Pax Web and OSGi HTTP service -->
 
     <properties>
         <camel.osgi.export>
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            jakarta.servlet*;resolution:=optional,
+            javax.servlet*;resolution:=optional,
+            io.quarkus*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
@@ -45,14 +48,30 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-http-common</artifactId>
+            <artifactId>camel-http-base</artifactId>
             <version>${camel-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cloud</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-support</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-attachments</artifactId>
+            <version>${camel-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>4.0.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -65,25 +84,76 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-package-maven-plugin</artifactId>
+                <version>${camel-version}</version>
+                <configuration>
+                    <!-- set to true to make build fail fast if missing documentation in docs file -->
+                    <failFast>false</failFast>
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>generate</id>
+                        <phase>process-classes</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-postcompile</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate-postcompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.camel</groupId>
+                        <artifactId>camel-core-model</artifactId>
+                        <version>${camel-version}</version>
+                        <scope>compile</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>recompile</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>add-resource</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>org.apache.camel:camel-http-common</include>
-                                </includes>
-                            </artifactSet>
+                            <sources>
+                                <source>src/generated/java</source>
+                            </sources>
+                            <resources>
+                                <resource>
+                                    <directory>src/generated/resources</directory>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>
 
