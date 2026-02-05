@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.camel.CamelContext;
@@ -29,16 +30,16 @@ import org.apache.camel.NoTypeConversionAvailableException;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.TypeConverterExists;
-import org.apache.camel.TypeConverters;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.converter.DefaultTypeConverter;
-import org.apache.camel.impl.engine.DefaultPackageScanClassResolver;
 import org.apache.camel.spi.BulkTypeConverters;
 import org.apache.camel.spi.Injector;
 import org.apache.camel.spi.PackageScanClassResolver;
 import org.apache.camel.spi.TypeConverterLoader;
 import org.apache.camel.spi.TypeConverterRegistry;
+import org.apache.camel.spi.TypeConvertible;
 import org.apache.camel.support.SimpleTypeConverter;
+import org.apache.camel.support.scan.DefaultPackageScanClassResolver;
 import org.apache.camel.support.service.ServiceHelper;
 import org.apache.camel.support.service.ServiceSupport;
 import org.osgi.framework.BundleContext;
@@ -306,6 +307,16 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             }
             super.addTypeConverter(toType, fromType, typeConverter);
         }
+    }
+
+    @Override
+    public Map<Class<?>, TypeConverter> lookup(Class<?> toType) {
+        return getDelegate().lookup(toType);
+    }
+
+    @Override
+    public void addConverter(TypeConvertible<?, ?> typeConvertible, TypeConverter typeConverter) {
+        getDelegate().addConverter(typeConvertible, typeConverter);
     }
 
 }
