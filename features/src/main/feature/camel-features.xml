@@ -1673,8 +1673,8 @@
         <bundle dependency='true'>wrap:mvn:com.influxdb/influxdb-client-java/${influx-client-java-driver-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.influxdb/influxdb-client-core/${influx-client-java-driver-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.influxdb/influxdb-client-utils/${influx-client-java-driver-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/logging-interceptor/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/logging-interceptor/${consul-okhttp3-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${consul-okhttp3-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.squareup.retrofit2/adapter-rxjava3/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.squareup.retrofit2/converter-scalars/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.squareup.retrofit2/converter-gson/${auto-detect-version}</bundle>
@@ -2214,7 +2214,9 @@
         <bundle dependency='true'>wrap:mvn:io.minio/minio/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-compress/${commons-compress-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jetbrains.kotlin/kotlin-stdlib/${consul-kotlin-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio-jvm/${squareup-okio-jvm-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-jvm/${squareup-okhttp5-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-minio/${project.version}</bundle>
     </feature>
     <feature name='camel-mllp' version='${project.version}' start-level='50'>
@@ -2276,6 +2278,7 @@
     <feature name='camel-neo4j' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[4.1,5)'>netty</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
         <bundle dependency='true'>mvn:org.neo4j.driver/neo4j-java-driver/${neo4j-version}</bundle>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
@@ -3059,8 +3062,8 @@ Chain 2:
     </feature>
     <feature name='camel-tika' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency='true'>mvn:org.apache.tika/tika-core/${tika-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.tika/tika-parser-html-commons/${tika-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.tika/tika-core/${tika-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.tika/tika-parser-html-module/${tika-version}</bundle>
         <bundle dependency='true'>mvn:commons-io/commons-io/${commons-io-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-tika/${project.version}</bundle>
     </feature>
