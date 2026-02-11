@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache</groupId>
         <artifactId>apache</artifactId>
-        <version>34</version>
+        <version>37</version>
     </parent>
 
     <groupId>org.apache.camel.karaf</groupId>
@@ -87,9 +87,8 @@
 
     <!-- TODO use Karaf/Camel bom -->
     <properties>
-        <jdk-version>17</jdk-version>
-        <maven.compiler.source>${jdk-version}</maven.compiler.source>
-        <maven.compiler.target>${jdk-version}</maven.compiler.target>
+        <javaVersion>17</javaVersion>
+        <project.build.outputTimestamp>1695310533</project.build.outputTimestamp>
 
         <camel-version>4.14.3</camel-version>
 
@@ -860,7 +859,7 @@
                                     <goal>jar</goal>
                                 </goals>
                                 <configuration>
-                                    <source>${jdk-version}</source>
+                                    <source>${javaVersion}</source>
                                     <doclint>none</doclint>
                                 </configuration>
                             </execution>
@@ -933,7 +932,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <source>${jdk-version}</source>
+                            <source>${javaVversion}</source>
                             <additionalOptions>${javadoc.opts}</additionalOptions>
                             <!-- disable Javadoc linting for buildung the release with Java 11 -->
                             <doclint>none</doclint>
