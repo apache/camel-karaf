@@ -24,6 +24,7 @@ github:
     - java
     - karaf
     - osgi
+    - eip
 
   enabled_merge_buttons:
     merge: false
@@ -38,6 +39,7 @@ github:
     wiki: true
     issues: true
     projects: true
+    discussions: true
 
   collaborators:  # Note: the number of collaborators is limited to 10
     - f2par0
@@ -48,3 +50,5 @@ github:
   ghp_branch: gh-pages
   ghp_path: /
 
+  dependabot_alerts: true
+  dependabot_updates: true
