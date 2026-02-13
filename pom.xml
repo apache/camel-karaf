@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.14.3-SNAPSHOT</version>
+    <version>4.14.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -90,7 +90,7 @@
         <javaVersion>17</javaVersion>
         <project.build.outputTimestamp>1695310533</project.build.outputTimestamp>
 
-        <camel-version>4.14.3</camel-version>
+        <camel-version>4.14.4</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.19.0</activemq-version>
@@ -107,7 +107,6 @@
         <asm-version>9.8</asm-version>
         <asn1bean-version>1.14.0</asn1bean-version>
         <assertj-version>3.27.4</assertj-version>
-        <async-http-client-version>3.0.1</async-http-client-version>
         <asterisk-java-version>3.41.0</asterisk-java-version>
         <atlassian-fugue-version>6.1.2</atlassian-fugue-version>
         <atmosphere-version>3.0.13</atmosphere-version>
@@ -254,7 +253,7 @@
         <hapi-fhir-version>8.2.1</hapi-fhir-version>
         <hazelcast-version>5.4.0</hazelcast-version>
         <hdrhistrogram-version>2.2.2</hdrhistrogram-version>
-        <hibernate-validator-version>9.1.0.Final</hibernate-validator-version>
+        <hibernate-validator-version>9.0.1.Final</hibernate-validator-version>
         <hibernate-version>6.3.2.Final</hibernate-version>
         <hk2-version>2.6.1</hk2-version>
         <hsqldb-version>2.7.4</hsqldb-version>
@@ -361,8 +360,6 @@
         <kubernetes-client-version>7.3.1</kubernetes-client-version>
         <kudu-version>1.18.0</kudu-version>
         <langchain4j-version>1.3.0</langchain4j-version>
-        <langchain4j-hugging-face-version>1.3.0-beta9</langchain4j-hugging-face-version>
-        <langchain4j-community-dashscope-version>1.9.1-beta17</langchain4j-community-dashscope-version>
         <langchain4j-rc-version>1.3.0</langchain4j-rc-version>
         <langchain4j-beta-version>1.3.0-beta9</langchain4j-beta-version>
         <langchain4j-community-version>1.3.0-beta9</langchain4j-community-version>
@@ -382,7 +379,6 @@
         <micrometer-version>1.15.7</micrometer-version>
         <micrometer-tracing-version>1.5.3</micrometer-tracing-version>
         <microprofile-config-version>3.1</microprofile-config-version>
-        <microprofile-fault-tolerance-version>4.1.1</microprofile-fault-tolerance-version>
         <milvus-client-version>2.6.2</milvus-client-version>
         <mina-version>2.2.4</mina-version>
         <minidns-version>0.3.4</minidns-version>
@@ -400,7 +396,6 @@
         <narayana-version>5.13.1.Final</narayana-version>
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>5.28.9</neo4j-version>
-        <neo4j-bolt-version>6.0.2</neo4j-bolt-version>
         <netty-version>4.1.130.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.8</networknt-json-schema-validator-version>
