@@ -37,6 +37,14 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
+            org.glassfish.jaxb.runtime.v2;resolution:=optional,
+            org.apache.camel.model.app,
+            org.apache.camel.model.cloud,
+            org.apache.camel.model.config,
+            org.apache.camel.model.errorhandler,
+            org.apache.camel.model.loadbalancer,
+            org.apache.camel.model.transformer,
+            org.apache.camel.model.validator,
             *
         </camel.osgi.import>
     </properties>
