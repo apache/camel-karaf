@@ -46,6 +46,7 @@
             javax.net*,
             javax.xml*,
             org.apache.aries.blueprint*,
+            org.apache.camel.component.cxf.common.header;resolution:=optional,
             org.apache.cxf.*;version="${camel-osgi-cxf-version}",
             org.eclipse.jetty*;resolution:=optional;version="${jetty-version}",
             org.osgi.framework*,
