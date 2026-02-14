@@ -161,7 +161,7 @@
         <consul-client-version>1.4.1</consul-client-version>
         <couchbase-client-version>3.7.2</couchbase-client-version>
         <curator-version>5.7.0</curator-version>
-        <cxf-version>4.0.7</cxf-version>
+        <cxf-version>4.0.9</cxf-version>
         <cxf-codegen-plugin-version>4.0.7</cxf-codegen-plugin-version>
         <cxf-xjc-plugin-version>4.0.2</cxf-xjc-plugin-version>
         <cxf-xjc-utils-version>4.0.2</cxf-xjc-utils-version>
