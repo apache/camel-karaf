@@ -1122,8 +1122,9 @@
     </feature>
     <feature name='camel-ehcache' version='${project.version}' start-level='50'>
         <feature>scr</feature>
+        <feature dependency="true">jakarta-xml-bind</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency="true">mvn:org.ehcache/ehcache/${ehcache3-version}</bundle>
+        <bundle dependency="true">mvn:org.ehcache/ehcache/${ehcache3-version}/jar/jakarta</bundle>
         <bundle dependency="true">mvn:javax.cache/cache-api/${jcache-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ehcache/${project.version}</bundle>
     </feature>
