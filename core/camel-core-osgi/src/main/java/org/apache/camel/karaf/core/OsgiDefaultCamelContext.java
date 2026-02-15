@@ -19,7 +19,6 @@ package org.apache.camel.karaf.core;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.karaf.core.utils.BundleContextUtils;
 import org.apache.camel.karaf.core.utils.BundleDelegatingClassLoader;
-import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.support.DefaultRegistry;
 import org.osgi.framework.BundleContext;
 
@@ -41,6 +40,10 @@ public class OsgiDefaultCamelContext extends AbstractOsgiDefaultCamelContext {
         addLifecycleStrategy(repo1);
         // setup the application context classloader with the bundle classloader
         setApplicationContextClassLoader(new BundleDelegatingClassLoader(bundleContext.getBundle()));
+
+        if (getCamelContextExtension().getName() == null) {
+            getCamelContextExtension().setName(bundleContext.getBundle().getSymbolicName());
+        }
 
         init();
     }
