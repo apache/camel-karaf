@@ -1,1 +1,1 @@
-mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.0.1
+mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.2.0
