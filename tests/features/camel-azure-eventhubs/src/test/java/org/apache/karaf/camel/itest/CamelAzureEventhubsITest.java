@@ -64,7 +64,7 @@ public class CamelAzureEventhubsITest extends AbstractCamelSingleFeatureResultMo
 
         public static GenericContainerResource<EventHubsEmulatorContainer> createAzureEventHubsContainer() {
             EventHubsEmulatorContainer eventHubContainer =
-                    new EventHubsEmulatorContainer("mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.0.1")
+                    new EventHubsEmulatorContainer("mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.2.0")
                             .withNetwork(network).withNetworkAliases("eventhubs-emulator").withAzuriteContainer(azuriteContainer)
                             .withExposedPorts(EVENTHUBS_EMULATOR_PORT)
                             .withEnv("ACCEPT_EULA", "Y");
