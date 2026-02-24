@@ -331,8 +331,7 @@
         <bundle>mvn:org.apache.camel.karaf/camel-spring-xml/${project.version}</bundle>
     </feature>
 
-    <!-- the following features are sorted A..Z -->
-
+    <!-- the following features are sorted A..Z -->    
     <feature name='camel-activemq' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-jms</feature>
         <bundle dependency='true'>mvn:org.apache.activemq/activemq-client-jakarta/${activemq-version}</bundle>
@@ -964,6 +963,13 @@
         <feature version='${camel-osgi-version-range}'>camel-spring</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-spring-all/${project.version}</bundle>
     </feature>
+    <feature name='camel-dapr' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.dapr/dapr-sdk/${dapr-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-dapr/${project.version}</bundle>
+    </feature>
     <feature name='camel-datasonnet' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:com.datasonnet/datasonnet-mapper/${datasonnet-mapper-version}</bundle>
@@ -983,21 +989,22 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-api/${kafka-version}$Bundle-SymbolicName=org.apache.kafka.connect-api</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-file/${kafka-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-json/${kafka-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-api/${debezium-version}$${spi-consumer}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-core/${debezium-version}$DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}</bundle>
-        <bundle>wrap:mvn:io.debezium/debezium-storage-file/${debezium-version}</bundle>
+        <!-- Api, core, embedded and storage have split packages so we merge all into api -->
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-core/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-file/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-api/${debezium-version}$Bundle-SymbolicName=io.debezium.api&amp;DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-common/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-db2' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-db2/${debezium-version}</bundle>
-        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-db2/${debezium-version}$Export-Package=io.debezium.connector.db2*</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-db2/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-mongodb' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mongodb/${debezium-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mongodb/${debezium-version}$Export-Package=io.debezium.connector.mongodb*</bundle>
         <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-core/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.mongodb/bson/${auto-detect-version}</bundle>
@@ -1005,23 +1012,23 @@
     </feature>
     <feature name='camel-debezium-mysql' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mysql/${debezium-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-binlog/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-ddl-parser/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mysql/${debezium-version}$Export-Package=io.debezium.connector.mysql*</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-binlog/${auto-detect-version}$Export-Package=io.debezium.connector.binlog*</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-ddl-parser/${auto-detect-version}$Export-Package=io.debezium.ddl*</bundle>
         <!-- Use the wrap protocol to make org.antlr.v4.gui optional-->
         <bundle>wrap:mvn:org.antlr/antlr4-runtime/${auto-detect-version}$overwrite=merge&amp;Import-Package=org.antlr.v4.gui*;resolution:=optional,*</bundle>
-        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/mysql-binlog-connector-java/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:com.mysql/mysql-connector-j/${debezium-mysql-connector-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-mysql/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-oracle' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-oracle/${debezium-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-ddl-parser/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-oracle/${debezium-version}$Export-Package=io.debezium.connector.oracle*</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-ddl-parser/${auto-detect-version}$Export-Package=io.debezium.ddl*</bundle>
         <!-- Use the wrap protocol to make org.antlr.v4.gui optional-->
         <bundle>wrap:mvn:org.antlr/antlr4-runtime/${auto-detect-version}$overwrite=merge&amp;Import-Package=org.antlr.v4.gui*;resolution:=optional,*</bundle>
-        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java-util/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.oracle.database.nls/orai18n/${auto-detect-version}</bundle>
@@ -1030,21 +1037,27 @@
     </feature>
     <feature name='camel-debezium-postgres' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-postgres/${debezium-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-postgres/${debezium-version}$Export-Package=io.debezium.connector.postgresql*</bundle>
         <bundle dependency='true'>mvn:org.postgresql/postgresql/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-postgres/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-sqlserver' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-sqlserver/${debezium-version}</bundle>
-        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-sqlserver/${debezium-version}$Export-Package=io.debezium.connector.sqlserver*</bundle>
+        <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>mvn:com.microsoft.sqlserver/mssql-jdbc/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-sqlserver/${project.version}</bundle>
     </feature>
     <feature name='camel-debug' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-debug/${project.version}</bundle>
+    </feature>
+    <feature name='camel-dfdl' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.daffodil/daffodil-japi_2.12/${daffodil-version}$Export-Package=org.apache.daffodil.*;version=${daffodil-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.daffodil/daffodil-core_2.12/${daffodil-version}$Export-Package=org.apache.daffodil.*;version=${daffodil-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-dfdl/${project.version}</bundle>
     </feature>
     <feature name='camel-dhis2' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-jackson</feature>
@@ -1239,6 +1252,11 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.xmlgraphics/fop-core/${fop-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-fop/${project.version}</bundle>
+    </feature>
+    <feature name='camel-fory' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.fory/fory-core/${fory-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-fory/${project.version}</bundle>
     </feature>
     <feature name='camel-freemarker' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -1600,6 +1618,18 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-huaweicloud-smn/${project.version}</bundle>
     </feature>
+    <feature name='camel-ibm-secrets-manager' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.ibm.cloud/secrets-manager/${ibm-secrets-manager-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.ibm.cloud/sdk-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.google.code.gson/gson/${gson-version}$overwrite=merge&amp;Export-Package=com.google.gson*;version=${gson-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okio/okio/${squareup-okio-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp/${squareup-okhttp-version}$Bundle-SymbolicName=com.squareup.okhttp3.okhttp</bundle>
+        <bundle dependency='true'>wrap:mvn:com.squareup.okhttp3/okhttp-urlconnection/${squareup-okhttp-version}$Fragment-Host=com.squareup.okhttp3.okhttp;bundle-version=${squareup-okhttp-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-ibm-secrets-manager/${project.version}</bundle>
+    </feature>
     <feature name='camel-ical' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
@@ -1702,6 +1732,10 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ironmq/${project.version}</bundle>
     </feature>
+    <feature name='camel-iso8583' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-iso8583/${project.version}</bundle>
+    </feature>
     <feature name='camel-jackson' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
@@ -1725,6 +1759,11 @@
         <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-jakarta-xmlbind-annotations/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-xml/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-jacksonxml/${project.version}</bundle>
+    </feature>
+    <feature name='camel-jandex' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>mvn:io.smallrye/jandex/${jandex-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-jandex/${project.version}</bundle>
     </feature>
     <feature name='camel-jasypt' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -2012,6 +2051,14 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.kudu/kudu-client/${kudu-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kudu/${project.version}</bundle>
+    </feature>
+    <feature name='camel-langchain4j-agent' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-langchain4j-tools</feature>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.camel/camel-langchain4j-agent-api/${camel-version}$Export-Package=org.apache.camel.component.langchain4j.agent.api*;version=${camel-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-agent/${project.version}</bundle>
     </feature>
     <feature name='camel-langchain4j-chat' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -2307,6 +2354,16 @@
         <bundle dependency='true'>mvn:org.jsoup/jsoup/${jsoup-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-oaipmh/${project.version}</bundle>
     </feature>
+    <feature name='camel-oauth' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-platform-http-vertx</feature>
+        <bundle dependency='true'>wrap:mvn:com.google.code.gson/gson/${gson-version}$overwrite=merge&amp;Export-Package=com.google.gson*;version=${gson-version}</bundle>
+        <feature version="[5,6)">http-client</feature>
+        <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.client5/httpclient5-fluent/${httpclient-version}</bundle>
+        <bundle dependency='true'>mvn:com.nimbusds/nimbus-jose-jwt/${nimbus-jose-jwt}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.vertx/vertx-auth-oauth2/${vertx-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-oauth/${project.version}</bundle>
+    </feature>
     <feature name='camel-observability-services' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-observability-services/${project.version}</bundle>
@@ -2422,6 +2479,15 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-alpha-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry/${project.version}</bundle>
     </feature>
+    <feature name='camel-opentelemetry2' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-telemetry</feature>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk/${opentelemetry-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-alpha-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry2/${project.version}</bundle>
+    </feature>
     <feature name='camel-optaplanner' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:org.kie/kie-api/${auto-detect-version}</bundle>
@@ -2528,6 +2594,12 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-math3/${commons-math3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-plc4x/${project.version}</bundle>
+    </feature>
+    <feature name='camel-pqc' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='[${bouncycastle-version},2)'>bouncycastle</feature>
+        <bundle dependency='true'>mvn:org.bouncycastle/bcutil-jdk18on/${bouncycastle-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-pqc/${project.version}</bundle>
     </feature>
     <feature name='camel-printer' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -2876,60 +2948,9 @@ Chain 2:
         <bundle dependency='true'>mvn:commons-digester/commons-digester/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-splunk-hec/${project.version}</bundle>
     </feature>
-    <feature name='camel-spring-batch' version='${project.version}' start-level='50'>
+    <feature name='camel-spring-cloud-config' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-spring-version}'>spring</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.batch/spring-batch-core/${spring-batch-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.batch/spring-batch-infrastructure/${spring-batch-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-batch/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-jdbc' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-jdbc</feature>
-        <feature version='${camel-osgi-spring-version}'>spring-jdbc</feature>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-jdbc/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-ldap' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.ldap/spring-ldap-core/${spring-ldap-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ldap/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-main' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-spring</feature>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-main/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
-        <feature version='${camel-osgi-spring-version}'>spring-messaging</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/${auto-detect-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-redis' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.data/spring-data-commons/${spring-data-redis-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.data/spring-data-redis/${spring-data-redis-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-redis/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-security' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-spring-version}'>spring</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-core/${spring-security-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-config/${spring-security-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-security/${project.version}</bundle>
-    </feature>
-    <feature name='camel-spring-ws' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-xslt-saxon</feature>
-        <feature version='${camel-osgi-spring-version}'>spring</feature>
-        <feature version="[6,7)">jakarta-servlet</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.ws/spring-ws-core/${spring-ws-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.ws/spring-xml/${spring-ws-version}</bundle>
-        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-spring-ws/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-cloud-config/${project.version}</bundle>
     </feature>
     <feature name='camel-sql' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -3025,6 +3046,16 @@ Chain 2:
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-telegram/${project.version}</bundle>
+    </feature>
+    <feature name='camel-telemetry' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-telemetry/${project.version}</bundle>
+    </feature>
+    <feature name='camel-telemetry-dev' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-telemetry</feature>
+        <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-telemetry-dev/${project.version}</bundle>
     </feature>
     <feature name='camel-tensorflow-serving' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
@@ -3122,16 +3153,6 @@ Chain 2:
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-undertow/${project.version}</bundle>
     </feature>
-    <feature name='camel-undertow-spring-security' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <feature version='${camel-osgi-version-range}'>camel-undertow</feature>
-        <feature version='${camel-osgi-spring-version}'>spring</feature>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-core/${spring-security-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-oauth2-client/${spring-security-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-oauth2-jose/${spring-security-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-oauth2-resource-server/${spring-security-version}</bundle>
-        <bundle>mvn:org.apache.camel.karaf/camel-undertow-spring-security/${project.version}</bundle>
-    </feature>
     <feature name='camel-univocity-parsers' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>mvn:com.sonofab1rd/univocity-parsers/${univocity-parsers-version}</bundle>
@@ -3183,6 +3204,12 @@ Chain 2:
         <feature version='[5,6)'>http-client</feature>
         <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents.core5/httpcore5-h2/${httpcore-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-weather/${project.version}</bundle>
+    </feature>
+    <feature name='camel-weaviate' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.weaviate/client/${weaviate-client-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-weaviate/${project.version}</bundle>
     </feature>
     <feature name='camel-web3j' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
