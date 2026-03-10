@@ -2950,9 +2950,64 @@ Chain 2:
         <bundle dependency='true'>mvn:commons-digester/commons-digester/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-splunk-hec/${project.version}</bundle>
     </feature>
+    <feature name='camel-spring-batch' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-spring-version}'>spring</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.batch/spring-batch-core/${spring-batch-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.batch/spring-batch-infrastructure/${spring-batch-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-batch/${project.version}</bundle>
+    </feature>
     <feature name='camel-spring-cloud-config' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle>mvn:org.apache.camel.karaf/camel-spring-cloud-config/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-jdbc' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-jdbc</feature>
+        <feature version='${camel-osgi-spring-version}'>spring-jdbc</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-jdbc/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-ldap' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.ldap/spring-ldap-core/${spring-ldap-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-ldap/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-main' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-spring</feature>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-main/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-rabbitmq' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
+        <feature version='${camel-osgi-spring-version}'>spring-messaging</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/${auto-detect-version}</bundle>
+        <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-core/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-rabbitmq/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-redis' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.data/spring-data-commons/${spring-data-redis-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.data/spring-data-redis/${spring-data-redis-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-redis/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-security' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-spring-version}'>spring</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-core/${spring-security-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.security/spring-security-config/${spring-security-version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-security/${project.version}</bundle>
+    </feature>
+    <feature name='camel-spring-ws' version='${project.version}' start-level='50'>
+        <feature version='${camel-osgi-version-range}'>camel-xslt-saxon</feature>
+        <feature version='${camel-osgi-spring-version}'>spring</feature>
+        <feature version="[6,7)">jakarta-servlet</feature>
+        <bundle dependency='true'>wrap:mvn:org.springframework.ws/spring-ws-core/${spring-ws-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.springframework.ws/spring-xml/${spring-ws-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
+        <bundle>mvn:org.apache.camel.karaf/camel-spring-ws/${project.version}</bundle>
     </feature>
     <feature name='camel-sql' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
