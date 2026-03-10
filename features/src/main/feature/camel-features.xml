@@ -989,11 +989,13 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-api/${kafka-version}$Bundle-SymbolicName=org.apache.kafka.connect-api</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-file/${kafka-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-json/${kafka-version}</bundle>
-        <!-- Api, core, embedded and storage have split packages so we merge all into api -->
+        <!-- Api, common, core, openlineage-api, embedded and storage have split packages so we merge all into api -->
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-common/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-core/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-openlineage-api/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle>wrap:mvn:io.debezium/debezium-storage-file/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-api/${debezium-version}$Bundle-SymbolicName=io.debezium.api&amp;DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-api/${debezium-version}$Bundle-SymbolicName=io.debezium.api&amp;DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}&amp;SPI-Provider=*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-common/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-db2' version='${project.version}' start-level='50'>
@@ -1004,10 +1006,10 @@
     </feature>
     <feature name='camel-debezium-mongodb' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-debezium-common</feature>
-        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mongodb/${debezium-version}$Export-Package=io.debezium.connector.mongodb*</bundle>
-        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-sync/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.mongodb/mongodb-driver-core/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.mongodb/bson/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-mongodb/${debezium-version}$Export-Package=io.debezium.connector.mongodb*&amp;Import-Package=*;resolution:=optional&amp;DynamicImport-Package=*</bundle>
+        <bundle>mvn:org.mongodb/mongodb-driver-sync/${mongo-java-driver-version}</bundle>
+        <bundle>mvn:org.mongodb/mongodb-driver-core/${mongo-java-driver-version}</bundle>
+        <bundle>mvn:org.mongodb/bson/${mongo-java-driver-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-mongodb/${project.version}</bundle>
     </feature>
     <feature name='camel-debezium-mysql' version='${project.version}' start-level='50'>
