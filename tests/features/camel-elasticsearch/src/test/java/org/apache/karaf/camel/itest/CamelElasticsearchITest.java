@@ -23,7 +23,6 @@ import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.GenericContainerResource;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
 import org.apache.karaf.camel.itests.TemporaryFile;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -41,7 +40,6 @@ public class CamelElasticsearchITest extends AbstractCamelSingleFeatureResultMoc
         mock.expectedBodiesReceived("OK");
     }
 
-    @Ignore("TODO: this test is run forever, need a fix")
     @Test
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();

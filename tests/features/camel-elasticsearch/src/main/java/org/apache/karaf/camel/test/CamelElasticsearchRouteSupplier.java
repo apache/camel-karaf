@@ -44,9 +44,9 @@ public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleFeatureR
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        //to add the mock endpoint at the end of the route, call configureConsumer
         configureConsumer(
-            producerRoute.toF("elasticsearch://elasticsearch?operation=Exists&indexName=%s", INDEX_NAME)
+            producerRoute
+                    .toF("elasticsearch://elasticsearch?operation=Exists&indexName=%s", INDEX_NAME)
                     .log("Index exist: ${body}")
                     .setBody(builder.simple("""
                             {"date": "${header.CamelTimerFiredTime}", "someKey": "someValue"}
@@ -70,7 +70,6 @@ public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleFeatureR
                     .log("Delete doc: ${body}")
                     .setBody(builder.constant("OK"))
         );
-
     }
 
     @Override
