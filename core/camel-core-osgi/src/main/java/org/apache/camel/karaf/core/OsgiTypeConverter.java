@@ -73,10 +73,11 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         if (loader != null) {
             try {
                 LOG.debug("loading type converter from bundle: {}", serviceReference.getBundle().getSymbolicName());
-                if (delegate != null) {
-                    ServiceHelper.startService(this.delegate);
-                    loader.load(delegate);
-                }
+                // invalidate the delegate so that it is rebuilt on next access
+                // to include the new type converter loader, this is needed as the
+                // delegate may have been created before this loader was available
+                // (e.g. when using to() which eagerly creates endpoints during route startup)
+                this.delegate = null;
             } catch (Throwable t) {
                 throw new RuntimeCamelException("Error loading type converters from service: " + serviceReference + " due: " + t.getMessage(), t);
             }
