@@ -20,6 +20,9 @@ package org.apache.karaf.camel.itest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -44,6 +47,7 @@ class MongoContainerResource implements ExternalResource {
     private static final String SOURCE_DB_USERNAME = "debezium";
     private static final String SOURCE_DB_PASSWORD = "dbz";
     private static final int MONGODB_PORT = 27017;
+    private static final String CONTAINER_RUNTIME = resolveContainerRuntime();
 
     @Override
     public void before() {
@@ -53,11 +57,15 @@ class MongoContainerResource implements ExternalResource {
 
     private static void startContainer() {
         try {
-            Command command = new Command(
-                "docker", "run", "--rm", "--name", CONTAINER_NAME, "-p", "%d:%d".formatted(MONGODB_PORT, MONGODB_PORT),
-                "-e", "MONGODB_USER=%s".formatted(SOURCE_DB_USERNAME), "-e", "MONGODB_PASSWORD=%s".formatted(SOURCE_DB_PASSWORD),
-                "%s:%s".formatted(MONGO_DB_IMAGE, DEBEZIUM_VERSION)
-            );
+            List<String> args = new ArrayList<>(Arrays.asList(
+                CONTAINER_RUNTIME, "run", "--rm", "--name", CONTAINER_NAME, "-p", "%d:%d".formatted(MONGODB_PORT, MONGODB_PORT),
+                "-e", "MONGODB_USER=%s".formatted(SOURCE_DB_USERNAME), "-e", "MONGODB_PASSWORD=%s".formatted(SOURCE_DB_PASSWORD)
+            ));
+            if ("podman".equals(CONTAINER_RUNTIME)) {
+                args.add("--privileged");
+            }
+            args.add("%s:%s".formatted(MONGO_DB_IMAGE, DEBEZIUM_VERSION));
+            Command command = new Command(args.toArray(new String[0]));
             command.waitForResult("(?i).*waiting for connections.*");
         } catch (Exception e) {
             throw new RuntimeException("Error starting MongoDB container", e);
@@ -66,7 +74,7 @@ class MongoContainerResource implements ExternalResource {
 
     private static void intContainer() {
         try {
-            Command command = new Command("docker", "exec", CONTAINER_NAME, "bash", "-c", "/usr/local/bin/init-inventory.sh -h localhost");
+            Command command = new Command(CONTAINER_RUNTIME, "exec", CONTAINER_NAME, "bash", "-c", "/usr/local/bin/init-inventory.sh -h localhost");
             command.waitForResult();
         } catch (Exception e) {
             throw new RuntimeException("Error initializing MongoDB container", e);
@@ -75,7 +83,7 @@ class MongoContainerResource implements ExternalResource {
 
     private static void stopContainer() {
         try {
-            Command command = new Command("docker", "stop", CONTAINER_NAME);
+            Command command = new Command(CONTAINER_RUNTIME, "stop", CONTAINER_NAME);
             command.waitForResult();
         } catch (Exception e) {
             throw new RuntimeException("Error stopping MongoDB container", e);
@@ -99,10 +107,26 @@ class MongoContainerResource implements ExternalResource {
         );
     }
 
+    private static String resolveContainerRuntime() {
+        for (String runtime : new String[]{"docker", "podman"}) {
+            try {
+                Process process = new ProcessBuilder(runtime, "--version").start();
+                if (process.waitFor() == 0) {
+                    return runtime;
+                }
+            } catch (Exception e) {
+                // runtime not available, try next
+            }
+        }
+        throw new IllegalStateException("No container runtime found. Please install docker or podman.");
+    }
+
     private static class Command {
         private static final Pattern ERRORS_TO_IGNORE = Pattern.compile(
                 "(?i).*unable to find image.*|.*pulling.*|.*waiting.*|.*verifying checksum.*|" +
-                        ".*(download|pull) complete.*|.*digest:.*|.*downloaded newer image for.*"
+                        ".*(download|pull) complete.*|.*digest:.*|.*downloaded newer image for.*|" +
+                        ".*trying to pull.*|.*getting image source.*|.*copying blob.*|.*copying config.*|" +
+                        ".*writing manifest.*|.*storing signatures.*|.*chown.*"
         );
         private final Process process;
 
