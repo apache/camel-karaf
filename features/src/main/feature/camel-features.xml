@@ -163,14 +163,14 @@
     </feature>
 
     <feature name='xml-specs-api' version='${servicemix-specs-version}' start-level='10'>
-        <feature version="${camel-osgi-jakarta-activation-version}">jakarta-activation</feature>
-        <feature version="${camel-osgi-jakarta-annotation-version}">jakarta-annotation</feature>
-        <feature version="${camel-osgi-jakarta-xml-ws-version}">jakarta-xml-ws</feature>
-        <feature version="${camel-osgi-jakarta-ws-rs-version}">jakarta-ws-rs</feature>
-        <feature version="${camel-osgi-jakarta-soap-version}">jakarta-soap</feature>
-        <feature version="${camel-osgi-jakarta-bind-version}">jakarta-xml-bind</feature>
-        <feature version="${camel-osgi-jakarta-bind-version}">jaxb-runtime</feature>
-        <feature version="${camel-osgi-jakarta-activation-runtime-version}">activation-runtime</feature>
+        <feature version="${camel-osgi-jakarta-activation-version}" start-level="10">jakarta-activation</feature>
+        <feature version="${camel-osgi-jakarta-annotation-version}" start-level="10">jakarta-annotation</feature>
+        <feature version="${camel-osgi-jakarta-xml-ws-version}" start-level="10">jakarta-xml-ws</feature>
+        <feature version="${camel-osgi-jakarta-ws-rs-version}" start-level="10">jakarta-ws-rs</feature>
+        <feature version="${camel-osgi-jakarta-soap-version}" start-level="10">jakarta-soap</feature>
+        <feature version="${camel-osgi-jakarta-bind-version}" start-level="10">jakarta-xml-bind</feature>
+        <feature version="${camel-osgi-jakarta-bind-version}" start-level="10">jaxb-runtime</feature>
+        <feature version="${camel-osgi-jakarta-activation-runtime-version}" start-level="10">activation-runtime</feature>
         <bundle>mvn:org.codehaus.woodstox/stax2-api/${auto-detect-version}</bundle>
         <bundle>mvn:com.fasterxml.woodstox/woodstox-core/${woodstox-core-version}</bundle>
     </feature>
