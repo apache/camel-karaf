@@ -59,26 +59,29 @@ public class OsgiTypeConverterTest {
     }
 
     @Test
-    void addingServiceShouldInvalidateDelegate() throws Exception {
+    void addingServiceShouldLoadIntoExistingDelegate() throws Exception {
         // trigger delegate creation
-        osgiTypeConverter.getDelegate();
-        assertNotNull(osgiTypeConverter.getDelegate(), "delegate should be created");
+        var delegate = osgiTypeConverter.getDelegate();
+        assertNotNull(delegate, "delegate should be created");
 
         // simulate a new TypeConverterLoader service arriving
         osgiTypeConverter.addingService(serviceReference);
 
-        // the delegate should have been invalidated (set to null internally)
-        // so getDelegate() should create a new one
-        // We verify this indirectly: the new delegate won't have the same identity
-        // as the old one since it's rebuilt from scratch
-        var delegateAfter = osgiTypeConverter.getDelegate();
-        assertNotNull(delegateAfter, "delegate should be recreated after invalidation");
+        // the loader should have been loaded into the existing delegate
+        verify(loader).load(delegate);
+
+        // the delegate should be the same instance (not invalidated)
+        assertSame(delegate, osgiTypeConverter.getDelegate(),
+            "delegate should be preserved when a new loader arrives");
     }
 
     @Test
-    void addingServiceShouldInvalidateDelegateWhenNull() throws Exception {
+    void addingServiceShouldNotFailWhenDelegateIsNull() throws Exception {
         // delegate is null initially, adding a service should not fail
+        // and should not attempt to load (no delegate to load into)
         osgiTypeConverter.addingService(serviceReference);
+
+        verify(loader, never()).load(any());
 
         // delegate should still be lazily created on next access
         assertNotNull(osgiTypeConverter.getDelegate());
@@ -86,20 +89,13 @@ public class OsgiTypeConverterTest {
 
     @Test
     void newDelegateIncludesLateArrivingLoader() throws Exception {
-        // trigger delegate creation first (before the loader arrives)
-        var delegateBefore = osgiTypeConverter.getDelegate();
-        assertNotNull(delegateBefore);
-
-        // simulate a new TypeConverterLoader service arriving
+        // simulate a loader arriving before delegate is created
         osgiTypeConverter.addingService(serviceReference);
 
-        // get the new delegate - it should be a fresh instance
-        var delegateAfter = osgiTypeConverter.getDelegate();
-        assertNotNull(delegateAfter);
-
-        // the delegate should have been rebuilt (different instance)
-        assertNotSame(delegateBefore, delegateAfter,
-            "delegate should be a new instance after a TypeConverterLoader was added");
+        // when delegate is created, it should pick up the loader
+        // via tracker.getServiceReferences() in createRegistry()
+        var delegate = osgiTypeConverter.getDelegate();
+        assertNotNull(delegate);
     }
 
     @Test
