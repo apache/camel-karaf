@@ -38,6 +38,8 @@
         </camel.osgi.export>
         <camel.osgi.import>
             io.quarkus.arc;resolution:=optional,
+            javax.servlet*;resolution:=optional,
+            org.osgi.service.http*;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
