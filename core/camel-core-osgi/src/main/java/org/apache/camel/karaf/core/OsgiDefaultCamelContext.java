@@ -45,7 +45,7 @@ public class OsgiDefaultCamelContext extends AbstractOsgiDefaultCamelContext {
             getCamelContextExtension().setName(bundleContext.getBundle().getSymbolicName());
         }
 
-        init();
+        build();
     }
 
     @Override
