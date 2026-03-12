@@ -17,23 +17,27 @@
 
 package org.apache.camel.component.cxf.transport.http.osgi;
 
+import jakarta.servlet.Servlet;
 import org.apache.cxf.common.util.CollectionUtils;
 import org.apache.cxf.common.util.PropertyUtils;
 import org.apache.cxf.transport.http.DestinationRegistry;
 import org.apache.cxf.transport.http.DestinationRegistryImpl;
 import org.apache.cxf.transport.http.HTTPConduitConfigurer;
 import org.apache.cxf.transport.http.HTTPTransportFactory;
+import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.cm.ManagedService;
 import org.osgi.service.cm.ManagedServiceFactory;
-import org.osgi.service.http.HttpService;
-import org.osgi.util.tracker.ServiceTracker;
 
 public class HTTPTransportActivator implements BundleActivator {
+    private static final String CXF_CONFIG_PID = "org.apache.cxf.osgi";
     private static final String DISABLE_DEFAULT_HTTP_TRANSPORT = "org.apache.cxf.osgi.http.transport.disable";
-    private ServiceTracker<HttpService, ?> httpServiceTracker;
+
+    private ServiceRegistration<ManagedService> servletPublisherReg;
+    private ServletExporter servletExporter;
 
     @Override
     public void start(final BundleContext context) throws Exception {
@@ -46,18 +50,18 @@ public class HTTPTransportActivator implements BundleActivator {
                 "org.apache.cxf.http.conduit-configurer");
 
         if (PropertyUtils.isTrue(context.getProperty(DISABLE_DEFAULT_HTTP_TRANSPORT))) {
-            //TODO: Review if it also makes sense to support "http.transport.disable"
-            //      directly in the CXF_CONFIG_SCOPE properties file
             return;
         }
 
         DestinationRegistry destinationRegistry = new DestinationRegistryImpl();
         HTTPTransportFactory transportFactory = new HTTPTransportFactory(destinationRegistry);
 
-        // HttpService is no longer available in OSGI 8
-//        HttpServiceTrackerCust customizer = new HttpServiceTrackerCust(destinationRegistry, context);
-//        httpServiceTracker = new ServiceTracker<>(context, HttpService.class, customizer);
-//        httpServiceTracker.open();
+        // Register the CXF servlet using OSGi Servlet Whiteboard
+        Servlet servlet = new CXFNonSpringServlet(destinationRegistry, false);
+        servletExporter = new ServletExporter(servlet, context);
+        servletPublisherReg = context.registerService(ManagedService.class,
+                servletExporter,
+                CollectionUtils.singletonDictionary(Constants.SERVICE_PID, CXF_CONFIG_PID));
 
         context.registerService(DestinationRegistry.class.getName(), destinationRegistry, null);
         context.registerService(HTTPTransportFactory.class.getName(), transportFactory, null);
@@ -71,8 +75,11 @@ public class HTTPTransportActivator implements BundleActivator {
 
     @Override
     public void stop(BundleContext context) throws Exception {
-        if (httpServiceTracker != null) {
-            httpServiceTracker.close();
+        if (servletPublisherReg != null) {
+            servletPublisherReg.unregister();
+        }
+        if (servletExporter != null) {
+            servletExporter.destroy();
         }
     }
 }
