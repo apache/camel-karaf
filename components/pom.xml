@@ -92,6 +92,7 @@
         <module>camel-disruptor</module>
         <module>camel-dns</module>
         <module>camel-docker</module>
+        <module>camel-dsl-support</module>
         <module>camel-drill</module>
         <module>camel-dropbox</module>
         <module>camel-dynamic-router</module>
@@ -321,6 +322,7 @@
         <module>camel-workday</module>
         <module>camel-xchange</module>
         <module>camel-xj</module>
+        <module>camel-xml-io-dsl</module>
         <module>camel-xmlsecurity</module>
         <module>camel-xmpp</module>
         <module>camel-xpath</module>
