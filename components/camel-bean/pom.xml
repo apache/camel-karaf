@@ -34,9 +34,12 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel*;version=${camel-version}
+            org.apache.camel.component.bean*;version=${camel-version},
+            org.apache.camel.component.beanclass*;version=${camel-version},
+            org.apache.camel.language.bean*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
+            io.quarkus.arc;resolution:=optional,
             *
         </camel.osgi.import>
     </properties>
