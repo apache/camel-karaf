@@ -58,12 +58,20 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     private final Injector injector;
     private final ServiceTracker<TypeConverterLoader, Object> tracker;
     private volatile DefaultTypeConverter delegate;
+    private volatile boolean trackerOpened;
 
     public OsgiTypeConverter(BundleContext bundleContext, CamelContext camelContext, Injector injector) {
         this.bundleContext = bundleContext;
         this.camelContext = camelContext;
         this.injector = injector;
         this.tracker = new ServiceTracker<>(bundleContext, TypeConverterLoader.class.getName(), this);
+    }
+
+    private void ensureTrackerOpen() {
+        if (!trackerOpened) {
+            tracker.open();
+            trackerOpened = true;
+        }
     }
 
     @Override
@@ -74,7 +82,9 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             try {
                 LOG.debug("loading type converter from bundle: {}", serviceReference.getBundle().getSymbolicName());
                 if (delegate != null) {
-                    ServiceHelper.startService(this.delegate);
+                    // load the converter directly into the existing delegate to preserve
+                    // any converters that were added programmatically (e.g. via Blueprint beans
+                    // implementing TypeConverters)
                     loader.load(delegate);
                 }
             } catch (Throwable t) {
@@ -104,12 +114,13 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     protected void doStart() throws Exception {
-        this.tracker.open();
+        ensureTrackerOpen();
     }
 
     @Override
     protected void doStop() throws Exception {
         this.tracker.close();
+        this.trackerOpened = false;
         ServiceHelper.stopService(this.delegate);
         this.delegate = null;
     }
@@ -232,6 +243,11 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     public DefaultTypeConverter getDelegate() {
         if (delegate == null) {
+            // ensure the tracker is open so we can discover TypeConverterLoader services
+            // before creating the registry - this is important because getDelegate() may be
+            // called during doInit() (e.g. when to() eagerly creates endpoints) which happens
+            // before doStart() where the tracker is normally opened
+            ensureTrackerOpen();
             delegate = createRegistry();
         }
         return delegate;
