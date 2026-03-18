@@ -754,6 +754,14 @@
                 <artifactId>org.apache.felix.connect</artifactId>
                 <version>${felix-connect-version}</version>
             </dependency>
+            <!-- Force a release version of jaxb-api to avoid transitive pull of
+                 beta SNAPSHOTs from defunct http://maven.java.net repositories
+                 (blocked by Maven 3.8.1+ HTTP mirror blocker) -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
