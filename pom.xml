@@ -293,7 +293,8 @@
         <ivy-version>2.5.3</ivy-version>
         <jackson-databind-nullable-version>0.2.9</jackson-databind-nullable-version>
         <jackson-jq-version>1.6.0</jackson-jq-version>
-        <jackson2-version>2.19.4</jackson2-version>
+        <jackson2-version>2.20.1</jackson2-version>
+        <jackson2-annotations-version>2.20</jackson2-annotations-version>
         <jackrabbit-version>2.22.3</jackrabbit-version>
         <jasminb-jsonapi-version>0.15</jasminb-jsonapi-version>
         <jandex-version>3.5.3</jandex-version>
@@ -378,6 +379,8 @@
         <langchain4j-version>1.11.0</langchain4j-version>
         <langchain4j-beta-version>1.11.0-beta19</langchain4j-beta-version>
         <langchain4j-community-version>1.11.0-beta19</langchain4j-community-version>
+        <langchain4j-hugging-face-version>1.11.0-beta19</langchain4j-hugging-face-version>
+        <langchain4j-community-dashscope-version>1.11.0-beta19</langchain4j-community-dashscope-version>
         <leveldbjni-version>1.8</leveldbjni-version>
         <leveldb-api-version>0.12</leveldb-api-version>
         <leveldb-version>0.12</leveldb-version>
@@ -394,6 +397,7 @@
         <micrometer-version>1.15.6</micrometer-version>
         <micrometer-tracing-version>1.5.5</micrometer-tracing-version>
         <microprofile-config-version>3.1</microprofile-config-version>
+        <microprofile-fault-tolerance-version>4.1.2</microprofile-fault-tolerance-version>
         <milo-version>1.1.1</milo-version>
         <milvus-client-version>2.6.14</milvus-client-version>
         <mina-version>2.2.5</mina-version>
@@ -412,9 +416,14 @@
         <narayana-version>5.13.1.Final</narayana-version>
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>6.0.2</neo4j-version>
+        <neo4j-bolt-version>6.0.2</neo4j-bolt-version>
         <netty-version>4.1.130.Final</netty-version>
+        <netty-incubator-codec-classes-quic-version>0.0.63.Final</netty-incubator-codec-classes-quic-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.9</networknt-json-schema-validator-version>
+        <nimbusds-content-type-version>2.3</nimbusds-content-type-version>
+        <nimbusds-lang-tag-version>1.7</nimbusds-lang-tag-version>
+        <nimbusds-oauth2-oidc-sdk-version>11.23</nimbusds-oauth2-oidc-sdk-version>
         <nimbus-jose-jwt>10.7</nimbus-jose-jwt>
         <nitrite-version>3.4.4</nitrite-version>
         <olingo2-version>2.0.13</olingo2-version>
@@ -466,6 +475,7 @@
         <reactive-streams-version>1.0.4</reactive-streams-version>
         <reactor-version>3.8.3</reactor-version>
         <reactor-netty-version>1.3.3</reactor-netty-version>
+        <reactor-netty-incubator-quic-version>0.1.20</reactor-netty-incubator-quic-version>
         <redisson-version>3.52.0</redisson-version>
         <resilience4j-version>2.3.0</resilience4j-version>
         <rest-assured-version>5.5.6</rest-assured-version>
@@ -562,7 +572,7 @@
         <!-- OSGI version ranges -->
         <camel-osgi-asm-version>[9.5,10)</camel-osgi-asm-version>
         <camel-osgi-cglib-version>[3.3,3.4)</camel-osgi-cglib-version>
-        <camel-osgi-jackson2-version>[2.19,2.20)</camel-osgi-jackson2-version>
+        <camel-osgi-jackson2-version>[2.20,2.21)</camel-osgi-jackson2-version>
         <camel-osgi-jakarta-annotation2-version>[2,3)</camel-osgi-jakarta-annotation2-version>
         <camel-osgi-jakarta-annotation-version>[3,4)</camel-osgi-jakarta-annotation-version>
         <camel-osgi-jakarta-activation-version>[2.1,3)</camel-osgi-jakarta-activation-version>
