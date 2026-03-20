@@ -499,6 +499,8 @@
         <smooks-version>2.2.1</smooks-version>
         <snakeyaml-version>2.5</snakeyaml-version>
         <snakeyaml-engine-version>3.0.1</snakeyaml-engine-version>
+        <!-- fabric8 kubernetes-client 7.x imports snakeyaml-engine [2.10,3), so we pin to 2.x for kubernetes -->
+        <snakeyaml-engine-kubernetes-version>2.10</snakeyaml-engine-kubernetes-version>
         <snmp4j-version>3.9.7</snmp4j-version>
         <solr-version>9.10.1</solr-version>
         <solr-zookeeper-version>3.9.4</solr-zookeeper-version>
@@ -650,12 +652,13 @@
         <osgi-service-component-version>1.5.1</osgi-service-component-version>
         <osgi-version>8.0.0</osgi-version>
         <pax-tiny-bundle-version>4.0.1</pax-tiny-bundle-version>
-        <protobuf4-version>4.31.1</protobuf4-version>
+        <protobuf4-version>4.33.4</protobuf4-version>
         <sal-api-version>5.1.4</sal-api-version>
         <servicemix-specs-version>10</servicemix-specs-version>
         <servicemix-spring-jms-version>6.1.6</servicemix-spring-jms-version>
         <slf4j-version>2.0.13</slf4j-version>
         <spring-amqp-version>3.1.7</spring-amqp-version>
+        <wss4j-version>4.0.0</wss4j-version>
 
         <!-- Plugin versions -->
         <maven-antrun-plugin-version>3.1.0</maven-antrun-plugin-version>
