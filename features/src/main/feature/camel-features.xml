@@ -1199,7 +1199,9 @@
         <feature version='[5,6)'>http-client</feature>
         <bundle dependency='true'>mvn:com.fasterxml.jackson.datatype/jackson-datatype-jsr310/${jackson2-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.openapitools/jackson-databind-nullable/${jackson-databind-nullable-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:ai.docling/docling-java/${docling-java-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:ai.docling/docling-core/${docling-core-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:ai.docling/docling-serve-api/${docling-serve-api-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:ai.docling/docling-serve-client/${docling-serve-client-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-docling/${project.version}</bundle>
     </feature>
     <feature name='camel-drill' version='${project.version}' start-level='50'>

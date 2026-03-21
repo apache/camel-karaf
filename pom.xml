@@ -182,7 +182,9 @@
         <disruptor-version>3.4.4</disruptor-version>
         <dnsjava-version>3.6.4</dnsjava-version>
         <djl-version>0.36.0</djl-version>
-        <docling-java-version>0.4.4</docling-java-version>
+        <docling-core-version>0.4.4</docling-core-version>
+        <docling-serve-api-version>0.4.4</docling-serve-api-version>
+        <docling-serve-client-version>0.4.4</docling-serve-client-version>
         <docker-java-version>3.7.0</docker-java-version>
         <dropbox-version>7.0.0</dropbox-version>
         <eddsa-version>0.3.0</eddsa-version>
