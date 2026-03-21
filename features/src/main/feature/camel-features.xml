@@ -1257,7 +1257,7 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-api/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-common/${opentelemetry-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/1.37.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/1.37.0</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.httpcomponents/httpasyncclient/${httpasyncclient-version}</bundle>
         <bundle dependency='true'>mvn:jakarta.json.bind/jakarta.json.bind-api/${jakarta-json-bind-api-version}</bundle>
         <bundle dependency='true'>mvn:org.eclipse/yasson/${yasson-version}</bundle>
@@ -1790,7 +1790,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='[5,6)'>http-client</feature>
-        <bundle dependency='true'>wrap:mvn:com.ibm.watsonx.ai/watsonx-ai/${ibm-watsonx-ai-sdk-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:com.ibm.watsonx/watsonx-ai/${ibm-watsonx-ai-sdk-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ibm-watsonx-ai/${project.version}</bundle>
     </feature>
     <feature name='camel-ical' version='${project.version}' start-level='50'>
@@ -1816,7 +1816,7 @@
     <feature name='camel-iggy' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
-        <bundle dependency='true'>wrap:mvn:rs.iggy/iggy-java/${iggy-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.iggy/iggy/${iggy-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-iggy/${project.version}</bundle>
     </feature>
     <feature name='camel-ignite' version='${project.version}' start-level='50'>
@@ -1838,7 +1838,7 @@
         <feature version='${camel-osgi-version-range}'>camel-infinispan-common</feature>
         <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-api/${infinispan-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-client-hotrod/${infinispan-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-remote-query-client/${infinispan-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.infinispan/infinispan-query/${infinispan-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-infinispan/${project.version}</bundle>
     </feature>
     <feature name='camel-infinispan-common' version='${project.version}' start-level='50'>
@@ -2460,11 +2460,14 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[4.1,5)'>netty</feature>
         <feature version='[1,2)'>bouncycastle</feature>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/sdk-client/${milo-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/sdk-server/${milo-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/stack-client/${milo-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/stack-server/${milo-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
-        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/stack-core/${milo-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-client/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-server/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-sdk-core/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-stack-core/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-transport/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-dtd-manager/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.eclipse.milo/milo-dtd-core/${milo-version}$overwrite=merge&amp;Bundle-Version=${milo-version}&amp;Import-Package=*;resolution:=optional&amp;Export-Package=*;version=${milo-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.jspecify/jspecify/1.0.0$Bundle-Version=1.0.0&amp;Export-Package=*;version=1.0.0</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-milo/${project.version}</bundle>
     </feature>
     <feature name='camel-milvus' version='${project.version}' start-level='50'>
@@ -2718,7 +2721,7 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk-trace/${opentelemetry-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk-logs/${opentelemetry-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry/${project.version}</bundle>
     </feature>
     <feature name='camel-opentelemetry-metrics' version='${project.version}' start-level='50'>
@@ -2737,7 +2740,7 @@
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk-trace/${opentelemetry-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-sdk-logs/${opentelemetry-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-context/${opentelemetry-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.opentelemetry.semconv/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.opentelemetry/opentelemetry-semconv/${opentelemetry-semconv-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-opentelemetry2/${project.version}</bundle>
     </feature>
     <feature name='camel-optaplanner' version='${project.version}' start-level='50'>
