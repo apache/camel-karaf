@@ -13,6 +13,8 @@
  */
 package org.apache.karaf.camel.itest;
 
+import java.time.Duration;
+
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.GenericContainerResource;
@@ -25,6 +27,7 @@ import org.testcontainers.azure.EventHubsEmulatorContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.azure.AzuriteContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
+import org.testcontainers.images.builder.Transferable;
 
 @CamelKarafTestHint(externalResourceProvider = CamelAzureEventhubsITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
@@ -38,11 +41,44 @@ public class CamelAzureEventhubsITest extends AbstractCamelSingleFeatureResultMo
         assertMockEndpointsSatisfied();
     }
 
+    @Override
+    public void assertMockEndpointsSatisfied() throws InterruptedException {
+        getMockEndpoint().setResultWaitTime(60_000);
+        getMockEndpoint().assertIsSatisfied();
+    }
+
     public static final class ExternalResourceProviders {
         private static final String DEFAULT_ACCOUNT_NAME = "devstoreaccount1";
         private static final String DEFAULT_ACCOUNT_KEY
                 = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
         private static final int AZURITE_ORIGINAL_PORT =  10000;
+
+        private static final String EVENTHUBS_CONFIG = """
+                {
+                  "UserConfig": {
+                    "NamespaceConfig": [
+                      {
+                        "Type": "EventHub",
+                        "Name": "emulatorNs1",
+                        "Entities": [
+                          {
+                            "Name": "eh1",
+                            "PartitionCount": "2",
+                            "ConsumerGroups": [
+                              {
+                                "Name": "$Default"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "LoggingConfig": {
+                      "Type": "File"
+                    }
+                  }
+                }
+                """;
 
         private static final Network network = Network.newNetwork();
         private static final AzuriteContainer azuriteContainer =
@@ -65,9 +101,13 @@ public class CamelAzureEventhubsITest extends AbstractCamelSingleFeatureResultMo
         public static GenericContainerResource<EventHubsEmulatorContainer> createAzureEventHubsContainer() {
             EventHubsEmulatorContainer eventHubContainer =
                     new EventHubsEmulatorContainer("mcr.microsoft.com/azure-messaging/eventhubs-emulator:2.0.1")
-                            .withNetwork(network).withNetworkAliases("eventhubs-emulator").withAzuriteContainer(azuriteContainer)
-                            .withExposedPorts(EVENTHUBS_EMULATOR_PORT)
-                            .withEnv("ACCEPT_EULA", "Y");
+                            .withNetwork(network)
+                            .withNetworkAliases("eventhubs-emulator")
+                            .withAzuriteContainer(azuriteContainer)
+                            .acceptLicense()
+                            .withConfig(Transferable.of(EVENTHUBS_CONFIG))
+                            .waitingFor(Wait.forLogMessage(".*Emulator Service is Successfully Up!.*", 1)
+                                    .withStartupTimeout(Duration.ofMinutes(3)));
 
             return new GenericContainerResource<>(eventHubContainer, resource -> {
                 resource.setProperty("azure.connectionString", eventHubContainer.getConnectionString());
