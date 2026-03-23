@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.14.6-SNAPSHOT</version>
+        <version>4.18.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -78,6 +78,7 @@
         <module>camel-csimple-joor</module>
         <module>camel-csv</module>
         <module>camel-cxf</module>
+        <module>camel-cyberark-vault</module>
         <module>camel-dapr</module>
         <module>camel-dataformat</module>
         <module>camel-dataset</module>
@@ -115,11 +116,13 @@
         <module>camel-geocoder</module>
         <module>camel-git</module>
         <module>camel-github</module>
+        <module>camel-github2</module>
         <module>camel-google</module>
         <module>camel-grape</module>
         <module>camel-graphql</module>
         <module>camel-grok</module>
         <module>camel-groovy</module>
+        <module>camel-groovy-xml</module>
         <module>camel-grpc</module>
         <module>camel-gson</module>
         <module>camel-guava-eventbus</module>
@@ -131,9 +134,10 @@
         <module>camel-http-base</module>
         <module>camel-http-common</module>
         <module>camel-huawei</module>
-        <module>camel-ibm-secrets-manager</module>
+        <module>camel-ibm</module>
         <module>camel-ical</module>
         <module>camel-iec60870</module>
+        <module>camel-iggy</module>
         <module>camel-ignite</module>
         <module>camel-infinispan</module>
         <module>camel-influxdb</module>
@@ -178,6 +182,7 @@
         <module>camel-jte</module>
         <module>camel-kafka</module>
         <module>camel-kamelet</module>
+        <module>camel-keycloak</module>
         <module>camel-knative</module>
         <module>camel-kubernetes</module>
         <module>camel-kudu</module>
@@ -194,11 +199,15 @@
         <module>camel-mail-microsoft-oauth</module>
         <module>camel-mapstruct</module>
         <module>camel-master</module>
+        <module>camel-mdc</module>
         <module>camel-metrics</module>
         <module>camel-micrometer</module>
+        <module>camel-micrometer-observability</module>
         <module>camel-micrometer-prometheus</module>
         <module>camel-microprofile</module>
+        <module>camel-milo</module>
         <module>camel-mina</module>
+        <module>camel-mina-sftp</module>
         <module>camel-minio</module>
         <module>camel-mllp</module>
         <module>camel-mock</module>
@@ -215,14 +224,17 @@
         <module>camel-oauth</module>
         <module>camel-observability-services</module>
         <module>camel-observation</module>
+        <module>camel-ocsf</module>
         <module>camel-ognl</module>
         <module>camel-olingo2</module>
         <module>camel-olingo4</module>
+        <module>camel-once</module>
         <module>camel-openapi-java</module>
         <module>camel-openapi-validator</module>
         <module>camel-opensearch</module>
         <module>camel-openstack</module>
         <module>camel-opentelemetry</module>
+        <module>camel-opentelemetry-metrics</module>
         <module>camel-opentelemetry2</module>
         <module>camel-optaplanner</module>
         <module>camel-paho</module>
@@ -251,6 +263,7 @@
         <module>camel-redis</module>
         <module>camel-ref</module>
         <module>camel-resilience4j</module>
+        <module>camel-resilience4j-micrometer</module>
         <module>camel-resourceresolver-github</module>
         <module>camel-rest</module>
         <module>camel-rest-openapi</module>
@@ -289,6 +302,7 @@
         <module>camel-stomp</module>
         <module>camel-stream</module>
         <module>camel-stringtemplate</module>
+        <module>camel-stripe</module>
         <module>camel-stub</module>
         <module>camel-swift</module>
         <module>camel-syslog</module>

@@ -15,7 +15,6 @@ package org.apache.karaf.camel.itest;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteITest;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -32,7 +31,6 @@ public class CamelBeanValidatorITest extends AbstractCamelSingleFeatureResultMoc
     }
 
     @Test
-    @Ignore("HV000183: Unable to initialize 'jakarta.el.ExpressionFactory'.")
     public void testResultMock() throws Exception {
         assertMockEndpointsSatisfied();
     }
