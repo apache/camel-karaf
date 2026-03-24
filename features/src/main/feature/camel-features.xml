@@ -716,6 +716,7 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
@@ -765,6 +766,7 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
@@ -790,6 +792,7 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/${azure-storage-queue-version}</bundle>
