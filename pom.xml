@@ -362,6 +362,7 @@
         <json-patch-version>1.13</json-patch-version>
         <json-smart-version>2.6.0</json-smart-version>
         <jsonata-version>0.9.9</jsonata-version>
+        <jspecify-version>1.0.0</jspecify-version>
         <json-unit-version>5.1.0</json-unit-version>
         <jsoup-version>1.22.1</jsoup-version>
         <jt400-version>21.0.6</jt400-version>
@@ -419,8 +420,7 @@
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-version>6.0.2</neo4j-version>
         <neo4j-bolt-version>6.0.2</neo4j-bolt-version>
-        <netty-version>4.1.130.Final</netty-version>
-        <netty-incubator-codec-classes-quic-version>0.0.63.Final</netty-incubator-codec-classes-quic-version>
+        <netty-version>4.2.10.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.9</networknt-json-schema-validator-version>
         <nimbusds-content-type-version>2.3</nimbusds-content-type-version>
@@ -646,7 +646,7 @@
         <jetty11-version>11.0.21</jetty11-version>
         <junit4-version>4.13.2</junit4-version>
         <karaf-version>4.4.8</karaf-version>
-        <netty-incubator-transport-classes-io_uring-version>0.0.25.Final</netty-incubator-transport-classes-io_uring-version>
+        <!-- io_uring and quic graduated to main Netty in 4.2 -->
         <objenesis-version>3.4</objenesis-version>
         <osgi-cmpn-version>7.0.0</osgi-cmpn-version>
         <osgi-resource-locator-version>2.5.0-b42</osgi-resource-locator-version>
