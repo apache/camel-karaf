@@ -706,21 +706,21 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-eventhubs</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
-        <bundle>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
-        <bundle>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}$Import-Package=reactor.netty.http.client,reactor.netty.resources,reactor.netty.tcp,reactor.netty.transport,reactor.netty.channel,io.netty.handler.ssl,*</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>
@@ -758,21 +758,21 @@
         <feature version='[4.1,5)'>netty</feature>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob-changefeed/${azure-storage-blob-changefeed-version}</bundle>
-        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
-        <bundle>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
-        <bundle>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}$Import-Package=reactor.netty.http.client,reactor.netty.resources,reactor.netty.tcp,reactor.netty.transport,reactor.netty.channel,io.netty.handler.ssl,*</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-datalake' version='${project.version}' start-level='50'>
@@ -786,19 +786,19 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[${azure-core-version},2)'>azure-storage</feature>
         <feature version='[4.1,5)'>netty</feature>
-        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
-        <bundle>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
-        <bundle>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
-        <bundle>mvn:io.projectreactor.netty/reactor-netty-core/${auto-detect-version}</bundle>
-        <bundle>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
+        <bundle>wrap:mvn:com.azure/azure-core-http-netty/${auto-detect-version}$Import-Package=reactor.netty.http.client,reactor.netty.resources,reactor.netty.tcp,reactor.netty.transport,reactor.netty.channel,io.netty.handler.ssl,*</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
+        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-queue/${azure-storage-queue-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-queue/${project.version}</bundle>
     </feature>
