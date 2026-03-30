@@ -716,9 +716,11 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
+        <bundle>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>
@@ -766,9 +768,11 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
+        <bundle>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-datalake' version='${project.version}' start-level='50'>
