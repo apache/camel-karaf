@@ -720,7 +720,7 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
         <bundle dependency='true'>wrap:mvn:com.azure/azure-storage-blob/${azure-storage-blob-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-eventhubs/${project.version}</bundle>
     </feature>
@@ -772,7 +772,7 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-azure-storage-blob/${project.version}</bundle>
     </feature>
     <feature name='camel-azure-storage-datalake' version='${project.version}' start-level='50'>
@@ -3311,7 +3311,7 @@ Chain 2:
         <bundle dependency='true'>wrap:mvn:io.projectreactor/reactor-core/${reactor-version}$overwrite=merge&amp;Import-Package=jdk.internal*;resolution:=optional,io.micrometer*;resolution:=optional,javax.annotation*;resolution:=optional,org.jspecify*;resolution:=optional,kotlin*;resolution:=optional,reactor.blockhound*;resolution:=optional,*</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
-        <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-http/${reactor-netty-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-transport-classes-epoll/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-handler-proxy/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
