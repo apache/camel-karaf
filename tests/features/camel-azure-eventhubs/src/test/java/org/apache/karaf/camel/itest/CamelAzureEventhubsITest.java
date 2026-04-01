@@ -17,7 +17,6 @@ import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRo
 import org.apache.karaf.camel.itests.CamelKarafTestHint;
 import org.apache.karaf.camel.itests.GenericContainerResource;
 import org.apache.karaf.camel.itests.PaxExamWithExternalResource;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
@@ -27,7 +26,6 @@ import org.testcontainers.containers.Network;
 import org.testcontainers.azure.AzuriteContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 
-@Ignore("Flaky on CI - EventHubs emulator container fails to start")
 @CamelKarafTestHint(externalResourceProvider = CamelAzureEventhubsITest.ExternalResourceProviders.class)
 @RunWith(PaxExamWithExternalResource.class)
 @ExamReactorStrategy(PerClass.class)
