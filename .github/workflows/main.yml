@@ -66,6 +66,7 @@ jobs:
             **/target/*.jar
             **/target/classes/
             **/target/test-classes/
+            **/target/feature/
           retention-days: 1
 
   test:
