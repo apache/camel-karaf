@@ -810,8 +810,8 @@
         <feature prerequisite='true'>spifly</feature>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[3,4)'>jakarta-validation</feature>
-        <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
-        <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge</bundle>
+        <!-- wrap needed to add the missing SPI-Provider clause and DynamicImport for EL discovery in OSGi -->
+        <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge&amp;DynamicImport-Package=com.sun.el,org.glassfish.expressly</bundle>
         <bundle dependency='true'>mvn:com.fasterxml/classmate/${auto-detect-version}</bundle>
         <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
         <bundle dependency='true'>wrap:mvn:org.glassfish.expressly/expressly/${jakarta-el-expressly-version}$overwrite=merge</bundle>
