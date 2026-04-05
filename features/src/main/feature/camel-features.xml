@@ -811,11 +811,12 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[3,4)'>jakarta-validation</feature>
         <!-- wrap needed to add the missing SPI-Provider clause and DynamicImport for EL discovery in OSGi -->
-        <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge&amp;DynamicImport-Package=com.sun.el,org.glassfish.expressly</bundle>
+        <bundle dependency='true'>wrap:mvn:org.hibernate.validator/hibernate-validator/${hibernate-validator-version}$overwrite=merge&amp;DynamicImport-Package=com.sun.el,org.glassfish.expressly,org.osgi.framework</bundle>
         <bundle dependency='true'>mvn:com.fasterxml/classmate/${auto-detect-version}</bundle>
         <!-- wrap needed to add the missing SPI-Provider clause to the manifest -->
         <bundle dependency='true'>wrap:mvn:org.glassfish.expressly/expressly/${jakarta-el-expressly-version}$overwrite=merge</bundle>
-        <bundle dependency='true'>mvn:jakarta.el/jakarta.el-api/${jakarta-el-api-version}</bundle>
+        <!-- wrap needed to add the missing SPI-Consumer clause for ExpressionFactory discovery via ServiceLoader in OSGi -->
+        <bundle dependency='true'>wrap:mvn:jakarta.el/jakarta.el-api/${jakarta-el-api-version}$overwrite=merge&amp;SPI-Consumer=*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-bean-validator/${project.version}</bundle>
     </feature>
     <feature name='camel-barcode' version='${project.version}' start-level='50'>

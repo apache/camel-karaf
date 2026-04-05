@@ -69,6 +69,18 @@
             <version>${camel-version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-support</artifactId>
+            <version>${camel-version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator-version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- osgi support -->
         <dependency>
             <groupId>org.osgi</groupId>
