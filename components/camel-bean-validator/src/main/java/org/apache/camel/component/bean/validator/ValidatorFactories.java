@@ -16,10 +16,6 @@
  */
 package org.apache.camel.component.bean.validator;
 
-import java.util.Collections;
-import java.util.Locale;
-
-import jakarta.el.ExpressionFactory;
 import jakarta.validation.ConstraintValidatorFactory;
 import jakarta.validation.MessageInterpolator;
 import jakarta.validation.TraversableResolver;
@@ -31,8 +27,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.support.CamelContextHelper;
 import org.hibernate.validator.HibernateValidator;
 import org.hibernate.validator.HibernateValidatorConfiguration;
-import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
-import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
+import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
 /**
  * OSGi-aware override of the upstream ValidatorFactories.
@@ -40,13 +35,13 @@ import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
  * In OSGi, Hibernate Validator 9.x's {@code ResourceBundleMessageInterpolator}
  * tries to discover the Jakarta EL {@code ExpressionFactory} via
  * {@code ServiceLoader} / TCCL.  This fails in OSGi because no single
- * bundle classloader can find the Expressly SPI descriptor
- * ({@code META-INF/services/jakarta.el.ExpressionFactory}).
+ * bundle classloader can resolve the Expressly SPI descriptor across
+ * bundle boundaries.
  *
- * This override directly instantiates the Expressly {@code ExpressionFactory}
- * (resolved via HV's {@code DynamicImport-Package}) and injects it into a
- * {@code ResourceBundleMessageInterpolator}, completely bypassing the
- * ServiceLoader discovery that does not work across OSGi bundles.
+ * This override uses {@code ParameterMessageInterpolator} as the default
+ * message interpolator when no custom one is provided, bypassing the EL
+ * dependency entirely.  This is the approach recommended by Hibernate
+ * Validator for environments where EL is not available.
  */
 public final class ValidatorFactories {
 
@@ -82,25 +77,14 @@ public final class ValidatorFactories {
                 .configure()
                 .externalClassLoader(hvCl);
 
-        // If no custom MessageInterpolator was provided, create one with
-        // a directly-instantiated ExpressionFactory to bypass the broken
-        // ServiceLoader discovery in OSGi.
+        // In OSGi, EL-based message interpolation does not work because
+        // ServiceLoader cannot discover ExpressionFactory across bundles.
+        // Use ParameterMessageInterpolator as the default fallback.
         if (messageInterpolator == null) {
-            ExpressionFactory ef = createExpressionFactory(hvCl);
-            if (ef != null) {
-                // Must use the 7-param constructor — the 3-param
-                // (ResourceBundleLocator, boolean, ExpressionFactory)
-                // constructor has a bug in HV 9.1.0 that ignores the
-                // ExpressionFactory parameter and calls buildExpressionFactory().
-                messageInterpolator = new ResourceBundleMessageInterpolator(
-                        null, Collections.emptySet(), Locale.getDefault(),
-                        createDefaultLocaleResolver(hvCl), true, false, ef);
-            }
+            messageInterpolator = new ParameterMessageInterpolator();
         }
+        hvConfig.messageInterpolator(messageInterpolator);
 
-        if (messageInterpolator != null) {
-            hvConfig.messageInterpolator(messageInterpolator);
-        }
         if (traversableResolver != null) {
             hvConfig.traversableResolver(traversableResolver);
         }
@@ -112,32 +96,5 @@ public final class ValidatorFactories {
         }
 
         return hvConfig.buildValidatorFactory();
-    }
-
-    /**
-     * Directly instantiate the Expressly ExpressionFactory via HV's
-     * DynamicImport-Package wiring, bypassing ServiceLoader entirely.
-     */
-    private static ExpressionFactory createExpressionFactory(ClassLoader hvCl) {
-        try {
-            Class<?> implClass = hvCl.loadClass("org.glassfish.expressly.ExpressionFactoryImpl");
-            return (ExpressionFactory) implClass.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Create the HV DefaultLocaleResolver via reflection to avoid importing
-     * the internal package which is not exported by the HV bundle.
-     */
-    private static LocaleResolver createDefaultLocaleResolver(ClassLoader hvCl) {
-        try {
-            Class<?> clazz = hvCl.loadClass(
-                    "org.hibernate.validator.internal.engine.messageinterpolation.DefaultLocaleResolver");
-            return (LocaleResolver) clazz.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            return null;
-        }
     }
 }
