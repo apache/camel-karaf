@@ -16,6 +16,9 @@
  */
 package org.apache.camel.component.bean.validator;
 
+import java.util.Collections;
+import java.util.Locale;
+
 import jakarta.el.ExpressionFactory;
 import jakarta.validation.ConstraintValidatorFactory;
 import jakarta.validation.MessageInterpolator;
@@ -28,6 +31,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.support.CamelContextHelper;
 import org.hibernate.validator.HibernateValidator;
 import org.hibernate.validator.HibernateValidatorConfiguration;
+import org.hibernate.validator.internal.engine.messageinterpolation.DefaultLocaleResolver;
 import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 
 /**
@@ -84,7 +88,13 @@ public final class ValidatorFactories {
         if (messageInterpolator == null) {
             ExpressionFactory ef = createExpressionFactory(hvCl);
             if (ef != null) {
-                messageInterpolator = new ResourceBundleMessageInterpolator(null, true, ef);
+                // Must use the 7-param constructor — the 3-param
+                // (ResourceBundleLocator, boolean, ExpressionFactory)
+                // constructor has a bug in HV 9.1.0 that ignores the
+                // ExpressionFactory parameter and calls buildExpressionFactory().
+                messageInterpolator = new ResourceBundleMessageInterpolator(
+                        null, Collections.emptySet(), Locale.getDefault(),
+                        new DefaultLocaleResolver(), true, false, ef);
             }
         }
 
