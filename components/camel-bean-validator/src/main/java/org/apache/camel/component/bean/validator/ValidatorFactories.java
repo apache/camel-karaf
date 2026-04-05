@@ -16,7 +16,7 @@
  */
 package org.apache.camel.component.bean.validator;
 
-import jakarta.validation.Configuration;
+import jakarta.el.ExpressionFactory;
 import jakarta.validation.ConstraintValidatorFactory;
 import jakarta.validation.MessageInterpolator;
 import jakarta.validation.TraversableResolver;
@@ -28,19 +28,21 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.support.CamelContextHelper;
 import org.hibernate.validator.HibernateValidator;
 import org.hibernate.validator.HibernateValidatorConfiguration;
+import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 
 /**
  * OSGi-aware override of the upstream ValidatorFactories.
  *
  * In OSGi, Hibernate Validator 9.x's {@code ResourceBundleMessageInterpolator}
  * tries to discover the Jakarta EL {@code ExpressionFactory} via
- * {@code ServiceLoader}. This requires the TCCL to point to a classloader
- * that can find the {@code META-INF/services/jakarta.el.ExpressionFactory}
- * descriptor — which lives inside the Expressly bundle.
+ * {@code ServiceLoader} / TCCL.  This fails in OSGi because no single
+ * bundle classloader can find the Expressly SPI descriptor
+ * ({@code META-INF/services/jakarta.el.ExpressionFactory}).
  *
- * This override resolves the Expressly bundle's classloader (via
- * HV's {@code DynamicImport-Package}) and sets it as the TCCL so that
- * the ServiceLoader-based discovery succeeds.
+ * This override directly instantiates the Expressly {@code ExpressionFactory}
+ * (resolved via HV's {@code DynamicImport-Package}) and injects it into a
+ * {@code ResourceBundleMessageInterpolator}, completely bypassing the
+ * ServiceLoader discovery that does not work across OSGi bundles.
  */
 public final class ValidatorFactories {
 
@@ -66,60 +68,52 @@ public final class ValidatorFactories {
             validationProviderResolver = new HibernateValidationProviderResolver();
         }
 
-        // HV 9.x's ResourceBundleMessageInterpolator.buildExpressionFactory()
-        // uses ServiceLoader via the TCCL to find the EL ExpressionFactory
-        // implementation.  In OSGi the TCCL is typically null and no single
-        // bundle classloader sees the Expressly META-INF/services descriptor.
-        //
-        // Resolve the Expressly bundle's classloader through HV's
-        // DynamicImport-Package and set it as TCCL so ServiceLoader succeeds.
-        ClassLoader tccl = Thread.currentThread().getContextClassLoader();
         ClassLoader hvCl = HibernateValidator.class.getClassLoader();
         if (hvCl == null) {
             hvCl = ValidatorFactories.class.getClassLoader();
         }
 
-        ClassLoader elCl = resolveExpresslyClassLoader(hvCl);
-        Thread.currentThread().setContextClassLoader(elCl);
-        try {
-            HibernateValidatorConfiguration hvConfig = Validation.byProvider(HibernateValidator.class)
-                    .providerResolver(validationProviderResolver)
-                    .configure()
-                    .externalClassLoader(elCl);
+        HibernateValidatorConfiguration hvConfig = Validation.byProvider(HibernateValidator.class)
+                .providerResolver(validationProviderResolver)
+                .configure()
+                .externalClassLoader(hvCl);
 
-            if (messageInterpolator != null) {
-                hvConfig.messageInterpolator(messageInterpolator);
+        // If no custom MessageInterpolator was provided, create one with
+        // a directly-instantiated ExpressionFactory to bypass the broken
+        // ServiceLoader discovery in OSGi.
+        if (messageInterpolator == null) {
+            ExpressionFactory ef = createExpressionFactory(hvCl);
+            if (ef != null) {
+                messageInterpolator = new ResourceBundleMessageInterpolator(null, true, ef);
             }
-            if (traversableResolver != null) {
-                hvConfig.traversableResolver(traversableResolver);
-            }
-            if (constraintValidatorFactory != null) {
-                hvConfig.constraintValidatorFactory(constraintValidatorFactory);
-            }
-            if (ignoreXmlConfiguration) {
-                hvConfig.ignoreXmlConfiguration();
-            }
-
-            return hvConfig.buildValidatorFactory();
-        } finally {
-            Thread.currentThread().setContextClassLoader(tccl);
         }
+
+        if (messageInterpolator != null) {
+            hvConfig.messageInterpolator(messageInterpolator);
+        }
+        if (traversableResolver != null) {
+            hvConfig.traversableResolver(traversableResolver);
+        }
+        if (constraintValidatorFactory != null) {
+            hvConfig.constraintValidatorFactory(constraintValidatorFactory);
+        }
+        if (ignoreXmlConfiguration) {
+            hvConfig.ignoreXmlConfiguration();
+        }
+
+        return hvConfig.buildValidatorFactory();
     }
 
     /**
-     * Resolve the Expressly bundle's classloader.  The hibernate-validator
-     * wrapped bundle has {@code DynamicImport-Package} for
-     * {@code org.glassfish.expressly}, so loading the implementation class
-     * through HV's classloader triggers OSGi dynamic wiring and gives us
-     * the bundle classloader that owns the SPI descriptor.
+     * Directly instantiate the Expressly ExpressionFactory via HV's
+     * DynamicImport-Package wiring, bypassing ServiceLoader entirely.
      */
-    private static ClassLoader resolveExpresslyClassLoader(ClassLoader hvCl) {
+    private static ExpressionFactory createExpressionFactory(ClassLoader hvCl) {
         try {
-            return hvCl.loadClass("org.glassfish.expressly.ExpressionFactoryImpl")
-                    .getClassLoader();
-        } catch (ClassNotFoundException e) {
-            // Expressly not resolvable — fall back to HV's classloader
-            return hvCl;
+            Class<?> implClass = hvCl.loadClass("org.glassfish.expressly.ExpressionFactoryImpl");
+            return (ExpressionFactory) implClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            return null;
         }
     }
 }

@@ -81,6 +81,12 @@
             <version>${hibernate-validator-version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta-el-api-version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- osgi support -->
         <dependency>
             <groupId>org.osgi</groupId>
