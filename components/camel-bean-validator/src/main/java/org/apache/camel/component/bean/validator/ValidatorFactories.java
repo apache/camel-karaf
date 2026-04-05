@@ -31,8 +31,8 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.support.CamelContextHelper;
 import org.hibernate.validator.HibernateValidator;
 import org.hibernate.validator.HibernateValidatorConfiguration;
-import org.hibernate.validator.internal.engine.messageinterpolation.DefaultLocaleResolver;
 import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
 
 /**
  * OSGi-aware override of the upstream ValidatorFactories.
@@ -94,7 +94,7 @@ public final class ValidatorFactories {
                 // ExpressionFactory parameter and calls buildExpressionFactory().
                 messageInterpolator = new ResourceBundleMessageInterpolator(
                         null, Collections.emptySet(), Locale.getDefault(),
-                        new DefaultLocaleResolver(), true, false, ef);
+                        createDefaultLocaleResolver(hvCl), true, false, ef);
             }
         }
 
@@ -122,6 +122,20 @@ public final class ValidatorFactories {
         try {
             Class<?> implClass = hvCl.loadClass("org.glassfish.expressly.ExpressionFactoryImpl");
             return (ExpressionFactory) implClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Create the HV DefaultLocaleResolver via reflection to avoid importing
+     * the internal package which is not exported by the HV bundle.
+     */
+    private static LocaleResolver createDefaultLocaleResolver(ClassLoader hvCl) {
+        try {
+            Class<?> clazz = hvCl.loadClass(
+                    "org.hibernate.validator.internal.engine.messageinterpolation.DefaultLocaleResolver");
+            return (LocaleResolver) clazz.getDeclaredConstructor().newInstance();
         } catch (Exception e) {
             return null;
         }
