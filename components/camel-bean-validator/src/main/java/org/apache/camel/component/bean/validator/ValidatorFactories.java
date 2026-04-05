@@ -32,15 +32,15 @@ import org.hibernate.validator.HibernateValidatorConfiguration;
 /**
  * OSGi-aware override of the upstream ValidatorFactories.
  *
- * In OSGi, Hibernate Validator's {@code externalClassLoader} defaults to
- * {@code null} and the TCCL is typically null.  This causes HV000116 /
- * HV000183 when Hibernate Validator tries to initialise the Jakarta EL
- * {@code ExpressionFactory}.
+ * In OSGi, Hibernate Validator 9.x's {@code ResourceBundleMessageInterpolator}
+ * tries to discover the Jakarta EL {@code ExpressionFactory} via
+ * {@code ServiceLoader}. This requires the TCCL to point to a classloader
+ * that can find the {@code META-INF/services/jakarta.el.ExpressionFactory}
+ * descriptor — which lives inside the Expressly bundle.
  *
- * This override sets the TCCL to the Hibernate Validator bundle's class
- * loader before any validation calls.  That bundle carries a
- * {@code DynamicImport-Package} for the Expressly EL implementation,
- * allowing {@code ExpressionFactory.newInstance()} to discover it.
+ * This override resolves the Expressly bundle's classloader (via
+ * HV's {@code DynamicImport-Package}) and sets it as the TCCL so that
+ * the ServiceLoader-based discovery succeeds.
  */
 public final class ValidatorFactories {
 
@@ -66,22 +66,26 @@ public final class ValidatorFactories {
             validationProviderResolver = new HibernateValidationProviderResolver();
         }
 
-        // In OSGi the TCCL is typically null.  Hibernate Validator uses it
-        // both as a fallback for externalClassLoader and to initialise the
-        // EL ExpressionFactory.  Set it to the HV bundle's class loader
-        // which has DynamicImport-Package for the Expressly EL impl.
+        // HV 9.x's ResourceBundleMessageInterpolator.buildExpressionFactory()
+        // uses ServiceLoader via the TCCL to find the EL ExpressionFactory
+        // implementation.  In OSGi the TCCL is typically null and no single
+        // bundle classloader sees the Expressly META-INF/services descriptor.
+        //
+        // Resolve the Expressly bundle's classloader through HV's
+        // DynamicImport-Package and set it as TCCL so ServiceLoader succeeds.
         ClassLoader tccl = Thread.currentThread().getContextClassLoader();
         ClassLoader hvCl = HibernateValidator.class.getClassLoader();
         if (hvCl == null) {
-            // Fallback: use our own bundle classloader
             hvCl = ValidatorFactories.class.getClassLoader();
         }
-        Thread.currentThread().setContextClassLoader(hvCl);
+
+        ClassLoader elCl = resolveExpresslyClassLoader(hvCl);
+        Thread.currentThread().setContextClassLoader(elCl);
         try {
             HibernateValidatorConfiguration hvConfig = Validation.byProvider(HibernateValidator.class)
                     .providerResolver(validationProviderResolver)
                     .configure()
-                    .externalClassLoader(hvCl);
+                    .externalClassLoader(elCl);
 
             if (messageInterpolator != null) {
                 hvConfig.messageInterpolator(messageInterpolator);
@@ -99,6 +103,23 @@ public final class ValidatorFactories {
             return hvConfig.buildValidatorFactory();
         } finally {
             Thread.currentThread().setContextClassLoader(tccl);
+        }
+    }
+
+    /**
+     * Resolve the Expressly bundle's classloader.  The hibernate-validator
+     * wrapped bundle has {@code DynamicImport-Package} for
+     * {@code org.glassfish.expressly}, so loading the implementation class
+     * through HV's classloader triggers OSGi dynamic wiring and gives us
+     * the bundle classloader that owns the SPI descriptor.
+     */
+    private static ClassLoader resolveExpresslyClassLoader(ClassLoader hvCl) {
+        try {
+            return hvCl.loadClass("org.glassfish.expressly.ExpressionFactoryImpl")
+                    .getClassLoader();
+        } catch (ClassNotFoundException e) {
+            // Expressly not resolvable — fall back to HV's classloader
+            return hvCl;
         }
     }
 }
