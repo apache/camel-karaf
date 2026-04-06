@@ -50,7 +50,7 @@ public class CamelAzureStorageQueueITest extends AbstractCamelSingleFeatureResul
 
         public static GenericContainerResource<AzuriteContainer> createAzureStorageQueueContainer() {
 
-            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:latest");
+            AzuriteContainer azuriteContainer = new AzuriteContainer("mcr.microsoft.com/azure-storage/azurite:3.35.0");
 
             return new GenericContainerResource<>(azuriteContainer, resource -> {
                 resource.setProperty("azure.host", azuriteContainer.getHost());

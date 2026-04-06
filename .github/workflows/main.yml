@@ -66,6 +66,7 @@ jobs:
             **/target/*.jar
             **/target/classes/
             **/target/test-classes/
+            **/target/feature/
           retention-days: 1
 
   test:
@@ -94,7 +95,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-      - run: ./mvnw -V --no-transfer-progress verify -Ddump.logs.on.failure=true
+      - run: ./mvnw -V --no-transfer-progress install -Ddump.logs.on.failure=true
       - name: Publish test results
         if: always()
         uses: EnricoMi/publish-unit-test-result-action@v2
