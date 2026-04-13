@@ -298,6 +298,7 @@
         <jackson-databind-nullable-version>0.2.9</jackson-databind-nullable-version>
         <jackson-jq-version>1.6.0</jackson-jq-version>
         <jackson2-version>2.20.1</jackson2-version>
+        <jackson2-annotations-version>2.20</jackson2-annotations-version>
         <jackrabbit-version>2.22.3</jackrabbit-version>
         <jasminb-jsonapi-version>0.15</jasminb-jsonapi-version>
         <jandex-version>3.5.3</jandex-version>
@@ -363,6 +364,7 @@
         <json-patch-version>1.13</json-patch-version>
         <json-smart-version>2.6.0</json-smart-version>
         <jsonata-version>0.9.9</jsonata-version>
+        <jspecify-version>1.0.0</jspecify-version>
         <json-unit-version>5.1.0</json-unit-version>
         <jsoup-version>1.22.1</jsoup-version>
         <jt400-version>21.0.6</jt400-version>
@@ -423,6 +425,9 @@
         <netty-version>4.1.131.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.9</networknt-json-schema-validator-version>
+        <nimbusds-content-type-version>2.3</nimbusds-content-type-version>
+        <nimbusds-lang-tag-version>1.7</nimbusds-lang-tag-version>
+        <nimbusds-oauth2-oidc-sdk-version>11.23</nimbusds-oauth2-oidc-sdk-version>
         <nimbus-jose-jwt>10.7</nimbus-jose-jwt>
         <nitrite-version>3.4.4</nitrite-version>
         <olingo2-version>2.0.13</olingo2-version>
