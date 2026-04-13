@@ -154,6 +154,7 @@
     <feature name="netty" version="${netty-version}">
         <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-base/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
