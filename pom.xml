@@ -422,7 +422,7 @@
         <microprofile-fault-tolerance-version>4.1.2</microprofile-fault-tolerance-version>
         <neo4j-bolt-version>6.0.2</neo4j-bolt-version>
         <neo4j-version>6.0.2</neo4j-version>
-        <netty-version>4.1.131.Final</netty-version>
+        <netty-version>4.2.12.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>1.5.9</networknt-json-schema-validator-version>
         <nimbusds-content-type-version>2.3</nimbusds-content-type-version>
@@ -503,6 +503,7 @@
         <smooks-version>2.2.1</smooks-version>
         <snakeyaml-version>2.5</snakeyaml-version>
         <snakeyaml-engine-version>3.0.1</snakeyaml-engine-version>
+        <snakeyaml-engine-kubernetes-version>2.10</snakeyaml-engine-kubernetes-version>
         <snmp4j-version>3.9.7</snmp4j-version>
         <solr-version>9.10.1</solr-version>
         <solr-zookeeper-version>3.9.5</solr-zookeeper-version>

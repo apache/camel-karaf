@@ -715,6 +715,8 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
@@ -765,6 +767,8 @@
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-resolver-dns/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-dns/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>mvn:org.jspecify/jspecify/${jspecify-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor.netty/reactor-netty-core/${reactor-netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.projectreactor.netty/reactor-netty-http/${auto-detect-version}$overwrite=merge&amp;Import-Package=io.netty.handler.codec.haproxy;resolution:=optional,io.netty.handler.codec.http3;resolution:=optional,io.netty.handler.codec.quic;resolution:=optional,io.netty.incubator.codec*;resolution:=optional,io.micrometer*;resolution:=optional,*</bundle>
@@ -2145,7 +2149,7 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
         <bundle dependency='true'>mvn:com.github.luben/zstd-jni/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:org.xerial.snappy/snappy-java/${auto-detect-version}</bundle>
-        <bundle dependency="true">wrap:mvn:org.lz4/lz4-java/${lz4-java-version}</bundle>
+        <bundle dependency="true">wrap:mvn:at.yawk.lz4/lz4-java/${lz4-java-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kafka/${project.version}</bundle>
     </feature>
     <feature name='camel-kamelet' version='${project.version}' start-level='50'>
@@ -3316,6 +3320,8 @@ Chain 2:
         <bundle dependency='true'>mvn:io.netty/netty-codec-socks/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-http/${netty-version}</bundle>
         <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-http3/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-classes-quic/${netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.projectreactor.netty.incubator/reactor-netty-incubator-quic/${reactor-netty-incubator-quic-version}$overwrite=merge&amp;Import-Package=io.netty.channel.kqueue;resolution:=optional;version="[4.1,5)",io.netty.channel.uring;resolution:=optional;version="[4.1,5)",io.netty.incubator.channel.uring;resolution:=optional,io.netty*;version="[4.1,5)",*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:com.google.code.findbugs/jsr305/${findbugs-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-stitch/${project.version}</bundle>
