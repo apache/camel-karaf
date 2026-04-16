@@ -2259,7 +2259,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependnecy='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-open-ai/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-chat/${project.version}</bundle>
     </feature>
@@ -2271,7 +2271,7 @@
     <feature name='camel-langchain4j-embeddings' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependnecy='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-open-ai/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-embeddings/${project.version}</bundle>
     </feature>
