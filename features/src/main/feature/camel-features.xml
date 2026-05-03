@@ -946,6 +946,12 @@
         <bundle dependency="true">mvn:org.apache.ws.xmlschema/xmlschema-core/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.cglib/${cglib-version}_1</bundle>
         <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.wsdl4j/${auto-detect-version:alias=wsdl4j/wsdl4j}_1</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-bindings/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-ws-security-common/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-ws-security-dom/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-policy/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-ws-security-policy-stax/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.apache.wss4j/wss4j-ws-security-stax/${wss4j-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-common/${project.version}</bundle>
@@ -1977,7 +1983,7 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
         <bundle dependency='true'>mvn:com.github.luben/zstd-jni/${auto-detect-version}</bundle>
         <bundle dependency="true">mvn:org.xerial.snappy/snappy-java/${auto-detect-version}</bundle>
-        <bundle dependency="true">wrap:mvn:org.lz4/lz4-java/${auto-detect-version}</bundle>
+        <bundle dependency="true">wrap:mvn:at.yawk.lz4/lz4-java/${lz4-java-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-kafka/${project.version}</bundle>
     </feature>
     <feature name='camel-kamelet' version='${project.version}' start-level='50'>
@@ -2072,7 +2078,7 @@
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependnecy='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-open-ai/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-chat/${project.version}</bundle>
     </feature>
@@ -2084,7 +2090,7 @@
     <feature name='camel-langchain4j-embeddings' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependnecy='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-hugging-face/${langchain4j-hugging-face-version}</bundle>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-open-ai/${langchain4j-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-langchain4j-embeddings/${project.version}</bundle>
     </feature>
@@ -2341,10 +2347,10 @@
         <feature version='[4.1,5)'>netty</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection/${neo4j-bolt-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-netty/${neo4j-bolt-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-pooled/${neo4j-bolt-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-routed/${neo4j-bolt-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection/${neo4j-bolt-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-netty/${neo4j-bolt-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-pooled/${neo4j-bolt-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
+        <bundle dependency='true'>wrap:mvn:org.neo4j.bolt/neo4j-bolt-connection-routed/${neo4j-bolt-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:org.neo4j.driver/neo4j-java-driver/${neo4j-version}</bundle>
         <bundle dependency='true'>mvn:org.reactivestreams/reactive-streams/${reactive-streams-version}</bundle>
         <bundle dependency='true'>mvn:io.projectreactor/reactor-core/${auto-detect-version}</bundle>
