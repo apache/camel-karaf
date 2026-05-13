@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.14.6-SNAPSHOT</version>
+    <version>4.14.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -90,7 +90,7 @@
         <javaVersion>17</javaVersion>
         <project.build.outputTimestamp>1777610224</project.build.outputTimestamp>
 
-        <camel-version>4.14.6</camel-version>
+        <camel-version>4.14.7</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.19.2</activemq-version>
@@ -164,7 +164,6 @@
         <curator-version>5.9.0</curator-version>
         <cxf-version>4.1.4</cxf-version>
         <cxf-codegen-plugin-version>4.1.3</cxf-codegen-plugin-version>
-        <wss4j-version>4.0.1</wss4j-version>
         <cxf-xjc-plugin-version>4.1.0</cxf-xjc-plugin-version>
         <cxf-xjc-utils-version>4.1.0</cxf-xjc-utils-version>
         <daffodil-version>3.10.0</daffodil-version>
@@ -524,6 +523,7 @@
         <wiremock-version>3.13.1</wiremock-version>
         <woodstox-version>4.4.1</woodstox-version>
         <woodstox-core-version>7.1.1</woodstox-core-version>
+        <wss4j-version>4.0.1</wss4j-version>
         <xbean-spring-version>4.27</xbean-spring-version>
         <xbean-asm5-shaded-version>4.5</xbean-asm5-shaded-version>
         <xchange-version>5.2.2</xchange-version>
