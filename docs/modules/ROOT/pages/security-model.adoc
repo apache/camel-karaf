@@ -1,0 +1,694 @@
+= Security Model
+
+This page documents the Apache Camel Karaf security model: who is trusted,
+where the trust boundaries sit, what counts as a camel-karaf vulnerability,
+and what is left to the Karaf operator and the bundle/route author. It is the
+reference used when triaging security reports against camel-karaf and when
+deciding whether a behaviour should be hardened here or addressed by the
+deployment.
+
+[IMPORTANT]
+====
+camel-karaf is a *runtime adapter*, not a new data plane. It packages Apache
+Camel and ~330 Camel components as OSGi bundles and Karaf features, adds an
+OSGi-aware resolution layer (`camel-core-osgi`), a Blueprint DSL
+(`camel-blueprint`), and a set of Karaf shell commands. The data-plane
+vulnerability classes (unsafe deserialization, XXE, expression/template
+injection, path traversal, SSRF, Camel-header/bean-dispatch abuse, auth/authz
+bypass, information disclosure, insecure defaults, back-end query injection)
+live in Apache Camel core and components, **not** in this repository.
+
+*The canonical threat model for those classes is the Apache Camel*
+https://github.com/apache/camel/blob/main/docs/user-manual/modules/ROOT/pages/security-model.adoc[*Security Model*].
+This document covers only the *Karaf-specific delta* and defers everything
+else to that page. A finding in `camel-jackson`, `camel-xslt`, `camel-jms`
+(etc.) reached through a Karaf feature is an *Apache Camel* finding, triaged
+against Camel's model — repackaging it for OSGi does not make it a new class
+and does not move ownership to camel-karaf.
+====
+
+== Document status
+
+* *Project*: Apache Camel Karaf (`org.apache.camel.karaf:camel-karaf`).
+* *Version binding*: written against `4.18.2-SNAPSHOT` (last release
+  `camel-karaf-4.18.1`), bundling Apache Camel `4.18.1`, built against Apache
+  Karaf `4.4.8`, minimum Apache Karaf `4.4.6`, Java 17. A report against
+  camel-karaf version _N_ is triaged against this model as it stood at _N_,
+  not at HEAD.
+* *Status*: *accepted — all waves (Q1–Q17) ratified by a Camel PMC maintainer
+  on 2026-05-15*. Every non-trivial claim carries a dated provenance tag
+  (below); the <<open-questions>> section is retained as the ratification
+  record. Revise only per <<changes>>.
+* *Provenance legend*:
+** _(documented)_ — stated in camel-karaf's own docs/code, or lifted with
+   citation from the Apache Camel Security Model / `SECURITY.md`, which
+   governs this sub-project (same PMC, same private security list, same
+   advisory index).
+** _(maintainer)_ — confirmed by a camel-karaf / Camel PMC maintainer in
+   response to this process. All waves (Q1–Q17) confirmed 2026-05-15.
+** _(inferred)_ — reasoned from code structure, the parent model, or OSGi/Karaf
+   domain knowledge; not yet ratified. None remain in this revision; the tag
+   stays defined so a future revision's new claim starts _(inferred)_ with a
+   matching <<open-questions>> entry until ratified.
+* *Reporting cross-reference*: camel-karaf uses the Apache Camel vulnerability
+  reporting process. Findings that fall under <<security-properties>> are
+  reported per `SECURITY.md` / link:https://camel.apache.org/security/[Apache
+  Camel Security]; findings that fall under <<out-of-scope>> or
+  <<not-provided>> will be closed citing this document.
+* *Provenance retention*: the dated provenance tags are *retained* in this
+  accepted version, not stripped — they are the chain of authority cited when
+  a report is closed (e.g. "not a bug — see <<not-provided>>, maintainer-tagged
+  with the ratification date"). Tag-free maintenance in the parent Apache Camel Security
+  Model's style is a later option, at PMC discretion, only once the model has
+  been exercised in real triage.
+
+camel-karaf is the Apache Karaf (OSGi) runtime support for Apache Camel. It
+lets a Camel application run inside a Karaf/OSGi container: it ships Karaf
+feature descriptors that install Camel and its components as bundles, an
+OSGi-aware core (`camel-core-osgi`) that resolves Camel components, languages,
+data formats, type converters and beans through the OSGi service registry and
+bundle class loaders, a Blueprint XML DSL for declaring Camel contexts and
+routes, and Karaf shell commands for inspecting and controlling running Camel
+contexts and routes.
+
+== Audience
+
+* *Security researchers and CVE reporters* who need to know what the Camel PMC
+  will accept as a camel-karaf vulnerability — and which reports belong against
+  Apache Camel core instead. _(documented)_
+* *Automated triage tooling and AI-assisted review* that needs an
+  authoritative scope statement for the Karaf delta. _(documented)_
+* *camel-karaf committers* reviewing pull requests to `camel-core-osgi`,
+  `camel-blueprint`, the shell, the feature descriptors or the build tooling.
+  _(documented)_
+* *Karaf operators and deployment owners* who need to know which hardening
+  responsibilities the OSGi/Karaf layer delegates to them. _(documented)_
+
+== Trust model
+
+camel-karaf inherits the Apache Camel trust model verbatim and refines the
+operator and author roles for an OSGi/Karaf deployment. The fundamental Camel
+trust boundary still holds: *the route plus everything the operator
+configured* is trusted; *the data flowing through the route* is untrusted.
+_(documented — Apache Camel Security Model, "Trust model")_
+
+=== Roles
+
+[cols="1,1,3",options="header"]
+|===
+| Role | Trust level | What this role can do
+
+| camel-karaf committers and component packagers
+| Trusted
+| Author `camel-core-osgi`, the Blueprint integration, the shell commands and
+  the feature descriptors; choose OSGi metadata and feature wiring; publish
+  releases. The project relies on these contributors to ship secure defaults
+  and to not weaken a boundary Camel core holds. _(documented)_
+
+| Bundle and route authors (people writing Camel routes — Java, XML, YAML or
+  *Blueprint* DSL — and packaging them as OSGi bundles)
+| Fully trusted
+| Execute arbitrary Java in `.bean()` / `.process()`, evaluate arbitrary
+  expressions, reference any class wired into their bundle, declare any
+  component, and define beans in Blueprint XML. Blueprint XML is route-author
+  code in exactly the sense Java/XML/YAML DSL is in Camel core; code execution
+  by a bundle/route author is by design and is not a camel-karaf
+  vulnerability. _(maintainer, 2026-05-15)_
+
+| Karaf operators / deployers (people who run the Karaf container)
+| Fully trusted
+| Install feature repositories and features, install/start/stop/refresh
+  bundles, run the Karaf shell (locally or over SSH), configure JAAS realms
+  and shell/SSH access, configure Pax-URL (`mvn:` repositories, `wrap:`),
+  configure the OSGi framework and the JVM. Installing a feature or a bundle
+  *is* arbitrary code execution; operator misconfiguration is not a
+  camel-karaf vulnerability unless a camel-karaf default exposed it.
+  _(maintainer, 2026-05-15)_
+
+| External message senders (HTTP clients, JMS producers, file droppers, etc.)
+| Untrusted
+| Send messages into a Camel route running inside Karaf. This is the primary
+  attacker model — but the framework code that must hold the boundary for
+  these senders is overwhelmingly in Apache Camel core/components, not in
+  camel-karaf. _(documented — Apache Camel Security Model)_
+|===
+
+=== Trust boundaries
+
+The data-plane trust boundary is Camel's and is documented in the parent
+model: untrusted message data must not become code, must not redirect the
+route, must not be deserialised into arbitrary types, must not be parsed in
+ways that resolve remote resources. _(documented — Apache Camel Security
+Model, "Trust boundaries")_
+
+camel-karaf adds three boundaries of its own, all *administrative*, not
+data-plane:
+
+* *The OSGi modularity boundary is not a security sandbox.* Separate bundle
+  class loaders, package wiring and the service registry exist for modular
+  deployment and version management, not to contain a hostile bundle. A bundle
+  installed into the framework is trusted code, exactly as a route author is
+  trusted in Camel core. camel-karaf does not rely on the OSGi
+  `SecurityManager` / conditional-permission model (deprecated and effectively
+  removed on modern JDKs). _(maintainer, 2026-05-15)_
+* *The Karaf shell is a management surface.* Its trust boundary is the console
+  itself (local terminal, or SSH gated by Karaf's JAAS realm), not the
+  individual `camel:*` command. _(maintainer, 2026-05-15)_
+* *Feature/bundle installation is an operator action.* The boundary is "who
+  may add a feature repository or install a bundle", which is Karaf/JAAS
+  configuration, not a camel-karaf API. _(maintainer, 2026-05-15)_
+
+=== Component families
+
+[cols="2,2,1,1",options="header"]
+|===
+| Family | Representative entry point | Touches host? | In this model?
+
+| OSGi resolution core (`camel-core-osgi`)
+| `OsgiComponentResolver`, `OsgiLanguageResolver`, `OsgiDataFormatResolver`,
+  `OsgiClassResolver`, `OsgiBeanRepository`, `OsgiTypeConverter`,
+  `OsgiPackageScanClassResolver`, `OsgiEventAdminNotifier`,
+  `OsgiCamelContextPublisher`
+| Yes — OSGi service registry, bundle class loaders, EventAdmin
+| *Yes* — Karaf-specific glue; in scope only as a *boundary-preservation*
+  obligation (see <<security-properties>>)
+
+| Blueprint DSL (`camel-blueprint`, `camel-blueprint-main`)
+| `CamelNamespaceHandler`, the `Camel*FactoryBean` classes, JSSE
+  `KeyStoreParametersFactoryBean` / `KeyManagersParametersFactoryBean`
+| Yes — parses Blueprint XML supplied by the bundle author
+| *Yes, as trusted route-author input* — equivalent to Spring/Java/YAML DSL in
+  Camel core
+
+| Karaf shell commands (`shell/`, `platforms/commands`)
+| `camel:context-list/-start/-stop/-suspend/-resume`, `camel:route-*`,
+  `camel:endpoint-list/-stats`, `camel:rest-*`
+| Yes — enumerates `CamelContext` OSGi services; mutates context/route
+  lifecycle
+| *Yes, as a management surface* — analogous to camel-management / JMX in core
+
+| Feature descriptors (`features/`, `platforms/karaf`)
+| `camel-features.xml`, `spring-features.xml` (`mvn:` / `wrap:` Pax-URL refs)
+| Yes — declares artifacts Karaf resolves and installs
+| *Yes, as an operator-driven install manifest* — see <<out-of-scope>>
+
+| Build-time Maven tooling (`tooling/`)
+| `camel-karaf-maven-plugin`, `camel-karaf-feature-maven-plugin`,
+  `camel-catalog-generator-karaf-maven-plugin`, `camel-upgrade`
+| Build host only
+| *No* — out of scope per <<out-of-scope>> (build-time, not a runtime
+  boundary)
+
+| Samples / scaffolding (`tests/examples`, `archetypes/`)
+| `camel-archetype-blueprint`, `tests/examples/*`
+| n/a
+| *No* — shipped but unsupported, see <<out-of-scope>>
+|===
+
+== Scope: what camel-karaf adds to the attack surface
+
+A report is in scope for *camel-karaf* (rather than for Apache Camel core)
+only when the defect is in code this repository ships and the defect is one of
+the Karaf-specific classes below. Everything in Camel's in-scope list remains
+in scope *for Apache Camel* when reached through a Karaf feature, and is
+triaged against the parent model.
+
+[[security-properties]]
+=== Security properties camel-karaf provides
+
+[cols="3,3,1",options="header"]
+|===
+| Property (default / reasonably-expected configuration)
+| What a violation looks like
+| Indicative severity
+
+| The OSGi resolution layer preserves Camel's data-plane boundary: it never
+  lets *untrusted message data* select an arbitrary class, component,
+  language, data format or bean that the route author did not wire in.
+  `OsgiClassResolver` / `OsgiBeanRepository` / `Osgi*Resolver` resolve only
+  names that Camel core would resolve, scoped to the route's bundle wiring.
+  _(maintainer, 2026-05-15)_
+| A crafted header or body causes `camel-core-osgi` to load or instantiate an
+  attacker-named class/bean/component that flat-classpath Camel would not —
+  i.e., OSGi resolution *widens* a sink Camel core had closed
+| Critical (CVSS 9.0-9.8) — same tier as the Camel deserialisation /
+  bean-dispatch class it would re-open
+
+| The Blueprint DSL exposes no capability beyond what Camel's other DSLs
+  expose; Blueprint XML is processed as trusted route-author input only.
+  _(maintainer, 2026-05-15)_
+| Blueprint parsing turns *message data* (not bundle-author XML) into bean
+  instantiation or code execution
+| Critical (CVSS 9.0-9.8) if reachable from message data; otherwise
+  by-design (route-author trust)
+
+| Karaf shell commands act only on Camel contexts/routes visible in the OSGi
+  service registry and expose only lifecycle/inspection operations
+  (list, start, stop, suspend, resume, stats). They add no capability a route
+  author or operator does not already have. _(maintainer, 2026-05-15)_
+| A `camel:*` command executes code, reaches an endpoint, or affects a context
+  the caller could not already affect through the DSL or JMX — i.e., the shell
+  is *more* powerful than the management surface it mirrors
+| Severity of the underlying capability; the shell is in scope only if it
+  *adds* one
+
+| camel-karaf's own classes do not introduce new unsafe deserialisation, XXE,
+  path-traversal or header-injection sinks beyond those in the Camel
+  components it packages. _(maintainer, 2026-05-15)_
+| A `camel-core-osgi` / `camel-blueprint` / shell code path is itself the sink
+  (not merely a passthrough to a Camel-core component)
+| Severity of the underlying class (per the Apache Camel Security Model)
+|===
+
+Severity tiers are indicative and follow the parent model; the PMC assigns the
+definitive CVSS vector per report. _(documented — Apache Camel Security
+Model)_
+
+[[not-provided]]
+=== Security properties camel-karaf does *not* provide
+
+* *OSGi/Karaf is not a security sandbox.* A bundle installed into the
+  framework runs with full JVM privileges. Bundle isolation is modularity, not
+  containment; do not treat "it's a separate bundle" as a trust boundary.
+  _(maintainer, 2026-05-15)_
+* *No isolation between co-deployed bundles.* Camel contexts from different
+  bundles share a JVM, the OSGi service registry and (subject to package
+  wiring) classes. camel-karaf does not promise tenant isolation between
+  bundles in one Karaf instance. _(maintainer, 2026-05-15)_
+* *No artifact authentication for features.* camel-karaf publishes feature
+  descriptors that reference artifacts by `mvn:` / `wrap:` Pax-URL. Transport
+  security, checksum and signature verification of those artifacts are
+  Pax-URL / Karaf / operator configuration, not something camel-karaf
+  enforces. _(maintainer, 2026-05-15)_
+* *No authentication or authorization on the shell itself.* The `camel:*`
+  commands inherit whatever the Karaf console / SSH / JAAS layer enforces;
+  camel-karaf does not add its own access control. _(maintainer, 2026-05-15)_
+* *False friend — `wrap:`* makes a non-OSGi JAR loadable; it does not vet,
+  sandbox or sign it. _(maintainer, 2026-05-15)_
+* *False friend — the Karaf shell looks like a read-only admin view* but
+  `context-start/-stop/-suspend/-resume` and `route-start/-stop/-suspend/-resume`
+  mutate running integrations. _(maintainer, 2026-05-15)_
+* All data-plane "properties not provided" from the Apache Camel Security
+  Model (no compression-bomb defence, no input authentication, no
+  constant-time guarantees, DoS via unthrottled routes is operator
+  responsibility, etc.) apply unchanged. _(documented — Apache Camel Security
+  Model, "Out of scope" / "Known limitations")_
+
+[[out-of-scope]]
+== Out of scope
+
+The following are *not* camel-karaf vulnerabilities. Reports in these
+categories are closed with a reference to this document (data-plane reports
+are redirected to the Apache Camel process, not dismissed).
+
+* *Everything the Apache Camel Security Model places out of scope*, applied to
+  components packaged here: route-author code execution, route-author building
+  unparameterised back-end queries, documented opt-ins
+  (`allowJavaSerializedObject=true`, `transferException=true`,
+  `trustAllCertificates=true`, `mapJmsMessage=true`, …), DoS via unthrottled
+  routes, exposing management surfaces on a public network, third-party
+  transitive CVEs not reachable through Camel code, scanner reports without a
+  trust-boundary PoC. _(documented — Apache Camel Security Model)_
+* *Data-plane vulnerabilities in a packaged Camel component.* A
+  deserialisation / XXE / header-injection / path-traversal defect in
+  `camel-jackson`, `camel-xslt`, `camel-jms`, `camel-file`, … reached through
+  a Karaf feature is an *Apache Camel* vulnerability. It is reported and fixed
+  in `apache/camel` and triaged against the parent model; camel-karaf only
+  re-releases the upgraded component. _(documented)_
+* *Installing a hostile or vulnerable feature/bundle.* Adding a feature
+  repository, installing a bundle, or `wrap:`-ing an arbitrary JAR is a
+  trusted operator action equivalent to deploying code. That the operator can
+  install something dangerous is not a camel-karaf vulnerability.
+  _(maintainer, 2026-05-15)_
+* *Pax-URL / Maven artifact-resolution integrity* (plaintext repositories,
+  missing checksum/signature enforcement, dependency confusion in the
+  operator's Maven settings). This is Karaf/Pax-URL/operator configuration.
+  _(maintainer, 2026-05-15)_
+* *Build-time Maven tooling* (`tooling/`): the feature, catalog-generator and
+  Karaf Maven plugins and the `camel-upgrade` tool run on a developer/CI host
+  at build time, on inputs the developer controls. Build/release/SDLC hygiene
+  is not part of this model. _(documented — threat-model skill §1)_
+* *Shipped-but-unsupported code*: `tests/`, `tests/examples/`,
+  `archetypes/camel-archetype-blueprint`. These are samples and scaffolding,
+  separately authored, not covered by camel-karaf's runtime guarantees;
+  threat-model them separately if ever promoted. _(maintainer, 2026-05-15)_
+* *The Karaf container, Blueprint extender, Pax-Web, Pax-URL, ConfigAdmin,
+  EventAdmin or the OSGi framework themselves.* camel-karaf integrates with
+  these; defects in them are reported to Apache Karaf / the relevant project.
+  A report must show camel-karaf code, not the container, is the cause.
+  _(maintainer, 2026-05-15)_
+* *Stale documentation versioning* (e.g. `docs/antora.yml` display version)
+  and other non-security metadata drift. _(documented — threat-model skill
+  §1)_
+
+=== Deprecated and removed components
+
+camel-karaf tracks the Apache Camel component lifecycle. A component carrying
+the `(deprecated)` suffix is on a removal path with a documented replacement;
+a report against it is triaged on the private list but the primary remediation
+is the documented migration. A component no longer shipped in any supported
+camel-karaf release is out of scope — the resolution is to upgrade. This
+mirrors the parent model's lifecycle rule. _(documented — Apache Camel
+Security Model, "Deprecated and removed components")_
+
+=== Known limitations
+
+* *camel-karaf lags Camel core by a patch cadence.* A data-plane CVE fixed in
+  Apache Camel is addressed in camel-karaf by upgrading the bundled Camel
+  version (see the upgrade tooling), not by a separate fix here. The window
+  between a Camel release and the matching camel-karaf release is expected,
+  not a camel-karaf vulnerability. _(maintainer, 2026-05-15)_
+* *Heritage permissive defaults are Camel's, not Karaf's.* Where a packaged
+  component defaults permissively (FTP, plain SMTP, `mapJmsMessage=true`,
+  etc.), that default and any decision to tighten it belong to Apache Camel.
+  _(documented — Apache Camel Security Model, "Known limitations")_
+* *The Camel security-policy enforcement framework (`camel.main.profile`,
+  `secret` / `insecure:ssl` / `insecure:serialization` / `insecure:dev`)
+  applies as in core* when the corresponding Camel main is used; camel-karaf
+  does not disable or replace it. Its behaviour under Blueprint/OSGi
+  bootstrapping is a confirmation target. _(maintainer, 2026-05-15)_
+
+== Environment, host effects and configuration variants
+
+* *Host effects of `camel-core-osgi`.* When active it registers OSGi service
+  listeners, publishes each `CamelContext` as an OSGi service
+  (`OsgiCamelContextPublisher`), and — if the OSGi EventAdmin service is
+  present — emits Camel lifecycle events to EventAdmin
+  (`OsgiEventAdminNotifier`). It reads bundle class loaders and the service
+  registry. It does not, by design, open network sockets, spawn processes, or
+  install signal handlers of its own. _(maintainer, 2026-05-15)_
+* *Concurrency.* `camel-core-osgi` participates in OSGi service dynamics
+  (services come and go); thread-safety expectations are Camel core's plus
+  OSGi's. _(maintainer, 2026-05-15)_
+* *Configuration variants that change the envelope.* Whether the Karaf shell /
+  SSH is enabled and how its JAAS realm is configured; whether Pax-URL
+  enforces repository TLS and PGP; whether the deprecated OSGi
+  `SecurityManager` is engaged (camel-karaf does not assume it is); the bundled
+  Camel version and its security profile. Each is *operator* configuration;
+  none is a camel-karaf build flag. There are no camel-karaf compile-time
+  defines that toggle a security property. _(maintainer, 2026-05-15)_
+
+== Input-trust matrix (Karaf-specific surfaces)
+
+[cols="2,2,1,2",options="header"]
+|===
+| Surface | Input | Attacker-controllable? | Who must enforce safety
+
+| Karaf shell `camel:*`
+| Command arguments (context/route names)
+| No — supplied by an authenticated console operator
+| Karaf JAAS/SSH access control; operator keeps the console off public
+  networks
+
+| `camel-blueprint`
+| Blueprint XML (`OSGI-INF/blueprint/*.xml`) in a bundle
+| No — authored by the trusted bundle author
+| Bundle author (it is route code); same status as Spring/Java/YAML DSL
+
+| `camel-core-osgi`
+| Component/language/dataformat/class/bean *names* to resolve
+| Only if a route passes message data into a resolver — which is a
+  *Camel-core* boundary question
+| Camel core must not pass untrusted data to a resolver; `camel-core-osgi`
+  must not widen what Camel core would resolve
+
+| Feature descriptors
+| `mvn:` / `wrap:` artifact coordinates
+| No — the descriptor is authored here; resolution is operator-configured
+| Operator (Pax-URL repos, TLS, checksum/PGP); Karaf
+
+| Packaged Camel component
+| Exchange body / headers / attachments from a Camel consumer
+| *Yes*
+| Apache Camel core/component code, per the parent Security Model — *not*
+  camel-karaf
+|===
+
+== Adversary model
+
+* *Primary adversary*: an external message sender feeding a route running in
+  Karaf. The code that must withstand them is in Apache Camel core/components;
+  camel-karaf's obligation is to *not weaken* that boundary through the OSGi
+  resolution layer. _(documented / maintainer, 2026-05-15)_
+* *In scope for camel-karaf specifically*: an attacker who can get *untrusted
+  message data* to influence OSGi resolution (class/bean/component selection)
+  in a way flat-classpath Camel would not allow. _(maintainer, 2026-05-15)_
+* *Explicitly out of scope*: anyone who can install a bundle/feature, run the
+  Karaf shell, or edit Blueprint XML or Pax-URL configuration — these are
+  trusted operator/author capabilities; such an actor "has already won".
+  _(maintainer, 2026-05-15)_
+* *Out of scope*: a co-deployed bundle attacking another bundle in the same
+  Karaf instance — OSGi is not an isolation boundary (see <<not-provided>>).
+  _(maintainer, 2026-05-15)_
+
+== Operator and author responsibilities
+
+None of these are camel-karaf vulnerabilities if skipped; all materially
+reduce attack surface. They are in addition to the Apache Camel deployment
+hardening checklist, which applies unchanged.
+
+* *Treat the Karaf shell / SSH as a management surface.* Bind it to loopback
+  or a management network, require a strong JAAS realm, and do not expose it
+  to untrusted networks — exactly as for camel-management / JMX / Jolokia in
+  Camel core. _(maintainer, 2026-05-15)_
+* *Control who may install features and bundles.* Restrict the Karaf
+  `feature`/`bundle` admin commands and the deployer to trusted operators;
+  installing code is a privileged action. _(maintainer, 2026-05-15)_
+* *Harden Pax-URL artifact resolution.* Use HTTPS Maven repositories and
+  enable checksum/PGP verification; avoid `wrap:`-ing untrusted JARs.
+  _(maintainer, 2026-05-15)_
+* *Keep the bundled Camel patched.* Track camel-karaf releases that follow
+  Apache Camel security releases; subscribe to the Camel announce list.
+  _(documented — Apache Camel Security Model, "Deployment hardening")_
+* *Apply the full Apache Camel operator hardening checklist* (security profile
+  `prod`, vault-backed secrets, JSSE TLS, strip `Camel*` headers at untrusted
+  boundaries, no Java serialisation on untrusted consumers, least privilege,
+  minimal dependency set). _(documented — Apache Camel Security Model,
+  "Deployment hardening")_
+* *Bundle authors: treat Blueprint XML as code.* Do not generate Blueprint or
+  route definitions from untrusted input, and filter `Camel*` headers from
+  untrusted producers inside the route, as in core. _(maintainer, 2026-05-15)_
+
+== Known misuse patterns
+
+* *Treating an OSGi bundle boundary as a security boundary.* Co-deploying a
+  less-trusted bundle next to a sensitive one and assuming OSGi isolates them.
+  It does not — both run in one JVM. Isolate at the process/container level
+  instead. _(maintainer, 2026-05-15)_
+* *Exposing the Karaf SSH console on a public interface.* The `camel:*`
+  commands then let any console-authenticated party stop or suspend
+  production routes. Keep the console on a trusted network. _(maintainer, 2026-05-15)_
+* *`wrap:`-ing an untrusted or unmaintained JAR* and assuming OSGi vets it.
+  `wrap:` only adds OSGi metadata; the code runs with full privileges.
+  _(maintainer, 2026-05-15)_
+* *Pointing Pax-URL at plaintext or unauthenticated Maven repositories* and
+  installing features from them. _(maintainer, 2026-05-15)_
+* *Generating Blueprint XML or route DSL from request data.* That is
+  route-author code built from untrusted input — the route is at fault, as in
+  Camel core. _(maintainer, 2026-05-15)_
+
+[[known-non-findings]]
+== Known non-findings (recurring false positives)
+
+This section is the highest-leverage input for automated/AI triage; it can be
+fed back as a suppression list.
+
+* *"`camel-core-osgi` calls `Bundle.loadClass` / reflective class loading"* —
+  by design: it resolves the *same names Camel core resolves*, scoped to the
+  route bundle. In scope only if message data selects the name (see Q5); the
+  reflective call itself is not the finding. _(maintainer, 2026-05-15)_
+* *"Blueprint XML is parsed / beans are instantiated from XML"* — Blueprint is
+  trusted route-author input, equivalent to Spring/Java/YAML DSL. Not a
+  finding unless the XML is built from message data. _(maintainer, 2026-05-15)_
+* *"Karaf shell command starts/stops a Camel context"* — intended management
+  capability behind the authenticated console; equivalent to a JMX/DSL
+  operation. _(maintainer, 2026-05-15)_
+* *"Feature XML references `wrap:` / plaintext-looking `mvn:` URLs"* — feature
+  descriptors are install manifests; transport/integrity is operator/Pax-URL
+  configuration, out of scope here. _(maintainer, 2026-05-15)_
+* *"A packaged Camel component has a known CVE class"* — that is an Apache
+  Camel finding; route it to the Camel process, not camel-karaf, unless the
+  defect is in camel-karaf code. _(documented)_
+* *"Unchecked input / missing validation in `tooling/` or `tests/`"* — build
+  tooling and samples are out of scope. _(documented)_
+
+[[triage-dispositions]]
+== Triage dispositions
+
+A report, scanner hit or AI analysis judged against this model receives
+exactly one of these. A finding that fits none is `MODEL-GAP` and triggers a
+model revision (see <<changes>>) rather than an ad-hoc call.
+
+[cols="2,3,2",options="header"]
+|===
+| Disposition | Meaning | Licensed by
+
+| `VALID`
+| Violates a camel-karaf property via an in-scope adversary/input
+| <<security-properties>>, input-trust matrix, adversary model
+
+| `REDIRECT: camel-core`
+| Real vulnerability, but in a packaged Camel component / Camel core, not
+  camel-karaf code — route to the Apache Camel process
+| <<out-of-scope>>, parent Security Model
+
+| `VALID-HARDENING`
+| No property violated, but a camel-karaf API makes a known misuse easy
+  enough to harden at maintainer discretion (typically no CVE)
+| "Known misuse patterns"
+
+| `OUT-OF-MODEL: trusted-actor`
+| Requires installing a bundle/feature, shell access, or editing
+  Blueprint/Pax-URL config — all trusted operator/author capabilities
+| Trust model, adversary model
+
+| `OUT-OF-MODEL: unsupported-component`
+| Lands in `tooling/`, `tests/`, `tests/examples/` or `archetypes/`
+| <<out-of-scope>>
+
+| `BY-DESIGN: property-disclaimed`
+| Concerns a property camel-karaf explicitly does not provide (OSGi
+  sandboxing, bundle isolation, feature artifact authentication)
+| <<not-provided>>
+
+| `KNOWN-NON-FINDING`
+| Matches a documented recurring false positive
+| <<known-non-findings>>
+
+| `MODEL-GAP`
+| Cannot be cleanly routed to any of the above
+| triggers <<changes>>
+|===
+
+[[changes]]
+== Conditions that would change this model
+
+Revise when: camel-karaf gains a new public surface (e.g. a new shell command
+family, a REST/HTTP admin endpoint, a non-Blueprint config DSL); the OSGi
+resolution layer starts consuming message data; a build-time tool is promoted
+into a runtime component; the minimum Karaf/OSGi version or the Java baseline
+changes in a way that affects the (non-)reliance on the OSGi
+`SecurityManager`; the relationship to the Apache Camel security process
+changes; or **a report cannot be cleanly routed to one
+<<triage-dispositions>> disposition** — a `MODEL-GAP` means this model is
+incomplete and must be revised, not worked around. _(documented — threat-model
+skill §4.12)_
+
+[[open-questions]]
+== Ratification record
+
+This section is the dated chain of authority for the model. Every wave of
+proposed answers and the maintainer's ratification is kept here verbatim (not
+silently dropped), because this page is cited when closing reports. The model
+is *fully ratified as of 2026-05-15*; no questions are open. A future
+<<changes>> trigger adds a new dated wave here rather than rewriting a past
+record.
+
+*Wave 1 — scope and trust — RATIFIED 2026-05-15* by a Camel PMC maintainer.
+The corresponding body tags now read _(maintainer, 2026-05-15)_. For the
+record, the ratified positions are:
+
+* *Q1 (confirmed)* — Blueprint XML (`camel-blueprint`) is trusted route-author
+  input, exactly equivalent to Spring/Java/YAML DSL in Camel core; the only
+  in-scope case is camel-karaf itself passing *message data* into Blueprint
+  bean instantiation.
+* *Q2 (confirmed)* — Karaf operators are fully trusted; installing a
+  feature/bundle or running the deployer is a privileged code-deployment
+  action, never a camel-karaf vulnerability.
+* *Q3 (confirmed)* — camel-karaf does not treat the OSGi bundle boundary as a
+  security sandbox and does not rely on the OSGi `SecurityManager` /
+  conditional permissions.
+* *Q4 (confirmed)* — the Karaf shell `camel:*` commands are a management
+  surface (like camel-management/JMX), gated only by the Karaf console / JAAS;
+  they add no capability beyond DSL/JMX.
+* *Q5 (confirmed)* — the single in-scope camel-karaf class is "the OSGi
+  resolution layer widens, for untrusted message data, a class/bean/component
+  sink that flat-classpath Camel core had closed".
+
+*Wave 2 — boundaries of the inherited model — RATIFIED 2026-05-15* by a Camel
+PMC maintainer. The corresponding body tags now read _(maintainer,
+2026-05-15)_. For the record, the ratified positions are:
+
+* *Q6 (confirmed)* — no camel-karaf-authored class (`camel-core-osgi`,
+  `camel-blueprint`, shell) is *itself* a primary deser/XXE/path-traversal/
+  header-injection sink; they only resolve names (Q5) or delegate to Camel
+  core. Backed by a source scan: no `ObjectInputStream`/`readObject`, XML
+  parser, `TransformerFactory`, `Runtime`/`ProcessBuilder`,
+  `URLClassLoader`/`defineClass`, `ScriptEngine` or file-write sink in the
+  authored runtime code; `OsgiTypeConverter` only delegates to Camel core's
+  `DefaultTypeConverter`.
+* *Q7 (confirmed)* — no isolation is promised between bundles co-deployed in
+  one Karaf instance (shared JVM, service registry, classes subject to
+  wiring); corollary of Q3.
+* *Q8 (confirmed)* — artifact integrity for `mvn:`/`wrap:` feature references
+  (repository TLS, checksum/PGP, dependency confusion) is
+  Pax-URL/Karaf/operator responsibility, out of scope for camel-karaf.
+* *Q9 (confirmed)* — `tests/`, `tests/examples/`, `archetypes/` are
+  shipped-but-unsupported and out of model (threat-modeled separately only if
+  promoted).
+* *Q10 (confirmed)* — defects in Karaf / Pax-Web / Pax-URL / the Blueprint
+  extender / EventAdmin themselves are out of scope; report upstream. A
+  camel-karaf report must show camel-karaf code is the cause.
+
+*Wave 3 — operational / lifecycle — RATIFIED 2026-05-15* by a Camel PMC
+maintainer. The corresponding body tags now read _(maintainer, 2026-05-15)_.
+For the record, the ratified positions are:
+
+* *Q11 (confirmed)* — the lag between an Apache Camel security release and the
+  matching camel-karaf release is expected and is not itself a camel-karaf
+  vulnerability; no fixed SLA is committed (the remediation is the version
+  upgrade via the upgrade tooling).
+* *Q12 (confirmed)* — the Camel security-policy enforcement framework
+  (`camel.main.profile`, `insecure:*`) behaves as in core; camel-karaf neither
+  disables nor replaces it under Blueprint/OSGi bootstrapping.
+* *Q13 (confirmed)* — the `camel-core-osgi` host-effect inventory is accurate
+  and complete: it registers OSGi service listeners, publishes each
+  `CamelContext` as an OSGi service (`OsgiCamelContextPublisher`), and emits
+  EventAdmin events when EventAdmin is present (`OsgiEventAdminNotifier`); it
+  opens no sockets, spawns no processes, installs no signal handlers and
+  starts no threads of its own. Verified by source scan.
+* *Q14 (confirmed)* — there are no camel-karaf-specific thread-safety /
+  reentrancy caveats beyond Camel core's plus OSGi service dynamics.
+* *Q15 (confirmed)* — no camel-karaf compile-time flag toggles a security
+  property; every Maven profile is build / release / documentation plumbing.
+  Verified against the project poms.
+
+*Wave 4 — meta — RATIFIED 2026-05-15* by a Camel PMC maintainer:
+
+* *Q16 (confirmed)* — this page is the canonical camel-karaf security model;
+  it links to the Apache Camel Security Model for all data-plane classes
+  rather than being merged into it or sitting alongside a second authority.
+* *Q17 (confirmed)* — camel-karaf has no separate entry at
+  `security.apache.org/projects/`; it is governed entirely by the Apache Camel
+  security process and advisory index. Verified against the `apache/security-site`
+  project-coordinates.
+
+== Reporting a vulnerability
+
+camel-karaf uses the Apache Camel / ASF vulnerability reporting process.
+
+* Read link:https://camel.apache.org/security/[Apache Camel Security] and the
+  repository `SECURITY.md`.
+* Email the Apache Camel private security list with a description, affected
+  camel-karaf and Camel versions, and a proof of concept demonstrating the
+  trust-boundary breach (and stating whether the defect is in camel-karaf code
+  or in a packaged Camel component).
+* Do not open a public issue, pull request or mailing-list post about an
+  unpublished vulnerability.
+
+Reports matching <<security-properties>> are triaged on the private list and,
+if confirmed, fixed in a coordinated camel-karaf release and published as a
+CVE. Reports matching <<out-of-scope>> or <<not-provided>> are closed with a
+reference to this document; data-plane reports against a packaged component
+are redirected to the Apache Camel process.
+
+== Related documents
+
+* https://github.com/apache/camel/blob/main/docs/user-manual/modules/ROOT/pages/security-model.adoc[Apache
+  Camel Security Model] — *canonical* for all data-plane vulnerability classes;
+  this page is the Karaf-specific delta only.
+* link:https://camel.apache.org/security/[Apache Camel Security] — the public
+  advisory index and reporting process (covers camel-karaf).
+* `SECURITY.md` (repository root) — the GitHub-rendered security pointer.
+* xref:index.adoc[Support for Apache Karaf] — what camel-karaf is and how it
+  installs into Karaf.

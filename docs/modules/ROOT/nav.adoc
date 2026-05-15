@@ -1,2 +1,3 @@
 * xref:index.adoc[User Guide]
 ** xref:components.adoc[Supported Components]
+** xref:security-model.adoc[Security Model]
