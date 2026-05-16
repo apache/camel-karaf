@@ -52,7 +52,7 @@ and does not move ownership to camel-karaf.
    matching <<open-questions>> entry until ratified.
 * *Reporting cross-reference*: camel-karaf uses the Apache Camel vulnerability
   reporting process. Findings that fall under <<security-properties>> are
-  reported per `SECURITY.md` / link:https://camel.apache.org/security/[Apache
+  reported per `SECURITY.md` / link:/security/[Apache
   Camel Security]; findings that fall under <<out-of-scope>> or
   <<not-provided>> will be closed citing this document.
 * *Provenance retention*: the dated provenance tags are *retained* in this
@@ -667,7 +667,7 @@ For the record, the ratified positions are:
 
 camel-karaf uses the Apache Camel / ASF vulnerability reporting process.
 
-* Read link:https://camel.apache.org/security/[Apache Camel Security] and the
+* Read link:/security/[Apache Camel Security] and the
   repository `SECURITY.md`.
 * Email the Apache Camel private security list with a description, affected
   camel-karaf and Camel versions, and a proof of concept demonstrating the
@@ -687,7 +687,7 @@ are redirected to the Apache Camel process.
 * https://github.com/apache/camel/blob/main/docs/user-manual/modules/ROOT/pages/security-model.adoc[Apache
   Camel Security Model] — *canonical* for all data-plane vulnerability classes;
   this page is the Karaf-specific delta only.
-* link:https://camel.apache.org/security/[Apache Camel Security] — the public
+* link:/security/[Apache Camel Security] — the public
   advisory index and reporting process (covers camel-karaf).
 * `SECURITY.md` (repository root) — the GitHub-rendered security pointer.
 * xref:index.adoc[Support for Apache Karaf] — what camel-karaf is and how it
