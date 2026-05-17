@@ -90,11 +90,11 @@
         <javaVersion>17</javaVersion>
         <project.build.outputTimestamp>1776180649</project.build.outputTimestamp>
 
-        <camel-version>4.18.1</camel-version>
+        <camel-version>4.18.2</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
-        <activemq-version>5.19.2</activemq-version>
-        <activemq6-version>6.2.1</activemq6-version>
+        <activemq-version>5.19.5</activemq-version>
+        <activemq6-version>6.2.4</activemq6-version>
         <activemq-artemis-version>2.44.0</activemq-artemis-version>
         <allegro-converter-version>0.3.0</allegro-converter-version>
         <amazon-kinesis-client-version>2.6.0</amazon-kinesis-client-version>
@@ -265,6 +265,7 @@
         <hapi-version>2.6.0</hapi-version>
         <hapi-base-version>2.6.0</hapi-base-version>
         <hapi-fhir-version>8.6.5</hapi-fhir-version>
+        <hapi-fhir-utilities-version>6.9.1</hapi-fhir-utilities-version>
         <hawtio-version>4.6.2</hawtio-version>
         <hazelcast-version>5.4.0</hazelcast-version>
         <hdrhistrogram-version>2.2.2</hdrhistrogram-version>
@@ -297,8 +298,8 @@
         <ivy-version>2.5.3</ivy-version>
         <jackson-databind-nullable-version>0.2.9</jackson-databind-nullable-version>
         <jackson-jq-version>1.6.0</jackson-jq-version>
-        <jackson2-version>2.20.1</jackson2-version>
-        <jackson2-annotations-version>2.20</jackson2-annotations-version>
+        <jackson2-version>2.21.2</jackson2-version>
+        <jackson2-annotations-version>2.21</jackson2-annotations-version>
         <jackrabbit-version>2.22.3</jackrabbit-version>
         <jasminb-jsonapi-version>0.15</jasminb-jsonapi-version>
         <jandex-version>3.5.3</jandex-version>
@@ -356,7 +357,7 @@
         <johnzon-version>2.0.2</johnzon-version>
         <jslt-version>0.1.14</jslt-version>
         <jsmpp-version>3.0.1</jsmpp-version>
-        <jsch-version>2.27.7</jsch-version>
+        <jsch-version>2.28.0</jsch-version>
         <javax-json-api-version>1.1.4</javax-json-api-version>
         <jsonschema-generator-version>4.38.0</jsonschema-generator-version>
         <jsonassert-version>1.5.3</jsonassert-version>
@@ -391,7 +392,7 @@
         <leveldb-version>0.12</leveldb-version>
         <libphonenumber-version>9.0.23</libphonenumber-version>
         <lifecycle-mapping-version>1.0.0</lifecycle-mapping-version>
-        <log4j2-version>2.25.3</log4j2-version>
+        <log4j2-version>2.25.4</log4j2-version>
         <logback-version>1.5.32</logback-version>
         <lucene-version>9.12.3</lucene-version>
         <lightcouch-version>0.2.0</lightcouch-version>
@@ -472,6 +473,7 @@
         <qpid-broker-version>10.0.1</qpid-broker-version>
         <qpid-proton-j-version>0.34.1</qpid-proton-j-version>
         <qpid-jms-client-version>2.10.0</qpid-jms-client-version>
+        <quarkus-extension-registry-base-url>https://registry.quarkus.io</quarkus-extension-registry-base-url>
         <quarkus-mcp-server-version>1.10.0</quarkus-mcp-server-version>
         <quarkus-version>3.31.3</quarkus-version>
         <quartz-version>2.5.2</quartz-version>
@@ -512,7 +514,7 @@
         <spring-ai-version>1.1.2</spring-ai-version>
         <spring-cloud-config-version>4.3.0</spring-cloud-config-version>
         <spring-batch-version>5.2.5</spring-batch-version>
-        <spring-boot-version>3.5.12</spring-boot-version>
+        <spring-boot-version>3.5.13</spring-boot-version>
         <spring-data-redis-version>3.5.5</spring-data-redis-version>
         <spring-ldap-version>3.3.6</spring-ldap-version>
         <spring-vault-core-version>3.2.0</spring-vault-core-version>
@@ -546,7 +548,7 @@
         <vavr-version>1.0.0</vavr-version>
         <velocity-tools-version>3.1</velocity-tools-version>
         <velocity-version>2.4.1</velocity-version>
-        <vertx-version>4.5.25</vertx-version>
+        <vertx-version>4.5.26</vertx-version>
         <vysper-version>0.7</vysper-version>
         <weaviate-client-version>5.5.0</weaviate-client-version>
         <web3j-version>5.0.0</web3j-version>
