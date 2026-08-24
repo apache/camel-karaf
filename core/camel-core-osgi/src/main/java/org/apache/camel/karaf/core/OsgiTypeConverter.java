@@ -67,7 +67,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         this.tracker = new ServiceTracker<>(bundleContext, TypeConverterLoader.class.getName(), this);
     }
 
-    private void ensureTrackerOpen() {
+    private synchronized void ensureTrackerOpen() {
         if (!trackerOpened) {
             tracker.open();
             trackerOpened = true;
@@ -75,7 +75,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     @Override
-    public Object addingService(ServiceReference<TypeConverterLoader> serviceReference) {
+    public synchronized Object addingService(ServiceReference<TypeConverterLoader> serviceReference) {
         LOG.trace("AddingService: {}, Bundle: {}", serviceReference, serviceReference.getBundle());
         TypeConverterLoader loader = bundleContext.getService(serviceReference);
         if (loader != null) {
@@ -100,8 +100,17 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     @Override
-    public void removedService(ServiceReference<TypeConverterLoader> serviceReference, Object o) {
+    public synchronized void removedService(ServiceReference<TypeConverterLoader> serviceReference, Object o) {
         LOG.trace("RemovedService: {}, Bundle: {}", serviceReference, serviceReference.getBundle());
+        if (this.delegate != null) {
+            // the rebuild in createRegistry replays the core converters and the loaders the tracker still
+            // holds, but it cannot replay converters that were registered programmatically (addTypeConverter,
+            // or a Blueprint bean implementing TypeConverters) - those are lost with the delegate
+            LOG.warn("TypeConverterLoader from bundle {} was unregistered, discarding and rebuilding the type"
+                     + " converter registry. Type converters that were registered programmatically on the running"
+                     + " context are not restored by the rebuild and have to be registered again.",
+                    serviceReference.getBundle() != null ? serviceReference.getBundle().getSymbolicName() : serviceReference);
+        }
         try {
             ServiceHelper.stopService(this.delegate);
         } catch (Exception e) {
@@ -242,15 +251,26 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     }
 
     public DefaultTypeConverter getDelegate() {
-        if (delegate == null) {
-            // ensure the tracker is open so we can discover TypeConverterLoader services
-            // before creating the registry - this is important because getDelegate() may be
-            // called during doInit() (e.g. when to() eagerly creates endpoints) which happens
-            // before doStart() where the tracker is normally opened
-            ensureTrackerOpen();
-            delegate = createRegistry();
+        DefaultTypeConverter answer = delegate;
+        if (answer == null) {
+            // double checked locking against the volatile field: getDelegate is on the conversion hot path,
+            // so the common case must stay lock free, but the check and the assignment together are not
+            // atomic - without the lock two threads racing on first access each build a registry, and
+            // whatever was registered on the one that loses is silently dropped
+            synchronized (this) {
+                answer = delegate;
+                if (answer == null) {
+                    // ensure the tracker is open so we can discover TypeConverterLoader services
+                    // before creating the registry - this is important because getDelegate() may be
+                    // called during doInit() (e.g. when to() eagerly creates endpoints) which happens
+                    // before doStart() where the tracker is normally opened
+                    ensureTrackerOpen();
+                    answer = createRegistry();
+                    delegate = answer;
+                }
+            }
         }
-        return delegate;
+        return answer;
     }
 
     protected DefaultTypeConverter createRegistry() {

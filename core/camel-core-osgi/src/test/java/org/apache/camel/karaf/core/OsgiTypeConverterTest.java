@@ -18,6 +18,16 @@ package org.apache.camel.karaf.core;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.spi.Injector;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.camel.impl.converter.DefaultTypeConverter;
 import org.apache.camel.spi.TypeConverterLoader;
 import org.apache.camel.spi.TypeConverterRegistry;
 import org.junit.jupiter.api.BeforeEach;
@@ -109,5 +119,46 @@ public class OsgiTypeConverterTest {
         // delegate should be rebuilt on next access
         var delegateAfter = osgiTypeConverter.getDelegate();
         assertNotNull(delegateAfter);
+    }
+
+    @Test
+    void concurrentFirstAccessShouldBuildTheRegistryOnce() throws Exception {
+        int threads = 16;
+        AtomicInteger created = new AtomicInteger();
+        CountDownLatch startLine = new CountDownLatch(1);
+
+        OsgiTypeConverter counting = new OsgiTypeConverter(bundleContext, camelContext, injector) {
+            @Override
+            protected DefaultTypeConverter createRegistry() {
+                created.incrementAndGet();
+                return super.createRegistry();
+            }
+        };
+
+        ExecutorService pool = Executors.newFixedThreadPool(threads);
+        try {
+            List<Future<DefaultTypeConverter>> futures = new ArrayList<>();
+            for (int i = 0; i < threads; i++) {
+                futures.add(pool.submit(() -> {
+                    startLine.await();
+                    return counting.getDelegate();
+                }));
+            }
+            // release them all at once so they race on the null check
+            startLine.countDown();
+
+            DefaultTypeConverter first = futures.get(0).get(30, TimeUnit.SECONDS);
+            assertNotNull(first);
+            for (Future<DefaultTypeConverter> f : futures) {
+                assertSame(first, f.get(30, TimeUnit.SECONDS),
+                        "every caller must see the same registry instance");
+            }
+        } finally {
+            pool.shutdownNow();
+        }
+
+        assertEquals(1, created.get(),
+                "the registry must be built exactly once, otherwise converters registered on a discarded"
+                        + " instance are silently lost");
     }
 }
