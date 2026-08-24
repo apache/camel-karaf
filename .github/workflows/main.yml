@@ -98,7 +98,7 @@ jobs:
       - run: ./mvnw -V --no-transfer-progress install -Ddump.logs.on.failure=true
       - name: Publish test results
         if: always()
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2.24.0
         with:
           files: '**/target/surefire-reports/*.xml'
           check_name: Test Results (Java ${{ matrix.java-version }})
