@@ -21,12 +21,10 @@ import org.apache.camel.Endpoint;
 import org.apache.camel.ServiceStatus;
 import org.apache.camel.StatefulService;
 import org.apache.camel.karaf.shell.completers.CamelContextCompleter;
-import org.apache.camel.util.URISupport;
 import org.apache.karaf.shell.api.action.*;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,13 +61,7 @@ public class EndpointList extends CamelCommandSupport implements Action {
                 }
             });
             for (Endpoint endpoint : endpoints) {
-                String uri = endpoint.getEndpointUri();
-                if (decode) {
-                    // decode uri so its more human readable
-                    uri = URLDecoder.decode(uri, "UTF-8");
-                }
-                // sanitize and mask uri so we don't see passwords
-                uri = URISupport.sanitizeUri(uri);
+                String uri = ShellUriHelper.prepareUriForDisplay(endpoint.getEndpointUri(), decode);
                 table.addRow().addContent(camelContext.getName(), uri, getEndpointState(endpoint));
             }
         }
