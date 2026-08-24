@@ -24,6 +24,7 @@ import org.apache.camel.spi.DataFormat;
 import org.apache.camel.spi.DataFormatFactory;
 import org.apache.camel.spi.DataFormatResolver;
 import org.apache.camel.support.ResolverHelper;
+import org.apache.camel.karaf.core.utils.OsgiFilterHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -59,7 +60,7 @@ public class OsgiDataFormatResolver implements DataFormatResolver {
     private DataFormat getDataFormat(String name, CamelContext context) {
         LOG.trace("Finding DataFormat: {}", name);
         try {
-            Collection<ServiceReference<DataFormatResolver>> refs = bundleContext.getServiceReferences(DataFormatResolver.class, "(dataformat=" + name + ")");
+            Collection<ServiceReference<DataFormatResolver>> refs = bundleContext.getServiceReferences(DataFormatResolver.class, OsgiFilterHelper.createFilter("dataformat", name));
             if (refs != null) {
                 for (ServiceReference<DataFormatResolver> ref : refs) {
                     return bundleContext.getService(ref).createDataFormat(name, context);

@@ -27,6 +27,7 @@ import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.Service;
 import org.apache.camel.spi.BeanRepository;
 import org.apache.camel.support.LifecycleStrategySupport;
+import org.apache.camel.karaf.core.utils.OsgiFilterHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
@@ -57,7 +58,7 @@ public class OsgiBeanRepository extends LifecycleStrategySupport implements Bean
         Object service = null;
         ServiceReference<?> sr;
         try {
-            ServiceReference<?>[] refs = bundleContext.getServiceReferences(type.getName(), "(name=" + name + ")");
+            ServiceReference<?>[] refs = bundleContext.getServiceReferences(type.getName(), OsgiFilterHelper.createFilter("name", name));
             if (refs != null && refs.length > 0) {
                 // just return the first one
                 sr = refs[0];
@@ -80,7 +81,7 @@ public class OsgiBeanRepository extends LifecycleStrategySupport implements Bean
         ServiceReference<?> sr = bundleContext.getServiceReference(name);
         if (sr == null) {
             // trying to lookup service by PID if not found by name
-            String filterExpression = "(" + Constants.SERVICE_PID + "=" + name + ")";
+            String filterExpression = OsgiFilterHelper.createFilter(Constants.SERVICE_PID, name);
             try {
                 ServiceReference<?>[] refs = bundleContext.getServiceReferences((String)null, filterExpression);
                 if (refs != null && refs.length > 0) {
