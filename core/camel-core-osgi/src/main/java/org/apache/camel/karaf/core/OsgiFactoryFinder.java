@@ -28,8 +28,12 @@ import org.apache.camel.spi.ClassResolver;
 import org.apache.camel.util.IOHelper;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OsgiFactoryFinder extends DefaultFactoryFinder {
+    private static final Logger LOG = LoggerFactory.getLogger(OsgiFactoryFinder.class);
+
     private final BundleContext bundleContext;
 
     public OsgiFactoryFinder(BundleContext bundleContext, ClassResolver classResolver, String resourcePath) {
@@ -37,7 +41,9 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
         this.bundleContext = bundleContext;
     }
 
-    private static class BundleEntry {
+    // package private rather than private: getResource is public and returns it, so private was never
+    // actually restricting anything, and it keeps the type reachable from the tests in this package
+    static class BundleEntry {
         URL url;
         Bundle bundle;
     }
@@ -83,9 +89,24 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
 
         bundles = bundleContext.getBundles();
 
+        String path = getResourcePath() + name;
         URL url;
         for (Bundle bundle : bundles) {
-            url = bundle.getEntry(getResourcePath() + name);
+            // getBundles() is a snapshot, so a bundle in it can be uninstalled by the time we get here,
+            // for instance by a concurrent feature:uninstall or bundle:update. getEntry then throws
+            // IllegalStateException, and findClass calls us from inside addToClassMap, which caches the
+            // failure in classesNotFoundExceptions and rethrows it for every later lookup of this key.
+            // A bundle unrelated to the factory would poison the key for the life of the context, so
+            // skip such a bundle instead of letting it fail the whole scan.
+            if (bundle.getState() == Bundle.UNINSTALLED) {
+                continue;
+            }
+            try {
+                url = bundle.getEntry(path);
+            } catch (IllegalStateException e) {
+                // uninstalled between the state check and here
+                continue;
+            }
             if (url != null) {
                 entry = new BundleEntry();
                 entry.url = url;
@@ -94,8 +115,19 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
             }
         }
 
+        if (LOG.isDebugEnabled()) {
+            // which bundle wins is the container's install order, and findClass caches the answer per key,
+            // so record the choice: it is the only way an operator can tell which bundle actually supplies
+            // a factory when several provide the same descriptor
+            if (entry == null) {
+                LOG.debug("Factory descriptor {} is not provided by any installed bundle", path);
+            } else {
+                LOG.debug("Factory descriptor {} resolved from bundle {}/{} [{}]", path,
+                        entry.bundle.getSymbolicName(), entry.bundle.getVersion(), entry.bundle.getBundleId());
+            }
+        }
+
         return entry;
     }
-
 
 }
