@@ -17,6 +17,8 @@
 package org.apache.camel.karaf.core;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.RuntimeCamelException;
+import org.apache.camel.TypeConverter;
 import org.apache.camel.spi.Injector;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,8 @@ public class OsgiTypeConverterTest {
     private ServiceReference<TypeConverterLoader> serviceReference;
     @Mock
     private TypeConverterLoader loader;
+    @Mock
+    private TypeConverter typeConverter;
     @Mock
     private Bundle bundle;
 
@@ -160,5 +164,103 @@ public class OsgiTypeConverterTest {
         assertEquals(1, created.get(),
                 "the registry must be built exactly once, otherwise converters registered on a discarded"
                         + " instance are silently lost");
+    }
+
+    /** Marker source type, so the registered converter cannot collide with a core one. */
+    interface Marker {
+    }
+
+    @Test
+    void rebuiltRegistryReloadsTheTrackedLoadersWithoutAskingTheTracker() throws Exception {
+        // arrives before the registry exists, so addingService only records it
+        osgiTypeConverter.addingService(serviceReference);
+        verify(loader, never()).load(any());
+
+        DefaultTypeConverter first = osgiTypeConverter.getDelegate();
+
+        // createRegistry replayed it from the recorded loaders; it never called back into the ServiceTracker,
+        // which is what would put a framework call underneath this instance's monitor
+        verify(loader).load(first);
+    }
+
+    @Test
+    void programmaticConverterSurvivesARegistryRebuild() throws Exception {
+        DefaultTypeConverter before = osgiTypeConverter.getDelegate();
+        osgiTypeConverter.addTypeConverter(String.class, Marker.class, typeConverter);
+        assertNotNull(before.lookup(String.class, Marker.class), "precondition: the converter is registered");
+
+        // one loader going away discards the whole registry
+        osgiTypeConverter.removedService(serviceReference, loader);
+        DefaultTypeConverter after = osgiTypeConverter.getDelegate();
+
+        assertNotSame(before, after, "the registry should have been rebuilt");
+        assertNotNull(after.lookup(String.class, Marker.class),
+                "a converter registered programmatically must be replayed onto the rebuilt registry, otherwise it"
+                        + " disappears from a running context when any bundle unregisters a loader");
+    }
+
+    @Test
+    void removedTypeConverterIsNotResurrectedByARebuild() throws Exception {
+        osgiTypeConverter.addTypeConverter(String.class, Marker.class, typeConverter);
+        osgiTypeConverter.removeTypeConverter(String.class, Marker.class);
+
+        osgiTypeConverter.removedService(serviceReference, loader);
+
+        assertNull(osgiTypeConverter.getDelegate().lookup(String.class, Marker.class),
+                "the replay must reproduce the sequence, not just the additions");
+    }
+
+    @Test
+    void addingServiceReleasesTheServiceWhenLoadingFails() throws Exception {
+        osgiTypeConverter.getDelegate();
+        doThrow(new RuntimeException("boom")).when(loader).load(any());
+
+        assertThrows(RuntimeCamelException.class, () -> osgiTypeConverter.addingService(serviceReference));
+
+        // a customizer that throws is treated as never tracked, so removedService will not run for this
+        // reference and nothing else would release the use count taken by addingService
+        verify(bundleContext).ungetService(serviceReference);
+    }
+
+    @Test
+    void removedServiceReleasesTheService() {
+        osgiTypeConverter.addingService(serviceReference);
+
+        osgiTypeConverter.removedService(serviceReference, loader);
+
+        verify(bundleContext).ungetService(serviceReference);
+    }
+
+    @Test
+    void addingServiceMustNotHoldTheInstanceMonitor() throws Exception {
+        // build first, so addingService takes the branch that calls into the loader
+        osgiTypeConverter.getDelegate();
+
+        CountDownLatch insideLoad = new CountDownLatch(1);
+        CountDownLatch releaseLoad = new CountDownLatch(1);
+        doAnswer(invocation -> {
+            insideLoad.countDown();
+            releaseLoad.await(30, TimeUnit.SECONDS);
+            return null;
+        }).when(loader).load(any());
+
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+        try {
+            Future<?> adding = pool.submit(() -> osgiTypeConverter.addingService(serviceReference));
+            assertTrue(insideLoad.await(30, TimeUnit.SECONDS), "addingService should have reached loader.load");
+
+            // the framework calls addingService while it is dispatching a service event; if it took this
+            // instance's monitor, every conversion in the container would block behind an arbitrary bundle's
+            // loader for as long as that loader takes
+            Future<DefaultTypeConverter> reader = pool.submit(osgiTypeConverter::getDelegate);
+            assertNotNull(reader.get(10, TimeUnit.SECONDS),
+                    "getDelegate must not be blocked by an in-flight addingService");
+
+            releaseLoad.countDown();
+            adding.get(30, TimeUnit.SECONDS);
+        } finally {
+            releaseLoad.countDown();
+            pool.shutdownNow();
+        }
     }
 }

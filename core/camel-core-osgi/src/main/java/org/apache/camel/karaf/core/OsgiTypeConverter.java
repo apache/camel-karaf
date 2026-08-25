@@ -20,8 +20,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Consumer;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
@@ -57,6 +61,19 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     private CamelContext camelContext;
     private final Injector injector;
     private final ServiceTracker<TypeConverterLoader, Object> tracker;
+    /**
+     * The loaders the tracker has handed us, kept here rather than read back from the tracker: resolving them
+     * through the tracker inside {@link #createRegistry()} would mean calling into the ServiceTracker and the
+     * framework while holding this instance's monitor.
+     */
+    private final Map<ServiceReference<TypeConverterLoader>, TypeConverterLoader> trackedLoaders
+            = new ConcurrentHashMap<>();
+    /**
+     * Registrations made through this facade rather than by a {@link TypeConverterLoader}, in the order they were
+     * made, so a rebuilt registry can be brought back to the same state. Discarding the delegate would otherwise
+     * drop them with no way to get them back.
+     */
+    private final List<Consumer<TypeConverterRegistry>> programmaticRegistrations = new CopyOnWriteArrayList<>();
     private volatile DefaultTypeConverter delegate;
     private volatile boolean trackerOpened;
 
@@ -74,20 +91,29 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         }
     }
 
+    // deliberately not synchronized: the tracker calls this from the framework's service event dispatch, and
+    // taking this instance's monitor here would put our lock on the far side of the framework's, which is the
+    // ordering that makes a lock inversion possible
     @Override
-    public synchronized Object addingService(ServiceReference<TypeConverterLoader> serviceReference) {
+    public Object addingService(ServiceReference<TypeConverterLoader> serviceReference) {
         LOG.trace("AddingService: {}, Bundle: {}", serviceReference, serviceReference.getBundle());
         TypeConverterLoader loader = bundleContext.getService(serviceReference);
         if (loader != null) {
+            trackedLoaders.put(serviceReference, loader);
             try {
                 LOG.debug("loading type converter from bundle: {}", serviceReference.getBundle().getSymbolicName());
-                if (delegate != null) {
+                DefaultTypeConverter current = delegate;
+                if (current != null) {
                     // load the converter directly into the existing delegate to preserve
                     // any converters that were added programmatically (e.g. via Blueprint beans
                     // implementing TypeConverters)
-                    loader.load(delegate);
+                    loader.load(current);
                 }
             } catch (Throwable t) {
+                // the tracker treats a customizer that throws as "never tracked", so it will not call
+                // removedService for this reference and nothing else will release the use count taken above
+                trackedLoaders.remove(serviceReference);
+                ungetQuietly(serviceReference);
                 throw new RuntimeCamelException("Error loading type converters from service: " + serviceReference + " due: " + t.getMessage(), t);
             }
         }
@@ -99,16 +125,19 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     public void modifiedService(ServiceReference<TypeConverterLoader> serviceReference, Object o) {
     }
 
+    // not synchronized, for the same reason as addingService
     @Override
-    public synchronized void removedService(ServiceReference<TypeConverterLoader> serviceReference, Object o) {
+    public void removedService(ServiceReference<TypeConverterLoader> serviceReference, Object o) {
         LOG.trace("RemovedService: {}, Bundle: {}", serviceReference, serviceReference.getBundle());
-        if (this.delegate != null) {
-            // the rebuild in createRegistry replays the core converters and the loaders the tracker still
-            // holds, but it cannot replay converters that were registered programmatically (addTypeConverter,
-            // or a Blueprint bean implementing TypeConverters) - those are lost with the delegate
-            LOG.warn("TypeConverterLoader from bundle {} was unregistered, discarding and rebuilding the type"
-                     + " converter registry. Type converters that were registered programmatically on the running"
-                     + " context are not restored by the rebuild and have to be registered again.",
+        trackedLoaders.remove(serviceReference);
+        // we took the service in addingService, so releasing it is ours to do
+        ungetQuietly(serviceReference);
+        if (this.delegate != null && !isStopping() && !isStopped()) {
+            // worth saying out loud: one loader going away discards the whole registry, and the rebuild is a
+            // full reload of the core converters plus every remaining loader, not an incremental removal
+            LOG.warn("TypeConverterLoader from bundle {} was unregistered, discarding the type converter registry;"
+                     + " it is rebuilt on next use from the remaining loaders, and the converters registered"
+                     + " programmatically on this context are replayed onto the rebuilt registry.",
                     serviceReference.getBundle() != null ? serviceReference.getBundle().getSymbolicName() : serviceReference);
         }
         try {
@@ -121,6 +150,16 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         this.delegate = null;
     }
 
+    private void ungetQuietly(ServiceReference<TypeConverterLoader> serviceReference) {
+        try {
+            bundleContext.ungetService(serviceReference);
+        } catch (Exception e) {
+            // the bundle or the framework may already be gone; releasing the use count is best effort
+            LOG.debug("Error ungetting service {} due: {}. This exception will be ignored.", serviceReference,
+                    e.getMessage(), e);
+        }
+    }
+
     @Override
     protected void doStart() throws Exception {
         ensureTrackerOpen();
@@ -130,6 +169,8 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     protected void doStop() throws Exception {
         this.tracker.close();
         this.trackerOpened = false;
+        // close() calls removedService for everything still tracked, this only makes the end state explicit
+        this.trackedLoaders.clear();
         ServiceHelper.stopService(this.delegate);
         this.delegate = null;
     }
@@ -182,27 +223,30 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void addTypeConverter(Class<?> toType, Class<?> fromType, TypeConverter typeConverter) {
-        getDelegate().addTypeConverter(toType, fromType, typeConverter);
+        register(registry -> registry.addTypeConverter(toType, fromType, typeConverter));
     }
 
     @Override
     public void addTypeConverters(Object typeConverters) {
-        getDelegate().addTypeConverters(typeConverters);
+        register(registry -> registry.addTypeConverters(typeConverters));
     }
 
     @Override
     public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
-        getDelegate().addBulkTypeConverters(bulkTypeConverters);
+        register(registry -> registry.addBulkTypeConverters(bulkTypeConverters));
     }
 
     @Override
     public boolean removeTypeConverter(Class<?> toType, Class<?> fromType) {
-        return getDelegate().removeTypeConverter(toType, fromType);
+        boolean removed = getDelegate().removeTypeConverter(toType, fromType);
+        // replayed as well, so a rebuild reproduces the sequence rather than resurrecting the converter
+        programmaticRegistrations.add(registry -> registry.removeTypeConverter(toType, fromType));
+        return removed;
     }
 
     @Override
     public void addFallbackTypeConverter(TypeConverter typeConverter, boolean canPromote) {
-        getDelegate().addFallbackTypeConverter(typeConverter, canPromote);
+        register(registry -> registry.addFallbackTypeConverter(typeConverter, canPromote));
     }
 
     @Override
@@ -212,7 +256,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setInjector(Injector injector) {
-        getDelegate().setInjector(injector);
+        register(registry -> registry.setInjector(injector));
     }
 
     @Override
@@ -237,7 +281,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setTypeConverterExistsLoggingLevel(LoggingLevel loggingLevel) {
-        getDelegate().setTypeConverterExistsLoggingLevel(loggingLevel);
+        register(registry -> registry.setTypeConverterExistsLoggingLevel(loggingLevel));
     }
 
     @Override
@@ -247,30 +291,22 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setTypeConverterExists(TypeConverterExists typeConverterExists) {
-        getDelegate().setTypeConverterExists(typeConverterExists);
+        register(registry -> registry.setTypeConverterExists(typeConverterExists));
     }
 
-    public DefaultTypeConverter getDelegate() {
-        DefaultTypeConverter answer = delegate;
-        if (answer == null) {
-            // double checked locking against the volatile field: getDelegate is on the conversion hot path,
-            // so the common case must stay lock free, but the check and the assignment together are not
-            // atomic - without the lock two threads racing on first access each build a registry, and
-            // whatever was registered on the one that loses is silently dropped
-            synchronized (this) {
-                answer = delegate;
-                if (answer == null) {
-                    // ensure the tracker is open so we can discover TypeConverterLoader services
-                    // before creating the registry - this is important because getDelegate() may be
-                    // called during doInit() (e.g. when to() eagerly creates endpoints) which happens
-                    // before doStart() where the tracker is normally opened
-                    ensureTrackerOpen();
-                    answer = createRegistry();
-                    delegate = answer;
-                }
-            }
+    // fully synchronized rather than double checked: the delegate is not immutable after publication -
+    // removedService stops and replaces it - so a lock free read of the field buys a race for no real gain,
+    // conversion work dwarfing an uncontended monitor either way
+    public synchronized DefaultTypeConverter getDelegate() {
+        if (delegate == null) {
+            // ensure the tracker is open so we can discover TypeConverterLoader services
+            // before creating the registry - this is important because getDelegate() may be
+            // called during doInit() (e.g. when to() eagerly creates endpoints) which happens
+            // before doStart() where the tracker is normally opened
+            ensureTrackerOpen();
+            delegate = createRegistry();
         }
-        return answer;
+        return delegate;
     }
 
     protected DefaultTypeConverter createRegistry() {
@@ -299,26 +335,57 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
             throw new RuntimeCamelException("Error loading CoreTypeConverter due: " + e.getMessage(), e);
         }
 
-        // Load the type converters the tracker has been tracking
-        // Here we need to use the ServiceReference to check the ranking
-        ServiceReference<TypeConverterLoader>[] serviceReferences = this.tracker.getServiceReferences();
-        if (serviceReferences != null) {
-            ArrayList<ServiceReference<TypeConverterLoader>> servicesList =
-                    new ArrayList<>(Arrays.asList(serviceReferences));
-            // Just make sure we install the high ranking fallback converter at last
-            Collections.sort(servicesList);
-            for (ServiceReference<TypeConverterLoader> sr : servicesList) {
-                try {
-                    LOG.debug("loading type converter from bundle: {}", sr.getBundle().getSymbolicName());
-                    ((TypeConverterLoader)this.tracker.getService(sr)).load(answer);
-                } catch (Throwable t) {
-                    throw new RuntimeCamelException("Error loading type converters from service: " + sr + " due: " + t.getMessage(), t);
-                }
+        // Load the type converters the tracker has been tracking. These come from our own map rather than from
+        // tracker.getServiceReferences()/getService(): this runs while holding this instance's monitor, and
+        // calling back into the tracker from here is what would establish a lock ordering against the framework.
+        List<ServiceReference<TypeConverterLoader>> servicesList = new ArrayList<>(trackedLoaders.keySet());
+        // Just make sure we install the high ranking fallback converter at last
+        Collections.sort(servicesList);
+        for (ServiceReference<TypeConverterLoader> sr : servicesList) {
+            TypeConverterLoader loader = trackedLoaders.get(sr);
+            if (loader == null) {
+                // unregistered between the snapshot and here
+                continue;
+            }
+            try {
+                LOG.debug("loading type converter from bundle: {}", sr.getBundle().getSymbolicName());
+                loader.load(answer);
+            } catch (Throwable t) {
+                throw new RuntimeCamelException("Error loading type converters from service: " + sr + " due: " + t.getMessage(), t);
             }
         }
 
+        replayProgrammaticRegistrations(answer);
+
         LOG.trace("Created TypeConverter: {}", answer);
         return answer;
+    }
+
+    /**
+     * Re-applies everything that was registered through this facade rather than by a
+     * {@link TypeConverterLoader}, in the order it was originally applied.
+     */
+    private void replayProgrammaticRegistrations(DefaultTypeConverter registry) {
+        if (programmaticRegistrations.isEmpty()) {
+            return;
+        }
+        LOG.debug("Replaying {} programmatic registration(s) onto the rebuilt type converter registry",
+                programmaticRegistrations.size());
+        for (Consumer<TypeConverterRegistry> registration : programmaticRegistrations) {
+            registration.accept(registry);
+        }
+    }
+
+    /**
+     * Applies a registration to the current delegate and remembers it, so that discarding the delegate does not
+     * discard the registration with it.
+     */
+    private void register(Consumer<TypeConverterRegistry> registration) {
+        // apply first: a registration the delegate rejects is not one worth replaying. Note getDelegate() may
+        // build the registry here, which replays the list as it stands - this registration is added after, so
+        // it cannot be applied twice
+        registration.accept(getDelegate());
+        programmaticRegistrations.add(registration);
     }
 
     private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
@@ -352,7 +419,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void addConverter(TypeConvertible<?, ?> typeConvertible, TypeConverter typeConverter) {
-        getDelegate().addConverter(typeConvertible, typeConverter);
+        register(registry -> registry.addConverter(typeConvertible, typeConverter));
     }
 
 }
