@@ -73,8 +73,12 @@ class ServletExporter implements ManagedService {
                 Boolean.valueOf(getProp(properties, CXF_SERVLET_PREFIX + "async-supported", "true").toString()));
 
         // Pass CXF servlet init parameters
+        // the service list page enumerates every CXF endpoint in the container and is served
+        // unauthenticated, so it is opt in rather than on by default; set
+        // org.apache.cxf.servlet.hide-service-list-page=false in the org.apache.cxf.osgi PID to
+        // get it back, optionally with service-list-page-authenticate=true
         whiteboardProps.put("servlet.init.hide-service-list-page",
-                getProp(properties, CXF_SERVLET_PREFIX + "hide-service-list-page", "false"));
+                getProp(properties, CXF_SERVLET_PREFIX + "hide-service-list-page", "true"));
         whiteboardProps.put("servlet.init.disable-address-updates",
                 getProp(properties, CXF_SERVLET_PREFIX + "disable-address-updates", "true"));
         whiteboardProps.put("servlet.init.base-address",
