@@ -19,12 +19,10 @@ package org.apache.camel.karaf.shell;
 import org.apache.camel.CamelContext;
 import org.apache.camel.karaf.shell.completers.CamelContextCompleter;
 import org.apache.camel.spi.RestRegistry;
-import org.apache.camel.util.URISupport;
 import org.apache.karaf.shell.api.action.*;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -64,13 +62,7 @@ public class RestRegistryList extends CamelCommandSupport implements Action {
             }
         });
         for (RestRegistry.RestService service : services) {
-            String uri = service.getUrl();
-            if (decode) {
-                // decode uri so it's more human readable
-                uri = URLDecoder.decode(uri, "UTF-8");
-            }
-            // sanitize and mask uri so we don't see passwords
-            uri = URISupport.sanitizeUri(uri);
+            String uri = ShellUriHelper.prepareUriForDisplay(service.getUrl(), decode);
             table.addRow().addContent(uri,
                     service.getBasePath(),
                     service.getUriTemplate(),

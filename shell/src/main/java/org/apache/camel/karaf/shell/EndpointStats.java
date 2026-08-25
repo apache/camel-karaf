@@ -20,12 +20,10 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.karaf.shell.completers.CamelContextCompleter;
 import org.apache.camel.spi.EndpointRegistry;
 import org.apache.camel.spi.RuntimeEndpointRegistry;
-import org.apache.camel.util.URISupport;
 import org.apache.karaf.shell.api.action.*;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 
-import java.net.URLDecoder;
 import java.util.List;
 
 @Command(scope = "camel", name = "endpoint-stats", description = "List the statistics of the Camel endpoints")
@@ -66,12 +64,7 @@ public class EndpointStats extends CamelCommandSupport implements Action {
                     boolean isDynamic = endpointRegistry.isDynamic(uri);
                     long hits = stat.getHits();
 
-                    if (decode) {
-                        // decode uri so it's more human readable
-                        uri = URLDecoder.decode(uri, "UTF-8");
-                    }
-                    // sanitize and mask uri so we don't see passwords
-                    uri = URISupport.sanitizeUri(uri);
+                    uri = ShellUriHelper.prepareUriForDisplay(uri, decode);
 
                     // should we filter ?
                     if (isValidRow(direction, Boolean.toString(isStatic), Boolean.toString(isDynamic))) {
