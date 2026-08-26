@@ -336,6 +336,8 @@
             suspend* = manager
             resume* = manager
             reset* = manager
+            dump* = viewer
+            browse* = viewer         
         </config>
     </feature>
 
