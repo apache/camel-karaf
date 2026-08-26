@@ -1570,7 +1570,7 @@
         <bundle dependency='true'>wrap:mvn:com.google.auth/google-auth-library-oauth2-http/${google-auth-library-oauth2-http-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.cloud/google-cloud-pubsub/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-secretmanager-v1/${google-cloud-secretmanager-version}</bundle>
-        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf4-version}</bundle>
+        <bundle dependency='true'>mvn:com.google.protobuf/protobuf-java/${protobuf-version}</bundle>
         <bundle dependency='true'>wrap:mvn:com.google.api.grpc/proto-google-cloud-pubsub-v1/${auto-detect-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-google-secret-manager/${project.version}</bundle>
     </feature>

@@ -34,7 +34,7 @@
         <route id="cxf-jetty-route">
             <from uri="cxf:bean:cxfJettyEndpoint"/>
             <setBody>
-                <simple>${header.operationName} ${body}</simple>
+                <simple>${header.CamelCxfOperationName} ${body}</simple>
             </setBody>
         </route>
     </camelContext>
