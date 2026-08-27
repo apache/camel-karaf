@@ -336,8 +336,24 @@
             suspend* = manager
             resume* = manager
             reset* = manager
-            dump* = viewer
-            browse* = viewer         
+
+            browse* = viewer
+
+            dumpRoutesAsXml() = viewer
+            dumpRoutesAsYaml() = viewer
+            dumpRouteAsXml() = viewer
+            dumpRouteAsYaml() = viewer
+            dumpRestsAsXml() = viewer
+            dumpRouteTemplatesAsXml() = viewer
+            dumpRoutesCoverageAsXml() = viewer
+            dumpRouteSourceLocationsAsXml() = viewer
+            dumpProcessorAsXml() = viewer
+            dumpRoutesStatsAsXml(boolean,boolean) = viewer
+            dumpRouteStatsAsXml(boolean,boolean) = viewer
+            dumpRouteStatsAsJSon(boolean,boolean) = viewer
+            dumpStepStatsAsXml(boolean) = viewer
+            dumpStatsAsXml(boolean) = viewer
+            dumpStatsAsJSon(boolean) = viewer
         </config>
     </feature>
 
