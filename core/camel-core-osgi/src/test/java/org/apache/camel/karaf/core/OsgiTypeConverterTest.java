@@ -27,6 +27,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.camel.impl.converter.DefaultTypeConverter;
@@ -260,6 +261,106 @@ public class OsgiTypeConverterTest {
             adding.get(30, TimeUnit.SECONDS);
         } finally {
             releaseLoad.countDown();
+            pool.shutdownNow();
+        }
+    }
+
+    @Test
+    void addRemovePairsDoNotAccumulate() {
+        osgiTypeConverter.getDelegate();
+
+        for (int i = 0; i < 500; i++) {
+            osgiTypeConverter.addTypeConverter(String.class, Marker.class, typeConverter);
+            osgiTypeConverter.removeTypeConverter(String.class, Marker.class);
+        }
+
+        // an inverse-appending list would sit at 1000 here, and every converter it captured - and the classloader
+        // of the bundle that contributed it - would stay strongly reachable for the life of the context
+        assertEquals(0, osgiTypeConverter.programmaticRegistrationCount(),
+                "add/remove pairs must prune, not accumulate");
+    }
+
+    @Test
+    void reRegisteringTheSameConversionReplaces() {
+        osgiTypeConverter.getDelegate();
+
+        for (int i = 0; i < 10; i++) {
+            // what a Blueprint container refresh looks like: the same conversion registered again
+            osgiTypeConverter.addTypeConverter(String.class, Marker.class, typeConverter);
+        }
+
+        assertEquals(1, osgiTypeConverter.programmaticRegistrationCount(),
+                "re-registering the same conversion must replace rather than append");
+    }
+
+    @Test
+    void removingAConversionThatWasNeverRegisteredDoesNotAccumulate() {
+        osgiTypeConverter.getDelegate();
+
+        osgiTypeConverter.removeTypeConverter(String.class, Marker.class);
+
+        assertEquals(0, osgiTypeConverter.programmaticRegistrationCount(),
+                "a removal for a pair that was never registered must not be retained");
+    }
+
+    @Test
+    void restartDoesNotReplayThePreviousLifecycle() throws Exception {
+        osgiTypeConverter.start();
+        osgiTypeConverter.addTypeConverter(String.class, Marker.class, typeConverter);
+        assertNotNull(osgiTypeConverter.getDelegate().lookup(String.class, Marker.class));
+
+        osgiTypeConverter.stop();
+        osgiTypeConverter.start();
+
+        // the converters captured before the stop belong to bundles that may be gone by now
+        assertEquals(0, osgiTypeConverter.programmaticRegistrationCount());
+        assertNull(osgiTypeConverter.getDelegate().lookup(String.class, Marker.class),
+                "a stop/start cycle must not resurrect the previous lifecycle's registrations");
+    }
+
+    @Test
+    void registrationCannotInterleaveWithARebuild() throws Exception {
+        CountDownLatch insideBuild = new CountDownLatch(1);
+        CountDownLatch releaseBuild = new CountDownLatch(1);
+
+        OsgiTypeConverter stalling = new OsgiTypeConverter(bundleContext, camelContext, injector) {
+            @Override
+            protected DefaultTypeConverter createRegistry() {
+                DefaultTypeConverter built = super.createRegistry();
+                insideBuild.countDown();
+                try {
+                    releaseBuild.await(30, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                return built;
+            }
+        };
+
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+        try {
+            Future<DefaultTypeConverter> builder = pool.submit(stalling::getDelegate);
+            assertTrue(insideBuild.await(30, TimeUnit.SECONDS), "the rebuild should have started");
+
+            Future<?> registrar = pool.submit(() -> {
+                stalling.addTypeConverter(String.class, Marker.class, typeConverter);
+                return null;
+            });
+
+            // apply-and-record has to be one step against the rebuild. If it were not, this registration would be
+            // applied to the registry being discarded and only recorded afterwards, so the rebuilt one would
+            // neither have it applied nor replay it
+            assertThrows(TimeoutException.class, () -> registrar.get(2, TimeUnit.SECONDS),
+                    "a registration must not proceed while a rebuild holds the monitor");
+
+            releaseBuild.countDown();
+            builder.get(30, TimeUnit.SECONDS);
+            registrar.get(30, TimeUnit.SECONDS);
+
+            assertNotNull(stalling.getDelegate().lookup(String.class, Marker.class),
+                    "the registration must land on the registry that is actually live");
+        } finally {
+            releaseBuild.countDown();
             pool.shutdownNow();
         }
     }

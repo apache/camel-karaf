@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 
 import org.apache.camel.CamelContext;
@@ -69,11 +69,24 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
     private final Map<ServiceReference<TypeConverterLoader>, TypeConverterLoader> trackedLoaders
             = new ConcurrentHashMap<>();
     /**
-     * Registrations made through this facade rather than by a {@link TypeConverterLoader}, in the order they were
-     * made, so a rebuilt registry can be brought back to the same state. Discarding the delegate would otherwise
-     * drop them with no way to get them back.
+     * Registrations made through this facade rather than by a {@link TypeConverterLoader}, so a rebuilt registry can
+     * be brought back to the same state. Discarding the delegate would otherwise drop them with no way to get them
+     * back.
+     * <p/>
+     * Keyed rather than a plain list, and insertion ordered so replay keeps the original order. The key is what the
+     * registration is <em>about</em> - a {@link TypeConvertible} for a converter, the contributed instance for the
+     * bulk and fallback forms, a sentinel for each setter - so re-registering replaces instead of appending, and
+     * removing deletes the entry instead of appending an inverse. Both matter in OSGi: each registration strongly
+     * references the converter it captured, and through it the classloader of the bundle that contributed it, so a
+     * collection that only ever grows pins bundles that have long since been uninstalled.
+     * <p/>
+     * Guarded by this instance's monitor, the same one {@link #getDelegate()} takes.
      */
-    private final List<Consumer<TypeConverterRegistry>> programmaticRegistrations = new CopyOnWriteArrayList<>();
+    private final Map<Object, Consumer<TypeConverterRegistry>> programmaticRegistrations = new LinkedHashMap<>();
+
+    private static final Object INJECTOR_KEY = new Object();
+    private static final Object TYPE_CONVERTER_EXISTS_KEY = new Object();
+    private static final Object TYPE_CONVERTER_EXISTS_LOGGING_LEVEL_KEY = new Object();
     private volatile DefaultTypeConverter delegate;
     private volatile boolean trackerOpened;
 
@@ -171,6 +184,12 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         this.trackerOpened = false;
         // close() calls removedService for everything still tracked, this only makes the end state explicit
         this.trackedLoaders.clear();
+        synchronized (this) {
+            // ServiceSupport allows stop then start again, and this is a context scoped service, so without this a
+            // restart would replay the previous lifecycle's registrations - including converters belonging to
+            // bundles that are gone by the time the context comes back up
+            this.programmaticRegistrations.clear();
+        }
         ServiceHelper.stopService(this.delegate);
         this.delegate = null;
     }
@@ -223,30 +242,33 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void addTypeConverter(Class<?> toType, Class<?> fromType, TypeConverter typeConverter) {
-        register(registry -> registry.addTypeConverter(toType, fromType, typeConverter));
+        register(new TypeConvertible<>(fromType, toType),
+                registry -> registry.addTypeConverter(toType, fromType, typeConverter));
     }
 
     @Override
     public void addTypeConverters(Object typeConverters) {
-        register(registry -> registry.addTypeConverters(typeConverters));
+        register(typeConverters, registry -> registry.addTypeConverters(typeConverters));
     }
 
     @Override
     public void addBulkTypeConverters(BulkTypeConverters bulkTypeConverters) {
-        register(registry -> registry.addBulkTypeConverters(bulkTypeConverters));
+        register(bulkTypeConverters, registry -> registry.addBulkTypeConverters(bulkTypeConverters));
     }
 
     @Override
-    public boolean removeTypeConverter(Class<?> toType, Class<?> fromType) {
+    public synchronized boolean removeTypeConverter(Class<?> toType, Class<?> fromType) {
         boolean removed = getDelegate().removeTypeConverter(toType, fromType);
-        // replayed as well, so a rebuild reproduces the sequence rather than resurrecting the converter
-        programmaticRegistrations.add(registry -> registry.removeTypeConverter(toType, fromType));
+        // delete the matching registration rather than recording an inverse. An inverse would reproduce the same
+        // end state on replay, but it would also keep the removed converter - and its bundle's classloader -
+        // strongly reachable for the life of the context, and cost a no-op call on every future rebuild
+        programmaticRegistrations.remove(new TypeConvertible<>(fromType, toType));
         return removed;
     }
 
     @Override
     public void addFallbackTypeConverter(TypeConverter typeConverter, boolean canPromote) {
-        register(registry -> registry.addFallbackTypeConverter(typeConverter, canPromote));
+        register(typeConverter, registry -> registry.addFallbackTypeConverter(typeConverter, canPromote));
     }
 
     @Override
@@ -256,7 +278,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setInjector(Injector injector) {
-        register(registry -> registry.setInjector(injector));
+        register(INJECTOR_KEY, registry -> registry.setInjector(injector));
     }
 
     @Override
@@ -281,7 +303,8 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setTypeConverterExistsLoggingLevel(LoggingLevel loggingLevel) {
-        register(registry -> registry.setTypeConverterExistsLoggingLevel(loggingLevel));
+        register(TYPE_CONVERTER_EXISTS_LOGGING_LEVEL_KEY,
+                registry -> registry.setTypeConverterExistsLoggingLevel(loggingLevel));
     }
 
     @Override
@@ -291,7 +314,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void setTypeConverterExists(TypeConverterExists typeConverterExists) {
-        register(registry -> registry.setTypeConverterExists(typeConverterExists));
+        register(TYPE_CONVERTER_EXISTS_KEY, registry -> registry.setTypeConverterExists(typeConverterExists));
     }
 
     // fully synchronized rather than double checked: the delegate is not immutable after publication -
@@ -371,21 +394,35 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
         }
         LOG.debug("Replaying {} programmatic registration(s) onto the rebuilt type converter registry",
                 programmaticRegistrations.size());
-        for (Consumer<TypeConverterRegistry> registration : programmaticRegistrations) {
+        for (Consumer<TypeConverterRegistry> registration : programmaticRegistrations.values()) {
             registration.accept(registry);
         }
     }
 
     /**
-     * Applies a registration to the current delegate and remembers it, so that discarding the delegate does not
-     * discard the registration with it.
+     * Applies a registration to the current delegate and remembers it under {@code key}, so that discarding the
+     * delegate does not discard the registration with it.
+     * <p/>
+     * Synchronized, and on the same monitor {@link #getDelegate()} takes: applying and recording have to be one
+     * step. A rebuild landing between them would replay a list this registration is not in yet and then hand back
+     * a registry it was never applied to, so the converter would be recorded but not actually present - the same
+     * loss this class is meant to prevent, one level down. The monitor is reentrant, so the nested
+     * {@link #getDelegate()} is free.
      */
-    private void register(Consumer<TypeConverterRegistry> registration) {
-        // apply first: a registration the delegate rejects is not one worth replaying. Note getDelegate() may
-        // build the registry here, which replays the list as it stands - this registration is added after, so
-        // it cannot be applied twice
+    /**
+     * How many programmatic registrations are currently retained for replay. Package private for the tests, which
+     * pin the invariant that this does not grow without bound - each entry retains the converter it captured, and
+     * with it the classloader of the contributing bundle.
+     */
+    synchronized int programmaticRegistrationCount() {
+        return programmaticRegistrations.size();
+    }
+
+    private synchronized void register(Object key, Consumer<TypeConverterRegistry> registration) {
+        // apply first: a registration the delegate rejects is not one worth replaying. getDelegate() may build the
+        // registry here, replaying the map as it stands - this entry goes in after, so it cannot be applied twice
         registration.accept(getDelegate());
-        programmaticRegistrations.add(registration);
+        programmaticRegistrations.put(key, registration);
     }
 
     private class OsgiDefaultTypeConverter extends DefaultTypeConverter {
@@ -419,7 +456,7 @@ public class OsgiTypeConverter extends ServiceSupport implements TypeConverter, 
 
     @Override
     public void addConverter(TypeConvertible<?, ?> typeConvertible, TypeConverter typeConverter) {
-        register(registry -> registry.addConverter(typeConvertible, typeConverter));
+        register(typeConvertible, registry -> registry.addConverter(typeConvertible, typeConverter));
     }
 
 }
