@@ -21,6 +21,7 @@ import org.apache.camel.Component;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.spi.ComponentResolver;
 import org.apache.camel.support.ResolverHelper;
+import org.apache.camel.karaf.core.utils.OsgiFilterHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -50,7 +51,7 @@ public class OsgiComponentResolver implements ComponentResolver {
     protected Component getComponent(String name, CamelContext context) throws Exception {
         LOG.trace("Finding Component: {}", name);
         try {
-            ServiceReference<?>[] refs = bundleContext.getServiceReferences(ComponentResolver.class.getName(), "(component=" + name + ")");
+            ServiceReference<?>[] refs = bundleContext.getServiceReferences(ComponentResolver.class.getName(), OsgiFilterHelper.createFilter("component", name));
             if (refs != null) {
                 for (ServiceReference<?> ref : refs) {
                     Object service = bundleContext.getService(ref);

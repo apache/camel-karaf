@@ -22,6 +22,7 @@ import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.spi.Language;
 import org.apache.camel.spi.LanguageResolver;
 import org.apache.camel.support.ResolverHelper;
+import org.apache.camel.karaf.core.utils.OsgiFilterHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
@@ -59,7 +60,7 @@ public class OsgiLanguageResolver implements LanguageResolver {
     protected Language getLanguage(String name, CamelContext context) {
         LOG.trace("Finding Language: {}", name);
         try {
-            ServiceReference<?>[] refs = bundleContext.getServiceReferences(LanguageResolver.class.getName(), "(language=" + name + ")");
+            ServiceReference<?>[] refs = bundleContext.getServiceReferences(LanguageResolver.class.getName(), OsgiFilterHelper.createFilter("language", name));
             if (refs != null) {
                 for (ServiceReference<?> ref : refs) {
                     Object service = bundleContext.getService(ref);
@@ -79,7 +80,7 @@ public class OsgiLanguageResolver implements LanguageResolver {
     protected LanguageResolver getLanguageResolver(String name, CamelContext context) {
         LOG.trace("Finding LanguageResolver: {}", name);
         try {
-            ServiceReference<?>[] refs = bundleContext.getServiceReferences(LanguageResolver.class.getName(), "(resolver=" + name + ")");
+            ServiceReference<?>[] refs = bundleContext.getServiceReferences(LanguageResolver.class.getName(), OsgiFilterHelper.createFilter("resolver", name));
             if (refs != null) {
                 for (ServiceReference<?> ref : refs) {
                     Object service = bundleContext.getService(ref);
