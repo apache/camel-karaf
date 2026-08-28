@@ -35,9 +35,10 @@ public class CamelTikaRouteSupplier extends AbstractCamelSingleFeatureResultMock
 
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
-        // Parse the plain-text body as text. This exercises the tika-parser-text-module and
-        // its transitive juniversalchardet dependency (charset detection), which are the
-        // bundles that were missing from the camel-tika feature (issue #713).
+        // Route the body through tika:parse. The value of this route is that it forces the
+        // camel-tika feature (including tika-parser-text-module and its juniversalchardet
+        // dependency, which were missing before issue #713) to resolve and run; a message
+        // reaching the mock proves the feature is now wired correctly.
         producerRoute.log("Will parse: ${body}")
                     .to("tika:parse?tikaParseOutputFormat=text")
                     .convertBodyTo(String.class)
