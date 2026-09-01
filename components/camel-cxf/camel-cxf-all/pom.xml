@@ -59,6 +59,7 @@
             org.springframework.beans*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.springframework.context*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.springframework.core*;resolution:=optional;version="${camel-osgi-spring-version}",
+            org.springframework.http*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.springframework.util*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.springframework.web*;resolution:=optional;version="${camel-osgi-spring-version}",
             org.objectweb.asm*;resolution:=optional;version="${camel-osgi-asm-version}",
