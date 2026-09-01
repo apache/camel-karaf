@@ -14,6 +14,7 @@
 package org.apache.karaf.camel.itest;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.karaf.camel.itests.AbstractCamelRouteWithBundleITest;
@@ -63,6 +64,11 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
         new CamelBeanITest(this).testRoutes();
     }
 
+    @Test
+    public void testCamelPollEnrich() throws Exception {
+        new CamelPollEnrichITest(this).testRoutes();
+    }
+
     public static class CamelFileITest extends AbstractCamelSingleFeatureResultFileBasedRoute {
 
         public CamelFileITest(CamelContextProvider provider, String baseDir) {
@@ -107,6 +113,24 @@ public class CamelCoreITest extends AbstractCamelRouteWithBundleITest {
 
         @Override
         public void configureMock(MockEndpoint mock) {
+            mock.expectedBodiesReceived("OK");
+        }
+    }
+
+    /**
+     * Asserts that a {@code pollEnrich} driven by a {@code simple} expression starts and enriches, which requires the
+     * internal {@code simple-no-file} language to be resolvable in OSGi. See issue #707.
+     */
+    public static class CamelPollEnrichITest extends AbstractCamelSingleFeatureResultMockBasedRoute {
+
+        public CamelPollEnrichITest(CamelContextProvider provider) {
+            super(provider);
+        }
+
+        @Override
+        public void configureMock(MockEndpoint mock) {
+            // The route seeds a file and polls it back, so allow more headroom than the 10s default.
+            mock.setResultWaitTime(TimeUnit.SECONDS.toMillis(30));
             mock.expectedBodiesReceived("OK");
         }
     }
