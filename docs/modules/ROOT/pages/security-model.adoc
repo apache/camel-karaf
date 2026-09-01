@@ -482,6 +482,23 @@ hardening checklist, which applies unchanged.
   boundaries, no Java serialisation on untrusted consumers, least privilege,
   minimal dependency set). _(documented — Apache Camel Security Model,
   "Deployment hardening")_
+* *Review the JMX role mapping for the Camel domain.* The `camel-core` feature
+  seeds `etc/jmx.acl.org.apache.camel.cfg`, which decides which Karaf roles may
+  invoke which operations on `org.apache.camel` MBeans over a remote JMX
+  connection. Karaf seeds a configuration only when it does not already exist,
+  so an installation created before the current mapping shipped keeps its own
+  copy on upgrade — check the file matches the mapping you intend, in
+  particular for the operations that inject messages or mutate routes
+  (`sendBody*`, `requestBody*`, `createEndpoint`, `removeEndpoints`,
+  `addOrUpdateRoutes*`). The shipped mapping grants `viewer` the read-only
+  dumps that take no arguments, and deliberately does not use a `dump*`
+  wildcard: the overloads that take a `resolvePlaceholders` flag, and the
+  backlog tracer/debugger operations that return traced message bodies, are
+  left at Karaf's `admin` default, so an operation added by a future Camel
+  release is denied rather than granted until it is reviewed. Note this file governs remote JMX only: the Karaf
+  `KarafMBeanServerGuard` is installed on the JMX connector, so in-VM access
+  and the `camel:*` shell commands are gated by the console/JAAS realm
+  instead. _(maintainer, 2026-08-24)_
 * *Bundle authors: treat Blueprint XML as code.* Do not generate Blueprint or
   route definitions from untrusted input, and filter `Camel*` headers from
   untrusted producers inside the route, as in core. _(maintainer, 2026-05-15)_

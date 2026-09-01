@@ -315,9 +315,45 @@
             <condition>shell</condition>
             <bundle>mvn:org.apache.camel.karaf/camel-karaf-shell/${project.version}</bundle>
         </conditional>
-        <!-- allow camel to access its own mbeans for karaf commands and other needs -->
+        <!--
+            JMX role mapping for the org.apache.camel MBean domain.
+
+            Karaf resolves ACL PIDs most specific first and only falls through to the
+            next one when no rule in the current PID matches the operation, so this
+            file needs to list only the operations that should differ from the stock
+            jmx.acl defaults (get*/list*/is* = viewer, everything else = admin).
+
+            Context and route lifecycle is mapped to manager, matching how Karaf maps
+            bundle lifecycle in its own jmx.acl.org.apache.karaf.bundle. Everything not
+            listed here - message injection (sendBody*, requestBody*), endpoint and
+            route mutation (createEndpoint, removeEndpoints, addOrUpdateRoutes*) and
+            the dump* operations, which resolve property placeholders - falls through
+            to the jmx.acl default of admin.
+        -->
         <config name="jmx.acl.org.apache.camel">
-            * = *
+            start* = manager
+            stop* = manager
+            suspend* = manager
+            resume* = manager
+            reset* = manager
+
+            browse* = viewer
+
+            dumpRoutesAsXml() = viewer
+            dumpRoutesAsYaml() = viewer
+            dumpRouteAsXml() = viewer
+            dumpRouteAsYaml() = viewer
+            dumpRestsAsXml() = viewer
+            dumpRouteTemplatesAsXml() = viewer
+            dumpRoutesCoverageAsXml() = viewer
+            dumpRouteSourceLocationsAsXml() = viewer
+            dumpProcessorAsXml() = viewer
+            dumpRoutesStatsAsXml(boolean,boolean) = viewer
+            dumpRouteStatsAsXml(boolean,boolean) = viewer
+            dumpRouteStatsAsJSon(boolean,boolean) = viewer
+            dumpStepStatsAsXml(boolean) = viewer
+            dumpStatsAsXml(boolean) = viewer
+            dumpStatsAsJSon(boolean) = viewer
         </config>
     </feature>
 
