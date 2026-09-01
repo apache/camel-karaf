@@ -34,7 +34,7 @@
 
     <properties>
         <camel.osgi.export>
-            org.apache.camel.language*;version=${camel-version}
+            org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
             *
@@ -42,28 +42,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-api</artifactId>
-            <version>${camel-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-support</artifactId>
-            <version>${camel-version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core-languages</artifactId>
@@ -83,6 +61,12 @@
                 <directory>../../src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
+            <!-- Declaring the module's own resources explicitly: the entry above replaces
+                 Maven's default resource directory, which would otherwise be inherited. -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -100,12 +84,6 @@
                                     <include>org.apache.camel:camel-core-languages</include>
                                 </includes>
                             </artifactSet>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                    <resource>META-INF/services/org/apache/camel/language/simple-no-file</resource>
-                                    <file>${project.basedir}/src/main/resources/META-INF/services/org/apache/camel/language/simple-no-file</file>
-                                </transformer>
-                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
