@@ -61,6 +61,12 @@
                 <directory>../../src/main/resources</directory>
                 <filtering>false</filtering>
             </resource>
+            <!-- Declaring the module's own resources explicitly: the entry above replaces
+                 Maven's default resource directory, which would otherwise be inherited. -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
         </resources>
         <plugins>
             <plugin>
