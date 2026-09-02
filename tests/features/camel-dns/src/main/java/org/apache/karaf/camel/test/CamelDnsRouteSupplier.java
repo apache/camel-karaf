@@ -46,17 +46,17 @@ public class CamelDnsRouteSupplier extends AbstractCamelSingleFeatureResultMockB
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.log("Will get IP")
-        .setHeader("dns.domain", builder.constant(LOCALHOST))
+        .setHeader("CamelDnsDomain", builder.constant(LOCALHOST))
         .to("dns:ip")
         .log("IP: ${body}")
         .toF("mock:%s", getResultMockName())
         .log("Will lookup")
-        .setHeader("dns.name", builder.constant(LOCALHOST))
+        .setHeader("CamelDnsName", builder.constant(LOCALHOST))
         .to("dns:lookup")
         .log("Lookup: ${body}")
         .toF("mock:%s", getResultMockName())
         .log("Will dig")
-        .setHeader("dns.type", builder.constant("A"))
+        .setHeader("CamelDnsType", builder.constant("A"))
         .to("dns:dig")
         .log("Dig: ${body}")
         .toF("mock:%s", getResultMockName());

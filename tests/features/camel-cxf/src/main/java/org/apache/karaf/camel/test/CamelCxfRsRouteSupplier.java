@@ -40,7 +40,7 @@ public class CamelCxfRsRouteSupplier implements CamelRouteSupplier {
     @Override
     public void createRoutes(RouteBuilder builder) {
         builder.from(CXF_RS_ENDPOINT_URI)
-                .recipientList(builder.simple("direct:${header.operationName}"));
+                .recipientList(builder.simple("direct:${header.CamelCxfOperationName}"));
 
         builder.from("direct:getCustomer").process(exchange -> {
             assertEquals("123", exchange.getIn().getHeader("id"));
