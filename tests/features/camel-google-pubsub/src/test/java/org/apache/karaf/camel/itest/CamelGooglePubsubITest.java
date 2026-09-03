@@ -64,9 +64,15 @@ public class CamelGooglePubsubITest extends AbstractCamelSingleFeatureResultMock
         static final String TEST_TOPIC = "test-topic";
         static final String TEST_SUBSCRIPTION = "test-subscription";
 
+        // gcr.io only retains a rolling window of the most recent google-cloud-cli emulator tags
+        // (~49 at the time of writing), so an exact pin eventually stops resolving and the itest
+        // fails with "manifest unknown". Bump this to a current tag when that happens.
+        private static final String PUB_SUB_EMULATOR_IMAGE
+                = "gcr.io/google.com/cloudsdktool/google-cloud-cli:583.0.0-emulators";
+
         public static GenericContainerResource<PubSubEmulatorContainer> createPubsubContainer() {
             final PubSubEmulatorContainer pubSubEmulatorContainer = new PubSubEmulatorContainer(
-                    DockerImageName.parse("gcr.io/google.com/cloudsdktool/google-cloud-cli:441.0.0-emulators"));
+                    DockerImageName.parse(PUB_SUB_EMULATOR_IMAGE));
 
             return new GenericContainerResource<>(pubSubEmulatorContainer, resource -> {
                 setUpEmulator(pubSubEmulatorContainer);
