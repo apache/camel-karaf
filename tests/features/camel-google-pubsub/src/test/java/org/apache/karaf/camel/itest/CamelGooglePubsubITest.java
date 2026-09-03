@@ -64,9 +64,14 @@ public class CamelGooglePubsubITest extends AbstractCamelSingleFeatureResultMock
         static final String TEST_TOPIC = "test-topic";
         static final String TEST_SUBSCRIPTION = "test-subscription";
 
+        // gcr.io keeps only a rolling window of google-cloud-cli tags - at the time of writing 49 of them, from
+        // 537.0.0-emulators up. Older tags are deleted outright rather than archived, so a pin that has fallen out
+        // of the window fails the build with a 404 "manifest unknown" rather than anything that looks like a test
+        // failure. When that happens, move this to a current tag; the floating "emulators" tag would never 404 but
+        // would also make the build non-reproducible.
         public static GenericContainerResource<PubSubEmulatorContainer> createPubsubContainer() {
             final PubSubEmulatorContainer pubSubEmulatorContainer = new PubSubEmulatorContainer(
-                    DockerImageName.parse("gcr.io/google.com/cloudsdktool/google-cloud-cli:441.0.0-emulators"));
+                    DockerImageName.parse("gcr.io/google.com/cloudsdktool/google-cloud-cli:583.0.0-emulators"));
 
             return new GenericContainerResource<>(pubSubEmulatorContainer, resource -> {
                 setUpEmulator(pubSubEmulatorContainer);
