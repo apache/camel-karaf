@@ -34,7 +34,7 @@
         <route id="rss-route">
             <from uri="cxfrs:bean:rss?bindingStyle=SimpleConsumer"/>
             <recipientList>
-                <simple>direct-vm:${header.operationName}</simple>
+                <simple>direct-vm:${header.CamelCxfOperationName}</simple>
             </recipientList>
         </route>
     </camelContext>

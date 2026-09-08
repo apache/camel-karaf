@@ -56,7 +56,7 @@ public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleFeatureR
                     .setHeader("_ID", builder.simple("${body}"))
                     .toF("elasticsearch://elasticsearch?operation=GetById&indexName=%s", INDEX_NAME)
                     .log("Get doc: ${body}")
-                    .setHeader("indexId", builder.simple("${header._ID}"))
+                    .setHeader("CamelElasticsearchIndexId", builder.simple("${header._ID}"))
                     .setBody(builder.constant("""
                             {"doc": {"someKey": "someValue2"}}
                             """))
