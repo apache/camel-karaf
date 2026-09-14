@@ -3428,6 +3428,13 @@
         <feature version='${camel-osgi-spring-version}'>spring-tx</feature>
         <feature version='${camel-osgi-spring-version}'>spring-messaging</feature>
         <bundle dependency='true'>wrap:mvn:org.springframework.retry/spring-retry/${spring-retry-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-buffer/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-resolver/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-transport-native-unix-common/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-codec-base/${netty-version}</bundle>
+        <bundle dependency='true'>mvn:io.netty/netty-handler/${netty-version}</bundle>
         <bundle dependency='true'>mvn:com.rabbitmq/amqp-client/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.micrometer/micrometer-commons/${micrometer-version}$overwrite=merge&amp;Import-Package=*;resolution:=optional</bundle>
         <bundle dependency='true'>mvn:io.micrometer/micrometer-observation/${micrometer-version}</bundle>
@@ -3629,7 +3636,7 @@
         <bundle dependency='true'>mvn:org.jsoup/jsoup/${jsoup-version}</bundle>
         <bundle dependency='true'>mvn:commons-codec/commons-codec/${commons-codec-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-csv/${commons-csv-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:com.github.albfernandez/juniversalchardet/${juniversalchardet-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:com.googlecode.juniversalchardet/juniversalchardet/${juniversalchardet-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-tika/${project.version}</bundle>
     </feature>
     <feature name='camel-tracing' version='${project.version}' start-level='50'>
@@ -3655,12 +3662,12 @@
         <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-cpu/2.6.0</bundle>
         <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-constraint/2.6.0</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
-        <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-version}</bundle>
+        <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-servlet-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/${auto-detect-version}$Export-Package=*;version=${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.jboss.xnio/xnio-api/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:org.jboss.xnio/xnio-nio/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.jboss.threads/jboss-threads/${auto-detect-version}</bundle>
-        <bundle dependency='true'>mvn:org.wildfly.client/wildfly-client-config/${auto-detect-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:org.wildfly.client/wildfly-client-config/${auto-detect-version}$overwrite=merge&amp;Import-Package=org.wildfly.common*;version="[1.2,3)",*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-attachments/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-http-base/${project.version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-undertow/${project.version}</bundle>
@@ -3720,7 +3727,7 @@
     <feature name='camel-weaviate' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <bundle dependency='true'>wrap:mvn:dev.langchain4j/langchain4j-core/${langchain4j-version}</bundle>
-        <bundle dependency='true'>wrap:mvn:io.weaviate/client/${weaviate-client-version}</bundle>
+        <bundle dependency='true'>wrap:mvn:io.weaviate/client6/${weaviate-client-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-weaviate/${project.version}</bundle>
     </feature>
     <feature name='camel-web3j' version='${project.version}' start-level='50'>
