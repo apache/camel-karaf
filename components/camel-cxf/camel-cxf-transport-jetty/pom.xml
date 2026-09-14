@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-cxf-parent</artifactId>
-        <version>4.18.2-SNAPSHOT</version>
+        <version>4.22.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -39,7 +39,7 @@
         </camel.osgi.export>
         <camel.osgi.activator>org.apache.camel.component.cxf.transport.jetty.osgi.HTTPJettyTransportActivator</camel.osgi.activator>
         <camel.osgi.import>
-            jakarta.annotation;version="${camel-osgi-jakarta-annotation2-version}",
+            jakarta.annotation;version="${camel-osgi-jakarta-annotation-version}",
             jakarta.servlet*;version="${camel-osgi-jakarta-servlet-version}",
             jakarta.xml.bind*;version="${camel-osgi-jakarta-bind-version}",
             javax.management*,

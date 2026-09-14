@@ -19,7 +19,7 @@ package org.apache.camel.component.cxf.blueprint.helpers;
 import java.util.HashMap;
 
 import org.apache.camel.component.cxf.common.NullFaultListener;
-import org.apache.cxf.feature.LoggingFeature;
+import org.apache.cxf.ext.logging.LoggingFeature;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.logging.FaultListener;
 import org.osgi.framework.BundleContext;
@@ -62,10 +62,9 @@ public class RsServerBlueprintBean extends JAXRSServerFactoryBean implements Blu
             loggingFeature = null;
         }
         if (loggingFeatureEnabled) {
+            loggingFeature = new LoggingFeature();
             if (getLoggingSizeLimit() > 0) {
-                loggingFeature = new LoggingFeature(getLoggingSizeLimit());
-            } else {
-                loggingFeature = new LoggingFeature();
+                loggingFeature.setLimit(getLoggingSizeLimit());
             }
             getFeatures().add(loggingFeature);
         }
@@ -80,10 +79,9 @@ public class RsServerBlueprintBean extends JAXRSServerFactoryBean implements Blu
         this.loggingSizeLimit = loggingSizeLimit;
         if (loggingFeature != null) {
             getFeatures().remove(loggingFeature);
+            loggingFeature = new LoggingFeature();
             if (loggingSizeLimit > 0) {
-                loggingFeature = new LoggingFeature(loggingSizeLimit);
-            } else {
-                loggingFeature = new LoggingFeature();
+                loggingFeature.setLimit(loggingSizeLimit);
             }
             getFeatures().add(loggingFeature);
         }

@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.18.2-SNAPSHOT</version>
+        <version>4.22.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -35,6 +35,10 @@
     <modules>
         <module>camel-spring</module>
 
+        <module>camel-spring-ai-chat</module>
+        <module>camel-spring-ai-embeddings</module>
+        <module>camel-spring-ai-image</module>
+        <module>camel-spring-ai-vector-store</module>
         <module>camel-spring-batch</module>
         <module>camel-spring-cloud-config</module>
         <module>camel-spring-jdbc</module>

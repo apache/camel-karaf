@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf-components</artifactId>
-        <version>4.18.2-SNAPSHOT</version>
+        <version>4.22.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -40,5 +40,6 @@
         <module>camel-ibm-watson-speech-to-text</module>
         <module>camel-ibm-watson-text-to-speech</module>
         <module>camel-ibm-watsonx-ai</module>
+        <module>camel-ibm-watsonx-data</module>
     </modules>
 </project>

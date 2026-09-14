@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel.karaf</groupId>
         <artifactId>camel-karaf</artifactId>
-        <version>4.18.2-SNAPSHOT</version>
+        <version>4.22.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -60,9 +60,11 @@
         <module>camel-braintree</module>
         <module>camel-browse</module>
         <module>camel-caffeine</module>
+        <module>camel-camunda</module>
         <module>camel-cassandraql</module>
         <module>camel-cbor</module>
         <module>camel-chunk</module>
+        <module>camel-clickhouse</module>
         <module>camel-clickup</module>
         <module>camel-cloudevents</module>
         <module>camel-cm-sms</module>
@@ -83,10 +85,12 @@
         <module>camel-dataformat</module>
         <module>camel-dataset</module>
         <module>camel-datasonnet</module>
+        <module>camel-dataweave</module>
         <module>camel-debezium</module>
         <module>camel-debug</module>
         <module>camel-dfdl</module>
         <module>camel-dhis2</module>
+        <module>camel-diagram</module>
         <module>camel-digitalocean</module>
         <module>camel-direct</module>
         <module>camel-directvm</module>
@@ -96,11 +100,12 @@
         <module>camel-dsl-support</module>
         <module>camel-drill</module>
         <module>camel-dropbox</module>
+        <module>camel-duckdb</module>
         <module>camel-dynamic-router</module>
         <module>camel-ehcache</module>
         <module>camel-elasticsearch</module>
         <module>camel-elasticsearch-rest-client</module>
-        <module>camel-elytron</module>
+        <module>camel-event</module>
         <module>camel-exec</module>
         <module>camel-fastjson</module>
         <module>camel-fhir</module>
@@ -113,19 +118,16 @@
         <module>camel-fory</module>
         <module>camel-freemarker</module>
         <module>camel-ftp</module>
+        <module>camel-ftp-common</module>
         <module>camel-geocoder</module>
         <module>camel-git</module>
-        <module>camel-github</module>
         <module>camel-github2</module>
         <module>camel-google</module>
-        <module>camel-grape</module>
         <module>camel-graphql</module>
         <module>camel-grok</module>
         <module>camel-groovy</module>
-        <module>camel-groovy-xml</module>
         <module>camel-grpc</module>
         <module>camel-gson</module>
-        <module>camel-guava-eventbus</module>
         <module>camel-hashicorp-vault</module>
         <module>camel-hazelcast</module>
         <module>camel-headersmap</module>
@@ -148,7 +150,12 @@
         <module>camel-jackson</module>
         <module>camel-jackson-avro</module>
         <module>camel-jackson-protobuf</module>
+        <module>camel-jackson3</module>
+        <module>camel-jackson3-avro</module>
+        <module>camel-jackson3-protobuf</module>
+        <module>camel-jackson3xml</module>
         <module>camel-jacksonxml</module>
+        <module>camel-jactl</module>
         <module>camel-jandex</module>
         <module>camel-jasypt</module>
         <module>camel-javascript</module>
@@ -177,6 +184,7 @@
         <module>camel-jsonata</module>
         <module>camel-jsonb</module>
         <module>camel-jsonpath</module>
+        <module>camel-jsoup</module>
         <module>camel-jt400</module>
         <module>camel-jta</module>
         <module>camel-jte</module>
@@ -219,7 +227,6 @@
         <module>camel-nats</module>
         <module>camel-netty</module>
         <module>camel-netty-http</module>
-        <module>camel-nitrite</module>
         <module>camel-oaipmh</module>
         <module>camel-oauth</module>
         <module>camel-observability-services</module>
@@ -278,9 +285,9 @@
         <module>camel-scheduler</module>
         <module>camel-schematron</module>
         <module>camel-seda</module>
-        <module>camel-service</module>
         <module>camel-servicenow</module>
         <module>camel-servlet</module>
+        <module>camel-shell</module>
         <module>camel-shiro</module>
         <module>camel-sjms</module>
         <module>camel-sjms2</module>
@@ -299,7 +306,6 @@
         <module>camel-ssh</module>
         <module>camel-stax</module>
         <module>camel-stitch</module>
-        <module>camel-stomp</module>
         <module>camel-stream</module>
         <module>camel-stringtemplate</module>
         <module>camel-stripe</module>

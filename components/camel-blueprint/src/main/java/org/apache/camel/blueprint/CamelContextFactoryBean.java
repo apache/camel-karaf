@@ -68,7 +68,6 @@ import org.apache.camel.model.RouteTemplateContextRefDefinition;
 import org.apache.camel.model.RouteTemplateDefinition;
 import org.apache.camel.model.TemplatedRouteDefinition;
 import org.apache.camel.model.ThreadPoolProfileDefinition;
-import org.apache.camel.model.cloud.ServiceCallConfigurationDefinition;
 import org.apache.camel.model.dataformat.DataFormatsDefinition;
 import org.apache.camel.model.rest.RestConfigurationDefinition;
 import org.apache.camel.model.rest.RestDefinition;
@@ -194,10 +193,6 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
             @XmlElement(name = "consumerTemplate", type = CamelConsumerTemplateFactoryBean.class), @XmlElement(name = "proxy", type = CamelProxyFactoryBean.class),
             @XmlElement(name = "errorHandler", type = CamelErrorHandlerFactoryBean.class)})
     private List<AbstractCamelFactoryBean<?>> beansFactory;
-    @XmlElement(name = "defaultServiceCallConfiguration")
-    private ServiceCallConfigurationDefinition defaultServiceCallConfiguration;
-    @XmlElement(name = "serviceCallConfiguration", type = ServiceCallConfigurationDefinition.class)
-    private List<ServiceCallConfigurationDefinition> serviceCallConfigurations;
     @XmlElement(name = "defaultResilience4jConfiguration")
     private Resilience4jConfigurationDefinition defaultResilience4jConfiguration;
     @XmlElement(name = "resilience4jConfiguration", type = Resilience4jConfigurationDefinition.class)
@@ -897,24 +892,6 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Blu
 
     public List<?> getBeans() {
         return null; // not in use
-    }
-
-    @Override
-    public ServiceCallConfigurationDefinition getDefaultServiceCallConfiguration() {
-        return defaultServiceCallConfiguration;
-    }
-
-    public void setDefaultServiceCallConfiguration(ServiceCallConfigurationDefinition defaultServiceCallConfiguration) {
-        this.defaultServiceCallConfiguration = defaultServiceCallConfiguration;
-    }
-
-    @Override
-    public List<ServiceCallConfigurationDefinition> getServiceCallConfigurations() {
-        return serviceCallConfigurations;
-    }
-
-    public void setServiceCallConfigurations(List<ServiceCallConfigurationDefinition> serviceCallConfigurations) {
-        this.serviceCallConfigurations = serviceCallConfigurations;
     }
 
     @Override
