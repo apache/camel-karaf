@@ -18,7 +18,7 @@ package org.apache.karaf.camel.test;
 import static org.apache.camel.component.azure.storage.blob.BlobConstants.BLOB_CONTAINER_NAME;
 import static org.apache.camel.component.azure.storage.blob.BlobConstants.BLOB_NAME;
 import static org.apache.camel.component.azure.storage.blob.BlobConstants.BLOB_OPERATION;
-import static org.apache.camel.component.azure.storage.blob.CredentialType.SHARED_KEY_CREDENTIAL;
+import static org.apache.camel.component.azure.common.CredentialType.SHARED_KEY_CREDENTIAL;
 
 import java.util.function.Function;
 
