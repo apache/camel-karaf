@@ -34,7 +34,7 @@ import com.azure.storage.common.StorageSharedKeyCredential;
 import com.azure.storage.queue.QueueServiceClient;
 import com.azure.storage.queue.QueueServiceClientBuilder;
 
-import static org.apache.camel.component.azure.storage.queue.CredentialType.SHARED_KEY_CREDENTIAL;
+import static org.apache.camel.component.azure.common.CredentialType.SHARED_KEY_CREDENTIAL;
 import static org.apache.camel.component.azure.storage.queue.QueueConstants.QUEUE_OPERATION;
 
 @Component(name = "karaf-camel-azure-storage-queue-test", immediate = true, service = CamelRouteSupplier.class)
