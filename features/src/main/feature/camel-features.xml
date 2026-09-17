@@ -3753,6 +3753,11 @@
         <feature version="[6,7)">jakarta-servlet</feature>
         <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-cpu/2.6.0</bundle>
         <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-constraint/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-function/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-net/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-os/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-ref/2.6.0</bundle>
+        <bundle dependency='true'>wrap:mvn:io.smallrye.common/smallrye-common-expression/2.6.0</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-core/${undertow-version}</bundle>
         <bundle dependency='true'>mvn:io.undertow/undertow-servlet/${undertow-servlet-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.wildfly.common/wildfly-common/${auto-detect-version}$Export-Package=*;version=${auto-detect-version}</bundle>
