@@ -18,7 +18,6 @@ org.apache.cxf.binding.xml.wsdl11.XMLWSDLExtensionLoader::true:true
 org.apache.cxf.jaxb.WrapperHelperProxyService:org.apache.cxf.jaxb.WrapperHelperCreator:true
 org.apache.cxf.jaxb.FactoryClassProxyService:org.apache.cxf.jaxb.FactoryClassCreator:true
 org.apache.cxf.ext.logging.LoggingFactoryBeanListener::true
-org.apache.cxf.ext.logging.OldLoggingFactoryBeanListener::true
 org.apache.cxf.ext.logging.LoggingBusLifecycleListener::true
 org.apache.cxf.jaxrs.JAXRSBindingFactory::true
 org.apache.cxf.jaxws.context.WebServiceContextResourceResolver::true
