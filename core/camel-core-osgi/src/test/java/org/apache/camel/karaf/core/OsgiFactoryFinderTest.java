@@ -18,19 +18,26 @@ package org.apache.camel.karaf.core;
 
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 
 import org.apache.camel.spi.ClassResolver;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -174,5 +181,52 @@ public class OsgiFactoryFinderTest {
         when(bundleContext.getBundles()).thenReturn(new Bundle[] {racing, other});
 
         assertNull(finder().getResource(KEY));
+    }
+
+    /**
+     * findClass and findOptionalClass are two independent methods on DefaultFactoryFinder (different
+     * upstream callers use one or the other, e.g. Camel's ResourceResolver SPI looks up via
+     * findOptionalClass), each with its own default, non-OSGi implementation. Overriding only
+     * findClass left findOptionalClass silently falling back to the parent's plain classloader-based
+     * lookup, which cannot see a descriptor exported by a different bundle - so both must go through
+     * the same bundle scan. This pins both entry points against a future edit that overrides one but
+     * not the other again.
+     */
+    @Test
+    public void testFindClassResolvesAcrossBundles(@TempDir Path tempDir) throws Exception {
+        URL url = factoryDescriptor(tempDir, "java.lang.String");
+        Bundle provider = bundle(url);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] {provider});
+        doReturn(String.class).when(provider).loadClass("java.lang.String");
+
+        Optional<Class<?>> result = finder().findClass(KEY);
+        assertTrue(result.isPresent());
+        assertSame(String.class, result.get());
+    }
+
+    @Test
+    public void testFindOptionalClassResolvesAcrossBundles(@TempDir Path tempDir) throws Exception {
+        URL url = factoryDescriptor(tempDir, "java.lang.String");
+        Bundle provider = bundle(url);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] {provider});
+        doReturn(String.class).when(provider).loadClass("java.lang.String");
+
+        Optional<Class<?>> result = finder().findOptionalClass(KEY);
+        assertTrue(result.isPresent());
+        assertSame(String.class, result.get());
+    }
+
+    @Test
+    public void testFindOptionalClassReturnsEmptyWhenNoBundleProvidesTheDescriptor() {
+        Bundle a = bundle(null);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] {a});
+
+        assertEquals(Optional.empty(), finder().findOptionalClass(KEY));
+    }
+
+    private static URL factoryDescriptor(Path dir, String className) throws Exception {
+        Path file = dir.resolve("factory.properties");
+        Files.writeString(file, "class=" + className);
+        return file.toUri().toURL();
     }
 }

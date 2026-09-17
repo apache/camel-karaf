@@ -50,9 +50,25 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
 
     @Override
     public Optional<Class<?>> findClass(String key) {
-        final String classKey = key;
+        return findClassFromBundles(key);
+    }
 
-        Class<?> answer = addToClassMap(classKey, () -> {
+    // DefaultFactoryFinder implements findClass and findOptionalClass as two independent methods
+    // (different lookup semantics upstream, but both ultimately resolve a class by key here), each
+    // with its own default (non-OSGi) implementation. Overriding only findClass leaves
+    // findOptionalClass silently falling back to the parent's plain classloader-based lookup, which
+    // cannot see resources exported by other bundles - e.g. Camel's ResourceResolver SPI
+    // (META-INF/services/org/apache/camel/resource-resolver/<scheme>) is looked up via
+    // findOptionalClass, so a component polling a non-http resource (like camel-atom reading a
+    // file: URI) would fail to find the "file" resolver bundled in camel-base-engine even though it
+    // is installed, unless this method is also bridged across bundles.
+    @Override
+    public Optional<Class<?>> findOptionalClass(String key) {
+        return findClassFromBundles(key);
+    }
+
+    private Optional<Class<?>> findClassFromBundles(String key) {
+        Class<?> answer = addToClassMap(key, () -> {
             BundleEntry entry = getResource(key);
             if (entry != null) {
                 URL url = entry.url;
