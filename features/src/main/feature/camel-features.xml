@@ -184,7 +184,7 @@
     </feature>
 
     <feature name="awssdk" version="${aws-java-sdk2-version}" start-level="50">
-        <feature version="[4,5)">http-client</feature>
+        <feature version="[5,6)">http-client</feature>
         <feature version='[4.1,5)'>netty</feature>
         <bundle dependency='true'>mvn:io.netty/netty-codec-http2/${netty-version}</bundle>
         <bundle dependency='true'>wrap:mvn:software.amazon.awssdk/netty-nio-client/${aws-java-sdk2-version}</bundle>
