@@ -1188,10 +1188,14 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-json/${kafka-version}</bundle>
         <!-- connect-json now uses jackson-module-blackbird instead of jackson-module-afterburner -->
         <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-blackbird/${auto-detect-version}</bundle>
+        <!-- connect-runtime uses org.apache.maven.artifact.versioning to compare plugin version ranges -->
+        <bundle dependency='true'>wrap:mvn:org.apache.maven/maven-artifact/${auto-detect-version}</bundle>
         <!-- Api, openlineage-api, embedded, storage, util, config, connect-plugins and connector-common have split packages so we merge all into api;
              debezium-common and debezium-core are pom-only aggregators in this release, relocated to debezium-util+debezium-config and debezium-connector-common respectively -->
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-util/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-config/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <!-- debezium-connector-common computes its streaming metrics with DDSketch -->
+        <bundle dependency='true'>wrap:mvn:com.datadoghq/sketches-java/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-common/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-openlineage-api/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
@@ -1222,6 +1226,8 @@
         <!-- Use the wrap protocol to make org.antlr.v4.gui optional-->
         <bundle>wrap:mvn:org.antlr/antlr4-runtime/${auto-detect-version}$overwrite=merge&amp;Import-Package=org.antlr.v4.gui*;resolution:=optional,*</bundle>
         <bundle>wrap:mvn:io.debezium/debezium-storage-kafka/${auto-detect-version}$Fragment-Host=io.debezium.api</bundle>
+        <!-- the binlog client decompresses zstd-compressed binlog events -->
+        <bundle dependency='true'>mvn:com.github.luben/zstd-jni/${auto-detect-version}</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/mysql-binlog-connector-java/${auto-detect-version}</bundle>
         <bundle dependency='true'>mvn:com.mysql/mysql-connector-j/${debezium-mysql-connector-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-mysql/${project.version}</bundle>
