@@ -1137,7 +1137,8 @@
     <feature name='camel-cxf-jetty' version='${project.version}' start-level='50'>
         <feature version="[12,13)">jetty</feature>
         <feature version='${camel-osgi-version-range}'>camel-cxf</feature>
-        <bundle dependency="true">mvn:org.eclipse.jetty.ee10/jetty-ee10-servlet/${jetty-version}</bundle>
+        <!-- CXF 4.2 moved its Jetty transport from the Jetty 12 ee10 environment to ee11 -->
+        <bundle dependency="true">mvn:org.eclipse.jetty.ee11/jetty-ee11-servlet/${jetty-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-cxf-transport-jetty/${project.version}</bundle>
     </feature>
     <feature name='camel-cxf-spring' version='${project.version}' start-level='50'>
