@@ -17,6 +17,7 @@ package org.apache.karaf.camel.test;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.dns.DnsConstants;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
@@ -46,17 +47,17 @@ public class CamelDnsRouteSupplier extends AbstractCamelSingleFeatureResultMockB
     @Override
     protected void configureProducer(RouteBuilder builder, RouteDefinition producerRoute) {
         producerRoute.log("Will get IP")
-        .setHeader("dns.domain", builder.constant(LOCALHOST))
+        .setHeader(DnsConstants.DNS_DOMAIN, builder.constant(LOCALHOST))
         .to("dns:ip")
         .log("IP: ${body}")
         .toF("mock:%s", getResultMockName())
         .log("Will lookup")
-        .setHeader("dns.name", builder.constant(LOCALHOST))
+        .setHeader(DnsConstants.DNS_NAME, builder.constant(LOCALHOST))
         .to("dns:lookup")
         .log("Lookup: ${body}")
         .toF("mock:%s", getResultMockName())
         .log("Will dig")
-        .setHeader("dns.type", builder.constant("A"))
+        .setHeader(DnsConstants.DNS_TYPE, builder.constant("A"))
         .to("dns:dig")
         .log("Dig: ${body}")
         .toF("mock:%s", getResultMockName());

@@ -18,6 +18,7 @@ package org.apache.karaf.camel.test;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.es.ElasticsearchComponent;
+import org.apache.camel.component.es.ElasticsearchConstants;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRouteSupplier;
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
@@ -56,7 +57,7 @@ public class CamelElasticsearchRouteSupplier extends AbstractCamelSingleFeatureR
                     .setHeader("_ID", builder.simple("${body}"))
                     .toF("elasticsearch://elasticsearch?operation=GetById&indexName=%s", INDEX_NAME)
                     .log("Get doc: ${body}")
-                    .setHeader("indexId", builder.simple("${header._ID}"))
+                    .setHeader(ElasticsearchConstants.PARAM_INDEX_ID, builder.simple("${header._ID}"))
                     .setBody(builder.constant("""
                             {"doc": {"someKey": "someValue2"}}
                             """))
