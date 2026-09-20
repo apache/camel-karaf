@@ -1179,7 +1179,6 @@
     <feature name='camel-debezium-common' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
-        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-afterburner/${jackson216-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/kafka-clients/${kafka-version}</bundle>
         <!-- Api, runtime and transform have split packages so we merge all into api -->
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-runtime/${kafka-version}$Fragment-Host=org.apache.kafka.connect-api;bundle-version=${kafka-version}</bundle>
@@ -1187,13 +1186,16 @@
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-api/${kafka-version}$Bundle-SymbolicName=org.apache.kafka.connect-api</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-file/${kafka-version}</bundle>
         <bundle dependency='true'>wrap:mvn:org.apache.kafka/connect-json/${kafka-version}</bundle>
-        <!-- Api, openlineage-api, embedded, storage, util, config and connector-common have split packages so we merge all into api;
+        <!-- connect-json now uses jackson-module-blackbird instead of jackson-module-afterburner -->
+        <bundle dependency='true'>mvn:com.fasterxml.jackson.module/jackson-module-blackbird/${auto-detect-version}</bundle>
+        <!-- Api, openlineage-api, embedded, storage, util, config, connect-plugins and connector-common have split packages so we merge all into api;
              debezium-common and debezium-core are pom-only aggregators in this release, relocated to debezium-util+debezium-config and debezium-connector-common respectively -->
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-util/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-config/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connector-common/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-openlineage-api/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-embedded/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
+        <bundle dependency='true'>wrap:mvn:io.debezium/debezium-connect-plugins/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle>wrap:mvn:io.debezium/debezium-storage-file/${debezium-version}$Fragment-Host=io.debezium.api</bundle>
         <bundle dependency='true'>wrap:mvn:io.debezium/debezium-api/${debezium-version}$Bundle-SymbolicName=io.debezium.api&amp;DynamicImport-Package=io.debezium.connector.*&amp;${spi-consumer}&amp;SPI-Provider=*</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-debezium-common/${project.version}</bundle>
