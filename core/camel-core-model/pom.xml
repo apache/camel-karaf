@@ -37,7 +37,7 @@
             org.apache.camel*;version=${camel-version}
         </camel.osgi.export>
         <camel.osgi.import>
-            jdk.jfr;resolution:=optional,
+            ${camel-osgi-jdk-jfr-import}
             *
         </camel.osgi.import>
     </properties>

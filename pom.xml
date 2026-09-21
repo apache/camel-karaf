@@ -364,7 +364,6 @@
         <langchain4j-version>1.18.1</langchain4j-version>
         <langchain4j-beta-version>1.18.1-beta28</langchain4j-beta-version>
         <mcp-java-sdk-version>2.0.0</mcp-java-sdk-version>
-        <langchain4j-beta-version>1.18.1-beta28</langchain4j-beta-version>
         <langchain4j-community-version>1.18.0-beta28</langchain4j-community-version>
         <leveldbjni-version>1.8</leveldbjni-version>
         <leveldb-api-version>0.12</leveldb-api-version>
@@ -409,7 +408,6 @@
         <olingo2-version>2.0.13</olingo2-version>
         <olingo4-version>5.0.0</olingo4-version>
         <ognl-version>3.4.11</ognl-version>
-        <mcp-java-sdk-version>2.0.0</mcp-java-sdk-version>
         <openai-java-version>4.49.0</openai-java-version>
         <openapi-generator-version>7.24.0</openapi-generator-version>
         <openjpa-version>4.1.1</openjpa-version>
@@ -568,6 +566,12 @@
         <camel-osgi-saaj-version>[2,4)</camel-osgi-saaj-version>
         <camel-osgi-slf4j-version>[2,3)</camel-osgi-slf4j-version>
         <camel-osgi-cxf-version>[4.2,4.3)</camel-osgi-cxf-version>
+        <!-- jdk.jfr/jdk.jfr.consumer are JDK-specific modules, not part of the formal JavaSE
+             profile package list karaf-maven-plugin derives from <javase>, so they are never
+             exported by the system bundle; shared here so camel-core-model, camel-console and
+             camel-jfr mark the same optional import instead of each re-declaring it. -->
+        <camel-osgi-jdk-jfr-import>jdk.jfr;resolution:=optional,
+            jdk.jfr.consumer;resolution:=optional,</camel-osgi-jdk-jfr-import>
 
         <!-- Camel Karaf OSGI version ranges -->
         <camel-osgi-version-clean>4.22</camel-osgi-version-clean>
