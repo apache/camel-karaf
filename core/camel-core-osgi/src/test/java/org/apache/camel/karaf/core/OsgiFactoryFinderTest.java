@@ -35,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
@@ -224,9 +225,39 @@ public class OsgiFactoryFinderTest {
         assertEquals(Optional.empty(), finder().findOptionalClass(KEY));
     }
 
+    /**
+     * DefaultFactoryFinder.doNewInstance(properties, mandatory) throws only when mandatory is true
+     * (findClass); findOptionalClass passes mandatory=false and returns Optional.empty() instead. Both
+     * public methods here share the same bundle-scanning implementation, so pin the mandatory flag is
+     * actually threaded through and not just hardcoded to "always throw" again.
+     */
+    @Test
+    public void testFindClassThrowsWhenDescriptorIsMissingClassProperty(@TempDir Path tempDir) throws Exception {
+        URL url = factoryDescriptorWithoutClass(tempDir);
+        Bundle provider = bundle(url);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] {provider});
+
+        assertThrows(RuntimeException.class, () -> finder().findClass(KEY));
+    }
+
+    @Test
+    public void testFindOptionalClassReturnsEmptyWhenDescriptorIsMissingClassProperty(@TempDir Path tempDir) throws Exception {
+        URL url = factoryDescriptorWithoutClass(tempDir);
+        Bundle provider = bundle(url);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] {provider});
+
+        assertEquals(Optional.empty(), finder().findOptionalClass(KEY));
+    }
+
     private static URL factoryDescriptor(Path dir, String className) throws Exception {
         Path file = dir.resolve("factory.properties");
         Files.writeString(file, "class=" + className);
+        return file.toUri().toURL();
+    }
+
+    private static URL factoryDescriptorWithoutClass(Path dir) throws Exception {
+        Path file = dir.resolve("factory.properties");
+        Files.writeString(file, "# no class property");
         return file.toUri().toURL();
     }
 }

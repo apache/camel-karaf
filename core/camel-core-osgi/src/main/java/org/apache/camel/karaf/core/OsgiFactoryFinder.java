@@ -50,7 +50,7 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
 
     @Override
     public Optional<Class<?>> findClass(String key) {
-        return findClassFromBundles(key);
+        return findClassFromBundles(key, true);
     }
 
     // DefaultFactoryFinder implements findClass and findOptionalClass as two independent methods
@@ -64,10 +64,14 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
     // is installed, unless this method is also bridged across bundles.
     @Override
     public Optional<Class<?>> findOptionalClass(String key) {
-        return findClassFromBundles(key);
+        return findClassFromBundles(key, false);
     }
 
-    private Optional<Class<?>> findClassFromBundles(String key) {
+    // mandatory mirrors DefaultFactoryFinder.doNewInstance(properties, mandatory): findClass passes
+    // true and throws when the descriptor is missing its "class" property, findOptionalClass passes
+    // false and returns Optional.empty() instead, so a malformed descriptor doesn't poison an
+    // otherwise-optional lookup for the life of the context.
+    private Optional<Class<?>> findClassFromBundles(String key, boolean mandatory) {
         Class<?> answer = addToClassMap(key, () -> {
             BundleEntry entry = getResource(key);
             if (entry != null) {
@@ -81,7 +85,10 @@ public class OsgiFactoryFinder extends DefaultFactoryFinder {
                     properties.load(reader);
                     String className = properties.getProperty("class");
                     if (className == null) {
-                        throw new IOException("Expected property is missing: class");
+                        if (mandatory) {
+                            throw new IOException("Expected property is missing: class");
+                        }
+                        return null;
                     }
                     return entry.bundle.loadClass(className);
                 } finally {
