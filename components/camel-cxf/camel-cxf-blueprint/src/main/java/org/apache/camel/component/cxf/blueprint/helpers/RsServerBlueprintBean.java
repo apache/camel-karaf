@@ -57,20 +57,13 @@ public class RsServerBlueprintBean extends JAXRSServerFactoryBean implements Blu
     }
 
     public void setLoggingFeatureEnabled(boolean loggingFeatureEnabled) {
-        if (loggingFeature != null) {
-            getFeatures().remove(loggingFeature);
-            loggingFeature = null;
-        }
+        removeLoggingFeature();
         if (loggingFeatureEnabled) {
-            loggingFeature = new LoggingFeature();
-            if (getLoggingSizeLimit() > 0) {
-                loggingFeature.setLimit(getLoggingSizeLimit());
-            }
+            loggingFeature = newLoggingFeature(getLoggingSizeLimit());
             getFeatures().add(loggingFeature);
         }
-        
     }
-    
+
     public int getLoggingSizeLimit() {
         return loggingSizeLimit;
     }
@@ -78,13 +71,25 @@ public class RsServerBlueprintBean extends JAXRSServerFactoryBean implements Blu
     public void setLoggingSizeLimit(int loggingSizeLimit) {
         this.loggingSizeLimit = loggingSizeLimit;
         if (loggingFeature != null) {
-            getFeatures().remove(loggingFeature);
-            loggingFeature = new LoggingFeature();
-            if (loggingSizeLimit > 0) {
-                loggingFeature.setLimit(loggingSizeLimit);
-            }
+            removeLoggingFeature();
+            loggingFeature = newLoggingFeature(loggingSizeLimit);
             getFeatures().add(loggingFeature);
         }
+    }
+
+    private void removeLoggingFeature() {
+        if (loggingFeature != null) {
+            getFeatures().remove(loggingFeature);
+            loggingFeature = null;
+        }
+    }
+
+    private static LoggingFeature newLoggingFeature(int limit) {
+        LoggingFeature feature = new LoggingFeature();
+        if (limit > 0) {
+            feature.setLimit(limit);
+        }
+        return feature;
     }
     
     public void setSkipFaultLogging(boolean skipFaultLogging) {
