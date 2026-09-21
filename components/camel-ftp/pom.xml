@@ -53,6 +53,19 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- camel-ftp-common shares the org.apache.camel.component.file.remote package
+             with camel-ftp, so it has to live in the same bundle -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-ftp-common</artifactId>
+            <version>${camel-version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -76,6 +89,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.apache.camel:camel-ftp</include>
+                                    <include>org.apache.camel:camel-ftp-common</include>
                                 </includes>
                             </artifactSet>
                         </configuration>

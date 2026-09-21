@@ -1506,10 +1506,6 @@
         <bundle dependency='true'>mvn:commons-net/commons-net/${commons-net-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ftp/${project.version}</bundle>
     </feature>
-    <feature name='camel-ftp-common' version='${project.version}' start-level='50'>
-        <feature version='${camel-osgi-version-range}'>camel-core</feature>
-        <bundle>mvn:org.apache.camel.karaf/camel-ftp-common/${project.version}</bundle>
-    </feature>
     <feature name='camel-geocoder' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
         <feature version='[5,6)'>http-client</feature>
