@@ -29,7 +29,7 @@
 
     <groupId>org.apache.camel.karaf</groupId>
     <artifactId>camel-karaf</artifactId>
-    <version>4.22.0-SNAPSHOT</version>
+    <version>4.22.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Apache Camel :: Karaf</name>
@@ -88,13 +88,13 @@
     <!-- TODO use Karaf/Camel bom -->
     <properties>
         <javaVersion>17</javaVersion>
-        <project.build.outputTimestamp>1776180649</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1790054941</project.build.outputTimestamp>
 
-        <camel-version>4.22.0</camel-version>
+        <camel-version>4.22.1</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.19.9</activemq-version>
-        <activemq6-version>6.3.0</activemq6-version>
+        <activemq6-version>6.3.1</activemq6-version>
         <activemq-artemis-version>2.55.0</activemq-artemis-version>
         <aesh-terminal-version>3.14.1</aesh-terminal-version>
         <agroal-version>3.2.1</agroal-version>
@@ -250,7 +250,7 @@
         <hapi-base-version>2.6.0</hapi-base-version>
         <hapi-fhir-version>8.10.1</hapi-fhir-version>
         <hapi-fhir-core-version>6.10.0</hapi-fhir-core-version>
-        <hawtio-version>4.6.2</hawtio-version>
+        <hawtio-version>5.2.1</hawtio-version>
         <hazelcast-version>5.4.0</hazelcast-version>
         <hdrhistrogram-version>2.2.2</hdrhistrogram-version>
         <hibernate-validator-version>9.1.3.Final</hibernate-validator-version>
@@ -378,8 +378,8 @@
         <mapstruct-version>1.6.3</mapstruct-version>
         <mima-version>2.4.47</mima-version>
         <metrics-version>4.2.39</metrics-version>
-        <micrometer-version>1.17.0</micrometer-version>
-        <micrometer-tracing-version>1.7.0</micrometer-tracing-version>
+        <micrometer-version>1.17.1</micrometer-version>
+        <micrometer-tracing-version>1.7.1</micrometer-tracing-version>
         <microprofile-config-version>3.1.1</microprofile-config-version>
         <microprofile-fault-tolerance-version>4.1.2</microprofile-fault-tolerance-version>
         <milo-version>1.1.6</milo-version>
@@ -398,7 +398,7 @@
         <neoscada-version>0.4.0</neoscada-version>
         <neo4j-bolt-version>12.0.0</neo4j-bolt-version>
         <neo4j-version>6.2.0</neo4j-version>
-        <netty-version>4.2.16.Final</netty-version>
+        <netty-version>4.2.18.Final</netty-version>
         <netty-reactive-streams-version>2.0.5</netty-reactive-streams-version>
         <networknt-json-schema-validator-version>2.0.1</networknt-json-schema-validator-version>
         <nimbus-jose-jwt>10.9.1</nimbus-jose-jwt>
@@ -455,7 +455,7 @@
         <quartz-version>2.5.2</quartz-version>
         <quickfixj-version>3.0.1</quickfixj-version>
         <reactive-streams-version>1.0.4</reactive-streams-version>
-        <reactor-version>3.8.6</reactor-version>
+        <reactor-version>3.8.7</reactor-version>
         <reactor-netty-version>1.3.6</reactor-netty-version>
         <redisson-version>4.6.1</redisson-version>
         <resilience4j-version>2.4.0</resilience4j-version>
@@ -486,17 +486,17 @@
         <solr-version>10.0.0</solr-version>
         <splunk-version>1.9.5_1</splunk-version>
         <spock-version>2.4-groovy-5.0</spock-version>
-        <spring-ai-version>2.0.0</spring-ai-version>
-        <spring-cloud-config-version>5.0.4</spring-cloud-config-version>
-        <spring-batch-version>6.0.4</spring-batch-version>
-        <spring-boot-version>4.1.0</spring-boot-version>
-        <spring-data-redis-version>4.1.0</spring-data-redis-version>
-        <spring-ldap-version>4.1.0</spring-ldap-version>
+        <spring-ai-version>2.0.1</spring-ai-version>
+        <spring-cloud-config-version>5.0.5</spring-cloud-config-version>
+        <spring-batch-version>6.0.5</spring-batch-version>
+        <spring-boot-version>4.1.1</spring-boot-version>
+        <spring-data-redis-version>4.1.1</spring-data-redis-version>
+        <spring-ldap-version>4.1.1</spring-ldap-version>
         <spring-vault-core-version>4.1.0</spring-vault-core-version>
-        <spring-version>7.0.8</spring-version>
-        <spring-rabbitmq-version>4.1.0</spring-rabbitmq-version>
+        <spring-version>7.0.9</spring-version>
+        <spring-rabbitmq-version>4.1.1</spring-rabbitmq-version>
         <spring-retry-version>2.0.13</spring-retry-version>
-        <spring-security-version>7.1.0</spring-security-version>
+        <spring-security-version>7.1.1</spring-security-version>
         <spring-ws-version>5.0.2</spring-ws-version>
         <squareup-okhttp-version>3.14.9</squareup-okhttp-version>
         <squareup-okhttp5-version>5.4.0</squareup-okhttp5-version>
@@ -524,7 +524,7 @@
         <vavr-version>1.0.0</vavr-version>
         <velocity-tools-version>3.1</velocity-tools-version>
         <velocity-version>2.4.1</velocity-version>
-        <vertx-version>4.5.31</vertx-version>
+        <vertx-version>4.5.34</vertx-version>
         <weaviate-client-version>6.3.0</weaviate-client-version>
         <web3j-version>5.0.0</web3j-version>
         <web3j-quorum-version>4.10.0</web3j-quorum-version>

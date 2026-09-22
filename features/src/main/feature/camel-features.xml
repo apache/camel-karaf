@@ -2539,6 +2539,7 @@
         <bundle dependency='true'>mvn:org.apache.commons/commons-collections4/${commons-collections4-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-lang3/${commons-lang3-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.commons/commons-pool2/${commons-pool2-version}</bundle>
+        <bundle dependency='true'>mvn:org.apache.commons/commons-text/${commons-text-version}</bundle>
         <bundle dependency='true'>mvn:org.apache.mina/mina-core/${mina-version}</bundle>
         <bundle>mvn:org.apache.camel.karaf/camel-ldif/${project.version}</bundle>
     </feature>
@@ -2892,6 +2893,7 @@
     </feature>
     <feature name='camel-openai' version='${project.version}' start-level='50'>
         <feature version='${camel-osgi-version-range}'>camel-core</feature>
+        <feature version='${camel-osgi-version-range}'>camel-ai-tool</feature>
         <feature version='${camel-osgi-jackson2-version}'>jackson</feature>
         <feature version='[5,6)'>http-client</feature>
         <bundle dependency='true'>wrap:mvn:com.openai/openai-java-core/${openai-java-version}$overwrite=merge&amp;Export-Package=com.openai*;version=${openai-java-version}&amp;Import-Package=*;resolution:=optional</bundle>
