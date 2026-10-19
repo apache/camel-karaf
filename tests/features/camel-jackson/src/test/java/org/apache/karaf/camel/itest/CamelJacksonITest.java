@@ -31,9 +31,14 @@ public class CamelJacksonITest extends AbstractCamelSingleFeatureResultMockBased
     private static final String JSON_SAMPLE = "{\"name\":\"%s\",\"age\":%d}"
             .formatted(CamelJacksonRouteSupplier.JSON_SAMPLE_NAME, CamelJacksonRouteSupplier.JSON_SAMPLE_AGE);
 
+    // carries a property MyData does not declare: only unmarshalling with @JsonIgnoreProperties(ignoreUnknown = true)
+    // honoured (#758) lets the route reach the mock, which then sees the JSON without that property
+    private static final String JSON_SAMPLE_WITH_UNKNOWN = "{\"name\":\"%s\",\"age\":%d,\"unknown\":\"ignored\"}"
+            .formatted(CamelJacksonRouteSupplier.JSON_SAMPLE_NAME, CamelJacksonRouteSupplier.JSON_SAMPLE_AGE);
+
     @Override
     public String getBodyToSend() {
-        return JSON_SAMPLE;
+        return JSON_SAMPLE_WITH_UNKNOWN;
     }
 
     @Override

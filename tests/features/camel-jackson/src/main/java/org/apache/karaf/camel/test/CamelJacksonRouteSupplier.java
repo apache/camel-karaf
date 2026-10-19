@@ -25,6 +25,7 @@ import org.apache.karaf.camel.itests.AbstractCamelSingleFeatureResultMockBasedRo
 import org.apache.karaf.camel.itests.CamelRouteSupplier;
 import org.osgi.service.component.annotations.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Component(
@@ -42,6 +43,8 @@ public class CamelJacksonRouteSupplier extends AbstractCamelSingleFeatureResultM
         return false;
     }
 
+    // ignoreUnknown must be honoured when the entity lives in a different bundle than databind (#758)
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class MyData {
         private String name;
