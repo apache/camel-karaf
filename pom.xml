@@ -90,7 +90,7 @@
         <javaVersion>17</javaVersion>
         <project.build.outputTimestamp>1788967174</project.build.outputTimestamp>
 
-        <camel-version>4.18.4</camel-version>
+        <camel-version>4.18.5</camel-version>
 
         <!-- START: Maven Properties defining the version of 3rd party libraries used in Camel -->
         <activemq-version>5.19.5</activemq-version>
@@ -334,7 +334,7 @@
         <jcip-annotations-version>1.0-1</jcip-annotations-version>
         <jcr-version>2.0</jcr-version>
         <jedis-client-version>7.2.1</jedis-client-version>
-        <jetty-version>12.1.6</jetty-version>
+        <jetty-version>12.1.12</jetty-version>
         <jetty-for-solr-version>10.0.20</jetty-for-solr-version>
         <jetty-plugin-version>${jetty-version}</jetty-plugin-version>
         <jetty-runner-groupId>org.eclipse.jetty</jetty-runner-groupId>
@@ -367,7 +367,7 @@
         <jsonata-version>0.9.9</jsonata-version>
         <jspecify-version>1.0.0</jspecify-version>
         <json-unit-version>5.1.0</json-unit-version>
-        <jsoup-version>1.22.1</jsoup-version>
+        <jsoup-version>1.23.1</jsoup-version>
         <jt400-version>21.0.6</jt400-version>
         <jte-version>3.2.3</jte-version>
         <junit-toolbox-version>2.4</junit-toolbox-version>
@@ -479,7 +479,7 @@
         <quartz-version>2.5.2</quartz-version>
         <quickfixj-version>2.3.2</quickfixj-version>
         <reactive-streams-version>1.0.4</reactive-streams-version>
-        <reactor-version>3.8.3</reactor-version>
+        <reactor-version>3.8.7</reactor-version>
         <reactor-netty-incubator-quic-version>0.1.20</reactor-netty-incubator-quic-version>
         <reactor-netty-version>1.3.3</reactor-netty-version>
         <redisson-version>3.52.0</redisson-version>
@@ -525,7 +525,7 @@
         <squareup-okhttp-version>3.14.9</squareup-okhttp-version>
         <squareup-okhttp5-version>5.3.2</squareup-okhttp5-version>
         <squareup-okio-version>1.17.5</squareup-okio-version>
-        <sshd-version>2.17.1</sshd-version>
+        <sshd-version>2.20.0</sshd-version>
         <stompjms-version>1.19</stompjms-version>
         <stripe-java-version>31.3.0</stripe-java-version>
         <stumbleupon-async-version>1.4.1</stumbleupon-async-version>
